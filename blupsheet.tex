@@ -1,0 +1,615 @@
+\documentclass[10pt,landscape]{article}
+\usepackage[T1]{fontenc}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+\usepackage[pdftex]{hyperref}
+
+%
+% This file was derived from latexsheet.tex created by Winston Chang.
+% The original copyright is shown below.
+%
+% Copyright (c) 2014 Winston Chang
+% http://wch.github.io/latexsheet/
+%
+% Yutaka Masuda has modified the original latexsheet.tex to borrow its format
+% to produce the BLUPF90 cheat sheet. I distribute this file under the same
+% license as the original file (CC BY-NC-SA 3.0). See the following page for
+% details.
+%
+% https://creativecommons.org/licenses/by-nc-sa/3.0/
+%
+
+% To make this come out properly in landscape mode, do one of the following
+% 1.
+%  pdflatex latexsheet.tex
+%
+% 2.
+%  latex latexsheet.tex
+%  dvips -P pdf  -t landscape latexsheet.dvi
+%  ps2pdf latexsheet.ps
+
+
+% If you're reading this, be prepared for confusion.  Making this was
+% a learning experience for me, and it shows.  Much of the placement
+% was hacked in; if you make it better, let me know...
+
+
+% 2008-04
+% Changed page margin code to use the geometry package. Also added code for
+% conditional page margins, depending on paper size. Thanks to Uwe Ziegenhagen
+% for the suggestions.
+
+% 2006-08
+% Made changes based on suggestions from Gene Cooperman. <gene at ccs.neu.edu>
+
+
+% To Do:
+% \listoffigures \listoftables
+% \setcounter{secnumdepth}{0}
+
+
+% This sets page margins to .5 inch if using letter paper, and to 1cm
+% if using A4 paper. (This probably isn't strictly necessary.)
+% If using another size paper, use default 1cm margins.
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+	{ \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+	{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	}
+
+% Turn off header and footer
+\pagestyle{empty}
+ 
+
+% Redefine section commands to use less space
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\makeatother
+
+% Define BibTeX command
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+
+% -----------------------------------------------------------------------
+
+\begin{document}
+
+\raggedright
+\footnotesize
+\begin{multicols}{3}
+
+
+% multicol parameters
+% These lengths are set only within the two main columns
+%\setlength{\columnseprule}{0.25pt}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+
+\begin{center}
+     \Large{\textbf{RENUMF90 Cheat Sheet}} \\
+\end{center}
+
+\section{The RENUMF90 parameter file}
+Pairs of \emph{keyword-value} must appear in the following order.
+The keyword should be capital.
+More than one field are allowed for a multiple-trait case.
+Characters led by \verb|#| will be ignored as comments.
+
+\subsection{Optional \texttt{COMBINED} keyword}
+\begin{tabular}{@{}ll@{}}
+  \verb|COMBINE|  & \\
+  \verb|  n a b ..| & Fields $a$, $b$, ... combied into a single field $n$.\\
+\end{tabular}
+
+\subsection{Required keywords}
+\begin{tabular}{@{}ll@{}}
+  \verb|DATAFILE|    & Data file with observations and effects.\\
+  \verb|  filename|  & \\
+  \verb|TRAITS|    & Field(s) for observations.\\
+  \verb|  f1 ..|   & Multiple values if multiple-trait.\\
+  \multicolumn{2}{l}{\hspace{-0.75em}\texttt{FIELDS\_PASSED TO OUTPUT}}~~Field(s) passed to output data.\\
+  \verb|  f1 ..|   & (Empty value if not needed.)\\
+  \verb|WEIGHT(S)| & Field for weight.\\
+  \verb|  field|   & (Empty value if not needed.)\\
+  \verb|RESIDUAL_VARIANCE| & Full residual covariance matrix.\\
+  \verb|  R|       & (Scalar if single-trait)\\
+  \verb|EFFECT| & Effect definition.\\
+  \verb|  f1 .. type form| & Repeat the keyword-value if needed.\\
+\\
+\end{tabular}
+
+A \verb|EFFECT| block has the following values.
+\begin{tabular}{@{}ll@{}}
+  \verb|f1 ..| & Field(s) with class code or covariate.\\
+              & Multiple values if multiple-trait.\\
+              & \verb|0| if not needed for specific traits.\\
+  \verb|type|  & Type of effect.\\
+              & \verb|cross| for cross-classified effect.\\
+              & \verb|cov| for covariate.\\
+  \verb|form|  & Only for cross-classified effect.\\
+              & \verb|alpha| for alphanumeric fields.\\
+              & \verb|numer| for numeric fields.\\
+\end{tabular}
+
+\subsection{Optional \texttt{NESTED} keyword}
+\begin{tabular}{@{}ll@{}}
+  \verb|NESTED|  & Nested regression for the immediate effect.\\
+  \verb|  f1 .. form| & The same number of fields as \verb|EFFECT|.\\
+                     & \verb|form| is \verb|alpha| or \verb|numer|.\\
+\end{tabular}
+
+\subsection{Optional \texttt{RANDOM} and related keywords}
+\begin{tabular}{@{}ll@{}}
+  \verb|RANDOM|  & Make the immediate effect random.\\
+  \verb|  type|  & \verb|animal| for $\mathbf{A}$; \verb|diag| for $\mathbf{I}$.\\
+  \verb|OPTIONAL| & Add optional random effects.\\
+  \verb|  type ..| & \verb|pe| for permanent environmental effect;\\
+                  & \verb|mat| for maternal genetic effect;\\
+                  & \verb|mpe| for maternal PE.\\
+  \verb|FILE|  & Pedigree file.\\
+  \verb|  filename|  & \\
+  \verb|FILE_POS| & Field definition of pedigree file.\\
+  \verb|  a s d ad yob g| & \verb|a|,\verb|s|,\verb|d| for animal, sire and dam ID;\\
+                        & \verb|ad| for alternate dam; \verb|0| if not needed;\\
+                        & \verb|yob| for birth year; \verb|0| if not needed;\\
+                        & \verb|g| for unknown parent groups (optional)\\
+                        & (Default = \verb|1 2 3 0 0|)\\
+\end{tabular}
+\begin{tabular}{@{}ll@{}}
+  \verb|SNP_FILE|  & SNP marker file.\\
+  \verb|  filename|  & \\
+  \verb|PED_DEPTH|  & Depth of pedigree search.\\
+  \verb|  n|       & (Default = 3)\\
+  \verb|GEN_INT|  & Generation interval.\\
+  \verb|  min avg max| & minimum, average and maximum interval.\\
+                     & Needed only if birth year is available.\\
+  \verb|REC_SEX|  & Check sex-limited traits.\\
+  \verb|  x|  & \verb|1| for male; \verb|2| for female.\\
+  \verb|UPG_TYPE|  & Assign unknown parent groups.\\
+  \verb|  type|  & \verb|yob| = birth year;\\
+                & \verb|in_pedigrees| = negative code in pedigree;\\
+                & \verb|group| based = group code in extra field;\\
+                & \verb|group_unisex| as above but with ``unisex''\\
+  \verb|INBREEDING| & Consider inbreeding in $\mathbf{A}^{-1}$.\\
+  \verb|  type| & \verb|pedigree| computing with pedigree data.\\
+               & \verb|file filename| reading values from file.\\
+               & (Default = no inbreeding considered)\\
+  \verb|RANDOM_REGRESSION| & Define this effect as random regression.\\
+  \verb|  type| & \verb|data| here.\\
+  \verb|RR_POSITION| & Field(s) of covariates.\\
+  \verb|  f1 ..| & \\
+  \verb|(CO)VARIANCES| & Full covariance matrix.\\
+  \verb|  G| & (Default: \verb|1| on diag. and \verb|0.1| on off-diag.)\\
+  \verb|(CO)VARIANCES_PE| & Full covariance matrix for PE.\\
+  \verb|  G| & (Default: \verb|1| on diag. and \verb|0.1| on off-diag.)\\
+  \verb|(CO)VARIANCES_PE| & Full covariance matrix for maternal PE.\\
+  \verb|  G| & (Default: \verb|1| on diag. and \verb|0.1| on off-diag.)\\
+\end{tabular}
+
+For 2-trait maternal model, the genetic covariance matrix \verb|(CO)VARIANCES| should be $4\times 4$ as follows.
+
+\begin{tabular}{@{}ll|c|c|c|c|@{}}
+  &       &\multicolumn{2}{c}{Direct}&\multicolumn{2}{c}{Maternal}\\
+\cline{3-6}
+  &       &Trait 1&Trait 2&Trait 1&Trait 2\\
+\hline
+Direct&Trait 1& & & &\\
+\hline
+&Trait 2& & & &\\
+\hline
+Maternal&Trait 1& & & &\\
+\hline
+        &Trait 2& & & &\\
+\hline
+\end{tabular}
+
+For 2-trait random regressions, the genetic covariance matrix \verb|(CO)VARIANCES| should be $4\times 4$ as follows.
+
+\begin{tabular}{@{}ll|c|c|c|c|@{}}
+  &       &\multicolumn{2}{c}{RR 1}&\multicolumn{2}{c}{RR 2}\\
+\cline{3-6}
+  &       &Trait 1&Trait 2&Trait 1&Trait 2\\
+\hline
+RR 1&Trait 1& & & &\\
+\hline
+&Trait 2& & & &\\
+\hline
+RR 2&Trait 1& & & &\\
+\hline
+        &Trait 2& & & &\\
+\hline
+\end{tabular}
+
+\subsection{Additional \texttt{OPTION} lines}
+You can write additional options at the end of the parameter file.
+An option has the keyword \verb|OPTION| and its values on the same line.
+Any numbers of option lines are allowed.
+Only the following options will be taken with RENUMF90; the other options will be just passed to the output file.
+
+\begin{tabular}{@{}ll@{}}
+  \verb|alpha_size n| & The width of alphanumeric field. \\
+  &(Default=20).\\
+  \verb|max_string_readline n| & The number of characters in a line. \\
+  &(Default=800).\\
+  \verb|max_string_readline n| & The number of fields. \\
+  &(Default=99).\\
+\end{tabular}
+
+\section{Guideline for file preparation}
+\begin{itemize}[leftmargin=*,itemsep=0pt,parsep=0pt]
+  \item Text file with tidy data like a table (each row for reacord and each field for factor).
+  \item White spaces as the only separators; no tabs are allowed.
+  \item Alphanumeric characters and symbols for group code and animal ID.
+  \item Common numerics (integer, floating point, and exponential expressions) for observations, covariates, and weights.
+  \item The default missing code is \verb|0|. You can change it using \verb|OPTION missing n| with an integer $n$; This works only for data file (not for pedigree file in which a single \verb|0| is the missing code).
+\end{itemize}
+
+\section{Output files}
+The RENUMF90 program generates ``renumbered'' files that can be used with BLUPF90 and related programs.
+
+\begin{tabular}{@{}ll@{}}
+  \verb|renf90.par| & New parameter file for BLUPF90 programs.\\
+  \verb|renf90.dat| & New data file.\\
+  \verb|renadd??.ped| & New pedigree file. \\
+                     & \verb|??| replaced with numbers.\\
+  \verb|****_XrefID| & Cross-reference ID file (optional).\\
+                   & \verb|****| replaced with the SNP file name.\\
+  \verb|renf90.inb| & Inbreeding coefficients (optional).\\
+  \verb|renf90.tables| & Code replacement table.\\
+  \\
+\end{tabular}
+
+The new pedigree file has 10 fields with additional information.
+\begin{enumerate}[leftmargin=*,itemsep=0pt,parsep=0pt]
+\item New animal ID (renumbered from 1)
+\item New parent 1 (sire) or unknown parent group ID
+\item New parent 2 (dam) or unknown parent group ID
+\item Without inbreeding, 3 minus number of known parents; With inbreeding a 4-digit code (see below).
+\item Known or estimated year of birth (\verb|0| if not provided)
+\item The number of known parents (parents might be eliminated if not contributing; if animal has genotype 10+number of know parents
+\item The number of records
+\item The number of progeny (before elimination due to other effects) as parent 1
+\item The number of progeny (before elimination due to other effects) as parent 2
+\item Original animal id
+\end{enumerate}
+
+The 4th field has the following four-digit code (\emph{upg/inb code}) when inbreeding is included:
+\[
+\frac{4000}{(1+m_s)(1-F_s) + (1+m_d)(1-F_d)}
+\]
+where $m_s$ ($m_d$) is 0 if sire (dam) is known or 1 if the parent is unknown, and $F_s$ ($F_d$) is the inbreeding coefficient of sire (dam).
+
+\rule{0.3\linewidth}{0.25pt}
+\scriptsize
+
+Based on the BLUPF90 manual\\
+Yutaka Masuda (\href{mailto:masuday@uga.edu}{masuday@uga.edu})
+
+\clearpage
+\footnotesize
+
+\begin{center}
+     \Large{\textbf{BLUPF90 Cheat Sheet}} \\
+\end{center}
+
+\section{The BLUPF90 parameter file}
+The parameter file can be commonly used with BLUPF90, AIREMLF90, GIBBSF90, and the other family programs.
+Pairs of \emph{keyword-value} must appear in the following order.
+The keyword should be capital.
+Characters led by \verb|#| will be ignored as comments.
+
+\subsection{Required keywords}
+\begin{tabular}{@{}ll@{}}
+  \verb|DATAFILE|    & Data file with observations and effects.\\
+  \verb|  filename|  & \\
+  \verb|NUMBER_OF_TRAITS|    & \\
+  \verb|  n|   & a single integer.\\
+  \verb|NUMBER_OF_EFFECTS|    & \\
+  \verb|  n|   & a single integer.\\
+  \verb|OBSERVATION(S)| & Field(s) for observations.\\
+  \verb|  f1 ..|   & Multiple fields if multiple-trait model.\\
+  \verb|WEIGHT(S)| & Field for weight.\\
+  \verb|  field|   & (Empty value if not needed.)\\
+  \verb|EFFECTS:| & Effect definition (see below).\\
+  \verb|  f1 .. type c1 ..| & Repeat the description if needed.\\
+  \verb|RANDOM_RESIDUAL| & Full residual covariance matrix.\\
+  \verb|  R|       & (Scalar if single-trait)\\
+\\
+\end{tabular}
+
+The \verb|EFFECTS:| block is followed by model-description lines; each row describes 1 effect so that the number of rows is the same to the number of effects specified at \verb|NUMBER_OF_EFFECTS|.
+\begin{tabular}{@{}ll@{}}
+  \verb|f1 ..| & Field(s) with class code or covariate.\\
+              & Multiple values if multiple-trait.\\
+              & \verb|0| if not needed for specific traits.\\
+  \verb|type|  & Type of effect.\\
+              & \verb|cross| for cross-classified effect.\\
+              & \verb|cov| for covariate.\\
+  \verb|c1 ..| & The list is optional.\\
+              & Field(s) with class code for nested regression.\\
+              & Multiple values if multiple-trait.\\
+              & \verb|0| if not needed for specific traits.\\
+\end{tabular}
+
+The position of effect in this block is called ``effect number''.
+It will be used to specify a random effect in the next section.
+
+\subsection{Optional \texttt{RANDOM} and related keywords}
+\verb|RANDOM| is followed by 3 other keywords and it makes a section to define a random effect.
+You can repeat the \verb|RANDOM| section if you have several random effects.
+This section can define a correlated random effect involving multiple effects such as a direct-maternal genetic effect and random-regressions.
+
+\begin{tabular}{@{}ll@{}}
+  \\
+  \verb|RANDOM_GROUP| & Define a random effect group.\\
+  \verb|  e1 ..|  & List of effect numbers defined above.\\
+               & The effect numbers must be consecutive.\\
+  \verb|RANDOM_TYPE| & Type of random effect.\\
+  \verb|  type|   & See below\\
+  \verb|FILE| & Pedigree (or similar) file.\\
+  \verb|  filename|   & Empty line if not needed.\\
+  \verb|(CO)VARIANCES| & Full covariance matrix.\\
+  \verb|  G|   & \\
+  \\
+\end{tabular}
+
+The \verb|type| defines the covariance structure and pedigree relationships.
+
+\begin{itemize}[leftmargin=*,itemsep=0pt,parsep=0pt]
+  \item \verb|diagonal|: Identity ($\mathbf{I}$).
+  \item \verb|add_sire|: Numerator relationship matrix for sire and MGS.
+  \item \verb|add_animal|: Numerator relationship matrix without inbreeding.
+  \item \verb|add_an_upg|: As above with unknown parent groups.
+  \item \verb|add_an_upginb|: As above but with inbreeding.
+  \item \verb|par_domin|: Parental dominance.
+  \item \verb|user_file|: User-supplied inverse matrix.
+  \item \verb|user_file_inv|: User-supplied non-inverse matrix (inverted by programs).
+\end{itemize}
+
+The \verb|filename| will be needed for all \verb|type| except \verb|diagonal|.
+In a pedigree file, an animal's ID should be a positive integer; an unknown-parent group is an integer greater than the largest ID of real animals; a missing parent is \verb|0|.
+The file format is shown below.
+
+\begin{itemize}[leftmargin=*,itemsep=0pt,parsep=0pt]
+  \item For \verb|add_sire|: 1) animal, 2) sire, and 3) MGS.
+  \item For \verb|add_animal|: 1) animal, 2) sire, and 3) dam.
+  \item For \verb|add_an_upg|: 1) animal, 2) sire or UPG, 3) dam or UPG, and 4) 3 minus the number of known parents.
+  \item For \verb|add_an_upginb|: 1) animal, 2) sire or UPG, 3) dam or UPG, and 4) four-digit upg/inb code; see RENUMF90.
+  \item For \verb|par_domin|: Generated with \verb|rendomn|; See the manual.
+  \item For \verb|user_file| and \verb|user_file_inv|: 1) row, 2) column, and 3) value; Half-stored.
+\end{itemize}
+
+In a covariance matrix, the trait is nested within effect.
+See the following case for 2 traits and 2 correlated effects.
+
+\begin{tabular}{@{}ll|c|c|c|c|@{}}
+  &       &\multicolumn{2}{c|}{Eff 1}&\multicolumn{2}{c|}{Eff 2}\\
+\cline{3-4}\cline{5-6}
+  &       &Tr 1&Tr 2&Tr 1&Tr 2\\
+\hline
+Eff 1&Tr 1& & & & \\
+\hline
+     &Tr 2& & & & \\
+\hline
+Eff 2&Tr 1& & & & \\
+\hline
+     &Tr 2& & & & \\
+\hline
+\end{tabular}
+
+\section{Options}
+You can write additional options at the end of the parameter file.
+An option has the keyword \verb|OPTION| and its values on the same line.
+Any numbers of option lines are allowed.
+Unsupported options will be simply ignored (but preGSf90 give you an error).
+
+\subsection{Genomic options}
+For genomic analyses, see a separate cheat sheet.
+
+\subsection{Common options for BLUPF90/AIREMLF90}
+\begin{tabular}{@{}lp{19em}@{}}
+  \verb|missing n| & Treat an integer \verb|n| as a missing observation; default = \verb|0|.\\
+  \verb|conv_crit c| & Convergence criterion for iteratiions; default = $10^{-12}$. \\
+  \verb|maxrounds n| & Maximum iterations; default = 5000.\\
+  \verb|sol se| & Calculate SE of each solution as the inverse of LHS.\\
+  \verb|use_yams| & Faster computations with the YAMS package; should be combined with \verb|solv_method FSPAK| for BLUPF90.\\
+\end{tabular}
+
+\subsection{BLUPF90}
+\begin{tabular}{@{}lp{19em}@{}}
+  \verb|solv_method m| & Solving method: \verb|m| = \verb|FSPAK| for direct inversion and \verb|pcg| for PCG (default)\\
+\end{tabular}
+
+\subsection{AIREMLF90}
+\begin{tabular}{@{}lp{18em}@{}}
+  \verb|EM-REML n|       & EM iterations for the first \verb|n| rounds.\\
+  \verb|hetres_pos f1 ..| & Fields for covariates in a function of heterogeneous residual variance; should be multiple of the number of traits.\\
+  \verb|hetres_pol f1 ..| & Initial regression coeffeicients for the heterogeneous-residual-variance function.\\
+  \multicolumn{2}{l}{\hspace{-0.75em}\texttt{se\_covar\_function label function}}\\
+  \multicolumn{2}{p{25em}}{Calculate SE for a function of variance components by sampling; shown with arbitrary \texttt{label}; covariance \texttt{G\_i\_j\_k\_l} for random effects $i$ and $j$, and traits $k$ and $l$; residual covariance \texttt{R\_k\_l} for trait $k$ and $l$.}
+\end{tabular}
+
+\subsection{Common options for GIBBSxF90/THRGIBBS1F90}
+\begin{tabular}{@{}lp{16em}@{}}
+  \verb|fixed_var mean e1 ..| & Compute poeterior mean/SD of location parameters of specified effects without updating covariances.\\
+  \verb|fixed_var all e1 ..| & As above but store all samples.\\
+  \verb|solution mean e1 ..| & Similar to \verb|fixed_var mean| but updating variance components.\\
+  \verb|solution all e1 ..| & Similar to \verb|fixed_var all| but updating variance components.\\
+  \verb|cont n| & Continue sampling from the previous run in the round \verb|n|.\\
+  \verb|seed m n| & Seeds of random number generators.\\
+\end{tabular}
+
+\subsection{THRGIBBS1F90}
+\begin{tabular}{@{}lp{19em}@{}}
+  \verb|cat t1 ..| & The number of categories in each trait; \verb|0| for contineoues traits.\\
+  \verb|censored t1 ..| & Censoring in each trait; \verb|1| if censored and \verb|0| if not.\\
+  \verb|threshold v1 ..| & Set fixed thresholds; default = 0.\\
+  \verb|residual 1| & Set residual variance to 1.\\
+\end{tabular}
+
+\rule{0.3\linewidth}{0.25pt}
+\scriptsize
+
+Based on the BLUPF90 manual\\
+Yutaka Masuda (\href{mailto:masuday@uga.edu}{masuday@uga.edu})
+
+\clearpage
+\footnotesize
+
+\begin{center}
+     \Large{\textbf{Genomic Options Cheat Sheet}} \\
+\end{center}
+
+\section{Flowchart}
+All application programs can check the genomic data and calculate a genomic relationship matrix ($\mathbf{G}$), a subset of a pedigree matrix ($\mathbf{A}_{22}$), and those inverse matrices, followed by the statistical computations (e.g. solving equations in BLUPF90).
+PREGSF90 performs the genomic set-up only.
+The genomic data will be processed as follows.
+
+\begin{enumerate}[leftmargin=*,itemsep=0pt,parsep=0pt]
+  \item Check the cross-reference ID (XrefID) file.
+  \item Read the pedigree and store it in memory.
+  \item Calculate $\mathbf{A}_{22}$.
+  \item Read and store the SNP markers in memory.
+  \item Check the quality of markers and animals and remove some of them if unqualified (\emph{quality control}).
+  \item Compute $\mathbf{Z}$ as the adjusted marker genotypes with allele frequency.
+  \item Calculate $\mathbf{G}=\mathbf{ZZ}'/k$ with a coefficient $k$.
+  \item Update $\mathbf{G}$ as $\mathbf{G}\leftarrow\alpha\mathbf{G}+\beta\mathbf{A}_{22}+\gamma\mathbf{I}+\delta\mathbf{11}'$ (\emph{blending}).
+  \item Update $\mathbf{G}$ to scale it to $\mathbf{A}_{22}$ (\emph{tuning}).
+  \item Calculate statistics on $\mathbf{G}$ and $\mathbf{A}_{22}$.
+  \item Calculate $\omega\mathbf{A}_{22}^{-1}$ by updating $\mathbf{A}_{22}$.
+  \item Calculate $\tau\mathbf{G}^{-1}$ by updating $\mathbf{G}$.
+  \item Calculate the difference $\Delta=\tau\mathbf{G}^{-1}-\omega\mathbf{A}_{22}^{-1}$.
+  \item Save $\Delta$ in a binary file (\verb|GimA22i|).
+\end{enumerate}
+
+\section{Files}
+\subsection{Input files}
+\begin{itemize}[leftmargin=*,itemsep=0pt,parsep=0pt]
+  \item SNP file: 2 fields per row: an animal ID and its genotypes. The ID must have a fixed width with the tailing spaces. The genotypes can be integers (coded as \verb|0|, \verb|1|, \verb|2|, and \verb|5| as missing) or gene content (real numbers with fixed width). No spaces are allowed between markers. 
+  \item XrefID file: The file is usually generated with RENUMF90. This file has a table relating the genotyped animals with the renumbered pedigree.
+  \item Pedigree file: It is the same as used in the standard animal-model analysis.
+  \item Map file (optional): The file has at least 3 fields per row: 1) the marker number, 2) the chromosome number, 3) the physical location, and optional 4) the description of this markers.
+\end{itemize}
+
+\subsection{Default output files}
+\begin{itemize}[leftmargin=*,itemsep=0pt,parsep=0pt]
+  \item \verb|freqdata.count|: Minor allel frequency calculated from the original SNP file.
+  \item \verb|freqdata.count.after.clean|: Minor allel frequency calculated from the data after the quality control.
+  \item \verb|Gen_call_rate|: Call rate for genotyped animals.
+  \item \verb|Gen_conflicts|: Report of parentage checks.
+  \item \verb|sum2pq|: $2\sum_{i} p_i q_i$; $k$ as above in $\mathbf{G}$.
+  \item \verb|GimA22i|: A binary fole for $\Delta=\tau\mathbf{G}^{-1}-\omega\mathbf{A}_{22}^{-1}$.
+\end{itemize}
+
+\section{The required options for genomics}
+\begin{tabular}{@{}p{26em}@{}}
+  \verb|SNP_file snpfile xrefid| \\
+Invoke genomic module using the SNP file \verb|snpfile|; By default, a cross-reference-ID (XrefID) file is assumed to be \verb|snpfile| + \verb|_XrefID|. You can optionally supply the XrefID file as the second argument. This option accompanies many other options (shown below).
+\end{tabular}
+
+\section{Genomic options}
+The following lists are not complete.
+See the official manual for additional options.
+
+\subsection{User-supplied files}
+\begin{tabular}{@{}lp{16em}@{}}
+  \verb|chrinfo file| & Supply a map file.\\
+  \verb|FreqFile file| & Supply the pre-calculated allele frequency; the same format as \verb|freq.count|\\
+\end{tabular}
+
+\subsection{Quality control}
+\begin{tabular}{@{}lp{16em}@{}}
+  \verb|no_quality_control| & Turn off the quality-control; some checks will be still performed but any unqualified data will not be removed.\\
+  \verb|saveCleanSNPs| & Save ``clean'' SNP data, in which unqualified markers and animals have been removed, to files.\\
+  \verb|minfreq x| & Remove a marker if the minor allele frequency is $<x$. (default = 0.05)\\
+  \verb|callrate x| & Remove a marker if the call rate is $<x$. (default = 0.90)\\
+  \verb|callrateAnim x| & Remove an animal if the call rate is $<x$. (default = 0.90)\\
+  \verb|monomorphic x| & Remove a monomorphic marker if \verb|x| is 1. (default = 1)\\
+  \verb|hwe x| & Perfrom the Hardy-Weinberg test with the criterion \verb|x| (default = not performed).\\
+  \verb|high_correlation x y| & Check a high-correlated pair of markers if the difference in the allele frequency between the markers is larger than \verb|x|; show warings if the correlation is higher than \verb|y|. Default = \verb|x=0.025| and \verb|y=0.995|.\\
+  \verb|verify_parentage x| & Parentage checks; \verb|0| for skipping all checks; \verb|1| for just checks; \verb|2| for checking animals and removing conflicted markers and animals (default = 2).\\
+  \verb|outparent_progeny| & Create a precise report of parentage checks.\\
+  \verb|excludeCHR n1..| & Exclude markers on specific chromosomes from the final output; the map file in seeded.\\
+  \verb|sex_chr n| & Exclude markers on the sex chromosomes temporarily from parantage and Hardy-Weinberg checks; the map file in seeded.\\
+\end{tabular}
+
+\subsection{Blending and tuning}
+\begin{tabular}{@{}lp{16em}@{}}
+  \verb|AlphaBeta a b| & Specify $\alpha$ as \verb|a| and $\beta$ as \verb|b| in blending (default: $\alpha=0.95$ and $\beta=0.05$).\\
+  \verb|GammaDelta g d| & Specify $\gamma$ as \verb|g| and $\delta$ as \verb|d| in blending (default: $\gamma=0$ and $\delta=0$).\\
+  \verb|TauOmega t o| & Specify $\tau$ as \verb|t| and $\omega$ as \verb|o| for the inverse matrices (default: $\tau=1$ and $\omega=1$).\\
+\end{tabular}
+
+\subsection{Saving matrices}
+\begin{tabular}{@{}lp{16em}@{}}
+  \verb|saveAscii| & All files will be saved as the text file; Without this option, the files will be saved in a binary format.\\
+  \verb|saveG| & Save the final $\mathbf{G}$ in the file \verb|G|.\\
+  \verb|saveG all| & Save the all intermediate $\mathbf{G}$'s in several files.\\
+  \verb|saveA22| & Save the final $\mathbf{A}_{22}$ in the file \verb|A22|.\\
+  \verb|saveGInverse| & Save the final $\tau\mathbf{G}^{-1}$ in the file \verb|Gi|.\\
+  \verb|saveA22Inverse| & Save the final $\omega\mathbf{A}_{22}^{-1}$ in the file \verb|A22i|.\\
+  \verb|saveGOrig| & Save the final $\omega\mathbf{G}$ with the original animal ID; always saved in the ASCII format regardless of \verb|saveAscii|; the pedigree file generated with RENUMF90.\\
+  \verb|saveA22Orig| & As above but for the final $\mathbf{A}_{22}$.\\
+  \verb|saveHinv| & Save $\mathbf{H}^{-1}$ in a text file. Only accepted by PREGSF90.\\
+  \verb|saveHinvOrig| & Save $\mathbf{H}^{-1}$ in a text file with the original animal ID. Only accepted by PREGSF90.\\
+\end{tabular}
+
+\subsection{Reading matrices}
+With one of the following options, the program will skip all required operations to form the relationship matrix related to the specified option.
+%For example, the option \verb|readGInverse| skip reading the SNP markers, to perform the quality control, to compute the final $\mathbf{G}$, and to skip computing $\tau\mathbf{G}^{-1}$.
+The file used here should be a binary format (not ASCII).
+
+\begin{tabular}{@{}lp{16em}@{}}
+  \verb|readGimA22i <file>| & Read $\Delta=\tau\mathbf{G}^{-1}-\omega\mathbf{A}_{22}^{-1}$ (default file = \verb|GimA22i|).\\
+  \verb|readG <file>| & Read $\mathbf{G}$ (default = \verb|G|).\\
+  \verb|readA22 <file>| & Read $\mathbf{A}_{22}$ (default = \verb|A22|).\\
+  \verb|readGInverse <file>| & Read $\mathbf{G}^{-1}$ (default = \verb|Gi|).\\
+  \verb|readA22Inverse <file>| & Read $\mathbf{A}_{22}^{-1}$ (default = \verb|A22i|).\\
+\end{tabular}
+
+The last 2 options assume the file contains $\mathbf{G}^{-1}$ or $\mathbf{A}_{22}^{-1}$, NOT $\tau\mathbf{G}^{-1}$ or $\omega\mathbf{A}_{22}^{-1}$.
+If you read these matrices and also specifies \verb|TauOmega|, the program will apply $\tau$ and $\omega$ to the matrices just read from the files.
+This is problematic when the matrices have been already scaled with $\tau$ and $\omega$ before being saved.
+
+\subsection{Skip creating matrices}
+\begin{tabular}{@{}lp{16em}@{}}
+  \verb|createGimA22i 0| & Omit $\Delta=\tau\mathbf{G}^{-1}-\omega\mathbf{A}_{22}^{-1}$.\\
+  \verb|createG 0| & Omit $\mathbf{G}$.\\
+  \verb|createA22 0| & Omit $\mathbf{A}_{22}$.\\
+  \verb|createGInverse 0| & Omit $\mathbf{G}^{-1}$.\\
+  \verb|createA22Inverse 0| & Omit $\mathbf{A}_{22}^{-1}$.\\
+\end{tabular}
+
+\rule{0.3\linewidth}{0.25pt}
+\scriptsize
+
+Based on the BLUPF90 manual\\
+Yutaka Masuda (\href{mailto:masuday@uga.edu}{masuday@uga.edu})
+
+\end{multicols}
+\end{document}
