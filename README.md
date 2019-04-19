@@ -1,6 +1,6 @@
 # masuday.github.io
 
-Permanent link: http://masuday.github.io
+Permanent link: [https://masuday.github.io](https://masuday.github.io)
 
 ## Useful resources of BLUPF90 programs
 
