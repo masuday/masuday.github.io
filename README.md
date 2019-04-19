@@ -1,5 +1,7 @@
 # masuday.github.io
 
+Permanent link: http://masuday.github.io
+
 ## Useful resources of BLUPF90 programs
 
 ### BLUPF90 Cheat Sheet
