@@ -2,7 +2,10 @@
 
 Assistant research scientist, University of Georgia, GA, USA
 
-Permanent link: [https://masuday.github.io](https://masuday.github.io)
+- Permanent link: [https://masuday.github.io](https://masuday.github.io)
+- Github account: [https://github.com/masuday/](https://github.com/masuday/)
+- ResearchGate: [https://www.researchgate.net/profile/Yutaka_Masuda](https://www.researchgate.net/profile/Yutaka_Masuda)
+- Animal Breeding and Genetic @ UGA: [http://nce.ads.uga.edu/](http://nce.ads.uga.edu/)
 
 ## Useful resources of BLUPF90 programs
 
