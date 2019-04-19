@@ -1,4 +1,6 @@
-# masuday.github.io
+# Yutaka Masuda
+
+Assistant research scientist, University of Georgia, GA, USA
 
 Permanent link: [https://masuday.github.io](https://masuday.github.io)
 
