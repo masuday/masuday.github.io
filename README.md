@@ -15,6 +15,12 @@ Assistant research scientist, University of Georgia, GA, USA
 * License: [CC BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/)
 * Download: [PDF](https://github.com/masuday/masuday.github.io/raw/master/blupsheet.pdf) (US Letter), [LaTeX](https://github.com/masuday/masuday.github.io/raw/master/blupsheet.tex)
 
+### BLUPF90 Tutorial
+
+* Explains a way of installation of BLUPF90 programs, how to write parameter files for BLUPF90 programs and RENUMF90, how to read the results from output, example files taken from Mrode's book (2014), and genomic analyses.
+* I expect that the reader is familiar with linear mixed model.
+* Download: [Visit the official website](http://nce.ads.uga.edu/wiki/doku.php?id=documentation)
+
 ### Sample files
 
 * See my repository: [masuday/data](https://github.com/masuday/data).
