@@ -23,3 +23,6 @@ Assistant research scientist, University of Georgia, GA, USA
 
     Yutaka Masuda <yutaka at uga.edu>
     University of Georgia
+
+### Test
+[Test page in Japanese](https://yutakamasuda.hatenablog.com)
