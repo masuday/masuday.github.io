@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<!--==============================================================================
+	           "GitHub HTML5 Pandoc Template" v1.2 — by Tristano Ajmone
+	==============================================================================
+	(c) Tristano Ajmone, 2017, MIT License (MIT). Project's home repository:
+
+	- https://github.com/tajmone/pandoc-goodies
+
+	This template reuses source code taken from the following projects:
+
+	- GitHub Markdown CSS: © Sindre Sorhus, MIT License (MIT):
+	  https://github.com/sindresorhus/github-markdown-css
+
+	- Primer CSS: © 2016 GitHub Inc., MIT License (MIT):
+	  http://primercss.io/
+	==============================================================================-->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Yutaka Masuda" />
+  <title>Quick tour of BLUPF90</title>
+  <style type="text/css">@font-face{font-family:octicons-link;src:url(data:font/woff;charset=utf-8;base64,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) format('woff')}.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#24292e;font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";font-size:16px;line-height:1.5;word-wrap:break-word;box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto;padding:45px}.markdown-body .octicon{display:inline-block;fill:currentColor;vertical-align:text-bottom}.markdown-body a{background-color:transparent;-webkit-text-decoration-skip:objects;color:#0366d6;text-decoration:none}.markdown-body a:active,.markdown-body a:hover{outline-width:0}.markdown-body h1{margin:.67em 0}.markdown-body img{border-style:none}.markdown-body svg:not(:root){overflow:hidden}.markdown-body code,.markdown-body kbd,.markdown-body pre{font-family:monospace,monospace}.markdown-body input{font:inherit;margin:0;overflow:visible;font-family:inherit;font-size:inherit;line-height:inherit}.markdown-body [type=checkbox]{box-sizing:border-box;padding:0}.markdown-body *{box-sizing:border-box}.markdown-body a:hover{text-decoration:underline}.markdown-body strong{font-weight:600}.markdown-body hr{box-sizing:content-box;overflow:hidden;background:0 0;border-bottom:1px solid #dfe2e5}.markdown-body hr::before{display:table;content:""}.markdown-body hr::after{display:table;clear:both;content:""}.markdown-body table{border-spacing:0;border-collapse:collapse;display:block;width:100%;overflow:auto}.markdown-body td,.markdown-body th{padding:0}.markdown-body blockquote{margin:0}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol{list-style-type:lower-alpha}.markdown-body dd{margin-left:0}.markdown-body code{font-family:SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace}.markdown-body pre{font:12px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;word-wrap:normal}.markdown-body .pl-0{padding-left:0!important}.markdown-body .pl-1{padding-left:4px!important}.markdown-body .pl-2{padding-left:8px!important}.markdown-body .pl-3{padding-left:16px!important}.markdown-body .pl-4{padding-left:24px!important}.markdown-body .pl-5{padding-left:32px!important}.markdown-body .pl-6{padding-left:40px!important}.markdown-body::before{display:table;content:""}.markdown-body::after{display:table;clear:both;content:""}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:0}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e1e4e8;border:0}.markdown-body blockquote{padding:0 1em;color:#6a737d;border-left:.25em solid #dfe2e5}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd{font-size:11px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#1b1f23;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1{padding-bottom:.3em;font-size:2em;border-bottom:1px solid #eaecef}.markdown-body h2{padding-bottom:.3em;font-size:1.5em;border-bottom:1px solid #eaecef}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#6a737d}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table th{font-weight:600}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #dfe2e5}.markdown-body table tr{background-color:#fff;border-top:1px solid #c6cbd1}.markdown-body table tr:nth-child(2n){background-color:#f6f8fa}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body code{padding:.2em 0;margin:0;font-size:85%;background-color:rgba(27,31,35,.05);border-radius:3px}.markdown-body code::after,.markdown-body code::before{letter-spacing:-.2em;content:"\00a0"}.markdown-body pre>code{padding:0;margin:0;font-size:100%;word-break:normal;white-space:pre;background:0 0;border:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f6f8fa;border-radius:3px}.markdown-body pre code{display:inline;max-width:auto;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body pre code::after,.markdown-body pre code::before{content:normal}.markdown-body .full-commit .btn-outline:not(:disabled):hover{color:#005cc5;border-color:#005cc5}.markdown-body kbd{display:inline-block;padding:3px 5px;font:11px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;line-height:10px;color:#444d56;vertical-align:middle;background-color:#fcfcfc;border:1px solid #c6cbd1;border-bottom-color:#959da5;border-radius:3px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body :checked+.radio-label{position:relative;z-index:1;border-color:#0366d6}.markdown-body .task-list-item{list-style-type:none}.markdown-body .task-list-item+.task-list-item{margin-top:3px}.markdown-body .task-list-item input{margin:0 .2em .25em -1.6em;vertical-align:middle}.markdown-body hr{border-bottom-color:#eee}.flash{position:relative;padding:16px;color:#246;background-color:#e2eef9;border:1px solid #bac6d3;border-radius:3px}.flash p:last-child{margin-bottom:0}.flash-messages{margin-bottom:24px}.flash-warn{color:#4c4a42;background-color:#fff9ea;border-color:#dfd8c2}.flash-error{color:#911;background-color:#fcdede;border-color:#d2b2b2}.flash-success{color:#22662c;background-color:#e2f9e5;border-color:#bad3be}.flash-plain{color:#4c4a42;background-color:#f5f5f5;border-color:#c1c1c1}</style>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">pre[data-language='renumf90']{background-color:#EFEFFE;}</style>
+  <style type="text/css">pre[data-language='blupf90']{background-color:#E7FFE7;}</style>
+  <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
+  <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
+  <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<article class="markdown-body">
+<header>
+<h1 class="title">Quick tour of BLUPF90</h1>
+<p class="author">Yutaka Masuda</p>
+<p class="date">September 2019</p>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#trivial-analyses-for-fixed-models">Trivial analyses for fixed models</a><ul>
+<li><a href="#one-way-anova-model">One-way ANOVA model</a></li>
+<li><a href="#fixed-effect-model">Fixed effect model</a></li>
+<li><a href="#options-to-control-the-program">Options to control the program</a></li>
+<li><a href="#comment-lines-in-parameter-file">Comment lines in parameter file</a></li>
+<li><a href="#remarks">Remarks</a></li>
+<li><a href="#summary">Summary</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="trivial-analyses-for-fixed-models">Trivial analyses for fixed models</h1>
+<p>This section describes the basic design and essential elements of BLUPF90 programs. We will explain how to prepare a data file and how to describe a parameter file using simple fixed effect models. Most of the basic ideas will be introduced here and you can expand to more complicated models.</p>
+<p>We use the BLUPF90 program here. BLUPF90 quickly solves mixed model equations and save the solutions to a file. This program also solves the least square equations (i.e., normal equations) for fixed effect models. Other programs for variance component estimation (e.g., AIREMLF90 and GIBBSF90) also accepts the same parameter file.</p>
+<p>BLUPF90 needs at least 2 files: a data file and a parameter file. The data file contains observations and related information (animal ID, age, sex, month, and so on). The parameter file defines the model, the name of the data file, genetic and non-genetic variance components, and optionally the name of the pedigree file. The files should be prepared by a user. Here we start with a linear fixed model with 1 class variable; this is equivalent to 1-way ANOVA (with unbalanced data).</p>
+<h2 id="one-way-anova-model">One-way ANOVA model</h2>
+<h3 id="model">Model</h3>
+<p>First, we describe the statistical model for the 1-way ANOVA: <span class="math display">\[
+y_{ij} = A_{i} + e_{ij}
+\]</span> where <span class="math inline">\(y_{ij}\)</span> is an observation, <span class="math inline">\(A_{i}\)</span> is a fixed effect, and <span class="math inline">\(e_{ij}\)</span> is the residual effect. The corresponding matrix notation is <span class="math display">\[
+\mathbf{y} = \mathbf{Xb} + \mathbf{e}
+\]</span> and the system of generalized least-squares equations is <span class="math display">\[
+\mathbf{X}&#39;\mathbf{R}^{-1}\mathbf{X}\mathbf{\hat{b}} = \mathbf{X}&#39;\mathbf{R}^{-1}\mathbf{y}
+\]</span> where <span class="math inline">\(\mathbf{R} = \mathrm{var}(\mathbf{e}) = \mathrm{var}(\mathbf{y})\)</span>. We actually assume <span class="math inline">\(\mathbf{R} = \mathbf{I}\sigma_{e}^{2}\)</span> with a residual variance <span class="math inline">\(\sigma_{e}^{2}\)</span>, so the above equations reduce to ordinary normal equations: <span class="math inline">\(\mathbf{X}&#39;\mathbf{X}\mathbf{\hat{b}} = \mathbf{X}&#39;\mathbf{y}\)</span>. The purpose of this example is to solve the equations with BLUPF90. The program doesn’t perform any hypothetical tests.</p>
+<h3 id="data">Data</h3>
+<p>In this analysis, we need at least 2 information: 1) observations and 2) code to distinguish the level of a class. Following table shows an actual data set with 10 observations.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Observation</th>
+<th>Group</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3.0</td>
+<td>A1</td>
+</tr>
+<tr class="even">
+<td>2.0</td>
+<td>A1</td>
+</tr>
+<tr class="odd">
+<td>4.0</td>
+<td>A1</td>
+</tr>
+<tr class="even">
+<td>6.0</td>
+<td>A2</td>
+</tr>
+<tr class="odd">
+<td>3.0</td>
+<td>A2</td>
+</tr>
+<tr class="even">
+<td>6.0</td>
+<td>A2</td>
+</tr>
+<tr class="odd">
+<td>6.0</td>
+<td>A3</td>
+</tr>
+<tr class="even">
+<td>6.0</td>
+<td>A3</td>
+</tr>
+<tr class="odd">
+<td>8.0</td>
+<td>A3</td>
+</tr>
+<tr class="even">
+<td>4.0</td>
+<td>A3</td>
+</tr>
+</tbody>
+</table>
+<p>The first column represents observations, and the second column has the group code. You can put any positive or negative observations to the data file. You can use any numerical values for observations except for 0. By default, the program treats 0 as a missing code. If you want to use an arbitrary number including 0 as a measurement, see the Remarks section below to correctly handle such a case.</p>
+<p>In BLUPF90, the user should prepare the data set as a text file in columns separated by spaces, with the same number of columns in every line. If you use other software like R and SAS, you should save the data as a text file. Almost any software can export the data to a text file. Do not forget to replace the symbolic, missing code (like <code>NA</code> or <code>.</code>) with a numeric value which BLUPF90 treats as missing.</p>
+<p>Here we can write down the data file. You can put any file name. We save the following 7 lines as a file <code>data0.txt</code>.</p>
+<pre data-language="text" data-caption="data0.txt"><code>3.0   1
+2.0   1
+4.0   1
+6.0   2
+3.0   2
+6.0   2
+6.0   3
+6.0   3
+8.0   3
+4.0   3</code></pre>
+<p>This file shows the rules in a data file used with BLUPF90. The data is a space-separated format with several columns as supported in much statistical software. No headers are allowed. The file should contain numerical expressions only. We will explain the acceptable data format later.</p>
+<h3 id="parameter-file">Parameter file</h3>
+<p>A parameter file to run this analysis is something like:</p>
+<pre data-language="blupf90" data-caption="param0.txt"><code>DATAFILE
+data0.txt
+NUMBER_OF_TRAITS
+1
+NUMBER_OF_EFFECTS
+1
+OBSERVATION(S)
+1
+WEIGHT(S)
+
+EFFECTS:
+2 3 cross
+RANDOM_RESIDUAL VALUES
+1.0</code></pre>
+<p>The parameter file is described as pairs of keyword and value(s). For example, the first line <code>DATAFILE</code> is a keyword and the next line <code>data.txt</code> is the corresponding value. The value(s) should be placed in the next line to the keyword. The keyword must start from the 1st position in a line (i.e., no leading spaces). The value can have leading spaces at the beginning of a line. The above example is a minimal one. We need at least 7 keywords in every parameter file even some values are empty. Following is a detailed explanation of the above parameter file.</p>
+<ol type="1">
+<li><code>DATAFILE</code> = the name of the data file
+<ul>
+<li><code>data.txt</code> in this case</li>
+</ul></li>
+<li><code>NUMBER_OF_TRAITS</code>
+<ul>
+<li><code>1</code> for a single-trait model</li>
+</ul></li>
+<li><code>NUMBER_OF_EFFECTS</code> = number of effects except residual
+<ul>
+<li><code>1</code> for the fixed effect (only 1 effect in this model except residual)</li>
+</ul></li>
+<li><code>OBSERVATION(S)</code> = position of observation in the data file
+<ul>
+<li><code>1</code> for the 1st column</li>
+</ul></li>
+<li><code>WEIGHT(S)</code> = position of weight in the data file <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
+<ul>
+<li>There is no weight but empty line must be there.</li>
+</ul></li>
+<li><code>EFFECTS:</code> = description of the model (<code>2 3 cross</code>; see below)
+<ul>
+<li><code>2</code> for the position of group code [2nd column in the data file]</li>
+<li><code>3</code> for the maximum level [the columns has 1 or 2 or 3; so the maximum is 3]</li>
+<li><code>cross</code> for the cross-classified effect</li>
+</ul></li>
+<li><code>RANDOM_RESIDUAL VALUES</code> = residual variance <span class="math inline">\(\sigma_e^2\)</span>
+<ul>
+<li><code>1.0</code>; this value doesn’t affect the results in this case (see the normal equations).</li>
+</ul></li>
+</ol>
+<p>The <code>EFFECTS:</code> block describes the model and its style is different from other software. In this case, this block has only 1 line because the model has only 1 effect except for residual. If you have more effects in the model, you can add the description for each effect.</p>
+<h3 id="running-a-program">Running a program</h3>
+<p>You can save the data file and parameter file in the same folder (directory) and run BLUPF90. When the program is invoked, it prints a message on the screen and waits for key-in.</p>
+<pre data-language="output"><code> name of parameter file?</code></pre>
+<p>When you supply the name of parameter file <code>param1.txt</code>, the program reads the parameters, builds and solves the equations, and writes the solutions to a file.</p>
+<p>What will happen if you give a wrong name of parameter file or your parameter file has erroneous statements? In both cases, an error message is shown and the program stops. Possible results are:</p>
+<ul>
+<li>Nonexistent parameter file: The message could be <code>forrtl: severe (24): end-of-file during read....</code>.</li>
+<li>Wrong description in the parameter file: A massage depends on the situation. Modify the parameter file as the message says.</li>
+</ul>
+<h3 id="computations">Computations</h3>
+<p>After running the program, you can find a file <code>solutions</code> after the computations. This is also a text file and it contains the following lines.</p>
+<pre data-language="text" data-caption="solutions"><code>trait/effect level  solution
+    1   1         1      3.00000000
+    1   1         2      5.00000000
+    1   1         3      6.00000000</code></pre>
+<p>Ignoring the first line as a header, we have 3 lines with 4 columns and the 4th column has the solutions. The first solution (<span class="math inline">\(3.0\)</span>) can be interpreted as it is for trait 1, effect 1, and level (group) 1. The second (<span class="math inline">\(5.0\)</span>) is for trait 1, effect 1, and level (group) 2. The third (<span class="math inline">\(6.0\)</span>) is for trait 1, effect 2, and level (group) 3. With mathematical notations, <span class="math inline">\(\hat{A}_1 = 3.0\)</span>, <span class="math inline">\(\hat{A}_2 = 5.0\)</span>, and <span class="math inline">\(\hat{A}_3 = 6.0\)</span>. The solution is actually within-class average because we employed a 1-way model with an assumption of homogeneous residual variance.</p>
+<h2 id="fixed-effect-model">Fixed effect model</h2>
+<p>We consider another fixed model with more effects with the same data set. The model has 1 additional class effect and 1 regression coefficient as <span class="math display">\[
+y_{ijk} = A_i + S_j + \beta x_{ijk} + e_{ijk}
+\]</span> where <span class="math inline">\(y_{ijk}\)</span> is an observation, <span class="math inline">\(A_i\)</span> is a fixed effect, <span class="math inline">\(S_i\)</span> is another fixed effect, <span class="math inline">\(\beta\)</span> is a regression coefficient, <span class="math inline">\(x_{ijk}\)</span> is a covariate, and <span class="math inline">\(e_{ij}\)</span> is the residual effect. The matrix notation and the covariance structure are the same as the previous one. We will use the same data as before but there are some additional columns.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Observation</th>
+<th>Group1</th>
+<th>Group2</th>
+<th><span class="math inline">\(x\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3.0</td>
+<td>A1</td>
+<td>S1</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<td>2.0</td>
+<td>A1</td>
+<td>S2</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<td>4.0</td>
+<td>A1</td>
+<td>S1</td>
+<td>2.0</td>
+</tr>
+<tr class="even">
+<td>6.0</td>
+<td>A2</td>
+<td>S2</td>
+<td>2.0</td>
+</tr>
+<tr class="odd">
+<td>3.0</td>
+<td>A2</td>
+<td>S1</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<td>6.0</td>
+<td>A2</td>
+<td>S2</td>
+<td>2.0</td>
+</tr>
+<tr class="odd">
+<td>6.0</td>
+<td>A3</td>
+<td>S1</td>
+<td>2.0</td>
+</tr>
+<tr class="even">
+<td>6.0</td>
+<td>A3</td>
+<td>S2</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<td>8.0</td>
+<td>A3</td>
+<td>S1</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<td>4.0</td>
+<td>A3</td>
+<td>S2</td>
+<td>2.0</td>
+</tr>
+</tbody>
+</table>
+<p>The data file contains 4 columns in this case.</p>
+<pre data-language="text" data-caption="data1.txt"><code>3.0  1  1  1.0
+2.0  1  2  1.0
+4.0  1  1  2.0
+6.0  2  2  2.0
+3.0  2  1  1.0
+6.0  2  2  2.0
+6.0  3  1  2.0
+6.0  3  2  1.0
+8.0  3  1  1.0
+4.0  3  2  2.0</code></pre>
+<p>The parameter file is also similar to the previous one but we need extra entries for additional 2 effects.</p>
+<pre data-language="blupf90" data-caption="param1.txt"><code>DATAFILE
+data1.txt
+NUMBER_OF_TRAITS
+1
+NUMBER_OF_EFFECTS
+3
+OBSERVATION(S)
+1
+WEIGHT(S)
+
+EFFECTS:
+2 3 cross
+3 2 cross
+4 1 cov
+RANDOM_RESIDUAL VALUES
+1.0</code></pre>
+<p>What is the difference? The only difference is in <code>NUMBER_OF_EFFECTS</code> and <code>EFFECTS:</code>. Because the model has 3 effects (2 for class, 1 for regression), we have changed the value in <code>NUMBER_OF_EFFECTS</code>, and <code>EFFECTS:</code> needs 3 lines. Note that the 3rd effect is regression and its description is different from the previous 2 cross-classified effects. Following is a detailed explanation.</p>
+<ul>
+<li><em>Effect 1</em>: <code>2 3 cross</code> = group code in the column 2 in data; maximum level 3; cross-classified effect</li>
+<li><em>Effect 2</em>: <code>3 2 cross</code> = group code in the column 3 in data; maximum level 2; cross-classified effect</li>
+<li><em>Effect 3</em>: <code>4 1 cov</code> = covariate in the column 4 in data; number of coefficient 1; regression</li>
+</ul>
+<p>BLUPF90 refer the first effect to <em>effect 1</em>, the second to <em>effect 2</em>, and so on. The order is kept in the solutions file.</p>
+<p>Running the program with the parameter file, you can find the following result.</p>
+<pre data-language="text" data-caption="solutions"><code>trait/effect level  solution
+    1   1         1      0.22500000
+    1   1         2      2.22500000
+    1   1         3      3.22500000
+    1   2         1      2.27500000
+    1   2         2      1.77500000
+    1   3         1      0.50000000</code></pre>
+<p>The program provides 6 estimates; top 3 for the first effect, next 2 for the second effect, the bottom 1 for the last effect. With mathematical notations, <span class="math inline">\(\hat{A}_1 = 0.225\)</span>, <span class="math inline">\(\hat{A}_2 = 2.225\)</span>, and <span class="math inline">\(\hat{A}_3 = 3.225\)</span>, <span class="math inline">\(\hat{S}_1 = 2.275\)</span>, <span class="math inline">\(\hat{S}_2 = 1.775\)</span>, and <span class="math inline">\(\hat{\beta} = 0.500\)</span>. This is a single trait model, so the first column is always 1. The second column contains the effect number from the order of items in <code>EFFECTS:</code> in the parameter file.</p>
+<p>Note that this system of equation is not full-rank, so the estimate is one of infinite numbers of solutions. BLUPF90 doesn’t support arbitrary constraints to solve the equations. Although the estimates can look different from ones with other software, the contrasts from an estimable function will be consistent.</p>
+<h2 id="options-to-control-the-program">Options to control the program</h2>
+<p>BLUPF90 and related programs can change the behavior with an option. The option should be written in a parameter file as an additional line at the bottom of the file. There are many options and the official manual explains them. Here we just show a typical option line. We use an option which changes the method of solving mixed model equations from the default PCG (preconditioned conjugate gradient) to the direct method using the FSPAK subroutine.</p>
+<pre data-language="blupf90"><code>OPTION solv_method FSPAK</code></pre>
+<p>The option-line starts with the capital <code>OPTION</code> followed by a keyword (option name) and additional information (if needed). In the above case, the option name is <code>solv_method</code> and additional information is <code>FSPAK</code>. Be careful to write an option because BLUPF90 distinguishes capital and small letters in the option-line and fails if the name or information is wrong.</p>
+<p>The modified parameter file with this option looks like as follows.</p>
+<pre data-language="blupf90" data-caption="param1a.txt"><code>DATAFILE
+data1.txt
+NUMBER_OF_TRAITS
+1
+NUMBER_OF_EFFECTS
+3
+OBSERVATION(S)
+1
+WEIGHT(S)
+
+EFFECTS:
+2 3 cross
+3 2 cross
+4 1 cov
+RANDOM_RESIDUAL VALUES
+1.0
+OPTION solv_method FSPAK</code></pre>
+<p>With this parameter file, BLUPF90 successfully works but prints different messages on the screen. The solutions are also different from the previous ones because the equations have no unique solutions.</p>
+<pre data-language="text" data-caption="solutions"><code>trait/effect level  solution
+    1   1         1      2.50000000
+    1   1         2      4.50000000
+    1   1         3      5.50000000
+    1   2         1      0.00000000
+    1   2         2     -0.50000000
+    1   3         1      0.50000000</code></pre>
+<p>You can still see the consistency in a linear combination of the solutions. For example, <span class="math inline">\(\hat{A}_1 + \hat{S}_1 + \hat{\beta} = 3.0\)</span> in both cases.</p>
+<h2 id="comment-lines-in-parameter-file">Comment lines in parameter file</h2>
+<p>A parameter file can contain comments, which will be ignored by the program. A comment is a small memorandum to keep additional information in a parameter file. A comment starts with the character <code>#</code> and the program ignores any characters between <code>#</code> and the end of the line. The following example works as the previous parameter file.</p>
+<pre data-language="blupf90" data-caption="param1b.txt"><code>#
+# This is an example parameter file for a fixed effect model.
+# Solving method: FSPAK
+#
+DATAFILE
+data1.txt # write the name of data file here
+NUMBER_OF_TRAITS
+1 # single trait model
+NUMBER_OF_EFFECTS
+3 # A, S, b
+OBSERVATION(S)
+1
+WEIGHT(S)
+
+EFFECTS:   # y = A + S + b*x + e
+2 3 cross  # effect A
+3 2 cross  # effect S
+4 1 cov    # regression
+RANDOM_RESIDUAL VALUES # any values okay
+1.0
+# added options
+OPTION solv_method FSPAK</code></pre>
+<p>This example shows how comments are ignored. You can write comments almost anywhere in a parameter file. There is one exception; you don’t write a comment in lines for variance components. If a comment is with the variance component, the program stops with an error.</p>
+<p>A comment line is a useful feature so we will put comments on a parameter file in the later chapters.</p>
+<h2 id="remarks">Remarks</h2>
+<p>In real-life applications, you may have the data file with alphabets or symbols (alpha-numerics). Even when a class variable is an integer value, it may not start from 1 and may end in a huge value (like 2087654512). Before the analysis, you should edit the files to conform to the requirements of the program. RENUMF90 is a data preparation tool and it replaces alphabets or large numbers to sequential numbers starting from 1. Besides limited situations (e.g., simulated data or data renumbered by other means), you should usually use RENUMF90 to prepare and check the files.</p>
+<p>By default, an observation (a trait) with value 0 (or similar numerical expression i.e. 0.0) is recognized as a missing observation. Similarly, an effect level read as 0 is treated as missing information. This means that that effect is ignored for that particular record. For the single-trait model, the missing observation makes little sense, except in rare circumstances like cross-validation or automatic repeated analysis (i.e., dozens of univariate analysis from the same, already recorded, file). Missing effect is also an abnormal assumption. So you should avoid 0 in the data. If your observation has a real 0 record, you can make the program treat this value as a regular observation by adding an <code>OPTION</code> statement as follows:</p>
+<pre data-language="blupf90"><code>OPTION missing -999</code></pre>
+<p>The missing option switches the missing value recognized in BLUPF90 from <code>0</code> to <code>-999</code>. The value is treated as an integer. No real values will be accepted.</p>
+<p>How do we put the interaction among effects commonly found in a 2-way ANOVA (<span class="math inline">\(y = A + B + A \times B + e\)</span>)? To do this, we should prepare all the effects <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, and <span class="math inline">\(A \times B\)</span> in the data file. BLUPF90 does not generate <span class="math inline">\(A \times B\)</span> from the effects <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>. Also, BLUPF90 does not support automatic generation of nested effects. All interactions or nested effects should be prepared as class effects in the data file. RENUMF90, a data preparation software, can help to generate such effects. One exception is regressions nested in a class variable, which is supported by BLUPF90; we will mention this model in a context of random regressions.</p>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>BLUPF90 supports linear mixed models.</li>
+<li>BLUPF90 needs 2 text files: a data file and a parameter file.</li>
+<li>BLUPF90 creates equations based on the files, solve the equations, and save the solutions to a file.</li>
+<li>The data file is a space-separated file containing integer or real numbers.</li>
+<li>Parameter file should be prepared with a specific form.</li>
+<li>Order of solutions depends on the description of a parameter file.</li>
+<li>BLUPF90 can change its behavior with options supplied in the bottom of a parameter file.</li>
+<li>A comment starts with <code>#</code> and ends at the end of the line. A comment is totally ignored by a program.</li>
+<li>Observation or effect 0 means missing. If you really want to use 0 as an observation, change the missing code with the option <code>missing</code>.</li>
+</ul>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p><code>WEIGHT</code> does not mean the physical weight (i.e., in kg or pounds). It means the importance that we attach to this particular record. For instance, a weight of 10 may indicate that the measure was taken 10 times. See <a href="https://en.wikipedia.org/wiki/Weight_function">wikipedia</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩</a></p></li>
+</ol>
+</section>
+</article>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!--==============================================================================
+	           "GitHub HTML5 Pandoc Template" v1.2 — by Tristano Ajmone
+	==============================================================================
+	(c) Tristano Ajmone, 2017, MIT License (MIT). Project's home repository:
+
+	- https://github.com/tajmone/pandoc-goodies
+
+	This template reuses source code taken from the following projects:
+
+	- GitHub Markdown CSS: © Sindre Sorhus, MIT License (MIT):
+	  https://github.com/sindresorhus/github-markdown-css
+
+	- Primer CSS: © 2016 GitHub Inc., MIT License (MIT):
+	  http://primercss.io/
+	==============================================================================-->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Yutaka Masuda" />
+  <title>Practical genomic analysis</title>
+  <style type="text/css">@font-face{font-family:octicons-link;src:url(data:font/woff;charset=utf-8;base64,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) format('woff')}.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#24292e;font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";font-size:16px;line-height:1.5;word-wrap:break-word;box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto;padding:45px}.markdown-body .octicon{display:inline-block;fill:currentColor;vertical-align:text-bottom}.markdown-body a{background-color:transparent;-webkit-text-decoration-skip:objects;color:#0366d6;text-decoration:none}.markdown-body a:active,.markdown-body a:hover{outline-width:0}.markdown-body h1{margin:.67em 0}.markdown-body img{border-style:none}.markdown-body svg:not(:root){overflow:hidden}.markdown-body code,.markdown-body kbd,.markdown-body pre{font-family:monospace,monospace}.markdown-body input{font:inherit;margin:0;overflow:visible;font-family:inherit;font-size:inherit;line-height:inherit}.markdown-body [type=checkbox]{box-sizing:border-box;padding:0}.markdown-body *{box-sizing:border-box}.markdown-body a:hover{text-decoration:underline}.markdown-body strong{font-weight:600}.markdown-body hr{box-sizing:content-box;overflow:hidden;background:0 0;border-bottom:1px solid #dfe2e5}.markdown-body hr::before{display:table;content:""}.markdown-body hr::after{display:table;clear:both;content:""}.markdown-body table{border-spacing:0;border-collapse:collapse;display:block;width:100%;overflow:auto}.markdown-body td,.markdown-body th{padding:0}.markdown-body blockquote{margin:0}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol{list-style-type:lower-alpha}.markdown-body dd{margin-left:0}.markdown-body code{font-family:SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace}.markdown-body pre{font:12px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;word-wrap:normal}.markdown-body .pl-0{padding-left:0!important}.markdown-body .pl-1{padding-left:4px!important}.markdown-body .pl-2{padding-left:8px!important}.markdown-body .pl-3{padding-left:16px!important}.markdown-body .pl-4{padding-left:24px!important}.markdown-body .pl-5{padding-left:32px!important}.markdown-body .pl-6{padding-left:40px!important}.markdown-body::before{display:table;content:""}.markdown-body::after{display:table;clear:both;content:""}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:0}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e1e4e8;border:0}.markdown-body blockquote{padding:0 1em;color:#6a737d;border-left:.25em solid #dfe2e5}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd{font-size:11px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#1b1f23;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1{padding-bottom:.3em;font-size:2em;border-bottom:1px solid #eaecef}.markdown-body h2{padding-bottom:.3em;font-size:1.5em;border-bottom:1px solid #eaecef}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#6a737d}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table th{font-weight:600}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #dfe2e5}.markdown-body table tr{background-color:#fff;border-top:1px solid #c6cbd1}.markdown-body table tr:nth-child(2n){background-color:#f6f8fa}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body code{padding:.2em 0;margin:0;font-size:85%;background-color:rgba(27,31,35,.05);border-radius:3px}.markdown-body code::after,.markdown-body code::before{letter-spacing:-.2em;content:"\00a0"}.markdown-body pre>code{padding:0;margin:0;font-size:100%;word-break:normal;white-space:pre;background:0 0;border:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f6f8fa;border-radius:3px}.markdown-body pre code{display:inline;max-width:auto;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body pre code::after,.markdown-body pre code::before{content:normal}.markdown-body .full-commit .btn-outline:not(:disabled):hover{color:#005cc5;border-color:#005cc5}.markdown-body kbd{display:inline-block;padding:3px 5px;font:11px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;line-height:10px;color:#444d56;vertical-align:middle;background-color:#fcfcfc;border:1px solid #c6cbd1;border-bottom-color:#959da5;border-radius:3px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body :checked+.radio-label{position:relative;z-index:1;border-color:#0366d6}.markdown-body .task-list-item{list-style-type:none}.markdown-body .task-list-item+.task-list-item{margin-top:3px}.markdown-body .task-list-item input{margin:0 .2em .25em -1.6em;vertical-align:middle}.markdown-body hr{border-bottom-color:#eee}.flash{position:relative;padding:16px;color:#246;background-color:#e2eef9;border:1px solid #bac6d3;border-radius:3px}.flash p:last-child{margin-bottom:0}.flash-messages{margin-bottom:24px}.flash-warn{color:#4c4a42;background-color:#fff9ea;border-color:#dfd8c2}.flash-error{color:#911;background-color:#fcdede;border-color:#d2b2b2}.flash-success{color:#22662c;background-color:#e2f9e5;border-color:#bad3be}.flash-plain{color:#4c4a42;background-color:#f5f5f5;border-color:#c1c1c1}</style>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">pre[data-language='renumf90']{background-color:#EFEFFE;}</style>
+  <style type="text/css">pre[data-language='blupf90']{background-color:#E7FFE7;}</style>
+  <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
+  <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
+  <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<article class="markdown-body">
+<header>
+<h1 class="title">Practical genomic analysis</h1>
+<p class="author">Yutaka Masuda</p>
+<p class="date">September 2019</p>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#files-used-in-genomic-analysis">Files used in genomic analysis</a><ul>
+<li><a href="#snp-file">SNP file</a></li>
+<li><a href="#cross-reference-xrefid-file">Cross-reference (XrefID) file</a></li>
+<li><a href="#allele-frequency-file-optional">Allele frequency file (optional)</a></li>
+<li><a href="#map-file-optional">Map file (optional)</a></li>
+<li><a href="#weight-for-snp-optional">Weight for SNP (optional)</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="files-used-in-genomic-analysis">Files used in genomic analysis</h1>
+<p>As seen in the tutorial in the previous chapter, PREGSF90 needs 2 files to handle genomic data: an SNP marker file and a cross-reference file. In this section, we describe the detailed format for these 2 files. Also, we will present some other files optionally needed in quality control of markers.</p>
+<p>PREGSF90 reads the same parameter file as BLUPF90. From this file, the program reads the names of the pedigree file, the marker file, (optionally) the cross-reference file, and some options. The rest of the parameter file (e.g., the name of the data file and the model) is effectively ignored.</p>
+<h2 id="snp-file">SNP file</h2>
+<p>The PREGSF90 program can accept 2 kinds of SNP files. One contains only integer numbers as genotypes (e.g. from SNP chips) and the other one contains real numbers as gene content (possibly from imputation software, from Genotyping by Sequence or from sequencing at low depth). First, we consider the former one; we here call it an SNP-marker file.</p>
+<h3 id="snp-marker-file">SNP marker file</h3>
+<p>An SNP-marker file is a text file which contains 2 fields: animal ID (possibly alphanumeric) in the 1st field and its genotypes in the 2nd field. We show the first and the last 5 lines from an example data presented in the previous chapter again (limited to the first 30 characters in each line to save the space).</p>
+<pre><code> 8003   211011112112012000211002
+ 8007   212011111111012011111012
+ 8016   200120111021012111102121
+ 8019   112211021121202111011210
+ 8020   211110101120002021002122
+   (skip)
+13496   101001212012010210212201
+13497   101112111021020120222111
+13498   200000220202202000022222
+13499   011011111111020111121112
+13500   101020112122021000221001</code></pre>
+<p>The format was already described in the previous chapter.</p>
+<h3 id="gene-content-file">Gene content file</h3>
+<p>The PREGSF90 program accepts another format. Here, we call it a <em>gene content file</em>. The gene content file may have a number of fields with the following rules.</p>
+<ul>
+<li>The Animal ID must be in the 1st field and the gene content on each locus must be in the 2nd or later fields.</li>
+<li>Adjacent gene content can be separated by white spaces. No spaces are also allowed.</li>
+<li>No headers, no comments, no other fields are allowed. The data must start on the first line.</li>
+<li>In animal IDs, alphabets, numbers, and symbols (possibly ASCII) are acceptable. The link to the renumbered pedigree is provided in the cross-reference file below.</li>
+<li>Gene content should contain an integer, a floating-point (e.g. <code>3.14</code>), or exponential expression (e.g. <code>0.314E+01</code>) as a real number. All markers must have the same format.</li>
+<li>No missing gene content is allowed and all animals must have the same number of gene content. The missing gene contents should be imputed before the analyses.</li>
+<li>The minimum number of gene content is 50. The fewer number of markers is not acceptable.</li>
+</ul>
+<h2 id="cross-reference-xrefid-file">Cross-reference (XrefID) file</h2>
+<p>The BLUPF90 programs need a cross-reference file. This file is automatically generated with RENUMF90. This file relates a renumbered ID to the original ID for genotyped animals. Again, we show the first 5 and the last 5 lines of the actual cross-reference file presented in the previous chapter.</p>
+<pre><code>6127 8003
+13570 8007
+406 8016
+10802 8019
+10924 8020
+  (skip)
+8585 13496
+8941 13497
+9369 13498
+9753 13499
+9905 13500</code></pre>
+<p>This file simply contains 2 fields: the first is for renumbered ID (same as in the pedigree file) and the second is for the original ID (same as in the marker file). The 2 fields can be separated with at least 1 space. A tab is not allowed. The order of animals must be the same as the SNP file. Again, this file is generated with RENUMF90, and the user should not edit it unless there is a reason to do it.</p>
+<h2 id="allele-frequency-file-optional">Allele frequency file (optional)</h2>
+<p>An allele frequency file contains the actual allele frequency on each marker. This file is optional because the allele frequency is calculated with the current SNP file by default. Only if you expect to use external information for it, you can provide a file containing the allele frequencies. Different allele frequency may change characteristics of <span class="math inline">\(\mathbf{G}\)</span>.</p>
+<p>Here is an example file. This contains the allele frequency only for the first 5 markers.</p>
+<pre><code>1     0.711667
+2     0.328000
+3     0.422000
+4     0.157000
+5     0.492333</code></pre>
+<p>This file contains 2 columns:</p>
+<ol type="1">
+<li>The position of the marker (from 1 to the maximum number of markers)</li>
+<li>Allele frequency as a real value (ranged from 0 to 1).</li>
+</ol>
+<p>Note that PREGSF90 usually creates this file containing the allele frequency calculated from the current SNP file by default (the file name is <code>freqdata.count</code>).</p>
+<h2 id="map-file-optional">Map file (optional)</h2>
+<p>Map file relates a marker to a chromosome, a physical location, and a specific name. This file is needed only when you try comprehensive quality control and GWAS with ssGBLUP. This file should contain at least 3 fields separated at least 1 white space. The 4th column is optional and it contains the name of a marker. Here we show an example (including the 4th field in this case). Only the first 3 lines are shown here.</p>
+<pre><code>1  1     127     SNP-CODE-1
+2  1     652     SNP-CODE-2
+3  1    1022     SNP-CODE-3</code></pre>
+<p>This file follows the rules.</p>
+<ul>
+<li>The first 3 fields should contain integer values: the first is a marker number, the second specifies the chromosome number, and the third represents the physical location on the chromosome. The marker number is just an integer, not necessarily correlative, used for external data manipulation - it is not actually used by the program.</li>
+<li>The sex chromosome (X) can be present, but it should be also an integer value. The code of the X chromosome is 0 by default.</li>
+<li>The 4th column (optional) can contain any alphabets, numbers, and symbols (possibly in ASCII) up to 50 characters.</li>
+</ul>
+<h2 id="weight-for-snp-optional">Weight for SNP (optional)</h2>
+<p>The PREGSF90 program can create an alternative <span class="math inline">\(\mathbf{G}\)</span> weighting on each SNP marker. This weighted matrix is especially useful for GWAS or related analyses with the POSTGSF90 program. If you supply this file, the weighted <span class="math inline">\(\mathbf{G}\)</span> will be calculated. Otherwise, weights are set to 1 i.e. no specific weight on each SNP marker. This file is optional.</p>
+<p>The file contains only 1 column with real values. Each row corresponds to each SNP marker; the first line contains a weight for the marker 1, and the second row contains a weight for the marker 2, and so on. The number of lines in this file shouldn’t exceed the number of markers.</p>
+</article>
+</body>
+</html>

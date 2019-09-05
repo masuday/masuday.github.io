@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<!--==============================================================================
+	           "GitHub HTML5 Pandoc Template" v1.2 — by Tristano Ajmone
+	==============================================================================
+	(c) Tristano Ajmone, 2017, MIT License (MIT). Project's home repository:
+
+	- https://github.com/tajmone/pandoc-goodies
+
+	This template reuses source code taken from the following projects:
+
+	- GitHub Markdown CSS: © Sindre Sorhus, MIT License (MIT):
+	  https://github.com/sindresorhus/github-markdown-css
+
+	- Primer CSS: © 2016 GitHub Inc., MIT License (MIT):
+	  http://primercss.io/
+	==============================================================================-->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Yutaka Masuda" />
+  <title>Data preparation with RENUMF90</title>
+  <style type="text/css">@font-face{font-family:octicons-link;src:url(data:font/woff;charset=utf-8;base64,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) format('woff')}.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#24292e;font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";font-size:16px;line-height:1.5;word-wrap:break-word;box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto;padding:45px}.markdown-body .octicon{display:inline-block;fill:currentColor;vertical-align:text-bottom}.markdown-body a{background-color:transparent;-webkit-text-decoration-skip:objects;color:#0366d6;text-decoration:none}.markdown-body a:active,.markdown-body a:hover{outline-width:0}.markdown-body h1{margin:.67em 0}.markdown-body img{border-style:none}.markdown-body svg:not(:root){overflow:hidden}.markdown-body code,.markdown-body kbd,.markdown-body pre{font-family:monospace,monospace}.markdown-body input{font:inherit;margin:0;overflow:visible;font-family:inherit;font-size:inherit;line-height:inherit}.markdown-body [type=checkbox]{box-sizing:border-box;padding:0}.markdown-body *{box-sizing:border-box}.markdown-body a:hover{text-decoration:underline}.markdown-body strong{font-weight:600}.markdown-body hr{box-sizing:content-box;overflow:hidden;background:0 0;border-bottom:1px solid #dfe2e5}.markdown-body hr::before{display:table;content:""}.markdown-body hr::after{display:table;clear:both;content:""}.markdown-body table{border-spacing:0;border-collapse:collapse;display:block;width:100%;overflow:auto}.markdown-body td,.markdown-body th{padding:0}.markdown-body blockquote{margin:0}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol{list-style-type:lower-alpha}.markdown-body dd{margin-left:0}.markdown-body code{font-family:SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace}.markdown-body pre{font:12px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;word-wrap:normal}.markdown-body .pl-0{padding-left:0!important}.markdown-body .pl-1{padding-left:4px!important}.markdown-body .pl-2{padding-left:8px!important}.markdown-body .pl-3{padding-left:16px!important}.markdown-body .pl-4{padding-left:24px!important}.markdown-body .pl-5{padding-left:32px!important}.markdown-body .pl-6{padding-left:40px!important}.markdown-body::before{display:table;content:""}.markdown-body::after{display:table;clear:both;content:""}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:0}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e1e4e8;border:0}.markdown-body blockquote{padding:0 1em;color:#6a737d;border-left:.25em solid #dfe2e5}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd{font-size:11px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#1b1f23;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1{padding-bottom:.3em;font-size:2em;border-bottom:1px solid #eaecef}.markdown-body h2{padding-bottom:.3em;font-size:1.5em;border-bottom:1px solid #eaecef}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#6a737d}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table th{font-weight:600}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #dfe2e5}.markdown-body table tr{background-color:#fff;border-top:1px solid #c6cbd1}.markdown-body table tr:nth-child(2n){background-color:#f6f8fa}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body code{padding:.2em 0;margin:0;font-size:85%;background-color:rgba(27,31,35,.05);border-radius:3px}.markdown-body code::after,.markdown-body code::before{letter-spacing:-.2em;content:"\00a0"}.markdown-body pre>code{padding:0;margin:0;font-size:100%;word-break:normal;white-space:pre;background:0 0;border:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f6f8fa;border-radius:3px}.markdown-body pre code{display:inline;max-width:auto;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body pre code::after,.markdown-body pre code::before{content:normal}.markdown-body .full-commit .btn-outline:not(:disabled):hover{color:#005cc5;border-color:#005cc5}.markdown-body kbd{display:inline-block;padding:3px 5px;font:11px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;line-height:10px;color:#444d56;vertical-align:middle;background-color:#fcfcfc;border:1px solid #c6cbd1;border-bottom-color:#959da5;border-radius:3px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body :checked+.radio-label{position:relative;z-index:1;border-color:#0366d6}.markdown-body .task-list-item{list-style-type:none}.markdown-body .task-list-item+.task-list-item{margin-top:3px}.markdown-body .task-list-item input{margin:0 .2em .25em -1.6em;vertical-align:middle}.markdown-body hr{border-bottom-color:#eee}.flash{position:relative;padding:16px;color:#246;background-color:#e2eef9;border:1px solid #bac6d3;border-radius:3px}.flash p:last-child{margin-bottom:0}.flash-messages{margin-bottom:24px}.flash-warn{color:#4c4a42;background-color:#fff9ea;border-color:#dfd8c2}.flash-error{color:#911;background-color:#fcdede;border-color:#d2b2b2}.flash-success{color:#22662c;background-color:#e2f9e5;border-color:#bad3be}.flash-plain{color:#4c4a42;background-color:#f5f5f5;border-color:#c1c1c1}</style>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">pre[data-language='renumf90']{background-color:#EFEFFE;}</style>
+  <style type="text/css">pre[data-language='blupf90']{background-color:#E7FFE7;}</style>
+  <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
+  <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
+  <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<article class="markdown-body">
+<header>
+<h1 class="title">Data preparation with RENUMF90</h1>
+<p class="author">Yutaka Masuda</p>
+<p class="date">September 2019</p>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#animal-model-with-pedigree-file">Animal model with pedigree file</a><ul>
+<li><a href="#random-effect-specification">Random effect specification</a></li>
+<li><a href="#animal-model">Animal model</a></li>
+<li><a href="#more-than-1-random-effect">More than 1 random effect</a></li>
+<li><a href="#summary">Summary</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="animal-model-with-pedigree-file">Animal model with pedigree file</h1>
+<h2 id="random-effect-specification">Random effect specification</h2>
+<p>Here we consider a mixed model with 1 or more random effects. Note that, even adding random effects, the renumbered data file will be the same as one for the fixed effect model. Only differences when considering random effects in RENUMF90 are: 1) output parameter file contains statements for random effects and 2) pedigree or related files will be properly processed if needed.</p>
+<p>First, we reconsider the previous example and assume the second effect (<span class="math inline">\(S_j\)</span>) is random. <span class="math display">\[
+y_{ijk} = A_{i} + S_{j} + \beta x_{ijk} + e_{ijk}
+\]</span> The raw data file is the same as before but we change the name of the file.</p>
+<pre data-language="text" data-caption="rawdata2.txt"><code> ID006  A  1  1.0  3.0
+ ID009  A  2  1.0  2.0
+ ID012  A  1  2.0  4.0
+ ID007  B  2  2.0  6.0
+ ID010  B  1  1.0  3.0
+ ID013  B  2  2.0  6.0
+ ID008  C  1  2.0  6.0
+ ID011  C  2  1.0  6.0
+ ID014  C  1  1.0  8.0
+ ID015  C  2  2.0  4.0</code></pre>
+<p>Assuming the residual variance <span class="math inline">\(\sigma_{e}^{2} = 2.0\)</span> and the random effect’s variance <span class="math inline">\(\sigma_{s}^{2} = 1.0\)</span>, the parameter file looks like:</p>
+<pre data-language="renumf90" data-caption="renum2.txt"><code>DATAFILE
+rawdata2.txt
+TRAITS
+5
+FIELDS_PASSED TO OUTPUT
+
+WEIGHT(S)
+
+RESIDUAL_VARIANCE
+2.0
+EFFECT           # 1st effect
+2 cross alpha
+EFFECT           # 2nd effect
+3 cross alpha
+RANDOM           ## treated as a random effect
+diagonal
+(CO)VARIANCES    ## its variance components
+1.0
+EFFECT           # 3rd effect
+4 cov</code></pre>
+<p>This parameter file is also the same as before except we inserted 2 extra keywords and the corresponding values: the keyword <code>RANDOM</code> with the value <code>diagonal</code> and the keyword <code>(CO)VARIANCES</code> with the value 1.0 just after the definition of effect 2. Basically, RENUMF90 treats the effect as random if <code>RANDOM</code> places after the effect specification; otherwise, the effect is fixed. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>This produces the data and parameter files equivalent to ones used in the previous chapter. You can confirm the generated files provides the same solutions as before.</p>
+<h2 id="animal-model">Animal model</h2>
+<h3 id="raw-data">Raw data</h3>
+<p>RENUMF90 can handle an animal model with the same framework using <code>RANDOM</code> and other optional keywords to read a raw pedigree file. We can use the same data file as before. Here we duplicate the data file to another one with a different name.</p>
+<pre data-language="text" data-caption="rawdata3.txt"><code> ID006  A  1  1.0  3.0
+ ID009  A  2  1.0  2.0
+ ID012  A  1  2.0  4.0
+ ID007  B  2  2.0  6.0
+ ID010  B  1  1.0  3.0
+ ID013  B  2  2.0  6.0
+ ID008  C  1  2.0  6.0
+ ID011  C  2  1.0  6.0
+ ID014  C  1  1.0  8.0
+ ID015  C  2  2.0  4.0</code></pre>
+<h3 id="raw-pedigree">Raw pedigree</h3>
+<p>The following is the raw pedigree which is corresponding to the pedigree shown in the previous chapter.</p>
+<pre data-language="text" data-caption="rawpedigree3.txt"><code> ID001      0      0
+ ID002      0      0
+ ID003      0      0
+ ID004      0      0
+ ID005      0      0
+ ID006      0      0
+ ID007  ID002  ID005
+ ID008  ID001  ID004
+ ID009  ID002  ID003
+ ID010  ID007  ID006
+ ID011  ID007  ID004
+ ID012  ID011  ID008
+ ID013  ID011  ID010
+ ID014  ID009  ID013
+ ID015  ID011  ID010</code></pre>
+<p>The animal ID shares in both raw data and raw pedigree files. A raw pedigree with the following format is allowed for RENUMF90.</p>
+<ul>
+<li>It contains at least 3 columns, animal ID, sire ID, and dam ID, separated with 1 or more spaces. A tab is not allowed.</li>
+<li>Each ID can place any position. For example, animal ID can be in column 4.</li>
+<li>An unknown or missing parent must be <code>0</code>. Other expressions (like <code>00</code> or <code>00000</code> or <code>NA</code>) are not allowed as missing, and they will be recognized as real animals.</li>
+<li>You can also put the date of birth (year of birth) as an additional column. The information should be an integer value.</li>
+<li>Animals don’t have to be ordered either chronologically nor alphabetically. Any random order is allowed.</li>
+<li>Although an animal appears in the sire or dam column, it is not necessarily in the animal column. Such an animal is assumed to have unknown parents (both sire and dam unknown).</li>
+</ul>
+<h3 id="parameter-file">Parameter file</h3>
+<p>We assume a mixed model: <span class="math display">\[
+y_{ijk} = A_{i} + S_{j} + \beta x_{ijk} + u_{k} + e_{ijk}
+\]</span> where <span class="math inline">\(A_{i}\)</span> and <span class="math inline">\(S_{j}\)</span> are fixed effects, <span class="math inline">\(\beta\)</span> is a fixed regression, <span class="math inline">\(u_{k}\)</span> is the additive genetic effect and <span class="math inline">\(e_{ijk}\)</span> is the random residual. The variances are assumed as <span class="math inline">\(\sigma_{e}^2 = 2.0\)</span> and <span class="math inline">\(\sigma_u^2 = 0.5\)</span>. We add the statement <code>EFFECT</code> to the previous instruction as the additive genetic effect with the <code>RANDOM</code> keyword.</p>
+<pre data-language="renumf90" data-caption="renum3.txt"><code>DATAFILE
+rawdata3.txt
+TRAITS
+5
+FIELDS_PASSED TO OUTPUT
+
+WEIGHT(S)
+
+RESIDUAL_VARIANCE
+2.0
+EFFECT           # 1st effect fixed
+2 cross alpha
+EFFECT           # 2nd effect fixed
+3 cross alpha
+EFFECT           # 3rd effect fixed
+4 cov
+EFFECT           # 4th effect
+1 cross alpha
+RANDOM           ## treated as a random effect
+animal
+FILE             ## pedigree file
+rawpedigree3.txt
+FILE_POS         ## animal, sire and dam IDs, and two 0s
+1 2 3 0 0
+(CO)VARIANCES    ## its variance component
+0.5</code></pre>
+<p>We can see two new keywords here.</p>
+<ul>
+<li><code>FILE</code>: the name of the raw pedigree file.
+<ul>
+<li><code>rawpedigree3.txt</code></li>
+</ul></li>
+<li><code>FILE_POS</code>: the position of IDs in the raw pedigree file; 5 items needed.
+<ul>
+<li>1st item = the position of animal ID (1 for the 1st column)</li>
+<li>2nd item = the position of sire ID (2 for the 2nd column)</li>
+<li>3rd item = the position of dam ID (3 for the 3rd column)</li>
+<li>4th item = usually 0 (will be explained in the later section)</li>
+<li>5th item = usually 0 (will be explained in the later section)</li>
+</ul></li>
+</ul>
+<p>Be careful of the order of keywords for random effects. RENUMF90 only accept the keywords properly ordered in instruction. In this example, the order should be:</p>
+<ol type="1">
+<li><code>RANDOM</code></li>
+<li><code>FILE</code></li>
+<li><code>FILE_POS</code></li>
+<li><code>(CO)VARIANCES</code></li>
+</ol>
+<p>We have many more keywords related to random effects. The keywords should be ordered to be read by RENUMF90. We will review the proper ordering later.</p>
+<h3 id="output-files">Output files</h3>
+<p>After running RENUMF90, you can see some files in the same directory: <code>renf90.dat</code>, <code>renf90.par</code>, <code>renf90.tables</code>, and <code>renadd04.ped</code>. The last one is renumbered pedigree. Why 4? This 4 comes from the position of the effect in instruction; the additive genetic effect was defined as the 4th <code>EFFECT</code> statement. If your additive genetic effect is declared as the 6th effect, the name of the pedigree file will be <code>renadd06.ped</code>.</p>
+<p>The renumbered pedigree file (<code>renadd04.ped</code>) contains 10 columns.</p>
+<pre data-language="text"><code>1 7 5 1 0 2 1 0 0 ID015
+13 0 0 3 0 0 0 0 2 ID004
+11 0 0 3 0 0 0 0 1 ID005
+2 0 0 3 0 0 1 0 1 ID006
+3 12 11 1 0 2 1 2 0 ID007
+4 14 13 1 0 2 1 0 1 ID008
+5 3 2 1 0 2 1 0 2 ID010
+6 12 15 1 0 2 1 1 0 ID009
+7 3 13 1 0 2 1 3 0 ID011
+8 7 4 1 0 2 1 0 0 ID012
+14 0 0 3 0 0 0 1 0 ID001
+9 7 5 1 0 2 1 0 1 ID013
+12 0 0 3 0 0 0 2 0 ID002
+10 6 9 1 0 2 1 0 0 ID014
+15 0 0 3 0 0 0 0 1 ID003</code></pre>
+<p>Column 1 is for renumbered animal ID, column 2 for sire ID and column 3 for dam ID. The remaining columns contain additional information. The last (10th) column is the original ID. Many of them are actually ignored in BLUPF90. <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> The official manual explains the meaning of each column.</p>
+<ol type="1">
+<li>animal number (from 1)</li>
+<li>parent 1 number or unknown parent group number for parent 1</li>
+<li>parent 2 number or unknown parent group number for parent 2</li>
+<li>3 minus number of known parents</li>
+<li>known or estimated year of birth (0 if not provided)</li>
+<li>number of known parents (parents might be eliminated if not contributing; if animal has genotype 10+number of know parents</li>
+<li>number of records</li>
+<li>number of progeny (before elimination due to other effects) as parent 1</li>
+<li>number of progeny (before elimination due to other effects) as parent 2</li>
+<li>original animal id</li>
+</ol>
+<p>The conversion table for animal ID is not saved in <code>renf90.tables</code>. The correspondence can be found only in the renumbered pedigree file (column 1 and 10).</p>
+<h3 id="test-run-with-the-renumbered-data">Test run with the renumbered data</h3>
+<p>You can run BLUPF90 with the generated parameter file and obtain the solutions of the equation. The analysis mimics the previous one in the previous chapter so the results should be identical (without numerical error). You will find the BLUE is the same and the estimated breeding values (BLUP) are also the same but the order of animals are different. The following is a combination of previous ones (left) and the current ones (right).</p>
+<pre data-language="text"><code>1   1         1          0.20259644    1   1         1          0.20259637
+1   1         2          2.21996461    1   1         2          2.21996452
+1   1         3          3.16680208    1   1         3          3.16680200
+1   2         1          2.27537292    1   2         1          2.27537284
+1   2         2          1.71160537    1   2         2          1.71160529
+1   3         1          0.52442755    1   3         1          0.52442750
+1   4         1         -0.03487115    1   4         1         -0.25707432
+1   4         2          0.08280493    1   4         2         -0.17565610
+1   4         3          0.03843921    1   4         3          0.10794666
+1   4         4          0.04492008    1   4         4         -0.02984647
+1   4         5          0.04436203    1   4         5         -0.25282594
+1   4         6         -0.17565609    1   4         6          0.09906235
+1   4         7          0.10794667    1   4         7          0.15622415
+1   4         8         -0.02984646    1   4         8          0.10874295
+1   4         9          0.09906236    1   4         9          0.16426464
+1   4        10         -0.25282594    1   4        10          0.34296713
+1   4        11          0.15622415    1   4        11          0.04436204
+1   4        12          0.10874296    1   4        12          0.08280494
+1   4        13          0.16426465    1   4        13          0.04492008
+1   4        14          0.34296714    1   4        14         -0.03487115
+1   4        15         -0.25707431    1   4        15          0.03843922</code></pre>
+<p>This is because of the different order of animals in the pedigree file between 2 datasets. RENUMF90 orders pedigree animals as follows.</p>
+<ol type="1">
+<li>First, the program assigns smaller numbers to animals with the record(s). The order of animals are unpredictable (i.e. not following the order found in the data file).</li>
+<li>Then, the program assigns larger numbers to animals found only in pedigree.</li>
+</ol>
+<p>Note that RENUMF90 doesn’t order the pedigree animals chronologically (i.e., from oldest to youngest). No options are available to order the animals chronologically. The above rules are from the simplification of implementation, but it is useful for fitting the permanent environmental effect in the repeatability model.</p>
+<p>Usually, you will combine the solutions (estimated breeding values) with the original animal ID. This can be done with several ways e.g., Linux (Unix) tools, database management systems, statistical languages like R, even Microsoft Excel.</p>
+<h2 id="more-than-1-random-effect">More than 1 random effect</h2>
+<p>As the last demonstration of RENUMF90 in this section, let us assume that the effect <span class="math inline">\(S_j\)</span> is also random as well as <span class="math inline">\(u_k\)</span> in the above model. The variance components are <span class="math inline">\(\sigma_e^2 = 2.0\)</span>, <span class="math inline">\(\sigma_s^2 = 1.0\)</span>, and <span class="math inline">\(\sigma_u^2 = 0.5\)</span>. A suggested instruction file is following.</p>
+<pre data-language="renumf90" data-caption="renum3a.txt"><code>DATAFILE
+rawdata3.txt
+TRAITS
+5
+FIELDS_PASSED TO OUTPUT
+
+WEIGHT(S)
+
+RESIDUAL_VARIANCE
+2.0
+EFFECT             # 1st effect fixed
+2 cross alpha
+EFFECT             # 2nd effect fixed
+3 cross alpha
+RANDOM             ## treated as a random effect
+diagnonal
+(CO)VARIANCES      ## its variance component
+1.0
+EFFECT             # 3rd effect fixed
+4 cov
+EFFECT             # 4th effect
+1 cross alpha
+RANDOM             ## treated as a random effect
+animal
+FILE               ## pedigree file
+rawpedigree3.txt
+FILE_POS           ## animal, sire and dam IDs with two 0s
+1 2 3 0 0
+(CO)VARIANCES      ## its variance component
+0.5</code></pre>
+<p>This is a combination of the first and second examples in this section. You can easily figure it out how each statement works.</p>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>RENUMF90 treats the effect with the <code>RANDOM</code> keyword as a random effect.</li>
+<li>The <code>RANDOM</code> keyword may require other keywords.</li>
+<li>If a random effect doesn’t need the pedigree, just put <code>RANDOM</code> and <code>(CO)VARIANCES</code> only.</li>
+<li>If a random effect needs the pedigree, put <code>RANDOM</code>, <code>FILE</code>, <code>FILE_POS</code>, and <code>(CO)VARIANCES</code> in this order.</li>
+<li>A raw pedigree-file should contain at least 3 columns: animal ID, sire ID, and dam ID. The order of columns is arbitrary.</li>
+<li>The renumbered pedigree-file has a name as <code>renaddnn.ped</code> where <code>nn</code> is the position of this effect in instruction.</li>
+<li>The renumbered pedigree file has 10 columns including the original ID. The renumbered ID will not be in <code>renf90.tables</code>.</li>
+<li>The animals with records have smaller numbers than animals found only in pedigree.</li>
+<li>RENUMF90 supports more than 1 random effects.</li>
+</ul>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>A tricky feature is to omit <code>(CO)VARIANCES</code>. If you don’t put this keyword, RENUMF90 implicitly assumes the variance component is 1.0 by default. We highly recommend to use <code>(CO)VARIANCES</code> option to avoid the confusion.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩</a></p></li>
+<li id="fn2" role="doc-endnote"><p>The 4th column will be used if you put certain options in the parameter file. We don’t explain such options here.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩</a></p></li>
+</ol>
+</section>
+</article>
+</body>
+</html>

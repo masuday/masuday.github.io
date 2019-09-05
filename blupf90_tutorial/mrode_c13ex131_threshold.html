@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<!--==============================================================================
+	           "GitHub HTML5 Pandoc Template" v1.2 — by Tristano Ajmone
+	==============================================================================
+	(c) Tristano Ajmone, 2017, MIT License (MIT). Project's home repository:
+
+	- https://github.com/tajmone/pandoc-goodies
+
+	This template reuses source code taken from the following projects:
+
+	- GitHub Markdown CSS: © Sindre Sorhus, MIT License (MIT):
+	  https://github.com/sindresorhus/github-markdown-css
+
+	- Primer CSS: © 2016 GitHub Inc., MIT License (MIT):
+	  http://primercss.io/
+	==============================================================================-->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Yutaka Masuda" />
+  <title>Numerical examples from Mrode (2014)</title>
+  <style type="text/css">@font-face{font-family:octicons-link;src:url(data:font/woff;charset=utf-8;base64,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) format('woff')}.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#24292e;font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";font-size:16px;line-height:1.5;word-wrap:break-word;box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto;padding:45px}.markdown-body .octicon{display:inline-block;fill:currentColor;vertical-align:text-bottom}.markdown-body a{background-color:transparent;-webkit-text-decoration-skip:objects;color:#0366d6;text-decoration:none}.markdown-body a:active,.markdown-body a:hover{outline-width:0}.markdown-body h1{margin:.67em 0}.markdown-body img{border-style:none}.markdown-body svg:not(:root){overflow:hidden}.markdown-body code,.markdown-body kbd,.markdown-body pre{font-family:monospace,monospace}.markdown-body input{font:inherit;margin:0;overflow:visible;font-family:inherit;font-size:inherit;line-height:inherit}.markdown-body [type=checkbox]{box-sizing:border-box;padding:0}.markdown-body *{box-sizing:border-box}.markdown-body a:hover{text-decoration:underline}.markdown-body strong{font-weight:600}.markdown-body hr{box-sizing:content-box;overflow:hidden;background:0 0;border-bottom:1px solid #dfe2e5}.markdown-body hr::before{display:table;content:""}.markdown-body hr::after{display:table;clear:both;content:""}.markdown-body table{border-spacing:0;border-collapse:collapse;display:block;width:100%;overflow:auto}.markdown-body td,.markdown-body th{padding:0}.markdown-body blockquote{margin:0}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol{list-style-type:lower-alpha}.markdown-body dd{margin-left:0}.markdown-body code{font-family:SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace}.markdown-body pre{font:12px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;word-wrap:normal}.markdown-body .pl-0{padding-left:0!important}.markdown-body .pl-1{padding-left:4px!important}.markdown-body .pl-2{padding-left:8px!important}.markdown-body .pl-3{padding-left:16px!important}.markdown-body .pl-4{padding-left:24px!important}.markdown-body .pl-5{padding-left:32px!important}.markdown-body .pl-6{padding-left:40px!important}.markdown-body::before{display:table;content:""}.markdown-body::after{display:table;clear:both;content:""}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:0}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e1e4e8;border:0}.markdown-body blockquote{padding:0 1em;color:#6a737d;border-left:.25em solid #dfe2e5}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd{font-size:11px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#1b1f23;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1{padding-bottom:.3em;font-size:2em;border-bottom:1px solid #eaecef}.markdown-body h2{padding-bottom:.3em;font-size:1.5em;border-bottom:1px solid #eaecef}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#6a737d}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table th{font-weight:600}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #dfe2e5}.markdown-body table tr{background-color:#fff;border-top:1px solid #c6cbd1}.markdown-body table tr:nth-child(2n){background-color:#f6f8fa}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body code{padding:.2em 0;margin:0;font-size:85%;background-color:rgba(27,31,35,.05);border-radius:3px}.markdown-body code::after,.markdown-body code::before{letter-spacing:-.2em;content:"\00a0"}.markdown-body pre>code{padding:0;margin:0;font-size:100%;word-break:normal;white-space:pre;background:0 0;border:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f6f8fa;border-radius:3px}.markdown-body pre code{display:inline;max-width:auto;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body pre code::after,.markdown-body pre code::before{content:normal}.markdown-body .full-commit .btn-outline:not(:disabled):hover{color:#005cc5;border-color:#005cc5}.markdown-body kbd{display:inline-block;padding:3px 5px;font:11px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;line-height:10px;color:#444d56;vertical-align:middle;background-color:#fcfcfc;border:1px solid #c6cbd1;border-bottom-color:#959da5;border-radius:3px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body :checked+.radio-label{position:relative;z-index:1;border-color:#0366d6}.markdown-body .task-list-item{list-style-type:none}.markdown-body .task-list-item+.task-list-item{margin-top:3px}.markdown-body .task-list-item input{margin:0 .2em .25em -1.6em;vertical-align:middle}.markdown-body hr{border-bottom-color:#eee}.flash{position:relative;padding:16px;color:#246;background-color:#e2eef9;border:1px solid #bac6d3;border-radius:3px}.flash p:last-child{margin-bottom:0}.flash-messages{margin-bottom:24px}.flash-warn{color:#4c4a42;background-color:#fff9ea;border-color:#dfd8c2}.flash-error{color:#911;background-color:#fcdede;border-color:#d2b2b2}.flash-success{color:#22662c;background-color:#e2f9e5;border-color:#bad3be}.flash-plain{color:#4c4a42;background-color:#f5f5f5;border-color:#c1c1c1}</style>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">pre[data-language='renumf90']{background-color:#EFEFFE;}</style>
+  <style type="text/css">pre[data-language='blupf90']{background-color:#E7FFE7;}</style>
+  <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
+  <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
+  <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<article class="markdown-body">
+<header>
+<h1 class="title">Numerical examples from Mrode (2014)</h1>
+<p class="author">Yutaka Masuda</p>
+<p class="date">September 2019</p>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#the-threshold-model">The threshold model</a><ul>
+<li><a href="#model">Model</a></li>
+<li><a href="#files">Files</a></li>
+<li><a href="#solutions">Solutions</a></li>
+<li><a href="#reasonable-solutions">Reasonable solutions</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="the-threshold-model">The threshold model</h1>
+<h2 id="model">Model</h2>
+<p>Some traits show categorical responses which can be potentially ordered by degree e.g., calving difficulty (easy, slightly difficult, or difficult) and disease (no treatment needed, treated, or died). For such traits, although the phenotype is not continuous, we can still assume that both genetic and environmental factors affect the traits and there is the polygenic effect. In this case, it is a reasonable model that each animal has a non-observable, hypothetical random variable like a phenotype in a continuous trait, and such a variable contributes to the categorical response. In this model, various factors can contribute to the underlying variable. When the variable exceeds a certain level, it expresses the different category of response. This is a basic idea of the threshold model and the variable is called liability and the level is known as the threshold. The liability is usually assumed to be normally distributed in an underlying scale. We can apply a linear model to the underlying variable. In this theory, the number of thresholds is equivalent to the number of categories minus 1.</p>
+<p>The author cites a well-known data set originally provided by Gianola and Foulley (1983). The trait is calving ease with 3 categories. The sire model for liability is as follows: <span class="math display">\[
+l_{ijkl} = H_i +C_j + s_k + e_{ijkl}
+\]</span> where <span class="math inline">\(l_{ijkl}\)</span> is the liability, <span class="math inline">\(H_i\)</span> and <span class="math inline">\(C_j\)</span> are the fixed effects, <span class="math inline">\(s_k\)</span> is the random sire effect and <span class="math inline">\(e_{ijkl}\)</span> is the residual. The variance components are <span class="math inline">\(\sigma_s^2 = 1/19 = 0.0526\)</span> and <span class="math inline">\(\sigma_e^2 = 1.0\)</span>.</p>
+<p>The BLUPF90 family used to have several software to handle the threshold. Now THRGIBBS1F90 is the only publicly available program. This is Gibbs sampler so we need many samples to estimate the location parameters as the posterior means.</p>
+<h2 id="files">Files</h2>
+<p>The pedigree file is prepared for the sire model.</p>
+<pre data-language="text" data-caption="pedigree_mr13a.txt"><code> 1 0 0
+...</code></pre>
+<p>The items are different from the animal model.</p>
+<ol type="1">
+<li>Animal (sire) ID</li>
+<li>Sire (sire of sire) ID</li>
+<li>Maternal grand sire ID</li>
+</ol>
+<p>The data file is shown below. All the phenotype should be written in the flat file. There are 28 observations from 28 calves (p.223).</p>
+<!-- I leave it because it is a publicly available data set. -->
+<!--
+~~~~~{language=text caption="data_mr13a.txt"}
+1 1 1 1   1
+1 2 1 1   2
+1 1 1 1   3
+1 2 2 2   4
+1 1 2 1   5
+1 1 2 3   5
+1 2 2 1   6
+1 2 2 1   6
+1 2 2 1   6
+1 1 3 1   7
+1 1 3 2   7
+1 2 3 2   8
+1 1 3 1   9
+2 2 1 1  10
+2 2 1 1  10
+2 1 1 1  11
+2 1 1 3  12
+2 2 2 1  13
+2 2 2 3  13
+2 1 2 1  14
+2 2 3 2  15
+2 1 3 3  16
+2 1 4 2  17
+2 2 4 1  18
+2 2 4 1  19
+2 2 4 1  19
+2 1 4 1  20
+2 1 4 1  20
+~~~~~
+-->
+<pre data-language="text" data-caption="data_mr13a.txt"><code>1 1 1 1   1
+...
+2 1 4 1  20</code></pre>
+<p>The file has the 4th column just to show the original row in the table.</p>
+<ol type="1">
+<li>Herd (<span class="math inline">\(H_i\)</span>)</li>
+<li>Sex (<span class="math inline">\(S_j\)</span>); 1=male and 2=female</li>
+<li>Sire of calf (<span class="math inline">\(s_k\)</span>)</li>
+<li>The row in the original table corresponding to the data line.</li>
+</ol>
+<p>The parameter file is similar to the standard one except some options.</p>
+<pre data-language="blupf90" data-caption="param_mr13a.txt"><code>DATAFILE
+data_mr13a.txt
+NUMBER_OF_TRAITS
+1
+NUMBER_OF_EFFECTS
+3
+OBSERVATION(S)
+4
+WEIGHT(S)
+
+EFFECTS:    # l=H+C+s+e
+1 2 cross   # Herd
+2 2 cross   # Sex
+3 4 cross   # sire
+RANDOM_RESIDUAL VALUES  # residual variance = 1
+1.0
+RANDOM_GROUP
+3
+RANDOM_TYPE             # sire model
+add_sire
+FILE
+pedigree_mr13a.txt
+(CO)VARIANCES           # sire variance = 1/19
+0.0526
+OPTION cat 3
+OPTION fixed_var mean</code></pre>
+<p>The following 2 options are required to perform the threshold analysis with THRGIBBS1F90.</p>
+<ul>
+<li><code>OPTION cat</code> = defines the number of categories. This is a single-trait model so just put one value (3 categories for the trait 1). If you apply a multiple-trait model, supply as many integers as traits. The value 0 specifies that a trait is continuous (i.e. non-categorical trait).</li>
+<li><code>OPTION fixed_var mean</code> = performs sampling only for the location parameters (i.e. solutions) with the fixed variance components supplied in the parameter file. This is useful when only the solutions are of interest.</li>
+</ul>
+<p>You can run THRGIBBSF90 with many samples. In this example, we try 10,000 samples with 5,000 burn-in and save all the samples after burn-in. It may have too many samples but we make sure we have the converged results.</p>
+<p>Note that THRGIBBS1F90 doesn’t estimate the thresholds in this case. If there are 2 thresholds (3 categories), the program assumes two thresholds are fixed to be 0 and 1. If there is 1 threshold (2 categories), the program fixes the value to 0.</p>
+<h2 id="solutions">Solutions</h2>
+<p>The solutions are stored in <code>final_solutions</code>.</p>
+<pre data-language="text" data-caption="solutions"><code>trait/effect level  solution        SD
+   1   1         1          9.52944466          8.75831636
+   1   1         2          9.85646244          8.76150641
+   1   2         1         -9.88169090          8.75776616
+   1   2         2        -10.30709508          8.74507553
+   1   3         1         -0.05309676          0.21738782
+   1   3         2          0.06929745          0.21682631
+   1   3         3          0.03496753          0.21566398
+   1   3         4         -0.08110327          0.22041841</code></pre>
+<p><span class="math display">\[
+\begin{aligned}
+P_{11} &amp;= \Phi(t_1 - \hat{h}_1 - \hat{c}_2 - \hat{u}_1) = 0.758\\
+P_{12} &amp;= \Phi(t_2 - \hat{h}_1 - \hat{c}_2 - \hat{u}_1) - \Phi(t_1 - \hat{h}_1 - \hat{c}_2 - \hat{u}_1) = 0.197\\
+P_{13} &amp;= 1 - \Phi(t_2 - \hat{h}_1 - \hat{c}_2 - \hat{u}_1) = 0.044
+\end{aligned}
+\]</span></p>
+<p>where <span class="math inline">\(\Phi(x)\)</span> is the cumulative density normal function e.g., <code>pnorm()</code> in R. The reference values are <span class="math inline">\(P_{11} = 0.800\)</span>, <span class="math inline">\(P_{12} = 0.129\)</span>, and <span class="math inline">\(P_{13} = 0.071\)</span>. The results are apparently different from the textbook. Why? There are 2 possible reasons why the results don’t match.</p>
+<p>The first one, which is minor, is over-constraint equations. The author put 2 zero-constraint to the equations. Although the left-hand side (LHS) of the equations has very small 2 eigenvalues, it is not small enough to drop the rank of LHS. The problem is in the linear model. The author put the same constraints to the corresponding linear model analysis but it is inappropriate.</p>
+<p>The second one is from fixed thresholds with <span class="math inline">\(\sigma_e^2 = 1.0\)</span>. When the number of categories (<span class="math inline">\(c\)</span>) is 2 i.e. binary traits, there is only 1 threshold and its value can be arbitrarily fixed. When <span class="math inline">\(c = 3\)</span>, we have 2 ways to parameterize the thresholds: 1) one threshold is fixed and another threshold is estimated, or 2) both thresholds are fixed and <span class="math inline">\(\sigma_e^2\)</span> is estimated (i.e. <span class="math inline">\(\sigma_e^2\)</span> is no longer fixed to 1.0). With the latter parameterization, we need to estimate <span class="math inline">\(c-3\)</span> threshold parameters in addition to <span class="math inline">\(\sigma_e^2\)</span>. THRGIBBS1F90 uses this parameterization, so we need appropriate <span class="math inline">\(\sigma_e^2\)</span> instead of 1.0 for the fixed thresholds. In the above example, the residual variance was not appropriate. A question is why this software implements the model in this way. In the variance component estimation using Gibbs sampling for a threshold model with 3 or more categories (2 or more thresholds), the convergence rate for a threshold parameter is very slow. The sampling of residual variance is a better strategy when 2 or more thresholds are assumed in the model. See Sorensen et al. (1995) or Wang et al. (1997) for the detailed discussion. Thus, it may happen that <code>OPTION fixed_var mean</code> is not such a good idea. You may explore this by yourself.</p>
+<h2 id="reasonable-solutions">Reasonable solutions</h2>
+<p>In this subsection, we will find ways to obtain the same solutions to the textbook. First, we try CBLUPF90THR which is available from our web server. This program supports the computation of 2 or more thresholds in a single-trait threshold model. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>The program implements Hoeschele et al. (1995) which generalized Foulley et al. (1983) and Janss and Foulley (1993) with some unpublished work by Richard Quaas (presented at a meeting of Beef Improvement Federation).</p>
+<p>The following results are from the program with the same parameter file with many iterations enough to converge (100 rounds here).</p>
+<pre data-language="text" data-caption="solutions"><code>trait/effect level  solution
+  1  1       1     -0.8942
+  1  1       2     -0.6168
+  1  2       1      0.4014
+  1  2       2      0.0425
+  1  3       1     -0.0434
+  1  3       2      0.0592
+  1  3       3      0.0412
+  1  3       4     -0.0660</code></pre>
+<p>The thresholds are <span class="math inline">\(t_1 = -0.0550\)</span> and <span class="math inline">\(t_2 = 0.5748\)</span>. The difference between thresholds is <span class="math inline">\(t_2 - t_1 = 0.6298\)</span> and it is the same as the reference analysis. With above solutions, <span class="math inline">\(P_{11} = 0.800\)</span>, <span class="math inline">\(P_{12} = 0.130\)</span>, and <span class="math inline">\(P_{13} = 0.070\)</span>. The results are nearly identical to the reference values in the textbook.</p>
+<p>Then, we try to run THRGIBBS1F90 with a different residual variance. Let’s try <span class="math inline">\(\sigma_e^2 = 3.0\)</span>. To keep the same variance ratio, <span class="math inline">\(\sigma_s^2\)</span> should be 0.158 to be <span class="math inline">\(\sigma_e^2/\sigma_s^2 = 19.0\)</span>. The thresholds are fixed to <span class="math inline">\(t_1 = 0.0\)</span> and <span class="math inline">\(t_2 = 1.0\)</span>. The final solutions from THRGIBBS1F90 are as follows.</p>
+<pre data-language="text" data-caption="solutions"><code>trait/effect level  solution        SD
+   1   1         1         16.34777283         15.17002602
+   1   1         2         16.82596758         15.17639696
+   1   2         1        -17.16324150         15.16948659
+   1   2         2        -17.80476157         15.14659841
+   1   3         1         -0.08323076          0.37743431
+   1   3         2          0.10108613          0.37648625
+   1   3         3          0.05924918          0.37371633
+   1   3         4         -0.12015570          0.38254070</code></pre>
+<p>When <span class="math inline">\(\sigma_e^2 \neq 1.0\)</span>, we should standardize the liability predictor with the residual standard deviation before applying the cumulative normal function to calculate the probabilities. See the following computations.</p>
+<p><span class="math display">\[
+\begin{aligned}
+P_{11} &amp;= \Phi\left( \frac{t_1 - \hat{h}_1 - \hat{c}_2 - \hat{u}_1}{\sigma_e} \right) = 0.813\\
+P_{12} &amp;= \Phi\left( \frac{t_2 - \hat{h}_1 - \hat{c}_2 - \hat{u}_1}{\sigma_e} \right) - \Phi\left( \frac{t_1 - \hat{h}_1 - \hat{c}_2 - \hat{u}_1}{\sigma_e} \right) = 0.116\\
+P_{13} &amp;= 1 - \Phi\left( \frac{t_2 - \hat{h}_1 - \hat{c}_2 - \hat{u}_1}{\sigma_e} \right) = 0.071
+\end{aligned}
+\]</span></p>
+<p>Again, <span class="math inline">\(\sigma_e\)</span> is the standard deviation of residual variance (<span class="math inline">\(\sqrt{\sigma_e^2}\)</span>) because the formula is based on the standardization of the latent variable. The probabilities are very similar to the reference results for all sires (p.229).</p>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>Actually, it supports a multiple-trait model with one threshold trait and many linear traits.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩</a></p></li>
+</ol>
+</section>
+</article>
+</body>
+</html>

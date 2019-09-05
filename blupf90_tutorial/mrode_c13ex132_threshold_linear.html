@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<!--==============================================================================
+	           "GitHub HTML5 Pandoc Template" v1.2 — by Tristano Ajmone
+	==============================================================================
+	(c) Tristano Ajmone, 2017, MIT License (MIT). Project's home repository:
+
+	- https://github.com/tajmone/pandoc-goodies
+
+	This template reuses source code taken from the following projects:
+
+	- GitHub Markdown CSS: © Sindre Sorhus, MIT License (MIT):
+	  https://github.com/sindresorhus/github-markdown-css
+
+	- Primer CSS: © 2016 GitHub Inc., MIT License (MIT):
+	  http://primercss.io/
+	==============================================================================-->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Yutaka Masuda" />
+  <title>Numerical examples from Mrode (2014)</title>
+  <style type="text/css">@font-face{font-family:octicons-link;src:url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAZwABAAAAAACFQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEU0lHAAAGaAAAAAgAAAAIAAAAAUdTVUIAAAZcAAAACgAAAAoAAQAAT1MvMgAAAyQAAABJAAAAYFYEU3RjbWFwAAADcAAAAEUAAACAAJThvmN2dCAAAATkAAAABAAAAAQAAAAAZnBnbQAAA7gAAACyAAABCUM+8IhnYXNwAAAGTAAAABAAAAAQABoAI2dseWYAAAFsAAABPAAAAZwcEq9taGVhZAAAAsgAAAA0AAAANgh4a91oaGVhAAADCAAAABoAAAAkCA8DRGhtdHgAAAL8AAAADAAAAAwGAACfbG9jYQAAAsAAAAAIAAAACABiATBtYXhwAAACqAAAABgAAAAgAA8ASm5hbWUAAAToAAABQgAAAlXu73sOcG9zdAAABiwAAAAeAAAAME3QpOBwcmVwAAAEbAAAAHYAAAB/aFGpk3jaTY6xa8JAGMW/O62BDi0tJLYQincXEypYIiGJjSgHniQ6umTsUEyLm5BV6NDBP8Tpts6F0v+k/0an2i+itHDw3v2+9+DBKTzsJNnWJNTgHEy4BgG3EMI9DCEDOGEXzDADU5hBKMIgNPZqoD3SilVaXZCER3/I7AtxEJLtzzuZfI+VVkprxTlXShWKb3TBecG11rwoNlmmn1P2WYcJczl32etSpKnziC7lQyWe1smVPy/Lt7Kc+0vWY/gAgIIEqAN9we0pwKXreiMasxvabDQMM4riO+qxM2ogwDGOZTXxwxDiycQIcoYFBLj5K3EIaSctAq2kTYiw+ymhce7vwM9jSqO8JyVd5RH9gyTt2+J/yUmYlIR0s04n6+7Vm1ozezUeLEaUjhaDSuXHwVRgvLJn1tQ7xiuVv/ocTRF42mNgZGBgYGbwZOBiAAFGJBIMAAizAFoAAABiAGIAznjaY2BkYGAA4in8zwXi+W2+MjCzMIDApSwvXzC97Z4Ig8N/BxYGZgcgl52BCSQKAA3jCV8CAABfAAAAAAQAAEB42mNgZGBg4f3vACQZQABIMjKgAmYAKEgBXgAAeNpjYGY6wTiBgZWBg2kmUxoDA4MPhGZMYzBi1AHygVLYQUCaawqDA4PChxhmh/8ODDEsvAwHgMKMIDnGL0x7gJQCAwMAJd4MFwAAAHjaY2BgYGaA4DAGRgYQkAHyGMF8NgYrIM3JIAGVYYDT+AEjAwuDFpBmA9KMDEwMCh9i/v8H8sH0/4dQc1iAmAkALaUKLgAAAHjaTY9LDsIgEIbtgqHUPpDi3gPoBVyRTmTddOmqTXThEXqrob2gQ1FjwpDvfwCBdmdXC5AVKFu3e5MfNFJ29KTQT48Ob9/lqYwOGZxeUelN2U2R6+cArgtCJpauW7UQBqnFkUsjAY/kOU1cP+DAgvxwn1chZDwUbd6CFimGXwzwF6tPbFIcjEl+vvmM/byA48e6tWrKArm4ZJlCbdsrxksL1AwWn/yBSJKpYbq8AXaaTb8AAHja28jAwOC00ZrBeQNDQOWO//sdBBgYGRiYWYAEELEwMTE4uzo5Zzo5b2BxdnFOcALxNjA6b2ByTswC8jYwg0VlNuoCTWAMqNzMzsoK1rEhNqByEyerg5PMJlYuVueETKcd/89uBpnpvIEVomeHLoMsAAe1Id4AAAAAAAB42oWQT07CQBTGv0JBhagk7HQzKxca2sJCE1hDt4QF+9JOS0nbaaYDCQfwCJ7Au3AHj+LO13FMmm6cl7785vven0kBjHCBhfpYuNa5Ph1c0e2Xu3jEvWG7UdPDLZ4N92nOm+EBXuAbHmIMSRMs+4aUEd4Nd3CHD8NdvOLTsA2GL8M9PODbcL+hD7C1xoaHeLJSEao0FEW14ckxC+TU8TxvsY6X0eLPmRhry2WVioLpkrbp84LLQPGI7c6sOiUzpWIWS5GzlSgUzzLBSikOPFTOXqly7rqx0Z1Q5BAIoZBSFihQYQOOBEdkCOgXTOHA07HAGjGWiIjaPZNW13/+lm6S9FT7rLHFJ6fQbkATOG1j2OFMucKJJsxIVfQORl+9Jyda6Sl1dUYhSCm1dyClfoeDve4qMYdLEbfqHf3O/AdDumsjAAB42mNgYoAAZQYjBmyAGYQZmdhL8zLdDEydARfoAqIAAAABAAMABwAKABMAB///AA8AAQAAAAAAAAAAAAAAAAABAAAAAA==) format('woff')}.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#24292e;font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";font-size:16px;line-height:1.5;word-wrap:break-word;box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto;padding:45px}.markdown-body .octicon{display:inline-block;fill:currentColor;vertical-align:text-bottom}.markdown-body a{background-color:transparent;-webkit-text-decoration-skip:objects;color:#0366d6;text-decoration:none}.markdown-body a:active,.markdown-body a:hover{outline-width:0}.markdown-body h1{margin:.67em 0}.markdown-body img{border-style:none}.markdown-body svg:not(:root){overflow:hidden}.markdown-body code,.markdown-body kbd,.markdown-body pre{font-family:monospace,monospace}.markdown-body input{font:inherit;margin:0;overflow:visible;font-family:inherit;font-size:inherit;line-height:inherit}.markdown-body [type=checkbox]{box-sizing:border-box;padding:0}.markdown-body *{box-sizing:border-box}.markdown-body a:hover{text-decoration:underline}.markdown-body strong{font-weight:600}.markdown-body hr{box-sizing:content-box;overflow:hidden;background:0 0;border-bottom:1px solid #dfe2e5}.markdown-body hr::before{display:table;content:""}.markdown-body hr::after{display:table;clear:both;content:""}.markdown-body table{border-spacing:0;border-collapse:collapse;display:block;width:100%;overflow:auto}.markdown-body td,.markdown-body th{padding:0}.markdown-body blockquote{margin:0}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol{list-style-type:lower-alpha}.markdown-body dd{margin-left:0}.markdown-body code{font-family:SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace}.markdown-body pre{font:12px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;word-wrap:normal}.markdown-body .pl-0{padding-left:0!important}.markdown-body .pl-1{padding-left:4px!important}.markdown-body .pl-2{padding-left:8px!important}.markdown-body .pl-3{padding-left:16px!important}.markdown-body .pl-4{padding-left:24px!important}.markdown-body .pl-5{padding-left:32px!important}.markdown-body .pl-6{padding-left:40px!important}.markdown-body::before{display:table;content:""}.markdown-body::after{display:table;clear:both;content:""}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:0}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e1e4e8;border:0}.markdown-body blockquote{padding:0 1em;color:#6a737d;border-left:.25em solid #dfe2e5}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd{font-size:11px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#1b1f23;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1{padding-bottom:.3em;font-size:2em;border-bottom:1px solid #eaecef}.markdown-body h2{padding-bottom:.3em;font-size:1.5em;border-bottom:1px solid #eaecef}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#6a737d}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table th{font-weight:600}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #dfe2e5}.markdown-body table tr{background-color:#fff;border-top:1px solid #c6cbd1}.markdown-body table tr:nth-child(2n){background-color:#f6f8fa}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body code{padding:.2em 0;margin:0;font-size:85%;background-color:rgba(27,31,35,.05);border-radius:3px}.markdown-body code::after,.markdown-body code::before{letter-spacing:-.2em;content:"\00a0"}.markdown-body pre>code{padding:0;margin:0;font-size:100%;word-break:normal;white-space:pre;background:0 0;border:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f6f8fa;border-radius:3px}.markdown-body pre code{display:inline;max-width:auto;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body pre code::after,.markdown-body pre code::before{content:normal}.markdown-body .full-commit .btn-outline:not(:disabled):hover{color:#005cc5;border-color:#005cc5}.markdown-body kbd{display:inline-block;padding:3px 5px;font:11px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;line-height:10px;color:#444d56;vertical-align:middle;background-color:#fcfcfc;border:1px solid #c6cbd1;border-bottom-color:#959da5;border-radius:3px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body :checked+.radio-label{position:relative;z-index:1;border-color:#0366d6}.markdown-body .task-list-item{list-style-type:none}.markdown-body .task-list-item+.task-list-item{margin-top:3px}.markdown-body .task-list-item input{margin:0 .2em .25em -1.6em;vertical-align:middle}.markdown-body hr{border-bottom-color:#eee}.flash{position:relative;padding:16px;color:#246;background-color:#e2eef9;border:1px solid #bac6d3;border-radius:3px}.flash p:last-child{margin-bottom:0}.flash-messages{margin-bottom:24px}.flash-warn{color:#4c4a42;background-color:#fff9ea;border-color:#dfd8c2}.flash-error{color:#911;background-color:#fcdede;border-color:#d2b2b2}.flash-success{color:#22662c;background-color:#e2f9e5;border-color:#bad3be}.flash-plain{color:#4c4a42;background-color:#f5f5f5;border-color:#c1c1c1}</style>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">pre[data-language='renumf90']{background-color:#EFEFFE;}</style>
+  <style type="text/css">pre[data-language='blupf90']{background-color:#E7FFE7;}</style>
+  <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
+  <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
+  <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<article class="markdown-body">
+<header>
+<h1 class="title">Numerical examples from Mrode (2014)</h1>
+<p class="author">Yutaka Masuda</p>
+<p class="date">September 2019</p>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#joint-analysis-of-quantitative-and-binary-traits">Joint analysis of quantitative and binary traits</a><ul>
+<li><a href="#model">Model</a></li>
+<li><a href="#file">File</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="joint-analysis-of-quantitative-and-binary-traits">Joint analysis of quantitative and binary traits</h1>
+<h2 id="model">Model</h2>
+<p>We can consider a 2-trait model with one threshold trait and one continuous trait. When we use Gibbs sampling to draw the posterior distribution for a location parameter, we can simply obtain a solution as the posterior mean. However, once we try to calculate the solutions without Gibbs sampling, the resulting equations become nonlinear and a complicated strategy is needed to solve the equations. See Wang et al. (1997) for detailed discussion. For the threshold trait, the solutions obtained with anyways should be converted differently as the regular threshold model. The author cited Foulley et al. (1983) and explains how to do it.</p>
+<p>In this section, we will simply use THRGIBBS1F90 to draw the posterior mean for a location parameter. In this example, we have only 1 threshold, so the program fixes the threshold to 0 and the residual variance to 1.0.</p>
+<h2 id="file">File</h2>
+<p>The data file is from Foulley et al. (1983) and shown below.</p>
+<pre data-language="text" data-caption="data_mr13b.txt"><code>1 1 1 1 41.0 1
+1 1 1 1 37.5 1
+1 1 1 2 41.5 1
+1 1 2 2 40.0 1
+1 1 2 2 43.0 1
+1 1 2 2 42.0 1
+1 1 2 2 35.0 1
+2 1 1 2 46.0 1
+2 1 1 2 40.5 1
+2 1 2 2 39.0 1
+1 2 1 1 41.4 1
+1 2 1 1 43.0 2
+1 2 2 2 34.0 1
+1 2 2 1 47.0 2
+1 2 2 1 42.0 1
+2 2 2 1 44.5 1
+2 2 2 1 49.0 1
+1 3 1 1 41.6 1
+2 3 1 1 36.0 1
+2 3 1 2 42.7 1
+2 3 2 2 32.5 1
+2 3 2 2 44.4 1
+2 3 2 1 46.0 1
+1 4 2 1 47.0 2
+1 4 2 2 51.0 2
+1 4 2 2 39.0 1
+2 4 1 1 44.5 1
+1 5 1 1 40.5 1
+1 5 1 2 43.5 1
+1 5 2 1 42.5 1
+1 5 2 1 48.8 2
+1 5 2 1 38.5 1
+1 5 2 1 52.0 1
+1 5 2 2 48.0 1
+2 5 1 2 41.0 1
+2 5 1 1 50.5 2
+2 5 2 1 43.7 2
+2 5 2 1 51.0 2
+1 6 1 2 51.6 2
+1 6 1 1 45.3 2
+1 6 1 2 36.5 1
+1 6 2 1 50.5 1
+1 6 2 1 46.0 2
+1 6 2 1 45.0 1
+1 6 2 2 36.0 1
+2 6 1 2 43.5 1
+2 6 1 2 36.5 1</code></pre>
+<p>This file contains 6 columns.</p>
+<ol type="1">
+<li>Heifer origin</li>
+<li>Sire ID</li>
+<li>Season</li>
+<li>Sex (1=male and 2=female)</li>
+<li>BW (body weight)</li>
+<li>CD (calving difficulty)</li>
+</ol>
+<p>The pedigree file contains a sire, sire of the sire, and the maternal grand-sire.</p>
+<pre data-language="text" data-caption="pedigree_mr13b.txt"><code>1 0 0
+2 0 0
+3 1 0
+4 2 1
+5 3 2
+6 2 3</code></pre>
+<p>As the author mentions, we should use the corrected genetic parameters (<span class="math inline">\(\mathbf{G}_{c}\)</span>) as shown on p.235. The residual variance is 1.0 for CD and 20.0 for BW, and the residual covariance is 2.0527 because the residual correlation is 0.459. The parameter file is as follows. In our case, we exchange the order of traits i.e. the trait 1 is CD and the trait 2 is BW.</p>
+<pre data-language="blupf90" data-caption="param_mr13b.txt"><code>DATAFILE
+data_mr13b.txt
+NUMBER_OF_TRAITS
+2
+NUMBER_OF_EFFECTS
+4
+OBSERVATION(S)
+6 5
+WEIGHT(S)
+
+EFFECTS:      # l=H+M+E+s+e
+1 1 2 cross   # origin
+3 3 2 cross   # season
+4 4 2 cross   # sex
+2 2 6 cross   # sire
+RANDOM_RESIDUAL VALUES
+1.0000 2.0527
+2.0527 20.000
+RANDOM_GROUP
+4
+RANDOM_TYPE
+add_sire
+FILE
+pedigree_mr13b.txt
+(CO)VARIANCES
+0.0300 0.0302
+0.0302 0.7178
+OPTION cat 2 0
+OPTION fixed_var mean</code></pre>
+<p>Run THRGIBBS1F90 to draw 20,000 enough samples (saved in every 10 steps) and discard the first 10,000 samples as burn-in. You can see the following solutions.</p>
+<pre data-language="text" data-caption="solutions"><code>trait/effect level  solution        SD
+   1   1         1         31.68328943          8.14595680
+   2   1         1        169.99014434         40.28879171
+   1   1         2         31.39648971          8.19080303
+   2   1         2        170.59358068         40.25222186
+   1   2         1          5.79121444         11.84634633
+   2   2         1        -41.86423776         40.85833310
+   1   2         2          5.81766544         11.83550515
+   2   2         2        -40.61954962         40.79757133
+   1   3         1        -37.80144849          6.85003521
+   2   3         1        -84.56393688         42.77593912
+   1   3         2        -38.97895373          6.85779916
+   2   3         2        -87.77970197         42.74683265
+   1   4         1         -0.07369834          0.17245459
+   2   4         1         -0.26275007          0.75528469
+   1   4         2          0.04477009          0.17053692
+   2   4         2          0.10034538          0.80205603
+   1   4         3         -0.04892810          0.16824589
+   2   4         3         -0.19454123          0.80070554
+   1   4         4          0.04296839          0.17226439
+   2   4         4          0.16601219          0.80871849
+   1   4         5          0.02241590          0.16946856
+   2   4         5          0.33065415          0.78077812
+   1   4         6          0.03339339          0.17470579
+   2   4         6          0.16620116          0.78877094</code></pre>
+<p>The estimated values are close to the reference values (p.237). The small difference comes from a limited number of observations. If you put zero-constraints on the fixed effects, you may obtain more similar values as in the textbook.</p>
+<p>Just for comparison, we show the results from CBLUP90THR with the same files shown above. The estimated threshold is <span class="math inline">\(-0.0198\)</span> with 100 rounds.</p>
+<pre data-language="text" data-caption="solutions"><code>trait/effect level  solution
+  1  1       1     -1.0100
+  2  1       1     54.1493
+  1  1       2     -1.2648
+  2  1       2     54.7189
+  1  2       1      0.3162
+  2  2       1    -16.9395
+  1  2       2      0.3255
+  2  2       2    -15.6956
+  1  3       1      0.3685
+  2  3       1      6.3608
+  1  3       2     -0.7128
+  2  3       2      3.1574
+  1  4       1     -0.0601
+  2  4       1     -0.2699
+  1  4       2      0.0387
+  2  4       2      0.0690
+  1  4       3     -0.0499
+  2  4       3     -0.2158
+  1  4       4      0.0418
+  2  4       4      0.1376
+  1  4       5      0.0172
+  2  4       5      0.2843
+  1  4       6      0.0322
+  2  4       6      0.1358</code></pre>
+</article>
+</body>
+</html>

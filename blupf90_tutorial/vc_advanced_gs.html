@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<!--==============================================================================
+	           "GitHub HTML5 Pandoc Template" v1.2 — by Tristano Ajmone
+	==============================================================================
+	(c) Tristano Ajmone, 2017, MIT License (MIT). Project's home repository:
+
+	- https://github.com/tajmone/pandoc-goodies
+
+	This template reuses source code taken from the following projects:
+
+	- GitHub Markdown CSS: © Sindre Sorhus, MIT License (MIT):
+	  https://github.com/sindresorhus/github-markdown-css
+
+	- Primer CSS: © 2016 GitHub Inc., MIT License (MIT):
+	  http://primercss.io/
+	==============================================================================-->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Yutaka Masuda" />
+  <title>Variance component estimation</title>
+  <style type="text/css">@font-face{font-family:octicons-link;src:url(data:font/woff;charset=utf-8;base64,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) format('woff')}.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#24292e;font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";font-size:16px;line-height:1.5;word-wrap:break-word;box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto;padding:45px}.markdown-body .octicon{display:inline-block;fill:currentColor;vertical-align:text-bottom}.markdown-body a{background-color:transparent;-webkit-text-decoration-skip:objects;color:#0366d6;text-decoration:none}.markdown-body a:active,.markdown-body a:hover{outline-width:0}.markdown-body h1{margin:.67em 0}.markdown-body img{border-style:none}.markdown-body svg:not(:root){overflow:hidden}.markdown-body code,.markdown-body kbd,.markdown-body pre{font-family:monospace,monospace}.markdown-body input{font:inherit;margin:0;overflow:visible;font-family:inherit;font-size:inherit;line-height:inherit}.markdown-body [type=checkbox]{box-sizing:border-box;padding:0}.markdown-body *{box-sizing:border-box}.markdown-body a:hover{text-decoration:underline}.markdown-body strong{font-weight:600}.markdown-body hr{box-sizing:content-box;overflow:hidden;background:0 0;border-bottom:1px solid #dfe2e5}.markdown-body hr::before{display:table;content:""}.markdown-body hr::after{display:table;clear:both;content:""}.markdown-body table{border-spacing:0;border-collapse:collapse;display:block;width:100%;overflow:auto}.markdown-body td,.markdown-body th{padding:0}.markdown-body blockquote{margin:0}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol{list-style-type:lower-alpha}.markdown-body dd{margin-left:0}.markdown-body code{font-family:SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace}.markdown-body pre{font:12px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;word-wrap:normal}.markdown-body .pl-0{padding-left:0!important}.markdown-body .pl-1{padding-left:4px!important}.markdown-body .pl-2{padding-left:8px!important}.markdown-body .pl-3{padding-left:16px!important}.markdown-body .pl-4{padding-left:24px!important}.markdown-body .pl-5{padding-left:32px!important}.markdown-body .pl-6{padding-left:40px!important}.markdown-body::before{display:table;content:""}.markdown-body::after{display:table;clear:both;content:""}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:0}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e1e4e8;border:0}.markdown-body blockquote{padding:0 1em;color:#6a737d;border-left:.25em solid #dfe2e5}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd{font-size:11px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#1b1f23;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1{padding-bottom:.3em;font-size:2em;border-bottom:1px solid #eaecef}.markdown-body h2{padding-bottom:.3em;font-size:1.5em;border-bottom:1px solid #eaecef}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#6a737d}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table th{font-weight:600}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #dfe2e5}.markdown-body table tr{background-color:#fff;border-top:1px solid #c6cbd1}.markdown-body table tr:nth-child(2n){background-color:#f6f8fa}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body code{padding:.2em 0;margin:0;font-size:85%;background-color:rgba(27,31,35,.05);border-radius:3px}.markdown-body code::after,.markdown-body code::before{letter-spacing:-.2em;content:"\00a0"}.markdown-body pre>code{padding:0;margin:0;font-size:100%;word-break:normal;white-space:pre;background:0 0;border:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f6f8fa;border-radius:3px}.markdown-body pre code{display:inline;max-width:auto;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body pre code::after,.markdown-body pre code::before{content:normal}.markdown-body .full-commit .btn-outline:not(:disabled):hover{color:#005cc5;border-color:#005cc5}.markdown-body kbd{display:inline-block;padding:3px 5px;font:11px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;line-height:10px;color:#444d56;vertical-align:middle;background-color:#fcfcfc;border:1px solid #c6cbd1;border-bottom-color:#959da5;border-radius:3px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body :checked+.radio-label{position:relative;z-index:1;border-color:#0366d6}.markdown-body .task-list-item{list-style-type:none}.markdown-body .task-list-item+.task-list-item{margin-top:3px}.markdown-body .task-list-item input{margin:0 .2em .25em -1.6em;vertical-align:middle}.markdown-body hr{border-bottom-color:#eee}.flash{position:relative;padding:16px;color:#246;background-color:#e2eef9;border:1px solid #bac6d3;border-radius:3px}.flash p:last-child{margin-bottom:0}.flash-messages{margin-bottom:24px}.flash-warn{color:#4c4a42;background-color:#fff9ea;border-color:#dfd8c2}.flash-error{color:#911;background-color:#fcdede;border-color:#d2b2b2}.flash-success{color:#22662c;background-color:#e2f9e5;border-color:#bad3be}.flash-plain{color:#4c4a42;background-color:#f5f5f5;border-color:#c1c1c1}</style>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">pre[data-language='renumf90']{background-color:#EFEFFE;}</style>
+  <style type="text/css">pre[data-language='blupf90']{background-color:#E7FFE7;}</style>
+  <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
+  <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
+  <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<article class="markdown-body">
+<header>
+<h1 class="title">Variance component estimation</h1>
+<p class="author">Yutaka Masuda</p>
+<p class="date">September 2019</p>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#advanced-features-in-gibbs-sampling-programs">Advanced features in Gibbs sampling programs</a><ul>
+<li><a href="#heterogeneous-residual-variances">Heterogeneous residual variances</a></li>
+<li><a href="#restart-the-sampling">Restart the sampling</a></li>
+<li><a href="#extraction-of-solutions-from-binary-final-solutions">Extraction of solutions from binary final solutions</a></li>
+<li><a href="#output-of-postgibbsf90">Output of POSTGIBBSF90</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="advanced-features-in-gibbs-sampling-programs">Advanced features in Gibbs sampling programs</h1>
+<h2 id="heterogeneous-residual-variances">Heterogeneous residual variances</h2>
+<p>GIBBS3F90 supports heterogeneous residual variances defined by a class. Here we will demonstrate an analysis with the heterogeneity in residual variance.</p>
+<h3 id="files">Files</h3>
+<p>We use the same data and pedigree file as before.</p>
+<ul>
+<li><a href="https://github.com/Masuday/data/blob/master/tutorial/simdata2.txt"><code>simdata2.txt</code></a> : data file</li>
+<li><a href="https://github.com/Masuday/data/blob/master/tutorial/simped2.txt"><code>simped2.txt</code></a> : pedigree file</li>
+</ul>
+<p>The pedigree file contains 3 columns: animal, sire, and dam. The data file has 12 columns as described below.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th style="text-align: left;">Item</th>
+<th style="text-align: left;">type</th>
+<th style="text-align: left;">description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td style="text-align: left;">Animal ID</td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: left;">Same as in pedigree (4641 animals)</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td style="text-align: left;">Sire ID</td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: left;">Same as in pedigree</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td style="text-align: left;">Dam ID</td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: left;">Same as in pedigree</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td style="text-align: left;">Weight</td>
+<td style="text-align: left;">real</td>
+<td style="text-align: left;">Not used here</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td style="text-align: left;">Mu</td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: left;">All 1: not used here</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td style="text-align: left;">Farm</td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: left;">Class effect (155 levels)</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td style="text-align: left;">Sex</td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: left;">Class effect (2 levels)</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td style="text-align: left;">Year</td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: left;">Class effect (11 levels)</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td style="text-align: left;">Obs. 1</td>
+<td style="text-align: left;">real</td>
+<td style="text-align: left;">Phenotype for trait 1</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td style="text-align: left;">Obs. 2</td>
+<td style="text-align: left;">real</td>
+<td style="text-align: left;">Phenotype for trait 2</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td style="text-align: left;">Obs. 3</td>
+<td style="text-align: left;">real</td>
+<td style="text-align: left;">Phenotype for trait 3</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td style="text-align: left;">Obs. 4</td>
+<td style="text-align: left;">real</td>
+<td style="text-align: left;">Phenotype for trait 4</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td style="text-align: left;">Covariate</td>
+<td style="text-align: left;">real</td>
+<td style="text-align: left;">Not used</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td style="text-align: left;">Class</td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: left;">Heterogeneous residual class</td>
+</tr>
+</tbody>
+</table>
+<p>The 14th column contains the heterogeneous-residual-variance class (3 levels) which is used in this section.</p>
+<p>The parameter file has 1 option to define the heterogeneous residual class.</p>
+<pre data-language="blupf90" data-caption="gibbs2.txt"><code>DATAFILE
+simdata2.txt
+NUMBER_OF_TRAITS
+1
+NUMBER_OF_EFFECTS
+4
+OBSERVATION(S)
+9
+WEIGHT(S)
+4
+EFFECTS:
+ 6   155 cross
+ 7     2 cross
+ 8    11 cross
+ 1  4641 cross
+RANDOM_RESIDUAL VALUES
+100
+RANDOM_GROUP
+4
+RANDOM_TYPE
+add_animal
+FILE
+simped2.txt
+(CO)VARIANCES
+100
+OPTION hetres_int 14 3</code></pre>
+<p>The option has 2 arguments.</p>
+<ul>
+<li><code>OPTION hetres_int</code> = defines the heterogeneous residual class with 2 values: 1) the position of the class in the data file and 2) the maximum level in the class.</li>
+</ul>
+<p>In this case, we specify that the 14th column has 3 levels.</p>
+<p>With 20,000 samples (saved each 10 samples) with 10,000 burn-in, the following results can be found.</p>
+<pre data-language="output"><code> ave G
+   39.845
+ SD G
+    3.9917
+ ave R
+    72.313
+ SD R
+    3.9497
+ ave R
+   78.248
+ SD R
+   4.4558
+ ave R
+  80.646
+ SD R
+   4.3320</code></pre>
+<p>There are 3 <code>ave_R</code> (and <code>SD_R</code>) blocks. The first one corresponds to the variance in heterogeneous level 1, the second line for level 2 and so on. Compare the above estimates to the results from AIREMLF90 shown in the previous section.</p>
+<h2 id="restart-the-sampling">Restart the sampling</h2>
+<p>After the sampling, you would find more samples are needed. The Gibbs sampling programs support to restart the sampling from the end point of the previous run. Any Gibbs samplers in recent BLUPF90 programs support this feature.</p>
+<p>When the Gibbs sampler finishes sampling, 4 files will be created. To continue the sampling, all the files are required.</p>
+<ul>
+<li><code>binary_final_solutions</code> = Posterior means and SDs for location parameters</li>
+<li><code>last_solutions</code> = The last samples for location parameters</li>
+<li><code>fort.99</code> = Values needed for DIC</li>
+<li><code>gibbs_samples</code> = Sampled variance components</li>
+</ul>
+<p>If you want to restart the sampling, you have to add an option to the parameter file. It needs the number of samples drawn in the previous run. If you had 10000 samples, the option should be</p>
+<pre data-language="blupf90"><code>OPTION cont 10000</code></pre>
+<p>where 10000 is the number of samples obtained previously. Run the Gibbs sampler with a parameter file with the above option, and the program restarts the sampling (from 10001 in the example).</p>
+<h2 id="extraction-of-solutions-from-binary-final-solutions">Extraction of solutions from binary final solutions</h2>
+<p>The file <code>binary_final_solutions</code> contains the posterior mean of a location parameter (i.e. a solution of “fixed” or “random” effect). This file is saved as a non-text format. The following Fortran program can extract the solutions and print them to a file <code>final_solutions.txt</code>. You can compile the program using a Fortran compiler (like GFortran) and run it in a directory where the binary final solutions are. The output format is equivalent to BLUPF90 with <code>OPTION sol_se</code>.</p>
+<pre data-language="Fortran" data-caption="\url{binsol_to_textsol.f90}"><code>program binsol_to_textsol
+    implicit none
+    integer :: io, t, e, l
+    double precision :: v, sol, se
+    open(10, file=&#39;binary_final_solutions&#39;, form=&#39;unformatted&#39;, &amp;
+        status=&#39;old&#39;, iostat=io)
+    if(io /= 0) stop
+    open(20, file=&#39;final_solutions.txt&#39;)
+    write(20,&#39;(&quot; trait / effect level solution               s.e.&quot;)&#39;)
+    do
+        read(10, iostat=io) t,e,l,sol,se
+        if(io /= 0) exit
+        write(20, &#39;(2i4,i10,2f20.8)&#39;) t,e,l,sol,se
+    end do
+    close(10)
+    close(20)
+end program binsol_to_textsol</code></pre>
+<h2 id="output-of-postgibbsf90">Output of POSTGIBBSF90</h2>
+<p>The POSTGIBBSF90 program shows many diagnoses for the Gibbs samples. Here we just show the basic ideas for the information.</p>
+<ul>
+<li><code>MCE</code> = Monte Carlo error, corresponding to the ‘’standard error’’ of the posterior mean of a parameter (<span class="math inline">\(\hat{\mu}-\mu\)</span>).</li>
+<li><code>Mean</code> = Posterior mean of a parameter.</li>
+<li><code>HPD</code> = High probability density within 95%, close idea to ‘’95% confidence interval’’ in frequentist approach.</li>
+<li><code>Effective sample size</code> = Number of samples after deducting auto-correlation among samples.</li>
+<li><code>Median</code> = Posterior median of a parameter.</li>
+<li><code>Mode</code> = Posterior mode of a parameter; just an approximation.</li>
+<li><code>Independent chain size</code></li>
+<li><code>PSD</code> = Posterior standard deviation of a parameter.</li>
+<li><code>Mean</code> = the same as above.</li>
+<li><code>PSD Interval (95%)</code> = Lower and upper bounds of Mean <span class="math inline">\(\pm\)</span> 1.96PSD.</li>
+<li>Geweke diagnostic = Convergence diagnosis; could be converged if this is <span class="math inline">\(&lt; 1.0\)</span> (according to the official manual, this is almost useless because this is <span class="math inline">\(&lt; 1.0\)</span> in almost all cases).</li>
+<li><code>Autocorrelations</code> = Lag-correlations with lag 1, 10 and 50; calculated for the saved samples.</li>
+<li><code>Independent # batches</code> = The effective number of blocks after deducting the auto-correlation among samples.</li>
+</ul>
+</article>
+</body>
+</html>
