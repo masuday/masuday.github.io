@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<!--==============================================================================
+	           "GitHub HTML5 Pandoc Template" v1.2 — by Tristano Ajmone
+	==============================================================================
+	(c) Tristano Ajmone, 2017, MIT License (MIT). Project's home repository:
+
+	- https://github.com/tajmone/pandoc-goodies
+
+	This template reuses source code taken from the following projects:
+
+	- GitHub Markdown CSS: © Sindre Sorhus, MIT License (MIT):
+	  https://github.com/sindresorhus/github-markdown-css
+
+	- Primer CSS: © 2016 GitHub Inc., MIT License (MIT):
+	  http://primercss.io/
+	==============================================================================-->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Yutaka Masuda" />
+  <title>Quick tour of BLUPF90</title>
+  <style type="text/css">@font-face{font-family:octicons-link;src:url(data:font/woff;charset=utf-8;base64,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) format('woff')}.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#24292e;font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";font-size:16px;line-height:1.5;word-wrap:break-word;box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto;padding:45px}.markdown-body .octicon{display:inline-block;fill:currentColor;vertical-align:text-bottom}.markdown-body a{background-color:transparent;-webkit-text-decoration-skip:objects;color:#0366d6;text-decoration:none}.markdown-body a:active,.markdown-body a:hover{outline-width:0}.markdown-body h1{margin:.67em 0}.markdown-body img{border-style:none}.markdown-body svg:not(:root){overflow:hidden}.markdown-body code,.markdown-body kbd,.markdown-body pre{font-family:monospace,monospace}.markdown-body input{font:inherit;margin:0;overflow:visible;font-family:inherit;font-size:inherit;line-height:inherit}.markdown-body [type=checkbox]{box-sizing:border-box;padding:0}.markdown-body *{box-sizing:border-box}.markdown-body a:hover{text-decoration:underline}.markdown-body strong{font-weight:600}.markdown-body hr{box-sizing:content-box;overflow:hidden;background:0 0;border-bottom:1px solid #dfe2e5}.markdown-body hr::before{display:table;content:""}.markdown-body hr::after{display:table;clear:both;content:""}.markdown-body table{border-spacing:0;border-collapse:collapse;display:block;width:100%;overflow:auto}.markdown-body td,.markdown-body th{padding:0}.markdown-body blockquote{margin:0}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol{list-style-type:lower-alpha}.markdown-body dd{margin-left:0}.markdown-body code{font-family:SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace}.markdown-body pre{font:12px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;word-wrap:normal}.markdown-body .pl-0{padding-left:0!important}.markdown-body .pl-1{padding-left:4px!important}.markdown-body .pl-2{padding-left:8px!important}.markdown-body .pl-3{padding-left:16px!important}.markdown-body .pl-4{padding-left:24px!important}.markdown-body .pl-5{padding-left:32px!important}.markdown-body .pl-6{padding-left:40px!important}.markdown-body::before{display:table;content:""}.markdown-body::after{display:table;clear:both;content:""}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:0}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e1e4e8;border:0}.markdown-body blockquote{padding:0 1em;color:#6a737d;border-left:.25em solid #dfe2e5}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd{font-size:11px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#1b1f23;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1{padding-bottom:.3em;font-size:2em;border-bottom:1px solid #eaecef}.markdown-body h2{padding-bottom:.3em;font-size:1.5em;border-bottom:1px solid #eaecef}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#6a737d}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table th{font-weight:600}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #dfe2e5}.markdown-body table tr{background-color:#fff;border-top:1px solid #c6cbd1}.markdown-body table tr:nth-child(2n){background-color:#f6f8fa}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body code{padding:.2em 0;margin:0;font-size:85%;background-color:rgba(27,31,35,.05);border-radius:3px}.markdown-body code::after,.markdown-body code::before{letter-spacing:-.2em;content:"\00a0"}.markdown-body pre>code{padding:0;margin:0;font-size:100%;word-break:normal;white-space:pre;background:0 0;border:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f6f8fa;border-radius:3px}.markdown-body pre code{display:inline;max-width:auto;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body pre code::after,.markdown-body pre code::before{content:normal}.markdown-body .full-commit .btn-outline:not(:disabled):hover{color:#005cc5;border-color:#005cc5}.markdown-body kbd{display:inline-block;padding:3px 5px;font:11px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;line-height:10px;color:#444d56;vertical-align:middle;background-color:#fcfcfc;border:1px solid #c6cbd1;border-bottom-color:#959da5;border-radius:3px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body :checked+.radio-label{position:relative;z-index:1;border-color:#0366d6}.markdown-body .task-list-item{list-style-type:none}.markdown-body .task-list-item+.task-list-item{margin-top:3px}.markdown-body .task-list-item input{margin:0 .2em .25em -1.6em;vertical-align:middle}.markdown-body hr{border-bottom-color:#eee}.flash{position:relative;padding:16px;color:#246;background-color:#e2eef9;border:1px solid #bac6d3;border-radius:3px}.flash p:last-child{margin-bottom:0}.flash-messages{margin-bottom:24px}.flash-warn{color:#4c4a42;background-color:#fff9ea;border-color:#dfd8c2}.flash-error{color:#911;background-color:#fcdede;border-color:#d2b2b2}.flash-success{color:#22662c;background-color:#e2f9e5;border-color:#bad3be}.flash-plain{color:#4c4a42;background-color:#f5f5f5;border-color:#c1c1c1}</style>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">pre[data-language='renumf90']{background-color:#EFEFFE;}</style>
+  <style type="text/css">pre[data-language='blupf90']{background-color:#E7FFE7;}</style>
+  <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
+  <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
+  <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<article class="markdown-body">
+<header>
+<h1 class="title">Quick tour of BLUPF90</h1>
+<p class="author">Yutaka Masuda</p>
+<p class="date">September 2019</p>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#trivial-analyses-for-multiple-trait-models">Trivial analyses for multiple-trait models</a><ul>
+<li><a href="#basic-elements">Basic elements</a></li>
+<li><a href="#resulting-solutions">Resulting solutions</a></li>
+<li><a href="#remarks">Remarks</a></li>
+<li><a href="#summary">Summary</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="trivial-analyses-for-multiple-trait-models">Trivial analyses for multiple-trait models</h1>
+<p>BLUPF90 supports multiple-trait models with few modifications to a parameter file for the single-trait model. In this section, we consider a simple multiple-trait model and introduce some extensions in a parameter file.</p>
+<h2 id="basic-elements">Basic elements</h2>
+<h3 id="model-description">Model description</h3>
+<p>We extend the single-trait animal-model shown in the previous section, but no genomics. We will consider a 2-trait model with the same effects on both traits. Also, we assume we have no missing observations. A mathematical model for each trait can be written as follows.</p>
+<p><span class="math display">\[
+\begin{aligned}
+y_{ijk:1} &amp;= A_{i:1} + S_{j:1} + \beta x_{ijk:1} + u_{k:1} + e_{ijk:1}\\
+y_{ijk:2} &amp;= A_{i:2} + S_{j:2} + \beta x_{ijk:2} + u_{k:2} + e_{ijk:2}
+\end{aligned}
+\]</span></p>
+<p>The mixed model can be written with a typical form introduced as before. <span class="math display">\[
+\mathbf{y} = \mathbf{Xb} + \mathbf{Zu} + \mathbf{e}
+\]</span> With matrix notation, this model can be expressed in 2 ways depending on the order of observations.</p>
+<p>Ordering animals within trait: <span class="math inline">\(\mathbf{y} = \left[\begin{array}{l|l}y_{1:1}, y_{2:1}, y_{3:1}, \cdots, y_{n:1} &amp; y_{1:2}, y_{2:2}, y_{3:2}, \cdots, y_{n:2}\end{array}\right]\)</span></p>
+<p>Ordering traits within animal: <span class="math inline">\(\mathbf{y} = \left[\begin{array}{l|l|l|l|l}y_{1:1}, y_{1:2} &amp; y_{2:1}, y_{2:2} &amp; y_{3:1}, y_{3:2} &amp; \cdots &amp; y_{n:1}, y_{n:2}\end{array}\right]\)</span></p>
+<p>This difference is not essential on conducting the analysis but you should recognize the difference when writing down the mathematical model in matrix notation. Above two results in the different representation of mixed model equations even if the solutions are identical. Because BLUPF90 programs use the latter, we will describe the model with this rule.</p>
+<p>In this case, the variance of <span class="math inline">\(\mathbf{y}\)</span> is <span class="math display">\[
+\mathrm{var}(\mathbf{y}) = \mathbf{Z}\left(\mathbf{A} \otimes \mathbf{G}_{0}\right)\mathbf{Z}&#39; + \mathbf{I} \otimes \mathbf{R}_{0}
+\]</span> where <span class="math inline">\(\mathbf{G}_{0}\)</span> is the genetic variance-covariance matrix among traits (<span class="math inline">\(2 \times 2\)</span> in this case), <span class="math inline">\(\mathbf{R}_{0}\)</span> is the residual variance-covariance matrix among traits (also <span class="math inline">\(2 \times 2\)</span> in this case), <span class="math inline">\(\mathbf{I}\)</span> is the identity matrix (<span class="math inline">\(N \times N\)</span>; <span class="math inline">\(N\)</span> is the number of observations in a trait) and <span class="math inline">\(\otimes\)</span> is an operator for Kronecker product. Elements of each covariance matrix and its inverse can be written as <span class="math display">\[
+\begin{aligned}
+\mathbf{G}_{0}
+=
+\left[
+\begin{array}{ll}
+\sigma_{g1}^{2}&amp;\sigma_{g12}\\
+\sigma_{g21}&amp;\sigma_{g2}^{2}\\
+\end{array}
+\right]
+\quad
+\text{and}
+\quad
+\mathbf{G}_{0}^{-1}
+=
+\left[
+\begin{array}{ll}
+\sigma^{g1}&amp;\sigma^{g12}\\
+\sigma^{g21}&amp;\sigma^{g2}\\
+\end{array}
+\right]\\
+\mathbf{R}_{0}
+=
+\left[
+\begin{array}{ll}
+\sigma_{e1}^{2}&amp;\sigma_{e12}\\
+\sigma_{e21}&amp;\sigma_{e2}^{2}\\
+\end{array}
+\right]
+\quad
+\text{and}
+\quad
+\mathbf{R}_{0}^{-1}
+=
+\left[
+\begin{array}{ll}
+\sigma^{e1}&amp;\sigma^{e12}\\
+\sigma^{e21}&amp;\sigma^{e2}\\
+\end{array}
+\right].
+\end{aligned}
+\]</span></p>
+<p>Kronecker product is not a regular product. Consult the following examples: <span class="math display">\[
+\mathbf{A}\otimes\mathbf{G}_{0}
+=
+\left[
+\begin{array}{llll}
+a_{11}\mathbf{G}_{0}&amp;a_{12}\mathbf{G}_{0}&amp;\cdots&amp;a_{1n}\mathbf{G}_{0}\\
+a_{21}\mathbf{G}_{0}&amp;a_{22}\mathbf{G}_{0}&amp;\cdots&amp;a_{2n}\mathbf{G}_{0}\\
+\vdots&amp;\cdots&amp;\ddots&amp;\vdots\\
+a_{n1}\mathbf{G}_{0}&amp;a_{n2}\mathbf{G}_{0}&amp;\cdots&amp;a_{nn}\mathbf{G}_{0}\\
+\end{array}
+\right]
+\quad
+\text{and}
+\quad
+\mathbf{I}\otimes\mathbf{R}_{0}
+=
+\left[
+\begin{array}{llll}
+\mathbf{R}_{0}&amp;\mathbf{0}&amp;\cdots&amp;\mathbf{0}\\
+\mathbf{0}&amp;\mathbf{R}_{0}&amp;\cdots&amp;\mathbf{0}\\
+\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\
+\mathbf{0}&amp;\mathbf{0}&amp;\cdots&amp;\mathbf{R}_{0}\\
+\end{array}
+\right]
+\]</span> where <span class="math inline">\(n\)</span> is the number of pedigree animals and <span class="math inline">\(a_{ij}\)</span> is the <span class="math inline">\(i\)</span>th row and the <span class="math inline">\(j\)</span>th column element of <span class="math inline">\(\mathbf{A}\)</span>. In the latter equation, <span class="math inline">\(\mathbf{R}_{0}\)</span> is repeated <span class="math inline">\(N\)</span> times on diagonal.</p>
+<p>The system of mixed model equations is <span class="math display">\[
+\left[
+\begin{array}{ll}
+\mathbf{X}&#39;(\mathbf{I}\otimes\mathbf{R}_{0}^{-1})\mathbf{X} &amp; \mathbf{X}&#39;(\mathbf{I}\otimes\mathbf{R}_{0}^{-1})\mathbf{Z} \\
+\mathbf{Z}&#39;(\mathbf{I}\otimes\mathbf{R}_{0}^{-1})\mathbf{X} &amp; \mathbf{Z}&#39;(\mathbf{I}\otimes\mathbf{R}_{0}^{-1})\mathbf{Z} + \mathbf{A}^{-1}\otimes\mathbf{G}^{-1}_{0}
+\end{array}
+\right]
+\left[
+\begin{array}{c}
+\mathbf{\hat{b}}\\
+\mathbf{\hat{u}}
+\end{array}
+\right]
+=
+\left[
+\begin{array}{l}
+\mathbf{X}&#39;(\mathbf{I}\otimes\mathbf{R}_{0}^{-1})\mathbf{y} \\
+\mathbf{Z}&#39;(\mathbf{I}\otimes\mathbf{R}_{0}^{-1})\mathbf{y}
+\end{array}
+\right].
+\]</span> This may look very different from a typical description for some people. But, again, the form of the equations don’t affect the solutions.</p>
+<h3 id="required-files">Required files</h3>
+<p>In this 2-trait model, we need 2 columns for observations (one for the trait 1 and the other one for trait 2). Also, we need the columns for effects in each trait. We assume the same model in both traits. We can share the same columns for the effects in the data file.</p>
+<p>As an example, we extend the data used in the previous animal model analysis.</p>
+<pre data-language="text" data-caption="data5.txt"><code>  3.0   4.5  1  1  1.0   6
+  2.0   7.5  1  2  1.0   9
+  4.0   3.5  1  1  2.0  12
+  6.0  -0.5  2  2  2.0   7
+  3.0   5.5  2  1  1.0  10
+  6.0   1.5  2  2  2.0  13
+  6.0  -1.5  3  1  2.0   8
+  6.0   2.5  3  2  1.0  11
+  8.0   0.5  3  1  1.0  14
+  4.0   4.5  3  2  2.0  15</code></pre>
+<p>The pedigree file is the same as the previous one. Here we changed the file name with the same content.</p>
+<pre data-language="text" data-caption="pedigree5.txt"><code>  1   0   0
+  2   0   0
+  3   0   0
+  4   0   0
+  5   0   0
+  6   0   0
+  7   2   5
+  8   1   4
+  9   2   3
+ 10   7   6
+ 11   7   4
+ 12  11   8
+ 13  11  10
+ 14   9  13
+ 15  11  10</code></pre>
+<p>The parameter file also looks like very similar to the previous one except it describes covariance matrices and a model for each trait. We assume <span class="math inline">\(\sigma_{g1}^2=0.5\)</span>, <span class="math inline">\(\sigma_{g12}=-0.25\)</span>, and <span class="math inline">\(\sigma_{g2}^{2}=1.0\)</span> for genetic (co)variances and <span class="math inline">\(\sigma_{e1}^{2}=2.0\)</span>, <span class="math inline">\(\sigma_{e12} = 1.0\)</span>, and <span class="math inline">\(\sigma_{e2} = 1.5\)</span> for residual (co)variances.</p>
+<pre data-language="blupf90" data-caption="param5.txt"><code>DATAFILE
+data5.txt
+NUMBER_OF_TRAITS
+2
+NUMBER_OF_EFFECTS
+4
+OBSERVATION(S)
+1 2
+WEIGHT(S)
+
+EFFECTS:
+3 3 3 cross
+4 4 2 cross
+5 5 1 cov
+6 6 15 cross
+RANDOM_RESIDUAL VALUES
+2.0 1.0
+1.0 1.5
+RANDOM_GROUP
+4
+RANDOM_TYPE
+add_animal
+FILE
+pedigree5.txt
+(CO)VARIANCES
+ 0.50 -0.25
+-0.25  1.00</code></pre>
+<p>For a multiple-trait mode, we should carefully describe the following values.</p>
+<ul>
+<li><code>NUMBER_OF_TRAITS</code> = appropriate number of traits
+<ul>
+<li><code>2</code>: two-trait model</li>
+</ul></li>
+<li><code>OBSERVATION(S)</code> = enumerate the positions of observations in the data file
+<ul>
+<li><code>1 2</code>: the first and second columns; <code>1</code> for trait 1 and <code>2</code> for trait 2.</li>
+</ul></li>
+<li><code>EFFECTS:</code> = enumerate the positions of effect, the number of levels and the effect type
+<ul>
+<li><code>3 3 3 cross</code>: the position of effect 1 for trait 1 (<code>3</code>); the position of effect 1 for trait 2 (<code>3</code>); the number of levels (<code>3</code>); effect type (<code>cross</code>)</li>
+<li><code>4 4 2 cross</code>: the position of effect 2 for trait 1 (<code>4</code>); the position of effect 2 for trait 2 (<code>4</code>); the number of levels (<code>2</code>); effect type (<code>cross</code>)</li>
+<li><code>5 5 1 cov</code>: the position of effect 3 for trait 1 (<code>5</code>); the position of effect 3 for trait 2 (<code>5</code>); the number of levels (<code>3</code>); effect type (<code>cov</code>)</li>
+<li><code>6 6 15 cross</code>: the position of effect 4 for trait 1 (<code>6</code>); the position of effect 4 for trait 2 (<code>6</code>); the number of levels (<code>15</code>); effect type (<code>cross</code>)</li>
+</ul></li>
+<li><code>RANDOM RESIDUAL VALUES</code> = residual covariance matrix
+<ul>
+<li>full <span class="math inline">\(2 \times 2\)</span> matrix; total 4 elements should be here.</li>
+</ul></li>
+<li><code>(CO)VARIANCES</code> = genetic covariance matrix
+<ul>
+<li>full <span class="math inline">\(2 \times 2\)</span> matrix; total 4 elements should be here.</li>
+</ul></li>
+</ul>
+<p>You should be careful to write the <code>EFFECT:</code> block. With 2-trait model, each statement has to have 4 elements; the first 2 for the positions of effect for each trait in the data file, the next 1 for the number of levels and the last 1 for effect type. If you run a model with <span class="math inline">\(n\)</span> traits, the first <span class="math inline">\(n\)</span> elements should be the positions of effects for each trait.</p>
+<p>Residual and genetic covariance matrices should be fully described i.e., all upper, diagonal, and lower elements. The lines including a covariance matrix can’t accept comments.</p>
+<h2 id="resulting-solutions">Resulting solutions</h2>
+<p>Running BLUPF90 with above parameter file, the solutions file contains are following.</p>
+<pre data-language="text" data-caption="solutions"><code>trait/effect level  solution
+   1   1         1      0.19990999
+   2   1         1      5.43362035
+   1   1         2      2.30088577
+   2   1         2      2.42229505
+   1   1         3      3.21493025
+   2   1         3      1.78930980
+   1   2         1      2.31093239
+   2   2         1      2.25555489
+   1   2         2      1.76148927
+   2   2         2      3.88944218
+   1   3         1      0.54865198
+   2   3         1     -2.42030677
+   1   4         1     -0.02253416
+   2   4         1     -0.04249548
+   1   4         2      0.10792661
+   2   4         2     -0.13113037
+   1   4         3     -0.02682949
+   2   4         3      0.09896514
+   1   4         4      0.03164894
+   2   4         4     -0.02495242
+   1   4         5      0.13475233
+   2   4         5     -0.23009750
+   1   4         6     -0.22496602
+   2   4         6      0.32971990
+   1   4         7      0.25609198
+   2   4         7     -0.41070894
+   1   4         8     -0.01797409
+   2   4         8     -0.07622271
+   1   4         9      0.01371895
+   2   4         9      0.08288296
+   1   4        10     -0.84143020
+   2   4        10      1.63889151
+   1   4        11      0.19804880
+   2   4        11     -0.20028530
+   1   4        12      0.03355559
+   2   4        12      0.06720834
+   1   4        13      0.10550434
+   2   4        13      0.07202442
+   1   4        14      0.52502266
+   2   4        14     -0.66337381
+   1   4        15     -1.00156891
+   2   4        15      2.01449847</code></pre>
+<p>This is long because every effect was considered in both traits. The format is the same as the previous one except for the first column containing 1 or 2. You can obtain 2 solutions, for trait 1 and trait 2, in every effect. For example, estimated breeding values for animal 13 are 0.1055 for trait 1 and 0.0702 for trait 2.</p>
+<p>For your information, the order of solutions in the file is the same as in memory. It is corresponding to the matrix notation described before.</p>
+<h2 id="remarks">Remarks</h2>
+<p>You can put a missing observation in the data file. The missing value is <code>0</code> by default but you can change the value with an option <code>OPTION missing</code>. The missing code is an integer value (positive or negative). At least 1 trait has a real observation. In other words, missing-in-all-traits is not allowed.</p>
+<p>The program supports different models in different traits (unequal design matrices). You can put 0 as a position in <code>EFFECT:</code> block if the trait doesn’t the effect. At least 1 trait has to have a non-zero position. We will see such models in the later chapter.</p>
+<p>Single-step GBLUP is supported in the multiple-trait model. You can add <code>OPTION SNP_file</code> to perform such a model.</p>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>BLUPF90 supports multiple-trait models.</li>
+<li>The same data and pedigree files to a single-trait case can be used.</li>
+<li>Parameter file should be modified to fit the multiple-trait model.</li>
+<li>In the <code>EFFECT:</code> block, each statement should have <span class="math inline">\(n\)</span> positions of effects for <span class="math inline">\(n\)</span> trait model.</li>
+<li>Missing values are allowed. The default is 0 and you can change the missing code with an option.</li>
+<li>Each trait may have a different model i.e., different effects.</li>
+</ul>
+</article>
+</body>
+</html>

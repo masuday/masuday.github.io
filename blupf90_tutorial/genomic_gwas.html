@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<!--==============================================================================
+	           "GitHub HTML5 Pandoc Template" v1.2 — by Tristano Ajmone
+	==============================================================================
+	(c) Tristano Ajmone, 2017, MIT License (MIT). Project's home repository:
+
+	- https://github.com/tajmone/pandoc-goodies
+
+	This template reuses source code taken from the following projects:
+
+	- GitHub Markdown CSS: © Sindre Sorhus, MIT License (MIT):
+	  https://github.com/sindresorhus/github-markdown-css
+
+	- Primer CSS: © 2016 GitHub Inc., MIT License (MIT):
+	  http://primercss.io/
+	==============================================================================-->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Yutaka Masuda" />
+  <title>Practical genomic analysis</title>
+  <style type="text/css">@font-face{font-family:octicons-link;src:url(data:font/woff;charset=utf-8;base64,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) format('woff')}.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#24292e;font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";font-size:16px;line-height:1.5;word-wrap:break-word;box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto;padding:45px}.markdown-body .octicon{display:inline-block;fill:currentColor;vertical-align:text-bottom}.markdown-body a{background-color:transparent;-webkit-text-decoration-skip:objects;color:#0366d6;text-decoration:none}.markdown-body a:active,.markdown-body a:hover{outline-width:0}.markdown-body h1{margin:.67em 0}.markdown-body img{border-style:none}.markdown-body svg:not(:root){overflow:hidden}.markdown-body code,.markdown-body kbd,.markdown-body pre{font-family:monospace,monospace}.markdown-body input{font:inherit;margin:0;overflow:visible;font-family:inherit;font-size:inherit;line-height:inherit}.markdown-body [type=checkbox]{box-sizing:border-box;padding:0}.markdown-body *{box-sizing:border-box}.markdown-body a:hover{text-decoration:underline}.markdown-body strong{font-weight:600}.markdown-body hr{box-sizing:content-box;overflow:hidden;background:0 0;border-bottom:1px solid #dfe2e5}.markdown-body hr::before{display:table;content:""}.markdown-body hr::after{display:table;clear:both;content:""}.markdown-body table{border-spacing:0;border-collapse:collapse;display:block;width:100%;overflow:auto}.markdown-body td,.markdown-body th{padding:0}.markdown-body blockquote{margin:0}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol{list-style-type:lower-alpha}.markdown-body dd{margin-left:0}.markdown-body code{font-family:SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace}.markdown-body pre{font:12px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;word-wrap:normal}.markdown-body .pl-0{padding-left:0!important}.markdown-body .pl-1{padding-left:4px!important}.markdown-body .pl-2{padding-left:8px!important}.markdown-body .pl-3{padding-left:16px!important}.markdown-body .pl-4{padding-left:24px!important}.markdown-body .pl-5{padding-left:32px!important}.markdown-body .pl-6{padding-left:40px!important}.markdown-body::before{display:table;content:""}.markdown-body::after{display:table;clear:both;content:""}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:0}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e1e4e8;border:0}.markdown-body blockquote{padding:0 1em;color:#6a737d;border-left:.25em solid #dfe2e5}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd{font-size:11px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#1b1f23;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1{padding-bottom:.3em;font-size:2em;border-bottom:1px solid #eaecef}.markdown-body h2{padding-bottom:.3em;font-size:1.5em;border-bottom:1px solid #eaecef}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#6a737d}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table th{font-weight:600}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #dfe2e5}.markdown-body table tr{background-color:#fff;border-top:1px solid #c6cbd1}.markdown-body table tr:nth-child(2n){background-color:#f6f8fa}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body code{padding:.2em 0;margin:0;font-size:85%;background-color:rgba(27,31,35,.05);border-radius:3px}.markdown-body code::after,.markdown-body code::before{letter-spacing:-.2em;content:"\00a0"}.markdown-body pre>code{padding:0;margin:0;font-size:100%;word-break:normal;white-space:pre;background:0 0;border:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f6f8fa;border-radius:3px}.markdown-body pre code{display:inline;max-width:auto;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body pre code::after,.markdown-body pre code::before{content:normal}.markdown-body .full-commit .btn-outline:not(:disabled):hover{color:#005cc5;border-color:#005cc5}.markdown-body kbd{display:inline-block;padding:3px 5px;font:11px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;line-height:10px;color:#444d56;vertical-align:middle;background-color:#fcfcfc;border:1px solid #c6cbd1;border-bottom-color:#959da5;border-radius:3px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body :checked+.radio-label{position:relative;z-index:1;border-color:#0366d6}.markdown-body .task-list-item{list-style-type:none}.markdown-body .task-list-item+.task-list-item{margin-top:3px}.markdown-body .task-list-item input{margin:0 .2em .25em -1.6em;vertical-align:middle}.markdown-body hr{border-bottom-color:#eee}.flash{position:relative;padding:16px;color:#246;background-color:#e2eef9;border:1px solid #bac6d3;border-radius:3px}.flash p:last-child{margin-bottom:0}.flash-messages{margin-bottom:24px}.flash-warn{color:#4c4a42;background-color:#fff9ea;border-color:#dfd8c2}.flash-error{color:#911;background-color:#fcdede;border-color:#d2b2b2}.flash-success{color:#22662c;background-color:#e2f9e5;border-color:#bad3be}.flash-plain{color:#4c4a42;background-color:#f5f5f5;border-color:#c1c1c1}</style>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">pre[data-language='renumf90']{background-color:#EFEFFE;}</style>
+  <style type="text/css">pre[data-language='blupf90']{background-color:#E7FFE7;}</style>
+  <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
+  <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
+  <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<article class="markdown-body">
+<header>
+<h1 class="title">Practical genomic analysis</h1>
+<p class="author">Yutaka Masuda</p>
+<p class="date">September 2019</p>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#gwas-using-the-ssgblup-framework">GWAS using the ssGBLUP framework</a><ul>
+<li><a href="#algorithm">Algorithm</a></li>
+<li><a href="#programs">Programs</a></li>
+<li><a href="#numerical-example">Numerical example</a></li>
+<li><a href="#preparation">Preparation</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="gwas-using-the-ssgblup-framework">GWAS using the ssGBLUP framework</h1>
+<p>The single-step GBLUP methodology has been extended to be capable of genome-wide association study (GWAS). This is an iterative procedure with 2 steps: 1) prediction of GEBV with ssGBLUP and 2) prediction of SNP marker effects based on the GEBV. Here we call this method ssGWAS. The detailed algorithm was described by Wang et al. (2012).</p>
+<h2 id="algorithm">Algorithm</h2>
+<p>To describe the algorithm of ssGWAS, we use the notation made by Wang et al. (2012). The notation may be different from the ones used in the previous chapters. Do not be confused with the same symbols as before.</p>
+<p>We assume <span class="math inline">\(\mathbf{a}\)</span> is a vector for breeding values for genotyped animals and <span class="math inline">\(\mathbf{u}\)</span> is a vector for SNP marker effects. One is related to another with the following equation. <span class="math display">\[
+\mathbf{a}=\mathbf{Zu}
+\]</span> The variances of them can be written as <span class="math display">\[
+\mathrm{var}(\mathbf{a}) = \mathbf{G}\sigma_a^2 \quad\text{and}\quad \mathrm{var}(\mathbf{Zu}) = \mathbf{ZDZ}&#39;\sigma_u^2
+\]</span> where <span class="math inline">\(\mathbf{D}\)</span> is a diagonal matrix of weights accounting for variances of SNP markers. This matrix is usually assumed to be <span class="math inline">\(\mathbf{I}\)</span> in the regular ssGBLUP. Above 2 variances are identical, so we can derive <span class="math display">\[
+\mathrm{var}(\mathbf{a}) = \mathrm{var}(\mathbf{Zu}) = \mathbf{G}\sigma_a^2 = \mathbf{ZDZ}&#39;\sigma_u^2
+\]</span> and this formula implies <span class="math display">\[
+\mathbf{G}=\mathbf{ZDZ}&#39;\frac{\sigma_u^2}{\sigma_a^2}=\mathbf{ZDZ}&#39;\lambda
+\]</span> where <span class="math inline">\(\lambda=\sigma_u^2/\sigma_a^2\)</span>. According to the definition of <span class="math inline">\(\mathbf{G}\)</span>, the variance ratio can be <span class="math display">\[
+\lambda=\frac{\sigma_u^2}{\sigma_a^2}=\frac{1}{2\sum_j p_j(1-p_j)}.
+\]</span> The prediction of breeding values <span class="math inline">\(\hat{\mathbf{a}}\)</span> is calculated with ssGBLUP. The prediction of SNP effects <span class="math inline">\(\hat{\mathbf{u}}\)</span> is also calculated with the best prediction. <span class="math display">\[
+\begin{aligned}
+\hat{\mathbf{u}} &amp;= \mathrm{cov}(\mathbf{u},\mathbf{a}&#39;)\left[\mathrm{var}(\mathbf{a})\right]^{-1}\hat{\mathbf{a}}\\
+ &amp;= \lambda\mathbf{DZ}&#39;\mathbf{G}^{-1}\hat{\mathbf{a}}\\
+ &amp;= \mathbf{DZ}&#39;(\mathbf{ZDZ}&#39;)^{-1}\hat{\mathbf{a}}
+\end{aligned}
+\]</span> With the prediction of an SNP effect, we can give weights to markers based on SNP solutions. The current default weight is as in Wang et al. (2012):</p>
+<p><span class="math display">\[
+w_i = 2 p_i q_i \hat{u}_i^2.
+\]</span></p>
+<p>This may be used as a weight in <span class="math inline">\(\mathbf{D}=\mathrm{diag}(w_i)\)</span> after its scaling (see Wang et al., 2012). We restart the whole process with this new <span class="math inline">\(\mathbf{D}\)</span>. We can repeat the procedures until reasonable results are obtained. However, this weighting scheme is not the most accurate and leads to unstable iterates. A well-tested method for weights is VanRaden’s “nonlinearA” (2008), which likely becomes the default. <span class="math display">\[
+w_i = 1.125^{ \frac{|\hat{u}_i|}{\sqrt{var\hat{u}}} -2}
+\]</span></p>
+<p>The SNP effects can be used as the indirect prediction of GEBV based on <span class="math inline">\(\mathbf{a} = \mathbf{Zu}\)</span>. At the end of this section, we will demonstrate this approach.</p>
+<h2 id="programs">Programs</h2>
+<p>We will use several programs to perform ssGWAS.</p>
+<ol type="1">
+<li>RENUMF90: general preparation of data set.</li>
+<li>PREGSF90: quality control and creation of cleaned genotypes.</li>
+<li>BLUPF90: prediction of <span class="math inline">\(\mathbf{a}\)</span> with a weighted <span class="math inline">\(\mathbf{G}\)</span>.</li>
+<li>POSTGSF90: prediction of <span class="math inline">\(\mathbf{u}\)</span> and a new weight <span class="math inline">\(\mathbf{D}\)</span>.</li>
+<li>PREDF90 (Optional): computation of GEBV based on the predicted SNP effects and genotypes</li>
+</ol>
+<p>The first 2 programs are needed only once in the very first step. If your data is well prepared, you just run BLUPF90 and POSTGSF90 repeatedly. In this case, it is easier to understand for a user to directly use BLUPF90 to create <span class="math inline">\(\mathbf{G}\)</span> and calculate the solutions of GEBV in the same program.</p>
+<h2 id="numerical-example">Numerical example</h2>
+<h3 id="files">Files</h3>
+<p>We will use the similar files used in the summer course at the UGA in 2012.</p>
+<ul>
+<li><a href="http://nce.ads.uga.edu/wiki/lib/exe/fetch.php?media=lab_gwas.zip" class="uri">http://nce.ads.uga.edu/wiki/lib/exe/fetch.php?media=lab_gwas.zip</a> - <code>lab_gaws.zip</code></li>
+</ul>
+<p>We made some corrections on the files. Download the zip package and extract it to your computer. It has several files like</p>
+<ul>
+<li><code>phenotypes.txt</code> = observation data file</li>
+<li><code>pedigree</code> = pedigree file</li>
+<li><code>marker.geno.clean</code> = marker file</li>
+<li><code>chemap</code> = chromosome map file</li>
+<li><code>w</code> = weight file</li>
+<li><code>renum.par</code> = instruction file for RENUMF90</li>
+</ul>
+<p>We will start with RENUMF90 to prepare the data set.</p>
+<h2 id="preparation">Preparation</h2>
+<p>First, we run RENUMF90 to generate the required files. After renumbering, we can see <code>renf90.par</code>, a template parameter file. We make 2 copies of this template; one is for BLUPF90 and another one is for POSTGSF90. Here, we use <code>param_ssgwas1a.txt</code> as the parameter file for BLUPF90 and <code>param_ssgwas1b.txt</code> for POSTGSF90.</p>
+<p>BLUPF90 will generate <span class="math inline">\(\mathbf{G}\)</span> with weights, supplied as a weight file (see the previous section). The zip package contains a weight file (<code>w</code>), and the option in the parameter file refers to the weight file. Following is the whole parameter file for BLUPF90.</p>
+<pre data-language="blupf90" data-caption="param_ssgwas1a.txt"><code>#
+# This is for BLUPF90
+#
+DATAFILE
+renf90.dat
+NUMBER_OF_TRAITS
+          1
+NUMBER_OF_EFFECTS
+          2
+OBSERVATION(S)
+ 1
+WEIGHT(S)
+
+EFFECTS:
+ 2      1 cross
+ 3  15800 cross
+RANDOM_RESIDUAL VALUES
+0.50000
+RANDOM_GROUP
+    2
+RANDOM_TYPE
+add_animal
+FILE
+renadd02.ped
+(CO)VARIANCES
+0.50000
+OPTION SNP_file marker.geno.clean
+OPTION saveGInverse
+OPTION weightedG w</code></pre>
+<p>POSTGSF90 needs to read <span class="math inline">\(\mathbf{G}^{-1}\)</span> generated with BLUPF90. It also needs a chromosome map file because the program will predict each SNP effect. The following is the complete parameter file for POSTGSF90.</p>
+<pre data-language="blupf90" data-caption="param_ssgwas1b.txt"><code>#
+# This is for POSTGSF90
+#
+DATAFILE
+renf90.dat
+NUMBER_OF_TRAITS
+           1
+NUMBER_OF_EFFECTS
+           2
+OBSERVATION(S)
+ 1
+WEIGHT(S)
+
+EFFECTS:
+2      1 cross
+3  15800 cross
+RANDOM_RESIDUAL VALUES
+0.50000
+RANDOM_GROUP
+    2
+RANDOM_TYPE
+add_animal
+FILE
+renadd02.ped
+(CO)VARIANCES
+0.50000
+OPTION SNP_file marker.geno.clean
+OPTION readGInverse
+OPTION weightedG w
+OPTION chrinfo chrmap.txt</code></pre>
+<h3 id="iterative-run-and-manhattan-plot">Iterative run and Manhattan plot</h3>
+<p>First, we run BLUPF90 with the parameter file <code>param_ssgwas1a.txt</code> following by running POSTGSF90 with the different parameter file <code>param_ssgwas1b.txt</code>. POSTGSF90 creates several files.</p>
+<ul>
+<li><p><code>snp_sol</code> = Solution for SNP markers (i.e. <span class="math inline">\(\mathbf{u}\)</span>). It has 7 columns.</p>
+<ol type="1">
+<li>Trait</li>
+<li>Effect</li>
+<li>SNP number</li>
+<li>Chromosome</li>
+<li>Position</li>
+<li>SNP solution (<span class="math inline">\(\hat{u}_i\)</span>) . From this column you can compute weights yourself.</li>
+<li>Weight (<span class="math inline">\(d_i\)</span>) (see the official manual for what is the default method to get this value)</li>
+</ol></li>
+<li><p><code>chrsnp</code> = Used in the Manhattan plot. It has 6 columns.</p>
+<ol type="1">
+<li>Trait</li>
+<li>Effect</li>
+<li>% of variance explained by adjacent SNPs</li>
+<li>SNP number</li>
+<li>Chromosome</li>
+<li>Position</li>
+</ol></li>
+<li><p><code>dgv</code> = Direct genomic values for genotyped animal. It has 5 columns.</p>
+<ol type="1">
+<li>Trait</li>
+<li>Effect</li>
+<li>Animal ID</li>
+<li>DGV (direct genomic value) = <span class="math inline">\(-\sum_{j\neq i}g^{ij}\hat{u}_{j}\Big/g^{ii}\)</span>; see Lourenco et al. (2015).</li>
+<li>PP (pedigree prediction) = <span class="math inline">\(-\sum_{j\neq i}a_{22}^{ij}\hat{u}_{j}\Big/a_{22}^{ii}\)</span>; see Lourenco et al. (2015).</li>
+</ol></li>
+<li><p><code>snp_pred</code> = Used in the program to predict GEBV based on the SNP effects. A user doesn’t have to know the exact format.</p></li>
+<li><p><code>Sft1e2.gnuplot</code> and <code>Sft1e2.R</code> = Scripts to draw Manhattan plots with Gnuplot and R. Each script reads <code>chrsnp</code>.</p></li>
+</ul>
+<p>What we need in the next round is the 7th column in <code>snp_sol</code>. This column should be extracted and saved in the file <code>w</code> (this file is updated with new values). Once <code>w</code> is updated, rerun BLUPF90 and POSTGSF90. Repeat the process enough times. In this example, we just repeat 3 times.</p>
+<p>This iterative process can be automated using a script. In Linux and macOS X, a bash shell script is common to use. In Windows, a traditional batch-file is useful but some free software is needed to extract the 7th column of the file. We don’t explain such techniques here. You can see bash scripts in the same directory as the data files in the zip package. The scripts will tell you how to run the programs repeatedly.</p>
+<p>After 3 rounds, we can draw the Manhattan plot with the script. Using R, you will see the following figure. According to this graph, there is a large SNP effect on chromosome 1.</p>
+<p>We arbitrarily decide to repeat the process 3 times here. Although 2 or 3 iterations can be good enough, the optimal number of iterations for prediction should be different by data. In some cases, only the first round (no iterations) may produce the best result. Please find a suitable method for your data by yourself.</p>
+<h3 id="indirect-prediction-of-gebv-based-on-snp-effects">Indirect prediction of GEBV based on SNP effects</h3>
+<p>Once you find the SNP effects, another program PREDF90 can calculate indirect GEBV from the SNP effects based on the equation <span class="math inline">\(\mathbf{\hat{a}} = \mathbf{Z\hat{u}}\)</span>. This program reads the marker file and <code>snp_pred</code>, generated with POSTGSF90. Run the program, and see the following message.</p>
+<pre data-language="output"><code> name of genotype file?</code></pre>
+<p>Different from other software, it needs the name of the marker file. Type the name of genotype file in here. The program immediately calculates the indirect GEBV for genotyped animals.</p>
+<p>PREDF90 creates a file of SNP predictions. It has 3 columns.</p>
+<ol type="1">
+<li>Animal ID</li>
+<li>Call rate</li>
+<li>Indirect prediction of GEBV (based on <span class="math inline">\(\mathbf{\hat{a}} = \mathbf{Z\hat{u}}\)</span>).</li>
+</ol>
+<p>In other words, the prediction for an animal is the sum, according to its genotypes, of the estimated SNP effects, as estimated in the overall ssGBLUP analyses. This approach is useful especially in a case where there are many young genotyped animals but many of them shouldn’t be included in ssGBLUP analysis because these are <em>interim</em> analysis between two full genomic evaluations or for other reasons.</p>
+</article>
+</body>
+</html>

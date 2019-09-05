@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!--==============================================================================
+	           "GitHub HTML5 Pandoc Template" v1.2 — by Tristano Ajmone
+	==============================================================================
+	(c) Tristano Ajmone, 2017, MIT License (MIT). Project's home repository:
+
+	- https://github.com/tajmone/pandoc-goodies
+
+	This template reuses source code taken from the following projects:
+
+	- GitHub Markdown CSS: © Sindre Sorhus, MIT License (MIT):
+	  https://github.com/sindresorhus/github-markdown-css
+
+	- Primer CSS: © 2016 GitHub Inc., MIT License (MIT):
+	  http://primercss.io/
+	==============================================================================-->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Yutaka Masuda" />
+  <title>Practical genomic analysis</title>
+  <style type="text/css">@font-face{font-family:octicons-link;src:url(data:font/woff;charset=utf-8;base64,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) format('woff')}.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#24292e;font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";font-size:16px;line-height:1.5;word-wrap:break-word;box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto;padding:45px}.markdown-body .octicon{display:inline-block;fill:currentColor;vertical-align:text-bottom}.markdown-body a{background-color:transparent;-webkit-text-decoration-skip:objects;color:#0366d6;text-decoration:none}.markdown-body a:active,.markdown-body a:hover{outline-width:0}.markdown-body h1{margin:.67em 0}.markdown-body img{border-style:none}.markdown-body svg:not(:root){overflow:hidden}.markdown-body code,.markdown-body kbd,.markdown-body pre{font-family:monospace,monospace}.markdown-body input{font:inherit;margin:0;overflow:visible;font-family:inherit;font-size:inherit;line-height:inherit}.markdown-body [type=checkbox]{box-sizing:border-box;padding:0}.markdown-body *{box-sizing:border-box}.markdown-body a:hover{text-decoration:underline}.markdown-body strong{font-weight:600}.markdown-body hr{box-sizing:content-box;overflow:hidden;background:0 0;border-bottom:1px solid #dfe2e5}.markdown-body hr::before{display:table;content:""}.markdown-body hr::after{display:table;clear:both;content:""}.markdown-body table{border-spacing:0;border-collapse:collapse;display:block;width:100%;overflow:auto}.markdown-body td,.markdown-body th{padding:0}.markdown-body blockquote{margin:0}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol{list-style-type:lower-alpha}.markdown-body dd{margin-left:0}.markdown-body code{font-family:SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace}.markdown-body pre{font:12px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;word-wrap:normal}.markdown-body .pl-0{padding-left:0!important}.markdown-body .pl-1{padding-left:4px!important}.markdown-body .pl-2{padding-left:8px!important}.markdown-body .pl-3{padding-left:16px!important}.markdown-body .pl-4{padding-left:24px!important}.markdown-body .pl-5{padding-left:32px!important}.markdown-body .pl-6{padding-left:40px!important}.markdown-body::before{display:table;content:""}.markdown-body::after{display:table;clear:both;content:""}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:0}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e1e4e8;border:0}.markdown-body blockquote{padding:0 1em;color:#6a737d;border-left:.25em solid #dfe2e5}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd{font-size:11px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#1b1f23;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1{padding-bottom:.3em;font-size:2em;border-bottom:1px solid #eaecef}.markdown-body h2{padding-bottom:.3em;font-size:1.5em;border-bottom:1px solid #eaecef}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#6a737d}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table th{font-weight:600}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #dfe2e5}.markdown-body table tr{background-color:#fff;border-top:1px solid #c6cbd1}.markdown-body table tr:nth-child(2n){background-color:#f6f8fa}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body code{padding:.2em 0;margin:0;font-size:85%;background-color:rgba(27,31,35,.05);border-radius:3px}.markdown-body code::after,.markdown-body code::before{letter-spacing:-.2em;content:"\00a0"}.markdown-body pre>code{padding:0;margin:0;font-size:100%;word-break:normal;white-space:pre;background:0 0;border:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f6f8fa;border-radius:3px}.markdown-body pre code{display:inline;max-width:auto;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body pre code::after,.markdown-body pre code::before{content:normal}.markdown-body .full-commit .btn-outline:not(:disabled):hover{color:#005cc5;border-color:#005cc5}.markdown-body kbd{display:inline-block;padding:3px 5px;font:11px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;line-height:10px;color:#444d56;vertical-align:middle;background-color:#fcfcfc;border:1px solid #c6cbd1;border-bottom-color:#959da5;border-radius:3px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body :checked+.radio-label{position:relative;z-index:1;border-color:#0366d6}.markdown-body .task-list-item{list-style-type:none}.markdown-body .task-list-item+.task-list-item{margin-top:3px}.markdown-body .task-list-item input{margin:0 .2em .25em -1.6em;vertical-align:middle}.markdown-body hr{border-bottom-color:#eee}.flash{position:relative;padding:16px;color:#246;background-color:#e2eef9;border:1px solid #bac6d3;border-radius:3px}.flash p:last-child{margin-bottom:0}.flash-messages{margin-bottom:24px}.flash-warn{color:#4c4a42;background-color:#fff9ea;border-color:#dfd8c2}.flash-error{color:#911;background-color:#fcdede;border-color:#d2b2b2}.flash-success{color:#22662c;background-color:#e2f9e5;border-color:#bad3be}.flash-plain{color:#4c4a42;background-color:#f5f5f5;border-color:#c1c1c1}</style>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">pre[data-language='renumf90']{background-color:#EFEFFE;}</style>
+  <style type="text/css">pre[data-language='blupf90']{background-color:#E7FFE7;}</style>
+  <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
+  <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
+  <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<article class="markdown-body">
+<header>
+<h1 class="title">Practical genomic analysis</h1>
+<p class="author">Yutaka Masuda</p>
+<p class="date">September 2019</p>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#tuning-and-inputoutput-of-relationship-matrices">Tuning and input/output of relationship matrices</a><ul>
+<li><a href="#construction-of-mathbfg">Construction of <span class="math inline">\(\mathbf{G}\)</span></a></li>
+<li><a href="#blending">Blending</a></li>
+<li><a href="#tuning">Tuning</a></li>
+<li><a href="#scaling-the-inverse-matrices">Scaling the inverse matrices</a></li>
+<li><a href="#output-options">Output options</a></li>
+<li><a href="#input-options">Input options</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="tuning-and-inputoutput-of-relationship-matrices">Tuning and input/output of relationship matrices</h1>
+<p>Stability of single-step GBLUP depends on the characteristic of <span class="math inline">\(\mathbf{H}^{-1}\)</span> , which contains <span class="math inline">\(\mathbf{G}^{-1}\)</span> and <span class="math inline">\(\mathbf{A}_{22}^{-1}\)</span>. We have several ways to adjust <span class="math inline">\(\mathbf{G}\)</span> and <span class="math inline">\(\mathbf{G}^{-1}\)</span> to obtain reasonable results in the genomic analysis. There are also several options to harmonize between <span class="math inline">\(\mathbf{G}^{-1}\)</span> and <span class="math inline">\(\mathbf{A}_{22}^{-1}\)</span>. We will introduce the ideas as well as the options needed.</p>
+<h2 id="construction-of-mathbfg">Construction of <span class="math inline">\(\mathbf{G}\)</span></h2>
+<pre data-language="blupf90"><code>OPTION whichfreq x</code></pre>
+<p>This option defines which type of allele frequency is used to calculate <span class="math inline">\(\mathbf{Z}\)</span>. The argument <code>x</code> could be 0 = use of the user-supplied file (see below), 1 = fixed value (0.5) and 2 = the current allele frequency calculated from the marker data (default). With the argument 0, the file name is supplied with the following option:</p>
+<pre data-language="blupf90"><code>OPTION FreqFile x</code></pre>
+<p>where <code>x</code> is the name of the file for allele frequency. The format of this file is explained in the previous section.</p>
+<h2 id="blending">Blending</h2>
+<pre data-language="blupf90"><code>OPTION AlphaBeta a b
+OPTION GammaDelta c d</code></pre>
+<p>These options define <code>a</code> as <span class="math inline">\(\alpha\)</span>, <code>b</code> as <span class="math inline">\(\beta\)</span>, <code>c</code> as <span class="math inline">\(\gamma\)</span>, and <code>d</code> as <span class="math inline">\(\delta\)</span> used in the blending <span class="math inline">\(\alpha\mathbf{G}+\beta\mathbf{A}_{22}^{-1}+\gamma\mathbf{I}+\delta\mathbf{11}&#39;\)</span>. The default values are <span class="math inline">\(\alpha = 0.95\)</span>, <span class="math inline">\(\beta = 0.05\)</span>, <span class="math inline">\(\gamma = 0\)</span>, and <span class="math inline">\(\delta = 0\)</span>. We usually use a restriction as <span class="math inline">\(\alpha + \beta = 1\)</span>, but the program will not check this restriction.</p>
+<p>The original <span class="math inline">\(\mathbf{G}\)</span> matrix is completely updated (rewritten) by the blended <span class="math inline">\(\mathbf{G}\)</span>. After the blending, we cannot retrieve the original elements in non-blended <span class="math inline">\(\mathbf{G}\)</span>.</p>
+<h2 id="tuning">Tuning</h2>
+<pre data-language="blupf90"><code>OPTION tunedG x</code></pre>
+<p>This option defines the method to tune <span class="math inline">\(\mathbf{G}\)</span> up. The tuning scales <span class="math inline">\(\mathbf{G}\)</span> to <span class="math inline">\(\mathbf{A}_{22}\)</span>. This tuning is a separate step from blending. In real population, most genotypes are from the recent generations but the pedigree comes from long generations. The situation would cause the incompatibility between <span class="math inline">\(\mathbf{G}\)</span> and <span class="math inline">\(\mathbf{A}_{22}\)</span> due to different amount of information accounting for changes in allele frequency. The tuning tries to make <span class="math inline">\(\mathbf{G}\)</span> compatible with <span class="math inline">\(\mathbf{A}_{22}\)</span> by applying a single regression equation. See Chen et al. (2011), Vitezica et al. (2011), and Christensen et al. (2012) for details.</p>
+<p>The possible argument <code>x</code> is as follows.</p>
+<ul>
+<li>0 = no scaling</li>
+<li>1 = <span class="math inline">\(\mathrm{mean}\left(\left[\mathrm{diag}(\mathbf{G})\right]\right) = 1\)</span> and <span class="math inline">\(\mathrm{mean}\left(\left[\mathrm{offdiag}(\mathbf{G})\right]\right) = 0\)</span></li>
+<li>2 = <span class="math inline">\(\mathrm{mean}\left(\left[\mathrm{diag}(\mathbf{G})\right]\right) = \mathrm{mean}\left(\left[\mathrm{diag}(\mathbf{A}_{22})\right]\right)\)</span> and <span class="math inline">\(\mathrm{mean}\left(\left[\mathrm{offdiag}(\mathbf{G})\right]\right) = \mathrm{mean}\left(\left[\mathrm{offdiag}(\mathbf{A}_{22})\right]\right)\)</span> (default)</li>
+<li>3 = <span class="math inline">\(\mathrm{mean}\left(\mathbf{G}\right) = \mathrm{mean}\left(\mathbf{A}_{22}\right)\)</span></li>
+<li>4 = Adjustement with the 1st method described as in Powell et al. (2010) or Vitezica et al. (2011). This is very similar to (2).</li>
+</ul>
+<h2 id="scaling-the-inverse-matrices">Scaling the inverse matrices</h2>
+<p>Additional scaling may be needed for <span class="math inline">\(\mathbf{G}^{-1}\)</span> and <span class="math inline">\(\mathbf{A}_{22}^{-1}\)</span> to achieve the maximum predictive ability in GEBV for young animals. The scaling factors <span class="math inline">\(\tau\)</span> and <span class="math inline">\(\omega\)</span> are used for this purpose. <span class="math display">\[
+\mathbf{H}^{-1}
+=
+\mathbf{A}^{-1}
++
+\left[
+\begin{array}{cc}
+\mathbf{0}&amp;\mathbf{0}\\
+\mathbf{0}&amp;\tau\mathbf{G}^{-1}-\omega\mathbf{A}_{22}^{-1}
+\end{array}
+\right]
+\]</span></p>
+<p>In the ideal situation, <span class="math inline">\(\tau = 1\)</span> and <span class="math inline">\(\omega = 1\)</span>. The scaling would solve some issues if there are issues including incomplete pedigree and unqualified genotypes.</p>
+<pre data-language="blupf90"><code>OPTION TauOmega t w</code></pre>
+<p>These options define <code>t</code> as <span class="math inline">\(\tau\)</span> and <code>w</code> as <span class="math inline">\(\omega\)</span> in above equation. The default values are <span class="math inline">\(\tau = 1\)</span> and <span class="math inline">\(\omega = 1\)</span>.</p>
+<p>The original inverses (<span class="math inline">\(\mathbf{G}^{-1}\)</span> and <span class="math inline">\(\mathbf{A}_{22}^{-1}\)</span>) are completely replaced (rewritten) with the scaled ones (<span class="math inline">\(\tau\mathbf{G}^{-1}\)</span> and <span class="math inline">\(\omega\mathbf{A}_{22}^{-1}\)</span>). After the scaling, we cannot retrieve the non-scaled elements in <span class="math inline">\(\mathbf{G}^{-1}\)</span> and <span class="math inline">\(\mathbf{A}_{22}^{-1}\)</span>.</p>
+<h2 id="output-options">Output options</h2>
+<p>A relationship matrix and its inverse generated with the genomic module can be saved in a file. By default, the format is binary which the software can efficiently read, but a human cannot easily read. If you really want to save the matrix as text format, the following option is useful.</p>
+<pre data-language="blupf90"><code>OPTION saveAscii</code></pre>
+<p>The format is space-separate text. It has 3 columns per line: 1) row number, 2) column number and 3) element value. This text file can be used as a user-supplied relationship matrix in BLUPF90 with the <code>user_file</code> keyword. If you need the maximum efficiency, do not use this option — it will be slow in operation.</p>
+<p>The following options are available to output matrices. The options are case-sensitive so be careful to write them.</p>
+<pre data-language="blupf90"><code>OPTION saveA22         # save A22 to a file &#39;A22&#39;
+OPTION saveA22Inverse  # save A22-inverse to a file &#39;A22i&#39;
+OPTION saveG           # save G to a file &#39;G&#39;
+OPTION saveG all       # save all intermediate G
+OPTION saveGInverse    # save G-inverse to a file &#39;Gi&#39;</code></pre>
+<p>You can’t change the name of the file for each matrix. If you put <code>OPTION saveG_all</code>, the program will save all the intermediate status of <span class="math inline">\(\mathbf{G}\)</span>:</p>
+<ul>
+<li><code>Gini</code> = Initial matrix i.e. <span class="math inline">\(\mathbf{G} \leftarrow \mathbf{ZZ}&#39;/k\)</span>.</li>
+<li><code>G_Alpha_Beta</code> = Blended matrix with <span class="math inline">\(\mathbf{A}_{22}\)</span> i.e. <span class="math inline">\(\mathbf{G} \leftarrow \alpha\mathbf{G} + \beta\mathbf{A}_{22}\)</span>.</li>
+<li><code>G_gamma</code> = Blended matrix with <span class="math inline">\(\mathbf{I}\)</span> i.e. <span class="math inline">\(\mathbf{G} \leftarrow \mathbf{G} + \gamma\mathbf{I}\)</span>.</li>
+<li><code>G_delta</code> = Blended matrix with <span class="math inline">\(\mathbf{11}&#39;\)</span> i.e. <span class="math inline">\(\mathbf{G} \leftarrow \mathbf{G} + \delta\mathbf{11}&#39;\)</span>.</li>
+<li><code>G_suggest</code> = Tuned matrix.</li>
+<li><code>G</code> = The final matrix.</li>
+</ul>
+<p>We should mention that the options saveGInverse and saveA22Inverse save the scaled matrices with <span class="math inline">\(\tau\)</span> and <span class="math inline">\(\omega\)</span>. This would be a serious problem if you read the matrices from the files.</p>
+<h2 id="input-options">Input options</h2>
+<p>The program can read the matrices from files. In this case, the program does not calculate the matrix from the marker file or the pedigree file. If you read an inverse matrix from a file, the program could skip creating the original matrix. By default, the program reads only a binary file; with option <code>OPTION saveAscii</code> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, the programs read a text file. The following options are available.</p>
+<pre data-language="blupf90"><code>OPTION readA22 file          # read A22                        [ default : &#39;A22&#39;]
+OPTION readA22Inverse file   # read A22-inverse                [ default : &#39;A22i&#39;]
+OPTION readG file            # read G                          [ default : &#39;G&#39;]
+OPTION readGInverse file     # read G-inverse                  [ default: &#39;Gi&#39;]
+OPTION readGimA22i file      # read (G-inverse - A22-inverse ) [ default: &#39;GimA22i&#39;]</code></pre>
+<p>If you specify the name of the file, the program reads the file supplied. If you omit the name of the file, the program tries to read the default file shown above. For example, you can use the following option to read <span class="math inline">\(\mathbf{G}^{-1}\)</span> saved in <code>Gi</code>.</p>
+<pre data-language="blupf90"><code>OPTION readGi</code></pre>
+<p>Or you can supply the name of file like this.</p>
+<pre data-language="blupf90"><code>OPTION readGi condition1.Gi</code></pre>
+<p>There is a critical specification to be recognized by a user for the options <code>readGInverse</code> and <code>readA22Inverse</code>. After reading the matrix, the program scales the matrix with <span class="math inline">\(\tau\)</span> or <span class="math inline">\(\omega\)</span>. It means that if you have already scaled the matrix before saving it to a file and you read the matrix from the file, the program scales the matrix again without any warnings or messages. Without knowing this fact, the results would be nonsense.</p>
+<p>A better practice is as follows.</p>
+<ol type="1">
+<li>Create and save the relationship matrix without the scaling factor(<span class="math inline">\(\tau\)</span> or <span class="math inline">\(\omega\)</span>) i.e. the default values: <span class="math inline">\(\tau = 1\)</span> and <span class="math inline">\(\omega = 1\)</span>.</li>
+<li>When reading the file, the scaling factors can be specified.</li>
+</ol>
+<p>This strategy is really important to perform the analysis many times with different <span class="math inline">\(\tau\)</span> and <span class="math inline">\(\omega\)</span> parameters.</p>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>Yes, use <code>OPTION saveAscii</code>, because <code>OPTION readAscii</code> does not exist.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩</a></p></li>
+</ol>
+</section>
+</article>
+</body>
+</html>

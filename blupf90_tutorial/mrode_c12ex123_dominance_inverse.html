@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<!--==============================================================================
+	           "GitHub HTML5 Pandoc Template" v1.2 — by Tristano Ajmone
+	==============================================================================
+	(c) Tristano Ajmone, 2017, MIT License (MIT). Project's home repository:
+
+	- https://github.com/tajmone/pandoc-goodies
+
+	This template reuses source code taken from the following projects:
+
+	- GitHub Markdown CSS: © Sindre Sorhus, MIT License (MIT):
+	  https://github.com/sindresorhus/github-markdown-css
+
+	- Primer CSS: © 2016 GitHub Inc., MIT License (MIT):
+	  http://primercss.io/
+	==============================================================================-->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Yutaka Masuda" />
+  <title>Numerical examples from Mrode (2014)</title>
+  <style type="text/css">@font-face{font-family:octicons-link;src:url(data:font/woff;charset=utf-8;base64,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) format('woff')}.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#24292e;font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";font-size:16px;line-height:1.5;word-wrap:break-word;box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto;padding:45px}.markdown-body .octicon{display:inline-block;fill:currentColor;vertical-align:text-bottom}.markdown-body a{background-color:transparent;-webkit-text-decoration-skip:objects;color:#0366d6;text-decoration:none}.markdown-body a:active,.markdown-body a:hover{outline-width:0}.markdown-body h1{margin:.67em 0}.markdown-body img{border-style:none}.markdown-body svg:not(:root){overflow:hidden}.markdown-body code,.markdown-body kbd,.markdown-body pre{font-family:monospace,monospace}.markdown-body input{font:inherit;margin:0;overflow:visible;font-family:inherit;font-size:inherit;line-height:inherit}.markdown-body [type=checkbox]{box-sizing:border-box;padding:0}.markdown-body *{box-sizing:border-box}.markdown-body a:hover{text-decoration:underline}.markdown-body strong{font-weight:600}.markdown-body hr{box-sizing:content-box;overflow:hidden;background:0 0;border-bottom:1px solid #dfe2e5}.markdown-body hr::before{display:table;content:""}.markdown-body hr::after{display:table;clear:both;content:""}.markdown-body table{border-spacing:0;border-collapse:collapse;display:block;width:100%;overflow:auto}.markdown-body td,.markdown-body th{padding:0}.markdown-body blockquote{margin:0}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol{list-style-type:lower-alpha}.markdown-body dd{margin-left:0}.markdown-body code{font-family:SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace}.markdown-body pre{font:12px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;word-wrap:normal}.markdown-body .pl-0{padding-left:0!important}.markdown-body .pl-1{padding-left:4px!important}.markdown-body .pl-2{padding-left:8px!important}.markdown-body .pl-3{padding-left:16px!important}.markdown-body .pl-4{padding-left:24px!important}.markdown-body .pl-5{padding-left:32px!important}.markdown-body .pl-6{padding-left:40px!important}.markdown-body::before{display:table;content:""}.markdown-body::after{display:table;clear:both;content:""}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:0}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e1e4e8;border:0}.markdown-body blockquote{padding:0 1em;color:#6a737d;border-left:.25em solid #dfe2e5}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd{font-size:11px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#1b1f23;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1{padding-bottom:.3em;font-size:2em;border-bottom:1px solid #eaecef}.markdown-body h2{padding-bottom:.3em;font-size:1.5em;border-bottom:1px solid #eaecef}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#6a737d}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table th{font-weight:600}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #dfe2e5}.markdown-body table tr{background-color:#fff;border-top:1px solid #c6cbd1}.markdown-body table tr:nth-child(2n){background-color:#f6f8fa}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body code{padding:.2em 0;margin:0;font-size:85%;background-color:rgba(27,31,35,.05);border-radius:3px}.markdown-body code::after,.markdown-body code::before{letter-spacing:-.2em;content:"\00a0"}.markdown-body pre>code{padding:0;margin:0;font-size:100%;word-break:normal;white-space:pre;background:0 0;border:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f6f8fa;border-radius:3px}.markdown-body pre code{display:inline;max-width:auto;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body pre code::after,.markdown-body pre code::before{content:normal}.markdown-body .full-commit .btn-outline:not(:disabled):hover{color:#005cc5;border-color:#005cc5}.markdown-body kbd{display:inline-block;padding:3px 5px;font:11px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;line-height:10px;color:#444d56;vertical-align:middle;background-color:#fcfcfc;border:1px solid #c6cbd1;border-bottom-color:#959da5;border-radius:3px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body :checked+.radio-label{position:relative;z-index:1;border-color:#0366d6}.markdown-body .task-list-item{list-style-type:none}.markdown-body .task-list-item+.task-list-item{margin-top:3px}.markdown-body .task-list-item input{margin:0 .2em .25em -1.6em;vertical-align:middle}.markdown-body hr{border-bottom-color:#eee}.flash{position:relative;padding:16px;color:#246;background-color:#e2eef9;border:1px solid #bac6d3;border-radius:3px}.flash p:last-child{margin-bottom:0}.flash-messages{margin-bottom:24px}.flash-warn{color:#4c4a42;background-color:#fff9ea;border-color:#dfd8c2}.flash-error{color:#911;background-color:#fcdede;border-color:#d2b2b2}.flash-success{color:#22662c;background-color:#e2f9e5;border-color:#bad3be}.flash-plain{color:#4c4a42;background-color:#f5f5f5;border-color:#c1c1c1}</style>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">pre[data-language='renumf90']{background-color:#EFEFFE;}</style>
+  <style type="text/css">pre[data-language='blupf90']{background-color:#E7FFE7;}</style>
+  <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
+  <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
+  <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<article class="markdown-body">
+<header>
+<h1 class="title">Numerical examples from Mrode (2014)</h1>
+<p class="author">Yutaka Masuda</p>
+<p class="date">September 2019</p>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#inversion-of-the-dominance-matrix">Inversion of the dominance matrix</a><ul>
+<li><a href="#model">Model</a></li>
+<li><a href="#files">Files</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="inversion-of-the-dominance-matrix">Inversion of the dominance matrix</h1>
+<h2 id="model">Model</h2>
+<p>A rapid algorithm to calculate <span class="math inline">\(\mathbf{D}^{-1}\)</span> (ignoring inbreeding) was developed by Hoeschele and VanRaden (1991). Their method was derived from the parental subclass effects <span class="math inline">\(\mathbf{f}\)</span> and its covariance matrix <span class="math inline">\(\mathbf{F}\)</span>. The dominance effect is an interaction of genes, and the effect is inherited through the combination of parents and ancestors rather than through individuals. Therefore, the dominance variation can be described with the combination of ancestral animals. Here we just introduce the idea of parental subclasses. See the original paper or the textbook for the detailed algorithm for the inverse.</p>
+<p>For an animal <span class="math inline">\(i\)</span>, its dominance effect <span class="math inline">\(d_i\)</span> can be expressed as <span class="math display">\[
+d_i = f_{S,D} + \varepsilon
+\]</span> where <span class="math inline">\(f_{S,D}\)</span> is the expected dominance effect of many hypothetical fill-sibs from the sire <span class="math inline">\(S\)</span> and the dam <span class="math inline">\(D\)</span>, and <span class="math inline">\(\varepsilon\)</span> is the Mendelian sampling deviation. We assume <span class="math inline">\(\mathrm{var}( f_{S,D} ) = \sigma_f^2\)</span> and it is equivalent to the dominance covariance among the full-sibs. So we can find <span class="math inline">\(\sigma_f^2=0.25\sigma_d^2\)</span> and <span class="math inline">\(\mathrm{var}(\varepsilon) = 0.75\sigma_d^2\)</span>. The parental dominance effect actually consists of several components: <span class="math display">\[
+f_{S,D} = 0.50( f_{S, SD} + f_{S, DD} + f_{SS, D} + f_{DS, D}) - 0.25( f_{SS, SD} + f_{SS, DD} + f_{DS, SD} + f_{DS, DD}) + e
+\]</span> where <span class="math inline">\(SS\)</span> and <span class="math inline">\(SD\)</span> refer to the sire and the dam of the sire, respectively, and <span class="math inline">\(SD\)</span> and <span class="math inline">\(DD\)</span> refer to the sire and the dam of the dam, respectively. We have to put a label on each combination of animals (subclass). A dominance pedigree file contains the labels on the above 8 subclass for each <span class="math inline">\(f_{S,D}\)</span>. The vector <span class="math inline">\(\mathbf{f}\)</span> contains the parental dominance effects and its variance is <span class="math display">\[
+\mathrm{var}(\mathbf{f}) = \mathbf{F}\sigma_f^2
+\]</span> and its inverse is rapidly calculated using the dominance pedigree file. The final inverse <span class="math inline">\(\mathbf{D}^{-1}\)</span> is also calculated with <span class="math inline">\(\mathbf{F}^{-1}\)</span>.</p>
+<p>BLUPF90 calculates <span class="math inline">\(\mathbf{F}^{-1}\)</span> only. This matrix itself can’t be used to estimate individual dominance effect. However, <span class="math inline">\(\mathbf{F}^{-1}\)</span> is still useful to estimate the variance components. In this section, we will prepare the files as usual even we will not solve the mixed model equations.</p>
+<h2 id="files">Files</h2>
+<!--
+First we prepare the dominance pedigree file. According to the textbook (p.213), there are 6 known
+subclasses for parental dominance ($f_{S,D}$) to be considered in $\mathbf{F}$. The following table consists of the
+selected elements of the table.
+
+ Sire ($S$)     Dam ($D$)    $\phi$     Known parent subclasses
+------------   -----------  --------    -----------------------
+    6             8           1         2, 3, 6
+    6             5           2         3, 6
+    3             8           3         6
+    3             4           4
+    1             2           5
+    3             5           6
+
+The subclass is referred with the label ($\phi$). For example, $f_{6,8}$ is the subclass 1, $f_{6,5}$ is the subclass
+2 and so on. The known parent subclasses are the components of the parental dominance. For
+example, in the subclass 1 with $S = 6$ and $D = 8$, $f_{6,8}$ consists of the subclasses 2, 3 and 6. In this
+case, the subclass 2 is $f_{6,5}$ i.e. $fS$, $DD$ for $f_{6,8}$. Similarly, the subclass 3 is $f_{3,8}$ i.e. $f_{SS,D}$ for $f_{6,8}$ and
+the subclass 6 is $f_{3,5}$ i.e. $f_{SS,DD}$ for $f_{6,8}$. Based on the above equation, the subclass 1 can be
+described as
+$$
+f_{6,8} = 0.50( f_{S,DD} + f_{SS,D} ) - 0.25 f_{SS,DD}
+$$
+and missing components are ignored because of no contribution for the results.
+-->
+<p>The dominance pedigree file for BLUPF90 contains 10 columns.</p>
+<ol type="1">
+<li>Parental dominance subclass (<span class="math inline">\(\phi\)</span>).</li>
+<li>Subclass <span class="math inline">\(S, SD\)</span> (code:1)</li>
+<li>Subclass <span class="math inline">\(S, DD\)</span> (code:2)</li>
+<li>Subclass <span class="math inline">\(SS, D\)</span> (code:4)</li>
+<li>Subclass <span class="math inline">\(DS, D\)</span> (code:8)</li>
+<li>Subclass <span class="math inline">\(SS, SD\)</span> (code:16)</li>
+<li>Subclass <span class="math inline">\(SS, DD\)</span> (code:32)</li>
+<li>Subclass <span class="math inline">\(DS, SD\)</span> (code:64)</li>
+<li>Subclass <span class="math inline">\(DS, DD\)</span> (code:128)</li>
+<li>Sum of the code for nonempty subclasses.</li>
+</ol>
+<p>If the subclass is unknown or empty, put 0. The last column contains an integer value from the summation of all the code number for nonempty subclasses. The final code should be ranging from 0 to 255. For example, in <span class="math inline">\(\phi = 1\)</span> i.e., <span class="math inline">\(f_{6,8}\)</span>, the final code is <span class="math inline">\(2 + 4 + 32 = 38\)</span>. If the final code is 0, you can omit such a line.</p>
+<p>The dominance pedigree file for this example is shown below.</p>
+<pre data-language="text" data-caption="dominance_mr12b.txt"><code>1 0 2 3 0 0 6 0 0  38
+2 0 0 6 0 0 0 0 0   4
+3 0 6 0 0 0 0 0 0   2</code></pre>
+<p>The data file has to contain the parental subclass labels. The 4th column is the subclass label.</p>
+<pre data-language="text" data-caption="data_mr12b.txt"><code> 5  2  17    5
+...</code></pre>
+<p>The pedigree file is the same as the previous one (<code>pedigree_mr12b.txt</code>).</p>
+<p>The parameter file is shown below.</p>
+<pre data-language="blupf90" data-caption="param_mr12b.txt"><code>DATAFILE
+data_mr12b.txt
+NUMBER_OF_TRAITS
+1
+NUMBER_OF_EFFECTS
+3
+OBSERVATION(S)
+3
+WEIGHT(S)
+
+EFFECTS:
+2  2 cross   # fixed effect
+1 12 cross   # additive genetic
+4  6 cross   # parental dominance
+RANDOM_RESIDUAL VALUES
+180.0
+RANDOM_GROUP
+2
+RANDOM_TYPE
+add_animal
+FILE
+pedigree_mr12b.txt
+(CO)VARIANCES
+90.0
+RANDOM_GROUP
+3
+RANDOM_TYPE
+par_domin
+FILE
+dominance_mr12b.txt
+(CO)VARIANCES
+20.0
+OPTION solv_method FSPAK</code></pre>
+<p>With the keyword <code>par_domin</code>, BLUPF90 creates <span class="math inline">\(\mathbf{F}^{-1}\)</span> from the dominance pedigree file. Note that the parental subclass variance is one quarter of the dominance variance (<span class="math inline">\(\sigma_f^2=\sigma_d^2/4 = 80/4 = 20\)</span>). The remaining variance goes into the residual variance (<span class="math inline">\(120 + 60 = 180\)</span>).</p>
+<p>You can run BLUPF90 with this parameter file. The solutions are similar in BLUE and BLUP for the additive effects compared with the previous results. The predictions for parental dominance are not equivalent to the previous results. In this analysis, we just consider the quarter of dominance variance through <span class="math inline">\(\mathbf{F}^{-1}\)</span>. For the precise prediction of the dominance effects, a user should use the software that fully supports the dominance effect. As we mentioned before, however, the parameter file is still useful for variance component estimation with a dominance model.</p>
+<p>What is the most efficient way to create a dominance pedigree file? A renumbering program RENDOMN supports generating the file. This program is based on the old design and different usage compared to RENUMF90. A solver supporting a dominance model is JAADOMN which is also old software. You can find the programs at <a href="http://nce.ads.uga.edu/~ignacy/numpub/dominance/" class="uri">http://nce.ads.uga.edu/~ignacy/numpub/dominance/</a>.</p>
+</article>
+</body>
+</html>

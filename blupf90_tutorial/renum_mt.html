@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<!--==============================================================================
+	           "GitHub HTML5 Pandoc Template" v1.2 — by Tristano Ajmone
+	==============================================================================
+	(c) Tristano Ajmone, 2017, MIT License (MIT). Project's home repository:
+
+	- https://github.com/tajmone/pandoc-goodies
+
+	This template reuses source code taken from the following projects:
+
+	- GitHub Markdown CSS: © Sindre Sorhus, MIT License (MIT):
+	  https://github.com/sindresorhus/github-markdown-css
+
+	- Primer CSS: © 2016 GitHub Inc., MIT License (MIT):
+	  http://primercss.io/
+	==============================================================================-->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Yutaka Masuda" />
+  <title>Data preparation with RENUMF90</title>
+  <style type="text/css">@font-face{font-family:octicons-link;src:url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAZwABAAAAAACFQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEU0lHAAAGaAAAAAgAAAAIAAAAAUdTVUIAAAZcAAAACgAAAAoAAQAAT1MvMgAAAyQAAABJAAAAYFYEU3RjbWFwAAADcAAAAEUAAACAAJThvmN2dCAAAATkAAAABAAAAAQAAAAAZnBnbQAAA7gAAACyAAABCUM+8IhnYXNwAAAGTAAAABAAAAAQABoAI2dseWYAAAFsAAABPAAAAZwcEq9taGVhZAAAAsgAAAA0AAAANgh4a91oaGVhAAADCAAAABoAAAAkCA8DRGhtdHgAAAL8AAAADAAAAAwGAACfbG9jYQAAAsAAAAAIAAAACABiATBtYXhwAAACqAAAABgAAAAgAA8ASm5hbWUAAAToAAABQgAAAlXu73sOcG9zdAAABiwAAAAeAAAAME3QpOBwcmVwAAAEbAAAAHYAAAB/aFGpk3jaTY6xa8JAGMW/O62BDi0tJLYQincXEypYIiGJjSgHniQ6umTsUEyLm5BV6NDBP8Tpts6F0v+k/0an2i+itHDw3v2+9+DBKTzsJNnWJNTgHEy4BgG3EMI9DCEDOGEXzDADU5hBKMIgNPZqoD3SilVaXZCER3/I7AtxEJLtzzuZfI+VVkprxTlXShWKb3TBecG11rwoNlmmn1P2WYcJczl32etSpKnziC7lQyWe1smVPy/Lt7Kc+0vWY/gAgIIEqAN9we0pwKXreiMasxvabDQMM4riO+qxM2ogwDGOZTXxwxDiycQIcoYFBLj5K3EIaSctAq2kTYiw+ymhce7vwM9jSqO8JyVd5RH9gyTt2+J/yUmYlIR0s04n6+7Vm1ozezUeLEaUjhaDSuXHwVRgvLJn1tQ7xiuVv/ocTRF42mNgZGBgYGbwZOBiAAFGJBIMAAizAFoAAABiAGIAznjaY2BkYGAA4in8zwXi+W2+MjCzMIDApSwvXzC97Z4Ig8N/BxYGZgcgl52BCSQKAA3jCV8CAABfAAAAAAQAAEB42mNgZGBg4f3vACQZQABIMjKgAmYAKEgBXgAAeNpjYGY6wTiBgZWBg2kmUxoDA4MPhGZMYzBi1AHygVLYQUCaawqDA4PChxhmh/8ODDEsvAwHgMKMIDnGL0x7gJQCAwMAJd4MFwAAAHjaY2BgYGaA4DAGRgYQkAHyGMF8NgYrIM3JIAGVYYDT+AEjAwuDFpBmA9KMDEwMCh9i/v8H8sH0/4dQc1iAmAkALaUKLgAAAHjaTY9LDsIgEIbtgqHUPpDi3gPoBVyRTmTddOmqTXThEXqrob2gQ1FjwpDvfwCBdmdXC5AVKFu3e5MfNFJ29KTQT48Ob9/lqYwOGZxeUelN2U2R6+cArgtCJpauW7UQBqnFkUsjAY/kOU1cP+DAgvxwn1chZDwUbd6CFimGXwzwF6tPbFIcjEl+vvmM/byA48e6tWrKArm4ZJlCbdsrxksL1AwWn/yBSJKpYbq8AXaaTb8AAHja28jAwOC00ZrBeQNDQOWO//sdBBgYGRiYWYAEELEwMTE4uzo5Zzo5b2BxdnFOcALxNjA6b2ByTswC8jYwg0VlNuoCTWAMqNzMzsoK1rEhNqByEyerg5PMJlYuVueETKcd/89uBpnpvIEVomeHLoMsAAe1Id4AAAAAAAB42oWQT07CQBTGv0JBhagk7HQzKxca2sJCE1hDt4QF+9JOS0nbaaYDCQfwCJ7Au3AHj+LO13FMmm6cl7785vven0kBjHCBhfpYuNa5Ph1c0e2Xu3jEvWG7UdPDLZ4N92nOm+EBXuAbHmIMSRMs+4aUEd4Nd3CHD8NdvOLTsA2GL8M9PODbcL+hD7C1xoaHeLJSEao0FEW14ckxC+TU8TxvsY6X0eLPmRhry2WVioLpkrbp84LLQPGI7c6sOiUzpWIWS5GzlSgUzzLBSikOPFTOXqly7rqx0Z1Q5BAIoZBSFihQYQOOBEdkCOgXTOHA07HAGjGWiIjaPZNW13/+lm6S9FT7rLHFJ6fQbkATOG1j2OFMucKJJsxIVfQORl+9Jyda6Sl1dUYhSCm1dyClfoeDve4qMYdLEbfqHf3O/AdDumsjAAB42mNgYoAAZQYjBmyAGYQZmdhL8zLdDEydARfoAqIAAAABAAMABwAKABMAB///AA8AAQAAAAAAAAAAAAAAAAABAAAAAA==) format('woff')}.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#24292e;font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";font-size:16px;line-height:1.5;word-wrap:break-word;box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto;padding:45px}.markdown-body .octicon{display:inline-block;fill:currentColor;vertical-align:text-bottom}.markdown-body a{background-color:transparent;-webkit-text-decoration-skip:objects;color:#0366d6;text-decoration:none}.markdown-body a:active,.markdown-body a:hover{outline-width:0}.markdown-body h1{margin:.67em 0}.markdown-body img{border-style:none}.markdown-body svg:not(:root){overflow:hidden}.markdown-body code,.markdown-body kbd,.markdown-body pre{font-family:monospace,monospace}.markdown-body input{font:inherit;margin:0;overflow:visible;font-family:inherit;font-size:inherit;line-height:inherit}.markdown-body [type=checkbox]{box-sizing:border-box;padding:0}.markdown-body *{box-sizing:border-box}.markdown-body a:hover{text-decoration:underline}.markdown-body strong{font-weight:600}.markdown-body hr{box-sizing:content-box;overflow:hidden;background:0 0;border-bottom:1px solid #dfe2e5}.markdown-body hr::before{display:table;content:""}.markdown-body hr::after{display:table;clear:both;content:""}.markdown-body table{border-spacing:0;border-collapse:collapse;display:block;width:100%;overflow:auto}.markdown-body td,.markdown-body th{padding:0}.markdown-body blockquote{margin:0}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol{list-style-type:lower-alpha}.markdown-body dd{margin-left:0}.markdown-body code{font-family:SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace}.markdown-body pre{font:12px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;word-wrap:normal}.markdown-body .pl-0{padding-left:0!important}.markdown-body .pl-1{padding-left:4px!important}.markdown-body .pl-2{padding-left:8px!important}.markdown-body .pl-3{padding-left:16px!important}.markdown-body .pl-4{padding-left:24px!important}.markdown-body .pl-5{padding-left:32px!important}.markdown-body .pl-6{padding-left:40px!important}.markdown-body::before{display:table;content:""}.markdown-body::after{display:table;clear:both;content:""}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:0}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e1e4e8;border:0}.markdown-body blockquote{padding:0 1em;color:#6a737d;border-left:.25em solid #dfe2e5}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd{font-size:11px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#1b1f23;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1{padding-bottom:.3em;font-size:2em;border-bottom:1px solid #eaecef}.markdown-body h2{padding-bottom:.3em;font-size:1.5em;border-bottom:1px solid #eaecef}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#6a737d}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table th{font-weight:600}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #dfe2e5}.markdown-body table tr{background-color:#fff;border-top:1px solid #c6cbd1}.markdown-body table tr:nth-child(2n){background-color:#f6f8fa}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body code{padding:.2em 0;margin:0;font-size:85%;background-color:rgba(27,31,35,.05);border-radius:3px}.markdown-body code::after,.markdown-body code::before{letter-spacing:-.2em;content:"\00a0"}.markdown-body pre>code{padding:0;margin:0;font-size:100%;word-break:normal;white-space:pre;background:0 0;border:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f6f8fa;border-radius:3px}.markdown-body pre code{display:inline;max-width:auto;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body pre code::after,.markdown-body pre code::before{content:normal}.markdown-body .full-commit .btn-outline:not(:disabled):hover{color:#005cc5;border-color:#005cc5}.markdown-body kbd{display:inline-block;padding:3px 5px;font:11px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;line-height:10px;color:#444d56;vertical-align:middle;background-color:#fcfcfc;border:1px solid #c6cbd1;border-bottom-color:#959da5;border-radius:3px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body :checked+.radio-label{position:relative;z-index:1;border-color:#0366d6}.markdown-body .task-list-item{list-style-type:none}.markdown-body .task-list-item+.task-list-item{margin-top:3px}.markdown-body .task-list-item input{margin:0 .2em .25em -1.6em;vertical-align:middle}.markdown-body hr{border-bottom-color:#eee}.flash{position:relative;padding:16px;color:#246;background-color:#e2eef9;border:1px solid #bac6d3;border-radius:3px}.flash p:last-child{margin-bottom:0}.flash-messages{margin-bottom:24px}.flash-warn{color:#4c4a42;background-color:#fff9ea;border-color:#dfd8c2}.flash-error{color:#911;background-color:#fcdede;border-color:#d2b2b2}.flash-success{color:#22662c;background-color:#e2f9e5;border-color:#bad3be}.flash-plain{color:#4c4a42;background-color:#f5f5f5;border-color:#c1c1c1}</style>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">pre[data-language='renumf90']{background-color:#EFEFFE;}</style>
+  <style type="text/css">pre[data-language='blupf90']{background-color:#E7FFE7;}</style>
+  <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
+  <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
+  <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<article class="markdown-body">
+<header>
+<h1 class="title">Data preparation with RENUMF90</h1>
+<p class="author">Yutaka Masuda</p>
+<p class="date">September 2019</p>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#multiple-trait-models">Multiple-trait models</a><ul>
+<li><a href="#model">Model</a></li>
+<li><a href="#required-files">Required files</a></li>
+<li><a href="#missing-observations">Missing observations</a></li>
+<li><a href="#different-models-across-traits-unequal-design-matrices">Different models across traits (Unequal design matrices)</a></li>
+<li><a href="#summary">Summary</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="multiple-trait-models">Multiple-trait models</h1>
+<h2 id="model">Model</h2>
+<p>For renumbering on a multiple-trait model, we still need a very similar instruction file to the single-trait model. Only differences include 1) a need to specify the model for each trait and 2) use of covariance matrix instead of a scalar value.</p>
+<p>We will consider a 2-trait model with equal design matrices, which means all traits have the same model. The mathematical model is <span class="math display">\[
+\begin{aligned}
+y_{ijk:1} &amp;= A_{i:1} + S_{j:1} + \beta_{1} x_{ijk:1} + u_{k:1} + e_{ijk:1}\\
+y_{ijk:2} &amp;= A_{i:2} + S_{j:2} + \beta_{2} x_{ijk:2} + u_{k:2} + e_{ijk:2}
+\end{aligned}
+\]</span> where <span class="math inline">\(y_{ijk:t}\)</span> is a observation for trait <span class="math inline">\(t\)</span>, <span class="math inline">\(A_{i:t}\)</span> is the fixed effect for trait <span class="math inline">\(t\)</span>, <span class="math inline">\(S_{i:t}\)</span> is also the fixed effect for trait <span class="math inline">\(t\)</span>, <span class="math inline">\(\beta_{t}\)</span> is the fixed regression coefficient for trait <span class="math inline">\(t\)</span>, <span class="math inline">\(x_{ijk:t}\)</span> is a covariate for trait <span class="math inline">\(t\)</span>, <span class="math inline">\(u_{k:t}\)</span> is the additive genetic effect for trait <span class="math inline">\(t\)</span>, and <span class="math inline">\(e_{ijk:t}\)</span> is the random residual effect. The genetic (<span class="math inline">\(\mathbf{G}_0\)</span>) and residual (<span class="math inline">\(\mathbf{R}_0\)</span>) covariance matrices are <span class="math display">\[
+\mathbf{G}_{0}
+=
+\left[
+\begin{array}{rr}
+0.50&amp;-0.25\\
+-0.25&amp;1.00
+\end{array}
+\right]
+\quad
+\text{and}
+\quad
+\mathbf{R}_{0}
+=
+\left[
+\begin{array}{rr}
+2.0&amp;1.0\\
+1.0&amp;1.5
+\end{array}
+\right]
+\]</span></p>
+<h2 id="required-files">Required files</h2>
+<p>The raw data file is identical to the previous single-trait data except for the new column (trait 2) added. The data file should contain all required effects and observations for all traits.</p>
+<pre data-language="text" data-caption="rawdata5.txt"><code>  ID006  A  1  1.0  3.0  4.5
+  ID009  A  2  1.0  2.0  7.5
+  ID012  A  1  2.0  4.0  3.5
+  ID007  B  2  2.0  6.0 -0.5
+  ID010  B  1  1.0  3.0  5.5
+  ID013  B  2  2.0  6.0  1.5
+  ID008  C  1  2.0  6.0 -1.5
+  ID011  C  2  1.0  6.0  2.5
+  ID014  C  1  1.0  8.0  0.5
+  ID015  C  2  2.0  4.0  4.5</code></pre>
+<p>The pedigree file is also the same as the previous one.</p>
+<pre data-language="text" data-caption="rawpedigree5.txt"><code>ID001        0         0
+ID002        0         0
+ID003        0         0
+ID004        0         0
+ID005        0         0
+ID006        0         0
+ID007    ID002     ID005
+ID008    ID001     ID004
+ID009    ID002     ID003
+ID010    ID007     ID006
+ID011    ID007     ID004
+ID012    ID011     ID008
+ID013    ID011     ID010
+ID014    ID009     ID013
+ID015    ID011     ID010</code></pre>
+<p>The instruction file for this 2-trait model is as follows.</p>
+<pre data-language="renumf90" data-caption="renum5.txt"><code>DATAFILE
+rawdata5.txt
+TRAITS          # 2-trait model: put 2 positions
+5 6
+FIELDS_PASSED TO OUTPUT
+
+WEIGHT(S)
+
+RESIDUAL_VARIANCE
+2.0 1.0
+1.0 1.5
+EFFECT           # 1st effect fixed
+2 2 cross alpha
+EFFECT           # 2nd effect fixed
+3 3 cross alpha
+EFFECT           # 3rd effect fixed
+4 4 cov
+EFFECT           # 4th effect
+1 1 cross alpha
+RANDOM           ## treated as a random effect
+animal
+FILE             ## pedigree file
+rawpedigree5.txt
+FILE_POS         ## animal, sire and dam IDs, and two 0s
+1 2 3 0 0
+(CO)VARIANCES    ## its variance component
+ 0.50 -0.25
+-0.25  1.00</code></pre>
+<p>For a multiple-trait model, you can check the following points in an instruction file. Incorrect description in these statements falls in the sudden stop of RENUMF90.</p>
+<ul>
+<li><code>TRAITS</code>: Enumerate the positions of observations in the data file. If you have 2 traits, you should put 2 numbers (positions) here.</li>
+<li><code>RESIDUAL_VARIANCE</code>: Put a residual covariance matrix here. The whole matrix is needed (all upper, lower, and diagonal elements).</li>
+<li><code>EFFECT</code>: Enumerate the position of effects for each trait in the data file; then put the effect type (and data type). For example, with a 2-trait model, first, you should put 2 numbers (for positions of effects for trait 1 and 2), 1 keyword (<code>cross</code> or <code>cov</code>) and, possibly, data type (<code>numer</code> or <code>alpha</code>) if the data type is <code>cross</code>.</li>
+<li><code>(CO)VARIANCES</code>: Put a covariance matrix here. The whole matrix is needed.</li>
+</ul>
+<p>Run RENUMF90 with the above files, and you can see the parameter file configured with the 2-trait model.</p>
+<h2 id="missing-observations">Missing observations</h2>
+<p>You can include missing observations in the data file. RENUMF90 does not distinguish the real and the missing observations; the program just read the raw data and just pass the observation to the renumbered file. Although RENUMF90 doesn’t care about missing observations, BLUPF90 cares about the values. So the generated parameter file (<code>renf90.par</code>) should include an option to define the missing code. You can write the following option in the instruction file, and RENUMF90 passes it to <code>renf90.par</code>.</p>
+<pre data-language="blupf90"><code>OPTION missing -999</code></pre>
+<p>This example defines an observation with the value <code>-999</code> as a missing code. The default is 0 (i.e. if you don’t define any missing code, the program assumes 0 as missing).</p>
+<p>Note that RENUMF90 still recognizes 0 as a missing observation in the computations of the basic statistics (e.g. average and standard deviation) just for your information. In this case, the statistics may be inaccurate but all the files are correctly renumbered.</p>
+<h2 id="different-models-across-traits-unequal-design-matrices">Different models across traits (Unequal design matrices)</h2>
+<p>Now we consider a multiple-trait model which has different mathematical models across traits. It is typically called a model with unequal design matrices. Let’s see the following 2-trait model. <span class="math display">\[
+\begin{aligned}
+y_{ijk:1} &amp;= A_{i:1} + \phantom{S_{j:1} + } \beta_1 x_{ijk:1} + u_{k:1} + e_{ijk:1}\\
+y_{ijk:2} &amp;= A_{i:2} + S_{j:2} + \beta_{2} x_{ijk:2} + u_{k:2} + e_{ijk:2}
+\end{aligned}
+\]</span> In this model, the <span class="math inline">\(S_{j:1}\)</span> is missing for trait 1. To support it with RENUMF90, you can just change a line in the previous instruction file.</p>
+<pre data-language="renumf90"><code>EFFECT                  # 2nd effect fixed
+0 3 cross alpha</code></pre>
+<p>The position <code>0</code> means that this effect will not be included in the model for this trait.</p>
+<p>We further consider the following 2-trait model. <span class="math display">\[
+\begin{aligned}
+y_{ijk:1} &amp;= A_{i:1} \phantom{+ S_{j:1} } + \beta_1 x_{ijk:1} + u_{k:1} + e_{ijk:1}\\
+y_{ijk:2} &amp;= \phantom{A_{i:2} + } S_{j:2} + \beta_{2} x_{ijk:2} + u_{k:2} + e_{ijk:2}
+\end{aligned}
+\]</span> In this case, <span class="math inline">\(S_{j:1}\)</span> is missing for trait 1 and <span class="math inline">\(A_{i:2}\)</span> is missing for trait 2. Applying the above principle to this case, you can figure out the following solution (just showing a piece of instruction file).</p>
+<pre data-language="renumf90"><code>EFFECT                  # 1st effect fixed
+2 0 cross alpha
+EFFECT                  # 2nd effect fixed
+0 3 cross alpha</code></pre>
+<p>Above statements are easy to understand which effects are missing for a particular trait.</p>
+<p>There is another way to handle such a model. You can combine above 2 <code>EFFECT</code> lines into 1 as follows.</p>
+<pre data-language="renumf90"><code>EFFECT                  # 1st and 2nd effects fixed
+2 3 cross alpha</code></pre>
+<p>This statement may be useful when the different effects are considered as similar types of effects. For example, in dairy cattle, a contemporary group effect (like HYS: herd-year-season) is commonly included in the model for production traits but the definition should be different across parities. HYS in the 1st lactation and HYS in the 2nd lactation are different but considered as similar effects. With this compact definition, memory requirements would reduce. If you are confused with this notation, you don’t have to use the compact statement.</p>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>RENUMF90 supports multiple-trait models.</li>
+<li>Carefully describe <code>TRAITS</code>, <code>RESIDUAL_VARIANCE</code>, <code>EFFECT</code> and <code>(CO)VARIANCES</code> in an instruction file.</li>
+<li><code>TRAIT</code> has the same number of entries to the number of traits.</li>
+<li>Covariance matrix should be wholly stated.</li>
+<li><code>EFFECT</code> describes the position of effect in each trait.</li>
+<li>Missing observations are passed to <code>renf90.dat</code>. You can use <code>OPTION missing</code> to the instruction file to change the code for missing observations.</li>
+<li>RENUMF90 supports a multiple-trait model with unequal design matrices.</li>
+</ul>
+</article>
+</body>
+</html>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<!--==============================================================================
+	           "GitHub HTML5 Pandoc Template" v1.2 — by Tristano Ajmone
+	==============================================================================
+	(c) Tristano Ajmone, 2017, MIT License (MIT). Project's home repository:
+
+	- https://github.com/tajmone/pandoc-goodies
+
+	This template reuses source code taken from the following projects:
+
+	- GitHub Markdown CSS: © Sindre Sorhus, MIT License (MIT):
+	  https://github.com/sindresorhus/github-markdown-css
+
+	- Primer CSS: © 2016 GitHub Inc., MIT License (MIT):
+	  http://primercss.io/
+	==============================================================================-->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Yutaka Masuda" />
+  <title>Variance component estimation</title>
+  <style type="text/css">@font-face{font-family:octicons-link;src:url(data:font/woff;charset=utf-8;base64,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) format('woff')}.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#24292e;font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";font-size:16px;line-height:1.5;word-wrap:break-word;box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto;padding:45px}.markdown-body .octicon{display:inline-block;fill:currentColor;vertical-align:text-bottom}.markdown-body a{background-color:transparent;-webkit-text-decoration-skip:objects;color:#0366d6;text-decoration:none}.markdown-body a:active,.markdown-body a:hover{outline-width:0}.markdown-body h1{margin:.67em 0}.markdown-body img{border-style:none}.markdown-body svg:not(:root){overflow:hidden}.markdown-body code,.markdown-body kbd,.markdown-body pre{font-family:monospace,monospace}.markdown-body input{font:inherit;margin:0;overflow:visible;font-family:inherit;font-size:inherit;line-height:inherit}.markdown-body [type=checkbox]{box-sizing:border-box;padding:0}.markdown-body *{box-sizing:border-box}.markdown-body a:hover{text-decoration:underline}.markdown-body strong{font-weight:600}.markdown-body hr{box-sizing:content-box;overflow:hidden;background:0 0;border-bottom:1px solid #dfe2e5}.markdown-body hr::before{display:table;content:""}.markdown-body hr::after{display:table;clear:both;content:""}.markdown-body table{border-spacing:0;border-collapse:collapse;display:block;width:100%;overflow:auto}.markdown-body td,.markdown-body th{padding:0}.markdown-body blockquote{margin:0}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol{list-style-type:lower-alpha}.markdown-body dd{margin-left:0}.markdown-body code{font-family:SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace}.markdown-body pre{font:12px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;word-wrap:normal}.markdown-body .pl-0{padding-left:0!important}.markdown-body .pl-1{padding-left:4px!important}.markdown-body .pl-2{padding-left:8px!important}.markdown-body .pl-3{padding-left:16px!important}.markdown-body .pl-4{padding-left:24px!important}.markdown-body .pl-5{padding-left:32px!important}.markdown-body .pl-6{padding-left:40px!important}.markdown-body::before{display:table;content:""}.markdown-body::after{display:table;clear:both;content:""}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:0}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e1e4e8;border:0}.markdown-body blockquote{padding:0 1em;color:#6a737d;border-left:.25em solid #dfe2e5}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd{font-size:11px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#1b1f23;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1{padding-bottom:.3em;font-size:2em;border-bottom:1px solid #eaecef}.markdown-body h2{padding-bottom:.3em;font-size:1.5em;border-bottom:1px solid #eaecef}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#6a737d}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table th{font-weight:600}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #dfe2e5}.markdown-body table tr{background-color:#fff;border-top:1px solid #c6cbd1}.markdown-body table tr:nth-child(2n){background-color:#f6f8fa}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body code{padding:.2em 0;margin:0;font-size:85%;background-color:rgba(27,31,35,.05);border-radius:3px}.markdown-body code::after,.markdown-body code::before{letter-spacing:-.2em;content:"\00a0"}.markdown-body pre>code{padding:0;margin:0;font-size:100%;word-break:normal;white-space:pre;background:0 0;border:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f6f8fa;border-radius:3px}.markdown-body pre code{display:inline;max-width:auto;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body pre code::after,.markdown-body pre code::before{content:normal}.markdown-body .full-commit .btn-outline:not(:disabled):hover{color:#005cc5;border-color:#005cc5}.markdown-body kbd{display:inline-block;padding:3px 5px;font:11px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;line-height:10px;color:#444d56;vertical-align:middle;background-color:#fcfcfc;border:1px solid #c6cbd1;border-bottom-color:#959da5;border-radius:3px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body :checked+.radio-label{position:relative;z-index:1;border-color:#0366d6}.markdown-body .task-list-item{list-style-type:none}.markdown-body .task-list-item+.task-list-item{margin-top:3px}.markdown-body .task-list-item input{margin:0 .2em .25em -1.6em;vertical-align:middle}.markdown-body hr{border-bottom-color:#eee}.flash{position:relative;padding:16px;color:#246;background-color:#e2eef9;border:1px solid #bac6d3;border-radius:3px}.flash p:last-child{margin-bottom:0}.flash-messages{margin-bottom:24px}.flash-warn{color:#4c4a42;background-color:#fff9ea;border-color:#dfd8c2}.flash-error{color:#911;background-color:#fcdede;border-color:#d2b2b2}.flash-success{color:#22662c;background-color:#e2f9e5;border-color:#bad3be}.flash-plain{color:#4c4a42;background-color:#f5f5f5;border-color:#c1c1c1}</style>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">pre[data-language='renumf90']{background-color:#EFEFFE;}</style>
+  <style type="text/css">pre[data-language='blupf90']{background-color:#E7FFE7;}</style>
+  <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
+  <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
+  <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<article class="markdown-body">
+<header>
+<h1 class="title">Variance component estimation</h1>
+<p class="author">Yutaka Masuda</p>
+<p class="date">September 2019</p>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#gibbs-sampling-and-post-gibbs-analysis">Gibbs sampling and post-Gibbs analysis</a><ul>
+<li><a href="#gibbs-sampling-software">Gibbs sampling software</a></li>
+<li><a href="#preparation">Preparation</a></li>
+<li><a href="#sampling-strategy">Sampling strategy</a></li>
+<li><a href="#constraints-on-variance-components">Constraints on variance components</a></li>
+<li><a href="#results-shown-on-screen">Results shown on screen</a></li>
+<li><a href="#generated-files">Generated files</a></li>
+<li><a href="#post-gibbs-analyses">Post Gibbs analyses</a></li>
+<li><a href="#post-statistics">Post statistics</a></li>
+<li><a href="#output-files-from-postgibbsf90">Output files from POSTGIBBSF90</a></li>
+<li><a href="#post-gibbs-analysis-for-arbitrary-function-of-variance-components">Post-Gibbs Analysis for arbitrary function of variance components</a></li>
+<li><a href="#remarks">Remarks</a></li>
+<li><a href="#summary">Summary</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="gibbs-sampling-and-post-gibbs-analysis">Gibbs sampling and post-Gibbs analysis</h1>
+<h2 id="gibbs-sampling-software">Gibbs sampling software</h2>
+<p>BLUPF90 family has some software to conduct Gibbs sampling for linear mixed models. We recommend the user use GIBBS2F90 or THRGIBBS1F90 for a linear mixed model. The THRGIBBS1F90 program is capable both for a threshold model and a linear model. This program is faster than GIBBS2F90 for a linear model especially using a large data set. GIBBS3F90 may be useful when you assume heterogeneous residual variances by class. We will see the difference between Gibbs sampling programs. Here we will use THRGIBBS1F90 even though the threshold model is not applied.</p>
+<p>Gibbs sampling is totally different from REML. We don’t deal with the theoretical background of this technique here; see Sorensen and Gianola (2002) or Misztal (2008) for details. Roughly speaking, Gibbs sampling is a process to draw the posterior distribution out of the samples generated as random numbers based on information available at a specific point. In one round, the Gibbs sampler solves the mixed model equations with the current variance components and add a small random number (noise) to each solution. Then the sampler generates a covariance estimate as a random number based on the solutions. The samples of solutions and variance components in each round are not informative. Having many samples from many rounds repeated, we can figure the posterior distribution of a variance component as a histogram out of the samples. You can calculate the average of samples (posterior mean) as a point estimator of a variance component. You can also calculate the standard deviation of samples (posterior SD), which is corresponding to the standard error in a frequentist approach (e.g., REML).</p>
+<p>THRGIBBS1F90 assumes, by default, noninformative (also known as vague or flat) priors for location parameters as well as variance components. You can change the degree of belief in the prior distribution for each variance component using an option in the parameter file.</p>
+<p>Gibbs sampling needs post-Gibbs analyses. This can be done with a separate software POSTGIBBSF90, or with manual processing by the user. The basic pipeline of Gibbs sampling analysis is that</p>
+<ol type="1">
+<li>use THRGIBBSF90 to generate samples for variance components and</li>
+<li>use POSTGIBBSF90 to summarize the samples.</li>
+</ol>
+<p>Both programs accept the same parameter file as BLUPF90 programs but ask you some additional questions to control the Gibbs sampler.</p>
+<h2 id="preparation">Preparation</h2>
+<p>In this section, we will use the same simulated files which have been already introduced in the previous section for REML.</p>
+<ul>
+<li><a href="https://github.com/Masuday/data/blob/master/tutorial/simdata.txt"><code>simdata.txt</code></a> : data file</li>
+<li><a href="https://github.com/Masuday/data/blob/master/tutorial/simped.txt"><code>simped.txt</code></a> : pedigree file</li>
+</ul>
+<p>The parameter file is the same shown in the previous section. Here we put a different name on this file.</p>
+<pre data-language="blupf90" data-caption="gibbs1.txt"><code>DATAFILE
+simdata.txt
+NUMBER_OF_TRAITS
+1
+NUMBER_OF_EFFECTS
+4
+OBSERVATION(S)
+9
+WEIGHT(S)
+4
+EFFECTS:
+ 6     155 cross
+ 7     2 cross
+ 8     11 cross
+ 1     4641 cross
+RANDOM_RESIDUAL VALUES
+100
+RANDOM_GROUP
+4
+RANDOM_TYPE
+add_animal
+FILE
+simped.txt
+(CO)VARIANCES
+100</code></pre>
+<p>The variance components in the parameter file will be used as initial values but the impact of the values on the results will be small. So you can put any values on the parameter file.</p>
+<h2 id="sampling-strategy">Sampling strategy</h2>
+<p>Invoking THRGIBBSF90, the program asks you the name of the parameter file.</p>
+<pre data-language="output"><code> * Start thrgibbs1f90 ........04-03-2016            12 h 12 m 36 s 173
+ name of parameter file?</code></pre>
+<p>After typing the name, then the program will ask you another question.</p>
+<pre data-language="output"><code> number of samples and length of burn-in</code></pre>
+<p>You should input 2 integer numbers here.</p>
+<ul>
+<li>The total number of samples to be generated.</li>
+<li>The number of burn-in; the first samples to be discarded.</li>
+</ul>
+<p>The 2 numbers should be separated with space or newline (i.e. Enter key). The number of burn-in should be smaller than the total number of samples. If you are not sure about the number of burn-in, just put 0. After the sampling, you can manually discard any number of burn-in samples using a tool, POSTGIBBSf90. If you generate 5,000 samples and discard the first 1,000 samples as burn-in, you can key-in as follows (no commas are allowed).</p>
+<pre data-language="shell"><code>5000 1000</code></pre>
+<p>You will be asked one more question.</p>
+<pre data-language="output"><code> Give n to store every n-th sample ? (1 means store all samples )</code></pre>
+<p>You should put one integer number here.</p>
+<ul>
+<li>The size of the interval to save the samples.</li>
+</ul>
+<p>For example, if you want to save the sample every 10 rounds, type 10 here.</p>
+<pre data-language="shell"><code> 10</code></pre>
+<p>If you want to save all the samples, type <code>1</code> instead. After this, the program starts sampling.</p>
+<p>What is the appropriate number of sampling? What is the best interval? The answer depends on the model and data. We will consider this question later in this section.</p>
+<h2 id="constraints-on-variance-components">Constraints on variance components</h2>
+<p>As explained previously in the AI REML section, the program supports to force some variance components to be 0. When the initial variance component is 0, this component never changes throughout the iterations. See the previous section to see the example of the initial values with 0.</p>
+<p>There is the difference between AIREMLF90 and THRGIBBS1F90 (and the other Gibbs samplers) on the constraints. Whereas AIREMLF90 never computes the estimates of the constraint variance components, the Gibbs samplers actually calculate all variance components, and then, replace the target parameters with 0. It means that the Gibbs samplers have the same computing cost on the constraints as the non-constraint case.</p>
+<p>The same as AIREMLF90, THRGIBBS1F90 tries to fix the estimated variance components which are out of the parameter space. During this process, some variances may become 0. Again, the same as AIREMLF90, once it happens, such variances may never come back to non-zero values simply because no information is available to estimate the variance parameters. If you see such accidental zeros during the iterations, it implies that your model is suboptimal or, the amount of data is not enough to estimate the variance components.</p>
+<h2 id="results-shown-on-screen">Results shown on screen</h2>
+<h3 id="intermediate-results">Intermediate results</h3>
+<p>During the sampling, the program always prints the sampled variances in each round.</p>
+<pre data-language="output"><code>          5000   rounds
+G
+     36.27
+R
+     62.00</code></pre>
+<h3 id="final-posterior-mean-and-sd">Final posterior mean and SD</h3>
+<p>The program actually calculates the sampled solutions in each round as well. At the end of sampling, the program shows several statistics on screen. You don’t always need all the information. We break it down here.</p>
+<pre data-language="output"><code>elapsed time per iteration     6.7236428 E -03 : total                  33.61821
+* End of iteration04 -03 -2016 12 h 27 m 05 s 101
+ave G
+  39.03
+SD G
+  3.579
+ave R
+  62.58
+SD R
+  2.506</code></pre>
+<ul>
+<li><code>ave G and SD G</code>: Posterior mean and SD for <span class="math inline">\(\sigma_u^2\)</span>. Average and standard deviation of saved samples after removing burn-in.</li>
+<li><code>ave R and SD R</code>: Posterior mean and SD for <span class="math inline">\(\sigma_e^2\)</span>. Average and standard deviation of saved samples after removing burn-in.</li>
+</ul>
+<h3 id="final-status-of-sampling">Final status of sampling</h3>
+<p>These are not essential for a regular analysis.</p>
+<pre data-language="output"><code>* Last seeds = 2101474043 1031647242
+* Number of samples kept =          4000
+solutions stored in binary file : &quot; last_solutions &quot;</code></pre>
+<ul>
+<li><code>Last seeds</code>: Seeds of random number generator. Usually, the values are not crucial.</li>
+<li><code>Number of samples kept</code>: The total number of samples after burn-in.</li>
+<li><code>solutions stored in a binary file: "last_solutions"</code>: The last sampled solutions are stored in <code>last_solutions</code>. Usually, the file is not essential.</li>
+</ul>
+<h3 id="dic-and-related-information">DIC and related information</h3>
+<p>DIC (Deviance Information Criterion) can be used to compare 2 or more models like AIC (smaller is better). In each round, the program calculates partial information to form the DIC. In a general notation, we can write a likelihood function as <span class="math inline">\(\log L(\theta)\)</span> with parameters <span class="math inline">\(\theta\)</span>. In above mode, we assume that N is the number of observations and <span class="math inline">\(\hat{\sigma}_{e[k]}^2\)</span> (i.e. <span class="math inline">\(\hat{\theta}_k\)</span>) is a sampled residual variance in round <span class="math inline">\(k\)</span> after burn-in, a deviance <span class="math inline">\(D_k\)</span> in round <span class="math inline">\(k\)</span> is defined as <span class="math display">\[
+D_k = -2\log L(\hat{\theta}_k) = -2\sum_{i=1}^{N}\left[C+\frac{\hat{e}_i^2}{\hat{\sigma}_{e[k]}^2}\right]
+\]</span> where <span class="math inline">\(C\)</span> is <span class="math inline">\(\log(2\pi\hat{\sigma}_{e[k]}^2)\)</span> and <span class="math inline">\(\hat{e}_i\)</span> s a observed residual for observation <span class="math inline">\(i\)</span> (i.e. <span class="math inline">\(y - \hat{y}\)</span> : observation minus sampled solutions). With <span class="math inline">\(m\)</span> samples after burn-in, <span class="math inline">\(\bar{D}\)</span>, an estimate of the expectation of <span class="math inline">\(D\)</span>, is defined as <span class="math display">\[
+\bar{D}=\frac{\sum_{k=1}^{m}D_k}{m}
+\]</span> Similar statistics are also calculated with posterior mean of <span class="math inline">\(\sigma_e^2\)</span>. We calculate the posterior deviance <span class="math inline">\(D(\bar{\theta})\)</span> using above formula for <span class="math inline">\(D_k\)</span> except <span class="math inline">\(\hat{\sigma}_{e[k]}^2\)</span> (i.e. <span class="math inline">\(\hat{\theta}_k\)</span>) is replaced with its posterior mean <span class="math inline">\(\hat{\sigma}_{e}^2\)</span> i.e. <span class="math inline">\(\hat{\theta}\)</span> as follows <span class="math display">\[
+D(\bar{\theta})=-2\log L(\hat{\theta})=-2\sum_{i=1}^{N}\left[C+\frac{\hat{e}_i^2}{\hat{\sigma}_{e}^2}\right]
+\]</span> These statistics are calculated using the samples stored after burn-in. THRGIBBSF90 prints the following quantity as DIC. <span class="math display">\[
+\mathrm{DIC}=2\bar{D}-D(\bar{\theta})
+\]</span> THRGIBBS1F90 saves every <span class="math inline">\(D_k\)</span> to a file <code>fort.99</code>.</p>
+<p>The output is corresponding to the above formulas.</p>
+<pre data-language="output"><code>****************************************
+***************** DIC ******************
+****************************************
+detR      62.5820466970185
+# stored samples                400
+D-bar     32364.1379063698
+D(theta-bar)  30968.7777134920
+DIC = 2*D-bar - D (theta-bar) =   33759.4980992475
+Effective number of parameters =    1395.36019287775
+solutions stored in file : &quot;binary_final_solutions&quot;
+* End program04-03-2016 12 h 27 m 06 s 001</code></pre>
+<ul>
+<li><code>detR</code>: Determinant of posterior mean of the residual covariance matrix (<span class="math inline">\(|\mathbf{R}_{0}|\)</span> in the general case and <span class="math inline">\(|\sigma_e^2|\)</span> in this case).</li>
+<li><code># stored samples</code>: The in geneal number of samples saved in a file (<span class="math inline">\(m\)</span> above).</li>
+<li><code>D-bar</code>: <span class="math inline">\(\bar{D}\)</span></li>
+<li><code>D(theta-bar)</code>: <span class="math inline">\(D(\bar{\theta})\)</span></li>
+<li><code>DIC = 2*D-bar - D(theta-bar)</code>: <span class="math inline">\(2\bar{D}-D(\bar{\theta})\)</span></li>
+<li><code>Effective number of parameters</code>: <span class="math inline">\(\bar{D} - D(\bar{\theta})\)</span></li>
+<li><code>solutions stored in file: "binary_final_solutions"</code>: posterior means for sampled solutions after burn-in.</li>
+</ul>
+<p>The estimated genetic variance is <span class="math inline">\(\hat{\sigma}_u^2 = 39.03 (\pm 3.579)\)</span> and the estimated residual variance is <span class="math inline">\(\hat{\sigma}_e^2 = 62.58 (\pm 2.506)\)</span>. If you believe the numbers of samples and burn-in are appropriate, you can use the above posterior mean and SD as the final results. Otherwise, and in most cases, you should run POSTGIBBSF90 to perform the post-Gibbs analyses to confirm the numbers of samples and burn-in were enough to draw posterior statistics for variance parameters.</p>
+<h2 id="generated-files">Generated files</h2>
+<p>THRGIBBSF90 generates several files including the following.</p>
+<ul>
+<li><code>gibbs_samples</code>: Samples of variance components in specific rounds after burn-in.</li>
+<li><code>fort.99</code>: Deviance in specific rounds after burn-in.</li>
+<li><code>last_solutions</code>: The last sampled solutions saved in a binary form.</li>
+<li><code>binary_final_solutions</code>: Posterior means for sampled solutions from specific rounds after burn-in saved in binary form.</li>
+</ul>
+<p>The samples and calculated statistics are based on samples in every <span class="math inline">\(n\)</span> rounds after burn-in, where <span class="math inline">\(n\)</span> is an interval which you type-in at the beginning of the program.</p>
+<p>The file <code>gibbs_samples</code> will be used by POSTGIBBSF90 to run post-Gibbs analyses. The number of samples stored in this file depends on your initial answers. For example, using 5,000 samples with 1,000 burn-in and 10 sample intervals, the file will have 400 samples i.e. <span class="math inline">\((5000 - 1000)/10\)</span>. The second file <code>fort.99</code> is optional and it will be used in the post-Gibbs analyses. The <code>last_solutions</code> file is useful to continue the analysis from the last round; you do not usually have to see the inside of this file. The last file <code>binary_final_solutions</code> contains samples of solutions for “fixed” and “random” effects. You may want to see the solutions but it is not a text file. In the next section, we will consider the advanced techniques including the extraction of solutions from this file.</p>
+<h2 id="post-gibbs-analyses">Post Gibbs analyses</h2>
+<h3 id="invoking-postgibbsf90">Invoking POSTGIBBSF90</h3>
+<p>POSTGIBBSF90 performs post-Gibbs analyses reading the parameter file, <code>gibbs_samples</code>, and <code>fort.99</code>. You have to run POSTGIBBSF90 in a directory where you have these files. Invoking the program, it prints the following message.</p>
+<pre data-language="output"><code> name of parameter file?</code></pre>
+<p>Type in the name of the parameter file used in this analysis. Then the program checks if <code>gibbs_samples</code> was really generated from the parameter file. If success, you will see the information about the total number of saved samples.</p>
+<pre data-language="output"><code> POST-GIBBSF90 3.06
+  # parameters in gibbs_samples =                          2
+ Read           400 samples from round                         1010   to       5000</code></pre>
+<p>Then, POSTGIBBSF90 asks you another question.</p>
+<pre data-language="output"><code> Burn-in?</code></pre>
+<p>It is a tricky question. You should <em>not</em> input the same number what you typed at the beginning of THRSIBBS1F90. The burn-in samples were already discarded. This question asks you the number of <em>additional</em> samples to discard as burn-in. The answer is</p>
+<ul>
+<li><code>0</code> if you don’t discard any more samples as burn-in,</li>
+<li>Or, any integer number if you need to discard additional samples as burn-in.</li>
+</ul>
+<p>After this, you will be asked the last question.</p>
+<pre data-language="output"><code> Give n to read every n-th sample? (1 means read all samples)</code></pre>
+<p>Before typing <code>1</code> to keep all the samples, please wait for a moment. This question asks you the number of intervals (thinnings) that you typed-in when you ran THRGIBBSf90. If you want to keep all the samples you have drawn, you have to put the same number as you put before. Or, you can input a multiple of the original number. For example, in this case, you can input 10, 20, 30 and so on, because the original interval was 10. If you type an inappropriate number, the program will stop with a suspicious message.</p>
+<h2 id="post-statistics">Post statistics</h2>
+<p>We will see the following table with many statistics when we input <code>0</code> as burn-in and <code>10</code> as steps in our example.</p>
+<pre data-language="widetext"><code># samples after burn-in =         400
+# samples after burn-in used =         400
+
+                          ********   Monte Carlo Error by Time Series   ********
+ Pos. eff1 eff2 trt1 trt2        MCE        Mean             HPD             Effective       Median        Mode      Independent
+                                                        Interval (95%)       sample size                             chain size
+   1    4    4    1    1      0.36091       39.035       32.030       45.270         98.1         39.060       39.175            6
+   2    0    0    1    1      0.19923       62.582       57.640       67.440        157.8         62.640       63.362            4
+
+                          ********   Posterior Standard Deviation   ********
+ Pos. eff1 eff2 trt1 trt2        PSD        Mean             PSD             Geweke            Autocorrelations      Independent
+                                                        Interval (95%)       diagnostic   lag: 1       10       50    # batches
+   1    4    4    1    1       3.5788       39.035       32.020       46.049        -0.09      0.660   -0.076    0.017        66
+   2    0    0    1    1       2.5062       62.582       57.670       67.494         0.09      0.406   -0.023    0.070       100</code></pre>
+<p>The output has 2 main tables. Each table contains statistics for each variance components. Variance components can be identified with the columns <code>Pos. eff1 eff2 trt1 trt2</code>.</p>
+<ul>
+<li><code>Pos.</code> is the position index of a parameter.</li>
+<li><code>eff1</code> and <code>eff2</code> are the effects in which the variance defined. Without maternal genetic effect or random regressions, <code>eff1</code> equals <code>eff2</code>.</li>
+<li><code>trt1</code> and <code>trt2</code> are corresponding traits. In a single-trait model, <code>trt1</code> equals <code>trt2</code>.</li>
+</ul>
+<p>In this case, we have 2 variances; one (<span class="math inline">\(\sigma_{u}^{2}\)</span>) is the genetic variance defined as the 4th effect and the other one is the residual variance (<span class="math inline">\(\sigma_e^2\)</span>). This is from a single-trait model, so the trait number should be 1. Finally we find the position 1 is for <span class="math inline">\(\sigma_u^2\)</span> and the position 2 is for <span class="math inline">\(\sigma_e^2\)</span>.</p>
+<p>As you see, this program displays plenty of information. We just pick essential numbers only. The rest of the items will be covered with the next section.</p>
+<ul>
+<li><code>Mean</code>: Posterior mean.</li>
+<li><code>HPD Interval (95%)</code>: High posterior density interval with 95%.</li>
+<li><code>Median</code>: Posterior median.</li>
+<li><code>Mode</code>: Posterior mode. It would provide a better estimate than posterior mean if the posterior distribution is highly skewed.</li>
+<li><code>Independent chain size</code>: The “effective” number of samples after adjusting autocorrelations among samples.</li>
+<li><code>PSD</code>: Posterior standard deviation.</li>
+<li><code>Autocolletations</code>: Lag-correlation between 2 samples with a specific interval.</li>
+</ul>
+<p>This table shows several point-estimates including posterior mean, median, and mode. A reasonable estimate depends on its skewness of the posterior distribution. If the distribution is highly skewed and the mean is apart from the mode, the posterior mode or median could be a better choice. Note that the mode is just approximated from 50 interval classes.</p>
+<p>High posterior density interval (HPD95) is often cited statistics to evaluate the accuracy of the parameters. This is a kind of interval estimates of a parameter. The values are the lower and upper bounds by cutting off the sorted samples at the top 2.5% largest and the bottom 2.5% smallest values.</p>
+<p>You can evaluate a sufficient interval for samples to be saved using Independent chain size and Autocorrelations. Two adjacent samples are usually highly correlated because the next sample is drawn based on the current one. When the correlation is still high between distant samples, the dependency-level is also high and the absolute values of the samples should be very similar. It simply means the samples don’t provide much information about the posterior distribution. The autocorrelation indicates how many intervals between samples we need to achieve the zero-correlation. The independent chain size corresponds to the number of independent samples that can be seen as independent. If the independent chain size is 3, the statistics (i.e. posterior mean and SD) are equivalently calculated using only 3 independent samples, and obviously, this is too small. This indicates whether you need more samples or not.</p>
+<h3 id="time-series-plot-and-histogram">Time-series plot and histogram</h3>
+<p>After showing the above table, the program waits for your key-in with the following message.</p>
+<pre data-language="output"><code> Choose a graph for samples (= 1) or histogram (= 2); or exit (= 0)</code></pre>
+<p>POSTGIBBSF90 can draw a time-series plot or histogram of samples. It uses external software <code>Gnuplot</code> to show the graph. So, to obtain the plot, you have to have Gnuplot in your system. You can type <code>1</code> to draw time-series plot, or <code>2</code> to draw the histogram for samples. Type <code>0</code> to quit the program.</p>
+<p>The time series plot visually indicates whether the length of burn-in or total sampling is enough or not. If the initial samples seem to still keep the initial values, you would need more burn-in. If the samples stayed longer in a specific value-range, the posterior mean doesn’t represent the entire samples, and you should draw more samples. The histogram provides a visual image of the posterior distribution. Usually, it is a one-peak distribution but skewed (with long right tail) more or less. If your distribution has 2 peaks or very flat, you should check the parameter file for human error, or draw more samples.</p>
+<h2 id="output-files-from-postgibbsf90">Output files from POSTGIBBSF90</h2>
+<p>POSTGIBBSF90 creates 7 files which are derived from the post-Gibbs statistics described above.</p>
+<ul>
+<li><code>postout</code>: The same content which is shown on screen.</li>
+<li><code>postind</code>: Relation of a position index to a variance component.</li>
+<li><code>postmean</code>: Posterior means shown in a user-friendly format.</li>
+<li><code>postmeanCorr</code>: Posterior means for correlations shown in a user-friendly format.</li>
+<li><code>postsd</code>: Posterior standard deviations.</li>
+<li><code>fort.998</code>: <span class="math inline">\(\log L\)</span> calculated from the file <code>fort.99</code></li>
+<li><code>postgibbs_samples</code>: The final samples after removing burn-in and applying thinning.</li>
+</ul>
+<p>The <code>postout</code> file contains precise statistics from the post-Gibbs analysis. You can check the position index with <code>postind</code>. A series of files contains posterior means and SDs for variance components. The file <code>fort.998</code> contains <span class="math inline">\(\log L\)</span> needed for the computation of Bayes factor.</p>
+<p>The file <code>postgibbs_samples</code> is useful especially if you calculate other statistics by yourself. It contains samples after burn-in. The content looks like the following.</p>
+<pre data-language="text"><code>1    1010    2   35.60       64.26
+2    1020    2   36.98       63.53
+3    1030    2   30.92       66.49
+4    1040    2   34.93       65.60
+5    1050    2   37.38       63.26</code></pre>
+<p>The meaning of each column is:</p>
+<ul>
+<li>Column 1: the sequential number for saved samples.</li>
+<li>Column 2: the actual round in which each sample was drawn.</li>
+<li>Column 3: the number of parameters.</li>
+<li>Column 4 or later: actual samples ordered by the position index.</li>
+</ul>
+<h2 id="post-gibbs-analysis-for-arbitrary-function-of-variance-components">Post-Gibbs Analysis for arbitrary function of variance components</h2>
+<p>A frequently-asked question is how to compute the posterior distribution of the heritability or the genetic correlation, a function of variance components. There are two ways to perform the post-Gibbs analysis on it.</p>
+<h3 id="using-the-file-postgibbs-samples">Using the file postgibbs samples</h3>
+<p>The first option is simpler if you are familiar with scripting. From the file <code>postgibbs_samples</code>, you can easily draw a graph and calculate additional statistics. For instance, you may compute, at each sample, the <em>sample</em> of the heritability as a function of the samples of the variance components. The code in R would be something like this.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">a=<span class="kw">read.table</span>(<span class="st">&quot;postgibbs_samples&quot;</span>,<span class="dt">header=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb18-2" title="2"><span class="co"># tell what each thing is</span></a>
+<a class="sourceLine" id="cb18-3" title="3"><span class="kw">colnames</span>(a)=<span class="kw">c</span>(<span class="st">&quot;i&quot;</span>,<span class="st">&quot;iter&quot;</span>,<span class="st">&quot;varu&quot;</span>,<span class="st">&quot;vare&quot;</span>)</a>
+<a class="sourceLine" id="cb18-4" title="4">a<span class="op">$</span>h2=a<span class="op">$</span>varu<span class="op">/</span>(a<span class="op">$</span>varu<span class="op">+</span>a<span class="op">$</span>vare)</a>
+<a class="sourceLine" id="cb18-5" title="5"><span class="kw">hist</span>(a<span class="op">$</span>h2)</a></code></pre></div>
+<p>In this way, you describe the posterior distribution of <span class="math inline">\(h^2\)</span> from the samples of variance components. This procedure can be done for <em>any</em> function of the variance components, for instance, genetic correlations. More sophisticated analysis can be done with R package ‘boa’.</p>
+<h3 id="using-an-option-in-the-parameter-file">Using an option in the parameter file</h3>
+<p>The second option is to use the option <code>se_covar_function</code> in a parameter file. The user can define the function of variance components in the option line, and POSTGIBBSF90 calculates a sample of the function in each sampling round. The program displays all pos-Gibbs statistics on the screen as the standard variance components.</p>
+<p>The usage of this option was explained in the previous section for AIREMLF90. See the section for details.</p>
+<h2 id="remarks">Remarks</h2>
+<p>You must not run 2 Gibbs-sampling programs in the same directory at the same time. One program will overwrite <code>gibbs_samples</code> generated by the other programs. If you want to share the data and pedigree files in multiple jobs, make a separate directory (or folder) and create a copy of the files (or, make a symbolic link to the file)</p>
+<p>There are several options for THRGIBBSF90. For example, one is for continuous sampling with already finished results (starting sampling from the last round in the previous run). Another one can put the degree of belief for prior information. Please see the manual for details.</p>
+<p>There are many Gibbs sampling programs in BLUPF90 family. The difference is in their implementation.</p>
+<ul>
+<li>GIBBSF90: initial program; no longer distributed</li>
+<li>GIBBS1F90: much faster in multiple-trait models</li>
+<li>GIBBS2F90: faster in convergence for models with correlated effects (e.g. maternal model or random regression models).</li>
+<li>GIBBS3F90: derived from GIBBS2; supporting heterogeneous residual variances; a little bit slower than GIBBS2.</li>
+<li>THRGIBBS1F90: derived from GIBBS2; supporting threshold models; supporting huge dense matrices; faster than GIBBS2 especially for large data set; required more memory than GIBBS2.</li>
+<li>THRGIBBS3F90: derived from THRGIBBS1; supporting heterogeneous residual variances.</li>
+</ul>
+<p>Actually, recent improvements were done for GIBBS2F90 and THRGIBBS1F90. So we recommend a user to use these 2 programs if you are not interested in heterogeneous residual variances.</p>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>THRGIBBS1F90 or GIBBS2F90 is recommended.</li>
+<li>THRGIBBS1F90 can perform Gibbs sampling both with the regular linear mixed models and the threshold models.</li>
+<li>THRGIBBS1F90 needs the numbers of total samples and burn-ins, and the interval for samples to be saved.</li>
+<li>THRGIBBS1F90 saves the samples to the file <code>gibbs_samples</code>.</li>
+<li>POSTGIBBSF90 reads <code>gibbs_samples</code> and calculates post-Gibbs statistics.</li>
+<li>POSTGIBBSF90 creates many files containing the statistics.</li>
+<li>You can check whether the initial settings are suitable or not from the output.</li>
+<li>You can conduct post-analyses on a function of variance components with the file <code>postgibbs_samples</code> by yourself, or using the option <code>se_covar_function</code> by POSTGIBBSF90.</li>
+<li>If the initial variance component is 0, it will be fixed to be 0 throughout the iterations.</li>
+</ul>
+</article>
+</body>
+</html>
