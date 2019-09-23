@@ -55,6 +55,9 @@
 </ul></li>
 </ul>
 </nav>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 <h1 id="files-used-in-genomic-analysis">Files used in genomic analysis</h1>
 <p>As seen in the tutorial in the previous chapter, PREGSF90 needs 2 files to handle genomic data: an SNP marker file and a cross-reference file. In this section, we describe the detailed format for these 2 files. Also, we will present some other files optionally needed in quality control of markers.</p>
 <p>PREGSF90 reads the same parameter file as BLUPF90. From this file, the program reads the names of the pedigree file, the marker file, (optionally) the cross-reference file, and some options. The rest of the parameter file (e.g., the name of the data file and the model) is effectively ignored.</p>
@@ -127,6 +130,9 @@
 <h2 id="weight-for-snp-optional">Weight for SNP (optional)</h2>
 <p>The PREGSF90 program can create an alternative <span class="math inline">\(\mathbf{G}\)</span> weighting on each SNP marker. This weighted matrix is especially useful for GWAS or related analyses with the POSTGSF90 program. If you supply this file, the weighted <span class="math inline">\(\mathbf{G}\)</span> will be calculated. Otherwise, weights are set to 1 i.e. no specific weight on each SNP marker. This file is optional.</p>
 <p>The file contains only 1 column with real values. Each row corresponds to each SNP marker; the first line contains a weight for the marker 1, and the second row contains a weight for the marker 2, and so on. The number of lines in this file shouldn’t exceed the number of markers.</p>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 </article>
 </body>
 </html>

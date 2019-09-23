@@ -54,6 +54,9 @@
 </ul></li>
 </ul>
 </nav>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 <h1 id="gblup">GBLUP</h1>
 <h2 id="model">Model</h2>
 <p>The SNP marker model is equivalent to a model, so-called GBLUP, under some assumptions. The model includes a genomic relationship matrix, <span class="math inline">\(\mathbf{G}\)</span>. This matrix is calculated using SNP marker data. It is analog to the pedigree-based additive relationship matrix although there is an essential difference between the two matrices; see VanRaden (2008) for details. The <span class="math inline">\(\mathbf{G}\)</span> matrix may be defined in several ways but the best-known one is defined as <span class="math display">\[
@@ -288,6 +291,9 @@ OPTION solv_method FSPAK</code></pre>
 <p>This parameter file is for single-step GBLUP. In this case, the pedigree file is empty, and <span class="math inline">\(\mathbf{A}^{-1}=\mathbf{0}\)</span>. The program will read <code>Gi</code> instead of creating <span class="math inline">\(\mathbf{G}_{w}^{-1}\)</span> and <span class="math inline">\(\mathbf{A}_{22}\)</span> with the second option (<code>OPTION readGimA22i</code>). The program reads <span class="math inline">\(\mathbf{G}_{w}^{-1}\)</span>, and it performs GBLUP.</p>
 <p>Run BLUPF90 with the parameter file, and you can find the solutions that are identical to approach 1. You can see many warnings (<code>Animal Id equal to Sire/Dam Id - relationships removed !!</code>) because we use a trick which never happens in the regular single-step GBLUP.</p>
 <p>Again, the approaches demonstrated here require some manual operations. In the later chapter, we will see an automatic approach to perform GBLUP using RENUMF90 and BLUPF90.</p>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 </article>
 </body>
 </html>

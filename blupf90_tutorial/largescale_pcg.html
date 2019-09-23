@@ -54,6 +54,9 @@
 </ul></li>
 </ul>
 </nav>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 <h1 id="iteration-on-data-with-preconditioned-conjugate-gradient-pcg">Iteration on data with preconditioned conjugate gradient (PCG)</h1>
 <h2 id="algorithm">Algorithm</h2>
 <p>Preconditioned conjugate gradient (PCG) is an iterative method to solve the linear equations. This method is easily harmonized with the “iteration on data” technique. The intermediate status is kept in 4 vectors, and the one iteration will be done by updating the vectors. BLUP90IOD2 is a program implementing this algorithm. Here we will introduce a basic idea needed to understand what the program performs. See Stranden and Lidauer (2000) and Tsuruta et al. (2001) for the detailed algorithm.</p>
@@ -121,6 +124,9 @@ round =   185  eps =  0.9976E-12  time =    0.01
 <p>This option defines the convergence criterion (<span class="math inline">\(\varepsilon\)</span>) to stop the iterations. A real value <code>tol</code> should be a small value. The default is <code>1.0E-12</code>. The criterion should be carefully decided because the default value could be too loose but the strict criterion requires too many rounds to converge. The best practice is to compare solutions from different convergence criterions and determine enough convergence criterion.</p>
 <pre data-language="blupf90"><code>OPTION blksize n</code></pre>
 <p>This option creates a block diagonal matrix for pre-conditioner (<span class="math inline">\(\mathbf{M}\)</span>). The integer value n defines the block size. By default, the pre-conditioner is the diagonal matrix (i.e. <code>n</code> is 1). The block size should be the same as the number of traits. This option will reduce the number of iterations if the specified value is valid.</p>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 </article>
 </body>
 </html>

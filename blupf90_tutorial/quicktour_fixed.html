@@ -56,6 +56,9 @@
 </ul></li>
 </ul>
 </nav>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 <h1 id="trivial-analyses-for-fixed-models">Trivial analyses for fixed models</h1>
 <p>This section describes the basic design and essential elements of BLUPF90 programs. We will explain how to prepare a data file and how to describe a parameter file using simple fixed effect models. Most of the basic ideas will be introduced here and you can expand to more complicated models.</p>
 <p>We use the BLUPF90 program here. BLUPF90 quickly solves mixed model equations and save the solutions to a file. This program also solves the least square equations (i.e., normal equations) for fixed effect models. Other programs for variance component estimation (e.g., AIREMLF90 and GIBBSF90) also accepts the same parameter file.</p>
@@ -169,7 +172,7 @@ RANDOM_RESIDUAL VALUES
 <ul>
 <li><code>1</code> for the 1st column</li>
 </ul></li>
-<li><code>WEIGHT(S)</code> = position of weight in the data file <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
+<li><code>WEIGHT(S)</code> = position of weight in the data file <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>
 <ul>
 <li>There is no weight but empty line must be there.</li>
 </ul></li>
@@ -397,12 +400,15 @@ OPTION solv_method FSPAK</code></pre>
 <li>A comment starts with <code>#</code> and ends at the end of the line. A comment is totally ignored by a program.</li>
 <li>Observation or effect 0 means missing. If you really want to use 0 as an observation, change the missing code with the option <code>missing</code>.</li>
 </ul>
-<section class="footnotes" role="doc-endnotes">
+<section class="footnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p><code>WEIGHT</code> does not mean the physical weight (i.e., in kg or pounds). It means the importance that we attach to this particular record. For instance, a weight of 10 may indicate that the measure was taken 10 times. See <a href="https://en.wikipedia.org/wiki/Weight_function">wikipedia</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩</a></p></li>
+<li id="fn1"><p><code>WEIGHT</code> does not mean the physical weight (i.e., in kg or pounds). It means the importance that we attach to this particular record. For instance, a weight of 10 may indicate that the measure was taken 10 times. See <a href="https://en.wikipedia.org/wiki/Weight_function">wikipedia</a>.<a href="#fnref1" class="footnote-back">↩</a></p></li>
 </ol>
 </section>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 </article>
 </body>
 </html>

@@ -53,6 +53,9 @@
 </ul></li>
 </ul>
 </nav>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 <h1 id="approximation-of-accuracy-and-reliability">Approximation of accuracy and reliability</h1>
 <h2 id="algorithm">Algorithm</h2>
 <p>Accuracy or reliability of EBV of an animal can be calculated from the prediction error variance (PEV) obtained from the diagonal elements of the inverse of left-hand side (LHS) of the mixed model equations. The diagonals can be calculated with the sparse inversion with FSPAK or YAMS for smaller data set. As expected, the computation cost for the inverse is really high and the left-hand side has to be in memory. So this direct method cannot be applied to a large scale genetic evaluation.</p>
@@ -142,6 +145,9 @@ OPTION conv_crit x          # x = real small number</code></pre>
 <p>With this option, the program calculates the parent average for each animal. The values are saved in the additional column in <code>sol_and_acc</code>.</p>
 <pre data-language="blupf90"><code>OPTION original_id</code></pre>
 <p>This option puts the original ID (the 10th column in the renumbered pedigree file) to <code>sol_and_acc</code>.</p>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 </article>
 </body>
 </html>

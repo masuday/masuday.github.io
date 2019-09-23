@@ -54,6 +54,9 @@
 </ul></li>
 </ul>
 </nav>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 <h1 id="perfroming-gblup">Perfroming GBLUP</h1>
 <h2 id="gblup-with-blupf90">GBLUP with BLUPF90</h2>
 <h3 id="background">Background</h3>
@@ -459,6 +462,9 @@ OPTION tunedG 0
 OPTION TauOmega 1.00 0.00</code></pre>
 <p>The first two options will be used in blending: <span class="math inline">\(\mathbf{G}\leftarrow \alpha\mathbf{G}+\beta\mathbf{A}_{22}+\gamma\mathbf{I}+\delta\mathbf{11}&#39;\)</span>. The above option specifies <span class="math inline">\(\alpha=0.95\)</span>, <span class="math inline">\(\beta=0\)</span>, <span class="math inline">\(\gamma=0.05\)</span>, and <span class="math inline">\(\delta=0\)</span> so that the blending is <span class="math inline">\(\mathbf{G}\leftarrow 0.95\mathbf{G}+0.05\mathbf{I}\)</span>. The option <code>tunedG 0</code> prohibits the program to scale <span class="math inline">\(\mathbf{G}\)</span> to <span class="math inline">\(\mathbf{A}_{22}\)</span>. These three options are equivalent to the approach that we introduced as the first method in this chapter. The last option removes <span class="math inline">\(\mathbf{A}_{22}^{-1}\)</span> from <span class="math inline">\(\mathbf{H}^{-1}\)</span>.</p>
 <p>Finally, the user should create a separate parameter file to use <code>GimA22i</code> and to omit <span class="math inline">\(\mathbf{A}^{-1}\)</span> in BLUPF90 using <code>omit_ainv</code> or the dummy pedigree file.</p>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 </article>
 </body>
 </html>

@@ -54,6 +54,9 @@
 </ul></li>
 </ul>
 </nav>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 <h1 id="animal-model-with-unknown-parent-groups">Animal model with unknown parent groups</h1>
 <h2 id="short-introduction-to-unknown-parent-groups">Short introduction to unknown parent groups</h2>
 <p>Unknown parent groups (as known as genetic groups or phantom groups) are one of the less-understood concepts in animal breeding. We usually assume the mean breeding value in a base population is 0. The average breeding value by generation or birth year will increase (or decrease) by selection. If we have complete pedigree back to the base population, the complete phenotype used as the selection criterion and an appropriate model to describe the factors for observation, the mixed model can provide an unbiased prediction of breeding values for all animals. But the reality is different. One of the biggest challenges is incomplete pedigree. Many young animals may have no pedigree information in a population undergoing selection. In this case, it is an incorrect assumption that unknown parents belong to the base population. Under the selection, younger animals have significantly higher (or lower) genetic base so their parents should have a nonzero average of breeding values.</p>
@@ -163,6 +166,9 @@ OPTION solv_method FSPAK</code></pre>
 <p>Be aware that the numerical error is large because of the very small data set. Considering the rounding error, those values are at a similar level to the textbook.</p>
 <p>This analysis provides us caution about the solutions of breeding values from unknown parent groups. Depending on methods or constraints, we obtain the infinite number of solutions because there is a dependency between the group effect and the other fixed effects. The raw solutions have already included the group effects, so we should look at the difference between the two solutions for comparison. A better way to express the breeding value is to adjust it with the average of animals with a similar condition. For example, in dairy cattle, the estimated breeding value is adjusted with the average of breeding values for cows born in a specific year. Such a reference population is called a genetic base. In a population undergoing selection, the average breeding value is continuously increasing (or decreasing) so the genetic base should be revised every few years.</p>
 <p>One more caution must be given. When using UPG, the square root of the prediction error variance in the solution file (available by <code>OPTION sol se</code>) will be nonsense. This is because the prediction is a combination of BLUE and BLUP (<span class="math inline">\(\mathbf{Qg}+\mathbf{u}\)</span>) and the corresponding element of the inverse of the left-hand side matrix does not give the prediction error variance. If you want to have PEV of the breeding value, you have to use a workaround — just to use the non-UPG model for the PEV computation.</p>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 </article>
 </body>
 </html>

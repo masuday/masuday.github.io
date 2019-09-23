@@ -56,6 +56,9 @@
 </ul></li>
 </ul>
 </nav>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 <h1 id="tuning-and-inputoutput-of-relationship-matrices">Tuning and input/output of relationship matrices</h1>
 <p>Stability of single-step GBLUP depends on the characteristic of <span class="math inline">\(\mathbf{H}^{-1}\)</span> , which contains <span class="math inline">\(\mathbf{G}^{-1}\)</span> and <span class="math inline">\(\mathbf{A}_{22}^{-1}\)</span>. We have several ways to adjust <span class="math inline">\(\mathbf{G}\)</span> and <span class="math inline">\(\mathbf{G}^{-1}\)</span> to obtain reasonable results in the genomic analysis. There are also several options to harmonize between <span class="math inline">\(\mathbf{G}^{-1}\)</span> and <span class="math inline">\(\mathbf{A}_{22}^{-1}\)</span>. We will introduce the ideas as well as the options needed.</p>
 <h2 id="construction-of-mathbfg">Construction of <span class="math inline">\(\mathbf{G}\)</span></h2>
@@ -117,7 +120,7 @@ OPTION saveGInverse    # save G-inverse to a file &#39;Gi&#39;</code></pre>
 </ul>
 <p>We should mention that the options saveGInverse and saveA22Inverse save the scaled matrices with <span class="math inline">\(\tau\)</span> and <span class="math inline">\(\omega\)</span>. This would be a serious problem if you read the matrices from the files.</p>
 <h2 id="input-options">Input options</h2>
-<p>The program can read the matrices from files. In this case, the program does not calculate the matrix from the marker file or the pedigree file. If you read an inverse matrix from a file, the program could skip creating the original matrix. By default, the program reads only a binary file; with option <code>OPTION saveAscii</code> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, the programs read a text file. The following options are available.</p>
+<p>The program can read the matrices from files. In this case, the program does not calculate the matrix from the marker file or the pedigree file. If you read an inverse matrix from a file, the program could skip creating the original matrix. By default, the program reads only a binary file; with option <code>OPTION saveAscii</code> <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, the programs read a text file. The following options are available.</p>
 <pre data-language="blupf90"><code>OPTION readA22 file          # read A22                        [ default : &#39;A22&#39;]
 OPTION readA22Inverse file   # read A22-inverse                [ default : &#39;A22i&#39;]
 OPTION readG file            # read G                          [ default : &#39;G&#39;]
@@ -134,12 +137,15 @@ OPTION readGimA22i file      # read (G-inverse - A22-inverse ) [ default: &#39;G
 <li>When reading the file, the scaling factors can be specified.</li>
 </ol>
 <p>This strategy is really important to perform the analysis many times with different <span class="math inline">\(\tau\)</span> and <span class="math inline">\(\omega\)</span> parameters.</p>
-<section class="footnotes" role="doc-endnotes">
+<section class="footnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>Yes, use <code>OPTION saveAscii</code>, because <code>OPTION readAscii</code> does not exist.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩</a></p></li>
+<li id="fn1"><p>Yes, use <code>OPTION saveAscii</code>, because <code>OPTION readAscii</code> does not exist.<a href="#fnref1" class="footnote-back">↩</a></p></li>
 </ol>
 </section>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 </article>
 </body>
 </html>

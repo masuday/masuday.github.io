@@ -54,6 +54,9 @@
 </ul></li>
 </ul>
 </nav>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 <h1 id="gwas-using-the-ssgblup-framework">GWAS using the ssGBLUP framework</h1>
 <p>The single-step GBLUP methodology has been extended to be capable of genome-wide association study (GWAS). This is an iterative procedure with 2 steps: 1) prediction of GEBV with ssGBLUP and 2) prediction of SNP marker effects based on the GEBV. Here we call this method ssGWAS. The detailed algorithm was described by Wang et al. (2012).</p>
 <h2 id="algorithm">Algorithm</h2>
@@ -94,22 +97,27 @@ w_i = 1.125^{ \frac{|\hat{u}_i|}{\sqrt{var\hat{u}}} -2}
 <p>The first 2 programs are needed only once in the very first step. If your data is well prepared, you just run BLUPF90 and POSTGSF90 repeatedly. In this case, it is easier to understand for a user to directly use BLUPF90 to create <span class="math inline">\(\mathbf{G}\)</span> and calculate the solutions of GEBV in the same program.</p>
 <h2 id="numerical-example">Numerical example</h2>
 <h3 id="files">Files</h3>
-<p>We will use the similar files used in the summer course at the UGA in 2012.</p>
+<p>We will use the similar numerical-examples used in the summer course at the UGA in 2012. I made some corrections on the files. The modified package is available at the author’s repository.</p>
 <ul>
-<li><a href="http://nce.ads.uga.edu/wiki/lib/exe/fetch.php?media=lab_gwas.zip" class="uri">http://nce.ads.uga.edu/wiki/lib/exe/fetch.php?media=lab_gwas.zip</a> - <code>lab_gaws.zip</code></li>
+<li><code>lab_gwas_mod2019.zip</code> at <a href="https://github.com/masuday/data/blob/master/tutorial/examples/genomic_analysis/" class="uri">https://github.com/masuday/data/blob/master/tutorial/examples/genomic_analysis/</a></li>
 </ul>
-<p>We made some corrections on the files. Download the zip package and extract it to your computer. It has several files like</p>
+<p>Download the zip package and extract it to your computer. It has several files as follows.</p>
 <ul>
 <li><code>phenotypes.txt</code> = observation data file</li>
 <li><code>pedigree</code> = pedigree file</li>
 <li><code>marker.geno.clean</code> = marker file</li>
-<li><code>chemap</code> = chromosome map file</li>
-<li><code>w</code> = weight file</li>
+<li><code>chrmap.txt</code> = chromosome map file</li>
+<li><code>w</code> = the default weight file</li>
 <li><code>renum.par</code> = instruction file for RENUMF90</li>
 </ul>
-<p>We will start with RENUMF90 to prepare the data set.</p>
+<p>The package also has two Bash scripts to automate the process in renumbering and ssGWAS. I do not explain how it works – you can try the following scripts after you finish reading all the content in the following sections.</p>
+<ul>
+<li><code>run_renum.sh</code> = for renumbering, and for generating the parameter files</li>
+<li><code>run_ssgwas.sh</code> = for iterative ssGWAS with BLUPF90 and POSTGSF90</li>
+</ul>
+<p>The files have been created on Linux (or macOS), and some Windows editors may not show the content correctly because of the “return” code. You can see some more files in the directory, but such files will not be used in this section. We will start with RENUMF90 to prepare the data set.</p>
 <h2 id="preparation">Preparation</h2>
-<p>First, we run RENUMF90 to generate the required files. After renumbering, we can see <code>renf90.par</code>, a template parameter file. We make 2 copies of this template; one is for BLUPF90 and another one is for POSTGSF90. Here, we use <code>param_ssgwas1a.txt</code> as the parameter file for BLUPF90 and <code>param_ssgwas1b.txt</code> for POSTGSF90.</p>
+<p>First, we run RENUMF90 to generate the required files. After renumbering, we can see <code>renf90.par</code>, a template parameter file. We make 2 copies of this template; one is for BLUPF90 and another one is for POSTGSF90. Here, we use <code>param_ssgwas1a.txt</code> as the parameter file for BLUPF90 and <code>param_ssgwas1b.txt</code> for POSTGSF90. The parameter files are availabe at the author’s Github repository: <a href="https://github.com/masuday/data/tree/master/tutorial" class="uri">https://github.com/masuday/data/tree/master/tutorial</a>.</p>
 <p>BLUPF90 will generate <span class="math inline">\(\mathbf{G}\)</span> with weights, supplied as a weight file (see the previous section). The zip package contains a weight file (<code>w</code>), and the option in the parameter file refers to the weight file. Following is the whole parameter file for BLUPF90.</p>
 <pre data-language="blupf90" data-caption="param_ssgwas1a.txt"><code>#
 # This is for BLUPF90
@@ -193,14 +201,20 @@ OPTION chrinfo chrmap.txt</code></pre>
 <li>Chromosome</li>
 <li>Position</li>
 </ol></li>
-<li><p><code>dgv</code> = Direct genomic values for genotyped animal. It has 5 columns.</p>
-<ol type="1">
-<li>Trait</li>
-<li>Effect</li>
-<li>Animal ID</li>
-<li>DGV (direct genomic value) = <span class="math inline">\(-\sum_{j\neq i}g^{ij}\hat{u}_{j}\Big/g^{ii}\)</span>; see Lourenco et al. (2015).</li>
-<li>PP (pedigree prediction) = <span class="math inline">\(-\sum_{j\neq i}a_{22}^{ij}\hat{u}_{j}\Big/a_{22}^{ii}\)</span>; see Lourenco et al. (2015).</li>
-</ol></li>
+</ul>
+<!--
+By default, POSTGSF90 does not create the `dgv` file.
+The option `OPTION snp_effect_dgv` will create this file.
+
+- `dgv` = Direct genomic values for genotyped animal. It has 5 columns.
+
+     1. Trait
+     2. Effect
+     3. Animal ID
+     4. DGV (direct genomic value) = $-\sum_{j\neq i}g^{ij}\hat{u}_{j}\Big/g^{ii}$; see Lourenco et al. (2015).
+     5. PP (pedigree prediction) = $-\sum_{j\neq i}a_{22}^{ij}\hat{u}_{j}\Big/a_{22}^{ii}$; see Lourenco et al. (2015).
+-->
+<ul>
 <li><p><code>snp_pred</code> = Used in the program to predict GEBV based on the SNP effects. A user doesn’t have to know the exact format.</p></li>
 <li><p><code>Sft1e2.gnuplot</code> and <code>Sft1e2.R</code> = Scripts to draw Manhattan plots with Gnuplot and R. Each script reads <code>chrsnp</code>.</p></li>
 </ul>
@@ -219,6 +233,9 @@ OPTION chrinfo chrmap.txt</code></pre>
 <li>Indirect prediction of GEBV (based on <span class="math inline">\(\mathbf{\hat{a}} = \mathbf{Z\hat{u}}\)</span>).</li>
 </ol>
 <p>In other words, the prediction for an animal is the sum, according to its genotypes, of the estimated SNP effects, as estimated in the overall ssGBLUP analyses. This approach is useful especially in a case where there are many young genotyped animals but many of them shouldn’t be included in ssGBLUP analysis because these are <em>interim</em> analysis between two full genomic evaluations or for other reasons.</p>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 </article>
 </body>
 </html>

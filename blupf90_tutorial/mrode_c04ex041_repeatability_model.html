@@ -53,6 +53,9 @@
 </ul></li>
 </ul>
 </nav>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 <h1 id="repeatability-model">Repeatability model</h1>
 <h2 id="model">Model</h2>
 <p>A repeatability model is an animal model applicable when an animal has more than 1 observations. In such a case, we can split the residual effect into 2: “true” temporary environmental effect and a permanent environmental effect which belongs to the animal. So the model contains 2 kinds of animal effects (additive genetic and permanent environmental effects).</p>
@@ -109,6 +112,9 @@ OPTION solv_method FSPAK</code></pre>
 <p>There is a trick to manually put user-defined zero-constraints on the mixed model equations. You can replace the target effect code in the data file with 0. This technique has been introduced in the previous section for unknown parent groups. The alternative data file (<code>data_mr04a1.txt</code>) provides the same solutions shown in the text file.</p>
 <p>In the textbook, the author puts constraints on HYS 1 and 3. The 5th column in the above file has 0 for HYS 1 and 3. You can rewrite the parameter file to read the new data file; just change the <code>DATAFILE</code> block. Run BLUPF90 with the modified parameter file, and you can see different solutions.</p>
 <p>Be careful if you use the manual constraints. If you put too many constraints on the equation, the solutions will make no sense.</p>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 </article>
 </body>
 </html>

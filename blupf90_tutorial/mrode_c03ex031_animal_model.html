@@ -54,6 +54,9 @@
 </ul></li>
 </ul>
 </nav>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 <h1 id="animal-model">Animal model</h1>
 <h2 id="model">Model</h2>
 <!--
@@ -241,6 +244,9 @@ OPTION sol se</code></pre>
    1   2         8          0.18261469          0.64989549</code></pre>
 <p>This parameter file will provide the same solutions as before. An advantage of this method is to possibly reduce the numerical error because of <span class="math inline">\(\sigma_e^2=1\)</span>, which doesn’t add the noise to the equations. We square the <code>s.e.</code> to obtain a diagonal element of the inverse of the left-hand side matrix. You can calculate the reliability or accuracy of the estimated breeding value by hand.</p>
 <p>For example, the diagonal element for animal 1 is <span class="math inline">\(d_1 = 0.68636303^2 \approx 0.471\)</span> which is the same as the reference value in the textbook (pp.45). The <span class="math inline">\(\mathrm{PEV}\)</span> for animal 1 is <span class="math inline">\(\mathrm{PEV}_1 = d_i\sigma_e^2= 0.471 \times 40 = 18.84\)</span>. The standard error of prediction is <span class="math inline">\(\mathrm{SEP}_1 = \sqrt{\mathrm{PEV}_1} = \sqrt{18.84} = 4.341\)</span> which is also the same as the textbook. The reliability for animal 1 is <span class="math inline">\(r^2 = 1 - \mathrm{SEP}^2 /\sigma_u^2 = 1 - \mathrm{PEV}/\sigma_u^2 = 1 - 18.84/20 = 0.058\)</span>. You can confirm that this rule is true for the other animals.</p>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 </article>
 </body>
 </html>

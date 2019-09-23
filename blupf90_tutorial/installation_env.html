@@ -51,6 +51,9 @@
 </ul></li>
 </ul>
 </nav>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 <h1 id="additional-settings">Additional settings</h1>
 <p>The BLUPF90 programs may use a lot of memory especially when the data set is large and a genomic model is applied. The big memory-consumption often results in a program crash with the error <em>segmentation fault</em> (or <em>bus error</em>). A segmentation fault occurs when a program tries to access an inappropriate memory area or to access it with an abnormal way. Note that this error may happen even if your computer has a lot of free memory. The operating system (Linux, macOS, or Windows) has a limitation of memory consumption by a program. Strictly, the system limits the amount of memory called <em>stack</em>, and our programs consume a lot of stack memory to get the maximum performance.</p>
 <p>It is a common error with a big data set, you may hit it when you update the program (i.e., when using a new version) with the same files used as before. A small modification in the code may change the memory-management strategy in the program.</p>
@@ -79,6 +82,9 @@
 <pre data-language="shell"><code>set OMP_STACKSIZE=64M</code></pre>
 <p>If you close this window, the setting is lost. So, you have to run BLUPF90 programs in this session just after typing this command. If you make this permanent, use the Control Panel. For details, please search the keywords like <code>windows, environment, variable</code> on the Internet by search engines.</p>
 <p>The stack size for OpenMP should be the number plus unit like 64M for 64 megabytes. First, try 64M, and if you still see the problem, increase the number to 128M or more. The too big number will consume a lot of memory because each thread can use this amount of memory. The suitable value is up to your computer, so please find it empirically.</p>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 </article>
 </body>
 </html>

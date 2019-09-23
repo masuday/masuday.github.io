@@ -52,6 +52,9 @@
 </ul></li>
 </ul>
 </nav>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 <h1 id="inversion-of-the-dominance-matrix">Inversion of the dominance matrix</h1>
 <h2 id="model">Model</h2>
 <p>A rapid algorithm to calculate <span class="math inline">\(\mathbf{D}^{-1}\)</span> (ignoring inbreeding) was developed by Hoeschele and VanRaden (1991). Their method was derived from the parental subclass effects <span class="math inline">\(\mathbf{f}\)</span> and its covariance matrix <span class="math inline">\(\mathbf{F}\)</span>. The dominance effect is an interaction of genes, and the effect is inherited through the combination of parents and ancestors rather than through individuals. Therefore, the dominance variation can be described with the combination of ancestral animals. Here we just introduce the idea of parental subclasses. See the original paper or the textbook for the detailed algorithm for the inverse.</p>
@@ -148,6 +151,9 @@ OPTION solv_method FSPAK</code></pre>
 <p>With the keyword <code>par_domin</code>, BLUPF90 creates <span class="math inline">\(\mathbf{F}^{-1}\)</span> from the dominance pedigree file. Note that the parental subclass variance is one quarter of the dominance variance (<span class="math inline">\(\sigma_f^2=\sigma_d^2/4 = 80/4 = 20\)</span>). The remaining variance goes into the residual variance (<span class="math inline">\(120 + 60 = 180\)</span>).</p>
 <p>You can run BLUPF90 with this parameter file. The solutions are similar in BLUE and BLUP for the additive effects compared with the previous results. The predictions for parental dominance are not equivalent to the previous results. In this analysis, we just consider the quarter of dominance variance through <span class="math inline">\(\mathbf{F}^{-1}\)</span>. For the precise prediction of the dominance effects, a user should use the software that fully supports the dominance effect. As we mentioned before, however, the parameter file is still useful for variance component estimation with a dominance model.</p>
 <p>What is the most efficient way to create a dominance pedigree file? A renumbering program RENDOMN supports generating the file. This program is based on the old design and different usage compared to RENUMF90. A solver supporting a dominance model is JAADOMN which is also old software. You can find the programs at <a href="http://nce.ads.uga.edu/~ignacy/numpub/dominance/" class="uri">http://nce.ads.uga.edu/~ignacy/numpub/dominance/</a>.</p>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 </article>
 </body>
 </html>

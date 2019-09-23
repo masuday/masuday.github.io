@@ -54,10 +54,13 @@
 </ul></li>
 </ul>
 </nav>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 <h1 id="multiple-trait-model-with-unequal-design-matrix">Multiple-trait model with unequal design matrix</h1>
 <h2 id="model">Model</h2>
 <p>When each trait has a different model, the design matrices are unequal. Even in this case, the matrix notation of the model and the mixed model equations are the same described as before.</p>
-<p>BLUPF90 can handle a multiple-trait model with unequal design matrices in 2 ways. Both approaches provide the same results so the difference is only from a user’s preference <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<p>BLUPF90 can handle a multiple-trait model with unequal design matrices in 2 ways. Both approaches provide the same results so the difference is only from a user’s preference <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
 <h2 id="files">Files</h2>
 <p>The data are shown in the textbook at p.81, as a file <code>data_mr05c.txt</code>. This contains 2 different class effects and each trait takes an alternative one.</p>
 <ol type="1">
@@ -131,12 +134,15 @@ pedigree_mr05c.txt
 OPTION solv_method FSPAK</code></pre>
 <p>In this parameter file, the fixed effect for each trait is separately defined. The column number will be 0 for a trait which doesn’t need the effect. In this case, the first line describes the effect <span class="math inline">\(HYS_1\)</span> and only the first trait needs this effect (so you should put 0 to the second trait). Note that the Gibbs sampling programs (including GIBBS2F90 and THRGIBBS1F90) accept only this style.</p>
 <p>You can immediately find the results are identical to the previous ones. Some effects (<span class="math inline">\(HYS_1\)</span> for trait 2 and <span class="math inline">\(HYS_2\)</span> for trait 1) are not estimated because they are not defined in the parameter file.</p>
-<section class="footnotes" role="doc-endnotes">
+<section class="footnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>Gibbs sampling programs accept only 1 way out of 2 ways.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩</a></p></li>
+<li id="fn1"><p>Gibbs sampling programs accept only 1 way out of 2 ways.<a href="#fnref1" class="footnote-back">↩</a></p></li>
 </ol>
 </section>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 </article>
 </body>
 </html>

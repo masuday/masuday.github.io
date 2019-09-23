@@ -54,6 +54,9 @@
 </ul></li>
 </ul>
 </nav>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 <h1 id="the-threshold-model">The threshold model</h1>
 <h2 id="model">Model</h2>
 <p>Some traits show categorical responses which can be potentially ordered by degree e.g., calving difficulty (easy, slightly difficult, or difficult) and disease (no treatment needed, treated, or died). For such traits, although the phenotype is not continuous, we can still assume that both genetic and environmental factors affect the traits and there is the polygenic effect. In this case, it is a reasonable model that each animal has a non-observable, hypothetical random variable like a phenotype in a continuous trait, and such a variable contributes to the categorical response. In this model, various factors can contribute to the underlying variable. When the variable exceeds a certain level, it expresses the different category of response. This is a basic idea of the threshold model and the variable is called liability and the level is known as the threshold. The liability is usually assumed to be normally distributed in an underlying scale. We can apply a linear model to the underlying variable. In this theory, the number of thresholds is equivalent to the number of categories minus 1.</p>
@@ -171,7 +174,7 @@ P_{13} &amp;= 1 - \Phi(t_2 - \hat{h}_1 - \hat{c}_2 - \hat{u}_1) = 0.044
 <p>The first one, which is minor, is over-constraint equations. The author put 2 zero-constraint to the equations. Although the left-hand side (LHS) of the equations has very small 2 eigenvalues, it is not small enough to drop the rank of LHS. The problem is in the linear model. The author put the same constraints to the corresponding linear model analysis but it is inappropriate.</p>
 <p>The second one is from fixed thresholds with <span class="math inline">\(\sigma_e^2 = 1.0\)</span>. When the number of categories (<span class="math inline">\(c\)</span>) is 2 i.e. binary traits, there is only 1 threshold and its value can be arbitrarily fixed. When <span class="math inline">\(c = 3\)</span>, we have 2 ways to parameterize the thresholds: 1) one threshold is fixed and another threshold is estimated, or 2) both thresholds are fixed and <span class="math inline">\(\sigma_e^2\)</span> is estimated (i.e. <span class="math inline">\(\sigma_e^2\)</span> is no longer fixed to 1.0). With the latter parameterization, we need to estimate <span class="math inline">\(c-3\)</span> threshold parameters in addition to <span class="math inline">\(\sigma_e^2\)</span>. THRGIBBS1F90 uses this parameterization, so we need appropriate <span class="math inline">\(\sigma_e^2\)</span> instead of 1.0 for the fixed thresholds. In the above example, the residual variance was not appropriate. A question is why this software implements the model in this way. In the variance component estimation using Gibbs sampling for a threshold model with 3 or more categories (2 or more thresholds), the convergence rate for a threshold parameter is very slow. The sampling of residual variance is a better strategy when 2 or more thresholds are assumed in the model. See Sorensen et al. (1995) or Wang et al. (1997) for the detailed discussion. Thus, it may happen that <code>OPTION fixed_var mean</code> is not such a good idea. You may explore this by yourself.</p>
 <h2 id="reasonable-solutions">Reasonable solutions</h2>
-<p>In this subsection, we will find ways to obtain the same solutions to the textbook. First, we try CBLUPF90THR which is available from our web server. This program supports the computation of 2 or more thresholds in a single-trait threshold model. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>In this subsection, we will find ways to obtain the same solutions to the textbook. First, we try CBLUPF90THR which is available from our web server. This program supports the computation of 2 or more thresholds in a single-trait threshold model. <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
 <p>The program implements Hoeschele et al. (1995) which generalized Foulley et al. (1983) and Janss and Foulley (1993) with some unpublished work by Richard Quaas (presented at a meeting of Beef Improvement Federation).</p>
 <p>The following results are from the program with the same parameter file with many iterations enough to converge (100 rounds here).</p>
 <pre data-language="text" data-caption="solutions"><code>trait/effect level  solution
@@ -203,12 +206,15 @@ P_{13} &amp;= 1 - \Phi\left( \frac{t_2 - \hat{h}_1 - \hat{c}_2 - \hat{u}_1}{\sig
 \end{aligned}
 \]</span></p>
 <p>Again, <span class="math inline">\(\sigma_e\)</span> is the standard deviation of residual variance (<span class="math inline">\(\sqrt{\sigma_e^2}\)</span>) because the formula is based on the standardization of the latent variable. The probabilities are very similar to the reference results for all sires (p.229).</p>
-<section class="footnotes" role="doc-endnotes">
+<section class="footnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>Actually, it supports a multiple-trait model with one threshold trait and many linear traits.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩</a></p></li>
+<li id="fn1"><p>Actually, it supports a multiple-trait model with one threshold trait and many linear traits.<a href="#fnref1" class="footnote-back">↩</a></p></li>
 </ol>
 </section>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 </article>
 </body>
 </html>

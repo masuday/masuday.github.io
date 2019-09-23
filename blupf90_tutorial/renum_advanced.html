@@ -56,6 +56,9 @@
 </ul></li>
 </ul>
 </nav>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 <h1 id="advanced-usage-of-renumf90">Advanced usage of RENUMF90</h1>
 <p>In this section, we will introduce some advanced features in RENUMF90. We commonly use the following raw data and pedigree file. The files come from the multiple-trait model shown in the previous chapter.</p>
 <pre data-language="text" data-caption="rawdata9.txt"><code>  ID006  A  1  1.0  3.0  4.5
@@ -246,7 +249,7 @@ in_pedigrees
 10 6 9 1 0 2 1 0 0 ID014
 15 16 18 3 0 0 0 0 1 ID003</code></pre>
 <h2 id="considering-inbreeding-coefficients-in-mathbfa-1">Considering inbreeding coefficients in <span class="math inline">\(\mathbf{A}^{-1}\)</span></h2>
-<p>By default, RENUMF90 creates a pedigree file which will result in <span class="math inline">\(\mathbf{A}^{-1}\)</span> without inbreeding. To put inbreeding coefficients in <span class="math inline">\(\mathbf{A}^{-1}\)</span>, you have to generate a special, renumbered pedigree-file by RENUMF90 using the <code>INBREEDING</code> keyword.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> This keyword should be placed after <code>UPG_TYPE</code>.</p>
+<p>By default, RENUMF90 creates a pedigree file which will result in <span class="math inline">\(\mathbf{A}^{-1}\)</span> without inbreeding. To put inbreeding coefficients in <span class="math inline">\(\mathbf{A}^{-1}\)</span>, you have to generate a special, renumbered pedigree-file by RENUMF90 using the <code>INBREEDING</code> keyword.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> This keyword should be placed after <code>UPG_TYPE</code>.</p>
 <p>The basic usage of this option is shown below.</p>
 <pre data-language="renumf90"><code>INBREEDING
 pedigree</code></pre>
@@ -427,12 +430,15 @@ pedigree
 </tr>
 </tbody>
 </table>
-<section class="footnotes" role="doc-endnotes">
+<section class="footnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>Technically, the alternative, renumbered pedigree-file has the same as the standard one except for the 4th column. In the alternative pedigree, the 4th column has a special 4-digit integer (inb/upg code) which combines the inbreeding coefficients and the number of missing parents. Although the user can manually calculate the code, this process may be complicated, and I recommend the user to use RENUMF90 to generate the pedigree file with such a code.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩</a></p></li>
+<li id="fn1"><p>Technically, the alternative, renumbered pedigree-file has the same as the standard one except for the 4th column. In the alternative pedigree, the 4th column has a special 4-digit integer (inb/upg code) which combines the inbreeding coefficients and the number of missing parents. Although the user can manually calculate the code, this process may be complicated, and I recommend the user to use RENUMF90 to generate the pedigree file with such a code.<a href="#fnref1" class="footnote-back">↩</a></p></li>
 </ol>
 </section>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 </article>
 </body>
 </html>

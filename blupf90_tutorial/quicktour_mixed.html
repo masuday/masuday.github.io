@@ -55,6 +55,9 @@
 </ul></li>
 </ul>
 </nav>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 <h1 id="trivial-analyses-for-mixed-models">Trivial analyses for mixed models</h1>
 <p>In this section, we perform mixed model analyses using BLUPF90. We start with a simple mixed model (random effects, unrelated to each other) and finally consider pedigree information.</p>
 <p>If you perform the simple mixed model, BLUPF90 needs only 2 files (data and parameter file), which are the same as explained in the previous section. If you consider pedigree, in addition to the data and the parameter file, a pedigree file has to be prepared.</p>
@@ -63,7 +66,7 @@
 y_{ijk} = A_i + S_j + \beta x_{ijk} + e_{ijk}
 \]</span> where <span class="math inline">\(y_{ijk}\)</span> is an observation, <span class="math inline">\(A_i\)</span> is a fixed effect, <span class="math inline">\(S_j\)</span> is a random effect, <span class="math inline">\(\beta\)</span> is a regression coefficient, <span class="math inline">\(x_{ijk}\)</span> is a covariate, and <span class="math inline">\(e_{ij}\)</span> is the residual effect. The model in matrix notation will be <span class="math display">\[
 \mathbf{y} = \mathbf{Xb} + \mathbf{Zu} + \mathbf{e}
-\]</span> where <span class="math inline">\(\mathbf{y}\)</span> is a vector of observations, <span class="math inline">\(\mathbf{b}\)</span> is a vector of fixed effects, <span class="math inline">\(\mathbf{u}\)</span> is a vector of random effects, <span class="math inline">\(\mathbf{e}\)</span> is a vector of residuals, <span class="math inline">\(\mathbf{X}\)</span> and <span class="math inline">\(\mathbf{Z}\)</span> are incidence matrices. In a general form, we can write <span class="math inline">\(\mathrm{var}(\mathbf{u}) = \mathbf{G}\)</span><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> and <span class="math inline">\(\mathrm{var}(\mathbf{e}) = \mathbf{R}\)</span> and the mixed model equations should be <span class="math display">\[
+\]</span> where <span class="math inline">\(\mathbf{y}\)</span> is a vector of observations, <span class="math inline">\(\mathbf{b}\)</span> is a vector of fixed effects, <span class="math inline">\(\mathbf{u}\)</span> is a vector of random effects, <span class="math inline">\(\mathbf{e}\)</span> is a vector of residuals, <span class="math inline">\(\mathbf{X}\)</span> and <span class="math inline">\(\mathbf{Z}\)</span> are incidence matrices. In a general form, we can write <span class="math inline">\(\mathrm{var}(\mathbf{u}) = \mathbf{G}\)</span><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> and <span class="math inline">\(\mathrm{var}(\mathbf{e}) = \mathbf{R}\)</span> and the mixed model equations should be <span class="math display">\[
 \left[
 \begin{array}{ll}
 \mathbf{X}&#39;\mathbf{R}^{-1}\mathbf{X} &amp; \mathbf{X}&#39;\mathbf{R}^{-1}\mathbf{Z} \\
@@ -163,7 +166,7 @@ FILE
 
 (CO)VARIANCES
 1.0</code></pre>
-<p>The first 7 keywords are the same as used in the fixed effect models. To define the random effect, we use 4 extra keywords<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> just placed after the common keywords.</p>
+<p>The first 7 keywords are the same as used in the fixed effect models. To define the random effect, we use 4 extra keywords<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> just placed after the common keywords.</p>
 <ol type="1">
 <li><code>RANDOM GROUP</code> = showing which effect is random in the <code>EFFECTS</code> block
 <ul>
@@ -399,13 +402,16 @@ FILE
 <li>You should manually add the general mean if you use a random effect model.</li>
 <li>With <code>add_animal</code>, inbreeding is ignored in the calculation of <span class="math inline">\(\mathbf{A}^{-1}\)</span>.</li>
 </ul>
-<section class="footnotes" role="doc-endnotes">
+<section class="footnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>This <span class="math inline">\(\mathbf{G}\)</span> does not mean the genomic relationship matrix. This is the traditional notation describing a covariance structure of random effects.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩</a></p></li>
-<li id="fn2" role="doc-endnote"><p>The common 7 keywords build the design-matrix parts in the mixed model equations i.e., <span class="math inline">\(\mathbf{X}&#39;\mathbf{X}\)</span>, <span class="math inline">\(\mathbf{X}&#39;\mathbf{Z}\)</span>, <span class="math inline">\(\mathbf{Z}&#39;\mathbf{X}\)</span> and <span class="math inline">\(\mathbf{Z}&#39;\mathbf{Z}\)</span>. The additional 4 keywords provide the covariance structure, and <span class="math inline">\(\mathbf{G}^{-1}\)</span><a href="#fnref2" class="footnote-back" role="doc-backlink">↩</a></p></li>
+<li id="fn1"><p>This <span class="math inline">\(\mathbf{G}\)</span> does not mean the genomic relationship matrix. This is the traditional notation describing a covariance structure of random effects.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>The common 7 keywords build the design-matrix parts in the mixed model equations i.e., <span class="math inline">\(\mathbf{X}&#39;\mathbf{X}\)</span>, <span class="math inline">\(\mathbf{X}&#39;\mathbf{Z}\)</span>, <span class="math inline">\(\mathbf{Z}&#39;\mathbf{X}\)</span> and <span class="math inline">\(\mathbf{Z}&#39;\mathbf{Z}\)</span>. The additional 4 keywords provide the covariance structure, and <span class="math inline">\(\mathbf{G}^{-1}\)</span><a href="#fnref2" class="footnote-back">↩</a></p></li>
 </ol>
 </section>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 </article>
 </body>
 </html>

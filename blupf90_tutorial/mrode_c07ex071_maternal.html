@@ -53,6 +53,9 @@
 </ul></li>
 </ul>
 </nav>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 <h1 id="animal-model-for-a-maternal-trait">Animal model for a maternal trait</h1>
 <h2 id="model">Model</h2>
 <p>For some traits, especially defined early in an animal’s life, the phenotypes are largely affected by its dam. For example, weaning weight is expected to be associated with its dam’s milk yield. The dam provides an environment for its progeny to increase (or decrease) their phenotypic values. The dam’s contribution is assumed to consists of genetic and environmental factors. Also, the animal model includes the dam’s contribution originally from a non-genetic background.</p>
@@ -142,18 +145,21 @@ FILE
 (CO)VARIANCES
 40.0
 OPTION solv_method FSPAK</code></pre>
-<p>In this model, we consider 5 effects (herd, pen, direct genetic, maternal genetic and maternal environmental effects). The first 2 effects are fixed. The 3rd effect is for direct genetic effects so the number of levels should be 14 (i.e. the number of animals found in the pedigree). The 4th effect is for maternal genetic effect; here you can put the position of dam’s ID. Note that the number of levels must be 14 because the maternal effect is correlated with the direct effect and the direct effect has 14 levels (in the pedigree). In other words, each animal has both direct breeding value and maternal breeding value and the solutions will be calculated for all 14 animals. The 5th column is for maternal permanent environmental effect. This effect doesn’t consider the pedigree file; it will only be estimated for dams with records in the data file. So the number of levels is only 7, because the maximum number of dam ID in the data is 7, although the position of effect is the same as the previous one.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>In this model, we consider 5 effects (herd, pen, direct genetic, maternal genetic and maternal environmental effects). The first 2 effects are fixed. The 3rd effect is for direct genetic effects so the number of levels should be 14 (i.e. the number of animals found in the pedigree). The 4th effect is for maternal genetic effect; here you can put the position of dam’s ID. Note that the number of levels must be 14 because the maternal effect is correlated with the direct effect and the direct effect has 14 levels (in the pedigree). In other words, each animal has both direct breeding value and maternal breeding value and the solutions will be calculated for all 14 animals. The 5th column is for maternal permanent environmental effect. This effect doesn’t consider the pedigree file; it will only be estimated for dams with records in the data file. So the number of levels is only 7, because the maximum number of dam ID in the data is 7, although the position of effect is the same as the previous one.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
 <p>The direct genetic effect and the maternal genetic effect are correlated. These effects are simultaneously listed in <code>RANDOM_GROUP</code>, which has <code>3 4</code>. This is still an animal model and you can specify <code>add_animal</code> and the pedigree file. This is a single-trait model but it has 2 correlated genetic effects so the covariance matrix (<span class="math inline">\(\mathbf{G}_0\)</span>) should be <span class="math inline">\(2 \times 2\)</span> written in <code>(CO)VARIANCES</code>.</p>
 <p>We have one more maternal effect which is an independent random effect. You just put 5 after <code>RANDOM_GROUP</code>. The type is diagonal. You don’t need a pedigree file here. Only one variance component is required in <code>(CO)VARIANCES</code>.</p>
 <h2 id="solutions">Solutions</h2>
 <p>You can confirm that the estimated direct and maternal breeding values are identical to the textbook (p.113).</p>
 <p>As noted in the textbook, this equation has a dependency between fixed effects so we will have an infinite number of solutions for fixed effects. Above solutions are one of them. If you want to obtain the same solutions presented in the textbook, you can replace 1 with 0 for herd number in the data file and run BLUPF90 again. You can see that the solutions for the fixed effects are different from the previous results. The solutions for random effects will remain unchanged.</p>
-<section class="footnotes" role="doc-endnotes">
+<section class="footnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>In this case, even if you put 14 as the number of levels in the 5th effect, the program correctly works. The program can work when you put a larger number of levels than the actual number.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩</a></p></li>
+<li id="fn1"><p>In this case, even if you put 14 as the number of levels in the 5th effect, the program correctly works. The program can work when you put a larger number of levels than the actual number.<a href="#fnref1" class="footnote-back">↩</a></p></li>
 </ol>
 </section>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 </article>
 </body>
 </html>

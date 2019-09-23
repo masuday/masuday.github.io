@@ -53,6 +53,9 @@
 </ul></li>
 </ul>
 </nav>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 <h1 id="reml-estimation-with-large-data">REML estimation with large data</h1>
 <h2 id="background">Background</h2>
 <p>In typical REML computations, there are several bottlenecks. First, the exact solutions of the mixed model equations with the current variance components are needed. This means we should use Gaussian elimination or similar methods (direct methods). The Cholesky factorization is often employed to solve the equations. The LHS of mixed model equations generally contains many zero elements, and the matrix is sparse. Although we can hold only the nonzero elements to save the memory, very complicated operations are needed for the factorization.</p>
@@ -143,6 +146,9 @@ OPTION EM-REML 10</code></pre>
    10.490       19.562       27.782       4.5379
    1.4105       6.4840       4.5379       2.4410</code></pre>
 <p>You can try alternative parameter file without <code>use_yams</code> and <code>EM-REML</code>. Without YAMS, the computations will be slow. Without EM-REML, the estimates diverge in the 1st round. You can also try <code>fact_once</code> and <code>approx_loglike</code>. Although you will not be sure that the options accelerate the computations in this small example, it surely reduces the computing time for a larger analysis.</p>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 </article>
 </body>
 </html>

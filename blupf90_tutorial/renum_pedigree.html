@@ -54,6 +54,9 @@
 </ul></li>
 </ul>
 </nav>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 <h1 id="animal-model-with-pedigree-file">Animal model with pedigree file</h1>
 <h2 id="random-effect-specification">Random effect specification</h2>
 <p>Here we consider a mixed model with 1 or more random effects. Note that, even adding random effects, the renumbered data file will be the same as one for the fixed effect model. Only differences when considering random effects in RENUMF90 are: 1) output parameter file contains statements for random effects and 2) pedigree or related files will be properly processed if needed.</p>
@@ -91,7 +94,7 @@ diagonal
 1.0
 EFFECT           # 3rd effect
 4 cov</code></pre>
-<p>This parameter file is also the same as before except we inserted 2 extra keywords and the corresponding values: the keyword <code>RANDOM</code> with the value <code>diagonal</code> and the keyword <code>(CO)VARIANCES</code> with the value 1.0 just after the definition of effect 2. Basically, RENUMF90 treats the effect as random if <code>RANDOM</code> places after the effect specification; otherwise, the effect is fixed. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>This parameter file is also the same as before except we inserted 2 extra keywords and the corresponding values: the keyword <code>RANDOM</code> with the value <code>diagonal</code> and the keyword <code>(CO)VARIANCES</code> with the value 1.0 just after the definition of effect 2. Basically, RENUMF90 treats the effect as random if <code>RANDOM</code> places after the effect specification; otherwise, the effect is fixed. <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
 <p>This produces the data and parameter files equivalent to ones used in the previous chapter. You can confirm the generated files provides the same solutions as before.</p>
 <h2 id="animal-model">Animal model</h2>
 <h3 id="raw-data">Raw data</h3>
@@ -203,7 +206,7 @@ FILE_POS         ## animal, sire and dam IDs, and two 0s
 12 0 0 3 0 0 0 2 0 ID002
 10 6 9 1 0 2 1 0 0 ID014
 15 0 0 3 0 0 0 0 1 ID003</code></pre>
-<p>Column 1 is for renumbered animal ID, column 2 for sire ID and column 3 for dam ID. The remaining columns contain additional information. The last (10th) column is the original ID. Many of them are actually ignored in BLUPF90. <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> The official manual explains the meaning of each column.</p>
+<p>Column 1 is for renumbered animal ID, column 2 for sire ID and column 3 for dam ID. The remaining columns contain additional information. The last (10th) column is the original ID. Many of them are actually ignored in BLUPF90. <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> The official manual explains the meaning of each column.</p>
 <ol type="1">
 <li>animal number (from 1)</li>
 <li>parent 1 number or unknown parent group number for parent 1</li>
@@ -292,13 +295,16 @@ FILE_POS           ## animal, sire and dam IDs with two 0s
 <li>The animals with records have smaller numbers than animals found only in pedigree.</li>
 <li>RENUMF90 supports more than 1 random effects.</li>
 </ul>
-<section class="footnotes" role="doc-endnotes">
+<section class="footnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>A tricky feature is to omit <code>(CO)VARIANCES</code>. If you don’t put this keyword, RENUMF90 implicitly assumes the variance component is 1.0 by default. We highly recommend to use <code>(CO)VARIANCES</code> option to avoid the confusion.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩</a></p></li>
-<li id="fn2" role="doc-endnote"><p>The 4th column will be used if you put certain options in the parameter file. We don’t explain such options here.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩</a></p></li>
+<li id="fn1"><p>A tricky feature is to omit <code>(CO)VARIANCES</code>. If you don’t put this keyword, RENUMF90 implicitly assumes the variance component is 1.0 by default. We highly recommend to use <code>(CO)VARIANCES</code> option to avoid the confusion.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>The 4th column will be used if you put certain options in the parameter file. We don’t explain such options here.<a href="#fnref2" class="footnote-back">↩</a></p></li>
 </ol>
 </section>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
 </article>
 </body>
 </html>
