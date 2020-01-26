@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<!--==============================================================================
+	           "GitHub HTML5 Pandoc Template" v1.2 — by Tristano Ajmone
+	==============================================================================
+	(c) Tristano Ajmone, 2017, MIT License (MIT). Project's home repository:
+
+	- https://github.com/tajmone/pandoc-goodies
+
+	This template reuses source code taken from the following projects:
+
+	- GitHub Markdown CSS: © Sindre Sorhus, MIT License (MIT):
+	  https://github.com/sindresorhus/github-markdown-css
+
+	- Primer CSS: © 2016 GitHub Inc., MIT License (MIT):
+	  http://primercss.io/
+	==============================================================================-->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Yutaka Masuda" />
+  <title>More on input/output</title>
+  <style type="text/css">@font-face{font-family:octicons-link;src:url(data:font/woff;charset=utf-8;base64,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) format('woff')}.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#24292e;font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";font-size:16px;line-height:1.5;word-wrap:break-word;box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto;padding:45px}.markdown-body .octicon{display:inline-block;fill:currentColor;vertical-align:text-bottom}.markdown-body a{background-color:transparent;-webkit-text-decoration-skip:objects;color:#0366d6;text-decoration:none}.markdown-body a:active,.markdown-body a:hover{outline-width:0}.markdown-body h1{margin:.67em 0}.markdown-body img{border-style:none}.markdown-body svg:not(:root){overflow:hidden}.markdown-body code,.markdown-body kbd,.markdown-body pre{font-family:monospace,monospace}.markdown-body input{font:inherit;margin:0;overflow:visible;font-family:inherit;font-size:inherit;line-height:inherit}.markdown-body [type=checkbox]{box-sizing:border-box;padding:0}.markdown-body *{box-sizing:border-box}.markdown-body a:hover{text-decoration:underline}.markdown-body strong{font-weight:600}.markdown-body hr{box-sizing:content-box;overflow:hidden;background:0 0;border-bottom:1px solid #dfe2e5}.markdown-body hr::before{display:table;content:""}.markdown-body hr::after{display:table;clear:both;content:""}.markdown-body table{border-spacing:0;border-collapse:collapse;display:block;width:100%;overflow:auto}.markdown-body td,.markdown-body th{padding:0}.markdown-body blockquote{margin:0}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol{list-style-type:lower-alpha}.markdown-body dd{margin-left:0}.markdown-body code{font-family:SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace}.markdown-body pre{font:12px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;word-wrap:normal}.markdown-body .pl-0{padding-left:0!important}.markdown-body .pl-1{padding-left:4px!important}.markdown-body .pl-2{padding-left:8px!important}.markdown-body .pl-3{padding-left:16px!important}.markdown-body .pl-4{padding-left:24px!important}.markdown-body .pl-5{padding-left:32px!important}.markdown-body .pl-6{padding-left:40px!important}.markdown-body::before{display:table;content:""}.markdown-body::after{display:table;clear:both;content:""}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:0}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e1e4e8;border:0}.markdown-body blockquote{padding:0 1em;color:#6a737d;border-left:.25em solid #dfe2e5}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd{font-size:11px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#1b1f23;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1{padding-bottom:.3em;font-size:2em;border-bottom:1px solid #eaecef}.markdown-body h2{padding-bottom:.3em;font-size:1.5em;border-bottom:1px solid #eaecef}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#6a737d}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table th{font-weight:600}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #dfe2e5}.markdown-body table tr{background-color:#fff;border-top:1px solid #c6cbd1}.markdown-body table tr:nth-child(2n){background-color:#f6f8fa}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f6f8fa;border-radius:3px}.markdown-body .full-commit .btn-outline:not(:disabled):hover{color:#005cc5;border-color:#005cc5}.markdown-body kbd{display:inline-block;padding:3px 5px;font:11px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;line-height:10px;color:#444d56;vertical-align:middle;background-color:#fcfcfc;border:1px solid #c6cbd1;border-bottom-color:#959da5;border-radius:3px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body :checked+.radio-label{position:relative;z-index:1;border-color:#0366d6}.markdown-body .task-list-item{list-style-type:none}.markdown-body .task-list-item+.task-list-item{margin-top:3px}.markdown-body .task-list-item input{margin:0 .2em .25em -1.6em;vertical-align:middle}.markdown-body hr{border-bottom-color:#eee}.flash{position:relative;padding:16px;color:#246;background-color:#e2eef9;border:1px solid #bac6d3;border-radius:3px}.flash p:last-child{margin-bottom:0}.flash-messages{margin-bottom:24px}.flash-warn{color:#4c4a42;background-color:#fff9ea;border-color:#dfd8c2}.flash-error{color:#911;background-color:#fcdede;border-color:#d2b2b2}.flash-success{color:#22662c;background-color:#e2f9e5;border-color:#bad3be}.flash-plain{color:#4c4a42;background-color:#f5f5f5;border-color:#c1c1c1}</style>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">pre[data-language='renumf90']{background-color:#EFEFFE;}</style>
+  <style type="text/css">pre[data-language='Fortran']{background-color:#E7FFE7;}</style>
+  <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
+  <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
+  <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="prism.css">
+  <script type="text/javascript" src="prism.js"></script>
+</head>
+</head>
+<body>
+<article class="markdown-body">
+<header>
+<h1 class="title">More on input/output</h1>
+<p class="author">Yutaka Masuda</p>
+<p class="date">January 2020</p>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#more-on-inputoutput">More on input/output</a><ul>
+<li><a href="#basic-usage">Basic usage</a></li>
+<li><a href="#file-open-and-close">File open and close</a></li>
+<li><a href="#binary-files">Binary files</a></li>
+<li><a href="#internal-inputoutput">Internal input/output</a></li>
+<li><a href="#some-algorithms-on-files">Some algorithms on files</a></li>
+</ul></li>
+</ul>
+</nav>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
+<h1 id="more-on-inputoutput">More on input/output</h1>
+<h2 id="basic-usage">Basic usage</h2>
+<p>When reading or writing a file, you have to “open” the file. It is an action to link a unit-number (an integer code) to a file name. Each file should have a unique unit-number. After using the file, you should “close” the file so that the link is removed. When the program stops, all the opened files are closed.</p>
+<p>To open a file, use the <code>open</code> statement. It has given unit-number and a file name. The unit number is pre-defined by you, or you do not care about the unit-number using <code>newunit=</code>.</p>
+<pre data-language="Fortran"><code class="language-fortran">! user-provided unit number
+open(10,file=&quot;data.txt&quot;)
+
+! can use an integer variable as a unit number
+integer :: unit
+unit = 10
+open(unit,file=&quot;data.txt&quot;)
+
+! ask the program to assign arbitrary unit number
+integer :: unit
+open(newunit=unit)
+
+! put the unit number to close the file
+close(unit)</code></pre>
+<p>To save your data, use the <code>write</code> statement, which has 2 options: a unit-number and a format. The output is the same as the <code>print</code> statement except for being saved into the file. The statement has any number of variables as follows.</p>
+<pre data-language="Fortran"><code class="language-fortran">integer :: i,j
+...
+write(unit,&quot;(2i5)&quot;) i,j</code></pre>
+<p>The <code>read</code> statement reads the data from the unit. The usage is similar to <code>write</code>.</p>
+<pre data-language="Fortran"><code class="language-fortran">integer :: i,j
+...
+read(unit,*) i,j</code></pre>
+<p>If it fail to read the data (wrong format, end of the file, mechanical error in the dard drives etc.), the program stops immediately. Using the <code>iostat=</code> option with an integer variable, the program does not stop, and you get the error code in the variable. When you meet the end of the file, <code>info</code> becomes negative.</p>
+<pre data-language="Fortran"><code class="language-fortran">integer :: i,j,info
+...
+read(unit,*,iostat=info) i,j
+if(info&lt;0) then
+   print *,&quot;end of file&quot;
+else
+   print *,i,j
+end if</code></pre>
+<h2 id="file-open-and-close">File open and close</h2>
+<h3 id="open">Open</h3>
+<p>The <code>open</code> statement accepts many options to handle various files. Here is a table for frequently-used options for <code>open</code>. See textbooks or the standard for the complete list.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Options for <code>open</code></th>
+<th>Possible values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>unit=</code></td>
+<td>unit number (optional)</td>
+</tr>
+<tr class="even">
+<td><code>newunit=</code></td>
+<td>integer variable for unit number</td>
+</tr>
+<tr class="odd">
+<td><code>file=</code></td>
+<td>file name</td>
+</tr>
+<tr class="even">
+<td><code>status=</code></td>
+<td><code>"old"</code> for an existing file; <code>"scratch"</code> for temporary file</td>
+</tr>
+<tr class="odd">
+<td><code>position=</code></td>
+<td><code>"append"</code> to add new data to the file</td>
+</tr>
+<tr class="even">
+<td><code>form=</code></td>
+<td><code>"formatted"</code> for text file; <code>"unformatted"</code> for non text file</td>
+</tr>
+<tr class="odd">
+<td><code>access=</code></td>
+<td><code>"sequential"</code> for sequential access; <code>"stream"</code> for byte-wise access</td>
+</tr>
+<tr class="even">
+<td><code>iostat=</code></td>
+<td>integer variable for error status</td>
+</tr>
+</tbody>
+</table>
+<p>Here are typical use-cases of <code>open</code>.</p>
+<pre data-language="Fortran"><code class="language-fortran">! typical text file for reading or writing
+open(newunit=unit, file=&quot;data.txt&quot;)
+
+! for reading
+open(newunit=unit, file=&quot;data.txt&quot;, status=&quot;old&quot;)
+
+! append data to the existing file
+open(newunit=unit, file=&quot;data.txt&quot;, position=&quot;append&quot;)</code></pre>
+<p>Using <code>status="scratch"</code>, the file is automatically removed when closed. It is useful to create a <em>temporary file</em> that is needed to store big data while the program is running.</p>
+<p>By default, the file is treated as a text file that is readable for humans (<code>form="formatted"</code>). With <code>form="unformatted"</code>, the data is stored as a machine-readable form, so-called a <em>binary</em> form. In addition to this option, <code>access="stream"</code> treats the file differently. We will see how we use the binary file in this chapter.</p>
+<h3 id="close">Close</h3>
+<p>There are a few options in the <code>close</code> statement.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Options for <code>open</code></th>
+<th>Possible values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>unit=</code></td>
+<td>unit number (optional)</td>
+</tr>
+<tr class="even">
+<td><code>status=</code></td>
+<td><code>"delete"</code> for deleting the file</td>
+</tr>
+</tbody>
+</table>
+<p>When you put <code>status="delete"</code> in <code>close</code>, the program removes the file.</p>
+<pre data-language="Fortran"><code class="language-fortran">! standard closing
+close(unit)
+
+! removing the file
+close(unit, statis=&quot;delete&quot;)</code></pre>
+<h2 id="binary-files">Binary files</h2>
+<h3 id="fortran-binary-file">Fortran binary file</h3>
+<h4 id="writing-a-file">Writing a file</h4>
+<p>Fortran treats a file as a text file by default. When opening a file with <code>form="unformatted"</code>, the program stores the data in a binary form. See the following program to see the difference between the formats.</p>
+<pre data-language="Fortran"><code class="language-fortran">program file
+   ! text file
+   open(10,file=&quot;out.txt&quot;)
+   ! default format
+   write(10,*) 1,2,3
+   close(10)
+
+   ! binary file
+   open(20,file=&quot;out.bin&quot;,form=&quot;unformatted&quot;)
+   ! no format descriptor
+   write(20) 1,2,3
+   close(20)
+end program file</code></pre>
+<p>For a binary file, you can use <code>write</code>, but you do not need a format descriptor. The content of the files is available using the <code>cat</code> command in Linux.</p>
+<pre data-language="shell"><code>$ cat out.txt
+         1         2         3
+
+$ cat out.bin
+</code></pre>
+<p>The <code>cat</code> command may not show the content of a binary file. You can use <code>less</code> to show the content in a cryptic way.</p>
+<p>You can save an array to the file in a simple method.</p>
+<pre data-language="Fortran"><code class="language-fortran">   integer :: unit
+   real :: a(10)
+   ...
+   open(newunit=unit,file=&quot;out.bin&quot;,form=&quot;unformatted&quot;)
+   write(unit) a
+   close(unit)</code></pre>
+<h4 id="reading-a-file">Reading a file</h4>
+<p>You can use <code>read</code> without a format descriptor to read the data in a Fortran binary file. Although the way of reading the data is similar to a text file, there is a strict rule to read the binary file. You must read the file in the same way as you have used with <code>write</code>.</p>
+<p>For example, you create a binary file with the following statements.</p>
+<pre data-language="Fortran"><code class="language-fortran">   integer :: i=1, j=2, k=3
+   real :: p=3.14, q=6.28
+
+   open(20,file=&quot;out.bin&quot;,form=&quot;unformatted&quot;)
+   write(20) i,j,k
+   write(20) p,q
+   close(20)</code></pre>
+<p>To read the file, you should use the same list of data types as in the <code>write</code> statement.</p>
+<pre data-language="Fortran"><code class="language-fortran">   integer :: i,j,k
+   real :: p,q
+
+   open(20,file=&quot;out.bin&quot;,form=&quot;unformatted&quot;,status=&quot;old&quot;)
+   read(20) i,j,k
+   read(20) p,q
+   close(20)</code></pre>
+<p>If you read the file in a different format, you meet an error.</p>
+<pre data-language="Fortran"><code class="language-fortran">   ! invalid
+   open(20,file=&quot;out.bin&quot;,form=&quot;unformatted&quot;,status=&quot;old&quot;)
+   read(20) i,j,k,p,q
+   close(20)
+
+   ! also invalid
+   open(20,file=&quot;out.bin&quot;,form=&quot;unformatted&quot;,status=&quot;old&quot;)
+   read(20) i
+   close(20)</code></pre>
+<p>When you have saved an array to the binary file, you should read all elements at the same time.</p>
+<pre data-language="Fortran"><code class="language-fortran">   integer :: i,unit
+   real :: a(10)
+   ...
+   ! making a file
+   open(newunit=unit,file=&quot;out.bin&quot;,form=&quot;unformatted&quot;)
+   write(unit) a
+   close(unit)
+   ...
+   ! valid
+   open(newunit=unit,file=&quot;out.bin&quot;,form=&quot;unformatted&quot;)
+   read(unit) a
+   close(unit)
+
+   ! invalid
+   open(newunit=unit,file=&quot;out.bin&quot;,form=&quot;unformatted&quot;)
+   do i=1,10
+      read(unit) a(i)
+   end do
+   close(unit)</code></pre>
+<p>You can use <code>iostat=</code> to detect an error while reading the binary file.</p>
+<pre data-language="Fortran"><code class="language-fortran">   integer :: unit,info
+   real :: a(10)
+   ...
+   read(unit,iostat=info) a
+   if(info/=0) stop</code></pre>
+<h4 id="remarks-on-fortran-binary-files">Remarks on Fortran binary files</h4>
+<p>The access to a Fortran binary file is much more efficient than a text file i.e., faster reading and writing. When writing the binary file, the program puts additional code to the data that you write. In this way, the program detects whether <code>read</code> has the same data types as <code>write</code>. It also means that the additional code requires extra storage. You may see that the size of the file is more significant than expected.</p>
+<p>The Fortran binary file may not be portable. If you compile the program using a different compiler in a different system, the program may not read the binary file correctly. Also, the Fortran binary file is different from the binary file used in the C language.</p>
+<h3 id="stream-binary-file">Stream binary file</h3>
+<p>A binary file opened with <code>sccess="stream"</code> is compatible with the C language. In this tutorial, we do not explain this binary file. Please see textbooks for details.</p>
+<h2 id="internal-inputoutput">Internal input/output</h2>
+<p>There is a case where you want to convert a number written in text to an actual number. For example, you have a character literal “123” as text, and you may expect to convert it to integer 123. Conversely, you may want to convert the actual number (123) to characters (“123”). You can use <code>read</code> and <code>write</code> to do such tasks.</p>
+<p>The <code>read</code> statement converts a character literal to numerical values as if the characters were from a file. In the following example, the unit number in <code>read</code> is replaced with a character variable, and <code>read</code> converts the characters to a real value.</p>
+<pre data-language="Fortran"><code class="language-fortran">   character(len=10) :: str=&quot;3.14&quot;
+   real :: p
+
+   read(str,*) p</code></pre>
+<p>When you convert numerical values to characters, you can use <code>write</code>. Instead of the unit number, you use a character variable in <code>write</code>. In this way, the program generates the characters the same as shown on the screen.</p>
+<pre data-language="Fortran"><code class="language-fortran">   character(len=10) :: str
+   real :: p=3.14
+
+   write(str,*) p</code></pre>
+<h2 id="some-algorithms-on-files">Some algorithms on files</h2>
+<h3 id="count-the-number-of-lines">Count the number of lines</h3>
+<p>In many cases, you do not know the number of lines in a text file. To count the lines, you have to read through the file without reading data. The following program is valid to do this job.</p>
+<pre data-language="Fortran"><code class="language-fortran">program lines
+   integer :: unit,n,info
+
+   n = 0
+   open(newunit=unit,file=&quot;input.txt&quot;)
+   do
+      read(unit,&quot;(a)&quot;,iostat=info)
+      if(info/=0) exit
+      n = n + 1
+   end do
+   close(unit)
+
+   print *,&quot;the number of lines = &quot;,n
+end program lines</code></pre>
+<h4 id="exercises">Exercises</h4>
+<ol type="1">
+<li>Explain why the above code uses <code>"(a)"</code> instead of <code>*</code> as the format descriptor.</li>
+<li>Make a function to count the number of lines in a given text file.</li>
+</ol>
+<!--
+### Extract particular field from a file
+
+In the previous chapter, we saw how to split the fields in a string, and we developed a subroutine to do it.
+Using the subroutine, we can extract particular fields from a file while reading the file.
+Here, we assume the subroutine has the following interface.
+
+~~~~~{language=Fortran}
+! input: the original string to be split by space
+! n:     the number of fields
+! item:  the output array of separated strings
+subroutine split(input,n,item)
+   character(len=*),intent(inout) :: input
+   integer,intent(out) :: n
+   character(len=*),intent(inout) :: item(:)
+end subroutine split
+~~~~~
+-->
+<h3 id="write-and-read-a-matrix-tofrom-a-file">Write and read a matrix to/from a file</h3>
+<p>We often need to save a matrix to a file for the later use. We should consider several options for the convenience of data transfer.</p>
+<ul>
+<li>File format
+<ul>
+<li>Text: human-readable but slow</li>
+<li>Binary: machine-readable and fast</li>
+</ul></li>
+<li>Contents
+<ul>
+<li>Matrix elements only = the minimal file</li>
+<li>Matrix elements with some information (size etc.) = useful when reading</li>
+</ul></li>
+<li>Index
+<ul>
+<li>With index (triplet: <span class="math inline">\(i\)</span>, <span class="math inline">\(j\)</span>, <span class="math inline">\(A_{ij}\)</span>)</li>
+<li>No index (only <span class="math inline">\(A_{i,j}\)</span>)</li>
+</ul></li>
+</ul>
+<p>With above options, where are 8 possible combinations to save a matrix. We see only a few options.</p>
+<h4 id="text-plan-matrix-no-index">Text, plan matrix, no index</h4>
+<p>Here is the simplest code to save a matrix to a file.</p>
+<pre data-language="Fortran"><code class="language-fortran">program savemat
+   implicit none
+   character(len=10) :: filename
+   integer :: unit,i,m,n
+   real,allocatable :: mat(:,:)
+
+   ! make a matrix: m x n
+   m = 5
+   n = 3
+   allocate(mat(m,n))
+   mat = reshape([(i,i=1,m*n)],shape(mat))
+
+   ! save the matrix to the file
+   filename = &quot;matrix.txt&quot;
+   open(newunit=unit,file=filename)
+   write(unit,*) mat
+   close(unit)
+end program savemat</code></pre>
+<p>The text file contains a sequence of numbers and spaces like a vector without the newline code. By default for a single-precision real variable, one value needs at least 13 characters. It should result in a huge file if the matrix is large. It is disadvantage in reading and writing the file.</p>
+<p>Another issue is that you don’t know the size of original matrix. You may not reproduce the original matrix when you read the file. To solve this, you can save the size of the matrix at the beginning of the file. Here is a piece of code to do it.</p>
+<pre data-language="Fortran"><code class="language-fortran">   open(newunit=unit,file=filename)
+   write(unit,*) m,n
+   write(unit,*) mat
+   close(unit)</code></pre>
+<p>This is a custom format that we are using only in our programs. It is your responsibility how you read the file.</p>
+<h4 id="exercises-1">Exercises</h4>
+<ol type="1">
+<li>Modify the above program to read a matrix from a text file.</li>
+<li>Modify the above program to save a binary file.</li>
+<li>Save a matrix with indices.</li>
+</ol>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
+</article>
+</body>
+</html>

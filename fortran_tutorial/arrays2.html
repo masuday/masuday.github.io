@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<!--==============================================================================
+	           "GitHub HTML5 Pandoc Template" v1.2 — by Tristano Ajmone
+	==============================================================================
+	(c) Tristano Ajmone, 2017, MIT License (MIT). Project's home repository:
+
+	- https://github.com/tajmone/pandoc-goodies
+
+	This template reuses source code taken from the following projects:
+
+	- GitHub Markdown CSS: © Sindre Sorhus, MIT License (MIT):
+	  https://github.com/sindresorhus/github-markdown-css
+
+	- Primer CSS: © 2016 GitHub Inc., MIT License (MIT):
+	  http://primercss.io/
+	==============================================================================-->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Yutaka Masuda" />
+  <title>More on arrays</title>
+  <style type="text/css">@font-face{font-family:octicons-link;src:url(data:font/woff;charset=utf-8;base64,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) format('woff')}.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#24292e;font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";font-size:16px;line-height:1.5;word-wrap:break-word;box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto;padding:45px}.markdown-body .octicon{display:inline-block;fill:currentColor;vertical-align:text-bottom}.markdown-body a{background-color:transparent;-webkit-text-decoration-skip:objects;color:#0366d6;text-decoration:none}.markdown-body a:active,.markdown-body a:hover{outline-width:0}.markdown-body h1{margin:.67em 0}.markdown-body img{border-style:none}.markdown-body svg:not(:root){overflow:hidden}.markdown-body code,.markdown-body kbd,.markdown-body pre{font-family:monospace,monospace}.markdown-body input{font:inherit;margin:0;overflow:visible;font-family:inherit;font-size:inherit;line-height:inherit}.markdown-body [type=checkbox]{box-sizing:border-box;padding:0}.markdown-body *{box-sizing:border-box}.markdown-body a:hover{text-decoration:underline}.markdown-body strong{font-weight:600}.markdown-body hr{box-sizing:content-box;overflow:hidden;background:0 0;border-bottom:1px solid #dfe2e5}.markdown-body hr::before{display:table;content:""}.markdown-body hr::after{display:table;clear:both;content:""}.markdown-body table{border-spacing:0;border-collapse:collapse;display:block;width:100%;overflow:auto}.markdown-body td,.markdown-body th{padding:0}.markdown-body blockquote{margin:0}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol{list-style-type:lower-alpha}.markdown-body dd{margin-left:0}.markdown-body code{font-family:SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace}.markdown-body pre{font:12px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;word-wrap:normal}.markdown-body .pl-0{padding-left:0!important}.markdown-body .pl-1{padding-left:4px!important}.markdown-body .pl-2{padding-left:8px!important}.markdown-body .pl-3{padding-left:16px!important}.markdown-body .pl-4{padding-left:24px!important}.markdown-body .pl-5{padding-left:32px!important}.markdown-body .pl-6{padding-left:40px!important}.markdown-body::before{display:table;content:""}.markdown-body::after{display:table;clear:both;content:""}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:0}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e1e4e8;border:0}.markdown-body blockquote{padding:0 1em;color:#6a737d;border-left:.25em solid #dfe2e5}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd{font-size:11px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#1b1f23;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1{padding-bottom:.3em;font-size:2em;border-bottom:1px solid #eaecef}.markdown-body h2{padding-bottom:.3em;font-size:1.5em;border-bottom:1px solid #eaecef}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#6a737d}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table th{font-weight:600}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #dfe2e5}.markdown-body table tr{background-color:#fff;border-top:1px solid #c6cbd1}.markdown-body table tr:nth-child(2n){background-color:#f6f8fa}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f6f8fa;border-radius:3px}.markdown-body .full-commit .btn-outline:not(:disabled):hover{color:#005cc5;border-color:#005cc5}.markdown-body kbd{display:inline-block;padding:3px 5px;font:11px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;line-height:10px;color:#444d56;vertical-align:middle;background-color:#fcfcfc;border:1px solid #c6cbd1;border-bottom-color:#959da5;border-radius:3px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body :checked+.radio-label{position:relative;z-index:1;border-color:#0366d6}.markdown-body .task-list-item{list-style-type:none}.markdown-body .task-list-item+.task-list-item{margin-top:3px}.markdown-body .task-list-item input{margin:0 .2em .25em -1.6em;vertical-align:middle}.markdown-body hr{border-bottom-color:#eee}.flash{position:relative;padding:16px;color:#246;background-color:#e2eef9;border:1px solid #bac6d3;border-radius:3px}.flash p:last-child{margin-bottom:0}.flash-messages{margin-bottom:24px}.flash-warn{color:#4c4a42;background-color:#fff9ea;border-color:#dfd8c2}.flash-error{color:#911;background-color:#fcdede;border-color:#d2b2b2}.flash-success{color:#22662c;background-color:#e2f9e5;border-color:#bad3be}.flash-plain{color:#4c4a42;background-color:#f5f5f5;border-color:#c1c1c1}</style>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">pre[data-language='renumf90']{background-color:#EFEFFE;}</style>
+  <style type="text/css">pre[data-language='Fortran']{background-color:#E7FFE7;}</style>
+  <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
+  <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
+  <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="prism.css">
+  <script type="text/javascript" src="prism.js"></script>
+</head>
+</head>
+<body>
+<article class="markdown-body">
+<header>
+<h1 class="title">More on arrays</h1>
+<p class="author">Yutaka Masuda</p>
+<p class="date">January 2020</p>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#more-on-arrays">More on arrays</a><ul>
+<li><a href="#basic-usage-of-arrays">Basic usage of arrays</a></li>
+<li><a href="#array-index">Array index</a></li>
+<li><a href="#assignment-again">Assignment, again</a></li>
+<li><a href="#reallocation-of-arrays">Reallocation of arrays</a></li>
+<li><a href="#array-of-character-variable">Array of character variable</a></li>
+<li><a href="#some-algorithms-using-arrays">Some algorithms using arrays</a></li>
+</ul></li>
+</ul>
+</nav>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
+<h1 id="more-on-arrays">More on arrays</h1>
+<h2 id="basic-usage-of-arrays">Basic usage of arrays</h2>
+<h3 id="literals">Literals</h3>
+<p>A literal array is defined with <code>[]</code> with a comma-separated list of literals with the same type. A high-dimension literal array is defined using intrinsic function <code>reshape()</code> with <code>[]</code>.</p>
+<ul>
+<li>Example 1: <code>[1,2,3]</code> or <code>[1.0,2.0,3.0]</code></li>
+<li>Example 2: <code>reshape([1,2,3,4,5,6],[3,2])</code></li>
+</ul>
+<h3 id="array-variables">Array variables</h3>
+<p>An array variable is declared with a variable name plus <code>()</code> with the dimension and the rank of the array. The range of index should be <code>lower:upper</code> in each dimension. When omitting the lower bound of the index, 1 will be assumed.</p>
+<ul>
+<li>Example 1: <code>integer :: a(3)</code> for 1-dimentional, 3-element integer array.</li>
+<li>Example 2: <code>integer :: b(3,6)</code> for 2-dimentional integer array, with index ranging from 1 to 3 for the 1st dimension, and 1 to 6 for the 2nd dimension</li>
+</ul>
+<p>To access an element of the array, specify the index in <code>()</code>. By specifying the range of indices, you can make a submatrix.</p>
+<ul>
+<li>Example 1: <code>a(1)</code> or <code>b(2,2)</code></li>
+<li>Example 2: <code>b(2:3,4:6)</code></li>
+</ul>
+<h3 id="allocated-arrays">Allocated arrays</h3>
+<p>An allocatable array is defined with the <code>allocatable</code> option in the declaration. The index should be empty, e.g., <code>(:)</code> or <code>(:,:)</code>. To allocate the array, use the <code>allocatable()</code> statement with a range of the index. Use <code>deallocate</code> to remove the allocated array (to release the allocated memory). When you leave the program unit, an allocated array is deallocated if the array is defined in the unit.</p>
+<ul>
+<li>Example 1: <code>integer :: x(:,:)</code> for declaration</li>
+<li>Example 2: <code>allocate(x(2,5))</code> for allocation</li>
+<li>Example 3: <code>deallocate(x)</code> for deallocation</li>
+</ul>
+<h2 id="array-index">Array index</h2>
+<h3 id="arbitrary-lower-bound">Arbitrary lower bound</h3>
+<p>The array index starts from 1 by default. You can declare an array with an arbitrary starting value in the index.</p>
+<pre data-language="Fortran"><code class="language-fortran">program arr
+   implicit none
+   ! range: -2 to 2
+   real :: a(-2:2)
+   a = [1,2,3,4,5]
+   print *,a(-2),a(-1),a(0),a(1),a(2)
+end program arr</code></pre>
+<p>In my personal opinion, you should not use this feature unless you need it (for example, a case where you have to maintain the code written by other people). It is problematic when the array is passed to functions or subroutines.</p>
+<pre data-language="Fortran"><code class="language-fortran">program arr
+   implicit none
+   real :: a(-2:2)
+   a = [1,2,3,4,5]
+   call print_element(a)
+
+contains
+subroutine print_element(x)
+   real,intent(in) :: x(:)
+   print *,x(1)
+end subroutine print_element
+end program arr</code></pre>
+<pre data-language="output"><code>   1.00000000</code></pre>
+<p>You expect <code>4.00000000</code> but it did not because the array bounds are not be explicitly transferred to procedures. When you put <code>x(:)</code> in a procedure, it is interpreted as the index starts from 1. If you pass the non-standard index to a procedure, you must take care of such a possibility in the procedure. Please consult the following examples.</p>
+<pre data-language="Fortran"><code class="language-fortran">! explicit lower bound
+subroutine print_element(x)
+   real,intent(in) :: x(-2:)
+   print *,x(1)
+end subroutine print_element
+
+! pass the lower-bound variable
+subroutine print_element(x,low)
+   real,intent(in) :: x(low:)
+   integer,intent(in) :: low
+   print *,x(1)
+end subroutine print_element</code></pre>
+<p>There are inquiry functions to obtain the bounds of an array.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>lbound(x)</code></td>
+<td>lower bound of array <code>x</code></td>
+</tr>
+<tr class="even">
+<td><code>lbound(x,1)</code></td>
+<td>row-wise lower bound of 2-dimensional array <code>x</code></td>
+</tr>
+<tr class="odd">
+<td><code>lbound(x,2)</code></td>
+<td>column-wise lower bound of 2-dimensional array <code>x</code></td>
+</tr>
+<tr class="even">
+<td><code>ubound(x)</code></td>
+<td>upper bound of array <code>x</code></td>
+</tr>
+<tr class="odd">
+<td><code>ubound(x,1)</code></td>
+<td>row-wise uppwe bound of 2-dimensional array <code>x</code></td>
+</tr>
+<tr class="even">
+<td><code>ubound(x,2)</code></td>
+<td>column-wise upper bound of 2-dimensional array <code>x</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="adjustment-of-index">Adjustment of index</h3>
+<p>When passing a subarray to a procedure, a programmer should be aware of the index of the subarray is different from the index of the full array. See the following piece of code.</p>
+<pre data-language="Fortran"><code class="language-fortran">   integer :: x(5),k
+   x = [2,9,0,5,7]
+   k = minloc(x(3:5))
+   print *,k</code></pre>
+<pre data-language="output"><code>         1</code></pre>
+<p>You know <code>x</code> has 5 elements, and the 3rd element is the smallest. However, the function <code>minloc</code> accepts a subarray <code>x(3:5)</code>, and it is re-interpreted as a 3-element array-like <code>x(1:3)</code>, then it returns 1 because the first element of the subarray is the smallest. If you want to have the original array index, you must adjust the index after calling a procedure with the subarray.</p>
+<pre data-language="Fortran"><code class="language-fortran">   integer :: x(5),k
+   x = [2,9,0,5,7]
+   k = minloc(x(3:5))
+   print *,k+2</code></pre>
+<p>In a general case, the adjustment is as follows.</p>
+<pre data-language="Fortran"><code class="language-fortran">   integer :: x(5)
+   integer :: i,k
+   x = [2,9,0,5,7]
+   i = 3
+   k = minloc(x(i:5))
+   print *,i+k-1</code></pre>
+<p>The adjustment may be confusing, so please make a detailed plan before coding.</p>
+<h3 id="stepped-index">Stepped index</h3>
+<p>You can define steps in the index as <code>(start:end:step)</code>. For example, <code>(1:5:2)</code> is equivalent to discrete indices <code>1</code>, <code>3</code>, and <code>5</code>. You can make a subarray using the stepped index.</p>
+<pre data-language="Fortran"><code class="language-fortran">   integer :: x(6) = [10,20,30,40,50,60]
+   print *,x(1:5:2)</code></pre>
+<h3 id="indirect-addressing">Indirect addressing</h3>
+<p>You can use an integer vector for index. See the following example.</p>
+<pre data-language="Fortran"><code class="language-fortran">   integer :: x(6) = [10,20,30,40,50,60]
+   integer :: idx(3)
+   idx = [5,2,4]
+   print *,x(idx)</code></pre>
+<pre data-language="output"><code>      50        20        40</code></pre>
+<h3 id="zero-sized-array">Zero-sized array</h3>
+<p>A tricky feature in Fortran is a zero-sized array whose length is 0, i.e., no elements in it. This array is empty, but it still exists.</p>
+<pre data-language="Fortran"><code class="language-fortran">program arr
+   implicit none
+   real :: a(0)
+   print *,size(a),lbound(a),ubound(a)
+end program arr</code></pre>
+<pre data-language="output"><code>           0           1           0</code></pre>
+<p>The size is 0, and the lower bound is 1, and the upper is 0. So, this array is equivalent to <code>a(1:0)</code>. Note that the zero-sized array is defined whenever the upper bound is smaller than the lower bound, and the resulting zero-sized array’s lower-bound is always 1. For example, when you define a zero-sized array, <code>a(5:0)</code>, its lower bound is adjusted to 1, so that it is equivalent to <code>a(1:0)</code>.</p>
+<p>You can not assign any values to this particular array. When you try <code>a(0)=1</code>, the compiler stops with an error. However, you may use it in a formula, and the result should be an empty array.</p>
+<pre data-language="Fortran"><code class="language-fortran">program arr
+   implicit none
+   real :: a(0)
+   print *,&quot;a=&quot;,a
+   print *,&quot;a+1=&quot;,a+1
+end program arr</code></pre>
+<pre data-language="output"><code> a=
+ a+1=</code></pre>
+<p>Mathematical functions may not be failed with the zero-sized array, but you should not expect any meaningful results. For example, although <code>sum(a)</code> returns <code>0</code> in GFortran, it is nonsense. <code>sqrt(a)</code> returns the array with the same size as <code>a</code>, i.e., zero-sized.</p>
+<p>The zero-sized array may appear when you allocate an array. We will see the usage of a zero-sized array in the next section.</p>
+<h2 id="assignment-again">Assignment, again</h2>
+<h3 id="vector-with-sequencial-numbers">Vector with sequencial numbers</h3>
+<p>Using a similar syntax as <code>do</code>, you can create a vector with sequantial numbers.</p>
+<pre data-language="Fortran"><code class="language-fortran">   real :: x(5)
+   integer :: i
+   x = [(i,i=1,5)]</code></pre>
+<pre data-language="output"><code>   1.00000000       2.00000000       3.00000000       4.00000000       5.00000000</code></pre>
+<h3 id="assignment-to-the-same-array">Assignment to the same array</h3>
+<p>You can relocate elements in the same array.</p>
+<pre data-language="Fortran"><code class="language-fortran">   real :: x(5)
+   integer :: i
+   x = [(i,i=1,5)]
+   x(2:4) = x(1:3)</code></pre>
+<p>The Fortran standard guarantees to relocate without any trouble. For example, in the following code, the program exchanges rows and columns within a matrix. If you want to do it manually, you need a temporary matrix.</p>
+<pre data-language="Fortran"><code class="language-fortran">   real :: a(5,5)
+   integer :: i,idx(5)
+   idx = [3,2,5,1,4]
+   a = reshape([(i,i=1,25)],shape(a))
+   a = a(idx,idx)</code></pre>
+<h2 id="reallocation-of-arrays">Reallocation of arrays</h2>
+<h3 id="basics">Basics</h3>
+<p>When using an allocatable array, you should know the size of the array before allocating the array. If the size of the array is too small to have the data, you have to reallocate (resize) the array. Once you deallocate an array, the content will be lost, so you must keep the original content of the array. The traditional reallocation requires the following steps (here, <code>a</code> is the target array).</p>
+<pre data-language="Fortran"><code class="language-fortran">real,allocatable :: a(:),t(:)
+
+! the target array has been allocated.
+allocate(a(5))
+
+! 1. prepare the current (old) size and the new size of a
+old_size = size(a)
+new_size = size(a)+1
+
+! 2. allocate an temporary array 
+allocate(t(old_size))
+
+! 3. copy a to t
+t = a
+
+! 4. deallocate a
+dallocate(a)
+
+! 5. re-allocate a with the new size
+allocate(a(new_size))
+
+! 6. copy t back to a
+a(1:old_size) = t(1:old_size)
+
+! 7. remove the temporary array
+deallocate(t)</code></pre>
+<p>In modern Fortran, the reallocation is automated without temporary arrays.</p>
+<pre data-language="Fortran"><code class="language-fortran">real,allocatable :: a(:)
+
+allocate(a(5))
+
+! fill the array
+a = [1,2,3,4,5]
+
+! add more elements; should be real numbers
+a = [a, 6.0, 7.0]</code></pre>
+<p>At the end of this program, the array <code>a</code> should have some extra elements, and the size of <code>a</code> becomes 7. A trap is, you must not mix different numerical types in the array literal in <code>[]</code>. For example, the following expression gives an error.</p>
+<pre data-language="Fortran"><code class="language-fortran">! OKAY: all values are the same type (integer)
+a = [1,2,3,4,5]
+
+! ERROR: mixed types
+a = [1, 2, 3, 4.0, 5.0]
+
+! ERROR: a is real but 6,7 are integer values
+a = [a, 6, 7]</code></pre>
+<p>Reallocation works only when the size of reallocated array is known. For example, in the above case, <code>a=[a, 6.0, 7.0]</code> works because it is evident that the resulting size is 7. If you directly specify the index, which is out of range, it will be failing without any errors. It does not work because referring to a nonexistent index does not mean to resize the array.</p>
+<pre data-language="Fortran"><code class="language-fortran">allocate(a(5))
+a = [1,2,3,4,5]
+
+! DANGEROUS!
+! YOU MUST NOT DO IT. IT DESTROYS SOME DATA.
+a(6) = 6.0
+a(7) = 7.0
+
+! The size is still 5.
+print *,size(a)</code></pre>
+<p>It is not apparent how to resize a 2-dimensional array. Also, a frequent resize of an array may have a performance penalty with repeated allocations.</p>
+<h3 id="copy-of-allocated-arrays">Copy of allocated arrays</h3>
+<p>If you have 2 allocatable arrays, you can easily copy the data in one array to another array.</p>
+<pre data-language="Fortran"><code class="language-fortran">real,allocatable :: a(:),b(:)
+
+allocate(a(5))
+a = [1,2,3,4,5]
+
+! copy the content of a to b
+b = a
+print *,b
+print *,allocated(a),allocated(b)</code></pre>
+<pre data-language="output"><code>   1.00000000       2.00000000       3.00000000       4.00000000       5.00000000
+ T T</code></pre>
+<p>It makes a copy of <code>a</code> to <code>b</code>, which will be accordingly allocated with the same size as <code>a</code>, and both arrays are alive. The resize of <code>b</code> happens even though <code>b</code> has been already allocated.</p>
+<pre data-language="Fortran"><code class="language-fortran">real,allocatable :: a(:),b(:),c(:)
+
+allocate(a(5),b(6),c(4))
+a = [1,2,3,4,5]
+
+! copy the content of a to b and c
+print *,size(b),size(c)
+b = a
+c = a
+print *,size(b),size(c)</code></pre>
+<pre data-language="output"><code>           6           4
+           5           5</code></pre>
+<h3 id="transfer-of-allocated-array">Transfer of allocated array</h3>
+<p>A function, <code>move_alloc</code>, transfers the data in an allocated array to another allocated array. The source array will be automatically deallocated after the transfer is done. This involves some allocation and deallocation steps.</p>
+<pre data-language="Fortran"><code class="language-fortran">real,allocatable :: a(:),b(:)
+
+allocate(a(5))
+a = [1,2,3,4,5]
+
+! move the data from a to b
+call move_alloc(a,b)
+
+print *,allocated(a),allocated(b)</code></pre>
+<pre data-language="output"><code> F T</code></pre>
+<p>When the function is called as <code>call move_alloc(a,b)</code>, it behaves as follows.</p>
+<ol type="1">
+<li>Deallocate the destination array, <code>b</code>, if allocated.</li>
+<li>Allocate <code>b</code> as the same size as <code>a</code>.</li>
+<li>Copy all elements in <code>a</code> to <code>b</code> like <code>b=a</code>.</li>
+<li>Deallocate <code>a</code>.</li>
+</ol>
+<p>The arguments can be specified using the keywords: <code>call move_alloc(from=a, to=b)</code>.</p>
+<p>This function is useful when to resize an array with a temporary array keeping the original data. The following example shows that array <code>a</code> is expanding with 3 elements more, keeping the original data.</p>
+<pre data-language="Fortran"><code class="language-fortran">program arr
+   implicit none
+   integer :: n,m
+   real,allocatable :: a(:),temporary(:)
+
+   ! initial size of a
+   n = 5
+   allocate(a(n))
+   a = [1,2,3,4,5]
+
+   ! new array
+   m = n + 3
+   allocate(temporary(m))
+
+   ! copy the original data to the temporary array
+   temporary(1:n) = a(1:n)
+
+   ! transfer the data from the temporary array to the original array
+   ! the original array resized; temporary array deallocated
+   call move_alloc(from=temporary, to=a)
+end program arr</code></pre>
+<p>If it seems confusing, use a combination of allocate-deallocate statements manually.</p>
+<h2 id="array-of-character-variable">Array of character variable</h2>
+<p>You can create an array of character variables. For example, the following code has a vector with 3 elements of character variable with length 10.</p>
+<pre data-language="Fortran"><code class="language-fortran">   character(len=10) :: a(3)</code></pre>
+<p>You need two kinds of indices: one for the position of the character and the other one for the index of the array. It is not a 2-dimensional array. These two indices should be separately specified so that the position of character always comes to the end of the variable. See the following example for details.</p>
+<pre data-language="Fortran"><code class="language-fortran">program strarray
+   implicit none
+   character(len=10) :: a(3)
+   a(1) = &quot;aaaaaa&quot;
+   a(2) = &quot;bbbbbb&quot;
+   a(3) = &quot;cccccc&quot;
+
+   ! the first element of the array; characters 1 and 2
+   print *,a(1)(4:5)
+end program strarray</code></pre>
+<pre data-language="output"><code> aa</code></pre>
+<p>In <code>a(1)(4:5)</code>, the first parentheses refer to the index of the array (the first character variable), and the second parentheses extract the 4th and 5th characters from <code>a(1)</code>.</p>
+<h2 id="some-algorithms-using-arrays">Some algorithms using arrays</h2>
+<h3 id="traversing-all-elements-of-a-matrix">Traversing all elements of a matrix</h3>
+<h4 id="full-matrix">Full matrix</h4>
+<p>In matrix computations, we often have to look at all elements in a matrix. Although some functions like <code>sum</code> and <code>minval</code> are helpful to avoid the manual search through all the elements, there are many cases where these functions are not applicable.</p>
+<p>A matrix has 2 indices, row, and column. When you look at all the elements, you should use a double loop; one is for row index, and the other one is for column index. The following code use <code>i</code> for rows and <code>j</code> for a column, creating the index is <code>(i,j)</code>, to show each element in a matrix.</p>
+<pre data-language="Fortran"><code class="language-fortran">program mat
+   implicit none
+   integer,parameter :: n=3
+   real :: a(n,n)
+   integer :: i,j
+
+   ! initial values
+   a = 1.0
+
+   ! make a combination of (i,j)
+   do i=1,n
+      do j=1,n
+         print *,a(i,j)
+      end do
+   end do
+end program mat</code></pre>
+<p>This program defines a <span class="math inline">\(3 \times 3\)</span> matrix.</p>
+<p><span class="math display">\[
+\mathbf{A}
+=
+\left[
+\begin{array}{ccc}
+a_{11}&amp;a_{12}&amp;a_{13} \\
+a_{21}&amp;a_{22}&amp;a_{23} \\
+a_{31}&amp;a_{32}&amp;a_{33}
+\end{array}
+\right]
+\]</span></p>
+<p>The above program access rows in the matrix i.e., fixed row <code>i</code> with incrementing column <code>j</code>. The sequence of elements looks like this.</p>
+<p><span class="math display">\[
+a_{11}, a_{12}, a_{13}, a_{21}, a_{22}, a_{23}, a_{31}, a_{32}, a_{33}
+\]</span></p>
+<p>To support the within-column access, i.e., fixed column <code>j</code> with incrementing row <code>i</code>, you just swap the order between <code>i</code> and <code>j</code>. Here is a piece of the program.</p>
+<pre data-language="Fortran"><code class="language-fortran">   do j=1,n
+      do i=1,n
+         print *,a(i,j)
+      end do
+   end do</code></pre>
+<p>The sequence of access is as follows.</p>
+<p><span class="math display">\[
+a_{11}, a_{21}, a_{31}, a_{12}, a_{22}, a_{32}, a_{13}, a_{23}, a_{33}
+\]</span></p>
+<p>This sequence is the same as data order in memory. In general, within-column access is faster because of the alignment in memory.</p>
+<h4 id="some-operations">Some operations</h4>
+<p>Using the above technique, you can perform matrix operations. For example, the following program calculates the sum of all elements of a matrix.</p>
+<pre data-language="Fortran"><code class="language-fortran">program mat
+   implicit none
+   integer,parameter :: n=3
+   real :: a(n,n),s
+   integer :: i,j
+
+   ! initial values
+   a = 1.0
+
+   ! sum of all elements
+   s = 0.0
+   do j=1,n
+      do i=1,n
+         s = s + a(i,j)
+      end do
+   end do
+   print *,&quot;sum = &quot;,s
+end program mat</code></pre>
+<h4 id="exercises">Exercises</h4>
+<ol type="1">
+<li>Modify the above program to find the maximum value in a matrix.</li>
+<li>In the above program (exercise 1), print the maximum value and its index.</li>
+<li>Assuming the matrix is symmetric, write a program to print the sum of the elements in the lower triangular part of the matrix.</li>
+</ol>
+<h3 id="product-of-matrix-by-vector">Product of matrix by vector</h3>
+<h4 id="methematical-formulation">Methematical formulation</h4>
+<p>Suppose we have a matrix <span class="math inline">\(\mathbf{A}\)</span> (<span class="math inline">\(m \times n\)</span>) and a vector <span class="math inline">\(\mathbf{x}\)</span> (<span class="math inline">\(n \times 1\)</span>). The product is <span class="math inline">\(\mathbf{b}=\mathbf{Ax}\)</span>. The <span class="math inline">\(i\)</span>-th element of <span class="math inline">\(\mathbf{b}\)</span> (<span class="math inline">\(b_i\)</span>) is available from the following formula. <span class="math display">\[
+b_i = \sum_{j=1}^{n}A_{ij}x_{j}\quad\text{for}\quad 1\leq i\leq n
+\]</span> A graphical image of this formula is as follows. <span class="math display">\[
+\left[
+\begin{array}{c}
+\vdots\\
+\vdots\\
+b_i \\
+\vdots \\
+\vdots 
+\end{array}
+\right]
+=
+\left[
+\begin{array}{ccccc}
+\vdots &amp; \vdots &amp;     &amp; \vdots &amp; \vdots\\
+\vdots &amp; \vdots &amp;     &amp; \vdots &amp; \vdots\\
+\hline
+A_{i1}&amp;A_{i2} &amp;\cdots &amp; A_{i,(n-1)} &amp; A_{in}\\
+\hline
+\vdots &amp; \vdots &amp;     &amp; \vdots &amp; \vdots \\
+\vdots &amp; \vdots &amp;     &amp; \vdots &amp; \vdots
+\end{array}
+\right]
+\left[
+\begin{array}{c}
+x_1\\
+x_2 \\
+\vdots \\
+x_{n-1}\\
+x_{n}
+\end{array}
+\right]
+\]</span></p>
+<h4 id="formula">Formula</h4>
+<p>The product <span class="math inline">\(\mathbf{b}\)</span> is available by computing <span class="math inline">\(b_i\)</span> from <span class="math inline">\(i=1\)</span> to <span class="math inline">\(i=m\)</span>.</p>
+<ul>
+<li>For <span class="math inline">\(i=1\)</span>, you have <span class="math inline">\(b_1=\sum_{j=1}^{n}A_{1j}x_{j}\)</span> i.e. <code>b(i)=dot_product(A(1,:),x(:))</code>.</li>
+<li>For <span class="math inline">\(i=2\)</span>, you have <span class="math inline">\(b_2=\sum_{j=1}^{n}A_{2j}x_{j}\)</span> i.e. <code>b(i)=dot_product(A(2,:),x(:))</code>.</li>
+<li>For <span class="math inline">\(i=n\)</span>, you have <span class="math inline">\(b_m=\sum_{j=1}^{n}A_{mj}x_{j}\)</span> i.e. <code>b(m)=dot_product(A(m,:),x(:))</code>.</li>
+</ul>
+<h4 id="coding">Coding</h4>
+<p>I show a reference code for this program.</p>
+<pre data-language="Fortran"><code class="language-fortran">program a_times_x
+   implicit none
+   integer,parameter :: m=5,n=3
+   integer :: i,j
+   real :: A(m,n),x(n),b(m)
+
+   ! some arrays
+   A = reshape([i=1,m*n],shape(A))
+   x = [(i=1,m)]
+
+   ! computation
+   do i=1,m
+      b(i) = dot_product(A(i,:),x(:))
+   end do
+
+   print *,&quot;b=A*x: &quot;,b
+end program a_times_x</code></pre>
+<h4 id="exercises-1">Exercises</h4>
+<ol type="1">
+<li>Rewrite the above code using loops instead of <code>dot_product</code>.</li>
+<li>Modify the program in Exercise 1 so that two loops are exchanged, and confirm the result is the same as the original program.</li>
+<li>Make a function to calculate the product of a matrix by a vector.</li>
+</ol>
+<h3 id="selection-sort">Selection sort</h3>
+<p>Sorting is an action to change the order of elements in an array. Usually, the elements are numbers, and the order becomes increasing or decreasing. There are many sorting algorithms, and you have to use an efficient one. Nevertheless, here, we introduce a naive algorithm, <em>selection sort</em>, just for an educational purpose.</p>
+<h4 id="idea">Idea</h4>
+<p>The selection sort is very similar to sorting behavior by a human. Imagine that you sort playing cards by number (from the smallest to the largest) on your hand. What you will do is that you search a card with the smallest number, pick it, and put it on the top of a bunch of cards. Next, you search a card with the smallest number from the remaining cards and do the same stuff. You will repeat this process until all cards are processed.</p>
+<p>In a computer program, the algorithm is slightly different from human behavior because of the limitation of data structure. In selection sort, first, you search a card with the smallest, pick it, and swap it with the top of cards. Next, you search the second smallest from the remaining cards, pick it, and swap it with the second card of the deck. See <a href="https://en.wikipedia.org/wiki/Selection_sort">Wikipedia</a> about the details of this algorithm.</p>
+<h4 id="formulation">Formulation</h4>
+<p>Suppose we have an array <code>x</code> with the length <span class="math inline">\(n\)</span>. We describe this algorithm using Fortran notation.</p>
+<ul>
+<li>First, search the smallest value from <code>x(1:n)</code>, and determine the index of the element <code>k</code>, then swap <code>x(1)</code> and <code>x(k)</code>.</li>
+<li>Second, search the smallest value from <code>x(2:n)</code>, and determine the index of the element <code>k</code>, then swap <code>x(2)</code> and <code>x(k)</code>.</li>
+<li>Third, search the smallest value from <code>x(3:n)</code>, and determine the index of the element <code>k</code>, then swap <code>x(3)</code> and <code>x(k)</code>.</li>
+</ul>
+<p>You will see the general rule of this algorithm.</p>
+<ul>
+<li>In round <code>i</code>, search the smallest value from <code>x(i:n)</code>, and determine the index of the element <code>k</code>, then swap <code>x(i)</code> and <code>x(k)</code>.</li>
+<li>Repeat this process for <code>i</code> from 1 to <span class="math inline">\(n\)</span>.</li>
+</ul>
+<p>You can see this algorithm needs a loop for <code>i</code>.</p>
+<h4 id="coding-1">Coding</h4>
+<p>There is no swap procedure in Fortran. So, we have to prepare the subroutine as follows.</p>
+<pre data-language="Fortran"><code class="language-fortran">subroutine swap(a,b)
+   integer,intent(inout) :: a,b
+   integer :: t
+   t = a
+   a = b
+   b = t
+end subroutine swap</code></pre>
+<p>Here is a reference code for selection sort. Note that <code>minloc</code> has a subarray, and it returns an index starting from <code>1</code> instead of <code>i</code>.</p>
+<pre data-language="Fortran"><code class="language-fortran">program sort
+   implicit none
+   integer,parameter :: n=5
+   integer :: x(n)
+   integer :: i,k
+
+   x = [2,5,1,3,4]
+
+   do i=1,n
+      k = minloc(x(i:n))
+      call swap(x(i),x(i+k-1))
+   end do
+
+   print *,x
+
+contains
+subroutine swap(a,b)
+   integer,intent(inout) :: a,b
+   integer :: t
+   t = a
+   a = b
+   b = t
+end subroutine swap
+end program sort</code></pre>
+<p>It is straightforward and fast enough for small arrays. However, it becomes very slow, and you should not use this algorithm in practice with larger arrays.</p>
+<h4 id="exercises-2">Exercises</h4>
+<ol type="1">
+<li>Consider why it will be slow for a large array.</li>
+<li>Make a function of selection sort for integer array based on the above code.</li>
+<li>Make another function to support descending order (from the largest to the smallest).</li>
+</ol>
+<h3 id="split-a-string-by-space">Split a string by space</h3>
+<p>In a typical data analysis, the data is stored in a text file, and each field is separated by white space. The <code>read</code> statement reads an entire row as characters, including the spaces. Although you often need to extract a particular field separated by space, Fortran does not have such a function. We are going to implement it by ourselves.</p>
+<h4 id="design-of-the-program">Design of the program</h4>
+<p>We put some restrictions on input and output because of simplicity.</p>
+<ul>
+<li>The input row is stored in a character variable with a certain length like <code>character(len=100) :: input</code>. The input characters can be altered at the end of the program.</li>
+<li>One or more spaces separate each item. The leading spaces in <code>input</code> will be ignored.</li>
+<li>The output (separated characters) will be stored in an array of character variables like <code>character(len=100) :: item(5)</code>.</li>
+<li>The maximum number of items should be defined by a constant like <code>integer,parameter :: max_item=5</code>.</li>
+</ul>
+<p>In this case, the program reads space-separated characters in <code>str</code>, splits it by space, and returns the first item in <code>item(1)</code>, the second, <code>item(2)</code>, and so on. If the original row has more than <code>max_item</code> items, the remaining items will be discarded.</p>
+<p>You can figure out the program behavior with the following pseudo-code.</p>
+<pre data-language="Fortran"><code class="language-fortran">   integer,parameter :: max_item=5
+   character(len=100) :: input
+   character(len=100) :: item(max_item)
+
+   ! 6 items
+   input = &quot; 100  50  3.14  abc  1.23e-2  12345&quot;
+
+   (some processing)
+
+   print *,item(1)    ! 100
+   print *,item(2)    ! 50
+   print *,item(3)    ! 3.14
+   print *,item(4)    ! abc
+   print *,item(5)    ! 1.23e-2</code></pre>
+<h4 id="naive-solution">Naive solution</h4>
+<p>There is the simplest but imperfect solution to this issue. See the following code.</p>
+<pre data-language="Fortran"><code class="language-fortran">   read(input,*) item</code></pre>
+<p>It perfectly works only if <code>max_item</code> is equal to or smaller than the actual number of items in <code>input</code>. In the above example, if <code>input</code> has 4 or fewer items, the <code>read</code> statement fails. Although you can trap the error by <code>iostat=</code>, you do not know how many items you have obtained.</p>
+<pre data-language="Fortran"><code class="language-fortran">   integer :: info
+   ...
+   ! you do not know how many items you got
+   read(input,*,iostat=info) item</code></pre>
+<p>To get the number of items, you can count the number of non-empty items using a <code>do</code> loop. In this case, you have to initialize <code>item</code> with an empty string.</p>
+<pre data-language="Fortran"><code class="language-fortran">   integer :: i,n,info
+   ...
+   item = &quot;&quot;
+   read(input,*,iostat=info) item
+
+   n = 0
+   do i=1,max_item
+      ! count only non-empty items
+      if(len_trim(item(i))&gt;0) then
+         n = n + 1
+      end if
+   end do</code></pre>
+<h4 id="standard-solution">Standard solution</h4>
+<p>A straightforward approach is to extract the leading non-space characters and repeat them until you extract all the non-space characters. We can write the procedure as follows.</p>
+<ol start="0" type="1">
+<li>Initialize integer <code>n=0</code>.</li>
+<li>Remove leading spaces by <code>input=adjustl(input)</code>.</li>
+<li>Search the position of a space (<code>p</code>) in <code>input</code> from the beginning. If space is at the top of <code>input</code>, there is no more non-space character and exit. If found somewhere else, sub-string <code>input(1:p-1)</code> is the non-space item.</li>
+<li>Increment <code>n</code> and put <code>item(n)=input(1:p-1)</code>. If <code>n</code> equals <code>max_item</code>, exit.</li>
+<li>Put spaces to <code>input(1:p-1)</code> as <code>input(1:p-1)=" "</code>.</li>
+<li>Go to 1.</li>
+</ol>
+<p>The code is as follows.</p>
+<pre data-language="Fortran"><code class="language-fortran">program array
+   integer,parameter :: max_item=5
+   character(len=100) :: input
+   character(len=100) :: item(max_item)
+   integer :: n,p
+
+   input = &quot; 100  50  3.14  abc  1.23e-2  12345&quot;
+
+   n = 0
+   do
+      ! step 1: remove the leading spaces
+      input = adjustl(input)
+
+      ! step 2: position of the non-space character
+      p = scan(input,&quot; &quot;)
+      if(p==0) exit
+
+      ! step 3: get the substring
+      n = n + 1
+      item(n) = input(1:p-1)
+      if(n==max_item) exit
+
+      ! step 4: erase the first non-space string
+      input(1:p-1) = &quot; &quot;
+   end do
+end program array</code></pre>
+<h4 id="exercises-3">Exercises</h4>
+<ol type="1">
+<li>Make a subroutine to split <code>input</code> and return <code>items</code> and <code>n</code>.</li>
+<li>Modify the subroutine not to alter the input string.</li>
+</ol>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
+</article>
+</body>
+</html>

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<!--==============================================================================
+	           "GitHub HTML5 Pandoc Template" v1.2 — by Tristano Ajmone
+	==============================================================================
+	(c) Tristano Ajmone, 2017, MIT License (MIT). Project's home repository:
+
+	- https://github.com/tajmone/pandoc-goodies
+
+	This template reuses source code taken from the following projects:
+
+	- GitHub Markdown CSS: © Sindre Sorhus, MIT License (MIT):
+	  https://github.com/sindresorhus/github-markdown-css
+
+	- Primer CSS: © 2016 GitHub Inc., MIT License (MIT):
+	  http://primercss.io/
+	==============================================================================-->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Yutaka Masuda" />
+  <title>Program design</title>
+  <style type="text/css">@font-face{font-family:octicons-link;src:url(data:font/woff;charset=utf-8;base64,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) format('woff')}.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#24292e;font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";font-size:16px;line-height:1.5;word-wrap:break-word;box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto;padding:45px}.markdown-body .octicon{display:inline-block;fill:currentColor;vertical-align:text-bottom}.markdown-body a{background-color:transparent;-webkit-text-decoration-skip:objects;color:#0366d6;text-decoration:none}.markdown-body a:active,.markdown-body a:hover{outline-width:0}.markdown-body h1{margin:.67em 0}.markdown-body img{border-style:none}.markdown-body svg:not(:root){overflow:hidden}.markdown-body code,.markdown-body kbd,.markdown-body pre{font-family:monospace,monospace}.markdown-body input{font:inherit;margin:0;overflow:visible;font-family:inherit;font-size:inherit;line-height:inherit}.markdown-body [type=checkbox]{box-sizing:border-box;padding:0}.markdown-body *{box-sizing:border-box}.markdown-body a:hover{text-decoration:underline}.markdown-body strong{font-weight:600}.markdown-body hr{box-sizing:content-box;overflow:hidden;background:0 0;border-bottom:1px solid #dfe2e5}.markdown-body hr::before{display:table;content:""}.markdown-body hr::after{display:table;clear:both;content:""}.markdown-body table{border-spacing:0;border-collapse:collapse;display:block;width:100%;overflow:auto}.markdown-body td,.markdown-body th{padding:0}.markdown-body blockquote{margin:0}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol{list-style-type:lower-alpha}.markdown-body dd{margin-left:0}.markdown-body code{font-family:SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace}.markdown-body pre{font:12px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;word-wrap:normal}.markdown-body .pl-0{padding-left:0!important}.markdown-body .pl-1{padding-left:4px!important}.markdown-body .pl-2{padding-left:8px!important}.markdown-body .pl-3{padding-left:16px!important}.markdown-body .pl-4{padding-left:24px!important}.markdown-body .pl-5{padding-left:32px!important}.markdown-body .pl-6{padding-left:40px!important}.markdown-body::before{display:table;content:""}.markdown-body::after{display:table;clear:both;content:""}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:0}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e1e4e8;border:0}.markdown-body blockquote{padding:0 1em;color:#6a737d;border-left:.25em solid #dfe2e5}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd{font-size:11px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#1b1f23;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1{padding-bottom:.3em;font-size:2em;border-bottom:1px solid #eaecef}.markdown-body h2{padding-bottom:.3em;font-size:1.5em;border-bottom:1px solid #eaecef}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#6a737d}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table th{font-weight:600}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #dfe2e5}.markdown-body table tr{background-color:#fff;border-top:1px solid #c6cbd1}.markdown-body table tr:nth-child(2n){background-color:#f6f8fa}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f6f8fa;border-radius:3px}.markdown-body .full-commit .btn-outline:not(:disabled):hover{color:#005cc5;border-color:#005cc5}.markdown-body kbd{display:inline-block;padding:3px 5px;font:11px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;line-height:10px;color:#444d56;vertical-align:middle;background-color:#fcfcfc;border:1px solid #c6cbd1;border-bottom-color:#959da5;border-radius:3px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body :checked+.radio-label{position:relative;z-index:1;border-color:#0366d6}.markdown-body .task-list-item{list-style-type:none}.markdown-body .task-list-item+.task-list-item{margin-top:3px}.markdown-body .task-list-item input{margin:0 .2em .25em -1.6em;vertical-align:middle}.markdown-body hr{border-bottom-color:#eee}.flash{position:relative;padding:16px;color:#246;background-color:#e2eef9;border:1px solid #bac6d3;border-radius:3px}.flash p:last-child{margin-bottom:0}.flash-messages{margin-bottom:24px}.flash-warn{color:#4c4a42;background-color:#fff9ea;border-color:#dfd8c2}.flash-error{color:#911;background-color:#fcdede;border-color:#d2b2b2}.flash-success{color:#22662c;background-color:#e2f9e5;border-color:#bad3be}.flash-plain{color:#4c4a42;background-color:#f5f5f5;border-color:#c1c1c1}</style>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">pre[data-language='renumf90']{background-color:#EFEFFE;}</style>
+  <style type="text/css">pre[data-language='Fortran']{background-color:#E7FFE7;}</style>
+  <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
+  <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
+  <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="prism.css">
+  <script type="text/javascript" src="prism.js"></script>
+</head>
+</head>
+<body>
+<article class="markdown-body">
+<header>
+<h1 class="title">Program design</h1>
+<p class="author">Yutaka Masuda</p>
+<p class="date">January 2020</p>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#program-design">Program design</a><ul>
+<li><a href="#programming-style">Programming style</a></li>
+<li><a href="#program-structure">Program structure</a></li>
+<li><a href="#improvement-of-reusability">Improvement of reusability</a></li>
+</ul></li>
+</ul>
+</nav>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
+<h1 id="program-design">Program design</h1>
+<p>We have looked at language elements in Fortran. I believe that the elements are enough to write small numerical programs. The code sometimes becomes clumsy to read because you have to mix various pieces of code with different roles in the same program. A clear structure of the program helps you a lot to maintain the program.</p>
+<p>This chapter demonstrates to clarify the program. When you become more familiar with programming, please read substantial textbooks for this topic, e.g., <em>Software Tools</em> by Kernighan and Plauger and <em>The Art of Readable Code</em> by Boswell and Foucher.</p>
+<h2 id="programming-style">Programming style</h2>
+<h3 id="use-of-constants">Use of constants</h3>
+<p>If you need a numerical constant, you should declare it as constant with attribute <code>parameter</code>. Consider a case where you allocate a temporary array (vector) with 5 elements.</p>
+<pre data-language="Fortran"><code class="language-fortran">real,allocatable :: temporary(:)
+...
+allocate(temporary(5))</code></pre>
+<pre data-language="Fortran"><code class="language-fortran">real,allocatable :: temporary(:)
+integer,parameter :: leng=5
+...
+allocate(temporary(leng))</code></pre>
+<p>In programming, a numerical literal (like <code>5</code> in the above code) with some functionality is called a <em>magic number</em>. Sometimes a single magic number appears everywhere in the code and often changed. Defining it as a constant, you do not have to change the value everywhere in the code. Also, the magic number becomes more understandable.</p>
+<h3 id="comments">Comments</h3>
+<p>The comments in your program should tell the future yourself for what the code is. The comments should be intended to show why the core is needed and what is the intention of the program. See the following piece of code.</p>
+<pre data-language="Fortran"><code class="language-fortran">! LESS MEANINGFUL:
+! the constant holds 5
+integer,parameter :: leng = 5
+
+! MORE MEANINGFUL:
+! the default length of a temporary array
+! it may be too small, and it can be larger in the future
+integer,parameter :: leng = 5</code></pre>
+<p>The above comment is describing what the code is doing; the comment does not provide anything useful for programmers (even though it can be helpful for beginner programmers). The comment should include the information and some background that are not directly understandable from the code.</p>
+<h3 id="appropriate-names">Appropriate names</h3>
+<p>It is importrant to put appropriate names on variables, constants, and program units. A better name is self-descriptive, and what you can understand what it is when you look at it. In the above example, <code>leng</code> is too general, and perhaps, <code>default_array_length</code> is more useful. If it is too long, <code>default_length</code> can be acceptable.</p>
+<p>You do not have to make every variable-name meaningful. For example, <code>i</code> is good enough for a counter in many cases. Variables <code>a</code> and <code>b</code> may be okay to describe small numerical algorithms. When your program is complicated, a descriptive name is more helpful for you to understand the code.</p>
+<p>The naming rule can be unified when you work with collaborators. If you are the only person to run the project, you can define any naming rules. In Fortran with lowercase letters, the name often has an English word(s) and underscores (<code>_</code>). Fortran supports up to 63 characters for the name.</p>
+<h3 id="clear-statements">Clear statements</h3>
+<p>A better program is readable. It clearly shows what it is. Compare the following 2 pieces of programs.</p>
+<pre data-language="Fortran"><code class="language-fortran">! program 1
+sd = sqrt(((x-sum(x)/size(x))**2)/(size(x)-1))
+
+! program 2
+n = size(x)
+mean = sum(x)/n
+var = ((x-mean)**2)/(n-1)
+sd = sqrt(var)</code></pre>
+<p>Two programs yield the same value, i.e., the standard deviation of elements in <code>x</code>. The second program should be more understandable, with variables holding meaningful values. A dense program looks nice, but it is not very good to understand when you look back at the code 3 months later. The above code is precise if you define a function to calculate the variance.</p>
+<pre data-language="Fortran"><code class="language-fortran">! program 3
+! function variance defined elsewhere.
+sd = sqrt(variance(x))</code></pre>
+<p>The programming style used to have an impact on performance (e.g., computing time) in the past. But now, the difference in performance among styles is ignorable in modern computers with recent compilers. So, a more explicit code is preferred in general.</p>
+<p>There are some tips to improve the readability of code, in addition to using constants, comments, and clear naming rules. The last point will be discussed in the next section.</p>
+<ul>
+<li>Simply write the code that you want to do.</li>
+<li>Use temporary variables if needed for readability (but not too many).</li>
+<li>Do not write too <em>busy</em> code.</li>
+<li>Define functions or subroutines to clarify what to do.</li>
+<li>Consider what is the clear code before writing a program.</li>
+</ul>
+<p>Sometimes, a simple program is prolonged. Generally speaking, it is not because of a programming style but because of a choice of algorithms. It would help if you did not care about the algorithm at the beginning of programming because you can easily change it once you finish writing a program. A programming style becomes much more important when you modify the code.</p>
+<h2 id="program-structure">Program structure</h2>
+<p>A typical numerical program consists of the following 4 steps.</p>
+<ol type="1">
+<li>Declaration of variables, modules, and interfaces.</li>
+<li>Preparation of data (e.g., reading from files or generating in the program).</li>
+<li>Computation with the data and finding the results.</li>
+<li>The output of results (e.g., printing on-screen or writing a file).</li>
+</ol>
+<p>Each step can be divided into detailed steps. The smallest step can be a <em>block</em> of code, and some blocks can form a program unit. You can put comments on each block or unit to make sure what it is.</p>
+<p>To define each block in the above steps, you have to think about a blueprint of the program. The plan, <em>flowchart</em>, can be descriptive on paper or written in a (pseudo) programming language. Once you write the flowchart, you can translate it into Fortran (or any programming languages). When you find a block to be more details while coding, you should be back to planning to divide it into pieces, then coding again. In this section, we are looking at some practices to write code with a reasonable structure.</p>
+<h3 id="descriptive-flowchart">Descriptive flowchart</h3>
+<p>First, a programmer has to make a flowchart of a program. We will look at this process using a small program.</p>
+<h4 id="making-a-flowchart">Making a flowchart</h4>
+<h5 id="rough-plan">Rough plan</h5>
+<p>The program needs to compute the standard deviation of data. The data is stored in a file, and the output should be on screen. A rough description of the program is as follows.</p>
+<ol type="1">
+<li>Read the data and store it into a vector.</li>
+<li>Compute the standard deviation.</li>
+<li>Print the result on the screen.</li>
+</ol>
+<h5 id="some-considerations">Some considerations</h5>
+<p>We need to break down each step. In the first step, you have to think about more details.</p>
+<ul>
+<li>How do you get the file name? The name is fixed, or given by keyboard?</li>
+<li>What kind of data type do you need? Probably <code>real</code>?</li>
+<li>What the name of vector? <code>data</code>, or just <code>x</code>?</li>
+</ul>
+<p>We choose with a file name given by a keyboard and a real vector named <code>data</code>. The file name is stored in a character variable <code>filename</code>. The size of <code>data</code> is unknown, so it should be allocatable. Once the size of <code>data</code> is known, it is stored in an integer variable, <code>n</code>.</p>
+<p>In the second step, a typical question is how to compute the standard deviation. Our choice is the naive formula shown above.</p>
+<p>In the third step, there is no question. You can use either <code>print</code> or <code>write</code>.</p>
+<p>A revised flowchart looks like this.</p>
+<ol type="1">
+<li>Declare variables: <code>data(:)</code>, <code>n</code>, <code>filename</code>.</li>
+<li>Read the file name from the keyboard.</li>
+<li>Read the data from the file and store it into a vector.</li>
+<li>Compute the standard deviation with a simple formula.</li>
+<li>Print the result on the screen.</li>
+</ol>
+<h5 id="more-details">More details</h5>
+<p>You may notice unclear details in the flowchart. We have to open the file for reading and to close the file at the end of the program (just in case), so the flowchart should have <code>open</code> and <code>close</code>. A unit variable <code>unit</code> is also needed.</p>
+<p>Another issue is that we do not know how many values are stored in the file. We have to know <code>n</code> before allocating <code>data(:)</code>, so we should preliminarily read the file just to determine <code>n</code>.</p>
+<p>The final flowchart is as follows.</p>
+<ol type="1">
+<li>Declare variables: <code>data(:)</code>, <code>n</code>, <code>filename</code>, and <code>unit</code>.</li>
+<li>Read the file name from the keyboard, and open it.</li>
+<li>Pre-read it to determine <code>n</code> as the number of values in the file.</li>
+<li>Allocate <code>data</code> and rewind the file.</li>
+<li>Read the data from the file and store it into a vector.</li>
+<li>Compute the standard deviation with a simple formula.</li>
+<li>Print the result on the screen.</li>
+</ol>
+<h3 id="structured-programming">Structured programming</h3>
+<p>Structured programming is a broader concept to improve the clarity and quality of a computer program using the control flow statements and program units. In a narrow sense, the program with 3 control flows, sequence (flowing from the top to the bottom), selection (<code>if</code>), and iteration (<code>do</code>), is called <em>structured program</em>. These 3 flows are enough to write any computer programs.</p>
+<p>We will see how it works using the example shown above.</p>
+<h4 id="coding-each-step">Coding each step</h4>
+<h5 id="variable-declaration">Variable declaration</h5>
+<p>We define the main program as <code>compute_sd</code>. First, we declare all variables at the beginning of the program. When needed, we will put some more variables here.</p>
+<pre data-language="Fortran"><code class="language-fortran">program compute_sd
+   implicit none
+   character(len=50) :: filename
+   real,allocatable :: data(:)
+   integer :: n,unit
+
+end program compute_sd</code></pre>
+<h5 id="read-the-file-name">Read the file name</h5>
+<p>The file name is given by the keyboard and open the file.</p>
+<pre data-language="Fortran"><code class="language-fortran">   read *,filename
+   open(newunit=unit,file=filename)</code></pre>
+<h5 id="count-lines">Count lines</h5>
+<p>Then, we determine the number of lines in the file. There is an idiom to do it in Fortran. Preparing a dummy, real variable, <code>x</code>, and use it to read the file. You repeat it until the file is over, and in each round, you count up <code>n</code>, which has the initial value, 0. At the end of the file, you have to get the <em>end-of-file</em> (EOF) status using an extra integer variable, say <code>info</code>.</p>
+<p>A reference code looks like this.</p>
+<pre data-language="Fortran"><code class="language-fortran">   real :: x
+   integer :: n,unit,info
+...
+   ! pre-read the file to determine n as the number of lines in the file
+   n = 0
+   do
+      read(*,*,iostat=info) x
+      if(info/=0) exit
+      n = n + 1
+   end do</code></pre>
+<h5 id="preparation-for-reading-the-data">Preparation for reading the data</h5>
+<p>Knowing <code>n</code>, you can allocate <code>data(n)</code>. For reading the data, you should rewind the file pointer to the top of the file.</p>
+<pre data-language="Fortran"><code class="language-fortran">   allocate(data(n))
+   rewind(unit)</code></pre>
+<h5 id="reading-the-data">Reading the data</h5>
+<p>Finally, we can read the data and store it in a vector. There are a few ways to do it. We know there are <code>n</code> lines in the file, so we can use a counter (<code>i</code>) to define the order of data. In this way, we use open loops similar to the previous one.</p>
+<pre data-language="Fortran"><code class="language-fortran">   real :: x
+   integer :: n,unit,info,i
+...
+   ! repeat the data reading n times
+   do i=1,n
+      read(*,*,iostat=info) x
+      if(info/=0) exit
+      data(i) = x
+   end do</code></pre>
+<h5 id="computing-the-standard-deviation">Computing the standard deviation</h5>
+<p>The original formula is already shown above. Some more variables should be used to improve the readability.</p>
+<pre data-language="Fortran"><code class="language-fortran">   real :: x,mean,var,sd
+   integer :: n,unit,info,i
+...
+   ! computation of variance with a naive formula
+   mean = sum(data)/n
+   var = ((data-mean)**2)/(n-1)
+   sd = sqrt(var)</code></pre>
+<h5 id="output">Output</h5>
+<p>The output is simple.</p>
+<pre data-language="Fortran"><code class="language-fortran">   print &quot;(a,es12.4)&quot;,&quot;standard deviation = &quot;,sd</code></pre>
+<h5 id="termination">Termination</h5>
+<p>You do not need the following statements. We put it just for clarification of the code.</p>
+<pre data-language="Fortran"><code class="language-fortran">   close(unit)
+   deallocate(data)</code></pre>
+<h5 id="entire-program">Entire program</h5>
+<p>We combine all the above pieces of code to figure the program out.</p>
+<pre data-language="Fortran"><code class="language-fortran">program compute_sd
+   implicit none
+   character(len=50) :: filename
+   real,allocatable :: data(:)
+   real :: x,mean,var,sd
+   integer :: n,unit,info,i
+
+   read *,filename
+   open(newunit=unit,file=filename)
+
+   ! pre-read the file to determine n as the number of lines in the file
+   n = 0
+   do
+      read(*,*,iostat=info) x
+      if(info/=0) exit
+      n = n + 1
+   end do
+
+   allocate(data(n))
+   rewind(unit)
+
+   ! repeat the data reading n times
+   do i=1,n
+      read(*,*,iostat=info) x
+      if(info/=0) exit
+      data(i) = x
+   end do
+
+   ! computation of variance with a naive formula
+   mean = sum(data)/n
+   var = ((data-mean)**2)/(n-1)
+   sd = sqrt(var)
+   print &quot;(a,es12.4)&quot;,&quot;standard deviation = &quot;,sd
+
+   close(unit)
+   deallocate(data)
+end program compute_sd</code></pre>
+<h4 id="stuctured-more">Stuctured more</h4>
+<p>The above code is structured in the sense of flow controls. This program is good enough to do a small task. However, if you want to extend this program to compute more statistics, or modify it to be more general (e.g., reading multiple columns), some blocks can be separated as procedures for reuse and extension.</p>
+<p>In the above code, we have possible 3 blocks to be separated as independent procedures.</p>
+<ol type="1">
+<li>A block to count the number of lines in a text file.</li>
+<li>A block to read a real vector from a file.</li>
+<li>A block to compute the variance of elements in a real vector.</li>
+</ol>
+<p>These procedures should be in a custom module for reuse. Here, for simplicity, we use internal procedures for them.</p>
+<h5 id="counting-the-number-of-lines">Counting the number of lines</h5>
+<p>To separate a block to a procedure, think which is better, function or subroutine. Counting the number of lines always returns a single number <code>n</code>, so a function is a right choice. Here is a direct translation of the above code to an independent function to count the number of lines in a text file.</p>
+<pre data-language="Fortran"><code class="language-fortran">function count_lines(unit) result(n)
+   integer,intent(in) :: unit
+   real :: x
+   integer :: n,info
+   rewind(unit)
+   n = 0
+   do
+      read(*,*,iostat=info) x
+      if(info/=0) exit
+      n = n + 1
+   end do
+   rewind(unit)
+end function count_lines</code></pre>
+<p>We assume that the file has already been opened, and the unit number is only the argument, and the output is <code>n</code>.</p>
+<p>You may notice that <code>rewind(unit)</code> is inserted into the function. The first <code>rewind</code> should reduce the risk of failure in reading the file due to a lack of <code>rewind</code>. Also, the last <code>rewind</code> is just in case the programmer forget to rewind the unit just after calling this function and fail in the next step.</p>
+<h5 id="reading-real-vector-from-file">Reading real vector from file</h5>
+<p>We have the same equation as above, which is better for reading a vector from file, function, or subroutine? Tachnically, you can use each one of them, but here, I am going to use a subroutine.</p>
+<pre data-language="Fortran"><code class="language-fortran">subroutine read_real_vector(unit,n,data)
+   integer,intent(in) :: unit,n
+   real,intent(out) :: data(:)
+   real :: x
+   integer :: i,info
+   rewind(unit)
+   do i=1,n
+      read(*,*,iostat=info) x
+      if(info/=0) exit
+      data(i) = x
+   end do
+   rewind(unit)
+end subroutine read_real_vector</code></pre>
+<p>The file should be opened before calling this function. Also, the number of lines should be known. This program also has <code>rewind</code> for fail-safe.</p>
+<p>So, why did I choose a subroutine, not function? It is because this program unit has a <em>side effect</em>. This program moves the position in the file, and on exit, the position may differ from the original position. If a program unit changes arguments, variables, or the other status defined outside the unit, we say that there is a <em>side effect</em>. Otherwise, the program unit is <em>pure</em>. There is a custom in Fortran: if the program unit has a side effect, use subroutine, instead of function.</p>
+<h5 id="variance-function">Variance function</h5>
+<p>A function is a choice to compute the variance.</p>
+<pre data-language="Fortran"><code class="language-fortran">function variance(data) result(var)
+   real,intent(in) :: data(:)
+   real :: mean
+   integer :: n
+   n = size(data)
+   mean = sum(data)/(n-1)
+   var = ((data-mean)**2)/(n-1)
+end function variance</code></pre>
+<h5 id="structured-program">Structured program</h5>
+<p>Here is the final program.</p>
+<pre data-language="Fortran"><code class="language-fortran">program compute_sd
+   implicit none
+   character(len=50) :: filename
+   real,allocatable :: data(:)
+   integer :: unit
+
+   read *,filename
+   open(newunit=unit,file=filename)
+
+   n = count_lines(unit)
+   allocate(data(n))
+
+   call read_real_vector(unit,n,data)
+   sd = sqrt(variance(data))
+   print &quot;(a,es12.4)&quot;,&quot;standard deviation = &quot;,sd
+
+   close(unit)
+   deallocate(data)
+
+contains
+
+! pre-read the file to determine n as the number of lines in the file
+function count_lines(unit) result(n)
+   integer,intent(in) :: unit
+   real :: x
+   integer :: n,info
+   n = 0
+   do
+      read(*,*,iostat=info) x
+      if(info/=0) exit
+      n = n + 1
+   end do
+end function count_lines
+
+! repeat the data reading n times from a unit
+subroutine read_real_vector(unit,n,data)
+   integer,intent(in) :: unit,n
+   real,intent(out) :: data(:)
+   real :: x
+   integer :: i,info
+   rewind(unit)
+   do i=1,n
+      read(*,*,iostat=info) x
+      if(info/=0) exit
+      data(i) = x
+   end do
+   rewind(unit)
+end subroutine read_real_vector
+
+! computation of variance with a naive formula
+function variance(data) result(var)
+   real,intent(in) :: data(:)
+   real :: mean
+   integer :: n
+   n = size(data)
+   mean = sum(data)/(n-1)
+   var = ((data-mean)**2)/(n-1)
+end function variance
+
+end program compute_sd</code></pre>
+<p>This program is better structured compared with the original program. You see that the main program needs fewer variables than the original one. Also, you do not need further comments in the main program because the name of the function clearly describes what is going on.</p>
+<h5 id="structured-with-custom-module">Structured with custom module</h5>
+<p>The program is further structured using a custom module. All the functions can be separated from the module. The module is reusable for any programmers.</p>
+<pre data-language="Fortran"><code class="language-fortran">program compute_sd
+   use mymod
+   implicit none
+   character(len=50) :: filename
+   real,allocatable :: data(:)
+   integer :: unit
+
+   read *,filename
+   open(newunit=unit,file=filename)
+
+   n = count_lines(unit)
+   allocate(data(n))
+
+   call read_real_vector(unit,n,data)
+   sd = sqrt(variance(data))
+   print &quot;(a,es12.4)&quot;,&quot;standard deviation = &quot;,sd
+
+   close(unit)
+   deallocate(data)
+end program compute_sd</code></pre>
+<pre data-language="Fortran"><code class="language-fortran">module mymod
+
+implicit none
+
+contains
+
+! pre-read the file to determine n as the number of lines in the file
+function count_lines(unit) result(n)
+   integer,intent(in) :: unit
+   real :: x
+   integer :: n,info
+   n = 0
+   do
+      read(*,*,iostat=info) x
+      if(info/=0) exit
+      n = n + 1
+   end do
+end function count_lines
+
+! repeat the data reading n times from a unit
+subroutine read_real_vector(unit,n,data)
+   integer,intent(in) :: unit,n
+   real,intent(out) :: data(:)
+   real :: x
+   integer :: i,info
+   rewind(unit)
+   do i=1,n
+      read(*,*,iostat=info) x
+      if(info/=0) exit
+      data(i) = x
+   end do
+   rewind(unit)
+end subroutine read_real_vector
+
+! computation of variance with a naive formula
+function variance(data) result(var)
+   real,intent(in) :: data(:)
+   real :: mean
+   integer :: n
+   n = size(data)
+   mean = sum(data)/(n-1)
+   var = ((data-mean)**2)/(n-1)
+end function variance
+
+end module mymod</code></pre>
+<h2 id="improvement-of-reusability">Improvement of reusability</h2>
+<h3 id="clear-interface-for-the-future-use">Clear interface for the future use</h3>
+<p>In the above code, some functions have <code>rewind</code> to reduce the risk of failure. It improves the reusability of the functions; safer and more understandable for programmers. You may notice that there is an alternative set of arguments for <code>count_lines</code> and <code>read_real_vector</code> to be useful in future usage.</p>
+<p>For <code>count_lines</code>, it can receive <code>filename</code> instead of <code>unit</code> so that the programmer does not have to open the file before calling the function. This option is more comfortable to remember for programmers.</p>
+<p>Also, for <code>read_real_vector</code>, <code>filename</code> can be an argument, but <code>n</code> is still needed, meaning <code>count_lines</code> should be called before <code>read_real_vector</code>. A possible, more straightforward argument is <code>filename</code> only, and <code>data</code> would be <em>allocated</em> inside the program unit. It can be a function because there is no side effect anymore if the file is closed inside the function. Although it is possible in modern Fortran, we do not see this feature here because it produces more questions about the best design of functions for future use.</p>
+<p>A lesson in this section is that there are many choices about arguments and return values (i.e., interface to procedures), and the best interface may not be easily found.</p>
+<h3 id="error-handling">Error handling</h3>
+<p>The programs shown above do not care about any errors. If an error occurs, the program stops immediately with some messages prepared by the compiler. Sometimes the error message is cryptic. The programmer often needs to care for the error to show kinder messages or to provide alternative methods to proceed with the program.</p>
+<h4 id="main-program">Main program</h4>
+<p>In the main program, a typical error comes from the following statement. When there is no file, <code>open</code> fails. The <code>open</code> statement can have an option, <code>status="old"</code>, which assumes that the file exists. If not, the statement returns a non-zero value to an integer variable specified in <code>iostat=</code>. A safer program is as follows.</p>
+<pre data-language="Fortran"><code class="language-fortran">   open(newunit=unit,file=filename,status=&quot;old&quot;,iostat=info)
+   if(info/=0) stop &quot;The file is not found.&quot;</code></pre>
+<p>Another risk is an empty file. If the file is empty, <code>n</code> equals to 0. In this case, the variance function fails because of <code>n-1</code> in the denominator. A best practice is to check if <code>n</code> is numerically positive or not.</p>
+<pre data-language="Fortran"><code class="language-fortran">   n = count_lines(unit)
+   if(n&lt;=0) stop &quot;The file is empty or invalid.&quot;</code></pre>
+<p>The above program tests if <code>n&lt;=</code>. So why not <code>n==0</code>? It is an idiom in programming; the valid case is a positive value, i.e., <code>n&gt;0</code>, and its inverse is <code>n&lt;=0</code> even if <code>n</code> seems not to be negative. Note that <code>n</code> can be numerically negative if <code>n</code> is overflow with more than 2147483647 lines in the file.</p>
+<p>You may see that a perfect error-handling is very hard for general programs. My suggestion is that a programmer should be responsible for handling minimal, frequently-observed errors. Do not put too much effort into trying to remove rare errors; put a comment on the code with a potential error-risk.</p>
+<h4 id="other-program-units">Other program units</h4>
+<p>For reusable procedures in a module, error handling is essential because these procedures are used in the future, and the future programmers may not know the details of procedures. They would easily hit an error but miss it just because they are unaware of the inside.</p>
+<p>If the perfect error handling is hard, a module-developer should prepare documentation of reusable procedures. It reduces the risk to miss the errors.</p>
+<p>There are several ways to handle the error. The simplest (and unrecoverable) way is to stop the program inside the procedure. It is useful if the error is unrecoverable, and it is caused by a mistake of the programmer, such as the wrong usage of procedure. For example, <code>count_lines</code> can stop if the file not opened. This function works only when the file is opened, and a wrong sequence of programs should cause the non-opened unit.</p>
+<p>Another option is to return an error status like <code>open(iostat=)</code> and <code>read(iostat=)</code>. It is useful when the procedure is supposed to have both a normal and an abnormal status. The error code tells the abnormal status to the programmer to take any action to care for it. If returning the error code, the procedure should usually be a subroutine.</p>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
+</article>
+</body>
+</html>

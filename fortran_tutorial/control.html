@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<!--==============================================================================
+	           "GitHub HTML5 Pandoc Template" v1.2 — by Tristano Ajmone
+	==============================================================================
+	(c) Tristano Ajmone, 2017, MIT License (MIT). Project's home repository:
+
+	- https://github.com/tajmone/pandoc-goodies
+
+	This template reuses source code taken from the following projects:
+
+	- GitHub Markdown CSS: © Sindre Sorhus, MIT License (MIT):
+	  https://github.com/sindresorhus/github-markdown-css
+
+	- Primer CSS: © 2016 GitHub Inc., MIT License (MIT):
+	  http://primercss.io/
+	==============================================================================-->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Yutaka Masuda" />
+  <title>Flow control</title>
+  <style type="text/css">@font-face{font-family:octicons-link;src:url(data:font/woff;charset=utf-8;base64,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) format('woff')}.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#24292e;font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";font-size:16px;line-height:1.5;word-wrap:break-word;box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto;padding:45px}.markdown-body .octicon{display:inline-block;fill:currentColor;vertical-align:text-bottom}.markdown-body a{background-color:transparent;-webkit-text-decoration-skip:objects;color:#0366d6;text-decoration:none}.markdown-body a:active,.markdown-body a:hover{outline-width:0}.markdown-body h1{margin:.67em 0}.markdown-body img{border-style:none}.markdown-body svg:not(:root){overflow:hidden}.markdown-body code,.markdown-body kbd,.markdown-body pre{font-family:monospace,monospace}.markdown-body input{font:inherit;margin:0;overflow:visible;font-family:inherit;font-size:inherit;line-height:inherit}.markdown-body [type=checkbox]{box-sizing:border-box;padding:0}.markdown-body *{box-sizing:border-box}.markdown-body a:hover{text-decoration:underline}.markdown-body strong{font-weight:600}.markdown-body hr{box-sizing:content-box;overflow:hidden;background:0 0;border-bottom:1px solid #dfe2e5}.markdown-body hr::before{display:table;content:""}.markdown-body hr::after{display:table;clear:both;content:""}.markdown-body table{border-spacing:0;border-collapse:collapse;display:block;width:100%;overflow:auto}.markdown-body td,.markdown-body th{padding:0}.markdown-body blockquote{margin:0}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol{list-style-type:lower-alpha}.markdown-body dd{margin-left:0}.markdown-body code{font-family:SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace}.markdown-body pre{font:12px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;word-wrap:normal}.markdown-body .pl-0{padding-left:0!important}.markdown-body .pl-1{padding-left:4px!important}.markdown-body .pl-2{padding-left:8px!important}.markdown-body .pl-3{padding-left:16px!important}.markdown-body .pl-4{padding-left:24px!important}.markdown-body .pl-5{padding-left:32px!important}.markdown-body .pl-6{padding-left:40px!important}.markdown-body::before{display:table;content:""}.markdown-body::after{display:table;clear:both;content:""}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:0}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e1e4e8;border:0}.markdown-body blockquote{padding:0 1em;color:#6a737d;border-left:.25em solid #dfe2e5}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd{font-size:11px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#1b1f23;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1{padding-bottom:.3em;font-size:2em;border-bottom:1px solid #eaecef}.markdown-body h2{padding-bottom:.3em;font-size:1.5em;border-bottom:1px solid #eaecef}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#6a737d}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table th{font-weight:600}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #dfe2e5}.markdown-body table tr{background-color:#fff;border-top:1px solid #c6cbd1}.markdown-body table tr:nth-child(2n){background-color:#f6f8fa}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f6f8fa;border-radius:3px}.markdown-body .full-commit .btn-outline:not(:disabled):hover{color:#005cc5;border-color:#005cc5}.markdown-body kbd{display:inline-block;padding:3px 5px;font:11px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;line-height:10px;color:#444d56;vertical-align:middle;background-color:#fcfcfc;border:1px solid #c6cbd1;border-bottom-color:#959da5;border-radius:3px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body :checked+.radio-label{position:relative;z-index:1;border-color:#0366d6}.markdown-body .task-list-item{list-style-type:none}.markdown-body .task-list-item+.task-list-item{margin-top:3px}.markdown-body .task-list-item input{margin:0 .2em .25em -1.6em;vertical-align:middle}.markdown-body hr{border-bottom-color:#eee}.flash{position:relative;padding:16px;color:#246;background-color:#e2eef9;border:1px solid #bac6d3;border-radius:3px}.flash p:last-child{margin-bottom:0}.flash-messages{margin-bottom:24px}.flash-warn{color:#4c4a42;background-color:#fff9ea;border-color:#dfd8c2}.flash-error{color:#911;background-color:#fcdede;border-color:#d2b2b2}.flash-success{color:#22662c;background-color:#e2f9e5;border-color:#bad3be}.flash-plain{color:#4c4a42;background-color:#f5f5f5;border-color:#c1c1c1}</style>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">pre[data-language='renumf90']{background-color:#EFEFFE;}</style>
+  <style type="text/css">pre[data-language='Fortran']{background-color:#E7FFE7;}</style>
+  <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
+  <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
+  <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="prism.css">
+  <script type="text/javascript" src="prism.js"></script>
+</head>
+</head>
+<body>
+<article class="markdown-body">
+<header>
+<h1 class="title">Flow control</h1>
+<p class="author">Yutaka Masuda</p>
+<p class="date">January 2020</p>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#flow-control">Flow control</a><ul>
+<li><a href="#conditional">Conditional</a></li>
+<li><a href="#loops">Loops</a></li>
+</ul></li>
+</ul>
+</nav>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
+<h1 id="flow-control">Flow control</h1>
+<p>As previously noted, a Fortran program <em>sequentially</em> executes the code from the beginning through the end. By default, the program does not skip any single statement and does not go back to the previous statements. We are going to see some control statements which change the flow or repeat the same statements many times.</p>
+<h2 id="conditional">Conditional</h2>
+<h3 id="if-statement">If statement</h3>
+<h4 id="simple-example">Simple example</h4>
+<p>You often want to change the flow by the condition. A typical example is to test the input value; you can print an error message if the values are invalid. To make branches by condition, Fortran provides the <code>if</code> statement, as seen in the following example.</p>
+<pre data-language="Fortran"><code class="language-fortran">program cond
+   implicit none
+   real :: x
+   read *,x
+   if(x&lt;0.0) then
+      print *,&#39;The value should be 0 or positive.&#39;
+      stop
+   else
+      print *,&#39;square root=&#39;,sqrt(x)
+   end if
+end program cond</code></pre>
+<p>Note that the <code>if</code> statement has an indent to make the structure clearer. The <code>stop</code> keyword stops the program immediately. You can see how to use the <code>if</code> statement with this example.</p>
+<ul>
+<li>The <code>if</code> statement starts with if (condition) then<code>and ends with</code>end if<code>. The condition is a logical expression which returns</code>.true.<code>or</code>.false.`.</li>
+<li>The <code>if</code> statement has 2 blocks: the first one between <code>if</code> and <code>else</code>, and the second one between <code>else</code> and <code>end if</code>. Each block is exclusively executed by the condition in the <code>if</code> statement.</li>
+<li>If the condition is true, the program proceeds the first block and exits the statement (jumps to the next line of <code>end if</code>).</li>
+<li>If the condition is false, the program jumps to the second block and exit the statement.</li>
+</ul>
+<p>The <code>if</code> statement has some flexible structure. The following code runs in the same way as above (only the kernel of the program is shown).</p>
+<pre data-language="Fortran"><code class="language-fortran">! Alternative 1
+if(x&gt;=0.0) then
+   print *,&#39;square root=&#39;,sqrt(x)
+else
+   print *,&#39;The value should be 0 or positive.&#39;
+   stop
+end if
+
+! ----------------------------------------------
+! Alternative 2
+if(x&lt;0.0) then
+   print *,&#39;The value should be 0 or positive.&#39;
+   stop
+end if
+print *,&#39;square root=&#39;,sqrt(x)</code></pre>
+<p>The first alternative has the opposite condition as the original one. The second alternative has no <code>else</code> block; the program stops if the conditional meets, so it does not need the <code>else</code> block.</p>
+<h4 id="general-form-of-if">General form of <code>if</code></h4>
+<p>The <code>if</code> statement has the following general form.</p>
+<pre><code>if(Condition 1) then
+   [Block 1]
+else if(Condition 2) then
+   [Block 2]
+else if(Condition 3) then
+   [Block 3]
+...
+else
+   [Else Block]
+end if</code></pre>
+<p>In the above case, the program can be interpreted as follows.</p>
+<ul>
+<li>The program first tests Condition 1, and if true, it executes Block 1 only and exits the statement.</li>
+<li>If Condition 1 is not true, then it tests condition 2, and if true, it executes Block 2 and exits the statement.</li>
+<li>If Condition 2 is not true, then it tests condition 3, and if true, it executes Block 3 and exits the statement.</li>
+<li>You can put more <code>else if</code> statements between the first <code>if</code> and <code>else</code>.</li>
+<li>You can optionally put <code>else</code> at the bottom of the statement. The Else block will be executed if all the conditions do not meet.</li>
+</ul>
+<p>When there is no <code>else</code> block, if all conditions do not meet, the program does nothing and exits the statement.</p>
+<p>By the way, Fortran accepts <code>endif</code> instead of <code>end if</code> (and <code>elseif</code> vs. <code>else if</code>). Also, spaces are allowed to be between <code>if</code> and <code>(</code> i.e. <code>if (condition) then</code>. This tutorial uses <code>end if</code> and <code>else if</code>, but it is my preference. You can use your favorite style.</p>
+<h4 id="one-line-if">One-line if</h4>
+<p>When you have only 1 block, i.e. <code>if(...) then ... end if</code> and the block has only 1 statement, you can write the code in 1 line.</p>
+<pre data-language="Fortran"><code class="language-fortran">program cond
+   implicit none
+   real :: val
+   read *,val
+   if(val==0.0) stop
+   print *,val
+end program cond</code></pre>
+<h4 id="logical-expressions">Logical expressions</h4>
+<p>You can combine several conditions with <code>.and.</code> and <code>.or.</code>. Recall the rule to make logical expressions. The following program precisely finds the error of input values and gives the user messages about what is wrong. It accepts two positive numbers from the keyboard and calculates a value.</p>
+<pre data-language="Fortran"><code class="language-fortran">program cond
+   implicit none
+   real :: x,y
+   read *,x,y
+   if(x&lt;0 .and. y&lt;=0) then
+      print *,&#39;error: x&lt;0 and y&lt;=0&#39;
+   else if(x&lt;0) then
+      print *,&#39;error: x&lt;0&#39;
+   else if(y&lt;=0) then
+      print *,&#39;error: y&lt;=0&#39;
+   else
+      print *,&#39;sqrt(x)*log(y)=&#39;,sqrt(x)*log(y)
+   end if
+   print *,&#39;done.&#39;
+end program cond</code></pre>
+<h4 id="nested-if-statements">Nested if statements</h4>
+<p>The <code>if</code> statements can be <em>nested</em>, which means you can put it in another <code>if</code> statement. You can cascade a conditional test to another. The following example is an alternative version of the previous program.</p>
+<pre data-language="Fortran"><code class="language-fortran">program cond
+   implicit none
+   real :: x,y
+   read *,x,y
+   if(x&lt;0) then
+      print *,&#39;error: x&lt;0&#39;
+   else
+      if(y&lt;=0) then
+         print *,&#39;error: y&lt;=0&#39;
+      else
+         print *,&#39;sqrt(x)*log(y)=&#39;,sqrt(x)*log(y)
+      end if
+   end if
+   print *,&#39;done.&#39;
+end program cond</code></pre>
+<p>In this case, the program does not detect the case where both <code>x</code> and <code>y</code> are invalid at the same time. The original code looks flat and checks all possible cases on the same line. The above code shows a clear intent that checks <code>x</code> first and <code>y</code> second.</p>
+<p>I have to admit that the above example is artificial to show the nested-if. The code is equivalent to the following program with a single if-elseif-else block.</p>
+<pre data-language="Fortran"><code class="language-fortran">   if(x&lt;0) then
+      print *,&#39;error: x&lt;0&#39;
+   else if(y&lt;=0) then
+      print *,&#39;error: y&lt;=0&#39;
+   else
+      print *,&#39;sqrt(x)*log(y)=&#39;,sqrt(x)*log(y)
+   end if</code></pre>
+<h4 id="summary">Summary</h4>
+<ul>
+<li>The <code>if</code> statement starts with <code>if(condition) then</code> and ends with <code>end if</code>.</li>
+<li>The condition has a logical expression resulting in a single <code>.true.</code> or <code>.false.</code>.</li>
+<li>You can optionally insert <code>else if(condition)</code> as many as possible and one <code>else</code> into the statement.</li>
+<li>If the condition meets, the program executes the immediately beneath block and exits the current <code>if</code> statement (moves to the next line of <code>end if</code>).</li>
+<li>If the condition does not meet, the program jumps to the next <code>else if</code> and evaluates the condition and decide whether the program takes the block or not.</li>
+<li>If all the conditions are false and there is the <code>else</code> block, the program executes it.</li>
+<li>The <code>if</code> statement can be nested.</li>
+</ul>
+<h4 id="exercises">Exercises</h4>
+<ul>
+<li>Read 1 integer (<code>code</code>) and 1 real values (<code>v</code>) from the keyboard. If the code is <code>1</code>, compute the square root of <code>v</code>. If the code is <code>2</code>, compute the sine of <code>v</code>. If the code is the other values, print an error message and stop the program.</li>
+<li>Read an integer and show if it is an even or odd number.</li>
+</ul>
+<!--
+### Switch statement
+
+There is a convenient statement to make branches by a single value.
+The `switch` statement is easy to read the conditionals but limited in its usage.
+Here, I show an example only; see some textbooks for details.
+
+```Fortran
+program cond
+   implicit none
+   real :: x
+   read *,x,y
+   if(x<0 .and. y<=0) then
+      print *,'error: x<0 and y<=0'
+   else if(x<0) then
+      print *,'error: x<0'
+   else if(y<=0) then
+      print *,'error: y<=0'
+   else
+      print *,'sqrt(x)*log(y)=',sqrt(x)*log(y)
+   end if
+   print *,'done.'
+end program cond
+```
+-->
+<h2 id="loops">Loops</h2>
+<h3 id="do-statement">Do statement</h3>
+<h4 id="small-example">Small example</h4>
+<p>There is a case where you have to repeat the same operation many times. Or, you need to repeat slightly different but almost the same operation by round. The simplest way is to write all the repeated operations as a flat program, but it should be in trouble in its readability and redundancy. Fortran provides a systematic way to repeat the same (or similar) operation with the <code>do</code> statement.</p>
+<p>For example, consider printing <code>Hello, world!</code> 3 times. It can be written in Fortran as follows.</p>
+<pre data-language="Fortran"><code class="language-fortran">program loop
+   implicit none
+   integer :: i
+   do i=1,3
+      print *,&quot;Hello, world!&quot;
+   end do
+end program loop</code></pre>
+<pre data-language="output"><code> Hello, world!
+ Hello, world!
+ Hello, world!</code></pre>
+<p>It may need some explanation.</p>
+<ul>
+<li>The operations (block) that you want to repeat are placed between <code>do</code> and <code>end do</code>.</li>
+<li>The <code>do</code> keyword accompanies with an integer variable, here, <code>i</code>.</li>
+<li>The variable <code>i</code> is automatically initialized to <code>1</code> (as specified in the <code>do</code> statement) before the loop starts.</li>
+<li>In the 1st iteration, <code>i</code> is compared with the last value <code>3</code> as <code>i&lt;=3</code>. It is true, and the program executes the block.
+<ul>
+<li>When the program reaches <code>end do</code>, it jumps back to <code>do</code>, and increment <code>i</code> by 1. In this case, <code>i</code> becomes 2.</li>
+</ul></li>
+<li>In the 2nd iteration, <code>i</code> is compared with the last value <code>3</code> as <code>i&lt;=3</code>. It is true, and the program executes the block.
+<ul>
+<li>When the program reaches <code>end do</code>, it jumps back to <code>do</code>, and increment <code>i</code> by 1. In this case, <code>i</code> becomes 3.</li>
+</ul></li>
+<li>In the 3rd iteration, <code>i</code> is compared with the last value <code>3</code> as <code>i&lt;=3</code>. It is true, and the program executes the block.
+<ul>
+<li>When the program reaches <code>end do</code>, it jumps back to <code>do</code>, and increment <code>i</code> by 1. In this case, <code>i</code> becomes 4.</li>
+</ul></li>
+<li>In the 4th iteration, <code>i</code> is compared with the last value <code>3</code> as <code>i&lt;=3</code>. It is false, and the program jumps out of <code>end do</code>.</li>
+</ul>
+<p>The key to understanding the <code>do</code> loop is as follows.</p>
+<ol type="1">
+<li>The <code>do</code> statement needs an integer variable <code>i</code> as a counter.</li>
+<li>The <code>do</code> statement has the following form: <code>do variable = starting value, final value.</code></li>
+<li>Before the loop, the variable is initialized to the staring value.</li>
+<li>The program moves the focus between <code>do</code> and <code>end do</code>.</li>
+<li>Whenever the program reaches <code>do</code>, the variable is compared to the final value. If the variable is smaller than or equals to the final value, the focus moves to the next line; Otherwise, the program exits the current loop.</li>
+<li>Whenever the program reaches <code>end do</code>, the focus goes back to the corresponding <code>do</code>, then the variable is incremented by 1 (and going back to Step 5).</li>
+</ol>
+<p>In this usage, <code>do</code> needs a counter variable. This behavior is like a baby counts up numbers by hand. The counter variable is checked only at the beginning of loops, and it is incremented when going back from <code>end do</code> to <code>do</code>.</p>
+<p>By the way, this program works when <code>i=1,3</code> is replaced with <code>i=0,2</code> or even <code>i=-5,-3</code> (please consider why). Non-1 starting value looks unusual but may be useful in future use.</p>
+<h4 id="use-of-the-counter-variable">Use of the counter variable</h4>
+<p>The counter is an integer variable, so the program refers to the value of this variable in each iteration (but can not rewrite the variable because the statement protects it). In the above case (<code>i=1:3</code>), the counter <code>i</code> is 1 in the 1st iteration, 2 in the 2nd, and 3 in the last iteration. After the loop, <code>i</code> becomes 4.</p>
+<p>The previous example can be slightly changed to show the current iteration number.</p>
+<pre data-language="Fortran"><code class="language-fortran">program loop
+   implicit none
+   integer :: i
+   do i=1,3
+      print *,&quot;iteration&quot;,i,&quot;: Hello, world!&quot;
+   end do
+end program loop</code></pre>
+<pre data-language="output"><code> iteration         1: Hello, world!
+ iteration         2: Hello, world!
+ iteration         3: Hello, world!</code></pre>
+<p>This variable can also be used in a formula. The following example computes the multiple of 3.</p>
+<pre data-language="Fortran"><code class="language-fortran">program loop
+   implicit none
+   integer :: i
+   do i=1,9
+      print *,i,&quot; x 3 = &quot;,i*3
+   end do
+end program loop</code></pre>
+<pre data-language="output"><code>           1  x 3 =            3
+           2  x 3 =            6
+           3  x 3 =            9
+           4  x 3 =           12
+           5  x 3 =           15
+           6  x 3 =           18
+           7  x 3 =           21
+           8  x 3 =           24
+           9  x 3 =           27</code></pre>
+<p>Any other variables can be used inside the loop. The following program calculates the factorial of an arbitrary integer read from the keyboard.</p>
+<pre data-language="Fortran"><code class="language-fortran">program loop
+   implicit none
+   integer :: i,n,fact
+   read *,n
+   fact = 1
+   do i=1,n
+      fact = fact*i
+   end do
+   print *,n,&quot;! = &quot;,fact
+end program loop</code></pre>
+<pre data-language="output"><code># when putting 5:
+           5 ! =          120</code></pre>
+<p>Note that the variable <code>fact</code> for storing the result must be initialized by 1 before the loop. This program does not work if you put a large number (it overflows). The variable is changed to double precision to fix this issue (see exercises).</p>
+<p>The counter variable should be an integer. If you need a real value that incrementally changes, you have to calculate the value from the counter. The following program calculates the square root of a real value ranged from 0 to 1 by 0.1.</p>
+<pre data-language="Fortran"><code class="language-fortran">program loop
+   implicit none
+   integer :: i
+   real :: v
+   do i=0,10
+      v = real(i)/10
+      print *,sqrt(v)
+   end do
+end program loop</code></pre>
+<!--
+#### Horizontal output
+
+There is a particular case where the keyword `do` does not appear, but the iterator like `i=1:3` exists in `print`.
+The following program is an extension of "multiple of 3," but it shows the numbers horizontally.
+
+```Fortran
+program loop
+   implicit none
+   integer :: i
+   print *,(i*3,i=1,9)
+end program loop
+```
+
+```
+           3           6           9          12          15          18          21          24          27
+```
+-->
+<h4 id="break-and-skip-the-loop">Break and skip the loop</h4>
+<p>You may break (exit) a loop when a condition is true. The keyword <code>exit</code> immediately exits the <code>do</code> statement by jumping to the next line of <code>end do</code>. It may happen when you repeatedly read a value from the keyboard and stop reading when the input is invalid.</p>
+<pre data-language="Fortran"><code class="language-fortran">program loop
+   implicit none
+   integer :: i
+   real :: val
+
+   ! read value 10 times but exit the loop if the input is negative.
+   do i=1,10
+      read *,val
+      if(val &lt; 0) exit
+      print *,sqrt(val)
+   end do
+end program loop</code></pre>
+<p>If you want to skip the rest of the statements in the loop and start the next iteration, you can use the <code>cycle</code> keyword, which immediately moves the focus to the beginning of <code>do</code>. In the above code, if you replace <code>exit</code> by <code>cycle</code>, it jumps back to the <code>do</code> statement and starts the next round. You should see if this program reads the value precisely 10 times.</p>
+<pre data-language="Fortran"><code class="language-fortran">program loop
+   implicit none
+   integer :: i
+   real :: val
+
+   ! read value 10 times but skip the round if the input is negative.
+   do i=1,10
+      read *,val
+      if(val &lt; 0) cycle
+      print *,sqrt(val)
+   end do
+end program loop</code></pre>
+<h4 id="infinite-loops">Infinite loops</h4>
+<p>If you don’t know how many iterations are needed, <code>do</code> continues the loop forever. Such a structure is called <em>infinite loops</em>, and it never ends unless the program meets <code>exit</code> in the loop. Making infinite loops, you just drop the iterator and use <code>do</code> alone.</p>
+<pre data-language="Fortran"><code class="language-fortran">program loop
+   implicit none
+   real :: val
+
+   ! read a value but exit the loop if the input is negative.
+   do
+      read *,val
+      if(val &lt; 0) exit
+      print *,sqrt(val)
+   end do
+end program loop</code></pre>
+<p>Again, this unconditional <code>do</code> statement creates the infinite loops, and the program may never stop. The compiler can not detect the infinite loops as a failure. If you run into this issue, hit the Control key (Ctrl) and the C key simultaneously (hit C while pushing Ctrl).</p>
+<h4 id="summary-1">Summary</h4>
+<ul>
+<li>The <code>do</code> statement defines a loop. The statements between <code>do</code> and the corresponding <code>end do</code> are repeated.</li>
+<li>The loop can have an integer variable indicating how many times the loop is repeated. The user can refer to the counter as a variable.</li>
+<li>When the program reaches <code>end do</code>, the focus goes back to the corresponding <code>do</code>, then the counter is incremented by 1.</li>
+<li>The evaluation of the counter occurs at <code>do</code>, the top of the loop. If the counter is greater than the final value, the program exits the loop, i.e., going to the next line of <code>end do</code>.</li>
+<li>The <code>exit</code> statement jumps out of the loop. The <code>cycle</code> statement immediately goes back to <code>do</code>, ignoring the remaining statements.</li>
+<li>Without the counter, <code>do</code> makes an infinite loop. The <code>exit</code> statement is the only way to exit the loop.</li>
+</ul>
+<h4 id="exercises-1">Exercises</h4>
+<ol type="1">
+<li>Rewrite the code to compute a factorial with a larger <code>n</code> using a double-precision variable.</li>
+<li>Read 10 numbers from the keyboard, then show how many positive numbers were given.</li>
+<li>Write a <em>fizz buzz</em> program. It prints integer numbers from 1 to <code>n</code> on screen, but when the number is divisible by 3 is replaced by the word <code>fizz</code>, any number divisible by 5 by the word <code>buzz</code>, and the numbers divisible by 15 by the word <code>fizz buzz</code>.</li>
+</ol>
+<h3 id="variation-in-loop">Variation in loop</h3>
+<h4 id="non-executable-loop">Non-executable loop</h4>
+<p>You can use variables as the staring and the last values. In such a case, the loop may not be executed. It is a valid program, and it often appears in some algorithms.</p>
+<pre data-language="Fortran"><code class="language-fortran">program loop
+   implicit none
+   integer :: i,a,b
+
+   read *,a,b
+
+   ! not executed when a&gt;b
+   do i=a,b
+      print *,i
+   end do
+end program loop</code></pre>
+<h4 id="non-1-increment">Non-1 increment</h4>
+<p>By default, the counter variable is incremented by 1. The user can change the increment to any non-zero integer as the 3rd parameter in the <code>do</code> statement. For example, the following code shows odd numbers up to 10 (actually 9).</p>
+<pre data-language="Fortran"><code class="language-fortran">program loop
+   implicit none
+   integer :: i
+
+   ! counter incremented by 2
+   do i=1,10,2
+      print *,i
+   end do
+end program loop</code></pre>
+<pre data-language="output"><code>           1 
+           3 
+           5 
+           7 
+           9 </code></pre>
+<p>Using this technique, the user can define a loop where the counter decrements.</p>
+<pre data-language="Fortran"><code class="language-fortran">program loop
+   implicit none
+   integer :: i
+
+   ! from 5 to 1 by -1
+   do i=5,1,-1
+      print *,i
+   end do
+end program loop</code></pre>
+<pre data-language="output"><code>           5
+           4
+           3
+           2
+           1</code></pre>
+<h4 id="summary-2">Summary</h4>
+<ul>
+<li>If the staring value is already larger than the final value in a loop, such a loop will not be executed.</li>
+<li>The increment is defined in the 3rd parameter in <code>do</code>. It should be non zero integers.</li>
+</ul>
+<h4 id="exercises-2">Exercises</h4>
+<p>There are no exercises in this section.</p>
+<h3 id="nested-loops">Nested loops</h3>
+<p>You can define nested loops with multiple <code>do</code>s. Here, for simplicity, we just consider double loops with two <code>do</code> statements.</p>
+<h4 id="double-loops">Double loops</h4>
+<p>As the <code>if</code> statement, <code>do</code> can also be nested. You can see how the nested loops work in the following example.</p>
+<pre data-language="Fortran"><code class="language-fortran">program loop
+   implicit none
+   integer :: i,j
+
+   do i=1,3
+      do j=7,9
+         print *,i,&quot; x &quot;,j,&quot;=&quot;,i*j
+      end do
+   end do
+end program loop</code></pre>
+<pre data-language="output"><code>           1  x            7 =           7
+           1  x            8 =           8
+           1  x            9 =           9
+           2  x            7 =          14
+           2  x            8 =          16
+           2  x            9 =          18
+           3  x            7 =          21
+           3  x            8 =          24
+           3  x            9 =          27</code></pre>
+<p>This program prints some products. When the program enters the first loop <code>do i=1,3</code>, the initial <code>i</code> is set. Then the program enters the second loop <code>do j=7,8</code>. In the second loop, <code>i</code> is preserved, and <code>j</code> is updated in this loop. When the second loop ends, the focus returns to the top of the first loop, then <code>i</code> is incremented, and the second loop is executed again. When The outmost loop ends, the entire loop block is done.</p>
+<h4 id="exit-and-cycle">exit and cycle</h4>
+<p>With multiple loops, <code>exit</code> and <code>cycle</code> are valid only for the current loop. For example, the following code tries to exit the loop when <span class="math inline">\(i\times j = 16\)</span>.</p>
+<pre data-language="Fortran"><code class="language-fortran">program loop
+   implicit none
+   integer :: i,j
+
+   do i=1,3
+      do j=7,9
+         if(i*j==16) exit
+         print *,i,&quot; x &quot;,j,&quot;=&quot;,i*j
+      end do
+   end do
+end program loop</code></pre>
+<p>The <code>exit</code> statement is active when <code>i=2</code> and <code>j=8</code>, and it just exits the current (the innermost) loop. So, the output looks like this.</p>
+<pre data-language="output"><code>           1  x            7 =           7
+           1  x            8 =           8
+           1  x            9 =           9
+           2  x            7 =          14
+           3  x            7 =          21
+           3  x            8 =          24
+           3  x            9 =          27</code></pre>
+<p>It surely skips <code>i=2</code> and <code>j=8</code>. But what if you want to exit the entire loop (the outer loop)? The simplest option is <code>stop</code>, but it stops everything. In Fortran, you can specify <code>do</code>, which you particularly exit by using a <em>label</em>. A label is an arbitrary name stuck to <code>do</code>, and the corresponding <code>end do</code> statements. In the following example, the outer <code>do</code> has a label <code>outer</code> with a colon (<code>:</code>), the corresponding <code>end do</code> has the same label, and <code>exit</code> specifies the label.</p>
+<pre data-language="Fortran"><code class="language-fortran">program loop
+   implicit none
+   integer :: i,j
+
+outer: do i=1,3
+      do j=7,9
+         if(i*j==16) exit outer
+         print *,i,&quot; x &quot;,j,&quot;=&quot;,i*j
+      end do
+   end do outer
+end program loop</code></pre>
+<pre data-language="output"><code>           1  x            7 =           7
+           1  x            8 =           8
+           1  x            9 =           9
+           2  x            7 =          14</code></pre>
+<p>The same principle applies to <code>cycle</code>.</p>
+<h4 id="summary-3">Summary</h4>
+<ul>
+<li>Nested loops can be defined.</li>
+<li>The <code>do</code> (and <code>end do</code>) statement can have a label, which is a sequence of arbitrary characters.</li>
+<li>The label is used by <code>exit</code> and <code>cycle</code> to specify the loop.</li>
+</ul>
+<h4 id="exercises-3">Exercises</h4>
+<p>No exercises are given because this topic is not useful without arrays and algorithms, which we will see in the later chapter.</p>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
+</article>
+</body>
+</html>

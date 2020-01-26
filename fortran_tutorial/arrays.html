@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<!--==============================================================================
+	           "GitHub HTML5 Pandoc Template" v1.2 — by Tristano Ajmone
+	==============================================================================
+	(c) Tristano Ajmone, 2017, MIT License (MIT). Project's home repository:
+
+	- https://github.com/tajmone/pandoc-goodies
+
+	This template reuses source code taken from the following projects:
+
+	- GitHub Markdown CSS: © Sindre Sorhus, MIT License (MIT):
+	  https://github.com/sindresorhus/github-markdown-css
+
+	- Primer CSS: © 2016 GitHub Inc., MIT License (MIT):
+	  http://primercss.io/
+	==============================================================================-->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Yutaka Masuda" />
+  <title>Arrays</title>
+  <style type="text/css">@font-face{font-family:octicons-link;src:url(data:font/woff;charset=utf-8;base64,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) format('woff')}.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#24292e;font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";font-size:16px;line-height:1.5;word-wrap:break-word;box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto;padding:45px}.markdown-body .octicon{display:inline-block;fill:currentColor;vertical-align:text-bottom}.markdown-body a{background-color:transparent;-webkit-text-decoration-skip:objects;color:#0366d6;text-decoration:none}.markdown-body a:active,.markdown-body a:hover{outline-width:0}.markdown-body h1{margin:.67em 0}.markdown-body img{border-style:none}.markdown-body svg:not(:root){overflow:hidden}.markdown-body code,.markdown-body kbd,.markdown-body pre{font-family:monospace,monospace}.markdown-body input{font:inherit;margin:0;overflow:visible;font-family:inherit;font-size:inherit;line-height:inherit}.markdown-body [type=checkbox]{box-sizing:border-box;padding:0}.markdown-body *{box-sizing:border-box}.markdown-body a:hover{text-decoration:underline}.markdown-body strong{font-weight:600}.markdown-body hr{box-sizing:content-box;overflow:hidden;background:0 0;border-bottom:1px solid #dfe2e5}.markdown-body hr::before{display:table;content:""}.markdown-body hr::after{display:table;clear:both;content:""}.markdown-body table{border-spacing:0;border-collapse:collapse;display:block;width:100%;overflow:auto}.markdown-body td,.markdown-body th{padding:0}.markdown-body blockquote{margin:0}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol{list-style-type:lower-alpha}.markdown-body dd{margin-left:0}.markdown-body code{font-family:SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace}.markdown-body pre{font:12px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;word-wrap:normal}.markdown-body .pl-0{padding-left:0!important}.markdown-body .pl-1{padding-left:4px!important}.markdown-body .pl-2{padding-left:8px!important}.markdown-body .pl-3{padding-left:16px!important}.markdown-body .pl-4{padding-left:24px!important}.markdown-body .pl-5{padding-left:32px!important}.markdown-body .pl-6{padding-left:40px!important}.markdown-body::before{display:table;content:""}.markdown-body::after{display:table;clear:both;content:""}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:0}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e1e4e8;border:0}.markdown-body blockquote{padding:0 1em;color:#6a737d;border-left:.25em solid #dfe2e5}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd{font-size:11px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#1b1f23;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1{padding-bottom:.3em;font-size:2em;border-bottom:1px solid #eaecef}.markdown-body h2{padding-bottom:.3em;font-size:1.5em;border-bottom:1px solid #eaecef}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#6a737d}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table th{font-weight:600}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #dfe2e5}.markdown-body table tr{background-color:#fff;border-top:1px solid #c6cbd1}.markdown-body table tr:nth-child(2n){background-color:#f6f8fa}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f6f8fa;border-radius:3px}.markdown-body .full-commit .btn-outline:not(:disabled):hover{color:#005cc5;border-color:#005cc5}.markdown-body kbd{display:inline-block;padding:3px 5px;font:11px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;line-height:10px;color:#444d56;vertical-align:middle;background-color:#fcfcfc;border:1px solid #c6cbd1;border-bottom-color:#959da5;border-radius:3px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body :checked+.radio-label{position:relative;z-index:1;border-color:#0366d6}.markdown-body .task-list-item{list-style-type:none}.markdown-body .task-list-item+.task-list-item{margin-top:3px}.markdown-body .task-list-item input{margin:0 .2em .25em -1.6em;vertical-align:middle}.markdown-body hr{border-bottom-color:#eee}.flash{position:relative;padding:16px;color:#246;background-color:#e2eef9;border:1px solid #bac6d3;border-radius:3px}.flash p:last-child{margin-bottom:0}.flash-messages{margin-bottom:24px}.flash-warn{color:#4c4a42;background-color:#fff9ea;border-color:#dfd8c2}.flash-error{color:#911;background-color:#fcdede;border-color:#d2b2b2}.flash-success{color:#22662c;background-color:#e2f9e5;border-color:#bad3be}.flash-plain{color:#4c4a42;background-color:#f5f5f5;border-color:#c1c1c1}</style>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">pre[data-language='renumf90']{background-color:#EFEFFE;}</style>
+  <style type="text/css">pre[data-language='Fortran']{background-color:#E7FFE7;}</style>
+  <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
+  <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
+  <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="prism.css">
+  <script type="text/javascript" src="prism.js"></script>
+</head>
+</head>
+<body>
+<article class="markdown-body">
+<header>
+<h1 class="title">Arrays</h1>
+<p class="author">Yutaka Masuda</p>
+<p class="date">January 2020</p>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#arrays">Arrays</a><ul>
+<li><a href="#use-of-1-dimensional-array">Use of 1-dimensional array</a></li>
+<li><a href="#multi-dimensional-array">Multi-dimensional array</a></li>
+</ul></li>
+</ul>
+</nav>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
+<h1 id="arrays">Arrays</h1>
+<h2 id="use-of-1-dimensional-array">Use of 1-dimensional array</h2>
+<h3 id="array-basics">Array basics</h3>
+<h4 id="small-examples">Small examples</h4>
+<p>Fortran can manage a set of variables by a single name. In other words, a single object can have multiple variables. This object is called <em>array</em>, and each variable in the array is <em>element</em>. The array is often explained as a 1-dimensional structure with multiple variables.</p>
+<p>This structure is useful to define a vector that has multiple elements. The array is not exclusively used in the vector. It is useful when you need multiple (possibly many) variables.</p>
+<p>The following program defines an integer array with 3 elements and assigns a value to each element. Equivalently, you can see it as a vector with 3 elements.</p>
+<pre data-language="Fortran"><code class="language-fortran">program arr
+   implicit none
+   integer :: vec(3)
+   vec(1) = 32
+   vec(2) = 128
+   vec(3) = -1024
+   print *,vec
+end program arr</code></pre>
+<pre data-language="output"><code>          32         128       -1024</code></pre>
+<p>You can see the essential feature of an array in this example.</p>
+<ul>
+<li>The declaration of an array is the same as a single variable except with the size of the array in <code>()</code>.</li>
+<li>You can access each element by a subscript (i.e., index). The subscript is an integer value, starting from 1, and it is enclosed with <code>()</code>.</li>
+<li>Each element can be treated as a single variable.</li>
+<li>The array elements are operated collectively in <code>print</code>.</li>
+</ul>
+<p>The subscript <code>3</code> in the above example means the number of elements <em>and</em> the last subscript (index) because the subscript starts from 1. You may feel uncomfortable of this system if you like C or Python which has the 0-origin subscript. Fortran is a language of 1-origin subscript, and it is useful to describe mathematical algorithms.</p>
+<p>When an array is declared, its elements are not defined. So, we do not expect that a just-declared array has particular numbers. It is the same as a variable, and the programmer is responsible for assigning some values to the array before using it.</p>
+<p>Contrary to R or Python, in Fortran, the array holds only a particular type of data declared in the program. In the above example, <code>integer::vec(3)</code> can contain only integer values. With this limitation, Fortran can efficiently manipulate the arrays.</p>
+<p>It is still possible to develop a system in Fortran to hold the various data types in a single array in Fortran (like <code>data.frame</code> in R) if you develop it from scratch (or look for existing programs to do this). Or, you just avoid to deal with such a flexible array at a time, look for a workaround to use simple arrays. For example, you can replace all the characters with sequential integer code, and all the information is represented as numbers.</p>
+<h4 id="another-way-of-declaration">Another way of declaration</h4>
+<p>There is another way to declare an array: the <code>dimension</code> attribute. The following piece of program is equivalent to <code>integer::vec(3)</code>.</p>
+<pre data-language="Fortran"><code class="language-fortran">program arr
+   implicit none
+   integer,dimension(3) :: vec
+end program arr</code></pre>
+<p>In my personal opinion, it is not intuitive to have a 3-element array than <code>vec(3)</code>. I will not use <code>dimension</code> in the following sections.</p>
+<h4 id="arbitrary-subscript">Arbitrary subscript</h4>
+<p>You can use any range of subscript in the array. The range should be declared as <code>(stard index:end index)</code> in the declaration statement. You can not use real values a subscript in the array. For example, the following program supports the range <span class="math inline">\(-1\)</span> to <span class="math inline">\(2\)</span> for the array.</p>
+<pre data-language="Fortran"><code class="language-fortran">program arr
+   implicit none
+   integer :: vec(-1:2)
+   vec(-1) = 32
+   vec(0) = 128
+   vec(1) = -1024
+   vec(2) = 12345
+   print *,vec
+end program arr</code></pre>
+<p>Using this feature, you can create a 0-origin subscript easily. Nevertheless, you should not abuse this feature because of a lack of readability.</p>
+<h4 id="array-section-sub-array">Array section (sub-array)</h4>
+<p>You can extract a section of an array and use it as a separate array, like a section of characters. The following program shows only the 2nd and the 3rd elements.</p>
+<pre data-language="Fortran"><code class="language-fortran">program arr
+   implicit none
+   integer :: vec(3)
+   read *,vec
+   print *,vec(2:3)
+end program arr</code></pre>
+<p>The sub-array is defined with a range, <code>(start index:end index)</code>, instead of a single subscript. In the above case, it shows only the elements 2 and 3. The index system is very similar to for characters.</p>
+<h4 id="assignment-to-array">Assignment to array</h4>
+<h5 id="literal-arrays">Literal arrays</h5>
+<p>There are several options to assign literal values to an array. The easiest way is to put a single value to each element, as shown in the previous example. Another way assigns multiple literal-values to the array at the same time. The following program has the same results as the previous one.</p>
+<pre data-language="Fortran"><code class="language-fortran">program arr
+   implicit none
+   integer :: vec(3)
+   vec = [32, 128, -1024]
+   print *,vec
+end program arr</code></pre>
+<p>The multiple literals are encircled with <code>[</code> and <code>]</code>, and its number of elements should be the same as the array variable. Similar to a single variable, the initialization can be done in the declaration statement.</p>
+<pre data-language="Fortran"><code class="language-fortran">program arr
+   implicit none
+   integer :: vec(3) = [32, 128, -1024]
+   print *,vec
+end program arr</code></pre>
+<p>When assigning multiple-literals, you have to check the size of the data. For example, the following statement fails.</p>
+<pre data-language="Fortran"><code class="language-fortran">   vec(3) = [32, 128, -1024]</code></pre>
+<p>The brackets <code>[</code> and <code>]</code> to define an array was introduced in Fortran 2003. Traditionally, a combination of a slash symbol and parentheses, <code>(/</code> and <code>/)</code>, was used (and is still used). The above code looks like this using the traditional symbols.</p>
+<pre data-language="Fortran"><code class="language-fortran">   vec = (/32, 128, -1024/)</code></pre>
+<h5 id="literal-scalar">Literal scalar</h5>
+<p>When you assign a scalar to an array, all elements of the array are the scalar value. It is useful to initialize an array with a particular value.</p>
+<pre data-language="Fortran"><code class="language-fortran">program arr
+   implicit none
+   integer :: vec(3)
+   vec = 0
+   print *,vec
+end program arr</code></pre>
+<pre data-language="output"><code>         0         0         0</code></pre>
+<h5 id="substitution">Substitution</h5>
+<p>If you have two arrays with the same size, you can directly substitute one to another.</p>
+<pre data-language="Fortran"><code class="language-fortran">program arr
+   implicit none
+   integer :: a(3),b(3)
+   a = [1,2,3]
+   b = a
+end program arr</code></pre>
+<p>If the arrays have different sizes, the compiler may fail (or, it passes, but the executable may fail in run time).</p>
+<h5 id="reading-from-keyboard">Reading from keyboard</h5>
+<p>The multiple values can also be from the keyboard with the <code>read</code> statement. It reads multiple values at the same time as multiple variables are specified.</p>
+<pre data-language="Fortran"><code class="language-fortran">program arr
+   implicit none
+   integer :: vec(3)
+   read *,vec
+   print *,vec
+end program arr</code></pre>
+<h4 id="unknown-size-of-an-array">Unknown size of an array</h4>
+<p>In many cases, the size of the vector (array) is unknown at the beginning of the program, but it will be determined in the program. Fortran has an <em>allocatable array</em> which size is not defined in the declaration statement but fixed in the program. The following example is for an allocatable array.</p>
+<pre data-language="Fortran"><code class="language-fortran">program arr
+   implicit none
+   integer,allocatable :: vec(:)
+   integer :: n
+   n = 5
+   allocate(vec(n))
+   read *,vec
+   print *,vec
+   deallocate(vec)
+end program arr</code></pre>
+<p>You can see the usage of allocatable arrays.</p>
+<ul>
+<li>The declaration of allocatable arrays is the same as the fixed-length array except for <code>allocatable</code> with the range as <code>(:)</code>.</li>
+<li>To fix the size, use the <code>allocatable</code> statement as <code>allocate(variable(size))</code>.</li>
+<li>The allocated array can be used in the same way as a fixed-length array.</li>
+<li>After using the allocated array, the <code>deallocate</code> statement releases the storage of the array. It is not needed if you do not resize this array with a different size.</li>
+</ul>
+<p>Precisely, <code>allocate</code> reserves the storage in memory and assign it to the array. If the memory requirement is too large, the program stops with an error. If successful, the array is tied with the allocated memory with the specified size. The <code>deallocate</code> statement releases the allocated memory, and the status of an array is back to <em>non-allocated</em>. If you want to resize the array, you have to deallocate it once, then call <code>allocate</code> with the new size (it was relaxed in Fortran 2003, see the later chapter). When the program stops, regardless of normal end or error stop, all the allocated arrays will be automatically deallocated, so you should not be concerned about the arrays.</p>
+<p>The allocated array initially has nonsense values i.e., uninitialized. The initialization of the array is the responsibility of the programmer.</p>
+<p>There is an intrinsic function to test if an allocatable array has already allocated or not.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>allocated()</code></td>
+<td><code>.true.</code> if an allocatable array is allocated</td>
+<td><code>allocated(x)</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="summary">Summary</h4>
+<ul>
+<li>An array is a collective object of variables.</li>
+<li>An array is defined with the variable name followed by the range of subscripts <code>(start:end)</code> in the declaration statement.</li>
+<li>An arbitrary range of subscripts can be defined.</li>
+<li>Multiple values can be assigned to an array using <code>[ ]</code>, or equivalently <code>(/ /)</code>.</li>
+<li>An array-section is available as the variable name followed by <code>(start:end)</code>.</li>
+<li>When the size of the array is unknown, an allocatable array should be declared with <code>allocatable</code> and <code>(:)</code> in the declaration. Use <code>allocate</code> to define the size and <code>deallocate</code> to release the storage.</li>
+<li>An intrinsic function, <code>allocated()</code>, returns <code>.true.</code> if the allocatable array is allocated.</li>
+</ul>
+<h4 id="exercises">Exercises</h4>
+<ol type="1">
+<li>Define <code>integer,parameter::n=5</code> and use it to specify the size of an array. See if it works when the definition of <code>n</code> is changed to <code>integer::n=5</code> is used.</li>
+<li>Define a real array with 5 elements, read the values from a keyboard, swap between 1st and the 3rd elements, and between 2nd and 4th elements, then print all the elements.</li>
+<li>Create a program to read an integer <span class="math inline">\(n\)</span>, allocate an array with <span class="math inline">\(n\)</span> elements, read the values to this array, and print the values.</li>
+</ol>
+<h3 id="array-operations">Array operations</h3>
+<h4 id="array-arithmetic">Array arithmetic</h4>
+<p>One of the advantages of using arrays is to make array operations much more straightforward than a single scalar variable. Primarily if you treat an array as a vector, the vector operation is simply written like a mathematical formula. The following program calculates a sum of two vectors (i.e. <span class="math inline">\(\mathbf{c}=\mathbf{a}+\mathbf{b}\)</span>).</p>
+<pre data-language="Fortran"><code class="language-fortran">program arr
+   implicit none
+   integer :: a(3),b(3),c(3)
+   a = [1,2,3]
+   b = [4,5,6]
+   c = a + b
+   print *,c
+end program arr</code></pre>
+<pre data-language="output"><code>        5         7         9</code></pre>
+<p>The arithmetic operators such as <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, and <code>**</code> perform element-by-element operations for arrays. Note that <code>*</code> does not mean the matrix multiplication but the element-by-element multiplication.</p>
+<p>When the operation involves both array and scalar, the scalar will be <em>broadcasted</em> to all the elements in the array. See the following example.</p>
+<pre data-language="Fortran"><code class="language-fortran">program arr
+   implicit none
+   integer :: a(3)
+   a = [1,2,3]
+   print *,a+5
+end program arr</code></pre>
+<pre data-language="output"><code>        6         7         8</code></pre>
+<p>By the way, the above code may secretly allocate a temporary array to store the result of <code>a+5</code> as a single variable. In the current computers, it should not be a performance bottleneck.</p>
+<h4 id="elemental-functions">Elemental functions</h4>
+<p>The element-wise operation is also applied in mathematical functions. For example, <code>sin(x)</code> for the array <code>x</code> returns the array with the sine of each element in <code>x</code>. The size of the return value is the array with the same size as input.</p>
+<pre data-language="Fortran"><code class="language-fortran">program arr
+   implicit none
+   real :: x(3)
+   x = [1.0, 1.1, 1.2]
+   print *,sin(x)
+end program arr</code></pre>
+<p>Such <em>elemental functions</em> include <code>sin</code>, <code>cos</code>, <code>tan</code>, <code>log</code>, <code>exp</code>, <code>abs</code>, <code>sqrt</code>, and so on.</p>
+<h4 id="logical-array">Logical array</h4>
+<p>As the arithmetic operations and elemental functions, the logical operations can be applied to an array, and the result is also the array with the same size as input. The following example shows that the resulting array can be <code>logical</code> and stored in an array.</p>
+<pre data-language="Fortran"><code class="language-fortran">program arr
+   implicit none
+   real :: x(3)
+   logical :: status(3)
+   x = [1.0, 1.1, 1.2]
+   print *,x&lt;=1.1    ! determine in each element
+   status = x&lt;=1.1   ! can be saved to a logical array
+   print *,status
+end program arr</code></pre>
+<pre data-language="output"><code> T T F
+ T T F</code></pre>
+<h4 id="array-functions">Array functions</h4>
+<p>Fortran has many functions to summarize or to inquire about an array. A typical function is <code>sum(a)</code> which computes the summation of elements in the array <code>a</code>. The function <code>size(a)</code> returns the size (the number of elements) of an array. The following table shows some useful functions.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>size(x)</code></td>
+<td>the size of <code>x</code></td>
+</tr>
+<tr class="even">
+<td><code>sum(x)</code></td>
+<td>the sum of all elements</td>
+</tr>
+<tr class="odd">
+<td><code>minval(x)</code></td>
+<td>the minimum value in <code>x</code></td>
+</tr>
+<tr class="even">
+<td><code>maxval(x)</code></td>
+<td>the maximum value in <code>x</code></td>
+</tr>
+<tr class="odd">
+<td><code>minloc(x)</code></td>
+<td>the location of the minimum value</td>
+</tr>
+<tr class="even">
+<td><code>maxloc(x)</code></td>
+<td>the location of the maximum value</td>
+</tr>
+<tr class="odd">
+<td><code>dot_product(x,y)</code></td>
+<td>the sum of square i.e. <span class="math inline">\(\mathbf{x}&#39;\mathbf{y}\)</span></td>
+</tr>
+<tr class="even">
+<td><code>count(a)</code></td>
+<td>the number of <code>.true.</code> in the logical array <code>a</code></td>
+</tr>
+<tr class="odd">
+<td><code>all(a)</code></td>
+<td><code>.true.</code> if all elements in logical <code>a</code> is true</td>
+</tr>
+<tr class="even">
+<td><code>any(a)</code></td>
+<td><code>.true.</code> if any elements in logical <code>a</code> is true</td>
+</tr>
+</tbody>
+</table>
+<p>Most of the above functions can accept a <em>mask</em> vector, as a second argument with a <code>mask=</code> identifier, defining which elements are involved in the computation. The mask vector is logical, and it has the same size as the input vector. If an element of the mask is <code>.true.</code>, the corresponding input is used, and if <code>.false.</code>, the corresponding input is ignored.</p>
+<p>For example, the following example computes the sum of an array using only positive numbers.</p>
+<pre data-language="Fortran"><code class="language-fortran">program arr
+   implicit none
+   real :: x(3)
+   logical :: status(3)
+   x = [1.0, -2.0, 3.0]
+   print *,sum(x,x&gt;0.0)
+
+   ! equivalent
+   status = x&gt;0
+   print *,sum(x,mask=status)
+end program arr</code></pre>
+<h4 id="summary-1">Summary</h4>
+<ul>
+<li>Basic arithmetics and mathematical functions can be applied to each element.</li>
+<li>The multiplication <code>*</code> performs element-by-element.</li>
+<li>A scalar will be broadcasted to all elements through arithmetic operations.</li>
+<li>Many array functions are available.</li>
+</ul>
+<h4 id="exercises-1">Exercises</h4>
+<ol type="1">
+<li>See what happens when incompatible sized arrays are involved in an arithmetic operation.</li>
+<li>Read 5-element integer array and compute the average of the values.</li>
+<li>Modify the above program to compute the average only from positive input values.</li>
+<li>Compute the standard deviation of a given real array.</li>
+<li>Compute the figure-skating average of a real array. This average is calculated from the data in which the highest and the lowest values have been discarded.</li>
+</ol>
+<h2 id="multi-dimensional-array">Multi-dimensional array</h2>
+<h3 id="dimensional-array">2-dimensional array</h3>
+<p>Fortran can take care of higher dimensional arrays. The 2-dimensional array is often used as a matrix (and the 1-dimensional array is for a vector). Fortran is designed to efficiently manipulate the arrays (i.e., vectors and matrices). Here we deal only with the 2-dimensional array. See the other textbooks for details of higher-order arrays.</p>
+<p>The higher-dimensional array has the same usage as the 1-dimensional array in deceleration, array functions, subarrays, allocation, and so forth. The only difference is the subscript (index) to specify the element. We will look at the basic features of a 2-dimensional array in the next sections.</p>
+<h4 id="decrelation">Decrelation</h4>
+<p>The following code defines a <span class="math inline">\(2 \times 2\)</span> array (matrix), and each of4 elements has a value.</p>
+<pre data-language="Fortran"><code class="language-fortran">program arr
+   implicit none
+   integer :: mat(2,2)
+   mat(1,1) = 10
+   mat(1,2) = 20
+   mat(2,1) = 30
+   mat(2,2) = 40
+   print *,mat
+end program arr</code></pre>
+<pre data-language="output"><code>          10          30          20          40</code></pre>
+<p>The above array defines the following matrix. <span class="math display">\[
+\left[
+\begin{array}{cc}
+10&amp;20 \\
+30&amp;40
+\end{array}
+\right]
+\]</span> The usage of 2-dimensional array is similar to a vector except for subscripts (indices). The matrix has 2 indices in <code>()</code> separated by a comma. The first index is for ow, the second is for column same as the mathematical notation like <span class="math inline">\(A_{ij}\)</span> where <span class="math inline">\(i\)</span> is for row and <span class="math inline">\(j\)</span> is for a column.</p>
+<ul>
+<li>The declaration of the array is the same as a single variable with the size of the array in <code>()</code> as <code>(row, column)</code>.</li>
+<li>You can access each element by a subscript (i.e., index). The subscript is an integer value, starting from 1, and it is enclosed with <code>()</code>.</li>
+<li>Each element can be treated as a single variable.</li>
+<li>The array elements are operated collectively in <code>print</code>.</li>
+</ul>
+<p>The multi-dimensional array can be defined with <code>dimension</code>. We will not use this method in this tutorial.</p>
+<pre data-language="Fortran"><code class="language-fortran">   integer,dimention(2,2) :: mat</code></pre>
+<h4 id="order-in-memory">Order in memory</h4>
+<p>In the previous example, you may notice that the order of elements in output is not intuitive. A computer should rearrange the multi-dimensional data into a 1-dimensional structure in memory. In Fortran, the 2-dimensional array is treated as a collection of column vectors (so-called the <em>column-major</em> storage).</p>
+<p><span class="math display">\[
+\left[
+\begin{array}{c|c}
+10&amp;20 \\
+30&amp;40
+\end{array}
+\right]
+\rightarrow
+\left[
+\begin{array}{c}
+10\\
+30\\
+\hline
+20\\
+40
+\end{array}
+\right]
+\]</span></p>
+<p>This rearrangement (column-major) is reasonable in mathematics. However, it is different from C and some other languages (row-major), and when you come from such languages, please be careful about the array rearrangement in memory.</p>
+<p>The order becomes an issue when you read a matrix from the keyboard.</p>
+<pre data-language="Fortran"><code class="language-fortran">program arr
+   implicit none
+   integer :: mat(2,2)
+   read *,mat
+   print *,mat
+end program arr</code></pre>
+<p>If you type <code>1 2 3 4</code> in terminal, the matrix will be as follows. <span class="math display">\[
+\left[
+\begin{array}{cc}
+1&amp;3 \\
+2&amp;4
+\end{array}
+\right]
+\]</span></p>
+<p>If you want to access the matrix along with rows, you have to write loops (see exercises).</p>
+<h4 id="inquery-functions-for-array-shape">Inquery functions for array shape</h4>
+<p>Fortran has several functions to get the size of an array.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Effect</th>
+<th>Return value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>size(x)</code></td>
+<td>the size of <code>x</code></td>
+<td>the number of all elements in <code>x</code></td>
+</tr>
+<tr class="even">
+<td><code>shape(x)</code></td>
+<td>the dimention of <code>x</code></td>
+<td>a vector with the length of the dimention</td>
+</tr>
+</tbody>
+</table>
+<p>For example, using the <span class="math inline">\(2 \times 3\)</span> matrix, the above functions return the following values.</p>
+<pre data-language="Fortran"><code class="language-fortran">program arr
+   implicit none
+   integer :: a(2,3)
+   print *,size(a)
+   print *,shape(a)
+end program arr</code></pre>
+<ul>
+<li><code>size(a)</code> returns <code>6</code> (scalar).</li>
+<li><code>shape(a)</code> returns <code>[2,3]</code> (vector).</li>
+</ul>
+<p>The <code>size</code> function can get the length of rows (or columns) as scalar using the 2nd parameter.</p>
+<pre data-language="Fortran"><code class="language-fortran">program arr
+   implicit none
+   integer :: a(2,3)
+   print *,size(a,1)   ! dimension 1 = length of rows
+   print *,size(a,2)   ! dimension 2 = length of columns
+   print *,size(a)     ! all elements
+end program arr</code></pre>
+<pre data-language="output"><code>         2
+         3
+         6</code></pre>
+<h4 id="assignment-to-array-1">Assignment to array</h4>
+<h5 id="literals">Literals</h5>
+<p>The assignment of literal values to a 2-dimensional array (hereafter a matrix) is not straightforward because we have to consider the dimension. There are several ways to assign values to a matrix. In the following example, we try to have the following <span class="math inline">\(2 \times 2\)</span> matrix.</p>
+<p><span class="math display">\[
+\left[
+\begin{array}{cc}
+10&amp;20 \\
+30&amp;40
+\end{array}
+\right]
+\]</span></p>
+<p>The Fortran program shows 3 different ways to do it.</p>
+<pre data-language="Fortran"><code class="language-fortran">program arr
+   implicit none
+   integer :: mat(2,2)
+
+   ! method 1
+   mat(1,1:2) = [10, 20]
+   mat(2,1:2) = [30, 40]
+
+   ! method 2
+   mat(1:2,1) = [10, 30]
+   mat(1:2,2) = [20, 40]
+
+   ! method 3
+   mat = reshape([10,30,20,40],shape(mat))
+end program arr</code></pre>
+<p>The first method substitute rows to the matrix. The second is the same way as first but in a column-wise manner. The third uses the <code>reshape</code> function, which rearranges a vector to fit the matrix with a given shape. Using <code>reshape</code>, you should consider the column-major order of elements to be aligned in the matrix.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Effect</th>
+<th>Return value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>reshape(x,s)</code></td>
+<td>rearrange <code>x</code> with shape <code>s</code></td>
+<td>rearranged array</td>
+</tr>
+</tbody>
+</table>
+<p>The 3rd method is the same as <code>reshape([10,30,20,40],[2,2])</code> instead of using <code>shape(mat)</code>.</p>
+<h5 id="other-values">Other values</h5>
+<p>You can assign a scalar to an array so that all the elements have the same value. It is useful to initialize an array. You can also assign a (sub)array to another array.</p>
+<pre data-language="Fortran"><code class="language-fortran">! for exercise 1
+program arr
+   implicit none
+   integer :: a(3,3),b(2,2)
+
+   a = reshape([1,2,3,4,5,6,7,8,9],shape(a))
+   b = 0
+   b = a(2:3,1:2)
+end program arr</code></pre>
+<h4 id="computations">Computations</h4>
+<h5 id="element-by-element-operations">Element-by-element operations</h5>
+<p>As 1-dimensional arrays, higher-dimensional arrays can be involved in simple arithmetic such as <code>+</code> and <code>*</code>. Also, most of the mathematical functions like <code>log()</code> can be applied to all elements at the same time.</p>
+<pre data-language="Fortran"><code class="language-fortran">! for exercise 2
+program arr
+   implicit none
+   integer :: a(2,2),b(2,2),c(2,2)
+
+   a = reshape([1,2,3,4],shape(a))
+   b = reshape([5,6,7,8],shape(b))
+
+   ! element-by-element product
+   c = a * b
+   print *,c
+end program arr</code></pre>
+<h5 id="matrix-multiplication-and-manipulation">Matrix multiplication and manipulation</h5>
+<p>In Fortran, the function for matrix multiplication <code>matmul</code> is available by default. It accepts 2 arrays, and compute the product, and return the result as a matrix. If the size of matrices is unconformable, the compilation fails, or the program fails in run time (or returns wrong results). See the following example.</p>
+<pre data-language="Fortran"><code class="language-fortran">program arr
+   implicit none
+   integer :: a(2,2),b(2,2),c(2,2)
+
+   a = reshape([1,2,3,4],shape(a))
+   b = reshape([5,6,7,8],shape(b))
+
+   ! matrix multiplication
+   c = matmul(a,b)
+   print *,c
+end program arr</code></pre>
+<p>The function <code>transpose</code> gives you a transposed matrix.</p>
+<pre data-language="Fortran"><code class="language-fortran">program arr
+   implicit none
+   integer :: a(2,2),b(2,2),c(2,2)
+
+   a = reshape([1,2,3,4],shape(a))
+   b = reshape([5,6,7,8],shape(b))
+
+   ! matrix multiplication
+   c = matmul(a,transpose(b))
+   print *,c
+end program arr</code></pre>
+<h5 id="array-functions-1">Array functions</h5>
+<p>You can apply array functions to a particular dimension of an array using the second argument. For example, given <code>a(2,2)</code>, you can compute the sum of elements by column (along rows) as <code>sum(a,1)</code>. With this, the function returns a vector containing all results for rows (or columns).</p>
+<pre data-language="Fortran"><code class="language-fortran">! for exercise 3
+program arr
+   implicit none
+   integer :: a(2,2)
+
+   a = reshape([1,2,3,4],shape(a))
+
+   print *,sum(a)
+   print *,sum(a,1)
+   print *,sum(a,2)
+end program arr</code></pre>
+<h4 id="summary-2">Summary</h4>
+<ul>
+<li>A 1-dimensional array represents a vector, and 2-dimensional array, a matrix.</li>
+<li>A 2-dimensional array (matrix) is a collection of 1-dimensional arrays (vectors).</li>
+<li>To access an element of a 2-dimensional array, use 2 indices in <code>()</code>; row the first and column the second.</li>
+<li>For a matrix, you can use the same arithmetics rules and functions as a vector.</li>
+<li>Use <code>matmul()</code> for matrix multiplication; <code>*</code> performs element-by-element operations.</li>
+<li>The transposed matrix is available by <code>transpose()</code>.</li>
+<li>An array function can be applied to a particular dimension (i.e., row-wise or column-wise).</li>
+</ul>
+<h4 id="exercises-2">Exercises</h4>
+<p>See the above code.</p>
+<ol type="1">
+<li>What does <code>b</code> have? Why do we need <code>b=0</code>?</li>
+<li>What does <code>c</code> have? How do you compute the square root of each element in <code>c</code>?</li>
+<li>What will be shown?</li>
+<li>Write a program to show a matrix in row-wise (as in mathematical formula).</li>
+</ol>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
+</article>
+</body>
+</html>

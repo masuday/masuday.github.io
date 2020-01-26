@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<!--==============================================================================
+	           "GitHub HTML5 Pandoc Template" v1.2 — by Tristano Ajmone
+	==============================================================================
+	(c) Tristano Ajmone, 2017, MIT License (MIT). Project's home repository:
+
+	- https://github.com/tajmone/pandoc-goodies
+
+	This template reuses source code taken from the following projects:
+
+	- GitHub Markdown CSS: © Sindre Sorhus, MIT License (MIT):
+	  https://github.com/sindresorhus/github-markdown-css
+
+	- Primer CSS: © 2016 GitHub Inc., MIT License (MIT):
+	  http://primercss.io/
+	==============================================================================-->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Yutaka Masuda" />
+  <title>Makefiles</title>
+  <style type="text/css">@font-face{font-family:octicons-link;src:url(data:font/woff;charset=utf-8;base64,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) format('woff')}.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#24292e;font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";font-size:16px;line-height:1.5;word-wrap:break-word;box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto;padding:45px}.markdown-body .octicon{display:inline-block;fill:currentColor;vertical-align:text-bottom}.markdown-body a{background-color:transparent;-webkit-text-decoration-skip:objects;color:#0366d6;text-decoration:none}.markdown-body a:active,.markdown-body a:hover{outline-width:0}.markdown-body h1{margin:.67em 0}.markdown-body img{border-style:none}.markdown-body svg:not(:root){overflow:hidden}.markdown-body code,.markdown-body kbd,.markdown-body pre{font-family:monospace,monospace}.markdown-body input{font:inherit;margin:0;overflow:visible;font-family:inherit;font-size:inherit;line-height:inherit}.markdown-body [type=checkbox]{box-sizing:border-box;padding:0}.markdown-body *{box-sizing:border-box}.markdown-body a:hover{text-decoration:underline}.markdown-body strong{font-weight:600}.markdown-body hr{box-sizing:content-box;overflow:hidden;background:0 0;border-bottom:1px solid #dfe2e5}.markdown-body hr::before{display:table;content:""}.markdown-body hr::after{display:table;clear:both;content:""}.markdown-body table{border-spacing:0;border-collapse:collapse;display:block;width:100%;overflow:auto}.markdown-body td,.markdown-body th{padding:0}.markdown-body blockquote{margin:0}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol{list-style-type:lower-alpha}.markdown-body dd{margin-left:0}.markdown-body code{font-family:SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace}.markdown-body pre{font:12px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;word-wrap:normal}.markdown-body .pl-0{padding-left:0!important}.markdown-body .pl-1{padding-left:4px!important}.markdown-body .pl-2{padding-left:8px!important}.markdown-body .pl-3{padding-left:16px!important}.markdown-body .pl-4{padding-left:24px!important}.markdown-body .pl-5{padding-left:32px!important}.markdown-body .pl-6{padding-left:40px!important}.markdown-body::before{display:table;content:""}.markdown-body::after{display:table;clear:both;content:""}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:0}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e1e4e8;border:0}.markdown-body blockquote{padding:0 1em;color:#6a737d;border-left:.25em solid #dfe2e5}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd{font-size:11px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#1b1f23;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1{padding-bottom:.3em;font-size:2em;border-bottom:1px solid #eaecef}.markdown-body h2{padding-bottom:.3em;font-size:1.5em;border-bottom:1px solid #eaecef}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#6a737d}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table th{font-weight:600}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #dfe2e5}.markdown-body table tr{background-color:#fff;border-top:1px solid #c6cbd1}.markdown-body table tr:nth-child(2n){background-color:#f6f8fa}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f6f8fa;border-radius:3px}.markdown-body .full-commit .btn-outline:not(:disabled):hover{color:#005cc5;border-color:#005cc5}.markdown-body kbd{display:inline-block;padding:3px 5px;font:11px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;line-height:10px;color:#444d56;vertical-align:middle;background-color:#fcfcfc;border:1px solid #c6cbd1;border-bottom-color:#959da5;border-radius:3px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body :checked+.radio-label{position:relative;z-index:1;border-color:#0366d6}.markdown-body .task-list-item{list-style-type:none}.markdown-body .task-list-item+.task-list-item{margin-top:3px}.markdown-body .task-list-item input{margin:0 .2em .25em -1.6em;vertical-align:middle}.markdown-body hr{border-bottom-color:#eee}.flash{position:relative;padding:16px;color:#246;background-color:#e2eef9;border:1px solid #bac6d3;border-radius:3px}.flash p:last-child{margin-bottom:0}.flash-messages{margin-bottom:24px}.flash-warn{color:#4c4a42;background-color:#fff9ea;border-color:#dfd8c2}.flash-error{color:#911;background-color:#fcdede;border-color:#d2b2b2}.flash-success{color:#22662c;background-color:#e2f9e5;border-color:#bad3be}.flash-plain{color:#4c4a42;background-color:#f5f5f5;border-color:#c1c1c1}</style>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">pre[data-language='renumf90']{background-color:#EFEFFE;}</style>
+  <style type="text/css">pre[data-language='Fortran']{background-color:#E7FFE7;}</style>
+  <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
+  <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
+  <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="prism.css">
+  <script type="text/javascript" src="prism.js"></script>
+</head>
+</head>
+<body>
+<article class="markdown-body">
+<header>
+<h1 class="title">Makefiles</h1>
+<p class="author">Yutaka Masuda</p>
+<p class="date">January 2020</p>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#makefiles">Makefiles</a><ul>
+<li><a href="#a-simple-makefile">A simple makefile</a></li>
+<li><a href="#useful-features-for-makefile">Useful features for makefile</a></li>
+<li><a href="#options-of-the-make-command">Options of the make command</a></li>
+</ul></li>
+</ul>
+</nav>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
+<h1 id="makefiles">Makefiles</h1>
+<p>The <code>make</code> command is a traditional Unix tool to build an executable. It understands the dependency among files and figures out the order of files to be compiled by reading a configuration file (<em>makefile</em>). If your program consists of more than 2 files, <code>make</code> helps you to compile the files.</p>
+<h2 id="a-simple-makefile">A simple makefile</h2>
+<h3 id="dependency-graph-and-makefile">Dependency graph and makefile</h3>
+<p>Assume we have a module (<code>mymod.f90</code>) and the main program (<code>main.f90</code>) and each program unit is stored in a separate file. The module should be compiled first. The main program has to link the module object. The dependency is represented as the following figure.</p>
+<figure>
+<img src="dependency1.png" alt="Dependency graph with two example files" /><figcaption>Dependency graph with two example files</figcaption>
+</figure>
+<p>This <em>dependency graph</em> shows that the main program requires the module. Although the main program requires depends on two files (<code>mymod.mod</code> and <code>mymod.o</code>), these two files are generated at the same time, so we would say that <code>main.f90</code> depends on the presence of one of these 2 files. With a separate compilation, you have to run the compiler 3 times.</p>
+<pre data-language="shell"><code>gfortran -c mymod.f90
+gfortran -c main.f90
+gfortran main.o myprod.o</code></pre>
+<p>A makefile represents the graph in a special syntax. Although the name of the makefile is arbitrary, we usually use <code>Makefile</code> or <code>makefile</code> because the <code>make</code> command looks for such files by default. Here is a simple makefile to describe the above dependency.</p>
+<pre data-language="text"><code>a.out: myprod.o main.o
+    gfortran main.o mymod.o
+
+main.o: main.f90
+    gfortran -c main.f90
+
+mymod.o: mymod.f90
+    gfortran -c mymod.f90</code></pre>
+<p>Save this content as a file, <code>Makefile</code>, and simply type <code>make</code> in your terminal. The command reads the makefile and compiles the files in the requested order.</p>
+<h3 id="structure-of-makefile">Structure of makefile</h3>
+<p>A makefile consists of repeated rules of a target (product) file, dependent files, and the command to generate the target.</p>
+<pre><code>target : dependency files (ingridients)
+    command to generate the target</code></pre>
+<p>The target file is a single file. The order of files in the dependency list is arbitrary. The target and the dependency files are separated by <code>:</code> (colon). In the command line, you <strong>must</strong> insert a tab character at the top of the command. The tab is a marker to start the command in a makefile, so it can <em>not</em> be replaced with spaces. You can put 2 or more command lines; each command should be in a separate line (with a tab character).</p>
+<p>You should repeat this block as many as you need. In the above example, you have to run a command (compiler) 3 times, so you need at least 3 blocks to describe the dependency graph.</p>
+<p>By default, the first rule is for the final target. The order of remaining rule is arbitrary. In the above case, the final target is <code>a.out</code>, and <code>make</code> creates a dependency graph. You can place the final target at any place in a makefile, using some techniques explained later.</p>
+<p>In the makefile, characters followed by <code>#</code> will be ignored as a comment. It is similar to a shell script and some scripting languages.</p>
+<h3 id="how-it-works">How it works</h3>
+<p>The <code>make</code> command creates the dependency graph. It means that this command knows which file is need to generate the final target. For example, in the above case, when <code>main.f90</code> is updated but <code>mymod.f90</code> is unchanged, you just need to re-compile <code>main.f90</code> only, and link the new <code>main.o</code> and the existing <code>mymod.o</code>. The <code>make</code> command will do it.</p>
+<p>The command checks the timestamp of the target file and the dependency files. If the target is older than the ingredients (or the target does not exist), the program runs the specified commands. This smart compilation saves much time when there are many files in your project.</p>
+<h3 id="summary">Summary</h3>
+<ul>
+<li>The <code>make</code> command creates a dependency graph of files involved in a compilation process.</li>
+<li>The graph is described in a makefile. The default name is <code>Makefile</code> or <code>makefile</code>.</li>
+<li>A makefile has several rules. Each rule consists of the target name, its dependency files, and the commands to generate the target.</li>
+<li>The first rule describes the final target.</li>
+<li>The command line must starts with a tab character.</li>
+<li>The <code>make</code> command compares the timestamp between the target and each one of the ingredients. If the target is old (or not found), <code>make</code> invokes the commands.</li>
+<li>The character <code>#</code> leads a comment line.</li>
+</ul>
+<h3 id="exercises">Exercises</h3>
+<ol type="1">
+<li>Change the order of rules in the makefile shown above. Make sure the changed file does not work.</li>
+<li>Remove a tab character from the makefile shown above, and make sure it does not work.</li>
+</ol>
+<h2 id="useful-features-for-makefile">Useful features for makefile</h2>
+<h3 id="macros">Macros</h3>
+<p>A makefile can have a <em>macro</em>, which is used as a variable. The above make file can be generalized using some macros.</p>
+<pre data-language="text"><code>FC = gfortran
+
+a.out: myprod.o main.o
+    $(FC) main.o mymod.o
+
+main.o: main.f90
+    $(FC) -c main.f90
+
+mymod.o: mymod.f90
+    $(FC) -c mymod.f90</code></pre>
+<p>The macro is defined as <code>macro name = value</code>, usually placed at the top of the makefile. The macro name separates upper and lower cases. To expand the macro (i.e., to get the value), use <code>$(macro name)</code>. Note that <code>$</code> is required when referring to the macro. In the above case, a macro <code>FC</code> (for Fortran compiler) defines a compiler so that you can just modify the macro to change the compiler.</p>
+<p>There are many features in macros. Please search the possible usage of macros by yourself.</p>
+<h3 id="phony-target">Phony target</h3>
+<p>The makefile has several pre-defined targets, and <code>.PHONY:</code> is one of them. It defines dummy targets that may not have any compilation. Typical usage of <code>.PHONY</code> is to define a more meaningful target-name than a file name.</p>
+<p>Assume your makefile has the final target <code>a.out</code>, but it is not at the top. You may come up with the following makefile to specify the final target.</p>
+<pre data-language="text"><code>FC = gfortran
+
+all: a.out
+
+main.o: main.f90
+    $(FC) -c main.f90
+
+mymod.o: mymod.f90
+    $(FC) -c mymod.f90
+
+a.out: myprod.o main.o
+    $(FC) main.o mymod.o</code></pre>
+<p>The first target is <code>all</code>, which is not a file, but it just indicates the final product. Although it works, it becomes clumsy if you have many such dummies and real files in a makefile. The <code>.PHONY</code> target clarify which targets are dummy. The dummy target <code>all</code> is often used to refer to the final target.</p>
+<pre data-language="text"><code>FC = gfortran
+
+.PHONY: all
+
+all: a.out
+
+main.o: main.f90
+    $(FC) -c main.f90
+
+mymod.o: mymod.f90
+    $(FC) -c mymod.f90
+
+a.out: myprod.o main.o
+    $(FC) main.o mymod.o</code></pre>
+<p>Another typical usage of dummy targets is to remove all existing files. A dummy target, <code>clean</code>, is used in practice for this purpose.</p>
+<pre data-language="text"><code>FC = gfortran
+
+.PHONY: all clean
+
+all: a.out
+
+main.o: main.f90
+    $(FC) -c main.f90
+
+mymod.o: mymod.f90
+    $(FC) -c mymod.f90
+
+a.out: myprod.o main.o
+    $(FC) main.o mymod.o
+
+clean:
+    rm -f a.out *.o *.mod</code></pre>
+<h2 id="options-of-the-make-command">Options of the make command</h2>
+<h3 id="selective-compilation">Selective compilation</h3>
+<p>If you obtain a target described in the 2nd or later rules rather than the final target, you can specify the target as an option of <code>make</code> in the terminal. For example, in the above case, the following command tries to generate <code>main.o</code> instead of <code>a.out</code>.</p>
+<pre data-language="shell"><code>make main.o</code></pre>
+<h3 id="arbitrary-name-of-the-makefile">Arbitrary name of the makefile</h3>
+<p>If the name of a makefile is not <code>Makefile</code> and <code>makefile</code>, you can specify the name in the terminal. For example, when the makefile is <code>makefile.txt</code>, type the following command in terminal.</p>
+<pre data-language="shell"><code>make -f makefile.txt</code></pre>
+<h3 id="parallel-compilation">Parallel compilation</h3>
+<p>Some files may be independent, and these files can be compiled at the same time. The <code>make</code> command finds independent files and runs the commands in parallel with an option.</p>
+<pre data-language="shell"><code>make -j 4</code></pre>
+<p>It can use at most 4 threads if possible. The option <code>-j</code>, meaning <em>jobs</em>, specifies the number of threads to generate the target. This option is not useful in a small project, but it becomes very efficient with many files.</p>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
+</article>
+</body>
+</html>

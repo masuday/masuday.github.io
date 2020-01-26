@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<!--==============================================================================
+	           "GitHub HTML5 Pandoc Template" v1.2 — by Tristano Ajmone
+	==============================================================================
+	(c) Tristano Ajmone, 2017, MIT License (MIT). Project's home repository:
+
+	- https://github.com/tajmone/pandoc-goodies
+
+	This template reuses source code taken from the following projects:
+
+	- GitHub Markdown CSS: © Sindre Sorhus, MIT License (MIT):
+	  https://github.com/sindresorhus/github-markdown-css
+
+	- Primer CSS: © 2016 GitHub Inc., MIT License (MIT):
+	  http://primercss.io/
+	==============================================================================-->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Yutaka Masuda" />
+  <title>Simple numerics</title>
+  <style type="text/css">@font-face{font-family:octicons-link;src:url(data:font/woff;charset=utf-8;base64,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) format('woff')}.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#24292e;font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";font-size:16px;line-height:1.5;word-wrap:break-word;box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto;padding:45px}.markdown-body .octicon{display:inline-block;fill:currentColor;vertical-align:text-bottom}.markdown-body a{background-color:transparent;-webkit-text-decoration-skip:objects;color:#0366d6;text-decoration:none}.markdown-body a:active,.markdown-body a:hover{outline-width:0}.markdown-body h1{margin:.67em 0}.markdown-body img{border-style:none}.markdown-body svg:not(:root){overflow:hidden}.markdown-body code,.markdown-body kbd,.markdown-body pre{font-family:monospace,monospace}.markdown-body input{font:inherit;margin:0;overflow:visible;font-family:inherit;font-size:inherit;line-height:inherit}.markdown-body [type=checkbox]{box-sizing:border-box;padding:0}.markdown-body *{box-sizing:border-box}.markdown-body a:hover{text-decoration:underline}.markdown-body strong{font-weight:600}.markdown-body hr{box-sizing:content-box;overflow:hidden;background:0 0;border-bottom:1px solid #dfe2e5}.markdown-body hr::before{display:table;content:""}.markdown-body hr::after{display:table;clear:both;content:""}.markdown-body table{border-spacing:0;border-collapse:collapse;display:block;width:100%;overflow:auto}.markdown-body td,.markdown-body th{padding:0}.markdown-body blockquote{margin:0}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol{list-style-type:lower-alpha}.markdown-body dd{margin-left:0}.markdown-body code{font-family:SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace}.markdown-body pre{font:12px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;word-wrap:normal}.markdown-body .pl-0{padding-left:0!important}.markdown-body .pl-1{padding-left:4px!important}.markdown-body .pl-2{padding-left:8px!important}.markdown-body .pl-3{padding-left:16px!important}.markdown-body .pl-4{padding-left:24px!important}.markdown-body .pl-5{padding-left:32px!important}.markdown-body .pl-6{padding-left:40px!important}.markdown-body::before{display:table;content:""}.markdown-body::after{display:table;clear:both;content:""}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:0}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e1e4e8;border:0}.markdown-body blockquote{padding:0 1em;color:#6a737d;border-left:.25em solid #dfe2e5}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd{font-size:11px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#1b1f23;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1{padding-bottom:.3em;font-size:2em;border-bottom:1px solid #eaecef}.markdown-body h2{padding-bottom:.3em;font-size:1.5em;border-bottom:1px solid #eaecef}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#6a737d}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table th{font-weight:600}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #dfe2e5}.markdown-body table tr{background-color:#fff;border-top:1px solid #c6cbd1}.markdown-body table tr:nth-child(2n){background-color:#f6f8fa}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f6f8fa;border-radius:3px}.markdown-body .full-commit .btn-outline:not(:disabled):hover{color:#005cc5;border-color:#005cc5}.markdown-body kbd{display:inline-block;padding:3px 5px;font:11px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;line-height:10px;color:#444d56;vertical-align:middle;background-color:#fcfcfc;border:1px solid #c6cbd1;border-bottom-color:#959da5;border-radius:3px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body :checked+.radio-label{position:relative;z-index:1;border-color:#0366d6}.markdown-body .task-list-item{list-style-type:none}.markdown-body .task-list-item+.task-list-item{margin-top:3px}.markdown-body .task-list-item input{margin:0 .2em .25em -1.6em;vertical-align:middle}.markdown-body hr{border-bottom-color:#eee}.flash{position:relative;padding:16px;color:#246;background-color:#e2eef9;border:1px solid #bac6d3;border-radius:3px}.flash p:last-child{margin-bottom:0}.flash-messages{margin-bottom:24px}.flash-warn{color:#4c4a42;background-color:#fff9ea;border-color:#dfd8c2}.flash-error{color:#911;background-color:#fcdede;border-color:#d2b2b2}.flash-success{color:#22662c;background-color:#e2f9e5;border-color:#bad3be}.flash-plain{color:#4c4a42;background-color:#f5f5f5;border-color:#c1c1c1}</style>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">pre[data-language='renumf90']{background-color:#EFEFFE;}</style>
+  <style type="text/css">pre[data-language='Fortran']{background-color:#E7FFE7;}</style>
+  <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
+  <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
+  <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="prism.css">
+  <script type="text/javascript" src="prism.js"></script>
+</head>
+</head>
+<body>
+<article class="markdown-body">
+<header>
+<h1 class="title">Simple numerics</h1>
+<p class="author">Yutaka Masuda</p>
+<p class="date">January 2020</p>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#simple-numerics">Simple numerics</a><ul>
+<li><a href="#literals-and-simple-computations">Literals and simple computations</a></li>
+<li><a href="#precision">Precision</a></li>
+</ul></li>
+</ul>
+</nav>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
+<h1 id="simple-numerics">Simple numerics</h1>
+<h2 id="literals-and-simple-computations">Literals and simple computations</h2>
+<h3 id="numeric-and-character-literals">Numeric and character literals</h3>
+<h4 id="numbers">Numbers</h4>
+<p>Fortran can do any simple arithmetic. A number is expressed as a <em>numeric literal</em>, which is simply a sequence of numbers with some symbols. Fortran supports integer values, real values with the decimal point, real values expressed as the exponential style, and complex numbers (which we do not deal with in this tutorial). See the following table for examples.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Literal</th>
+<th>Meaning</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>100</td>
+<td><span class="math inline">\(100\)</span></td>
+<td>integer value</td>
+</tr>
+<tr class="even">
+<td>-1</td>
+<td><span class="math inline">\(-1\)</span></td>
+<td>integer value</td>
+</tr>
+<tr class="odd">
+<td>3.14</td>
+<td><span class="math inline">\(3.14\)</span></td>
+<td>real value</td>
+</tr>
+<tr class="even">
+<td>-99.</td>
+<td><span class="math inline">\(-99.0\)</span></td>
+<td>real value</td>
+</tr>
+<tr class="odd">
+<td>1e6</td>
+<td><span class="math inline">\(1\times10^{6}\)</span></td>
+<td>real value</td>
+</tr>
+<tr class="even">
+<td>6.02e23</td>
+<td><span class="math inline">\(6.02\times 10^{23}\)</span></td>
+<td>real value</td>
+</tr>
+</tbody>
+</table>
+<p>In Fortran, the type of value (integer vs. real) is strictly differentiated.</p>
+<ul>
+<li>If the literal has only numbers and optionally a sign (<span class="math inline">\(+\)</span> or <span class="math inline">\(-\)</span>), it is an integer.</li>
+<li>If it ha the decimal point (<code>.</code>) or exponential identifier (<code>e</code> or <code>E</code>), it is a real value.</li>
+</ul>
+<p>The numeric literal can also be used in <code>print</code>.</p>
+<pre data-language="Fortran"><code class="language-fortran">program num
+   print *,100,-1,3.14,6.02e23
+end program num</code></pre>
+<pre data-language="output"><code>         100          -1   3.14000010       6.02000017E+23</code></pre>
+<p>Note that the output format depends on the type and the magnitude of value. The default output has enough margin to show a number.</p>
+<h4 id="mix-of-numeric-and-character-literals">Mix of numeric and character literals</h4>
+<p>You can mix numeric and character literals in <code>print</code>.</p>
+<pre data-language="Fortran"><code class="language-fortran">program num
+   print *,&quot;Avogadro constant=&quot;,6.02e23
+end program num</code></pre>
+<pre data-language="output"><code> Avogadro constant=   6.02000017E+23</code></pre>
+<p>This is useful to precisely display the numeric values.</p>
+<h4 id="summary">Summary</h4>
+<ul>
+<li>Fortran holds both integer and real values; two are differentiated.</li>
+<li>The <code>print</code> statement put a margin to the output of numeric literals.</li>
+<li>The numeric and character literals can coexist in <code>print</code>.</li>
+</ul>
+<h4 id="exercises">Exercises</h4>
+<ol type="1">
+<li>Print 3.14 with the message “pi=”.</li>
+<li>Print some extremely huge (or tiny) integer literals, and see how big (small) values Fortran can hold.</li>
+<li>Repeat as above but for real literals.</li>
+</ol>
+<h3 id="computations">Computations</h3>
+<h4 id="operators">Operators</h4>
+<p>Fortran has several operators for numeric values. The operators are very similar to the one used in mathematics.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Operator</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>+</code></td>
+<td>addition</td>
+<td><code>1+2</code></td>
+</tr>
+<tr class="even">
+<td><code>-</code></td>
+<td>subtraction</td>
+<td><code>1-3</code></td>
+</tr>
+<tr class="odd">
+<td><code>*</code></td>
+<td>multiplication</td>
+<td><code>2*3</code></td>
+</tr>
+<tr class="even">
+<td><code>/</code></td>
+<td>division</td>
+<td><code>6/2</code></td>
+</tr>
+<tr class="odd">
+<td><code>**</code></td>
+<td>power</td>
+<td><code>10**3</code> (<span class="math inline">\(10^3\)</span>)</td>
+</tr>
+<tr class="even">
+<td><code>(</code> and <code>)</code></td>
+<td>change the priority of operators</td>
+<td><code>(1+3)*2</code></td>
+</tr>
+</tbody>
+</table>
+<p>By default, the priority of operators is the same as the arithmetic rule (<code>**</code> &gt; <code>*</code> and <code>/</code> &gt; <code>+</code> and <code>-</code>). The parentheses change the priority. You can use as many as operators in a formula such as <code>1+((5+4/2)**6)/2-8/4+2</code>.</p>
+<pre data-language="Fortran"><code class="language-fortran">program num
+   print *,1+((5+4/2)**6)/2-8/4+2
+end program num</code></pre>
+<pre data-language="output"><code>       58825</code></pre>
+<h4 id="type-of-result">Type of result</h4>
+<p>Some arithmetic rules in Fortran are <strong>not intuitive</strong> because the type of value is strictly considered. The following rules are applied.</p>
+<ul>
+<li>A formula with only integer values always returns an integer value.</li>
+<li>A formula with both integer and real values always returns a real value.</li>
+<li>A formula with both real values always returns a real value.</li>
+</ul>
+<p>Simply, you will get the same type of result if you put the same type of numbers. The second point is because a real value can more precisely express a number. So, the integer value is converted to a real value before evaluating the formula. The first two rules may confuse the programmers; see the following example.</p>
+<pre data-language="Fortran"><code class="language-fortran">program num
+   print *,&quot;3/2     = &quot;, 3/2       ! integer / integer
+   print *,&quot;3.0/2   = &quot;, 3.0/2     ! real / integer
+   print *,&quot;3/2.0   = &quot;, 3/2.0     ! integer / real
+   print *,&quot;3.0/2.0 = &quot;, 3.0/2.0   ! real / real
+end program num</code></pre>
+<pre data-language="output"><code>3/2     =            1
+3.0/2   =    1.50000000
+3/2.0   =    1.50000000
+3.0/2.0 =    1.50000000</code></pre>
+<p>Only the first formula returns the integer value (<code>1</code>), which is the quotient of 3/2, and the remainder is removed. Never forget to convert the number to real if you want to get the real value.</p>
+<h4 id="type-conversion">Type conversion</h4>
+<p>You may need to convert the numeric type from one to another. Also, sometimes a real number should be rounded to an integer. Fortran has conversion functions as follows.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Meaning</th>
+<th>Notation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>real(b)</code></td>
+<td>convert to real</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>int(b)</code></td>
+<td>convert to integer</td>
+<td>truncated toward zero</td>
+</tr>
+<tr class="odd">
+<td><code>aint(r)</code></td>
+<td>convert to real</td>
+<td>truncated toward zero</td>
+</tr>
+<tr class="even">
+<td><code>nint(r)</code></td>
+<td>convert to integer</td>
+<td>truncated to nearest integer</td>
+</tr>
+<tr class="odd">
+<td><code>anint(r)</code></td>
+<td>convert to real</td>
+<td>truncated to nearest integer</td>
+</tr>
+<tr class="even">
+<td><code>ceiling(r)</code></td>
+<td>convert to integer</td>
+<td>least integer greater than or equal to <code>r</code></td>
+</tr>
+<tr class="odd">
+<td><code>floor(r)</code></td>
+<td>convert to integer</td>
+<td>greatest integer less than or equal to <code>r</code></td>
+</tr>
+</tbody>
+</table>
+<pre data-language="Fortran"><code class="language-fortran">program num
+   print *,&quot;3/2     = &quot;, 3/2       ! integer / integer
+   print *,&quot;3/2     = &quot;, 3/real(2) ! integer / real
+   print *,&quot;3/2     = &quot;, real(3/2) ! it is nonsense, why?
+end program num</code></pre>
+<pre data-language="output"><code>3/2     =            1
+3/2     =    1.50000000
+3/2     =    1.00000000</code></pre>
+<h4 id="simple-functions">Simple functions</h4>
+<p>Fortran supports more complicated computations than arithmetic operations. Such a computation is done using a <em>function</em>. For example, the cosine function is available as <code>cos()</code> in Fortran. The value passed to a function is called an <em>argument</em>, which should be enclosed with <code>()</code> next to the function name. A function can be used as follows.</p>
+<pre data-language="Fortran"><code class="language-fortran">program num
+   print *,cos(0.0)
+end program num</code></pre>
+<pre data-language="output"><code>   1.00000000</code></pre>
+<p>Some readers would recognize that the argument is real, not an integer. Yes, it is crucial because cosine is defined only for real values. If you give an integer to <code>cos()</code>, you will get the compilation error.</p>
+<pre data-language="Fortran"><code class="language-fortran">program num
+   print *,cos(0)
+end program num</code></pre>
+<pre data-language="output"><code>main.f95:2:15:
+
+    print *,cos(0)
+               1
+Error: &#39;x&#39; argument of &#39;cos&#39; intrinsic at (1) must be REAL or COMPLEX</code></pre>
+<p>Here is a table for a few functions often used. In the table, <code>r</code> means a real value, and <code>b</code> means either real and integer value.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Meaning</th>
+<th>Notation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>abs(b)</code></td>
+<td>absolute value</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>sqrt(r)</code></td>
+<td>square root</td>
+<td>equivalent to <code>r**0.5</code></td>
+</tr>
+<tr class="odd">
+<td><code>sin(r)</code></td>
+<td>sine</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>cos(r)</code></td>
+<td>cosine</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>tan(r)</code></td>
+<td>tangent</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>log(r)</code></td>
+<td>natural logarithm</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>log10(r)</code></td>
+<td>common logarithm</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>exp(r)</code></td>
+<td>exponential function</td>
+<td><span class="math inline">\(e^{r}\)</span></td>
+</tr>
+<tr class="odd">
+<td><code>mod(x,y)</code></td>
+<td>modulo (remainder of <code>x/y</code>)</td>
+<td>Both arguments should be the same type.</td>
+</tr>
+</tbody>
+</table>
+<!--
+#### Not a number and infinity
+
+Fortran could return some weird results if the formula does not make sense, or it is not defined, such as $0/0$.
+In these cases, Fortran returns non-numeric values.
+
+```Fortran
+program num
+   print *,0/0
+   print *,1/0
+   print *,log(0.0)
+   print *,tan(0.0)
+end program num
+```
+-->
+<p>The functions can be nested and mixed with other numeric expressions. The order of operations is defined by operator precedence (please use the parentheses to avoid the confusion in the precedence). See the following example.</p>
+<pre data-language="Fortran"><code class="language-fortran">program num
+   print *,cos(sin(3.14159))         ! nested function
+   print *,cos(sin(3.14159)**2)/2    ! mixed operations
+end program num</code></pre>
+<h4 id="summary-1">Summary</h4>
+<ul>
+<li>Fortran follows the standard arithmetic rule.</li>
+<li>The resulting type of formula depends on the input types.
+<ul>
+<li>If the input types are the same, the output is the same type.</li>
+<li>If different, the output is a type with more precision.</li>
+</ul></li>
+<li>A numeric function accepts a specific type (mostly real).</li>
+<li>The numeric type can be converted using functions.</li>
+</ul>
+<h4 id="exercises-1">Exercises</h4>
+<ol type="1">
+<li>Compute <span class="math inline">\(\sqrt[3]{2}\)</span>. The result should be <code>1.25992107</code>.</li>
+<li>Try to compute <span class="math inline">\(\log(\sin(0))\)</span> and see what happens.</li>
+<li>Compute the sum of ten 0.1 (<code>0.1+ ... +0.1</code>) and compare it with <code>0.1*10</code>. Do you find any difference?</li>
+</ol>
+<h2 id="precision">Precision</h2>
+<h3 id="range-and-precision-of-numerical-values">Range and precision of numerical values</h3>
+<p>Fortran (and almost all programming languages) uses a limited resource to express a number. A number held in your program has a finite precision. In other words, some numbers are precisely expressed, but some are approximated. Also, the type of number (integer or real) has a range to express a number.</p>
+<p>The following program presents the limitation of numbers in Fortran. Some compilers can not compile the program because they may detect the overflow in the first statement on the compilation and give an error. In such a case, comment out the first print statement, save the program, and compile it.</p>
+<pre data-language="Fortran"><code class="language-fortran">program lim
+   print *,1234567890*2    ! will overflow
+   print *,3.14159265359   ! too precise real value
+end program lim</code></pre>
+<pre data-language="output"><code>-1825831516
+  3.141593</code></pre>
+<p>The results should be unexpected.</p>
+<ul>
+<li>The first result is complete nonsense. The multiplication produces a significant number that exceeds the upper limit of an integer value (<span class="math inline">\(2^{31}-1=2147483647\)</span>) by default in Fortran. It is an example of <em>overflow</em>, and the result is invalid.</li>
+<li>The second result cuts the lowest digits in the number. The default real-value in Fortran holds just 7 or 8 decimal digits. If the value exceeds the limit, it will be <em>rounded</em> to a lower precision. It may cause a <em>rounding error</em>, in which the computation is not accurate, especially when the missing values are accumulated.</li>
+</ul>
+<p>Fortran provides several precisions both for integer and real values. Even if the default precision is not enough, you can use higher precision values with a manual specification of precision.</p>
+<h4 id="exercise">Exercise</h4>
+<ol type="1">
+<li>See the result of adding 1 to the maximum integer (2147483647).</li>
+<li>See if there is a difference between printing <code>3.14159265359</code> and <code>3.141593</code>.</li>
+</ol>
+<h3 id="integer-values">Integer values</h3>
+<h4 id="precision-specification">Precision specification</h4>
+<p>In the current computers, the default integer value is expressed as 4 bytes (32 bits). Fortran handles alternative precisions for integers. In the following table, <code>i</code> means an actual integer value.</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Precision</th>
+<th>Range</th>
+<th>Usage</th>
+<th>Remark</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1 byte (8 bit)</td>
+<td>-128 to 127 (<span class="math inline">\(-2^{7}\)</span> to <span class="math inline">\(2^{7}-1\)</span>)</td>
+<td><code>int(i,kind=1)</code> or <code>int(i,1)</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>2 byte (16 bit)</td>
+<td>-32768 to 32767 (<span class="math inline">\(-2^{15}\)</span> to <span class="math inline">\(2^{15}-1\)</span>)</td>
+<td><code>int(i,kind=2)</code> or <code>int(i,2)</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>4 byte (32 bit)</td>
+<td>-2147483648 to 2147483647 (<span class="math inline">\(-2^{31}\)</span> to <span class="math inline">\(2^{31}-1\)</span>)</td>
+<td><code>int(i,kind=4)</code> or <code>int(i,4)</code></td>
+<td>Default</td>
+</tr>
+<tr class="even">
+<td>8 byte (64 bit)</td>
+<td>-9223372036854775808 to 9223372036854775807 (<span class="math inline">\(-2^{63}\)</span> to <span class="math inline">\(2^{63}-1\)</span>)</td>
+<td><code>int(i,kind=8)</code> or <code>int(i,8)</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>The default precision (4 bytes) should be enough in most cases, and you <strong>must not use the other precision</strong> unless there is a particular reason. If you mix some precisions in computations, the program may be slow or instead tends to have issues that can not be easily found.</p>
+<p>When a formula has mixed precisions, the result is the highest precision. The following program produces the 8-byte integer.</p>
+<pre data-language="Fortran"><code class="language-fortran">program lim
+   print *,int(1234567890,kind=8)*2
+end program lim</code></pre>
+<h4 id="portable-ways-for-precision-specification">Portable ways for precision specification</h4>
+<p>There is a tricky fact in the definition of precision like <code>8</code> in <code>int(i,kind=8)</code>. Such a specification depends on your operating system and hardware. The kinds <code>1</code>, <code>2</code>, <code>4</code>, and <code>8</code> are widely used in many compilers for Intel or AMD processors, but technically, it is not universal. I am sure you do not have any exceptions, so, you may still use the specifications in your program (and so many textbooks and the online materials use this <em>de facto</em> standard).</p>
+<p>There is a function to get the precision instead of using such constants. It is useful to keep the portability of your program to other computers.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Remark</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>selected_int_kind(n)</code></td>
+<td>Get a precision code in the rage of <span class="math inline">\(-10^n&lt;i&lt;10^n\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>To short, it returns a code to guarantee that an integer value <span class="math inline">\(i\)</span> with <span class="math inline">\(n\)</span> digits. For example, in many cases, <code>selected_int_kind(9)</code> returns <code>4</code> (<span class="math inline">\(-10^9&lt;i&lt;10^9\)</span> i.e. 4-byte integer) and <code>selected_int_kind(10)</code> returns <code>8</code> (<span class="math inline">\(-10^{10}&lt;i&lt;10^{10}\)</span> i.e. 8-byte integer). If <code>n</code> is invalid, it returns <code>-1</code>. The above program can be written with the function as follows.</p>
+<pre data-language="Fortran"><code class="language-fortran">program lim
+   print *,int(1234567890,selected_int_kind(10))*2
+end program lim</code></pre>
+<p>It is too long to write, so it is defined as a constant which will be introduced in the later chapter.</p>
+<p>Using an external <em>module</em>, which has not been explained so far, more important keywords are available to specify the precision. A module is like a <em>package</em> in other languages, and it defines extra functions and constants. Although the user can create a custom module, some modules are available by default. The built-in module <code>iso_fortran_env</code>, which is supported by almost all recent compilers, defines such meaningful keywords for precision. Here are some of them.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Keyword</th>
+<th>Precision</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>int8</code></td>
+<td>8 bit (1 byte)</td>
+</tr>
+<tr class="even">
+<td><code>int16</code></td>
+<td>16 bit (2 bytes)</td>
+</tr>
+<tr class="odd">
+<td><code>int32</code></td>
+<td>32 bit (4 bytes)</td>
+</tr>
+<tr class="even">
+<td><code>int64</code></td>
+<td>64 bit (8 bytes)</td>
+</tr>
+</tbody>
+</table>
+<p>A module is called with the <code>use</code> statement, which must stay at the top of the program. I just show an example here. The details will be explained in the later chapter.</p>
+<pre data-language="Fortran"><code class="language-fortran">program lim
+   use iso_fortran_env
+   print *,int(1234567890,selected_int_kind(10))*2
+end program lim</code></pre>
+<h4 id="summary-2">Summary</h4>
+<ul>
+<li>There are several types to have integer values.</li>
+<li>The default type is 4-byte (32 bit), and it is enough in most cases.</li>
+<li>There are several ways to define integer types.</li>
+</ul>
+<h4 id="exercises-2">Exercises</h4>
+<ol type="1">
+<li>Try the above programs to see how to use the precision identifiers.</li>
+</ol>
+<h3 id="real-values">Real values</h3>
+<h4 id="floating-point-number">Floating-point number</h4>
+<p>In Fortran and the majority of programming languages, any real value is kept as a <em>floating-point number</em>, which is expressed as the following formula.</p>
+<p><span class="math display">\[
+x\times 10^y
+\]</span></p>
+<p>The value <span class="math inline">\(x\)</span> is <em>significand</em> and <span class="math inline">\(y\)</span> is <em>exponent</em>. Usually, <span class="math inline">\(x\)</span> has a real value, and <span class="math inline">\(y\)</span> is an integer, and both have limited precision. By default, Fortran has 7 or 8 digits in <span class="math inline">\(x\)</span>, and up to 2 digits in <span class="math inline">\(y\)</span>, and this kind of number are called <em>single precision</em>. The higher precision is <em>double-precision</em>, which has 15 or 16 digits in <span class="math inline">\(x\)</span> and up to 3 digits in <span class="math inline">\(y\)</span>. You can see that this expression cannot present general numeric values, including irrational numbers.</p>
+<h4 id="precision-specification-1">Precision specification</h4>
+<p>In the following table, <code>r</code> means an actual real value.</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Precision</th>
+<th>Width</th>
+<th>Approximated Range</th>
+<th>Largest subnormal number</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Single precision</td>
+<td>4 byte (32 bit)</td>
+<td><span class="math inline">\(-3.40\times 10^{38}\)</span> to <span class="math inline">\(3.40\times 10^{38}\)</span></td>
+<td><span class="math inline">\(1.18\times 10^{-38}\)</span></td>
+<td><code>real(r,kind=4)</code> or <code>real(r)</code> or <code>e</code> literal</td>
+</tr>
+<tr class="even">
+<td>Double precision</td>
+<td>8 byte (64 bit)</td>
+<td><span class="math inline">\(-1.80\times 10^{308}\)</span> to <span class="math inline">\(1.80\times 10^{308}\)</span></td>
+<td><span class="math inline">\(2.23\times 10^{-308}\)</span></td>
+<td><code>real(i,kind=8)</code> or <code>dble(i,8)</code> or <code>d</code> literal</td>
+</tr>
+</tbody>
+</table>
+<p>Roughly, the most significant subnormal number is the smallest positive number expressed in your computer. See for a primary textbook for details in floating-point numbers.</p>
+<p>Double precision is mainly used in heavy numerical computations because single-precision is not enough to hold precise numbers, and it quickly accumulates the rounding errors during computations. Just remember the following rules for double-precision values.</p>
+<ul>
+<li>A double-precision literal is defined using <code>d</code> instead of <code>e</code>.</li>
+<li>The function <code>dble</code> is useful to convert any numbers to double precision.</li>
+<li>When single and double precisions are mixed, the result will be double precision.</li>
+<li>Integer values should be converted to double-precision when the double-precision values are involved in the computations.</li>
+</ul>
+<p>See the following example to use double precision.</p>
+<pre data-language="Fortran"><code class="language-fortran">program double
+   print *,3.14159265359     ! single precision
+   print *,3.14159265359d0   ! double precision
+   print *,dble(2)*10        ! mixed precision = aligned to double
+   print *,0.1               ! not exactly expressed in the computer
+   print *,0.1d0             ! same in double
+end program double</code></pre>
+<pre data-language="output"><code>3.14159274
+3.1415926535900001
+20.000000000000000
+0.100000001
+0.10000000000000001</code></pre>
+<p>You can still see a rounding error in the second output. The 4th and 5th output is an extreme example of a rounding error. These values are not precisely expressed with a floating-point formula because it is a recurring decimal in a binary expression which the current computer is using. The last digit is always rounded and creates noise in the value. When you use double-precision, the rounding error is much smaller, and the result may be less affected.</p>
+<h4 id="portable-ways-for-precision-specification-1">Portable ways for precision specification</h4>
+<p>As integer values, the definition of precision like <code>8</code> in <code>real(i,kind=8)</code> is not always true, although almost compilers accept <code>8</code> as double precision. There is a function to get the precision instead of using such constants.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Remark</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>selected_real_kind(p,r)</code></td>
+<td>See below for usage.</td>
+</tr>
+</tbody>
+</table>
+<p>It results in a precision-code to guarantee that the real value has at least <code>p</code> digits in significand and a decimal-exponent range of at least <code>r</code>. For example, typical double-precision value is defined as <code>selected_real_kind(15,307)</code>.</p>
+<p>More important keywords are also available in the module <code>iso_fortran_env</code> as the integer value.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Keyword</th>
+<th>Precision</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>real32</code></td>
+<td>sibgle precision, 32 bit (4 bytes)</td>
+</tr>
+<tr class="even">
+<td><code>real64</code></td>
+<td>double precision, 64 bit (8 bytes)</td>
+</tr>
+</tbody>
+</table>
+<p>See the following example for the usage.</p>
+<pre data-language="Fortran"><code class="language-fortran">! All the statements should have the same results.
+program double
+   use iso_fortran_env
+   print *,3.14d0
+   print *,dble(3.14)
+   print *,real(3.14,selected_real_kind(15,307))
+   print *,real(3.14,real64)
+end program double</code></pre>
+<h4 id="summary-3">Summary</h4>
+<ul>
+<li>There are two typical types to express a real value as a floating-point number.</li>
+<li>The default is single-precision, but the double-precision value is often used in numerical computing.</li>
+<li>There are several ways to define and convert the types.</li>
+</ul>
+<h4 id="exercises-3">Exercises</h4>
+<ol type="1">
+<li>Compute the sum of ten 0.1 both in single and double precisions and compare the results.</li>
+<li>See if <code>selected_real_kind(15,308)</code> works or not. If working, what does it define?</li>
+</ol>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
+</article>
+</body>
+</html>

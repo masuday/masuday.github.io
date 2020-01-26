@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<!--==============================================================================
+	           "GitHub HTML5 Pandoc Template" v1.2 — by Tristano Ajmone
+	==============================================================================
+	(c) Tristano Ajmone, 2017, MIT License (MIT). Project's home repository:
+
+	- https://github.com/tajmone/pandoc-goodies
+
+	This template reuses source code taken from the following projects:
+
+	- GitHub Markdown CSS: © Sindre Sorhus, MIT License (MIT):
+	  https://github.com/sindresorhus/github-markdown-css
+
+	- Primer CSS: © 2016 GitHub Inc., MIT License (MIT):
+	  http://primercss.io/
+	==============================================================================-->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Yutaka Masuda" />
+  <title>Compiler and machine code</title>
+  <style type="text/css">@font-face{font-family:octicons-link;src:url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAZwABAAAAAACFQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEU0lHAAAGaAAAAAgAAAAIAAAAAUdTVUIAAAZcAAAACgAAAAoAAQAAT1MvMgAAAyQAAABJAAAAYFYEU3RjbWFwAAADcAAAAEUAAACAAJThvmN2dCAAAATkAAAABAAAAAQAAAAAZnBnbQAAA7gAAACyAAABCUM+8IhnYXNwAAAGTAAAABAAAAAQABoAI2dseWYAAAFsAAABPAAAAZwcEq9taGVhZAAAAsgAAAA0AAAANgh4a91oaGVhAAADCAAAABoAAAAkCA8DRGhtdHgAAAL8AAAADAAAAAwGAACfbG9jYQAAAsAAAAAIAAAACABiATBtYXhwAAACqAAAABgAAAAgAA8ASm5hbWUAAAToAAABQgAAAlXu73sOcG9zdAAABiwAAAAeAAAAME3QpOBwcmVwAAAEbAAAAHYAAAB/aFGpk3jaTY6xa8JAGMW/O62BDi0tJLYQincXEypYIiGJjSgHniQ6umTsUEyLm5BV6NDBP8Tpts6F0v+k/0an2i+itHDw3v2+9+DBKTzsJNnWJNTgHEy4BgG3EMI9DCEDOGEXzDADU5hBKMIgNPZqoD3SilVaXZCER3/I7AtxEJLtzzuZfI+VVkprxTlXShWKb3TBecG11rwoNlmmn1P2WYcJczl32etSpKnziC7lQyWe1smVPy/Lt7Kc+0vWY/gAgIIEqAN9we0pwKXreiMasxvabDQMM4riO+qxM2ogwDGOZTXxwxDiycQIcoYFBLj5K3EIaSctAq2kTYiw+ymhce7vwM9jSqO8JyVd5RH9gyTt2+J/yUmYlIR0s04n6+7Vm1ozezUeLEaUjhaDSuXHwVRgvLJn1tQ7xiuVv/ocTRF42mNgZGBgYGbwZOBiAAFGJBIMAAizAFoAAABiAGIAznjaY2BkYGAA4in8zwXi+W2+MjCzMIDApSwvXzC97Z4Ig8N/BxYGZgcgl52BCSQKAA3jCV8CAABfAAAAAAQAAEB42mNgZGBg4f3vACQZQABIMjKgAmYAKEgBXgAAeNpjYGY6wTiBgZWBg2kmUxoDA4MPhGZMYzBi1AHygVLYQUCaawqDA4PChxhmh/8ODDEsvAwHgMKMIDnGL0x7gJQCAwMAJd4MFwAAAHjaY2BgYGaA4DAGRgYQkAHyGMF8NgYrIM3JIAGVYYDT+AEjAwuDFpBmA9KMDEwMCh9i/v8H8sH0/4dQc1iAmAkALaUKLgAAAHjaTY9LDsIgEIbtgqHUPpDi3gPoBVyRTmTddOmqTXThEXqrob2gQ1FjwpDvfwCBdmdXC5AVKFu3e5MfNFJ29KTQT48Ob9/lqYwOGZxeUelN2U2R6+cArgtCJpauW7UQBqnFkUsjAY/kOU1cP+DAgvxwn1chZDwUbd6CFimGXwzwF6tPbFIcjEl+vvmM/byA48e6tWrKArm4ZJlCbdsrxksL1AwWn/yBSJKpYbq8AXaaTb8AAHja28jAwOC00ZrBeQNDQOWO//sdBBgYGRiYWYAEELEwMTE4uzo5Zzo5b2BxdnFOcALxNjA6b2ByTswC8jYwg0VlNuoCTWAMqNzMzsoK1rEhNqByEyerg5PMJlYuVueETKcd/89uBpnpvIEVomeHLoMsAAe1Id4AAAAAAAB42oWQT07CQBTGv0JBhagk7HQzKxca2sJCE1hDt4QF+9JOS0nbaaYDCQfwCJ7Au3AHj+LO13FMmm6cl7785vven0kBjHCBhfpYuNa5Ph1c0e2Xu3jEvWG7UdPDLZ4N92nOm+EBXuAbHmIMSRMs+4aUEd4Nd3CHD8NdvOLTsA2GL8M9PODbcL+hD7C1xoaHeLJSEao0FEW14ckxC+TU8TxvsY6X0eLPmRhry2WVioLpkrbp84LLQPGI7c6sOiUzpWIWS5GzlSgUzzLBSikOPFTOXqly7rqx0Z1Q5BAIoZBSFihQYQOOBEdkCOgXTOHA07HAGjGWiIjaPZNW13/+lm6S9FT7rLHFJ6fQbkATOG1j2OFMucKJJsxIVfQORl+9Jyda6Sl1dUYhSCm1dyClfoeDve4qMYdLEbfqHf3O/AdDumsjAAB42mNgYoAAZQYjBmyAGYQZmdhL8zLdDEydARfoAqIAAAABAAMABwAKABMAB///AA8AAQAAAAAAAAAAAAAAAAABAAAAAA==) format('woff')}.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#24292e;font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";font-size:16px;line-height:1.5;word-wrap:break-word;box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto;padding:45px}.markdown-body .octicon{display:inline-block;fill:currentColor;vertical-align:text-bottom}.markdown-body a{background-color:transparent;-webkit-text-decoration-skip:objects;color:#0366d6;text-decoration:none}.markdown-body a:active,.markdown-body a:hover{outline-width:0}.markdown-body h1{margin:.67em 0}.markdown-body img{border-style:none}.markdown-body svg:not(:root){overflow:hidden}.markdown-body code,.markdown-body kbd,.markdown-body pre{font-family:monospace,monospace}.markdown-body input{font:inherit;margin:0;overflow:visible;font-family:inherit;font-size:inherit;line-height:inherit}.markdown-body [type=checkbox]{box-sizing:border-box;padding:0}.markdown-body *{box-sizing:border-box}.markdown-body a:hover{text-decoration:underline}.markdown-body strong{font-weight:600}.markdown-body hr{box-sizing:content-box;overflow:hidden;background:0 0;border-bottom:1px solid #dfe2e5}.markdown-body hr::before{display:table;content:""}.markdown-body hr::after{display:table;clear:both;content:""}.markdown-body table{border-spacing:0;border-collapse:collapse;display:block;width:100%;overflow:auto}.markdown-body td,.markdown-body th{padding:0}.markdown-body blockquote{margin:0}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol{list-style-type:lower-alpha}.markdown-body dd{margin-left:0}.markdown-body code{font-family:SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace}.markdown-body pre{font:12px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;word-wrap:normal}.markdown-body .pl-0{padding-left:0!important}.markdown-body .pl-1{padding-left:4px!important}.markdown-body .pl-2{padding-left:8px!important}.markdown-body .pl-3{padding-left:16px!important}.markdown-body .pl-4{padding-left:24px!important}.markdown-body .pl-5{padding-left:32px!important}.markdown-body .pl-6{padding-left:40px!important}.markdown-body::before{display:table;content:""}.markdown-body::after{display:table;clear:both;content:""}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:0}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e1e4e8;border:0}.markdown-body blockquote{padding:0 1em;color:#6a737d;border-left:.25em solid #dfe2e5}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd{font-size:11px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#1b1f23;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1{padding-bottom:.3em;font-size:2em;border-bottom:1px solid #eaecef}.markdown-body h2{padding-bottom:.3em;font-size:1.5em;border-bottom:1px solid #eaecef}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#6a737d}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table th{font-weight:600}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #dfe2e5}.markdown-body table tr{background-color:#fff;border-top:1px solid #c6cbd1}.markdown-body table tr:nth-child(2n){background-color:#f6f8fa}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f6f8fa;border-radius:3px}.markdown-body .full-commit .btn-outline:not(:disabled):hover{color:#005cc5;border-color:#005cc5}.markdown-body kbd{display:inline-block;padding:3px 5px;font:11px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;line-height:10px;color:#444d56;vertical-align:middle;background-color:#fcfcfc;border:1px solid #c6cbd1;border-bottom-color:#959da5;border-radius:3px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body :checked+.radio-label{position:relative;z-index:1;border-color:#0366d6}.markdown-body .task-list-item{list-style-type:none}.markdown-body .task-list-item+.task-list-item{margin-top:3px}.markdown-body .task-list-item input{margin:0 .2em .25em -1.6em;vertical-align:middle}.markdown-body hr{border-bottom-color:#eee}.flash{position:relative;padding:16px;color:#246;background-color:#e2eef9;border:1px solid #bac6d3;border-radius:3px}.flash p:last-child{margin-bottom:0}.flash-messages{margin-bottom:24px}.flash-warn{color:#4c4a42;background-color:#fff9ea;border-color:#dfd8c2}.flash-error{color:#911;background-color:#fcdede;border-color:#d2b2b2}.flash-success{color:#22662c;background-color:#e2f9e5;border-color:#bad3be}.flash-plain{color:#4c4a42;background-color:#f5f5f5;border-color:#c1c1c1}</style>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">pre[data-language='renumf90']{background-color:#EFEFFE;}</style>
+  <style type="text/css">pre[data-language='Fortran']{background-color:#E7FFE7;}</style>
+  <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
+  <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
+  <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="prism.css">
+  <script type="text/javascript" src="prism.js"></script>
+</head>
+</head>
+<body>
+<article class="markdown-body">
+<header>
+<h1 class="title">Compiler and machine code</h1>
+<p class="author">Yutaka Masuda</p>
+<p class="date">January 2020</p>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#compiler-and-machine-code">Compiler and machine code</a><ul>
+<li><a href="#code">Code</a></li>
+<li><a href="#compiling-and-linking">Compiling and linking</a></li>
+</ul></li>
+</ul>
+</nav>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
+<h1 id="compiler-and-machine-code">Compiler and machine code</h1>
+<p>The descriptions in this chapter are greatly simplified. To obtain a solid understanding of this topic, please read some textbooks written by computer scientists.</p>
+<h2 id="code">Code</h2>
+<h3 id="machine-code">Machine code</h3>
+<p>You may have had such a question: what does a computer program look like? In Linux, there are many commands, and those <em>are</em> computer programs. For example, <code>ls</code> is a typical command, and it is a computer program. A ready-to-run program has a form of a file called <em>executable</em> (or <em>binary</em>).</p>
+<p>The real shape of <code>ls</code> is an executable stored in <code>/bin</code> in a typical Linux system. Using the <code>less</code> command, we can look at the content of the <code>ls</code> executable. The following is the first some characters shown on the screen by <code>less</code>.</p>
+<pre data-language="output"><code>^?ELF^B^A^A^@^@^@^@^@^@^@^@^@^B^@&gt;^@^A^@^@^@&lt;D4&gt;B@^@^@^@^@^@^@^@^@^@^@^@^@&lt;F0&gt;&lt;C3&gt;^A^@^@</code></pre>
+<p>It looks nonsense to us, but it makes much sense to a computer. A computer can read and interpret it, which describes the instructions for the machine. This machine-readable sequence is the <em>machine code</em>, and it is the only thing that a computer can understand.</p>
+<h3 id="assembly-language">Assembly language</h3>
+<p>At the beginning of the history of computers, a computer-user must write the machine code to get computers work. The code was too primitive, too cryptic, and too much time to learn for many people. Then, a more human-readable code was suggested. It just replaced each of the machine code to some meaningful alphabets while keeping a similar structure to the machine code. It is called the <em>assembly language</em>. You can see the <code>ls</code> executable presented as the assembly language using the command, <code>objdump</code> with <code>-d</code>.</p>
+<pre data-language="output"><code>/bin/ls:     file format elf64-x86-64
+
+
+Disassembly of section .init:
+
+0000000000402150 &lt;_init@@Base&gt;:
+  402150:       48 83 ec 08             sub    $0x8,%rsp
+  402154:       48 8b 05 6d 8e 21 00    mov    0x218e6d(%rip),%rax        # 61afc8 &lt;__gmon_start__&gt;
+  40215b:       48 85 c0                test   %rax,%rax
+  40215e:       74 05                   je     402165 &lt;_init@@Base+0x15&gt;
+  402160:       e8 23 07 00 00          callq  402888 &lt;__sprintf_chk@plt+0x18&gt;
+  402165:       48 83 c4 08             add    $0x8,%rsp
+  402169:       c3                      retq
+
+(continues)</code></pre>
+<p>It is still cryptic but more readable. The alphabets like <code>sub $0x8,%rsp</code> and <code>mov 0x218e6d(%rip),%rax</code> are <em>primitives</em> which correspond to particular machine-instructions. Some people develop a tool to convert the assembly code to the machine code (called <em>assembler</em>). Once you have an assembler, you write the assembly code, then convert it to an executable. Again, the assembly code is challenging to write because it is still at a low-level (meaning it is close to the machine-readable code).</p>
+<p>Nowadays, some developers still use the assembly language for particular software that must precisely control a machine (like operating systems and graphics drivers). Also, the assembly language can be used in speed-critical software. However, it is never widely used in standard software development.</p>
+<h3 id="compiled-programming-languages">Compiled programming languages</h3>
+<p>A programming language is designed to have people quickly focus on describing tasks that they want to perform. The code written in a programming language should be human-readable. A <em>compiler</em>, a kind of software, translates the code written in a programming language to the machine code. The programmer prepares a text file containing the code (<em>source file</em>), runs the compiler, and obtained an executable. When a programming language is supposed to be with a compiler, it is called <em>compiled language</em>. Typically compiled languages include Fortran, C, C++, C#, Java, Go, Rust, Swift, Julia, and so on.</p>
+<p>We can see standard features of compiled languages. The compiled language generates an executable, which is generally fast. Although the languages are powerful enough to develop any software, the programmer may write much code to achieve the goal because the programmer may write everything from scratch. You may see some restrictions or inflexibilities in the language because it may have been designed to simplify the compiling process and to adapt to specific purposes.</p>
+<h3 id="scripting-languages">Scripting languages</h3>
+<p>Some programming languages do not need a compiler; no machine-code is generated. Instead, each statement is interpreted one by one as a command, which invokes pre-compiled programs to do the task. It is called <em>scripting languages</em>. A scripting language can get a programmer to use pre-built, optimized, higher-level functions that may not be readily available in compiled languages. Also, the language is more accessible to write to perform typical tasks. Scripting languages include R, Python, Ruby, Perl, PHP, awk, shell scripts, and so on.</p>
+<p>A scripting language is fast enough when the task is typical and well-defined. However, when the programmer tries to perform the task without pre-built functions, the operation becomes slow. Although computers became powerful and the disadvantage has been reduced, you see the issue in data processing and numerical computing. Most scripting languages can call custom programs written in compiled languages to remove the speed advantage. This practice is common in R and Python when the performance matters, but the programmer should master at least two different languages (<em>two-language problem</em>).</p>
+<p>Roughly speaking, compiled languages are better in performance (speed, resource usage, precise control of machine), but slow in development. Scripting languages are more productive to write the code for defined tasks but slow in the execution of out-of-scope tasks or general algorithms.</p>
+<h2 id="compiling-and-linking">Compiling and linking</h2>
+<h3 id="generating-process-of-executables">Generating process of executables</h3>
+<p>Here is a typical process of development in compiled languages.</p>
+<ol type="1">
+<li>Coding: Write a program as a text file.</li>
+<li>Compiling: Compile it to an executable using a compiler.</li>
+<li>Testing: Run the executable to see if it works as expected.</li>
+</ol>
+<p>For the first step, you are going to learn the syntax of a programming language, and you write the program with a text editor. The last step is performed in terminal or some computing environments. We are looking into the second step here.</p>
+<p>The figure shows a typical conversion process from a source file to an executable.</p>
+<figure>
+<img src="compilation.png" alt="Figure: Compilation steps" /><figcaption>Figure: Compilation steps</figcaption>
+</figure>
+<p>A compiler translates the code in a programming language to the machine code. A source file* stores the original program, and an <em>object file</em> hols the translated code. The object file is incomplete as executable. To generate the executable, another software, <em>linker</em>, puts all the object files and pre-compiled programs required in the operating system (<em>run-time library</em>) together. The run-time library comes with a compiler, and the user should not be aware of it.</p>
+<p>Any popular compilers do these jobs at 1 pass. The compiler compiles the source file, then secretly calls linker software to generate the executable. So, the user does not have to use a linker in many cases. And, in many cases, the whole process is called <em>compilation</em> (including the link).</p>
+<h3 id="example-of-file-compilation">Example of file compilation</h3>
+<p>Here we look at an actual command to compile a source file using GFortran. Suppose we have a source file <code>prog.f90</code>. It is a custom that the source file has <code>.f90</code> at the end of the file name. Some perople use <code>.f90</code> for Fortran 95, <code>.f03</code> for Fortran 2003, and so on. However, we use <code>.f90</code> for any Fortran program written in Fortran 90 or later.</p>
+<p>The file contains the following 3 lines.</p>
+<pre data-language="Fortran"><code class="language-fortran">program prog
+print *,&quot;okay&quot;
+end program prog</code></pre>
+<p>The following command compiles this file.</p>
+<pre data-language="shell"><code>gfortran prog.f90</code></pre>
+<p>It generates an executable, <code>a.out</code> by default. The object file is temporarily generated but removed when the executable is ready. You can separate the process into compilation and link using the following 2 commands.</p>
+<pre data-language="shell"><code>gfortran -c prog.f90
+gfortran prog.o</code></pre>
+<p>The first command converts the source file to an object file, <code>prog.o</code> The second command calls a linker to create the executable, <code>a.out</code>. Usually, you do not have to separate the process.</p>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
+</article>
+</body>
+</html>

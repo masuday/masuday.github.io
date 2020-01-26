@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<!--==============================================================================
+	           "GitHub HTML5 Pandoc Template" v1.2 — by Tristano Ajmone
+	==============================================================================
+	(c) Tristano Ajmone, 2017, MIT License (MIT). Project's home repository:
+
+	- https://github.com/tajmone/pandoc-goodies
+
+	This template reuses source code taken from the following projects:
+
+	- GitHub Markdown CSS: © Sindre Sorhus, MIT License (MIT):
+	  https://github.com/sindresorhus/github-markdown-css
+
+	- Primer CSS: © 2016 GitHub Inc., MIT License (MIT):
+	  http://primercss.io/
+	==============================================================================-->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Yutaka Masuda" />
+  <title>Modules</title>
+  <style type="text/css">@font-face{font-family:octicons-link;src:url(data:font/woff;charset=utf-8;base64,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) format('woff')}.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#24292e;font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";font-size:16px;line-height:1.5;word-wrap:break-word;box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto;padding:45px}.markdown-body .octicon{display:inline-block;fill:currentColor;vertical-align:text-bottom}.markdown-body a{background-color:transparent;-webkit-text-decoration-skip:objects;color:#0366d6;text-decoration:none}.markdown-body a:active,.markdown-body a:hover{outline-width:0}.markdown-body h1{margin:.67em 0}.markdown-body img{border-style:none}.markdown-body svg:not(:root){overflow:hidden}.markdown-body code,.markdown-body kbd,.markdown-body pre{font-family:monospace,monospace}.markdown-body input{font:inherit;margin:0;overflow:visible;font-family:inherit;font-size:inherit;line-height:inherit}.markdown-body [type=checkbox]{box-sizing:border-box;padding:0}.markdown-body *{box-sizing:border-box}.markdown-body a:hover{text-decoration:underline}.markdown-body strong{font-weight:600}.markdown-body hr{box-sizing:content-box;overflow:hidden;background:0 0;border-bottom:1px solid #dfe2e5}.markdown-body hr::before{display:table;content:""}.markdown-body hr::after{display:table;clear:both;content:""}.markdown-body table{border-spacing:0;border-collapse:collapse;display:block;width:100%;overflow:auto}.markdown-body td,.markdown-body th{padding:0}.markdown-body blockquote{margin:0}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol{list-style-type:lower-alpha}.markdown-body dd{margin-left:0}.markdown-body code{font-family:SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace}.markdown-body pre{font:12px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;word-wrap:normal}.markdown-body .pl-0{padding-left:0!important}.markdown-body .pl-1{padding-left:4px!important}.markdown-body .pl-2{padding-left:8px!important}.markdown-body .pl-3{padding-left:16px!important}.markdown-body .pl-4{padding-left:24px!important}.markdown-body .pl-5{padding-left:32px!important}.markdown-body .pl-6{padding-left:40px!important}.markdown-body::before{display:table;content:""}.markdown-body::after{display:table;clear:both;content:""}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:0}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e1e4e8;border:0}.markdown-body blockquote{padding:0 1em;color:#6a737d;border-left:.25em solid #dfe2e5}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd{font-size:11px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#1b1f23;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1{padding-bottom:.3em;font-size:2em;border-bottom:1px solid #eaecef}.markdown-body h2{padding-bottom:.3em;font-size:1.5em;border-bottom:1px solid #eaecef}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#6a737d}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table th{font-weight:600}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #dfe2e5}.markdown-body table tr{background-color:#fff;border-top:1px solid #c6cbd1}.markdown-body table tr:nth-child(2n){background-color:#f6f8fa}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f6f8fa;border-radius:3px}.markdown-body .full-commit .btn-outline:not(:disabled):hover{color:#005cc5;border-color:#005cc5}.markdown-body kbd{display:inline-block;padding:3px 5px;font:11px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;line-height:10px;color:#444d56;vertical-align:middle;background-color:#fcfcfc;border:1px solid #c6cbd1;border-bottom-color:#959da5;border-radius:3px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body :checked+.radio-label{position:relative;z-index:1;border-color:#0366d6}.markdown-body .task-list-item{list-style-type:none}.markdown-body .task-list-item+.task-list-item{margin-top:3px}.markdown-body .task-list-item input{margin:0 .2em .25em -1.6em;vertical-align:middle}.markdown-body hr{border-bottom-color:#eee}.flash{position:relative;padding:16px;color:#246;background-color:#e2eef9;border:1px solid #bac6d3;border-radius:3px}.flash p:last-child{margin-bottom:0}.flash-messages{margin-bottom:24px}.flash-warn{color:#4c4a42;background-color:#fff9ea;border-color:#dfd8c2}.flash-error{color:#911;background-color:#fcdede;border-color:#d2b2b2}.flash-success{color:#22662c;background-color:#e2f9e5;border-color:#bad3be}.flash-plain{color:#4c4a42;background-color:#f5f5f5;border-color:#c1c1c1}</style>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">pre[data-language='renumf90']{background-color:#EFEFFE;}</style>
+  <style type="text/css">pre[data-language='Fortran']{background-color:#E7FFE7;}</style>
+  <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
+  <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
+  <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="prism.css">
+  <script type="text/javascript" src="prism.js"></script>
+</head>
+</head>
+<body>
+<article class="markdown-body">
+<header>
+<h1 class="title">Modules</h1>
+<p class="author">Yutaka Masuda</p>
+<p class="date">January 2020</p>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#modules">Modules</a><ul>
+<li><a href="#basic-features">Basic features</a></li>
+<li><a href="#advanced-usage-of-the-module">Advanced usage of the module</a></li>
+<li><a href="#intrinsic-module">Intrinsic module</a></li>
+</ul></li>
+</ul>
+</nav>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
+<h1 id="modules">Modules</h1>
+<p>Re-use of past programs is a good practice to reduce the development cost. Such programs should be an excellent shape to be easily used in other program units. External functions and subroutines are reusable, but the additional description of the correct interface is required. Also, there is an issue when some variables and constants should be shared with program units; there is a syntax to do it, but it is old-fashioned and not recommended. A module in Fortran is a collection of variable, procedures, and interfaces which are easily used in any program units.</p>
+<h2 id="basic-features">Basic features</h2>
+<h3 id="definition-of-module">Definition of module</h3>
+<p>A Fortran module is a program unit (like <code>program</code>, <code>function</code>, and <code>subroutine</code>). The module is defined with the <code>module</code> statement. The structure looks like the main program. Here is a small example of defining a module.</p>
+<pre data-language="Fortran"><code class="language-fortran">module mymod
+   implicit none
+   real,parameter :: pi=3.1415926
+   real :: number_of_traits=0
+
+contains
+
+function mean(x) result(m)
+   real,intent(in) :: x(:)
+   real :: m
+   m = sum(x)/size(x)
+end function mean
+
+end module mymod</code></pre>
+<p>It defines a constant <code>pi</code>, a variable <code>number_of_traits</code> (with the initial value is 0), and a function <code>mean</code>. When using this module in the main program (or any program units), the variables and the function will be immediately accessible. To use this module, you should use the <code>use</code> statement, which should be at the beginning of the program unit.</p>
+<pre data-language="Fortran"><code class="language-fortran">program main
+   ! at the top of program
+   use mymod
+
+   ! put implicit none and variables after the use statement
+   implicit none
+   real :: x(5)=[1,2,3,4,5]
+
+   ! You can use anything defined in the module without any declaration.
+   print *,sqrt(2*pi)
+   number_of_traits = 10
+   print *,mean(x)
+end program main</code></pre>
+<p>You can see how a module is defined and how it is used.</p>
+<ul>
+<li>A module is defined with <code>module</code> and <code>end module</code>.</li>
+<li>The module can contain any constants, variables, derived types, interfaces, and procedures. The procedures should be placed after <code>contains</code>.</li>
+<li>The module looks like the main program, including only the declarations and the definitions.</li>
+<li>To use a module, put the <code>use</code> statement at the top of the program unit.</li>
+</ul>
+<p>The procedures can access all variables defined in the module (above <code>contains</code>). The module is useful to unify some variables and procedures that use the variables.</p>
+<h3 id="shared-variables">Shared variables</h3>
+<p>When a module is used in different program units, the variables in the module will be shared. It means that using a variable in the module, when one program changes the variable, this change is effective in all programs that use the module. See the following example.</p>
+<pre data-language="Fortran"><code class="language-fortran">subroutine set_num_traits(n)
+   use mymod
+   integer,intent(in) :: n
+   number_of_traits = n
+end subroutine set_num_traits
+
+program main
+   use mymod
+   interface
+      subroutine set_num_traits(n)
+         use mymod
+         integer,intent(in) :: n
+      end subroutine set_num_traits
+   end interface
+   print *,number_of_traits
+   call set_num_traits(5)
+   print *,number_of_traits
+end program main</code></pre>
+<pre data-language="output"><code>0
+5</code></pre>
+<p>The variables defined in a module are kind of <em>global variables</em> that can be universally accessible from all programs that use the module.</p>
+<h3 id="order-of-compilation">Order of compilation</h3>
+<p>A restriction of the module is that the module should be compiled before the programs that use the module. For example, the following program structure is required if all the program units are in the same file. This is because a compiler should perform the consistency checks in all the defined variables and procedures between the module and the program units that call it.</p>
+<pre data-language="Fortran"><code class="language-fortran">! The module comes first.
+module mymod
+...
+end module mymod
+
+! The program calling the module.
+program main
+   use mymod
+end program main</code></pre>
+<p>If the order changed, the compiler could not find the information about the module, and the compilation error should occur.</p>
+<p>You can see that a new file is created when a module is compiled. The file ends with <code>.mod</code> which contains the details about this module. The compiler searches this file to check if the module has been already compiled. So, the file should stay in the same directory (or accessible directories by the compiler) as the source file.</p>
+<h3 id="summary">Summary</h3>
+<ul>
+<li>A module is a program unit, including variables, derived types, and procedures.</li>
+<li>The procedures can access to the variables defined in the module.</li>
+<li>When multiple program units import the same module, the variables in the module will be shared by all the program units.</li>
+<li>The module should be compiled prior to being used.</li>
+</ul>
+<h3 id="exercises">Exercises</h3>
+<p>There is no exercise in this section.</p>
+<h2 id="advanced-usage-of-the-module">Advanced usage of the module</h2>
+<h3 id="selective-imports">Selective imports</h3>
+<p>By default, the <code>use</code> statement imports all objects (variables and procedures) defined in the module. If you want to use a specific object, the <code>only</code> option can do this job. The following example imports only <code>pi</code> and <code>mean</code> from the module.</p>
+<pre data-language="Fortran"><code class="language-fortran">program main
+   use mymod, only:pi,mean
+   ...
+end program main</code></pre>
+<p>The name of the imported object should not be the same as the variable names in the program unit. You can change the name of the imported object in <code>only</code> as follows.</p>
+<pre data-language="Fortran"><code class="language-fortran">new_name =&gt; original_name</code></pre>
+<p>Here is an example of name change: <code>average</code> refers to <code>mean</code>.</p>
+<pre data-language="Fortran"><code class="language-fortran">program main
+   use mymod, only:pi,average=&gt;mean
+   ...
+end program main</code></pre>
+<p>The selective import is always recommended in the use of the module.</p>
+<h3 id="private-and-public-objects">Private and public objects</h3>
+<p>All the objects defined in a module can be imported by default. In other words, the objects have the <em>public</em> attribute. You can make some objects <em>private</em>. The private objects are visible only within the module; the procedures in the module can access to such private objects.</p>
+<p>Two statements, <code>public</code> and <code>private</code> specify the attribute of objects. The statements should stay before <code>contains</code>.</p>
+<pre data-language="Fortran"><code class="language-fortran">module mymod
+   implicit none
+   real,parameter :: pi=3.1415926
+   real :: number_of_traits=0
+
+   public :: pi,mean
+   private :: number_of_traits
+
+contains
+
+function mean(x) result(m)
+   real,intent(in) :: x(:)
+   real :: m
+   m = sum(x)/size(x)
+end function mean
+
+end module mymod</code></pre>
+<p>You can use the following simplified statements.</p>
+<pre data-language="Fortran"><code class="language-fortran">! All objects are public by default; only number_of_traits is private.
+public
+private :: number_of_traits</code></pre>
+<p>The <code>private</code> attribute can also useful to declare a private variable.</p>
+<pre data-language="Fortran"><code class="language-fortran">module mymod
+   implicit none
+   real,parameter :: pi=3.1415926
+   real,private :: number_of_traits=0
+   ...
+end module mymod</code></pre>
+<h3 id="summary-1">Summary</h3>
+<ul>
+<li>The <code>use</code> statement imports all objects from the module. The <code>only</code> option imports specific objects, optionally with the name change.</li>
+<li>All the objects in a module are <em>public</em> by default. The <code>public</code> statement makes the listed objects public explicitly. To make some of them private, use the <code>private</code> statement or the <code>private</code> attribute.</li>
+</ul>
+<h3 id="exercises-1">Exercises</h3>
+<p>There is no exercise in this section.</p>
+<h2 id="intrinsic-module">Intrinsic module</h2>
+<p>As intrinsic functions like <code>sqrt()</code>, there are several intrinsic modules defined in the Fortran standard. The following modules are available by default in recent compilers supporting Fortran 2003 or later.</p>
+<p>|Name|Description| |<code>iso_fortran_env</code>|Definition of useful constants| |<code>iso_c_binding</code>|Functions and constants needed to use external C functions| |<code>ieee_arithmetic</code>|Treatment of special values in floating-point arithmetic|</p>
+<p>You can simply use such modules as a regular module with <code>use</code>. A better practice is to indicate the module is intrinsic using attribute <code>intrinsic</code>; you have to use <code>::</code> to list the module name.</p>
+<pre data-language="Fortran"><code class="language-fortran">program main
+   use, intrinsic :: iso_fortran_env
+   ...
+end program main</code></pre>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
+</article>
+</body>
+</html>

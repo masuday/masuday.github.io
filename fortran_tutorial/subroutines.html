@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<!--==============================================================================
+	           "GitHub HTML5 Pandoc Template" v1.2 — by Tristano Ajmone
+	==============================================================================
+	(c) Tristano Ajmone, 2017, MIT License (MIT). Project's home repository:
+
+	- https://github.com/tajmone/pandoc-goodies
+
+	This template reuses source code taken from the following projects:
+
+	- GitHub Markdown CSS: © Sindre Sorhus, MIT License (MIT):
+	  https://github.com/sindresorhus/github-markdown-css
+
+	- Primer CSS: © 2016 GitHub Inc., MIT License (MIT):
+	  http://primercss.io/
+	==============================================================================-->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Yutaka Masuda" />
+  <title>Function and subroutine</title>
+  <style type="text/css">@font-face{font-family:octicons-link;src:url(data:font/woff;charset=utf-8;base64,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) format('woff')}.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#24292e;font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";font-size:16px;line-height:1.5;word-wrap:break-word;box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto;padding:45px}.markdown-body .octicon{display:inline-block;fill:currentColor;vertical-align:text-bottom}.markdown-body a{background-color:transparent;-webkit-text-decoration-skip:objects;color:#0366d6;text-decoration:none}.markdown-body a:active,.markdown-body a:hover{outline-width:0}.markdown-body h1{margin:.67em 0}.markdown-body img{border-style:none}.markdown-body svg:not(:root){overflow:hidden}.markdown-body code,.markdown-body kbd,.markdown-body pre{font-family:monospace,monospace}.markdown-body input{font:inherit;margin:0;overflow:visible;font-family:inherit;font-size:inherit;line-height:inherit}.markdown-body [type=checkbox]{box-sizing:border-box;padding:0}.markdown-body *{box-sizing:border-box}.markdown-body a:hover{text-decoration:underline}.markdown-body strong{font-weight:600}.markdown-body hr{box-sizing:content-box;overflow:hidden;background:0 0;border-bottom:1px solid #dfe2e5}.markdown-body hr::before{display:table;content:""}.markdown-body hr::after{display:table;clear:both;content:""}.markdown-body table{border-spacing:0;border-collapse:collapse;display:block;width:100%;overflow:auto}.markdown-body td,.markdown-body th{padding:0}.markdown-body blockquote{margin:0}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol{list-style-type:lower-alpha}.markdown-body dd{margin-left:0}.markdown-body code{font-family:SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace}.markdown-body pre{font:12px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;word-wrap:normal}.markdown-body .pl-0{padding-left:0!important}.markdown-body .pl-1{padding-left:4px!important}.markdown-body .pl-2{padding-left:8px!important}.markdown-body .pl-3{padding-left:16px!important}.markdown-body .pl-4{padding-left:24px!important}.markdown-body .pl-5{padding-left:32px!important}.markdown-body .pl-6{padding-left:40px!important}.markdown-body::before{display:table;content:""}.markdown-body::after{display:table;clear:both;content:""}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:0}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e1e4e8;border:0}.markdown-body blockquote{padding:0 1em;color:#6a737d;border-left:.25em solid #dfe2e5}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd{font-size:11px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#1b1f23;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1{padding-bottom:.3em;font-size:2em;border-bottom:1px solid #eaecef}.markdown-body h2{padding-bottom:.3em;font-size:1.5em;border-bottom:1px solid #eaecef}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#6a737d}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table th{font-weight:600}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #dfe2e5}.markdown-body table tr{background-color:#fff;border-top:1px solid #c6cbd1}.markdown-body table tr:nth-child(2n){background-color:#f6f8fa}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f6f8fa;border-radius:3px}.markdown-body .full-commit .btn-outline:not(:disabled):hover{color:#005cc5;border-color:#005cc5}.markdown-body kbd{display:inline-block;padding:3px 5px;font:11px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;line-height:10px;color:#444d56;vertical-align:middle;background-color:#fcfcfc;border:1px solid #c6cbd1;border-bottom-color:#959da5;border-radius:3px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body :checked+.radio-label{position:relative;z-index:1;border-color:#0366d6}.markdown-body .task-list-item{list-style-type:none}.markdown-body .task-list-item+.task-list-item{margin-top:3px}.markdown-body .task-list-item input{margin:0 .2em .25em -1.6em;vertical-align:middle}.markdown-body hr{border-bottom-color:#eee}.flash{position:relative;padding:16px;color:#246;background-color:#e2eef9;border:1px solid #bac6d3;border-radius:3px}.flash p:last-child{margin-bottom:0}.flash-messages{margin-bottom:24px}.flash-warn{color:#4c4a42;background-color:#fff9ea;border-color:#dfd8c2}.flash-error{color:#911;background-color:#fcdede;border-color:#d2b2b2}.flash-success{color:#22662c;background-color:#e2f9e5;border-color:#bad3be}.flash-plain{color:#4c4a42;background-color:#f5f5f5;border-color:#c1c1c1}</style>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">pre[data-language='renumf90']{background-color:#EFEFFE;}</style>
+  <style type="text/css">pre[data-language='Fortran']{background-color:#E7FFE7;}</style>
+  <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
+  <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
+  <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="prism.css">
+  <script type="text/javascript" src="prism.js"></script>
+</head>
+</head>
+<body>
+<article class="markdown-body">
+<header>
+<h1 class="title">Function and subroutine</h1>
+<p class="author">Yutaka Masuda</p>
+<p class="date">January 2020</p>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#function-and-subroutine">Function and subroutine</a><ul>
+<li><a href="#program-units">Program units</a></li>
+<li><a href="#external-function-and-subroutines">External function and subroutines</a></li>
+<li><a href="#internal-function-and-subroutines">Internal function and subroutines</a></li>
+<li><a href="#various-argument-types">Various argument types</a></li>
+<li><a href="#quick-return">Quick return</a></li>
+</ul></li>
+</ul>
+</nav>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
+<h1 id="function-and-subroutine">Function and subroutine</h1>
+<h2 id="program-units">Program units</h2>
+<p>In the previous chapters, the Fortran program was in a single unit defined in the <code>program</code> statement. It is called <em>main program</em>, and any program you write has the main program. When the main program gets longer, it is a good idea to break the program down into small, manageable pieces. Such a small piece is called <em>program unit</em>.</p>
+<p>A typical program-unit is a <em>function</em>. We have looked at several intrinsic functions. In Fortran, you can define custom functions with a block of programs. The function accepts <em>arguments</em> (input values), and it always returns a single value.</p>
+<p>Another program-unit is <em>subroutine</em>, which is more flexible than functions. A subroutine can return any number of values (even no return values). Functions and subroutines are similar, but the only difference is if it returns a single value or not. In the later sections in this tutorial, we refer to functions and subroutines as <em>procedures</em>.</p>
+<h2 id="external-function-and-subroutines">External function and subroutines</h2>
+<p>We first look at how <em>external</em> procedures (functions or subroutines) are defined. An external procedure is an independent program unit. The main program does not know what the externals are, so the programmer should tell the program what they are.</p>
+<figure>
+<img src="external_procedure.png" alt="Figure: External procedure as a separate program unit" /><figcaption>Figure: External procedure as a separate program unit</figcaption>
+</figure>
+<h3 id="external-function">External function</h3>
+<h4 id="definition">Definition</h4>
+<p>As seen in the previous chapters, a function has a form like <code>sqrt(x)</code> with a name and arguments, and it returns a value. A custom function is defined with the name, what kind of arguments it accepts, and what it returns. The <code>function</code> statement defines a new function. Here is a template of the definition.</p>
+<pre data-language="Fortran"><code class="language-fortran">function name(arguments) result(output)
+   List of arguments
+   Definition of output
+   ...
+end function name</code></pre>
+<p>For example, the following function returns the cubic root of the argument. It works because <span class="math inline">\(v=\sqrt[3]{x}=x^{\frac{1}{3}}\)</span>.</p>
+<pre data-language="Fortran"><code class="language-fortran">function cubicroot(x) result(v)
+   implicit none
+   real,intent(in) :: x
+   real :: v
+   v = x**(1.0/3.0)
+end function cubicroot</code></pre>
+<p>You can see how a function is defined.</p>
+<ul>
+<li>A function is defined between <code>function</code> and <code>end function</code>.</li>
+<li>The <code>function</code> statement defines its name, the argument variables in <code>()</code>, and the return variable in <code>result()</code>.</li>
+<li>You should put <code>implicit none</code> inside the function.</li>
+<li>At the top of the function, all arguments should be declared as variables with the status like <code>intent(in)</code>.</li>
+<li>Also, the return variable should be declared. The value held by this variable will be returned when the function finishes.</li>
+</ul>
+<p>The <code>function</code> statement defines an independent program-unit from the main program. As you do in <code>program</code>, you have to put <code>implicit none</code> in the function. All the variables declared inside the function are unrelated to the main program.</p>
+<p>The <code>intent()</code> option declares the status of the input variable to clarify which input can be changed (or unchanged).</p>
+<ul>
+<li><code>intent(in)</code>: It <em>will</em> be used as an input variable, and it <em>will not</em> be altered in the function.</li>
+<li><code>intent(out)</code>: It <em>will not</em> be used as an input variable, but it <em>will</em> be altered in the function.</li>
+<li><code>intent(inout)</code>: It <em>may</em> be used as an input variable, and also, it <em>may</em> be altered in the function.</li>
+</ul>
+<p>If the argument has any above options, it will be treated as <code>intent(inout)</code>. Note that if the argument has <code>intent(out)</code>, you must put a value to this argument. Otherwise, the program may return a nonsense value.</p>
+<p>Technically, you can define a function that returns multiple values with argument variables with <code>intent(inout)</code>. However, in modern Fortran, there is a recommendation that the function does not change the input arguments, and it just return a value. Changing the input arguments, you should use <code>subroutine</code> which is intended for such purposes.</p>
+<h4 id="alternative-definition">Alternative definition</h4>
+<p>One may like an alternative declaration of a function.</p>
+<pre data-language="Fortran"><code class="language-fortran">real function cubicroot(x)
+   implicit none
+   real,intent(in) :: x
+   cubicroot = x**(1.0/3.0)
+end function cubicroot</code></pre>
+<p>In this way, the return type is specified in front of the function name. The name of the return variable is the same as the function name, and you do not need the <code>result</code> keyword and the declaration of the variable. I am not going to use this form in the result of the tutorial.</p>
+<h4 id="program-structure">Program structure</h4>
+<p>When using this custom function in the main program, you have to put the function in the same source file. Then, using the <code>interface</code> statement, you have told the main program what the custom function you are going to use is.</p>
+<pre data-language="Fortran"><code class="language-fortran">program custom
+   implicit none
+   real :: a,b
+   interface
+      function cubicroot(x) result(v)
+         implicit none
+         real,intent(in) :: x
+         real :: v
+      end function cubicroot
+   end interface
+
+   ! use a custom function as a regular function
+   read *,a
+   b = cubicroot(a)
+   print *,b
+end program custom
+
+function cubicroot(x) result(v)
+   implicit none
+   real,intent(in) :: x
+   real :: v
+   v = x**(1.0/3.0)
+end function cubicroot</code></pre>
+<p>The <code>interface</code> statement includes the definition of a custom function, including the name, the argument variables, and the return value. It is precisely the same as the first a couple of lines in the <code>function</code> statement. If you use several external procedures, you can put all of their definitions in the <code>interface</code> statement.</p>
+<p>You may think it is awkward that you have to repeat the definition of a function in <code>interface</code> in the main program. It is frustrating, but it is required because the main program does not know what <code>cubicroot</code> is. The external function is unrelated to the main program, which does not know the type of arguments and its return value. If the main program fails to use the custom function, the program may crash or result in wrong behavior. This redundancy in <code>interface</code> can be removed by using a module that we introduce in the next chapter.</p>
+<h4 id="scope-of-variable">Scope of variable</h4>
+<p>Some readers should wonder what happens if the main program and the function both have the same variable names. Are these variables share the values between two program units? Or, the same variable name does not mean to share the actual value? Another question is the accessibility to the variables. Can a program unit refer to a variable defined in a separate program unit?</p>
+<p>The custom function is an independent program-unit than the main program. The function should be self-descriptive, and all the variables in this function are unrelated to ones used outside the function. A variable is accessible only in the program unit where the variable is declared. <em>Scope</em> is the region of a program unit where the variable is valid.</p>
+<p>You can declare <em>local</em> variables in the function. The scope of any variables defined in the function is limited to the inside of the function. See the following example to see the scope of variables.</p>
+<pre data-language="Fortran"><code class="language-fortran">program custom
+   implicit none
+   real :: a,b
+   ...
+
+   ! This a is unrelated to the function&#39;s a.
+   read *,a
+   b = cubicroot(a)
+   print *,b
+end program custom
+
+function cubicroot(x) result(v)
+   implicit none
+   real,intent(in) :: x
+   real :: v,a
+   ! This a is a local variable exclusively used in this function.
+   a = (1.0/3.0)
+   v = x**a
+end function cubicroot</code></pre>
+<p>In this example, the variable <code>a</code> is defined both in the main program and the function, but two are unrelated. Using the scope rule, you don’t have to worry about the conflict of the names among program units.</p>
+<h3 id="external-subroutine">External subroutine</h3>
+<h4 id="definition-1">Definition</h4>
+<p>The definition of a subroutine is the same as function, but using a different statement <code>subroutine</code>.</p>
+<pre data-language="Fortran"><code class="language-fortran">subroutine name(arguments)
+   List of arguments
+   ...
+end subroutine name</code></pre>
+<p>First of all, you do not need a return value for the subroutine. You do not have to return any values. If you want to return some values, you have to alter the arguments. You can change multiple arguments with <code>intent(out)</code> and <code>intent(inout)</code>.</p>
+<p>As an example, the following subroutine returns two solutions of a quadratic equation, <span class="math inline">\(ax^2+bx+c=0\)</span>.</p>
+<pre data-language="Fortran"><code class="language-fortran">subroutine solutions_quadratic_equations(a,b,c,s1,s2)
+   implicit none
+   real,intent(in) :: a,b,c
+   real,intent(out) :: s1,s2
+   real :: d
+   d = b**2 - 4*a*c
+   if(d&gt;=0) then
+      s1 = (-b + sqrt(d))/(2*a)
+      s2 = (-b - sqrt(d))/(2*a)
+   else
+      print *,&#39;b**2 - 4*a*c &lt; 0&#39;
+      stop
+   end if
+end subroutine solutions_quadratic_equations</code></pre>
+<p>In this subroutine, the first 3 arguments (<code>a</code>,<code>b</code>, and <code>c</code>) should be for input, and the last two (<code>s1</code> and <code>s2</code>) are for output. The solutions are not defined as real numbers if <span class="math inline">\(d=b^2-4ac&lt;0\)</span>, and in this case, the program stops.</p>
+<h4 id="program-structure-1">Program structure</h4>
+<p>Same as functions, you have to put the definition of custom subroutines in <code>interface</code>. To call a subroutine, use the <code>call</code> statement with required arguments.</p>
+<pre data-language="Fortran"><code class="language-fortran">program custom
+   implicit none
+   real :: a,b,c,v1,v2
+   interface
+      subroutine solutions_quadratic_equations(a,b,c,s1,s2)
+         implicit none
+         real,intent(in) :: a,b,c
+         real,intent(out) :: s1,s2
+      end subroutine solutions_quadratic_equations
+   end interface
+
+   ! use a custom function as a regular function
+   read *,a,b,c
+   call solutions_quadratic_equations(a,b,c,v1,v2)
+   print *,v1,v2
+end program custom
+
+subroutine solutions_quadratic_equations(a,b,c,s1,s2)
+   implicit none
+   real,intent(in) :: a,b,c
+   real,intent(out) :: s1,s2
+   real :: d
+   d = b**2 - 4*a*c
+   if(d&gt;=0) then
+      s1 = (-b + sqrt(d))/(2*a)
+      s2 = (-b - sqrt(d))/(2*a)
+   else
+      print *,&#39;b**2 - 4*a*c &lt; 0&#39;
+      stop
+   end if
+end subroutine solutions_quadratic_equations</code></pre>
+<p>The scope of variables is applicable as functions. In the above case, the variables <code>a</code>, <code>b</code>, and <code>c</code> are exclusively used in each program unit.</p>
+<h3 id="summary">Summary</h3>
+<ul>
+<li>An external procedure (function or subroutine) is independent of the main program.</li>
+<li>Variables are accessible in the program unit where they are defined.</li>
+<li>A function is defined with the <code>function</code> statement and a subroutine with <code>subroutine</code>.</li>
+<li>In a definition of procedure, all the arguments should be declared as variables with <code>intent</code>.</li>
+<li>A function should return a single value, but a subroutine does not have to return values or can return any number of values.</li>
+</ul>
+<h3 id="exercises">Exercises</h3>
+<ol type="1">
+<li>Write an external function to have 3 real values: <span class="math inline">\(x\)</span> and <span class="math inline">\(\mu\)</span>, and <span class="math inline">\(\sigma^2\)</span>, and return the standardized value <span class="math inline">\(z=(x-\mu)/\sigma\)</span>.</li>
+<li>Write an external subroutine to accept one real value and print the logarithm of it.</li>
+</ol>
+<h2 id="internal-function-and-subroutines">Internal function and subroutines</h2>
+<p>If a function or a subroutine is tightly associated with another program unit, you can put the procedure <em>inside</em> the program unit. The included function or subroutine is called <em>internal procedure</em>.</p>
+<figure>
+<img src="internal_procedure.png" alt="Figure: Internal procedure as a sub-program unit" /><figcaption>Figure: Internal procedure as a sub-program unit</figcaption>
+</figure>
+<p>One most significant advantage of the internal procedure is that it can access all the variables defined in the parent program-unit. In other words, the main program and the internal procedures share the same scope of variables. The internal procedures inherit all the variables and configurations (like <code>implicit none</code>) defined in the main program.</p>
+<h3 id="definition-of-internal-procedure">Definition of internal procedure</h3>
+<h4 id="basic-form">basic form</h4>
+<p>An internal procedure is included in the main program. The definition of the internal procedure has the same form as an external one. The following is an internal version of solution-of-quadratic-equation subroutine, shown above.</p>
+<pre data-language="Fortran"><code class="language-fortran">program custom
+   implicit none
+   real :: a,b,c,v1,v2
+
+   read *,a,b,c
+   call solutions_quadratic_equations(a,b,c,v1,v2)
+   print *,v1,v2
+
+contains
+subroutine solutions_quadratic_equations(a,b,c,s1,s2)
+   real,intent(in) :: a,b,c
+   real,intent(out) :: s1,s2
+   real :: d
+   d = b**2 - 4*a*c
+   if(d&gt;=0) then
+      s1 = (-b + sqrt(d))/(2*a)
+      s2 = (-b - sqrt(d))/(2*a)
+   else
+      print *,&#39;b**2 - 4*a*c &lt; 0&#39;
+      stop
+   end if
+end subroutine solutions_quadratic_equations
+end program custom</code></pre>
+<p>You will see several rules in this program to use internal procedures.</p>
+<ul>
+<li>The internal procedure should be placed between <code>contains</code> and <code>end program</code>. Multiple internal-procedures can be described.</li>
+<li>The <code>contains</code> keyword should be at the end of the body of the main program.</li>
+<li>Once the main program uses <code>implicit none</code>, this is also effective in all the internal procedures; each internal procedure does not have to have <code>implicit none</code>.</li>
+<li>The main program does not need the <code>interface</code> statement to use internal procedures.</li>
+</ul>
+<p>In the above program, the internal subroutine still keeps its independence. All required variables come from the arguments, and two output variables will be returned through the arguments. There is 1 local variable in the internal subroutine, and this is accessible only in the subroutine (the main program cannot touch it).</p>
+<h4 id="shared-variables">Shared variables</h4>
+<p>When you try to share the variables between the main and the internal, the program looks like this.</p>
+<pre data-language="Fortran"><code class="language-fortran">program custom
+   implicit none
+   real :: a,b,c,v1,v2
+
+   read *,a,b,c
+   call solutions_quadratic_equations()
+   print *,v1,v2
+
+contains
+subroutine solutions_quadratic_equations()
+   real :: d
+   d = b**2 - 4*a*c
+   if(d&gt;=0) then
+      s1 = (-b + sqrt(d))/(2*a)
+      s2 = (-b - sqrt(d))/(2*a)
+   else
+      print *,&#39;b**2 - 4*a*c &lt; 0&#39;
+      stop
+   end if
+end subroutine solutions_quadratic_equations
+end program custom</code></pre>
+<p>In this case, the variables <code>a</code>, <code>b</code>, <code>c</code>, <code>v1</code>, and <code>v2</code>, which are not declared in the internal subroutine, will be recognized as shared variables with the main program. The internal subroutine does not have to use arguments to access the values; it can just read and write the variables in the main program. To call this subroutine, the user should still use <code>()</code> with the subroutine name. It is useful when the main program exclusively requires internal procedures.</p>
+<h3 id="internal-procedures-in-external-procedures">Internal procedures in external procedures</h3>
+<p>Internal procedures can reside in any program unit. For example, an external function can include some internal procedures. It is useful if the internal procedure is a part of the program unit. The following example shows an external subroutine with an internal function.</p>
+<pre data-language="Fortran"><code class="language-fortran">program custom
+   implicit none
+   real :: a,b,c
+   interface
+      subroutine print_status(a,b,c)
+         implicit none
+         real,intent(in) :: a,b,c
+      ens subroutine print_status
+   end interface
+
+   read *,a,b,c
+   call print_status(a)
+end program custom
+
+subroutine print_status(a,b,c)
+   implicit none
+   real,intent(in) :: a,b,c
+
+   if(discriminant(a,b,c)&gt;=0) then
+      print *,&#39;The equation has real solutions.&#39;
+   else
+      print *,&#39;The equation has imaginary solutions.&#39;
+   end if
+
+contains
+function discriminant(a,b,c) result(d)
+   real,intent(in) :: a,b,c
+   real :: d
+   d = b**2 - 4*a*c
+end function discriminant
+end subroutine print_status</code></pre>
+<h3 id="which-should-be-used-external-or-internal">Which should be used, external or internal?</h3>
+<p>There are pros and cons to external and internal procedures. There are a few recommendations about which should be used in your case.</p>
+<p>The external procedures are preferred if your procedure will be re-used in other places. The procedure should be independent and self-described in terms of the variable scope. The independent procedure is more comfortable to test and modify. The disadvantage is that you have to declare the interface of the procedure before using it.</p>
+<p>The internal procedure is a good option if it is exclusively used by the program unit that includes the procedure. The procedure shares the same scope of variables as the parent program-unit. However, the internal procedure is not portable when it depends on outside variables. Also, when you have many internal procedures, it becomes unclear which and when internal procedures change the variables defined in the parent unit.</p>
+<p>Because of the above reasons, in this tutorial, I am going to use external procedures mainly. The disadvantage of a redundant interface will be removed by using <em>modules</em>, which is introduced in the next chapter. Also, I use an internal procedure if it is the right way to do a job.</p>
+<h3 id="summary-1">Summary</h3>
+<ul>
+<li>A program unit can include internal procedures.</li>
+<li>All the variables and the <code>implicit none</code> status in the parent unit will be shared with the internal procedures. The internal procedure can still have its local variables.</li>
+<li>The internal procedures stay after the <code>contains</code> statement in the parent unit. Any number of internal procedures can be included.</li>
+<li>The internal procedures are exclusively used only by the parent program unit so that no <code>interface</code> is needed.</li>
+<li>External procedures are useful if they will be re-used in different programs. Internal procedures are useful if it is closely related to the variables defined in the patent unit.</li>
+</ul>
+<h3 id="exercises-1">Exercises</h3>
+<ol type="1">
+<li>Rewrite the program of <code>cubicroot</code> using an internal function.</li>
+</ol>
+<h2 id="various-argument-types">Various argument types</h2>
+<p>You can pass any <em>objects</em>, such as scalar, arrays, and derived-type variables, to functions and subroutines through arguments. In this section, I am going to use internal procedures just for simplicity, although each procedure is re-usable.</p>
+<h3 id="arrays">Arrays</h3>
+<p>To use an array as an argument, the user should specify its dimension. The following function accepts a real vector and returns the average of elements.</p>
+<pre data-language="Fortran"><code class="language-fortran">program custom
+   implicit none
+   real :: obs(5)
+
+   read *,obs
+   print *,&#39;mean=&#39;,mean(obs)
+
+contains
+! assumed-shape array
+function mean(x) return (m)
+   real,intent(in) :: x(:)
+   real :: m
+   integer :: n
+   n = size(x)
+   m = sum(x)/n
+end function mean
+end program custom</code></pre>
+<p>The argument is an <em>assumed-shape array</em> which declares only the dimension of an array with <code>(:)</code>, and its actual size is separately available using some functions like <code>size</code>. If a matrix (2-dimensional array) is passed, the declaration is like <code>x(:,:)</code>. You need a local, integer variable (here <code>n</code>) to get the size of the input array.</p>
+<p>There is another style to pass an array to procedures.</p>
+<pre data-language="Fortran"><code class="language-fortran">program custom
+   implicit none
+   real :: obs(5)
+
+   read *,obs
+   print *,&#39;mean=&#39;,mean(obs)
+
+contains
+! fixed-shape array
+function mean(n,x) return (m)
+   integer,intent(in) :: n
+   real,intent(in) :: x(n)
+   real :: m
+   m = sum(x)/n
+end function mean
+end program custom</code></pre>
+<p>This style is called <em>fixed-shape</em>. In this method, the size of array <code>x</code> is fixed, and the size is given another argument <code>n</code>. The programmer is responsible for making sure that the actual array size equals to <code>n</code>; if it is not true, the result of this function is unknown. In general, the fixed-share array is not recommended unless you have a definite reason to use it.</p>
+<h3 id="characters">Characters</h3>
+<p>A string can be an argument, and the length is not necessarily specified.</p>
+<pre data-language="Fortran"><code class="language-fortran">program custom
+   implicit none
+   character(len=10) :: string
+
+   read *,string
+   print *,&#39;Is the fiest letter alphabet? &#39;,first_alphabet(string)
+
+contains
+
+function first_alphabet(s) return (yesno)
+   character(len=*),intent(in) :: s
+   logical :: yesno
+   integer :: p
+   p = scan(s(1:1),&quot;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;)
+   if(p==1) then
+      yesno = .true.
+   else
+      yesno = .false.
+   end if
+end function first_alphabet
+end program custom</code></pre>
+<p>The length of the argument string can be <code>len=*</code>, and the actual length is available by a function <code>len</code> (or <code>len_trim</code>). In the above example, the length is not obtained because it is not needed.</p>
+<h3 id="derived-types">Derived types</h3>
+<p>A derived type is also supported as an argument.</p>
+<pre data-language="Fortran"><code class="language-fortran">program custom
+   implicit none
+   type animal
+      character(len=10) :: name
+      integer :: age
+   end type animal
+   type(animal) :: a
+
+   a%name = &quot;beta-gamma&quot;
+   a%age = 1
+   call print_info(a)
+
+contains
+
+subroutine print_info(x)
+   type(animal),intent(in) :: x
+   print *,&quot;name=&quot;,x%name
+   print *,&quot;age =&quot;,x%age
+end subroutine print_info
+end program custom</code></pre>
+<p>The input/output status <code>intent(in)</code> affects all member variables of <code>x</code>. In this case, the members are read-only.</p>
+<h3 id="exercises-2">Exercises</h3>
+<ol type="1">
+<li>Write a subroutine to print a matrix with a structure.</li>
+<li>Write a function to indicate whether the first two letters are alphabet or not.</li>
+</ol>
+<h2 id="quick-return">Quick return</h2>
+<p>You may want to exit in the middle of a procedure quickly. The <code>return</code> statement performs the quick return to the caller. To see the effect, we look back to the “alphabet” function.</p>
+<pre data-language="Fortran"><code class="language-fortran">function first_alphabet(s) return (yesno)
+   character(len=*),intent(in) :: s
+   logical :: yesno
+   integer :: p
+
+   ! error check
+   if(len(s)==0) then
+      yesno = .true.
+      return
+   end if
+
+   ! main body
+   p = scan(s(1:1),&quot;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;)
+   if(p==1) then
+      yesno = .true.
+   else
+      yesno = .false.
+   end if
+end function first_alphabet</code></pre>
+<p>It checks the length of <code>s</code>, and if the length is 0 (i.e. <code>""</code> is given), the function is terminated to return <code>.false.</code>. When the program meets <code>return</code>, the remaining code will not be performed, and the focus immediately returns to the original caller.</p>
+<p>Regarding the above program, there are many ways to result in the same logic, even without <code>return</code>.</p>
+<pre data-language="Fortran"><code class="language-fortran">function first_alphabet(s) return (yesno)
+   character(len=*),intent(in) :: s
+   logical :: yesno
+   integer :: p
+
+   ! error check
+   if(len(s)==0) then
+      yesno = .true.
+   else
+      ! main body
+      p = scan(s(1:1),&quot;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;)
+      if(p==1) then
+         yesno = .true.
+      else
+         yesno = .false.
+      end if
+   end if
+end function first_alphabet</code></pre>
+<p>It is related more to a style of programming. We empirically know what a better style is. It is not a topic in this tutorial; see some books dealing with programming style.</p>
+<h3 id="exercises-3">Exercises</h3>
+<p>There is no exercise in this subsection.</p>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
+</article>
+</body>
+</html>

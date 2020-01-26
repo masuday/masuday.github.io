@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<!--==============================================================================
+	           "GitHub HTML5 Pandoc Template" v1.2 — by Tristano Ajmone
+	==============================================================================
+	(c) Tristano Ajmone, 2017, MIT License (MIT). Project's home repository:
+
+	- https://github.com/tajmone/pandoc-goodies
+
+	This template reuses source code taken from the following projects:
+
+	- GitHub Markdown CSS: © Sindre Sorhus, MIT License (MIT):
+	  https://github.com/sindresorhus/github-markdown-css
+
+	- Primer CSS: © 2016 GitHub Inc., MIT License (MIT):
+	  http://primercss.io/
+	==============================================================================-->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Yutaka Masuda" />
+  <title>More on numbers and variables</title>
+  <style type="text/css">@font-face{font-family:octicons-link;src:url(data:font/woff;charset=utf-8;base64,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) format('woff')}.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#24292e;font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";font-size:16px;line-height:1.5;word-wrap:break-word;box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto;padding:45px}.markdown-body .octicon{display:inline-block;fill:currentColor;vertical-align:text-bottom}.markdown-body a{background-color:transparent;-webkit-text-decoration-skip:objects;color:#0366d6;text-decoration:none}.markdown-body a:active,.markdown-body a:hover{outline-width:0}.markdown-body h1{margin:.67em 0}.markdown-body img{border-style:none}.markdown-body svg:not(:root){overflow:hidden}.markdown-body code,.markdown-body kbd,.markdown-body pre{font-family:monospace,monospace}.markdown-body input{font:inherit;margin:0;overflow:visible;font-family:inherit;font-size:inherit;line-height:inherit}.markdown-body [type=checkbox]{box-sizing:border-box;padding:0}.markdown-body *{box-sizing:border-box}.markdown-body a:hover{text-decoration:underline}.markdown-body strong{font-weight:600}.markdown-body hr{box-sizing:content-box;overflow:hidden;background:0 0;border-bottom:1px solid #dfe2e5}.markdown-body hr::before{display:table;content:""}.markdown-body hr::after{display:table;clear:both;content:""}.markdown-body table{border-spacing:0;border-collapse:collapse;display:block;width:100%;overflow:auto}.markdown-body td,.markdown-body th{padding:0}.markdown-body blockquote{margin:0}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol{list-style-type:lower-alpha}.markdown-body dd{margin-left:0}.markdown-body code{font-family:SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace}.markdown-body pre{font:12px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;word-wrap:normal}.markdown-body .pl-0{padding-left:0!important}.markdown-body .pl-1{padding-left:4px!important}.markdown-body .pl-2{padding-left:8px!important}.markdown-body .pl-3{padding-left:16px!important}.markdown-body .pl-4{padding-left:24px!important}.markdown-body .pl-5{padding-left:32px!important}.markdown-body .pl-6{padding-left:40px!important}.markdown-body::before{display:table;content:""}.markdown-body::after{display:table;clear:both;content:""}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:0}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e1e4e8;border:0}.markdown-body blockquote{padding:0 1em;color:#6a737d;border-left:.25em solid #dfe2e5}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd{font-size:11px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#1b1f23;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1{padding-bottom:.3em;font-size:2em;border-bottom:1px solid #eaecef}.markdown-body h2{padding-bottom:.3em;font-size:1.5em;border-bottom:1px solid #eaecef}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#6a737d}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table th{font-weight:600}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #dfe2e5}.markdown-body table tr{background-color:#fff;border-top:1px solid #c6cbd1}.markdown-body table tr:nth-child(2n){background-color:#f6f8fa}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f6f8fa;border-radius:3px}.markdown-body .full-commit .btn-outline:not(:disabled):hover{color:#005cc5;border-color:#005cc5}.markdown-body kbd{display:inline-block;padding:3px 5px;font:11px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;line-height:10px;color:#444d56;vertical-align:middle;background-color:#fcfcfc;border:1px solid #c6cbd1;border-bottom-color:#959da5;border-radius:3px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body :checked+.radio-label{position:relative;z-index:1;border-color:#0366d6}.markdown-body .task-list-item{list-style-type:none}.markdown-body .task-list-item+.task-list-item{margin-top:3px}.markdown-body .task-list-item input{margin:0 .2em .25em -1.6em;vertical-align:middle}.markdown-body hr{border-bottom-color:#eee}.flash{position:relative;padding:16px;color:#246;background-color:#e2eef9;border:1px solid #bac6d3;border-radius:3px}.flash p:last-child{margin-bottom:0}.flash-messages{margin-bottom:24px}.flash-warn{color:#4c4a42;background-color:#fff9ea;border-color:#dfd8c2}.flash-error{color:#911;background-color:#fcdede;border-color:#d2b2b2}.flash-success{color:#22662c;background-color:#e2f9e5;border-color:#bad3be}.flash-plain{color:#4c4a42;background-color:#f5f5f5;border-color:#c1c1c1}</style>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">pre[data-language='renumf90']{background-color:#EFEFFE;}</style>
+  <style type="text/css">pre[data-language='Fortran']{background-color:#E7FFE7;}</style>
+  <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
+  <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
+  <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="prism.css">
+  <script type="text/javascript" src="prism.js"></script>
+</head>
+</head>
+<body>
+<article class="markdown-body">
+<header>
+<h1 class="title">More on numbers and variables</h1>
+<p class="author">Yutaka Masuda</p>
+<p class="date">January 2020</p>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#more-on-numbers-and-variables">More on numbers and variables</a><ul>
+<li><a href="#basic-usage">Basic usage</a></li>
+<li><a href="#overflow-and-non-numbers">Overflow and non-numbers</a></li>
+<li><a href="#floating-point-arithmetic">Floating-point arithmetic</a></li>
+<li><a href="#some-algorithms-with-numerics">Some algorithms with numerics</a></li>
+</ul></li>
+</ul>
+</nav>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
+<h1 id="more-on-numbers-and-variables">More on numbers and variables</h1>
+<h2 id="basic-usage">Basic usage</h2>
+<h3 id="literals">Literals</h3>
+<p>There are two types of numeric values in Fortran: integer and real. Additionally, you can use two types of data: logical and characters.</p>
+<ul>
+<li>Integer number
+<ul>
+<li>An exact number in a range.</li>
+<li>Literal: a sign (<code>+</code> or <code>-</code>) and a sequence of numbers (<code>0</code> to <code>9</code>); e.g., <code>123045</code> and <code>-612</code></li>
+<li>Default: 4-byte integer between <span class="math inline">\(-2147483648\)</span> and <span class="math inline">\(2147483647\)</span>.</li>
+</ul></li>
+<li>Real number
+<ul>
+<li>A floating-point number approximating a value within the defined precision.</li>
+<li>Literal using the decimal separator: <code>3.14</code> and <code>-0.002</code></li>
+<li>Literal using exponential i.e., <span class="math inline">\(x\times 10^{y}\)</span>: <code>0.314e1</code> and <code>12.234e-3</code></li>
+<li>Default: 4-byte single precision (approximately between <span class="math inline">\(-3.40\times 10^{38}\)</span> to <span class="math inline">\(3.40\times 10^{38}\)</span>)</li>
+</ul></li>
+<li>Logical value
+<ul>
+<li>Alternatative value</li>
+<li>Literal: <code>.true.</code> or <code>.false.</code></li>
+</ul></li>
+<li>Characters
+<ul>
+<li>A sequence of letters (string)</li>
+<li>Literal: encircled string by <code>'</code> or <code>"</code></li>
+</ul></li>
+</ul>
+<p>Most intrinsic functions accept a specific type. For example, <code>sin()</code> accepts a real value, not integer; <code>sin(1.0)</code> is okay but <code>sin(1)</code> fails.</p>
+<h3 id="variables">Variables</h3>
+<p>A variable can hold a typed value. Here is a general form of the declaration of variables, which should be placed at the top of a program unit. Also, to turn off the implicit variable typing, you should use <code>implicit none</code> once before the declarations.</p>
+<pre><code>implicit none
+type :: variable1, variable2, ...</code></pre>
+<p>The following type-statements are available.</p>
+<ul>
+<li><code>integer ::</code> for integer variables (default: 4-byte)</li>
+<li><code>real ::</code> for real variables (default: 4-byte single precision)</li>
+<li><code>logical ::</code> for logical variables</li>
+<li><code>character ::</code> for a single character</li>
+<li><code>character(len=n) ::</code> for a string with <code>n</code> letters</li>
+</ul>
+<p>With the <code>parameter</code> attribute, the variable becomes a constant, which does not change the value.</p>
+<h3 id="precision">Precision</h3>
+<p>A numerical type has options in precision. You can change the precision both for literals and for variables. An integer code defines the precision; the code is available in 2 ways.</p>
+<ul>
+<li>Precision inquiry function
+<ul>
+<li>Integer: <code>selected_int_kind(n)</code> for the range of <span class="math inline">\(-10^n&lt;i&lt;10^n\)</span>.</li>
+<li>Real: <code>selected_real_kind(p,r)</code> for at least <code>p</code> digits in significand and a decimal-exponent range of at least <code>r</code>.</li>
+</ul></li>
+<li>Constants defined in intrinsic module <code>iso_fortran_env</code>
+<ul>
+<li>Integer: <code>int8</code>, <code>int16</code>, <code>int32</code>, and <code>int64</code> for 8-bit (1-byte), 16-bit (2-byte), 32-bit (4-byte), and 64-bit (8-byte) integers.</li>
+<li>Real: <code>real32</code> for 32-bit (4-byte single precision) and <code>real64</code> for 64-bit (8-byte double precision) numbers.</li>
+</ul></li>
+</ul>
+<p>To use inquiry functions, we usually define an integer constant.</p>
+<pre><code>integer,parameter :: dp=selected_real_kind(15,307)</code></pre>
+<p>It would be best if you used the constants to specify the precision of the literals and variables.</p>
+<ul>
+<li>Literals: literal expression + <code>_</code> + precision constant
+<ul>
+<li>For integer value: <code>128_int64</code></li>
+<li>For real value: <code>3.14_real64</code></li>
+</ul></li>
+<li>Real literals: use <code>d</code> instead <code>e</code> in exponential expression
+<ul>
+<li>Example: <code>3.14d0</code></li>
+</ul></li>
+<li>Variables: precision code enclosed by <code>()</code> in the declaration
+<ul>
+<li>Example: <code>integer(int64) :: i</code></li>
+<li>Example: <code>real(real64) :: x</code></li>
+</ul></li>
+</ul>
+<p>When you mix different precisions in a formula, the result is aligned to the highest precision. For example, <code>1.0e0 + 1.0d0</code> results in a double precision value (<code>2.0d0</code>). Also, a formula with integer values and real values should produce a real number.</p>
+<h2 id="overflow-and-non-numbers">Overflow and non-numbers</h2>
+<p>We have seen that a computer can hold a number in a particular range. If a number is out of range by arithmetics, the value should be overflow. Also, if the program performs mathematically incorrect operations, the result would be unstable. We will see such a corner case here.</p>
+<h3 id="overflow">Overflow</h3>
+<p>The standard integer uses 4 bytes that can hold a number between <span class="math inline">\(-2147483648\)</span> and <span class="math inline">\(2147483647\)</span>. The upper limit of a numeric type is available with <code>huge()</code>. The following program tries to have a number out of range.</p>
+<pre data-language="Fortran"><code class="language-fortran">program num
+   implicit none
+   integer :: k
+   k = huge(k)
+   print *,k
+   k = k + 1
+   print *,k
+end program num</code></pre>
+<pre data-language="output"><code>  2147483647
+ -2147483648</code></pre>
+<p>It does not produce any errors. The largest number becomes the lower bound when 1 is added. It is called <em>overflow</em>, but you can not detect it by default. The overflow happens a negative value like using the integer variable <code>k</code>, <code>k=-2147483648; k=k-1</code>.</p>
+<p>The smallest negative integer is just next to the largest positive integer. The reason is due to a representation of integer value in Fortran (and any other languages). Please see the textbooks in computer science for details.</p>
+<h3 id="infinity">Infinity</h3>
+<p>With a floating-pint number, e.g., <code>real</code>, the overflow results in being a weird value. The above code is modified to have a <code>real</code> variable (adding another <code>huge</code> instead of adding 1).</p>
+<pre data-language="Fortran"><code class="language-fortran">program num
+   implicit none
+   real :: x
+   x = huge(x)
+   print *,x
+   x = x + huge(x)
+   print *,x
+end program num</code></pre>
+<pre data-language="output"><code>   3.40282347E+38
+         Infinity</code></pre>
+<p>Variable <code>k</code> has a value, <code>Infinity</code>, which is not a standard number but still a valid value in Fortran. There is another value <code>-Infinity</code> from a formula to produce a negative value.</p>
+<p>To generate <code>Infinity</code> and <code>-Infinity</code>, you can use an intrinsic module <code>ieee_arithmetic</code>. The function <code>ieee_value</code> in a combination with a constant <code>ieee_positive_inf</code> (or <code>ieee_negative_inf</code>) produces the value. You can use it to check if an arithmetic result is <code>Infinity</code> or not.</p>
+<pre data-language="Fortran"><code class="language-fortran">program num
+   use ieee_arithmetic
+   implicit none
+   real :: x,y
+   x = ieee_value(x, ieee_positive_inf)
+   y = ieee_value(y, ieee_negative_inf)
+   print *,x,y
+end program num</code></pre>
+<pre data-language="output"><code>         Infinity        -Infinity</code></pre>
+<p>Once you have had <code>Infinity</code> or <code>-Infinity</code>, you can use it in the formula, but the value may propagate to the result. I leave it to an exercise for readers.</p>
+<h3 id="nan-not-a-number">NaN: Not-a-number</h3>
+<p>There is another status as a result of floating-point arithmetic. If the result is not mathematically defined, like <span class="math inline">\(0/0\)</span>, the result becomes a value, <em>not-a-number</em> or simply <em>NaN</em>. It is not a number but a valid floating-point value. Note that it happens only in floating-point arithmetics; for integer arithmetics, it never happens. See the following example.</p>
+<pre data-language="Fortran"><code class="language-fortran">program num
+   implicit none
+   integer :: k
+   real :: x
+   k = 0
+   x = 0.0
+   k = k/k
+   x = x/x
+   print *,k,x
+end program num</code></pre>
+<pre data-language="output"><code>           1              NaN</code></pre>
+<p>The value of NaN is also available with the function, <code>ieee_value</code> in the module, <code>ieee_arithmetic</code>. See the following example for details.</p>
+<pre data-language="Fortran"><code class="language-fortran">program num
+   use ieee_arithmetic
+   implicit none
+   real :: x
+   x = ieee_value(x, ieee_quiet_nan)
+   print *,x
+end program num</code></pre>
+<pre data-language="output"><code>              NaN</code></pre>
+<p>The value of NaN often happens in computations involving tiny numeric values close to 0. It indicates an arithmetic error, and you should not proceed with the computations because, once NaN is in a formula, the result is always NaN. Also, it is tricky to check if a value is NaN or not because NaN is not a number, and the regular rule of comparisons does not work.</p>
+<pre data-language="Fortran"><code class="language-fortran">program num
+   use ieee_arithmetic
+   implicit none
+   real :: y
+   ! both NaN
+   y = 0.0
+   y = y/y
+   if(y == ieee_value(x, ieee_quiet_nan)) then
+      print *,&quot;It is NaN.&quot;
+   else
+      print *,&quot;It is not NaN.&quot;
+   end if
+end program num</code></pre>
+<pre data-language="output"><code> It is not NaN.</code></pre>
+<p>A typical idiom to check NaN is to compare it with itself like <code>y==y</code>. While it should always be true for any numbers, NaN returns <code>.false.</code>. So, the comparison looks like <code>if(y/=y) print *,"It is NaN."</code>.</p>
+<h3 id="exercises">Exercises</h3>
+<ol type="1">
+<li>Using a real variable, compute <span class="math inline">\(0/0\)</span>, <span class="math inline">\(1/0\)</span>, and <span class="math inline">\(0/1\)</span>.</li>
+<li>See how <code>Infinity</code> (or <code>-Infinity</code>) works in the various arithmetic formula, including addition, subtraction, division, multiplication, and mathematical functions. See the result from multiplying 0 to <code>Infinity</code>.</li>
+<li>See how <code>NaN</code> works in the arithmetic formula as the above exercise.</li>
+</ol>
+<h2 id="floating-point-arithmetic">Floating-point arithmetic</h2>
+<h3 id="significant-digits">Significant digits</h3>
+<p>Consider measurements collected in the field: milk yield, body weight, and so on. Theoretically, these measurements have infinite digits, and the same values never come out. However, we usually limit the number of digits of measurement by rounding the last digit. Such a numerical value has inaccurate information, especially in the last digit. When a value has uncertainty caused by the rounding, the number of decimal digits of the value is called the <em>significant digits</em>.</p>
+<p>Similarly, in many programming languages, the real value is treated as a floating-point number. The last digit is likely rounded, and therefore, the one is not accurate. In such a case, the significant digits should be the apparent number of digits.</p>
+<p>The significant digits can be counted with the significand of the exponential expression. For example, the value 12.34 is expressed as <span class="math inline">\(1.234\times 10^{3}\)</span> so, the significant digit is 4 implying the 5th digit has been rounded. Similarly, the value 0.01234 has 4 significant digits because it is <span class="math inline">\(1.234\times 10^{-2}\)</span>.</p>
+<p>The significant digits may decrease but never increase in numerical computations. Consider the subtraction of two floating-point values: <span class="math inline">\(1.234-1.233\)</span>. The result is <span class="math inline">\(0.001\)</span>, and the significant digit is 1. The significant digits of computation are limited, with the smallest significant digits of the original values. This is true for any computations with numerical values with significant digits.</p>
+<h4 id="recurring-decimal-in-the-binary-numeral-system">Recurring decimal in the binary numeral system</h4>
+<p>In the decimal numeral system, a number is not rational, and it is represented as repeating decimals. For example, <span class="math inline">\(1/3\)</span> is <span class="math inline">\(0.333333...=0.\dot{3}\)</span>. In this case, you have to add the exact <span class="math inline">\(1/3\)</span> with all repeating decimals to restore 1 by an addition <span class="math inline">\(1/3+1/3+1/3\)</span>. If you use a finite representation of the value, like <span class="math inline">\(0.3333\)</span>, you lose some precision, and you get an approximation instead of the exact result.</p>
+<p>In Fortran, a numeric value is represented as binary, and some numbers are rational in decimal but not in binary. A typical example is <span class="math inline">\(0.1\)</span>, which becomes a repeating decimal number in the binary numeral system. It may result in unexpected results.</p>
+<h4 id="exercises-1">Exercises</h4>
+<ol type="1">
+<li>Some people show 4 or more digits in their regression coefficients or heritability from statistical analyses. Is it advantageous to show all the small digits?</li>
+<li>Considering the above question, can all the computations be done with the low-precision arithmetic? If not, why?</li>
+<li>Sum up <span class="math inline">\(0.1\)</span> ten times and see what the result is.</li>
+</ol>
+<h3 id="error">Error</h3>
+<p>Computations using floating-point numbers may produce non-intuitive results i.e., erroneous values. It is mainly caused by a finite expression of real numbers. The error is categorized into several groups.</p>
+<h4 id="rounding-error">Rounding error</h4>
+<p><em>Rounding error</em> (or round-off error) occurs when a number with high precision (more decimal digits) is rounded to a number with low precision (fewer digits). Typically, it happens when you mix single and double precision numbers in a formula and round the result into single-precision or integer value. It is also caused when a formula has a high-precision literal, but it is defined as lower precision.</p>
+<pre data-language="Fortran"><code class="language-fortran">program error
+   print *,3.14159265359         ! treated as single precision
+   print *,3.14159265359*2       ! same as above
+   print *,dble(3.14159265359*2) ! lower precision arithmetic
+end program error</code></pre>
+<h4 id="cancellation">Cancellation</h4>
+<p>When two values with a similar magnitude are added or subtracted together, the significant digits will be decreased. See the following example.</p>
+<pre data-language="Fortran"><code class="language-fortran">program error
+   print *,sqrt(111.00)
+   print *,sqrt(111.01)
+   print *,sqrt(111.01) - sqrt(111.00)
+end program error</code></pre>
+<pre data-language="output"><code>   10.5356541
+   10.5361280
+   4.73976135E-04</code></pre>
+<p>For the first two values, the last digit is rounded, and therefore it has an error. The effective digit of each of them is 8. The result of subtraction is shown as <code>0.00473976135</code> but, the numbers below the 8th digit under the decimal point are erroneous. In the end, the result has only 6 effective digits, which has less information than the original numbers. If you repeat such computations many times, an amount of information in the result should be greatly missing.</p>
+<h4 id="loss-of-trailing-digit">Loss of trailing digit</h4>
+<p>It is a combination of rounding error and cancellation, but it happens when the absolute difference between two values is huge.</p>
+<pre data-language="Fortran"><code class="language-fortran">program error
+   print *,12345678.0 - 0.1
+end program error</code></pre>
+<pre data-language="output"><code>   12345678.0</code></pre>
+<p>The subtraction is ignored because the latter is too small, and the former has no rooms to handle such a small number.</p>
+<h4 id="summary">Summary</h4>
+<p>There is some possible source to produce numerical errors. To avoid errors, we have two options.</p>
+<ul>
+<li>Use higher precision values. Sometimes it is just a workaround of the issue.</li>
+<li>Modify a formula to reduce errors. It is essential but more technical and complicated to create a program.</li>
+</ul>
+<p>In cases where a scientist without a computer-science-background writes numerical programs, the reduction of errors is not necessarily a priority in their software. Sometimes the error is serious but sometimes not.</p>
+<h4 id="exercises-2">Exercises</h4>
+<p>Exercises in this section are not provided.</p>
+<h2 id="some-algorithms-with-numerics">Some algorithms with numerics</h2>
+<h3 id="product-of-many-numbers">Product of many numbers</h3>
+<h4 id="algorithm">Algorithm</h4>
+<p>There are many cases where you have to multiply many numbers together. In quantitative genetics, this method is used in the computation of likelihood in derivative-free REML (DF REML). As you can imagine, when many numbers are involved, the product may become huge (or tiny), and it may accumulate errors during the computation. A typical method to handle the issue is to convert multiplication to addition by <code>log</code> for higher-precision variables. For positive values, the mathematical formula of this algorithm is as follows.</p>
+<p><span class="math display">\[
+p = \prod_{i=1}^{n}x_{i} = \exp\left[\sum_{i=1}^{n}\log x_i\right]\quad\text{for}\quad x_i&gt;0
+\]</span></p>
+<h4 id="naive-program">Naive program</h4>
+<p>Here is a simple program to compute the product of elements in an array. The program works as:</p>
+<ol type="1">
+<li>Read <span class="math inline">\(n\)</span> from the keyboard.</li>
+<li>Initialize the result variable as <code>p=1</code>.</li>
+<li>Repeat to read a value, <code>x</code>, from keyboard <span class="math inline">\(n\)</span> times. The input is multiplied by the previous result as <code>p = p*x</code></li>
+<li>Compute the product.</li>
+<li>print the result on the screen.</li>
+</ol>
+<pre data-language="Fortran"><code class="language-fortran">program num
+   implicit none
+   integer :: n,i
+   real :: p,x
+
+   read *,n
+   if(n&lt;=0) stop &quot;error: negative n&quot;
+
+   ! read values from keyboard
+   p = 1
+   do i=1,n
+      read(*,*) x
+      if(x&lt;=0) stop &quot;error: negative value&quot;
+      p = p*x
+   end do
+
+   print *,&quot;product = &quot;,p
+end program num</code></pre>
+<h4 id="modified-program">Modified program</h4>
+<p>To implement the modified algorithm, you have to change some code.</p>
+<ul>
+<li>The staring value of <code>p</code> is 0, instead of 1.</li>
+<li>The multiplication <code>p*x</code> is replaced with <code>p+log(x)</code>.</li>
+</ul>
+<p>The modified code is as follows.</p>
+<pre data-language="Fortran"><code class="language-fortran">program num
+   implicit none
+   integer :: n,i
+   real :: p,x
+
+   read *,n
+   if(n&lt;=0) stop &quot;error: negative n&quot;
+
+   ! read values from keyboard
+   p = 0
+   do i=1,n
+      read(*,*) x
+      if(x&lt;=0) stop &quot;error: negative value&quot;
+      p = p + log(x)
+   end do
+
+   p = exp(p)
+   print *,&quot;product = &quot;,p
+end program num</code></pre>
+<h4 id="exercises-3">Exercises</h4>
+<ol type="1">
+<li>Modify the above program to support 0.</li>
+<li>Modify the above program to support 0 and negative values.</li>
+</ol>
+<p>
+Back to <a href="./index.html">index.html</a>.
+</p>
+</article>
+</body>
+</html>
