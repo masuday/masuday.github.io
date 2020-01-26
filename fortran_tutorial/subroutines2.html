@@ -28,7 +28,7 @@
   <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
   <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
   <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
   </script>
@@ -49,7 +49,8 @@
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#more-on-functions-and-subroutines">More on functions and subroutines</a><ul>
+<li><a href="#more-on-functions-and-subroutines">More on functions and subroutines</a>
+<ul>
 <li><a href="#basic-usage">Basic usage</a></li>
 <li><a href="#arguments">Arguments</a></li>
 <li><a href="#longevity-of-local-variables">Longevity of local variables</a></li>
@@ -62,7 +63,27 @@ Back to <a href="./index.html">index.html</a>.
 </p>
 <h1 id="more-on-functions-and-subroutines">More on functions and subroutines</h1>
 <h2 id="basic-usage">Basic usage</h2>
+<h3 id="fortran-a-procedural-language">Fortran: a procedural language</h3>
+<p>Fortran is categorized as <em>procedural language</em>, which is one of the programming paradigms. A procedural language has procedures, and each procedure has a group of instructions that is structured with flow-control statements (<code>if</code> and <code>do</code>). The programmer describes a program to call a sequence of procedures. Some procedures and related variables are packed into a module. Fortran shows its capabilities through procedural programming.</p>
 <p>A procedure is a program unit that performs a particular task. Fortran has two types of procedures: function and subroutine. A function receives the arbitrary number of arguments (input values) and returns one value. A subroutine receives the arbitrary number of arguments (input values) and returns the arbitrary number of output, possibly zero output.</p>
+<p>There are many reasons why it is better to use procedures. One of the advantages is better readability that makes the programmers quickly understood the code. For example, the following is an updated program that I have shown in the introduction to compare to R.</p>
+<pre data-language="Fortran"><code class="language-fortran">program compute_mean_and_sd
+   use data_manipulation
+   implicit none
+   real :: val,mean
+   real,allocatable :: data(:)
+
+   n = get_number_of_records(&quot;data.txt&quot;)
+   allocate(data(n))
+   call read_reacords(&quot;data.txt&quot;,n,data)
+
+   print *,&quot;n    = &quot;,n
+   print *,&quot;mean = &quot;,get_mean(data)
+   print *,&quot;sd   = &quot;,get_sd(data)
+end program compute_mean_and_sd</code></pre>
+<p>We assume that all the procedures are in a custom module, <code>data_manipulation</code>. This program should be more transparent for anybody than the original program.</p>
+<p>Another advantage is reusability. Once you write a procedure, you do not have to write the same instructions anymore. You can give the (external) procedure to another programmer who can use it in various programs. You may have many procedures, and a module becomes a collection of procedures. The module efficiently <em>exports</em> its procedures to other programmers with less effort.</p>
+<p>The other one is the ease of maintenance and tests. If a procedure is aimed to have a single task, a modification of the procedure is straightforward. A short procedure is also helpful to test. Although you have to write a sophisticated program, each component should be relatively simple, and the element can form a procedure or a module.</p>
 <h3 id="definition-of-function-and-subroutine">Definition of function and subroutine</h3>
 <h4 id="function">Function</h4>
 <p>A function is defined by the following form.</p>

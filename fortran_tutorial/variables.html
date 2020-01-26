@@ -29,26 +29,27 @@
   <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
   <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
   <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -57,9 +58,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -91,7 +92,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
   </script>
@@ -112,7 +113,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#variables">Variables</a><ul>
+<li><a href="#variables">Variables</a>
+<ul>
 <li><a href="#variable-basics">Variable Basics</a></li>
 </ul></li>
 </ul>
@@ -131,13 +133,13 @@ Back to <a href="./index.html">index.html</a>.
 <h3 id="declaration-of-variables">Declaration of variables</h3>
 <h4 id="sample-program">Sample program</h4>
 <p>See the following example to find the usage of variables.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">program</span> var</a>
-<a class="sourceLine" id="cb1-2" title="2">   <span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb1-3" title="3">   <span class="dt">integer</span> <span class="dt">::</span> a,b</a>
-<a class="sourceLine" id="cb1-4" title="4">   a <span class="kw">=</span> <span class="dv">10</span></a>
-<a class="sourceLine" id="cb1-5" title="5">   b <span class="kw">=</span> <span class="dv">20</span></a>
-<a class="sourceLine" id="cb1-6" title="6">   <span class="fu">print</span> <span class="kw">*</span>,a<span class="kw">+</span>b</a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="kw">end program</span> var</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode fortran"><code class="sourceCode fortran"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">program</span> var</span>
+<span id="cb1-2"><a href="#cb1-2"></a>   <span class="kw">implicit</span> <span class="kw">none</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>   <span class="dt">integer</span> <span class="dt">::</span> a,b</span>
+<span id="cb1-4"><a href="#cb1-4"></a>   a <span class="kw">=</span> <span class="dv">10</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>   b <span class="kw">=</span> <span class="dv">20</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>   <span class="fu">print</span> <span class="kw">*</span>,a<span class="kw">+</span>b</span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="kw">end program</span> var</span></code></pre></div>
 <pre><code>          30</code></pre>
 <p>The program <em>declares</em> two integer variable <code>a</code> and <code>b</code>, assigns values to the variables, and print the sum of the values. We can learn a lesson from this small example.</p>
 <ul>
@@ -149,22 +151,22 @@ Back to <a href="./index.html">index.html</a>.
 <li>The variables can be used as literals.</li>
 </ul>
 <p>The variable can be re-used (updated) to hold another value.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">program</span> var</a>
-<a class="sourceLine" id="cb3-2" title="2">   <span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb3-3" title="3">   <span class="dt">integer</span> <span class="dt">::</span> a,b</a>
-<a class="sourceLine" id="cb3-4" title="4">   a <span class="kw">=</span> <span class="dv">10</span></a>
-<a class="sourceLine" id="cb3-5" title="5">   b <span class="kw">=</span> <span class="dv">20</span></a>
-<a class="sourceLine" id="cb3-6" title="6">   <span class="fu">print</span> <span class="kw">*</span>,a<span class="kw">+</span>b   <span class="co">! 10 + 20</span></a>
-<a class="sourceLine" id="cb3-7" title="7">   b <span class="kw">=</span> <span class="dv">35</span></a>
-<a class="sourceLine" id="cb3-8" title="8">   <span class="fu">print</span> <span class="kw">*</span>,a<span class="kw">+</span>b   <span class="co">! 10 + 35</span></a>
-<a class="sourceLine" id="cb3-9" title="9"><span class="kw">end program</span> var</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode fortran"><code class="sourceCode fortran"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">program</span> var</span>
+<span id="cb3-2"><a href="#cb3-2"></a>   <span class="kw">implicit</span> <span class="kw">none</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>   <span class="dt">integer</span> <span class="dt">::</span> a,b</span>
+<span id="cb3-4"><a href="#cb3-4"></a>   a <span class="kw">=</span> <span class="dv">10</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>   b <span class="kw">=</span> <span class="dv">20</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>   <span class="fu">print</span> <span class="kw">*</span>,a<span class="kw">+</span>b   <span class="co">! 10 + 20</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>   b <span class="kw">=</span> <span class="dv">35</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>   <span class="fu">print</span> <span class="kw">*</span>,a<span class="kw">+</span>b   <span class="co">! 10 + 35</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="kw">end program</span> var</span></code></pre></div>
 <pre><code>         30
          45</code></pre>
 <p>Note that, when an array is declared, its value is undefined. Any variables are not automatically initialized with a particular value. It is a responsibility that the programmer assigns a value to the variable before using it.</p>
 <h4 id="declaration">Declaration</h4>
 <p>The general form of a variable declaration is as follows.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb5-2" title="2">Variable <span class="dt">Type</span> <span class="dt">::</span> Variable1, Variable2, ...</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode fortran"><code class="sourceCode fortran"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">implicit</span> <span class="kw">none</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>Variable <span class="dt">Type</span> <span class="dt">::</span> Variable1, Variable2, ...</span></code></pre></div>
 <p>Using <code>implicit none</code>, the compiler tells you if there are undeclared variables. The following variable types are available.</p>
 <table>
 <thead>
@@ -205,15 +207,15 @@ Back to <a href="./index.html">index.html</a>.
 </tbody>
 </table>
 <p>There are two ways to declare double-precision variables. The magic number <code>8</code> is corresponding a precision code, introduced in the previous chapter as <code>real(r,kind=8)</code>. This <code>8</code> is the <em>de facto</em> standard but is may not be portable (that is, some compilers should fail or misinterpret it). For portable (safer) programs, you have to use <code>selected_real_kind</code>, or use <code>real64</code> in a built-in module <code>iso_fortran_env</code>. See the following example.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb6-1" title="1"><span class="co">! Four ways to declare double-precision variables.</span></a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="kw">program</span> var</a>
-<a class="sourceLine" id="cb6-3" title="3">   <span class="kw">use</span> iso_fortran_env     <span class="co">! the use statement comes the first</span></a>
-<a class="sourceLine" id="cb6-4" title="4">   <span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="dt">   real(8)</span> <span class="dt">::</span> variance</a>
-<a class="sourceLine" id="cb6-6" title="6">   <span class="dt">double</span> <span class="dt">precision</span> <span class="dt">::</span> sex_ratio</a>
-<a class="sourceLine" id="cb6-7" title="7"><span class="dt">   real(selected_real_kind(15,307))</span> <span class="dt">::</span> average</a>
-<a class="sourceLine" id="cb6-8" title="8"><span class="dt">   real(real64)</span> <span class="dt">::</span> ebv</a>
-<a class="sourceLine" id="cb6-9" title="9"><span class="kw">end program</span>  var</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode fortran"><code class="sourceCode fortran"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">! Four ways to declare double-precision variables.</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="kw">program</span> var</span>
+<span id="cb6-3"><a href="#cb6-3"></a>   <span class="kw">use</span> iso_fortran_env     <span class="co">! the use statement comes the first</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>   <span class="kw">implicit</span> <span class="kw">none</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="dt">   real(8)</span> <span class="dt">::</span> variance</span>
+<span id="cb6-6"><a href="#cb6-6"></a>   <span class="dt">double</span> <span class="dt">precision</span> <span class="dt">::</span> sex_ratio</span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="dt">   real(selected_real_kind(15,307))</span> <span class="dt">::</span> average</span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="dt">   real(real64)</span> <span class="dt">::</span> ebv</span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="kw">end program</span>  var</span></code></pre></div>
 <h4 id="naming-rules">Naming rules</h4>
 <p>There are several rules in the variable names.</p>
 <ul>
@@ -226,94 +228,94 @@ Back to <a href="./index.html">index.html</a>.
 <h4 id="assignment-or-update-operator">Assignment or update operator</h4>
 <p>A value is assigned to the variable using <code>=</code>. This symbol does not mean the mathematical equivalence between the left-hand side and the right-hand side. It is an operator to update the variable with the new value like mathematically, <span class="math inline">\(x\leftarrow v\)</span> where <span class="math inline">\(x\)</span> is a variable, and <span class="math inline">\(v\)</span> is a value.</p>
 <p>The following example has the assignment for various variables.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">program</span> var</a>
-<a class="sourceLine" id="cb7-2" title="2">   <span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb7-3" title="3"><span class="dt">   real</span> <span class="dt">::</span> a</a>
-<a class="sourceLine" id="cb7-4" title="4">   <span class="dt">integer</span> <span class="dt">::</span> b</a>
-<a class="sourceLine" id="cb7-5" title="5">   <span class="dt">logical</span> <span class="dt">::</span> c</a>
-<a class="sourceLine" id="cb7-6" title="6">   <span class="dt">character</span> <span class="dt">::</span> d</a>
-<a class="sourceLine" id="cb7-7" title="7">   <span class="dt">character(len=10)</span> <span class="dt">::</span> e</a>
-<a class="sourceLine" id="cb7-8" title="8">   a <span class="kw">=</span> <span class="fl">3.14</span></a>
-<a class="sourceLine" id="cb7-9" title="9">   b <span class="kw">=</span> <span class="dv">12345</span></a>
-<a class="sourceLine" id="cb7-10" title="10">   c <span class="kw">=</span> (<span class="dv">10</span><span class="op">&gt;</span><span class="kw">=</span><span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb7-11" title="11">   d <span class="kw">=</span> <span class="st">&quot;x&quot;</span></a>
-<a class="sourceLine" id="cb7-12" title="12">   e <span class="kw">=</span> <span class="st">&quot;blup&quot;</span></a>
-<a class="sourceLine" id="cb7-13" title="13">   <span class="fu">print</span> <span class="kw">*</span>,a,b,c,d,e</a>
-<a class="sourceLine" id="cb7-14" title="14"><span class="kw">end program</span>  var</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode fortran"><code class="sourceCode fortran"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">program</span> var</span>
+<span id="cb7-2"><a href="#cb7-2"></a>   <span class="kw">implicit</span> <span class="kw">none</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="dt">   real</span> <span class="dt">::</span> a</span>
+<span id="cb7-4"><a href="#cb7-4"></a>   <span class="dt">integer</span> <span class="dt">::</span> b</span>
+<span id="cb7-5"><a href="#cb7-5"></a>   <span class="dt">logical</span> <span class="dt">::</span> c</span>
+<span id="cb7-6"><a href="#cb7-6"></a>   <span class="dt">character</span> <span class="dt">::</span> d</span>
+<span id="cb7-7"><a href="#cb7-7"></a>   <span class="dt">character(len=10)</span> <span class="dt">::</span> e</span>
+<span id="cb7-8"><a href="#cb7-8"></a>   a <span class="kw">=</span> <span class="fl">3.14</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a>   b <span class="kw">=</span> <span class="dv">12345</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a>   c <span class="kw">=</span> (<span class="dv">10</span><span class="op">&gt;</span><span class="kw">=</span><span class="dv">5</span>)</span>
+<span id="cb7-11"><a href="#cb7-11"></a>   d <span class="kw">=</span> <span class="st">&quot;x&quot;</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a>   e <span class="kw">=</span> <span class="st">&quot;blup&quot;</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a>   <span class="fu">print</span> <span class="kw">*</span>,a,b,c,d,e</span>
+<span id="cb7-14"><a href="#cb7-14"></a><span class="kw">end program</span>  var</span></code></pre></div>
 <pre><code>   3.14000010           12345 T xblup</code></pre>
 <p>There is a typical style to update a numerical variable. See the following code and predict what it is doing.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">program</span> var</a>
-<a class="sourceLine" id="cb9-2" title="2">   <span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb9-3" title="3">   <span class="dt">integer</span> <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb9-4" title="4">   i <span class="kw">=</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb9-5" title="5">   <span class="fu">print</span> <span class="kw">*</span>,i</a>
-<a class="sourceLine" id="cb9-6" title="6"></a>
-<a class="sourceLine" id="cb9-7" title="7">   i <span class="kw">=</span> i <span class="kw">+</span> <span class="dv">1</span>    <span class="co">! updating the variable</span></a>
-<a class="sourceLine" id="cb9-8" title="8">   <span class="fu">print</span> <span class="kw">*</span>,i</a>
-<a class="sourceLine" id="cb9-9" title="9"><span class="kw">end program</span>  var</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode fortran"><code class="sourceCode fortran"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">program</span> var</span>
+<span id="cb9-2"><a href="#cb9-2"></a>   <span class="kw">implicit</span> <span class="kw">none</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>   <span class="dt">integer</span> <span class="dt">::</span> i</span>
+<span id="cb9-4"><a href="#cb9-4"></a>   i <span class="kw">=</span> <span class="dv">1</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>   <span class="fu">print</span> <span class="kw">*</span>,i</span>
+<span id="cb9-6"><a href="#cb9-6"></a></span>
+<span id="cb9-7"><a href="#cb9-7"></a>   i <span class="kw">=</span> i <span class="kw">+</span> <span class="dv">1</span>    <span class="co">! updating the variable</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a>   <span class="fu">print</span> <span class="kw">*</span>,i</span>
+<span id="cb9-9"><a href="#cb9-9"></a><span class="kw">end program</span>  var</span></code></pre></div>
 <p>The statement <code>i=i+1</code> does not make sense in mathematics, but it is updating <code>i</code> with a new value. The symbol <code>=</code> is interpreted as <span class="math inline">\(x \leftarrow v\)</span> which evaluates the right-hand side (<span class="math inline">\(v\)</span>) first, and then, rewrite <span class="math inline">\(x\)</span> with this value. In this case, the program calculates <code>i+1</code>, which is <code>2</code>, and assign this result to <code>i</code>. In the end, this program print two numbers: 1 and 2.</p>
 <h4 id="temporary-variable">Temporary variable</h4>
 <p>There are two ways to show the result of the computation. One is to save the result to a variable, and the other one is just to show the result.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">program</span> var</a>
-<a class="sourceLine" id="cb10-2" title="2">   <span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb10-3" title="3">   <span class="dt">integer</span> <span class="dt">::</span> x,y</a>
-<a class="sourceLine" id="cb10-4" title="4">   x <span class="kw">=</span> <span class="dv">10</span></a>
-<a class="sourceLine" id="cb10-5" title="5">   y <span class="kw">=</span> x<span class="kw">+</span><span class="dv">5</span></a>
-<a class="sourceLine" id="cb10-6" title="6">   <span class="fu">print</span> <span class="kw">*</span>,y    <span class="co">! case 1: save the result to y and print it</span></a>
-<a class="sourceLine" id="cb10-7" title="7">   <span class="fu">print</span> <span class="kw">*</span>,x<span class="kw">+</span><span class="dv">5</span>  <span class="co">! case 2: show the result without saving it</span></a>
-<a class="sourceLine" id="cb10-8" title="8"><span class="kw">end program</span>  var</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode fortran"><code class="sourceCode fortran"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">program</span> var</span>
+<span id="cb10-2"><a href="#cb10-2"></a>   <span class="kw">implicit</span> <span class="kw">none</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>   <span class="dt">integer</span> <span class="dt">::</span> x,y</span>
+<span id="cb10-4"><a href="#cb10-4"></a>   x <span class="kw">=</span> <span class="dv">10</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>   y <span class="kw">=</span> x<span class="kw">+</span><span class="dv">5</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a>   <span class="fu">print</span> <span class="kw">*</span>,y    <span class="co">! case 1: save the result to y and print it</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a>   <span class="fu">print</span> <span class="kw">*</span>,x<span class="kw">+</span><span class="dv">5</span>  <span class="co">! case 2: show the result without saving it</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a><span class="kw">end program</span>  var</span></code></pre></div>
 <p>The latter case performs the same as the former case. Precisely, the program implicitly prepares a temporary variable and do assign the result (<code>x+5</code>) to the variable behind the scene. However, you do not have to care about the difference in this case because you should not find any difference in computing time and resource usage. Please use your favorite style in such a simple case.</p>
 <h4 id="read-from-the-keyboard">Read from the keyboard</h4>
 <p>The program can read a value from the keyboard and assign it to the variable. The following program reads a number from your keyboard and immediately prints it to the screen.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">program</span> var</a>
-<a class="sourceLine" id="cb11-2" title="2">   <span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb11-3" title="3">   <span class="dt">integer</span> <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb11-4" title="4">   <span class="fu">read</span> <span class="kw">*</span>,i</a>
-<a class="sourceLine" id="cb11-5" title="5">   <span class="fu">print</span> <span class="kw">*</span>,i</a>
-<a class="sourceLine" id="cb11-6" title="6"><span class="kw">end program</span>  var</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode fortran"><code class="sourceCode fortran"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">program</span> var</span>
+<span id="cb11-2"><a href="#cb11-2"></a>   <span class="kw">implicit</span> <span class="kw">none</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>   <span class="dt">integer</span> <span class="dt">::</span> i</span>
+<span id="cb11-4"><a href="#cb11-4"></a>   <span class="fu">read</span> <span class="kw">*</span>,i</span>
+<span id="cb11-5"><a href="#cb11-5"></a>   <span class="fu">print</span> <span class="kw">*</span>,i</span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="kw">end program</span>  var</span></code></pre></div>
 <p>When running the program, it looks like freezing, but the program is just waiting for your key-in. You can type an integer value and hit the Enter key. The <code>read</code> statement reads the input and converts it to the integer value. The last <code>print</code> statement simply prints the value.</p>
 <p>The input should be a valid literal in Fortran. For example, <code>123</code> is valid for an integer variable, and <code>3.14</code> and <code>6.02e23</code> are both valid as real. For a logical variable, <code>T</code> (or <code>t</code>) and <code>F</code> (and <code>f</code>) are valid. For a character variable, any non-space characters should be acceptable. The input may be rounded or truncated so that the variable can handle it. If the input is invalid, the program stops with an error.</p>
 <p>It is always good to print a message before the <code>read</code> statement so that a user understands how to do it.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">program</span> var</a>
-<a class="sourceLine" id="cb12-2" title="2">   <span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb12-3" title="3">   <span class="dt">integer</span> <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb12-4" title="4">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;Input an integer value:&#39;</span></a>
-<a class="sourceLine" id="cb12-5" title="5">   <span class="fu">read</span> <span class="kw">*</span>,i</a>
-<a class="sourceLine" id="cb12-6" title="6">   <span class="fu">print</span> <span class="kw">*</span>,i</a>
-<a class="sourceLine" id="cb12-7" title="7"><span class="kw">end program</span>  var</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode fortran"><code class="sourceCode fortran"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">program</span> var</span>
+<span id="cb12-2"><a href="#cb12-2"></a>   <span class="kw">implicit</span> <span class="kw">none</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>   <span class="dt">integer</span> <span class="dt">::</span> i</span>
+<span id="cb12-4"><a href="#cb12-4"></a>   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;Input an integer value:&#39;</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a>   <span class="fu">read</span> <span class="kw">*</span>,i</span>
+<span id="cb12-6"><a href="#cb12-6"></a>   <span class="fu">print</span> <span class="kw">*</span>,i</span>
+<span id="cb12-7"><a href="#cb12-7"></a><span class="kw">end program</span>  var</span></code></pre></div>
 <p>The usage of <code>read</code> is the same as <code>print</code>; you can list the variables in the statement. The symbol <code>*</code> means that you do not assume any specific format of the input characters. If the input is invalid or nonsense, the program stops some error messages.</p>
 <p>When the <code>read</code> statement has multiple variables, the program keeps reading until all the variables have the values. The multiple values are separated with white spaces or the Enter key. Confirm the behavior by yourself (see the exercises).</p>
 <p>As <code>print</code> and <code>write</code>, there is another style of the <code>read</code> statement.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb13-1" title="1"><span class="fu">read(*</span>,<span class="fu">*)</span> i</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode fortran"><code class="sourceCode fortran"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">read(*</span>,<span class="fu">*)</span> i</span></code></pre></div>
 <p>In this style, the statement has a form <code>read(*,*)</code> as <code>write(*,*)</code>, the first asterisk for a unit number (not in <code>read *</code>), and the second for the format (as in <code>read *</code>). This form is used in reading a file. You can use either <code>read *</code> or <code>read(*,*)</code> to read from the keyboard. I will use <code>read *</code> in this tutorial for this purpose.</p>
 <h4 id="character-variable">Character variable</h4>
 <p>The character variable looks like an array of characters, which will be introduced in the next chapter. Here, I introduce only a few features of character variables, and the details will be introduced in the later chapter.</p>
 <p>See the following program.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">program</span> var</a>
-<a class="sourceLine" id="cb14-2" title="2">   <span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb14-3" title="3">   <span class="dt">character(len=12)</span> <span class="dt">::</span> name1,name2</a>
-<a class="sourceLine" id="cb14-4" title="4">   name1 <span class="kw">=</span> <span class="st">&quot;John Smith&quot;</span></a>
-<a class="sourceLine" id="cb14-5" title="5">   name2 <span class="kw">=</span> <span class="st">&quot;Chris McDonald&quot;</span></a>
-<a class="sourceLine" id="cb14-6" title="6">   <span class="fu">print</span> <span class="kw">*</span>,name1,<span class="kw">&amp;</span>,name2</a>
-<a class="sourceLine" id="cb14-7" title="7"><span class="kw">end program</span>  var</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode fortran"><code class="sourceCode fortran"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">program</span> var</span>
+<span id="cb14-2"><a href="#cb14-2"></a>   <span class="kw">implicit</span> <span class="kw">none</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>   <span class="dt">character(len=12)</span> <span class="dt">::</span> name1,name2</span>
+<span id="cb14-4"><a href="#cb14-4"></a>   name1 <span class="kw">=</span> <span class="st">&quot;John Smith&quot;</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>   name2 <span class="kw">=</span> <span class="st">&quot;Chris McDonald&quot;</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a>   <span class="fu">print</span> <span class="kw">*</span>,name1,<span class="kw">&amp;</span>,name2</span>
+<span id="cb14-7"><a href="#cb14-7"></a><span class="kw">end program</span>  var</span></code></pre></div>
 <pre><code> John Smith  &amp;Chris McDona</code></pre>
 <p>The character variable must have a pre-defined length of characters. The program defines two character variables, and each should have only 12 characters. If the input is shorter than the defined length (10 for “John Smith”), the variable will be padded with spaces, i.e. <code>"John Smith  "</code> If the input characters are longer than the size of the variable, the input is truncated to meet the length of variable i.e., “Chris McDona”.</p>
 <p>You can access a section of characters. The following example extracts from 3th to 7th characters from a variable.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">program</span> var</a>
-<a class="sourceLine" id="cb16-2" title="2">   <span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb16-3" title="3">   <span class="dt">character(len=12)</span> <span class="dt">::</span> name1</a>
-<a class="sourceLine" id="cb16-4" title="4">   name1 <span class="kw">=</span> <span class="st">&quot;John Smith&quot;</span></a>
-<a class="sourceLine" id="cb16-5" title="5">   <span class="fu">print</span> <span class="kw">*</span>,name1(<span class="dv">3</span>:<span class="dv">7</span>)</a>
-<a class="sourceLine" id="cb16-6" title="6"><span class="kw">end program</span>  var</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode fortran"><code class="sourceCode fortran"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">program</span> var</span>
+<span id="cb16-2"><a href="#cb16-2"></a>   <span class="kw">implicit</span> <span class="kw">none</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a>   <span class="dt">character(len=12)</span> <span class="dt">::</span> name1</span>
+<span id="cb16-4"><a href="#cb16-4"></a>   name1 <span class="kw">=</span> <span class="st">&quot;John Smith&quot;</span></span>
+<span id="cb16-5"><a href="#cb16-5"></a>   <span class="fu">print</span> <span class="kw">*</span>,name1(<span class="dv">3</span>:<span class="dv">7</span>)</span>
+<span id="cb16-6"><a href="#cb16-6"></a><span class="kw">end program</span>  var</span></code></pre></div>
 <pre><code> hn Sm</code></pre>
 <p>When you extract particular characters, you have to specify the range as <code>(start index:end index)</code> just next to the variable name. When specifying only 1 character, you still specify two indices like <code>(3:3)</code> for the 3rd character. Using the same technique, you can replace a portion of the characters.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb18-1" title="1"><span class="kw">program</span> var</a>
-<a class="sourceLine" id="cb18-2" title="2">   <span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb18-3" title="3">   <span class="dt">character(len=12)</span> <span class="dt">::</span> name1</a>
-<a class="sourceLine" id="cb18-4" title="4">   name1 <span class="kw">=</span> <span class="st">&quot;John Smith&quot;</span></a>
-<a class="sourceLine" id="cb18-5" title="5">   name1(<span class="dv">6</span>:<span class="dv">10</span>) <span class="kw">=</span> <span class="st">&#39;White&#39;</span></a>
-<a class="sourceLine" id="cb18-6" title="6">   <span class="fu">print</span> <span class="kw">*</span>,name1</a>
-<a class="sourceLine" id="cb18-7" title="7"><span class="kw">end program</span>  var</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode fortran"><code class="sourceCode fortran"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">program</span> var</span>
+<span id="cb18-2"><a href="#cb18-2"></a>   <span class="kw">implicit</span> <span class="kw">none</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a>   <span class="dt">character(len=12)</span> <span class="dt">::</span> name1</span>
+<span id="cb18-4"><a href="#cb18-4"></a>   name1 <span class="kw">=</span> <span class="st">&quot;John Smith&quot;</span></span>
+<span id="cb18-5"><a href="#cb18-5"></a>   name1(<span class="dv">6</span>:<span class="dv">10</span>) <span class="kw">=</span> <span class="st">&#39;White&#39;</span></span>
+<span id="cb18-6"><a href="#cb18-6"></a>   <span class="fu">print</span> <span class="kw">*</span>,name1</span>
+<span id="cb18-7"><a href="#cb18-7"></a><span class="kw">end program</span>  var</span></code></pre></div>
 <pre><code> John White</code></pre>
 <h4 id="summary">Summary</h4>
 <ul>
@@ -336,77 +338,77 @@ Back to <a href="./index.html">index.html</a>.
 <h3 id="more-on-variables">More on variables</h3>
 <h4 id="dangerous-feature-using-variables-without-a-declaration">Dangerous feature: using variables without a declaration</h4>
 <p>Technically, you can use the variables with no declaration and no <code>implicit none</code>. However, this creates a massive problem in your program. See the following example with three variables.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb20-1" title="1"><span class="kw">program</span> var</a>
-<a class="sourceLine" id="cb20-2" title="2">   john <span class="kw">=</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb20-3" title="3">   kathy <span class="kw">=</span> <span class="dv">2</span></a>
-<a class="sourceLine" id="cb20-4" title="4">   george <span class="kw">=</span> <span class="dv">3</span></a>
-<a class="sourceLine" id="cb20-5" title="5">   <span class="fu">print</span> <span class="kw">*</span>,john,kathy,george</a>
-<a class="sourceLine" id="cb20-6" title="6"><span class="kw">end program</span>  var</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode fortran"><code class="sourceCode fortran"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">program</span> var</span>
+<span id="cb20-2"><a href="#cb20-2"></a>   john <span class="kw">=</span> <span class="dv">1</span></span>
+<span id="cb20-3"><a href="#cb20-3"></a>   kathy <span class="kw">=</span> <span class="dv">2</span></span>
+<span id="cb20-4"><a href="#cb20-4"></a>   george <span class="kw">=</span> <span class="dv">3</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a>   <span class="fu">print</span> <span class="kw">*</span>,john,kathy,george</span>
+<span id="cb20-6"><a href="#cb20-6"></a><span class="kw">end program</span>  var</span></code></pre></div>
 <pre><code>           1           2   3.00000000</code></pre>
 <p>The variables <code>john</code> and <code>kathy</code> look like integer, but <code>george</code> is a real variable. So, why? It is tough to explain this behavior without knowing details.</p>
 <p>Without the declaration of variables, the type of variable is defined based on its name. If the variable name starts with one of <code>i</code>, <code>j</code>, <code>k</code>, <code>l</code>, <code>m</code>, and <code>n</code>, it becomes an integer variable, and otherwise, it becomes a real variable. The variables with the other types (logical and character) are not automatically defined. This feature is one of the negative legacies in FORTRAN 77, which supported the ancient standard established when the variable declaration was not considered crucial. <strong>This feature is extremely confusing, and you must not use it.</strong></p>
 <p>The compiler can detect undeclared variables by adding <code>implicit none</code> just before the variable declaration. With this statement, the compiler should stop if it finds the undeclared variables. I strongly recommend that you always use this statement.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb22-1" title="1"><span class="co">! This program can not compile because of any declarations.</span></a>
-<a class="sourceLine" id="cb22-2" title="2"><span class="kw">program</span> var</a>
-<a class="sourceLine" id="cb22-3" title="3">   <span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb22-4" title="4">   john <span class="kw">=</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb22-5" title="5">   kathy <span class="kw">=</span> <span class="dv">2</span></a>
-<a class="sourceLine" id="cb22-6" title="6">   george <span class="kw">=</span> <span class="dv">3</span></a>
-<a class="sourceLine" id="cb22-7" title="7">   <span class="fu">print</span> <span class="kw">*</span>,john,kathy,george</a>
-<a class="sourceLine" id="cb22-8" title="8"><span class="kw">end program</span> var</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode fortran"><code class="sourceCode fortran"><span id="cb22-1"><a href="#cb22-1"></a><span class="co">! This program can not compile because of any declarations.</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="kw">program</span> var</span>
+<span id="cb22-3"><a href="#cb22-3"></a>   <span class="kw">implicit</span> <span class="kw">none</span></span>
+<span id="cb22-4"><a href="#cb22-4"></a>   john <span class="kw">=</span> <span class="dv">1</span></span>
+<span id="cb22-5"><a href="#cb22-5"></a>   kathy <span class="kw">=</span> <span class="dv">2</span></span>
+<span id="cb22-6"><a href="#cb22-6"></a>   george <span class="kw">=</span> <span class="dv">3</span></span>
+<span id="cb22-7"><a href="#cb22-7"></a>   <span class="fu">print</span> <span class="kw">*</span>,john,kathy,george</span>
+<span id="cb22-8"><a href="#cb22-8"></a><span class="kw">end program</span> var</span></code></pre></div>
 <h4 id="uninitialized-variables">Uninitialized variables</h4>
 <p>A variable has no initial value by default. Precisely, it surely has a value when it is created at the declaration statement, but this value is arbitrary. You must not assume the variable automatically has an initial value (like <code>0</code>). You must assign the initial value to the variable.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb23-1" title="1"><span class="kw">program</span> var</a>
-<a class="sourceLine" id="cb23-2" title="2">   <span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb23-3" title="3">   <span class="dt">integer</span> <span class="dt">::</span> a</a>
-<a class="sourceLine" id="cb23-4" title="4">   <span class="fu">print</span> <span class="kw">*</span>,a</a>
-<a class="sourceLine" id="cb23-5" title="5">   a <span class="kw">=</span> <span class="dv">10</span></a>
-<a class="sourceLine" id="cb23-6" title="6">   <span class="fu">print</span> <span class="kw">*</span>,a</a>
-<a class="sourceLine" id="cb23-7" title="7"><span class="kw">end program</span> var</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode fortran"><code class="sourceCode fortran"><span id="cb23-1"><a href="#cb23-1"></a><span class="kw">program</span> var</span>
+<span id="cb23-2"><a href="#cb23-2"></a>   <span class="kw">implicit</span> <span class="kw">none</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a>   <span class="dt">integer</span> <span class="dt">::</span> a</span>
+<span id="cb23-4"><a href="#cb23-4"></a>   <span class="fu">print</span> <span class="kw">*</span>,a</span>
+<span id="cb23-5"><a href="#cb23-5"></a>   a <span class="kw">=</span> <span class="dv">10</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a>   <span class="fu">print</span> <span class="kw">*</span>,a</span>
+<span id="cb23-7"><a href="#cb23-7"></a><span class="kw">end program</span> var</span></code></pre></div>
 <pre><code> -1475355915
           10</code></pre>
 <p>The first output is from the uninitialized variable, and it is nonsense. This value is unstable; it may change every time you run the program. A friendly compiler has an option to detect uninitialized variables.</p>
 <h4 id="not-a-number-and-infinity">Not-a-number and infinity</h4>
 <p>The compiler may not detect an invalid value in a particular computation, such as <span class="math inline">\(0/0\)</span>. See the following examples.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb25-1" title="1"><span class="kw">program</span> var</a>
-<a class="sourceLine" id="cb25-2" title="2">   <span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb25-3" title="3"><span class="dt">   real</span> <span class="dt">::</span> a</a>
-<a class="sourceLine" id="cb25-4" title="4">   a <span class="kw">=</span> <span class="fl">0.0</span></a>
-<a class="sourceLine" id="cb25-5" title="5">   <span class="fu">print</span> <span class="kw">*</span>,<span class="bu">log</span>(a)</a>
-<a class="sourceLine" id="cb25-6" title="6">   <span class="fu">print</span> <span class="kw">*</span>,a<span class="kw">/</span>a</a>
-<a class="sourceLine" id="cb25-7" title="7">   <span class="fu">print</span> <span class="kw">*</span>,<span class="dv">1</span><span class="kw">/</span>a</a>
-<a class="sourceLine" id="cb25-8" title="8"><span class="kw">end program</span> var</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode fortran"><code class="sourceCode fortran"><span id="cb25-1"><a href="#cb25-1"></a><span class="kw">program</span> var</span>
+<span id="cb25-2"><a href="#cb25-2"></a>   <span class="kw">implicit</span> <span class="kw">none</span></span>
+<span id="cb25-3"><a href="#cb25-3"></a><span class="dt">   real</span> <span class="dt">::</span> a</span>
+<span id="cb25-4"><a href="#cb25-4"></a>   a <span class="kw">=</span> <span class="fl">0.0</span></span>
+<span id="cb25-5"><a href="#cb25-5"></a>   <span class="fu">print</span> <span class="kw">*</span>,<span class="bu">log</span>(a)</span>
+<span id="cb25-6"><a href="#cb25-6"></a>   <span class="fu">print</span> <span class="kw">*</span>,a<span class="kw">/</span>a</span>
+<span id="cb25-7"><a href="#cb25-7"></a>   <span class="fu">print</span> <span class="kw">*</span>,<span class="dv">1</span><span class="kw">/</span>a</span>
+<span id="cb25-8"><a href="#cb25-8"></a><span class="kw">end program</span> var</span></code></pre></div>
 <pre><code>     -Infinity
            NaN
       Infinity</code></pre>
 <p>If the result is not defined (mostly <span class="math inline">\(0/0\)</span>), the variable holds <code>NaN</code>. If the result becomes the infinity, the variable has <code>Infinity</code>. Such a value propagates the following computations if it is involved. The following program shows the same output as above.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb27-1" title="1"><span class="kw">program</span> var</a>
-<a class="sourceLine" id="cb27-2" title="2">   <span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb27-3" title="3"><span class="dt">   real</span> <span class="dt">::</span> a,b</a>
-<a class="sourceLine" id="cb27-4" title="4">   a <span class="kw">=</span> <span class="fl">0.0</span></a>
-<a class="sourceLine" id="cb27-5" title="5">   b <span class="kw">=</span> <span class="fl">1.0</span></a>
-<a class="sourceLine" id="cb27-6" title="6">   <span class="fu">print</span> <span class="kw">*</span>,<span class="bu">log</span>(a)<span class="kw">+</span>b</a>
-<a class="sourceLine" id="cb27-7" title="7">   <span class="fu">print</span> <span class="kw">*</span>,a<span class="kw">/</span>a<span class="kw">+</span>b</a>
-<a class="sourceLine" id="cb27-8" title="8">   <span class="fu">print</span> <span class="kw">*</span>,<span class="dv">1</span><span class="kw">/</span>a<span class="kw">+</span>b</a>
-<a class="sourceLine" id="cb27-9" title="9"><span class="kw">end program</span> var</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode fortran"><code class="sourceCode fortran"><span id="cb27-1"><a href="#cb27-1"></a><span class="kw">program</span> var</span>
+<span id="cb27-2"><a href="#cb27-2"></a>   <span class="kw">implicit</span> <span class="kw">none</span></span>
+<span id="cb27-3"><a href="#cb27-3"></a><span class="dt">   real</span> <span class="dt">::</span> a,b</span>
+<span id="cb27-4"><a href="#cb27-4"></a>   a <span class="kw">=</span> <span class="fl">0.0</span></span>
+<span id="cb27-5"><a href="#cb27-5"></a>   b <span class="kw">=</span> <span class="fl">1.0</span></span>
+<span id="cb27-6"><a href="#cb27-6"></a>   <span class="fu">print</span> <span class="kw">*</span>,<span class="bu">log</span>(a)<span class="kw">+</span>b</span>
+<span id="cb27-7"><a href="#cb27-7"></a>   <span class="fu">print</span> <span class="kw">*</span>,a<span class="kw">/</span>a<span class="kw">+</span>b</span>
+<span id="cb27-8"><a href="#cb27-8"></a>   <span class="fu">print</span> <span class="kw">*</span>,<span class="dv">1</span><span class="kw">/</span>a<span class="kw">+</span>b</span>
+<span id="cb27-9"><a href="#cb27-9"></a><span class="kw">end program</span> var</span></code></pre></div>
 <h4 id="variable-initialization">Variable initialization</h4>
 <p>You can assign a value to the variable in the declaration statement.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb28-1" title="1"><span class="kw">program</span> var</a>
-<a class="sourceLine" id="cb28-2" title="2">   <span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb28-3" title="3"><span class="dt">   real</span> <span class="dt">::</span> a<span class="kw">=</span><span class="fl">0.0</span>, b<span class="kw">=</span><span class="fl">1.0</span></a>
-<a class="sourceLine" id="cb28-4" title="4">   <span class="fu">print</span> <span class="kw">*</span>,<span class="bu">log</span>(a)<span class="kw">+</span>b</a>
-<a class="sourceLine" id="cb28-5" title="5">   <span class="fu">print</span> <span class="kw">*</span>,a<span class="kw">/</span>a<span class="kw">+</span>b</a>
-<a class="sourceLine" id="cb28-6" title="6">   <span class="fu">print</span> <span class="kw">*</span>,<span class="dv">1</span><span class="kw">/</span>a<span class="kw">+</span>b</a>
-<a class="sourceLine" id="cb28-7" title="7"><span class="kw">end program</span> var</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode fortran"><code class="sourceCode fortran"><span id="cb28-1"><a href="#cb28-1"></a><span class="kw">program</span> var</span>
+<span id="cb28-2"><a href="#cb28-2"></a>   <span class="kw">implicit</span> <span class="kw">none</span></span>
+<span id="cb28-3"><a href="#cb28-3"></a><span class="dt">   real</span> <span class="dt">::</span> a<span class="kw">=</span><span class="fl">0.0</span>, b<span class="kw">=</span><span class="fl">1.0</span></span>
+<span id="cb28-4"><a href="#cb28-4"></a>   <span class="fu">print</span> <span class="kw">*</span>,<span class="bu">log</span>(a)<span class="kw">+</span>b</span>
+<span id="cb28-5"><a href="#cb28-5"></a>   <span class="fu">print</span> <span class="kw">*</span>,a<span class="kw">/</span>a<span class="kw">+</span>b</span>
+<span id="cb28-6"><a href="#cb28-6"></a>   <span class="fu">print</span> <span class="kw">*</span>,<span class="dv">1</span><span class="kw">/</span>a<span class="kw">+</span>b</span>
+<span id="cb28-7"><a href="#cb28-7"></a><span class="kw">end program</span> var</span></code></pre></div>
 <h4 id="constants-parameters">Constants (parameters)</h4>
 <p>You can create a constant (called <em>parameter</em> in Fortran) in the same manner as a variable. The constant is the same as the variable except that it is never updated or rewritten. It is useful when you need a mathematical constant or a setting commonly referred to by the program. To make the variable constant, use the <code>parameter</code> <em>attribute</em> to the declaration.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb29-1" title="1"><span class="co">! dp and pi will be altered.</span></a>
-<a class="sourceLine" id="cb29-2" title="2"><span class="kw">program</span> var</a>
-<a class="sourceLine" id="cb29-3" title="3">   <span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb29-4" title="4">   <span class="dt">integer</span>,<span class="dt">parameter</span> <span class="dt">::</span> dp <span class="kw">=</span> <span class="fu">selected_real_kind</span>(<span class="dv">15</span>,<span class="dv">307</span>)</a>
-<a class="sourceLine" id="cb29-5" title="5"><span class="dt">   real(dp)</span>,<span class="dt">parameter</span> <span class="dt">::</span> pi<span class="kw">=</span><span class="fl">3.1415926</span></a>
-<a class="sourceLine" id="cb29-6" title="6">   <span class="fu">print</span> <span class="kw">*</span>,<span class="dv">2</span><span class="kw">*</span>pi</a>
-<a class="sourceLine" id="cb29-7" title="7"><span class="kw">end program</span> var</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode fortran"><code class="sourceCode fortran"><span id="cb29-1"><a href="#cb29-1"></a><span class="co">! dp and pi will be altered.</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a><span class="kw">program</span> var</span>
+<span id="cb29-3"><a href="#cb29-3"></a>   <span class="kw">implicit</span> <span class="kw">none</span></span>
+<span id="cb29-4"><a href="#cb29-4"></a>   <span class="dt">integer</span>,<span class="dt">parameter</span> <span class="dt">::</span> dp <span class="kw">=</span> <span class="fu">selected_real_kind</span>(<span class="dv">15</span>,<span class="dv">307</span>)</span>
+<span id="cb29-5"><a href="#cb29-5"></a><span class="dt">   real(dp)</span>,<span class="dt">parameter</span> <span class="dt">::</span> pi<span class="kw">=</span><span class="fl">3.1415926</span></span>
+<span id="cb29-6"><a href="#cb29-6"></a>   <span class="fu">print</span> <span class="kw">*</span>,<span class="dv">2</span><span class="kw">*</span>pi</span>
+<span id="cb29-7"><a href="#cb29-7"></a><span class="kw">end program</span> var</span></code></pre></div>
 <p>In this example, the precision of the real variable (<code>dp</code>) is defined as a constant. In this way, you can save key-typing in your program.</p>
 <h4 id="exercises-1">Exercises</h4>
 <p>No exercises are available in this section.</p>

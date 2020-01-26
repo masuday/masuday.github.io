@@ -28,7 +28,7 @@
   <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
   <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
   <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
   </script>
@@ -49,7 +49,8 @@
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#more-on-arrays">More on arrays</a><ul>
+<li><a href="#more-on-arrays">More on arrays</a>
+<ul>
 <li><a href="#basic-usage-of-arrays">Basic usage of arrays</a></li>
 <li><a href="#array-index">Array index</a></li>
 <li><a href="#assignment-again">Assignment, again</a></li>
@@ -64,6 +65,8 @@ Back to <a href="./index.html">index.html</a>.
 </p>
 <h1 id="more-on-arrays">More on arrays</h1>
 <h2 id="basic-usage-of-arrays">Basic usage of arrays</h2>
+<h3 id="fundamental-data-structure-in-fortran">Fundamental data-structure in Fortran</h3>
+<p>An array is a collection of elements (or objects), which have the same data type. The array is the fundamental <em>data-structure</em> that Fortran can directly use. Fortran can process the array efficiently. As an array keeps a simple structure in memory, it is relatively comfortable for the compiler to apply acceleration techniques (e.g., parallelization) to the program. Also, the program has room to improve the speed by using the array structure efficiently.</p>
 <h3 id="literals">Literals</h3>
 <p>A literal array is defined with <code>[]</code> with a comma-separated list of literals with the same type. A high-dimension literal array is defined using intrinsic function <code>reshape()</code> with <code>[]</code>.</p>
 <ul>

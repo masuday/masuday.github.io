@@ -48,7 +48,8 @@
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#modules">Modules</a><ul>
+<li><a href="#modules">Modules</a>
+<ul>
 <li><a href="#basic-features">Basic features</a></li>
 <li><a href="#advanced-usage-of-the-module">Advanced usage of the module</a></li>
 <li><a href="#intrinsic-module">Intrinsic module</a></li>
@@ -199,7 +200,28 @@ end module mymod</code></pre>
 <p>There is no exercise in this section.</p>
 <h2 id="intrinsic-module">Intrinsic module</h2>
 <p>As intrinsic functions like <code>sqrt()</code>, there are several intrinsic modules defined in the Fortran standard. The following modules are available by default in recent compilers supporting Fortran 2003 or later.</p>
-<p>|Name|Description| |<code>iso_fortran_env</code>|Definition of useful constants| |<code>iso_c_binding</code>|Functions and constants needed to use external C functions| |<code>ieee_arithmetic</code>|Treatment of special values in floating-point arithmetic|</p>
+<table>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>iso_fortran_env</code></td>
+<td>Definition of useful constants</td>
+</tr>
+<tr class="even">
+<td><code>iso_c_binding</code></td>
+<td>Functions and constants needed to use external C functions</td>
+</tr>
+<tr class="odd">
+<td><code>ieee_arithmetic</code></td>
+<td>Treatment of special values in floating-point arithmetic</td>
+</tr>
+</tbody>
+</table>
 <p>You can simply use such modules as a regular module with <code>use</code>. A better practice is to indicate the module is intrinsic using attribute <code>intrinsic</code>; you have to use <code>::</code> to list the module name.</p>
 <pre data-language="Fortran"><code class="language-fortran">program main
    use, intrinsic :: iso_fortran_env
