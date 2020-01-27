@@ -28,7 +28,7 @@
   <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
   <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
   <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
   </script>
@@ -49,9 +49,9 @@
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#flow-control">Flow control</a><ul>
+<li><a href="#flow-control">Flow control</a>
+<ul>
 <li><a href="#conditional">Conditional</a></li>
-<li><a href="#loops">Loops</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -101,7 +101,7 @@ print *,&#39;square root=&#39;,sqrt(x)</code></pre>
 <p>The first alternative has the opposite condition as the original one. The second alternative has no <code>else</code> block; the program stops if the conditional meets, so it does not need the <code>else</code> block.</p>
 <h4 id="general-form-of-if">General form of <code>if</code></h4>
 <p>The <code>if</code> statement has the following general form.</p>
-<pre><code>if(Condition 1) then
+<pre data-language="definition"><code>if(Condition 1) then
    [Block 1]
 else if(Condition 2) then
    [Block 2]
@@ -188,32 +188,38 @@ end program cond</code></pre>
 <li>Read 1 integer (<code>code</code>) and 1 real values (<code>v</code>) from the keyboard. If the code is <code>1</code>, compute the square root of <code>v</code>. If the code is <code>2</code>, compute the sine of <code>v</code>. If the code is the other values, print an error message and stop the program.</li>
 <li>Read an integer and show if it is an even or odd number.</li>
 </ul>
-<!--
-### Switch statement
-
-There is a convenient statement to make branches by a single value.
-The `switch` statement is easy to read the conditionals but limited in its usage.
-Here, I show an example only; see some textbooks for details.
-
-```Fortran
-program cond
-   implicit none
-   real :: x
-   read *,x,y
-   if(x<0 .and. y<=0) then
-      print *,'error: x<0 and y<=0'
-   else if(x<0) then
-      print *,'error: x<0'
-   else if(y<=0) then
-      print *,'error: y<=0'
+<h3 id="select-statement">Select statement</h3>
+<h4 id="simple-example-1">Simple example</h4>
+<p>There is a convenient statement (<code>select</code>) to make branches conditioned by a single value. The <code>select</code> statement is useful to compare between a scalar with a literal (or, a range of literals). Here is a piece of code that shows a typical case where <code>select</code> works well.</p>
+<pre data-language="Fortran"><code class="language-fortran">   integer :: x
+   if(x==1) then
+      print *,&#39;case 1&#39;
+   else if(x==2 .or. x==3) then
+      print *,&#39;case 2 or 3&#39;
    else
-      print *,'sqrt(x)*log(y)=',sqrt(x)*log(y)
-   end if
-   print *,'done.'
-end program cond
-```
--->
-<h2 id="loops">Loops</h2>
+      print *,&#39;failed&#39;
+   end if</code></pre>
+<p>With the <code>select</code> statement, the code becomes readable and straightforward as follows.</p>
+<pre data-language="Fortran"><code class="language-fortran">   integer :: x
+   select case(x)
+   case(1)
+      print *,&#39;case 1&#39;
+   case(2,3)
+      print *,&#39;case 2 or 3&#39;
+   case default
+      print *,&#39;failed&#39;
+   end select</code></pre>
+<p>The <code>select</code> statement has the following structure.</p>
+<ul>
+<li>The statement starts with <code>select case(x)</code> and <code>end select</code> where <code>x</code> is a single variable or a literal (i.e., scholar).</li>
+<li>The statement has 1 or more <code>case(y)</code> where <code>y</code> is a literal, a range, or a list of them. <code>y</code> should <em>not</em> be a variable. For example, <code>case(1)</code>, <code>case(1,2,5)</code>, <code>case(2:3)</code>, <code>case(2:3,5)</code> are all valid.</li>
+<li>The program starts comparing <code>x</code> with <code>y</code> from the first <code>case</code> block to the last. If <code>x</code> equals to <code>y</code>, the program performs this block, and exit the entire <code>select</code> statement without moving toward the next block.</li>
+<li>If <code>x</code> does not match any <code>y</code>, the program executes the optional <code>case default</code> block. If you omit this block, the program does not do anything.</li>
+</ul>
+<h4 id="exercises-1">Exercises</h4>
+<ol type="1">
+<li>Confirm that the <code>select</code> statement can accept characters. Declare a character variable (say, <code>character(len=10)::s</code>), and make the branches by the variable (<code>select case(s)</code> or <code>select case(s(1:2))</code>).</li>
+</ol>
 <h3 id="do-statement">Do statement</h3>
 <h4 id="small-example">Small example</h4>
 <p>There is a case where you have to repeat the same operation many times. Or, you need to repeat slightly different but almost the same operation by round. The simplest way is to write all the repeated operations as a flat program, but it should be in trouble in its readability and redundancy. Fortran provides a systematic way to repeat the same (or similar) operation with the <code>do</code> statement.</p>
@@ -256,6 +262,10 @@ end program loop</code></pre>
 <li>Whenever the program reaches <code>do</code>, the variable is compared to the final value. If the variable is smaller than or equals to the final value, the focus moves to the next line; Otherwise, the program exits the current loop.</li>
 <li>Whenever the program reaches <code>end do</code>, the focus goes back to the corresponding <code>do</code>, then the variable is incremented by 1 (and going back to Step 5).</li>
 </ol>
+<p>Here is a general form of <code>do</code>.</p>
+<pre data-language="definition"><code>do counter_variable = initial_value, last_value
+   ...
+end do</code></pre>
 <p>In this usage, <code>do</code> needs a counter variable. This behavior is like a baby counts up numbers by hand. The counter variable is checked only at the beginning of loops, and it is incremented when going back from <code>end do</code> to <code>do</code>.</p>
 <p>By the way, this program works when <code>i=1,3</code> is replaced with <code>i=0,2</code> or even <code>i=-5,-3</code> (please consider why). Non-1 starting value looks unusual but may be useful in future use.</p>
 <h4 id="use-of-the-counter-variable">Use of the counter variable</h4>
@@ -380,7 +390,7 @@ end program loop</code></pre>
 <li>The <code>exit</code> statement jumps out of the loop. The <code>cycle</code> statement immediately goes back to <code>do</code>, ignoring the remaining statements.</li>
 <li>Without the counter, <code>do</code> makes an infinite loop. The <code>exit</code> statement is the only way to exit the loop.</li>
 </ul>
-<h4 id="exercises-1">Exercises</h4>
+<h4 id="exercises-2">Exercises</h4>
 <ol type="1">
 <li>Rewrite the code to compute a factorial with a larger <code>n</code> using a double-precision variable.</li>
 <li>Read 10 numbers from the keyboard, then show how many positive numbers were given.</li>
@@ -436,7 +446,7 @@ end program loop</code></pre>
 <li>If the staring value is already larger than the final value in a loop, such a loop will not be executed.</li>
 <li>The increment is defined in the 3rd parameter in <code>do</code>. It should be non zero integers.</li>
 </ul>
-<h4 id="exercises-2">Exercises</h4>
+<h4 id="exercises-3">Exercises</h4>
 <p>There are no exercises in this section.</p>
 <h3 id="nested-loops">Nested loops</h3>
 <p>You can define nested loops with multiple <code>do</code>s. Here, for simplicity, we just consider double loops with two <code>do</code> statements.</p>
@@ -506,7 +516,7 @@ end program loop</code></pre>
 <li>The <code>do</code> (and <code>end do</code>) statement can have a label, which is a sequence of arbitrary characters.</li>
 <li>The label is used by <code>exit</code> and <code>cycle</code> to specify the loop.</li>
 </ul>
-<h4 id="exercises-3">Exercises</h4>
+<h4 id="exercises-4">Exercises</h4>
 <p>No exercises are given because this topic is not useful without arrays and algorithms, which we will see in the later chapter.</p>
 <p>
 Back to <a href="./index.html">index.html</a>.
