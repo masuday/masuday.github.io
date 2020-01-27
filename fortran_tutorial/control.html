@@ -52,6 +52,7 @@
 <li><a href="#flow-control">Flow control</a>
 <ul>
 <li><a href="#conditional">Conditional</a></li>
+<li><a href="#iteration">Iteration</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -220,6 +221,7 @@ end program cond</code></pre>
 <ol type="1">
 <li>Confirm that the <code>select</code> statement can accept characters. Declare a character variable (say, <code>character(len=10)::s</code>), and make the branches by the variable (<code>select case(s)</code> or <code>select case(s(1:2))</code>).</li>
 </ol>
+<h2 id="iteration">Iteration</h2>
 <h3 id="do-statement">Do statement</h3>
 <h4 id="small-example">Small example</h4>
 <p>There is a case where you have to repeat the same operation many times. Or, you need to repeat slightly different but almost the same operation by round. The simplest way is to write all the repeated operations as a flat program, but it should be in trouble in its readability and redundancy. Fortran provides a systematic way to repeat the same (or similar) operation with the <code>do</code> statement.</p>
