@@ -48,8 +48,7 @@
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#makefiles">Makefiles</a>
-<ul>
+<li><a href="#makefiles">Makefiles</a><ul>
 <li><a href="#a-simple-makefile">A simple makefile</a></li>
 <li><a href="#useful-features-for-makefile">Useful features for makefile</a></li>
 <li><a href="#options-of-the-make-command">Options of the make command</a></li>
@@ -65,7 +64,7 @@ Back to <a href="./index.html">index.html</a>.
 <h3 id="dependency-graph-and-makefile">Dependency graph and makefile</h3>
 <p>Assume we have a module (<code>mymod.f90</code>) and the main program (<code>main.f90</code>) and each program unit is stored in a separate file. The module should be compiled first. The main program has to link the module object. The dependency is represented as the following figure.</p>
 <figure>
-<img src="dependency1.png" alt="" /><figcaption>Dependency graph with two example files</figcaption>
+<img src="dependency1.png" alt="Dependency graph with two example files" /><figcaption>Dependency graph with two example files</figcaption>
 </figure>
 <p>This <em>dependency graph</em> shows that the main program requires the module. Although the main program requires depends on two files (<code>mymod.mod</code> and <code>mymod.o</code>), these two files are generated at the same time, so we would say that <code>main.f90</code> depends on the presence of one of these 2 files. With a separate compilation, you have to run the compiler 3 times.</p>
 <pre data-language="shell"><code>gfortran -c mymod.f90

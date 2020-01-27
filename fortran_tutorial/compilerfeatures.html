@@ -48,8 +48,7 @@
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#compiling-process">Compiling process</a>
-<ul>
+<li><a href="#compiling-process">Compiling process</a><ul>
 <li><a href="#separate-compilation">Separate compilation</a></li>
 <li><a href="#common-compiler-options">Common compiler options</a></li>
 <li><a href="#other-useful-options">Other useful options</a></li>
@@ -64,12 +63,12 @@ Back to <a href="./index.html">index.html</a>.
 <h3 id="basics">Basics</h3>
 <p>When using multiple program units, including the main program, external procedures, and modules, all the units d not have to be in a single file. You can separate the file so that each unit resides in a separate file. In this case, you can compile each file separately, and then the object files are combined with being the executable by a linker. The figure shows the separate compilation with 2 files.</p>
 <figure>
-<img src="separate_compilation.png" alt="" /><figcaption>Separate compilation with 2 files</figcaption>
+<img src="separate_compilation.png" alt="Separate compilation with 2 files" /><figcaption>Separate compilation with 2 files</figcaption>
 </figure>
 <p>In this process, the user should prepare all object files by compiling each source file one by one. Then, the compiler calls a linker to unify the files to generate an executable.</p>
 <h3 id="example">Example</h3>
 <p>Here we use 2 separate files: <code>mymod.f90</code> with a module and <code>main.f90</code> with the main program. The code was introduced in the previous chapter. Note that the file name is not necessarily the same as the name of the module or program.</p>
-<pre data-language="Fortran" data-caption="mymod.f90"><code>! mymod.f90
+<pre data-language="Fortran"><code class="language-fortran">! mymod.f90
 module mymod
    implicit none
    real,parameter :: pi=3.1415926
@@ -81,7 +80,7 @@ function mean(x) result(m)
    m = sum(x)/size(x)
 end function mean
 end module mymod</code></pre>
-<pre data-language="Fortran" data-caption="main.f90"><code>! main.f90
+<pre data-language="Fortran"><code class="language-fortran">! main.f90
 program main
    use mymod
    implicit none

@@ -48,8 +48,7 @@
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#installation-of-gfortran-in-windows-10">Installation of GFortran in Windows 10</a>
-<ul>
+<li><a href="#installation-of-gfortran-in-windows-10">Installation of GFortran in Windows 10</a><ul>
 <li><a href="#msys2-and-mingw-w64">Msys2 and Mingw-w64</a></li>
 </ul></li>
 </ul>
@@ -65,45 +64,45 @@ Back to <a href="./index.html">index.html</a>.
 <h3 id="installation">Installation</h3>
 <p><strong>Step 1</strong>: Visit the official <a href="https://gcc.gnu.org/wiki/GFortranBinaries">GFortran Wiki</a> to find the link to Msys2 website. It shows a link to <em>Mingw-w64</em>, the name of the project that develops MSYS2. Go to the Mingw-w64 web page.</p>
 <figure>
-<img src="win_01_gfortran_wiki.png" alt="" /><figcaption>GFortran Wiki</figcaption>
+<img src="win_01_gfortran_wiki.png" alt="GFortran Wiki" /><figcaption>GFortran Wiki</figcaption>
 </figure>
 <p><strong>Step 2</strong>: Visit the Mingw-w64 project site, and you find the “Download” link. Go to “Download”.</p>
 <figure>
-<img src="win_02_mingw-w64.png" alt="" /><figcaption>Mingw-w64 project website</figcaption>
+<img src="win_02_mingw-w64.png" alt="Mingw-w64 project website" /><figcaption>Mingw-w64 project website</figcaption>
 </figure>
 <p><strong>Step 3</strong>: This page shows all the packages that this project maintains. Choose <em>Msys2</em>.</p>
 <figure>
-<img src="win_03_msys2.png" alt="" /><figcaption>Msys2 link</figcaption>
+<img src="win_03_msys2.png" alt="Msys2 link" /><figcaption>Msys2 link</figcaption>
 </figure>
 <p><strong>Step 4</strong>: The page shows a link to <a href="http://www.msys2.org/">Msys2 website</a> in Github. Go to the website.</p>
 <figure>
-<img src="win_04_link_to_github.png" alt="" /><figcaption>Link to Msys2 project website</figcaption>
+<img src="win_04_link_to_github.png" alt="Link to Msys2 project website" /><figcaption>Link to Msys2 project website</figcaption>
 </figure>
 <p><strong>Step 5</strong>: Get Msys2 installer on this website. Download a file with <em>msys2-x86_64-xxxxxxxx.exe</em> (<em>xxxxxxxx</em> is replaced with the date which is released). If you know your system is 32bit, download <em>msys2-i686-xxxxxxxx.exe</em>.</p>
 <figure>
-<img src="win_05_get_binary.png" alt="" /><figcaption>Msys2 installer website</figcaption>
+<img src="win_05_get_binary.png" alt="Msys2 installer website" /><figcaption>Msys2 installer website</figcaption>
 </figure>
 <p><strong>Step 6</strong>: Run the installer and follow the instruction to set up the program.</p>
 <figure>
-<img src="win_06_setup.png" alt="" /><figcaption>Msys2 installer</figcaption>
+<img src="win_06_setup.png" alt="Msys2 installer" /><figcaption>Msys2 installer</figcaption>
 </figure>
 <p><strong>Step 7</strong>: Invoke Msys2 window. The program runs automatically for the first time. After that, you can run it from the menu. Choose <em>MSYS2 MinGW 64-bit</em> (32-bit if needed).</p>
 <figure>
-<img src="win_07_menu.png" alt="" /><figcaption>Msys2 in the menu</figcaption>
+<img src="win_07_menu.png" alt="Msys2 in the menu" /><figcaption>Msys2 in the menu</figcaption>
 </figure>
 <p><strong>Step 8</strong>: Make sure that you see a Msys window.</p>
 <figure>
-<img src="win_08_window.png" alt="" /><figcaption>Msys2 window</figcaption>
+<img src="win_08_window.png" alt="Msys2 window" /><figcaption>Msys2 window</figcaption>
 </figure>
 <p><strong>Step 9</strong>: Msys2 consists of many dependent programs. Each program is prepared as a package. If the package is modified, you can download it through the internet. This process is automated by a command <code>pacman</code>.</p>
 <p>For the first time, you have to date the built-in packages through the internet. In the Msys2 windows, type the following command.</p>
-<pre><code>pacman -Syu</code></pre>
+<pre data-language="shell"><code>pacman -Syu</code></pre>
 <p>It will ask you whether you allow downloading the updated packages. You can type <code>y</code> for yes. If it fails, close the window and try again.</p>
 <p><strong>Step 10</strong>: GFortran is also provided as a package. Type the following command in the window to install GFortran.</p>
-<pre><code>pacman -Su gcc-fortran</code></pre>
+<pre data-language="shell"><code>pacman -Su gcc-fortran</code></pre>
 <p>As above, it will ask you if you want to install the package. Type <code>y</code>, and wait for a while to finish the installation. After this step, you can use GFortran in this window.</p>
 <p>You can confirm the successful installation with the following command.</p>
-<pre><code>gfortran</code></pre>
+<pre data-language="shell"><code>gfortran</code></pre>
 <h3 id="directory-structure">Directory structure</h3>
 <p>The Msys2 window runs Bash, and you can use most Linux commands in the window. Also, when you create some files, you can access the files with Windows Explorer.</p>
 <p>The home directory is somewhere on your computer. You can access the drive C, use <code>/c/</code>. For example, the real home directory in Windows is <code>/c/Users/your_name</code> if your account name is <code>your_name</code>. Using this rule, you can change the directory to <em>Documents</em>, type <code>cd /c/Users/your_name/Documents</code>.</p>

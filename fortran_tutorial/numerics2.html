@@ -28,7 +28,7 @@
   <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
   <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
   <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
   </script>
@@ -49,8 +49,7 @@
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#more-on-numbers-and-variables">More on numbers and variables</a>
-<ul>
+<li><a href="#more-on-numbers-and-variables">More on numbers and variables</a><ul>
 <li><a href="#basic-usage">Basic usage</a></li>
 <li><a href="#overflow-and-non-numbers">Overflow and non-numbers</a></li>
 <li><a href="#floating-point-arithmetic">Floating-point arithmetic</a></li>
@@ -99,7 +98,7 @@ Back to <a href="./index.html">index.html</a>.
 <p>Most intrinsic functions accept a specific type. For example, <code>sin()</code> accepts a real value, not integer; <code>sin(1.0)</code> is okay but <code>sin(1)</code> fails.</p>
 <h3 id="variables">Variables</h3>
 <p>A variable can hold a typed value. Here is a general form of the declaration of variables, which should be placed at the top of a program unit. Also, to turn off the implicit variable typing, you should use <code>implicit none</code> once before the declarations.</p>
-<pre><code>implicit none
+<pre data-language="definition"><code>implicit none
 type :: variable1, variable2, ...</code></pre>
 <p>The following type-statements are available.</p>
 <ul>
@@ -125,7 +124,7 @@ type :: variable1, variable2, ...</code></pre>
 </ul></li>
 </ul>
 <p>To use inquiry functions, we usually define an integer constant.</p>
-<pre><code>integer,parameter :: dp=selected_real_kind(15,307)</code></pre>
+<pre data-language="Fortran"><code class="language-fortran">integer,parameter :: dp=selected_real_kind(15,307)</code></pre>
 <p>It would be best if you used the constants to specify the precision of the literals and variables.</p>
 <ul>
 <li>Literals: literal expression + <code>_</code> + precision constant
