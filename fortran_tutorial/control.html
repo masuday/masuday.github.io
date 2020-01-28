@@ -83,6 +83,12 @@ end program cond</code></pre>
 <li>If the condition is true, the program proceeds the first block and exits the statement (jumps to the next line of <code>end if</code>).</li>
 <li>If the condition is false, the program jumps to the second block and exit the statement.</li>
 </ul>
+<p>The above <code>if</code> statement has the following structure.</p>
+<pre data-language="definition"><code class="language-fortran">if(condition 1) then
+   {block}
+else
+   {the other block}
+end if</code></pre>
 <p>The <code>if</code> statement has some flexible structure. The following code runs in the same way as above (only the kernel of the program is shown).</p>
 <pre data-language="Fortran"><code class="language-fortran">! Alternative 1
 if(x&gt;=0.0) then
@@ -102,15 +108,15 @@ print *,&#39;square root=&#39;,sqrt(x)</code></pre>
 <p>The first alternative has the opposite condition as the original one. The second alternative has no <code>else</code> block; the program stops if the conditional meets, so it does not need the <code>else</code> block.</p>
 <h4 id="general-form-of-if">General form of <code>if</code></h4>
 <p>The <code>if</code> statement has the following general form.</p>
-<pre data-language="definition"><code>if(Condition 1) then
-   [Block 1]
-else if(Condition 2) then
-   [Block 2]
-else if(Condition 3) then
-   [Block 3]
+<pre data-language="definition"><code class="language-fortran">if(condition 1) then
+   {block 1}
+else if(condition 2) then
+   {block 2}
+else if(condition 3) then
+   {block 3}
 ...
 else
-   [Else Block]
+   {the other block}
 end if</code></pre>
 <p>In the above case, the program can be interpreted as follows.</p>
 <ul>
@@ -217,6 +223,16 @@ end program cond</code></pre>
 <li>The program starts comparing <code>x</code> with <code>y</code> from the first <code>case</code> block to the last. If <code>x</code> equals to <code>y</code>, the program performs this block, and exit the entire <code>select</code> statement without moving toward the next block.</li>
 <li>If <code>x</code> does not match any <code>y</code>, the program executes the optional <code>case default</code> block. If you omit this block, the program does not do anything.</li>
 </ul>
+<p>Here is a general form of the <code>select</code> statement.</p>
+<pre data-language="definition"><code class="language-fortran">select case(scalar)
+case(literal list 1)
+   {block 1}
+case(literal list 2)
+   {block 2}
+...
+case default
+   {the other block}
+end if</code></pre>
 <h4 id="exercises-1">Exercises</h4>
 <ol type="1">
 <li>Confirm that the <code>select</code> statement can accept characters. Declare a character variable (say, <code>character(len=10)::s</code>), and make the branches by the variable (<code>select case(s)</code> or <code>select case(s(1:2))</code>).</li>
@@ -265,8 +281,8 @@ end program loop</code></pre>
 <li>Whenever the program reaches <code>end do</code>, the focus goes back to the corresponding <code>do</code>, then the variable is incremented by 1 (and going back to Step 5).</li>
 </ol>
 <p>Here is a general form of <code>do</code>.</p>
-<pre data-language="definition"><code>do counter_variable = initial_value, last_value
-   ...
+<pre data-language="definition"><code class="language-fortran">do counter_variable = initial_value, last_value
+   {block}
 end do</code></pre>
 <p>In this usage, <code>do</code> needs a counter variable. This behavior is like a baby counts up numbers by hand. The counter variable is checked only at the beginning of loops, and it is incremented when going back from <code>end do</code> to <code>do</code>.</p>
 <p>By the way, this program works when <code>i=1,3</code> is replaced with <code>i=0,2</code> or even <code>i=-5,-3</code> (please consider why). Non-1 starting value looks unusual but may be useful in future use.</p>
@@ -382,6 +398,10 @@ end program loop</code></pre>
       print *,sqrt(val)
    end do
 end program loop</code></pre>
+<p>Here is a general from of the infinite loops. The code block should have the <code>exit</code> statement.</p>
+<pre data-language="definition"><code class="language-fortran">do
+   {block with exit}
+end do</code></pre>
 <p>Again, this unconditional <code>do</code> statement creates the infinite loops, and the program may never stop. The compiler can not detect the infinite loops as a failure. If you run into this issue, hit the Control key (Ctrl) and the C key simultaneously (hit C while pushing Ctrl).</p>
 <h4 id="summary-1">Summary</h4>
 <ul>

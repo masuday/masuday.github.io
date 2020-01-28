@@ -86,13 +86,13 @@ end program compute_mean_and_sd</code></pre>
 <p>The other one is the ease of maintenance and tests. If a procedure is aimed to have a single task, a modification of the procedure is straightforward. A short procedure is also helpful to test. Although you have to write a sophisticated program, each component should be relatively simple, and the element can form a procedure or a module.</p>
 <h3 id="definition-of-function-and-subroutine">Definition of function and subroutine</h3>
 <h4 id="function">Function</h4>
-<p>A function is defined by the following form.</p>
-<pre data-language="definition"><code>function name(arguments...) result(variable)
-   type of argument :: argument list
-   type of result :: variable
+<p>A function is defined by the following form. You should write <code>implicit none</code> if it is an external function i.e., defined outside a program unit.</p>
+<pre data-language="definition"><code class="language-fortran">function name(arguments...) result(variable)
+   {implicit none}
+   argument_type,attribute :: argument_list
+   result_type :: variable
 
-   ! main body of function
-   ...
+   {main body}
 end function name</code></pre>
 <p>A simple example is as follows.</p>
 <pre data-language="Fortran"><code class="language-fortran">function sumup(n) result(val)
@@ -111,12 +111,12 @@ end function sumup</code></pre>
 </ul>
 <p>It is the programmer’s responsibility to assign a value to the return variable. Without any assignment to the variable, the return value is undefined, and it causes trouble.</p>
 <h4 id="subroutine">Subroutine</h4>
-<p>A subroutine is defined by the following form.</p>
-<pre data-language="definition"><code>subroutine name(arguments...)
-   type of argument :: argument list
+<p>A subroutine is defined by the following form. As I mentioned, you should put <code>implicit none</code> if it is external.</p>
+<pre data-language="definition"><code class="language-fortran">subroutine name(arguments...)
+   {implicit none}
+   argument_type,attribute :: argument_list
 
-   ! main body of subroutine
-   ...
+   {main body}
 end subroutine name</code></pre>
 <p>A simple example is as follows.</p>
 <pre data-language="Fortran"><code class="language-fortran">subroutine sumup(n,val)
