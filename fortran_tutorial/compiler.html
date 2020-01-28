@@ -59,15 +59,17 @@
 Back to <a href="./index.html">index.html</a>.
 </p>
 <h1 id="compiler-and-machine-code">Compiler and machine code</h1>
-<p>The descriptions in this chapter are greatly simplified. To obtain a solid understanding of this topic, please read some textbooks written by computer scientists.</p>
+<p>The descriptions in this chapter are greatly simplified. To obtain a solid understanding of this topic, please read some textbooks or popular articles written by computer scientists and engineers.</p>
 <h2 id="code">Code</h2>
 <h3 id="machine-code">Machine code</h3>
 <p>You may have had such a question: what does a computer program look like? In Linux, there are many commands, and those <em>are</em> computer programs. For example, <code>ls</code> is a typical command, and it is a computer program. A ready-to-run program has a form of a file called <em>executable</em> (or <em>binary</em>).</p>
-<p>The real shape of <code>ls</code> is an executable stored in <code>/bin</code> in a typical Linux system. Using the <code>less</code> command, we can look at the content of the <code>ls</code> executable. The following is the first some characters shown on the screen by <code>less</code>.</p>
+<p>In a typical Linux system, the substance of <code>ls</code> is an executable stored in <code>/bin</code>. Using the <code>less</code> command, we can look at the content of the <code>ls</code> executable. The following is the first some characters shown on the screen by <code>less</code>.</p>
+<pre data-language="shell"><code>less /bin/ls</code></pre>
 <pre data-language="output"><code>^?ELF^B^A^A^@^@^@^@^@^@^@^@^@^B^@&gt;^@^A^@^@^@&lt;D4&gt;B@^@^@^@^@^@^@^@^@^@^@^@^@&lt;F0&gt;&lt;C3&gt;^A^@^@</code></pre>
 <p>It looks nonsense to us, but it makes much sense to a computer. A computer can read and interpret it, which describes the instructions for the machine. This machine-readable sequence is the <em>machine code</em>, and it is the only thing that a computer can understand.</p>
 <h3 id="assembly-language">Assembly language</h3>
-<p>At the beginning of the history of computers, a computer-user must write the machine code to get computers work. The code was too primitive, too cryptic, and too much time to learn for many people. Then, a more human-readable code was suggested. It just replaced each of the machine code to some meaningful alphabets while keeping a similar structure to the machine code. It is called the <em>assembly language</em>. You can see the <code>ls</code> executable presented as the assembly language using the command, <code>objdump</code> with <code>-d</code>.</p>
+<p>At the beginning of the history of computers, a computer-user had to write the machine code to get computers work. The code was too primitive, too cryptic, and too much time to learn for many people. Then, a more human-readable code was suggested. It just replaced each of the machine code to some meaningful alphabets while keeping a similar structure to the machine code. It is called the <em>assembly language</em>. You can see the assembly code of <code>ls</code> using the command, <code>objdump</code> with <code>-d</code>.</p>
+<pre data-language="shell"><code>objdump -d /bin/ls</code></pre>
 <pre data-language="output"><code>/bin/ls:     file format elf64-x86-64
 
 
@@ -83,15 +85,15 @@ Disassembly of section .init:
   402169:       c3                      retq
 
 (continues)</code></pre>
-<p>It is still cryptic but more readable. The alphabets like <code>sub $0x8,%rsp</code> and <code>mov 0x218e6d(%rip),%rax</code> are <em>primitives</em> which correspond to particular machine-instructions. Some people develop a tool to convert the assembly code to the machine code (called <em>assembler</em>). Once you have an assembler, you write the assembly code, then convert it to an executable. Again, the assembly code is challenging to write because it is still at a low-level (meaning it is close to the machine-readable code).</p>
+<p>It is still cryptic but more readable. The alphabets like <code>sub $0x8,%rsp</code> and <code>mov 0x218e6d(%rip),%rax</code> are <em>primitives</em> which correspond to particular machine-instructions. Some people developed a tool to convert the assembly code to the machine code (called <em>assembler</em>). Once you have an assembler, you write the assembly code, then convert it to an executable. Writing the assembly code is challenging because it is still at a low-level (meaning it is close to the machine-readable code).</p>
 <p>Nowadays, some developers still use the assembly language for particular software that must precisely control a machine (like operating systems and graphics drivers). Also, the assembly language can be used in speed-critical software. However, it is never widely used in standard software development.</p>
 <h3 id="compiled-programming-languages">Compiled programming languages</h3>
-<p>A programming language is designed to have people quickly focus on describing tasks that they want to perform. The code written in a programming language should be human-readable. A <em>compiler</em>, a kind of software, translates the code written in a programming language to the machine code. The programmer prepares a text file containing the code (<em>source file</em>), runs the compiler, and obtained an executable. When a programming language is supposed to be with a compiler, it is called <em>compiled language</em>. Typically compiled languages include Fortran, C, C++, C#, Java, Go, Rust, Swift, Julia, and so on.</p>
-<p>We can see standard features of compiled languages. The compiled language generates an executable, which is generally fast. Although the languages are powerful enough to develop any software, the programmer may write much code to achieve the goal because the programmer may write everything from scratch. You may see some restrictions or inflexibilities in the language because it may have been designed to simplify the compiling process and to adapt to specific purposes.</p>
+<p>A programming language is designed to have people quickly focus on describing tasks that they want to perform. The code written in a programming language should be human-readable. A <em>compiler</em>, a kind of software, translates the code written in a programming language to the machine code. The programmer prepares a text file containing the code (<em>source file</em>), runs the compiler, and obtained an executable. When a programming language is supposed to be with a compiler, it is called <em>compiled language</em>. Typically, compiled languages include Fortran, C, C++, C#, Java, Go, Rust, Swift, Julia, and so on.</p>
+<p>The compiled language generates an executable, which is generally fast. Although the languages are powerful enough to develop any software, the programmer would write much code to achieve the goal because the programmer should write everything from scratch. You may see some restrictions or inflexibilities in the language because it may have been designed to simplify the compiling process and to adapt to specific purposes.</p>
 <h3 id="scripting-languages">Scripting languages</h3>
 <p>Some programming languages do not need a compiler; no machine-code is generated. Instead, each statement is interpreted one by one as a command, which invokes pre-compiled programs to do the task. It is called <em>scripting languages</em>. A scripting language can get a programmer to use pre-built, optimized, higher-level functions that may not be readily available in compiled languages. Also, the language is more accessible to write to perform typical tasks. Scripting languages include R, Python, Ruby, Perl, PHP, awk, shell scripts, and so on.</p>
-<p>A scripting language is fast enough when the task is typical and well-defined. However, when the programmer tries to perform the task without pre-built functions, the operation becomes slow. Although computers became powerful and the disadvantage has been reduced, you see the issue in data processing and numerical computing. Most scripting languages can call custom programs written in compiled languages to remove the speed advantage. This practice is common in R and Python when the performance matters, but the programmer should master at least two different languages (<em>two-language problem</em>).</p>
-<p>Roughly speaking, compiled languages are better in performance (speed, resource usage, precise control of machine), but slow in development. Scripting languages are more productive to write the code for defined tasks but slow in the execution of out-of-scope tasks or general algorithms.</p>
+<p>A scripting language is fast enough when the task is typical and well-defined. However, when the programmer tries to perform the task without pre-built functions, the operation becomes slow. Although computers became powerful and the disadvantage has been reduced, you may encounter the issue in data processing and numerical computing. Most scripting languages can call custom programs written in compiled languages to eliminate the speed penalty. This practice is common in R and Python when the performance matters, but the programmer should master at least two different languages (<em>two-language problem</em>).</p>
+<p>Roughly speaking, compiled languages are better in performance (speed, resource usage, precise control of machine), but takes time in development. Scripting languages are more productive in coding for specific tasks, but it is slow in the execution of out-of-scope tasks or general algorithms.</p>
 <h2 id="compiling-and-linking">Compiling and linking</h2>
 <h3 id="generating-process-of-executables">Generating process of executables</h3>
 <p>Here is a typical process of development in compiled languages.</p>
@@ -100,25 +102,25 @@ Disassembly of section .init:
 <li>Compiling: Compile it to an executable using a compiler.</li>
 <li>Testing: Run the executable to see if it works as expected.</li>
 </ol>
-<p>For the first step, you are going to learn the syntax of a programming language, and you write the program with a text editor. The last step is performed in terminal or some computing environments. We are looking into the second step here.</p>
+<p>For the first step, you are going to learn the syntax of a programming language, and you write the program with a text editor. The last step is performed in terminal or some computing environments. Let us look into the second step here.</p>
 <p>The figure shows a typical conversion process from a source file to an executable.</p>
 <figure>
 <img src="compilation.png" alt="" /><figcaption>Figure: Compilation steps</figcaption>
 </figure>
-<p>A compiler translates the code in a programming language to the machine code. A source file* stores the original program, and an <em>object file</em> hols the translated code. The object file is incomplete as executable. To generate the executable, another software, <em>linker</em>, puts all the object files and pre-compiled programs required in the operating system (<em>run-time library</em>) together. The run-time library comes with a compiler, and the user should not be aware of it.</p>
+<p>A compiler translates the code in a programming language to the machine code. Whereas a <em>source file</em> stores the original program, an <em>object file</em> hols the translated code. The object file is incomplete as executable. To generate the executable, another software, <em>linker</em>, puts all the object files and pre-compiled programs required by the operating system (<em>run-time library</em>) together. The run-time library comes with a compiler, but the user would not be aware of it.</p>
 <p>Any popular compilers do these jobs at 1 pass. The compiler compiles the source file, then secretly calls linker software to generate the executable. So, the user does not have to use a linker in many cases. And, in many cases, the whole process is called <em>compilation</em> (including the link).</p>
 <h3 id="example-of-file-compilation">Example of file compilation</h3>
-<p>Here we look at an actual command to compile a source file using GFortran. Suppose we have a source file <code>prog.f90</code>. It is a custom that the source file has <code>.f90</code> at the end of the file name. Some perople use <code>.f90</code> for Fortran 95, <code>.f03</code> for Fortran 2003, and so on. However, we use <code>.f90</code> for any Fortran program written in Fortran 90 or later.</p>
+<p>Here we look at an actual command to compile a source file using GFortran. Suppose we have a source file <code>prog.f90</code>. It is a custom that the source file has <code>.f90</code> at the end of the file name. Some perople use <code>.f95</code> for Fortran 95, <code>.f03</code> for Fortran 2003, and so on. However, we use <code>.f90</code> for any Fortran program written in Fortran 90 or later as many people use this custom.</p>
 <p>The file contains the following 3 lines.</p>
 <pre data-language="Fortran"><code class="language-fortran">program prog
 print *,&quot;okay&quot;
 end program prog</code></pre>
 <p>The following command compiles this file.</p>
 <pre data-language="shell"><code>gfortran prog.f90</code></pre>
-<p>It generates an executable, <code>a.out</code> by default. The object file is temporarily generated but removed when the executable is ready. You can separate the process into compilation and link using the following 2 commands.</p>
+<p>It generates an executable, <code>a.out</code> by default. The object file is temporarily generated, but the compiler removes it when the executable is ready. You can separate the process into compilation and link using the following 2 commands.</p>
 <pre data-language="shell"><code>gfortran -c prog.f90
 gfortran prog.o</code></pre>
-<p>The first command converts the source file to an object file, <code>prog.o</code> The second command calls a linker to create the executable, <code>a.out</code>. Usually, you do not have to separate the process.</p>
+<p>The first command converts the source file to an object file, <code>prog.o</code>. The second command calls a linker to create the executable, <code>a.out</code> (to be specific, <code>gfortran</code> calls the linker, <code>ld</code>). Usually, you do not have to run the compiler and the linker separately to compile a single file.</p>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>

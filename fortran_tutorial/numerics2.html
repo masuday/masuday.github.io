@@ -99,8 +99,8 @@ Back to <a href="./index.html">index.html</a>.
 <p>Most intrinsic functions accept a specific type. For example, <code>sin()</code> accepts a real value, not integer; <code>sin(1.0)</code> is okay but <code>sin(1)</code> fails.</p>
 <h3 id="variables">Variables</h3>
 <p>A variable can hold a typed value. Here is a general form of the declaration of variables, which should be placed at the top of a program unit. Also, to turn off the implicit variable typing, you should use <code>implicit none</code> once before the declarations.</p>
-<pre><code>implicit none
-type :: variable1, variable2, ...</code></pre>
+<pre data-language="definition"><code class="language-fortran">implicit none
+variable_type,attribute :: variable1, variable2, ...</code></pre>
 <p>The following type-statements are available.</p>
 <ul>
 <li><code>integer ::</code> for integer variables (default: 4-byte)</li>
@@ -109,7 +109,11 @@ type :: variable1, variable2, ...</code></pre>
 <li><code>character ::</code> for a single character</li>
 <li><code>character(len=n) ::</code> for a string with <code>n</code> letters</li>
 </ul>
-<p>With the <code>parameter</code> attribute, the variable becomes a constant, which does not change the value.</p>
+<p>Here are a couple of attributes that we have introduced.</p>
+<ul>
+<li><code>parameter</code>: the variable becomes a constant, which does not change the value.</li>
+<li><code>allocatable</code>: the array variable is allocatable i.e., resizable.</li>
+</ul>
 <h3 id="precision">Precision</h3>
 <p>A numerical type has options in precision. You can change the precision both for literals and for variables. An integer code defines the precision; the code is available in 2 ways.</p>
 <ul>
@@ -125,7 +129,7 @@ type :: variable1, variable2, ...</code></pre>
 </ul></li>
 </ul>
 <p>To use inquiry functions, we usually define an integer constant.</p>
-<pre><code>integer,parameter :: dp=selected_real_kind(15,307)</code></pre>
+<pre data-language="Fortran"><code class="language-fortran">integer,parameter :: dp=selected_real_kind(15,307)</code></pre>
 <p>It would be best if you used the constants to specify the precision of the literals and variables.</p>
 <ul>
 <li>Literals: literal expression + <code>_</code> + precision constant

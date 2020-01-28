@@ -69,7 +69,7 @@ Back to <a href="./index.html">index.html</a>.
 <p>In this process, the user should prepare all object files by compiling each source file one by one. Then, the compiler calls a linker to unify the files to generate an executable.</p>
 <h3 id="example">Example</h3>
 <p>Here we use 2 separate files: <code>mymod.f90</code> with a module and <code>main.f90</code> with the main program. The code was introduced in the previous chapter. Note that the file name is not necessarily the same as the name of the module or program.</p>
-<pre data-language="Fortran" data-caption="mymod.f90"><code>! mymod.f90
+<pre data-language="Fortran"><code class="language-fortran">! mymod.f90
 module mymod
    implicit none
    real,parameter :: pi=3.1415926
@@ -81,7 +81,7 @@ function mean(x) result(m)
    m = sum(x)/size(x)
 end function mean
 end module mymod</code></pre>
-<pre data-language="Fortran" data-caption="main.f90"><code>! main.f90
+<pre data-language="Fortran"><code class="language-fortran">! main.f90
 program main
    use mymod
    implicit none

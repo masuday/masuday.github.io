@@ -62,7 +62,7 @@ Back to <a href="./index.html">index.html</a>.
 <h1 id="get-started">Get Started</h1>
 <h2 id="hello-world">Hello world</h2>
 <h3 id="the-3-line-program">The 3-line program</h3>
-<p>Let’s write the first program in Fortran. The following is the program prints the words <em>Hello, world!</em> on your screen.</p>
+<p>Let’s write the first program in Fortran. The following is the program prints a phrase, “Hello, world!”, on your screen.</p>
 <pre data-language="Fortran"><code class="language-fortran">program hello
 print *,&quot;Hello, world!&quot;
 end program hello</code></pre>
@@ -78,16 +78,16 @@ end program hello</code></pre>
 </ul></li>
 <li>The keyword <code>print</code> shows a message to an output device.
 <ul>
-<li>The symbol <code>*</code> specifies the default output format.</li>
+<li>The symbol <code>*</code> specifies the default output format (leaving the output to the computer).</li>
 <li>After <code>*</code>, the comma is needed.</li>
 <li>The message comes the last, and it should be enclosed with <code>"</code> and <code>"</code>.</li>
 </ul></li>
 </ol>
 <h3 id="some-details">Some details</h3>
-<p>In this program, <code>program</code>, <code>end program</code>, and <code>print</code> are reserved keywords to make a program structure. A line with such a keyword is called <em>statement</em>. For example, the first line is a <em>program statement</em>, and the second line is a <em>print statement</em>. Each line should have only 1 statement.</p>
-<p>The output massage always has a while space at the beginning of the line on the screen. This is because the output device <code>*</code> uses the <em>default</em> setting, which puts a space preceded by the message. In the later sections, we will see how to control the output format.</p>
+<p>In this program, <code>program</code>, <code>end program</code>, and <code>print</code> are keywords to make a program structure. A line with such a keyword is called <em>statement</em>. For example, the first line is a <em>program statement</em>, and the second line is a <em>print statement</em>. Each line should have only 1 statement.</p>
+<p>The output massage always has a while space at the beginning of the line on the screen. This behavior is the default setting (putting a space preceded by the message), and it was chosen due to a historical reason. You can change the output format by replacing <code>*</code> by a <em>format descriptor</em>, which we see in the later section.</p>
 <p>The message <code>"Hello, world!"</code> is literally interpreted as characters. Such an object is called <em>literal</em>. The literal characters should be encircled with <code>"</code> (or <code>'</code>, see the following exercises).</p>
-<p>You can put while spaces among keywords and literals as many as possible. Spaces at the beginning of the line are ignored. Also, an empty line is ignored.</p>
+<p>You can put white spaces among keywords and literals as many as possible. Spaces at the beginning of the line are ignored. Also, an empty line is ignored.</p>
 <h3 id="summary">Summary</h3>
 <ul>
 <li>One line has one statement.</li>
@@ -118,7 +118,7 @@ program hello
    print *,&quot;Hello, world!&quot;
 end program hello</code></pre>
 <h3 id="comments">Comments</h3>
-<p>The sign <code>!</code> and the following characters will be ignored; this is called a <em>comment</em>. The compiler removes the comments, so you don’t have to encircle the messages within the comment. In the above program, the first 3 lines will be ignored.</p>
+<p>The symbol, <code>!</code>, and the following characters will be ignored; this is called a <em>comment</em>. The compiler removes the comments, so you don’t have to encircle the messages within the comment. In the above program, the first 3 lines will be ignored.</p>
 <p>You can write a comment at the end of the line. The following is an extreme example that works as the previous program. You should not abuse the comments because of losing the readability.</p>
 <pre data-language="Fortran"><code class="language-fortran">!
 ! showing some messages
@@ -153,10 +153,10 @@ End PrOgRaM hello</code></pre>
 <p>In the 1990s with Fortran 90, there was a recommendation using uppercase characters for statements and lowercase for other symbols. Still, now, some textbooks keep this tradition. However, if you don’t have to follow this rule, never use it because of poor code-readability and slow typing. Please use the syntax highlight equipped in any text editors if you need the keyword emphasis. In this tutorial, I will use the lowercase characters in the source code.</p>
 <h3 id="summary-1">Summary</h3>
 <ul>
-<li>The symbol <code>!</code> starts a comment which will be ignored by the compiler.</li>
+<li>The symbol, <code>!</code>, starts a comment which the compiler ignores.</li>
 <li>The indent is recommended because it improves the readability of code. You can also insert extra spaces between keywords.</li>
-<li>The symbol <code>&amp;</code> connects two lines.</li>
-<li>Fortran equates upper- and lower-cases except for character literals.</li>
+<li>The symbol, <code>&amp;</code>, connects two adjacent lines.</li>
+<li>Fortran equates upper-cases with lower-cases except for character literals.</li>
 </ul>
 <h3 id="exercises-1">Exercises</h3>
 <ol type="1">

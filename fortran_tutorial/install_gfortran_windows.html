@@ -97,13 +97,13 @@ Back to <a href="./index.html">index.html</a>.
 </figure>
 <p><strong>Step 9</strong>: Msys2 consists of many dependent programs. Each program is prepared as a package. If the package is modified, you can download it through the internet. This process is automated by a command <code>pacman</code>.</p>
 <p>For the first time, you have to date the built-in packages through the internet. In the Msys2 windows, type the following command.</p>
-<pre><code>pacman -Syu</code></pre>
+<pre data-language="shell"><code>pacman -Syu</code></pre>
 <p>It will ask you whether you allow downloading the updated packages. You can type <code>y</code> for yes. If it fails, close the window and try again.</p>
 <p><strong>Step 10</strong>: GFortran is also provided as a package. Type the following command in the window to install GFortran.</p>
-<pre><code>pacman -Su gcc-fortran</code></pre>
+<pre data-language="shell"><code>pacman -Su gcc-fortran</code></pre>
 <p>As above, it will ask you if you want to install the package. Type <code>y</code>, and wait for a while to finish the installation. After this step, you can use GFortran in this window.</p>
 <p>You can confirm the successful installation with the following command.</p>
-<pre><code>gfortran</code></pre>
+<pre data-language="shell"><code>gfortran</code></pre>
 <h3 id="directory-structure">Directory structure</h3>
 <p>The Msys2 window runs Bash, and you can use most Linux commands in the window. Also, when you create some files, you can access the files with Windows Explorer.</p>
 <p>The home directory is somewhere on your computer. You can access the drive C, use <code>/c/</code>. For example, the real home directory in Windows is <code>/c/Users/your_name</code> if your account name is <code>your_name</code>. Using this rule, you can change the directory to <em>Documents</em>, type <code>cd /c/Users/your_name/Documents</code>.</p>
