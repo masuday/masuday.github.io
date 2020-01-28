@@ -61,9 +61,9 @@
 Back to <a href="./index.html">index.html</a>.
 </p>
 <h1 id="logical-expressions">Logical Expressions</h1>
-<p>Fortran has several <em>logical expressions</em> (or Boolean expression), which yield either <em>true</em> or <em>false</em>. This function is mainly used in a conditional like an <code>if</code> statement introduced in the later chapter. Here some logical operators will be introduced.</p>
+<p>Fortran has several <em>logical expressions</em> (or Boolean expression), which yield either <em>true</em> or <em>false</em>. This function is mainly used in a conditional like an <code>if</code> statement introduced in the later chapter. Here I introduce some logical operators.</p>
 <h2 id="logical-values">Logical values</h2>
-<p>Fortran has unique values to express the logical status, true and false.</p>
+<p>Fortran has unique literals to express the logical status, true and false.</p>
 <table>
 <thead>
 <tr class="header">
@@ -82,7 +82,7 @@ Back to <a href="./index.html">index.html</a>.
 </tr>
 </tbody>
 </table>
-<p>It looks weird, but it is a valid value. In fact, you can show the logical value in <code>print</code>; <code>T</code> for true and <code>F</code> for false.</p>
+<p>It looks weird, but it is a valid literal (non-numerical value). In fact, you can show the logical value in <code>print</code>; <code>T</code> for true and <code>F</code> for false.</p>
 <pre data-language="Fortran"><code class="language-fortran">program bool
    print *,.true.
    print *,.false.

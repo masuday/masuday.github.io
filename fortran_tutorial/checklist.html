@@ -75,8 +75,13 @@ Back to <a href="./index.html">index.html</a>.
 <ul>
 <li>Use real in numerical functions. Wrong: <code>sin(1)</code>; Correct: <code>sin(1.0)</code>.</li>
 <li>Use double precision in serous numerical computations. Single precision tends to accumulate errors easily.</li>
-<li>Be careful about overflow in integer values.</li>
+<li>Be careful about overflow in integer numbers.</li>
 <li>Keep in mind that a real variable holds a floating-point number, which is just an approximation.</li>
+</ul></li>
+<li>Care about type conversion
+<ul>
+<li>Be aware of an integer result from integer operations e.g., <code>2/3</code> is <code>1</code>.</li>
+<li>The result of mixing different types is converted to a more precise type (real than integer).</li>
 </ul></li>
 </ul>
 <h2 id="program-unit">Program unit</h2>

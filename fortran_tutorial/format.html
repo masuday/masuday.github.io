@@ -70,13 +70,13 @@ Back to <a href="./index.html">index.html</a>.
 end program form</code></pre>
 <pre data-language="output"><code>       123
   123</code></pre>
-<p>The first one is the default output, which has many spaces. The second shows an integer value (<code>i</code>) with 5 character width (<code>5</code>), so the descriptor is <code>i5</code>.</p>
+<p>The first one is the default output, which has many spaces. The second shows an integer number (<code>i</code>) with 5 character width (<code>5</code>), so the descriptor is <code>i5</code>.</p>
 <p>If the value does not fit the format, several <code>*</code> will be shown.</p>
 <pre data-language="Fortran"><code class="language-fortran">program form
    print *,123
    print &quot;(i2)&quot;,123
 end program form</code></pre>
-<p>If you have multiple objects to be shown, the edit descriptor has multiple items separated by commas (<code>,</code>). The following example shows 3 integer values in a different format.</p>
+<p>If you have multiple objects to be shown, the edit descriptor has multiple items separated by commas (<code>,</code>). The following example shows 3 integer numbers in a different format.</p>
 <pre data-language="Fortran"><code class="language-fortran">program form
    print &quot;(i5,i8,i4)&quot;,123,456,789
 end program form</code></pre>
@@ -128,7 +128,7 @@ end program form</code></pre>
 <tr class="odd">
 <td><code>i</code> + a single number (<span class="math inline">\(m\)</span>)</td>
 <td><code>i5</code></td>
-<td>put the integer value (and the negative sign) with the field width <span class="math inline">\(m\)</span>, aligned to the right-hand side; filled by spaces.</td>
+<td>put the integer number (and the negative sign) with the field width <span class="math inline">\(m\)</span>, aligned to the right-hand side; filled by spaces.</td>
 </tr>
 <tr class="even">
 <td><code>i</code> + 0</td>
@@ -172,12 +172,12 @@ end program form</code></pre>
 <tr class="odd">
 <td><code>f</code> + two numbers with dot (<span class="math inline">\(m.n\)</span>)</td>
 <td><code>f8.4</code></td>
-<td>put a real value (and the negative sign) with the field width <span class="math inline">\(m\)</span>, at least <span class="math inline">\(n\)</span> digits under the decimal point; aligned to the right-hand side; filled by spaces.</td>
+<td>put a real number (and the negative sign) with the field width <span class="math inline">\(m\)</span>, at least <span class="math inline">\(n\)</span> digits under the decimal point; aligned to the right-hand side; filled by spaces.</td>
 </tr>
 <tr class="even">
 <td><code>e</code> + two numbers with dot (<span class="math inline">\(m.n\)</span>)</td>
 <td><code>e11.3</code></td>
-<td>put a real value (and the negative sign) with the entire field-width <span class="math inline">\(m\)</span> and the significand field-width <span class="math inline">\(n\)</span>; aligned to the right-hand side; significand between 0 and 1; filled by spaces.</td>
+<td>put a real number (and the negative sign) with the entire field-width <span class="math inline">\(m\)</span> and the significand field-width <span class="math inline">\(n\)</span>; aligned to the right-hand side; significand between 0 and 1; filled by spaces.</td>
 </tr>
 <tr class="odd">
 <td><code>es</code> + two numbers with a dot (<span class="math inline">\(m.n\)</span>)</td>

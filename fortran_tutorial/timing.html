@@ -127,7 +127,7 @@ end program timing</code></pre>
 end program timing</code></pre>
 <p>There are several cautions to use this method.</p>
 <ul>
-<li>The clock counts are integer, so you have to convert them to real values with <code>real()</code> or <code>dble()</code>.</li>
+<li>The clock counts are integer, so you have to convert them to real numbers with <code>real()</code> or <code>dble()</code>.</li>
 <li>Although the timing in this method is nearly equivalent to elapsed time, it may be inaccurate for a very short time, less than a few seconds. The system clock is not correctly working; especially, the system is busy.</li>
 <li>Also, there is a risk of overflow in the system clock. To avoid it, use a 64bit integer variable for clock counters (see below).</li>
 </ul>

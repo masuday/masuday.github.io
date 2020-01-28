@@ -63,7 +63,7 @@ Back to <a href="./index.html">index.html</a>.
 <h2 id="literals-and-simple-computations">Literals and simple computations</h2>
 <h3 id="numeric-and-character-literals">Numeric and character literals</h3>
 <h4 id="numbers">Numbers</h4>
-<p>Fortran can do any simple arithmetic. A number is expressed as a <em>numeric literal</em>, which is simply a sequence of numbers with some symbols. Fortran supports integer values, real values with the decimal point, real values expressed as the exponential style, and complex numbers (which we do not deal with in this tutorial). See the following table for examples.</p>
+<p>Fortran can do any simple arithmetic. A number is expressed as a <em>numeric literal</em>, which is simply a sequence of numbers with some symbols. Fortran supports integer numbers, “real” numbers with the decimal point, “real” numbers expressed as the exponential style, and complex numbers (which we do not deal with in this tutorial). See the following table for examples.</p>
 <table>
 <thead>
 <tr class="header">
@@ -76,39 +76,49 @@ Back to <a href="./index.html">index.html</a>.
 <tr class="odd">
 <td>100</td>
 <td><span class="math inline">\(100\)</span></td>
-<td>integer value</td>
+<td>integer number</td>
 </tr>
 <tr class="even">
+<td>+100</td>
+<td><span class="math inline">\(100\)</span></td>
+<td>integer number</td>
+</tr>
+<tr class="odd">
 <td>-1</td>
 <td><span class="math inline">\(-1\)</span></td>
-<td>integer value</td>
+<td>integer number</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>3.14</td>
 <td><span class="math inline">\(3.14\)</span></td>
-<td>real value</td>
-</tr>
-<tr class="even">
-<td>-99.</td>
-<td><span class="math inline">\(-99.0\)</span></td>
-<td>real value</td>
+<td>real number</td>
 </tr>
 <tr class="odd">
-<td>1e6</td>
-<td><span class="math inline">\(1\times10^{6}\)</span></td>
-<td>real value</td>
+<td>-99.</td>
+<td><span class="math inline">\(-99.0\)</span></td>
+<td>real number</td>
 </tr>
 <tr class="even">
+<td>1e6</td>
+<td><span class="math inline">\(1\times10^{6}\)</span></td>
+<td>real number</td>
+</tr>
+<tr class="odd">
 <td>6.02e23</td>
 <td><span class="math inline">\(6.02\times 10^{23}\)</span></td>
-<td>real value</td>
+<td>real number</td>
+</tr>
+<tr class="even">
+<td>314e-2</td>
+<td><span class="math inline">\(314\times 10^{-2}\)</span></td>
+<td>real number</td>
 </tr>
 </tbody>
 </table>
-<p>In Fortran, the type of value (integer vs. real) is strictly differentiated.</p>
+<p>In Fortran, the type of number (integer vs. real) is strictly differentiated.</p>
 <ul>
 <li>If the literal has only numbers and optionally a sign (<span class="math inline">\(+\)</span> or <span class="math inline">\(-\)</span>), it is an integer.</li>
-<li>If it ha the decimal point (<code>.</code>) or exponential identifier (<code>e</code> or <code>E</code>), it is a real value.</li>
+<li>If it has a decimal point (<code>.</code>) or exponential identifier (<code>e</code> or <code>E</code>) in addition to the numbers and the sign, it is a real number.</li>
 </ul>
 <p>The numeric literal can also be used in <code>print</code>.</p>
 <pre data-language="Fortran"><code class="language-fortran">program num
@@ -125,7 +135,7 @@ end program num</code></pre>
 <p>This is useful to precisely display the numeric values.</p>
 <h4 id="summary">Summary</h4>
 <ul>
-<li>Fortran holds both integer and real values; two are differentiated.</li>
+<li>Fortran holds both integer and real numbers; two are differentiated.</li>
 <li>The <code>print</code> statement put a margin to the output of numeric literals.</li>
 <li>The numeric and character literals can coexist in <code>print</code>.</li>
 </ul>
@@ -187,11 +197,11 @@ end program num</code></pre>
 <h4 id="type-of-result">Type of result</h4>
 <p>Some arithmetic rules in Fortran are <strong>not intuitive</strong> because the type of value is strictly considered. The following rules are applied.</p>
 <ul>
-<li>A formula with only integer values always returns an integer value.</li>
-<li>A formula with both integer and real values always returns a real value.</li>
-<li>A formula with both real values always returns a real value.</li>
+<li>A formula with only integer numbers always returns an integer number.</li>
+<li>A formula with both integer and real numbers always returns a real number.</li>
+<li>A formula with both real numbers always returns a real number.</li>
 </ul>
-<p>Simply, you will get the same type of result if you put the same type of numbers. The second point is because a real value can more precisely express a number. So, the integer value is converted to a real value before evaluating the formula. The first two rules may confuse the programmers; see the following example.</p>
+<p>Simply, you will get the same type of result if you put the same type of numbers. The second point is because a real number can more precisely express a numerical value. So, the integer number is converted to a real number before evaluating the formula. The first two rules may confuse the programmers; see the following example.</p>
 <pre data-language="Fortran"><code class="language-fortran">program num
    print *,&quot;3/2     = &quot;, 3/2       ! integer / integer
    print *,&quot;3.0/2   = &quot;, 3.0/2     ! real / integer
@@ -202,7 +212,7 @@ end program num</code></pre>
 3.0/2   =    1.50000000
 3/2.0   =    1.50000000
 3.0/2.0 =    1.50000000</code></pre>
-<p>Only the first formula returns the integer value (<code>1</code>), which is the quotient of 3/2, and the remainder is removed. Never forget to convert the number to real if you want to get the real value.</p>
+<p>Only the first formula returns the integer number (<code>1</code>), which is the quotient of 3/2, and the remainder is removed. Never forget to convert the number to real if you want to get the real number.</p>
 <h4 id="type-conversion">Type conversion</h4>
 <p>You may need to convert the numeric type from one to another. Also, sometimes a real number should be rounded to an integer. Fortran has conversion functions as follows.</p>
 <table>
@@ -265,7 +275,7 @@ end program num</code></pre>
    print *,cos(0.0)
 end program num</code></pre>
 <pre data-language="output"><code>   1.00000000</code></pre>
-<p>Some readers would recognize that the argument is real, not an integer. Yes, it is crucial because cosine is defined only for real values. If you give an integer to <code>cos()</code>, you will get the compilation error.</p>
+<p>Some readers would recognize that the argument is real, not an integer. Yes, it is crucial because cosine is defined only for real numbers. If you give an integer to <code>cos()</code>, you get the compilation error.</p>
 <pre data-language="Fortran"><code class="language-fortran">program num
    print *,cos(0)
 end program num</code></pre>
@@ -274,7 +284,7 @@ end program num</code></pre>
     print *,cos(0)
                1
 Error: &#39;x&#39; argument of &#39;cos&#39; intrinsic at (1) must be REAL or COMPLEX</code></pre>
-<p>Here is a table for a few functions often used. In the table, <code>r</code> means a real value, and <code>b</code> means either real and integer value.</p>
+<p>Here is a table for a few functions often used. In the table, <code>r</code> means a real number, and <code>b</code> means either real and integer number.</p>
 <table>
 <thead>
 <tr class="header">
@@ -374,24 +384,25 @@ end program num</code></pre>
 <p>The following program presents the limitation of numbers in Fortran. Some compilers can not compile the program because they may detect the overflow in the first statement on the compilation and give an error. In such a case, comment out the first print statement, save the program, and compile it.</p>
 <pre data-language="Fortran"><code class="language-fortran">program lim
    print *,1234567890*2    ! will overflow
-   print *,3.14159265359   ! too precise real value
+   print *,3.14159265359   ! too precise real number
 end program lim</code></pre>
 <pre data-language="output"><code>-1825831516
   3.141593</code></pre>
 <p>The results should be unexpected.</p>
 <ul>
-<li>The first result is complete nonsense. The multiplication produces a significant number that exceeds the upper limit of an integer value (<span class="math inline">\(2^{31}-1=2147483647\)</span>) by default in Fortran. It is an example of <em>overflow</em>, and the result is invalid.</li>
+<li>The first result is complete nonsense. The multiplication produces a significant number that exceeds the upper limit of an integer number (<span class="math inline">\(2^{31}-1=2147483647\)</span>) by default in Fortran. It is an example of <em>overflow</em>, and the result is invalid.</li>
 <li>The second result cuts the lowest digits in the number. The default real-value in Fortran holds just 7 or 8 decimal digits. If the value exceeds the limit, it will be <em>rounded</em> to a lower precision. It may cause a <em>rounding error</em>, in which the computation is not accurate, especially when the missing values are accumulated.</li>
 </ul>
-<p>Fortran provides several precisions both for integer and real values. Even if the default precision is not enough, you can use higher precision values with a manual specification of precision.</p>
+<p>Fortran provides several precisions both, for integer and real numbers. Even if the default precision is not enough, you can use higher precision values with a manual specification of precision.</p>
 <h4 id="exercise">Exercise</h4>
 <ol type="1">
 <li>See the result of adding 1 to the maximum integer (2147483647).</li>
 <li>See if there is a difference between printing <code>3.14159265359</code> and <code>3.141593</code>.</li>
+<li>See what happens when a function like <code>log</code> has an illegal input (e.g., a negative number).</li>
 </ol>
-<h3 id="integer-values">Integer values</h3>
+<h3 id="integer-numbers">integer numbers</h3>
 <h4 id="precision-specification">Precision specification</h4>
-<p>In the current computers, the default integer value is expressed as 4 bytes (32 bits). Fortran handles alternative precisions for integers. In the following table, <code>i</code> means an actual integer value.</p>
+<p>In the current computers, the default integer number is expressed as 4 bytes (32 bits). Fortran handles alternative precisions for integers. In the following table, <code>i</code> means an actual integer number.</p>
 <table>
 <colgroup>
 <col style="width: 25%" />
@@ -456,12 +467,12 @@ end program lim</code></pre>
 </tr>
 </tbody>
 </table>
-<p>To short, it returns a code to guarantee that an integer value <span class="math inline">\(i\)</span> with <span class="math inline">\(n\)</span> digits. For example, in many cases, <code>selected_int_kind(9)</code> returns <code>4</code> (<span class="math inline">\(-10^9&lt;i&lt;10^9\)</span> i.e. 4-byte integer) and <code>selected_int_kind(10)</code> returns <code>8</code> (<span class="math inline">\(-10^{10}&lt;i&lt;10^{10}\)</span> i.e. 8-byte integer). If <code>n</code> is invalid, it returns <code>-1</code>. The above program can be written with the function as follows.</p>
+<p>To short, it returns a code to guarantee that an integer number <span class="math inline">\(i\)</span> with <span class="math inline">\(n\)</span> digits. For example, in many cases, <code>selected_int_kind(9)</code> returns <code>4</code> (<span class="math inline">\(-10^9&lt;i&lt;10^9\)</span> i.e. 4-byte integer) and <code>selected_int_kind(10)</code> returns <code>8</code> (<span class="math inline">\(-10^{10}&lt;i&lt;10^{10}\)</span> i.e. 8-byte integer). If <code>n</code> is invalid, it returns <code>-1</code>. The above program can be written with the function as follows.</p>
 <pre data-language="Fortran"><code class="language-fortran">program lim
    print *,int(1234567890,selected_int_kind(10))*2
 end program lim</code></pre>
 <p>It is too long to write, so it is defined as a constant which will be introduced in the later chapter.</p>
-<p>Using an external <em>module</em>, which has not been explained so far, more important keywords are available to specify the precision. A module is like a <em>package</em> in other languages, and it defines extra functions and constants. Although the user can create a custom module, some modules are available by default. The built-in module <code>iso_fortran_env</code>, which is supported by almost all recent compilers, defines such meaningful keywords for precision. Here are some of them.</p>
+<p>Using an external <em>module</em>, which has not been explained so far, more relevant keywords are available to specify the precision. A module is like a <em>package</em> in other languages, and it defines extra functions and constants. Although the user can create a custom module, some modules are available by default. The built-in module <code>iso_fortran_env</code>, which is supported by almost all recent compilers, defines such meaningful keywords for precision. Here are some of them.</p>
 <table>
 <thead>
 <tr class="header">
@@ -488,14 +499,14 @@ end program lim</code></pre>
 </tr>
 </tbody>
 </table>
-<p>A module is called with the <code>use</code> statement, which must stay at the top of the program. I just show an example here. The details will be explained in the later chapter.</p>
+<p>A module is called with the <code>use</code> statement, which must stay at the top of the program. I just show an example here, and I explain the details in the later chapter.</p>
 <pre data-language="Fortran"><code class="language-fortran">program lim
    use iso_fortran_env
    print *,int(1234567890,selected_int_kind(10))*2
 end program lim</code></pre>
 <h4 id="summary-2">Summary</h4>
 <ul>
-<li>There are several types to have integer values.</li>
+<li>There are several types to have integer numbers.</li>
 <li>The default type is 4-byte (32 bit), and it is enough in most cases.</li>
 <li>There are several ways to define integer types.</li>
 </ul>
@@ -503,15 +514,15 @@ end program lim</code></pre>
 <ol type="1">
 <li>Try the above programs to see how to use the precision identifiers.</li>
 </ol>
-<h3 id="real-values">Real values</h3>
+<h3 id="real-numbers">Real numbers</h3>
 <h4 id="floating-point-number">Floating-point number</h4>
-<p>In Fortran and the majority of programming languages, any real value is kept as a <em>floating-point number</em>, which is expressed as the following formula.</p>
+<p>In Fortran and the majority of programming languages, any real number is treated as a rounded number with a finite number of digits. It is called <em>floating-point number</em>, which is expressed as the following formula.</p>
 <p><span class="math display">\[
 x\times 10^y
 \]</span></p>
-<p>The value <span class="math inline">\(x\)</span> is <em>significand</em> and <span class="math inline">\(y\)</span> is <em>exponent</em>. Usually, <span class="math inline">\(x\)</span> has a real value, and <span class="math inline">\(y\)</span> is an integer, and both have limited precision. By default, Fortran has 7 or 8 digits in <span class="math inline">\(x\)</span>, and up to 2 digits in <span class="math inline">\(y\)</span>, and this kind of number are called <em>single precision</em>. The higher precision is <em>double-precision</em>, which has 15 or 16 digits in <span class="math inline">\(x\)</span> and up to 3 digits in <span class="math inline">\(y\)</span>. You can see that this expression cannot present general numeric values, including irrational numbers.</p>
+<p>The value <span class="math inline">\(x\)</span> is <em>significand</em> and <span class="math inline">\(y\)</span> is <em>exponent</em>. Usually, <span class="math inline">\(x\)</span> has a real number, and <span class="math inline">\(y\)</span> is an integer, and both have limited precision. By default, Fortran has 7 or 8 digits in <span class="math inline">\(x\)</span>, and up to 2 digits in <span class="math inline">\(y\)</span>, and this kind of number are called <em>single precision</em>. The higher precision is <em>double-precision</em>, which has 15 or 16 digits in <span class="math inline">\(x\)</span> and up to 3 digits in <span class="math inline">\(y\)</span>. You can see that this expression cannot present general numeric values, including irrational numbers.</p>
 <h4 id="precision-specification-1">Precision specification</h4>
-<p>In the following table, <code>r</code> means an actual real value.</p>
+<p>In the following table, <code>r</code> means an actual real number.</p>
 <table>
 <colgroup>
 <col style="width: 20%" />
@@ -552,7 +563,7 @@ x\times 10^y
 <li>A double-precision literal is defined using <code>d</code> instead of <code>e</code>.</li>
 <li>The function <code>dble</code> is useful to convert any numbers to double precision.</li>
 <li>When single and double precisions are mixed, the result will be double precision.</li>
-<li>Integer values should be converted to double-precision when the double-precision values are involved in the computations.</li>
+<li>integer numbers should be converted to double-precision when the double-precision values are involved in the computations.</li>
 </ul>
 <p>See the following example to use double precision.</p>
 <pre data-language="Fortran"><code class="language-fortran">program double
@@ -569,7 +580,7 @@ end program double</code></pre>
 0.10000000000000001</code></pre>
 <p>You can still see a rounding error in the second output. The 4th and 5th output is an extreme example of a rounding error. These values are not precisely expressed with a floating-point formula because it is a recurring decimal in a binary expression which the current computer is using. The last digit is always rounded and creates noise in the value. When you use double-precision, the rounding error is much smaller, and the result may be less affected.</p>
 <h4 id="portable-ways-for-precision-specification-1">Portable ways for precision specification</h4>
-<p>As integer values, the definition of precision like <code>8</code> in <code>real(i,kind=8)</code> is not always true, although almost compilers accept <code>8</code> as double precision. There is a function to get the precision instead of using such constants.</p>
+<p>As integer numbers, the definition of precision like <code>8</code> in <code>real(i,kind=8)</code> is not always true, although almost compilers accept <code>8</code> as double precision. There is a function to get the precision instead of using such constants.</p>
 <table>
 <thead>
 <tr class="header">
@@ -584,8 +595,8 @@ end program double</code></pre>
 </tr>
 </tbody>
 </table>
-<p>It results in a precision-code to guarantee that the real value has at least <code>p</code> digits in significand and a decimal-exponent range of at least <code>r</code>. For example, typical double-precision value is defined as <code>selected_real_kind(15,307)</code>.</p>
-<p>More important keywords are also available in the module <code>iso_fortran_env</code> as the integer value.</p>
+<p>It results in a precision-code to guarantee that the real number has at least <code>p</code> digits in significand and a decimal-exponent range of at least <code>r</code>. For example, typical double-precision value is defined as <code>selected_real_kind(15,307)</code>.</p>
+<p>More important keywords are also available in the module <code>iso_fortran_env</code> as the integer number.</p>
 <table>
 <thead>
 <tr class="header">
@@ -596,7 +607,7 @@ end program double</code></pre>
 <tbody>
 <tr class="odd">
 <td><code>real32</code></td>
-<td>sibgle precision, 32 bit (4 bytes)</td>
+<td>single precision, 32 bit (4 bytes)</td>
 </tr>
 <tr class="even">
 <td><code>real64</code></td>
@@ -615,7 +626,7 @@ program double
 end program double</code></pre>
 <h4 id="summary-3">Summary</h4>
 <ul>
-<li>There are two typical types to express a real value as a floating-point number.</li>
+<li>There are two typical types to express a real number as a floating-point number.</li>
 <li>The default is single-precision, but the double-precision value is often used in numerical computing.</li>
 <li>There are several ways to define and convert the types.</li>
 </ul>

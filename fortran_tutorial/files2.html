@@ -271,7 +271,7 @@ $ cat out.bin
 <p>A binary file opened with <code>sccess="stream"</code> is compatible with the C language. In this tutorial, we do not explain this binary file. Please see textbooks for details.</p>
 <h2 id="internal-inputoutput">Internal input/output</h2>
 <p>There is a case where you want to convert a number written in text to an actual number. For example, you have a character literal “123” as text, and you may expect to convert it to integer 123. Conversely, you may want to convert the actual number (123) to characters (“123”). You can use <code>read</code> and <code>write</code> to do such tasks.</p>
-<p>The <code>read</code> statement converts a character literal to numerical values as if the characters were from a file. In the following example, the unit number in <code>read</code> is replaced with a character variable, and <code>read</code> converts the characters to a real value.</p>
+<p>The <code>read</code> statement converts a character literal to numerical values as if the characters were from a file. In the following example, the unit number in <code>read</code> is replaced with a character variable, and <code>read</code> converts the characters to a real number.</p>
 <pre data-language="Fortran"><code class="language-fortran">   character(len=10) :: str=&quot;3.14&quot;
    real :: p
 

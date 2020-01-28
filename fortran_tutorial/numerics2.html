@@ -96,7 +96,7 @@ Back to <a href="./index.html">index.html</a>.
 <li>Literal: encircled string by <code>'</code> or <code>"</code></li>
 </ul></li>
 </ul>
-<p>Most intrinsic functions accept a specific type. For example, <code>sin()</code> accepts a real value, not integer; <code>sin(1.0)</code> is okay but <code>sin(1)</code> fails.</p>
+<p>Most intrinsic functions accept a specific type. For example, <code>sin()</code> accepts a real number, not integer; <code>sin(1.0)</code> is okay but <code>sin(1)</code> fails.</p>
 <h3 id="variables">Variables</h3>
 <p>A variable can hold a typed value. Here is a general form of the declaration of variables, which should be placed at the top of a program unit. Also, to turn off the implicit variable typing, you should use <code>implicit none</code> once before the declarations.</p>
 <pre data-language="definition"><code class="language-fortran">implicit none
@@ -134,8 +134,8 @@ variable_type,attribute :: variable1, variable2, ...</code></pre>
 <ul>
 <li>Literals: literal expression + <code>_</code> + precision constant
 <ul>
-<li>For integer value: <code>128_int64</code></li>
-<li>For real value: <code>3.14_real64</code></li>
+<li>For integer number: <code>128_int64</code></li>
+<li>For real number: <code>3.14_real64</code></li>
 </ul></li>
 <li>Real literals: use <code>d</code> instead <code>e</code> in exponential expression
 <ul>
@@ -147,7 +147,7 @@ variable_type,attribute :: variable1, variable2, ...</code></pre>
 <li>Example: <code>real(real64) :: x</code></li>
 </ul></li>
 </ul>
-<p>When you mix different precisions in a formula, the result is aligned to the highest precision. For example, <code>1.0e0 + 1.0d0</code> results in a double precision value (<code>2.0d0</code>). Also, a formula with integer values and real values should produce a real number.</p>
+<p>When you mix different precisions in a formula, the result is aligned to the highest precision. For example, <code>1.0e0 + 1.0d0</code> results in a double precision value (<code>2.0d0</code>). Also, a formula with integer numbers and real numbers should produce a real number.</p>
 <h2 id="overflow-and-non-numbers">Overflow and non-numbers</h2>
 <p>We have seen that a computer can hold a number in a particular range. If a number is out of range by arithmetics, the value should be overflow. Also, if the program performs mathematically incorrect operations, the result would be unstable. We will see such a corner case here.</p>
 <h3 id="overflow">Overflow</h3>
@@ -163,7 +163,7 @@ end program num</code></pre>
 <pre data-language="output"><code>  2147483647
  -2147483648</code></pre>
 <p>It does not produce any errors. The largest number becomes the lower bound when 1 is added. It is called <em>overflow</em>, but you can not detect it by default. The overflow happens a negative value like using the integer variable <code>k</code>, <code>k=-2147483648; k=k-1</code>.</p>
-<p>The smallest negative integer is just next to the largest positive integer. The reason is due to a representation of integer value in Fortran (and any other languages). Please see the textbooks in computer science for details.</p>
+<p>The smallest negative integer is just next to the largest positive integer. The reason is due to a representation of integer number in Fortran (and any other languages). Please see the textbooks in computer science for details.</p>
 <h3 id="infinity">Infinity</h3>
 <p>With a floating-pint number, e.g., <code>real</code>, the overflow results in being a weird value. The above code is modified to have a <code>real</code> variable (adding another <code>huge</code> instead of adding 1).</p>
 <pre data-language="Fortran"><code class="language-fortran">program num
@@ -235,7 +235,7 @@ end program num</code></pre>
 <h2 id="floating-point-arithmetic">Floating-point arithmetic</h2>
 <h3 id="significant-digits">Significant digits</h3>
 <p>Consider measurements collected in the field: milk yield, body weight, and so on. Theoretically, these measurements have infinite digits, and the same values never come out. However, we usually limit the number of digits of measurement by rounding the last digit. Such a numerical value has inaccurate information, especially in the last digit. When a value has uncertainty caused by the rounding, the number of decimal digits of the value is called the <em>significant digits</em>.</p>
-<p>Similarly, in many programming languages, the real value is treated as a floating-point number. The last digit is likely rounded, and therefore, the one is not accurate. In such a case, the significant digits should be the apparent number of digits.</p>
+<p>Similarly, in many programming languages, the real number is treated as a floating-point number. The last digit is likely rounded, and therefore, the one is not accurate. In such a case, the significant digits should be the apparent number of digits.</p>
 <p>The significant digits can be counted with the significand of the exponential expression. For example, the value 12.34 is expressed as <span class="math inline">\(1.234\times 10^{3}\)</span> so, the significant digit is 4 implying the 5th digit has been rounded. Similarly, the value 0.01234 has 4 significant digits because it is <span class="math inline">\(1.234\times 10^{-2}\)</span>.</p>
 <p>The significant digits may decrease but never increase in numerical computations. Consider the subtraction of two floating-point values: <span class="math inline">\(1.234-1.233\)</span>. The result is <span class="math inline">\(0.001\)</span>, and the significant digit is 1. The significant digits of computation are limited, with the smallest significant digits of the original values. This is true for any computations with numerical values with significant digits.</p>
 <h4 id="recurring-decimal-in-the-binary-numeral-system">Recurring decimal in the binary numeral system</h4>
@@ -250,7 +250,7 @@ end program num</code></pre>
 <h3 id="error">Error</h3>
 <p>Computations using floating-point numbers may produce non-intuitive results i.e., erroneous values. It is mainly caused by a finite expression of real numbers. The error is categorized into several groups.</p>
 <h4 id="rounding-error">Rounding error</h4>
-<p><em>Rounding error</em> (or round-off error) occurs when a number with high precision (more decimal digits) is rounded to a number with low precision (fewer digits). Typically, it happens when you mix single and double precision numbers in a formula and round the result into single-precision or integer value. It is also caused when a formula has a high-precision literal, but it is defined as lower precision.</p>
+<p><em>Rounding error</em> (or round-off error) occurs when a number with high precision (more decimal digits) is rounded to a number with low precision (fewer digits). Typically, it happens when you mix single and double precision numbers in a formula and round the result into single-precision or integer number. It is also caused when a formula has a high-precision literal, but it is defined as lower precision.</p>
 <pre data-language="Fortran"><code class="language-fortran">program error
    print *,3.14159265359         ! treated as single precision
    print *,3.14159265359*2       ! same as above

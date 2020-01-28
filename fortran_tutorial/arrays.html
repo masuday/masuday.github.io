@@ -78,13 +78,13 @@ end program arr</code></pre>
 <p>You can see the essential feature of an array in this example.</p>
 <ul>
 <li>The declaration of an array is the same as a single variable except with the size of the array in <code>()</code>.</li>
-<li>You can access each element by a subscript (i.e., index). The subscript is an integer value, starting from 1, and it is enclosed with <code>()</code>.</li>
+<li>You can access each element by a subscript (i.e., index). The subscript is an integer number, starting from 1, and it is enclosed with <code>()</code>.</li>
 <li>Each element can be treated as a single variable.</li>
 <li>The array elements are operated collectively in <code>print</code>.</li>
 </ul>
 <p>The subscript <code>3</code> in the above example means the number of elements <em>and</em> the last subscript (index) because the subscript starts from 1. You may feel uncomfortable of this system if you like C or Python which has the 0-origin subscript. Fortran is a language of 1-origin subscript, and it is useful to describe mathematical algorithms.</p>
 <p>When an array is declared, its elements are not defined. So, we do not expect that a just-declared array has particular numbers. It is the same as a variable, and the programmer is responsible for assigning some values to the array before using it.</p>
-<p>Contrary to R or Python, in Fortran, the array holds only a particular type of data declared in the program. In the above example, <code>integer::vec(3)</code> can contain only integer values. With this limitation, Fortran can efficiently manipulate the arrays.</p>
+<p>Contrary to R or Python, in Fortran, the array holds only a particular type of data declared in the program. In the above example, <code>integer::vec(3)</code> can contain only integer numbers. With this limitation, Fortran can efficiently manipulate the arrays.</p>
 <p>It is still possible to develop a system in Fortran to hold the various data types in a single array in Fortran (like <code>data.frame</code> in R) if you develop it from scratch (or look for existing programs to do this). Or, you just avoid to deal with such a flexible array at a time, look for a workaround to use simple arrays. For example, you can replace all the characters with sequential integer code, and all the information is represented as numbers.</p>
 <h4 id="another-way-of-declaration">Another way of declaration</h4>
 <p>There is another way to declare an array: the <code>dimension</code> attribute. The following piece of program is equivalent to <code>integer::vec(3)</code>.</p>
@@ -94,7 +94,7 @@ end program arr</code></pre>
 end program arr</code></pre>
 <p>In my personal opinion, it is not intuitive to have a 3-element array than <code>vec(3)</code>. I will not use <code>dimension</code> in the following sections.</p>
 <h4 id="arbitrary-subscript">Arbitrary subscript</h4>
-<p>You can use any range of subscript in the array. The range should be declared as <code>(stard index:end index)</code> in the declaration statement. You can not use real values a subscript in the array. For example, the following program supports the range <span class="math inline">\(-1\)</span> to <span class="math inline">\(2\)</span> for the array.</p>
+<p>You can use any range of subscript in the array. The range should be declared as <code>(stard index:end index)</code> in the declaration statement. You can not use real numbers a subscript in the array. For example, the following program supports the range <span class="math inline">\(-1\)</span> to <span class="math inline">\(2\)</span> for the array.</p>
 <pre data-language="Fortran"><code class="language-fortran">program arr
    implicit none
    integer :: vec(-1:2)
@@ -363,7 +363,7 @@ end program arr</code></pre>
 \]</span> The usage of 2-dimensional array is similar to a vector except for subscripts (indices). The matrix has 2 indices in <code>()</code> separated by a comma. The first index is for ow, the second is for column same as the mathematical notation like <span class="math inline">\(A_{ij}\)</span> where <span class="math inline">\(i\)</span> is for row and <span class="math inline">\(j\)</span> is for a column.</p>
 <ul>
 <li>The declaration of the array is the same as a single variable with the size of the array in <code>()</code> as <code>(row, column)</code>.</li>
-<li>You can access each element by a subscript (i.e., index). The subscript is an integer value, starting from 1, and it is enclosed with <code>()</code>.</li>
+<li>You can access each element by a subscript (i.e., index). The subscript is an integer number, starting from 1, and it is enclosed with <code>()</code>.</li>
 <li>Each element can be treated as a single variable.</li>
 <li>The array elements are operated collectively in <code>print</code>.</li>
 </ul>

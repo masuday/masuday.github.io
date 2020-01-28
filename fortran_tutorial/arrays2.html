@@ -279,7 +279,7 @@ a = [1,2,3,4,5]
 ! ERROR: mixed types
 a = [1, 2, 3, 4.0, 5.0]
 
-! ERROR: a is real but 6,7 are integer values
+! ERROR: a is real but 6,7 are integer numbers
 a = [a, 6, 7]</code></pre>
 <p>Reallocation works only when the size of reallocated array is known. For example, in the above case, <code>a=[a, 6.0, 7.0]</code> works because it is evident that the resulting size is 7. If you directly specify the index, which is out of range, it will be failing without any errors. It does not work because referring to a nonexistent index does not mean to resize the array.</p>
 <pre data-language="Fortran"><code class="language-fortran">allocate(a(5))

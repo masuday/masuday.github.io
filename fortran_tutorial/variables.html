@@ -209,13 +209,13 @@ end program  var</code></pre>
    read *,i
    print *,i
 end program  var</code></pre>
-<p>When running the program, it looks like freezing, but the program is just waiting for your key-in. You can type an integer value and hit the Enter key. The <code>read</code> statement reads the input and converts it to the integer value. The last <code>print</code> statement simply prints the value.</p>
+<p>When running the program, it looks like freezing, but the program is just waiting for your key-in. You can type an integer number and hit the Enter key. The <code>read</code> statement reads the input and converts it to the integer number. The last <code>print</code> statement simply prints the value.</p>
 <p>The input should be a valid literal in Fortran. For example, <code>123</code> is valid for an integer variable, and <code>3.14</code> and <code>6.02e23</code> are both valid as real. For a logical variable, <code>T</code> (or <code>t</code>) and <code>F</code> (and <code>f</code>) are valid. For a character variable, any non-space characters should be acceptable. The input may be rounded or truncated so that the variable can handle it. If the input is invalid, the program stops with an error.</p>
 <p>It is always good to print a message before the <code>read</code> statement so that a user understands how to do it.</p>
 <pre data-language="Fortran"><code class="language-fortran">program var
    implicit none
    integer :: i
-   print *,&#39;Input an integer value:&#39;
+   print *,&#39;Input an integer number:&#39;
    read *,i
    print *,i
 end program  var</code></pre>
@@ -266,7 +266,7 @@ end program  var</code></pre>
 </ul>
 <h4 id="exercises">Exercises</h4>
 <ol type="1">
-<li>Read two real values from the keyboards and display their addition, subtraction, product, and division. See the behavior when multiple variables are specified in <code>read</code>.</li>
+<li>Read two real numbers from the keyboards and display their addition, subtraction, product, and division. See the behavior when multiple variables are specified in <code>read</code>.</li>
 <li>Create a program to read a value in Fahrenheit from the keyboard, convert it to Centigrade, and print the result.</li>
 <li>Define two integer variables with some initial values, swap the values, and print the values.</li>
 <li>Print a variable before assigning a value to it.</li>
