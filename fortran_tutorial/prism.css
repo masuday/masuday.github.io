@@ -139,3 +139,18 @@ pre[class*="language-"] {
 	cursor: help;
 }
 
+/* special case */
+pre[data-language=definition]{
+   background: #fffefc;
+   border-style: solid;
+   border-width: thin;
+   font-size: 100%;
+   /* font-style: italic; */
+}
+pre[data-language=definition] .token.keyword {
+   font-weight: bold;
+   font-style: normal;
+}
+pre[data-language=definition] .token.number {
+   color: black;
+}
