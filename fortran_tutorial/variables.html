@@ -52,6 +52,7 @@
 <li><a href="#variables">Variables</a>
 <ul>
 <li><a href="#variable-basics">Variable Basics</a></li>
+<li><a href="#some-details-of-variables">Some details of variables</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -60,7 +61,7 @@ Back to <a href="./index.html">index.html</a>.
 </p>
 <h1 id="variables">Variables</h1>
 <h2 id="variable-basics">Variable Basics</h2>
-<p>A <em>variable</em> is storage, which holds value on memory. Once you put a value to the variable, the program holds it until the program unit ends. In Fortran, a variable has a couple of limitations compared with other casual languages.</p>
+<p>A <em>variable</em> is storage, which holds value in memory. Once you put a value to the variable, the program holds it until the program unit ends. You can update (rewrite) the variable with a new value. In Fortran, a variable has a couple of limitations compared with other casual languages.</p>
 <ul>
 <li>A variable should be declared before using it at the top of the program.</li>
 <li>A variable holds only a particular data-type.</li>
@@ -79,7 +80,7 @@ end program var</code></pre>
 <pre data-language="output"><code>          30</code></pre>
 <p>The program <em>declares</em> two integer variable <code>a</code> and <code>b</code>, assigns values to the variables, and print the sum of the values. We can learn a lesson from this small example.</p>
 <ul>
-<li>A variable has a type as the Fortran literals.</li>
+<li>A variable has a type.</li>
 <li>The variables should be declared at the beginning of a program unit.</li>
 <li>The statement <code>implicit none</code> tells the compiler that all variables will be declared.</li>
 <li>You can define multiple variables separated with <code>,</code> in the same declaration.</li>
@@ -98,7 +99,7 @@ end program var</code></pre>
 end program var</code></pre>
 <pre data-language="output"><code>         30
          45</code></pre>
-<p>Note that, when an array is declared, its value is undefined. Any variables are not automatically initialized with a particular value. It is a responsibility that the programmer assigns a value to the variable before using it.</p>
+<p>Note that, when a variable is declared, its value is undefined. Any variables are not automatically initialized with a particular value. It is your responsibility to assigns a value to the variable before using it.</p>
 <h4 id="declaration">Declaration</h4>
 <p>The general form of a variable declaration is as follows.</p>
 <pre data-language="definition"><code class="language-fortran">implicit none
@@ -122,7 +123,7 @@ variable_type :: variable1, variable2, ...</code></pre>
 </tr>
 <tr class="odd">
 <td><code>real(8)</code></td>
-<td>real, double precision</td>
+<td>real, double precision (see below)</td>
 </tr>
 <tr class="even">
 <td><code>double precision</code></td>
@@ -179,7 +180,7 @@ end program  var</code></pre>
    print *,a,b,c,d,e
 end program  var</code></pre>
 <pre data-language="output"><code>   3.14000010           12345 T xblup</code></pre>
-<p>There is a typical style to update a numerical variable. See the following code and predict what it is doing.</p>
+<p>There is a typical form to update a numerical variable. See the following code and predict what it is doing.</p>
 <pre data-language="Fortran"><code class="language-fortran">program var
    implicit none
    integer :: i
@@ -219,7 +220,7 @@ end program  var</code></pre>
    read *,i
    print *,i
 end program  var</code></pre>
-<p>The usage of <code>read</code> is the same as <code>print</code>; you can list the variables in the statement. The symbol <code>*</code> means that you do not assume any specific format of the input characters. If the input is invalid or nonsense, the program stops some error messages.</p>
+<p>The form of <code>read</code> is similar to <code>print</code>; you can list the variables in the statement. The symbol <code>*</code> means that you do not assume any specific format of the input characters (leaving to the computer). If the input is invalid or nonsense, the program stops with some error messages.</p>
 <p>When the <code>read</code> statement has multiple variables, the program keeps reading until all the variables have the values. The multiple values are separated with white spaces or the Enter key. Confirm the behavior by yourself (see the exercises).</p>
 <p>As <code>print</code> and <code>write</code>, there is another style of the <code>read</code> statement.</p>
 <pre data-language="Fortran"><code class="language-fortran">read(*,*) i</code></pre>
@@ -236,7 +237,7 @@ end program  var</code></pre>
 end program  var</code></pre>
 <pre data-language="output"><code> John Smith  &amp;Chris McDona</code></pre>
 <p>The character variable must have a pre-defined length of characters. The program defines two character variables, and each should have only 12 characters. If the input is shorter than the defined length (10 for “John Smith”), the variable will be padded with spaces, i.e. <code>"John Smith  "</code> If the input characters are longer than the size of the variable, the input is truncated to meet the length of variable i.e., “Chris McDona”.</p>
-<p>You can access a section of characters. The following example extracts from 3th to 7th characters from a variable.</p>
+<p>You can access a portion of the characters. The following example extracts from 3th to 7th characters from a variable.</p>
 <pre data-language="Fortran"><code class="language-fortran">program var
    implicit none
    character(len=12) :: name1
@@ -244,7 +245,7 @@ end program  var</code></pre>
    print *,name1(3:7)
 end program  var</code></pre>
 <pre data-language="output"><code> hn Sm</code></pre>
-<p>When you extract particular characters, you have to specify the range as <code>(start index:end index)</code> just next to the variable name. When specifying only 1 character, you still specify two indices like <code>(3:3)</code> for the 3rd character. Using the same technique, you can replace a portion of the characters.</p>
+<p>When you extract particular characters, you have to specify the range as <code>(start index:end index)</code> just next to the variable name. When specifying only 1 character, you still specify two indices like <code>(3:3)</code> for the 3rd character. If you write a single index like <code>(3)</code>, the compiler stops with an error. Using this technique, you can replace a portion of the characters.</p>
 <pre data-language="Fortran"><code class="language-fortran">program var
    implicit none
    character(len=12) :: name1
@@ -271,9 +272,9 @@ end program  var</code></pre>
 <li>Define two integer variables with some initial values, swap the values, and print the values.</li>
 <li>Print a variable before assigning a value to it.</li>
 </ol>
-<h3 id="more-on-variables">More on variables</h3>
-<h4 id="dangerous-feature-using-variables-without-a-declaration">Dangerous feature: using variables without a declaration</h4>
-<p>Technically, you can use the variables with no declaration and no <code>implicit none</code>. However, this creates a massive problem in your program. See the following example with three variables.</p>
+<h2 id="some-details-of-variables">Some details of variables</h2>
+<h3 id="dangerous-feature-using-variables-without-a-declaration">Dangerous feature: using variables without a declaration</h3>
+<p>Technically, you can use the variables without the declaration and <code>implicit none</code>. However, this creates a massive problem in your program. See the following example with three variables.</p>
 <pre data-language="Fortran"><code class="language-fortran">program var
    john = 1
    kathy = 2
@@ -281,7 +282,7 @@ end program  var</code></pre>
    print *,john,kathy,george
 end program  var</code></pre>
 <pre data-language="output"><code>           1           2   3.00000000</code></pre>
-<p>The variables <code>john</code> and <code>kathy</code> look like integer, but <code>george</code> is a real variable. So, why? It is tough to explain this behavior without knowing details.</p>
+<p>The program compiles without any errors, and it works. The variables <code>john</code> and <code>kathy</code> look like integer, but <code>george</code> is a real variable. So, why? It is tough to explain this behavior without knowing details.</p>
 <p>Without the declaration of variables, the type of variable is defined based on its name. If the variable name starts with one of <code>i</code>, <code>j</code>, <code>k</code>, <code>l</code>, <code>m</code>, and <code>n</code>, it becomes an integer variable, and otherwise, it becomes a real variable. The variables with the other types (logical and character) are not automatically defined. This feature is one of the negative legacies in FORTRAN 77, which supported the ancient standard established when the variable declaration was not considered crucial. <strong>This feature is extremely confusing, and you must not use it.</strong></p>
 <p>The compiler can detect undeclared variables by adding <code>implicit none</code> just before the variable declaration. With this statement, the compiler should stop if it finds the undeclared variables. I strongly recommend that you always use this statement.</p>
 <pre data-language="Fortran"><code class="language-fortran">! This program can not compile because of any declarations.
@@ -292,7 +293,7 @@ program var
    george = 3
    print *,john,kathy,george
 end program var</code></pre>
-<h4 id="uninitialized-variables">Uninitialized variables</h4>
+<h3 id="uninitialized-variables">Uninitialized variables</h3>
 <p>A variable has no initial value by default. Precisely, it surely has a value when it is created at the declaration statement, but this value is arbitrary. You must not assume the variable automatically has an initial value (like <code>0</code>). You must assign the initial value to the variable.</p>
 <pre data-language="Fortran"><code class="language-fortran">program var
    implicit none
@@ -304,7 +305,7 @@ end program var</code></pre>
 <pre data-language="output"><code> -1475355915
           10</code></pre>
 <p>The first output is from the uninitialized variable, and it is nonsense. This value is unstable; it may change every time you run the program. A friendly compiler has an option to detect uninitialized variables.</p>
-<h4 id="not-a-number-and-infinity">Not-a-number and infinity</h4>
+<h3 id="not-a-number-and-infinity">Not-a-number and infinity</h3>
 <p>The compiler may not detect an invalid value in a particular computation, such as <span class="math inline">\(0/0\)</span>. See the following examples.</p>
 <pre data-language="Fortran"><code class="language-fortran">program var
    implicit none
@@ -327,7 +328,7 @@ end program var</code></pre>
    print *,a/a+b
    print *,1/a+b
 end program var</code></pre>
-<h4 id="variable-initialization">Variable initialization</h4>
+<h3 id="variable-initialization">Variable initialization</h3>
 <p>You can assign a value to the variable in the declaration statement.</p>
 <pre data-language="Fortran"><code class="language-fortran">program var
    implicit none
@@ -336,7 +337,7 @@ end program var</code></pre>
    print *,a/a+b
    print *,1/a+b
 end program var</code></pre>
-<h4 id="constants-parameters">Constants (parameters)</h4>
+<h3 id="constants-parameters">Constants (parameters)</h3>
 <p>You can create a constant (called <em>parameter</em> in Fortran) in the same manner as a variable. The constant is the same as the variable except that it is never updated or rewritten. It is useful when you need a mathematical constant or a setting commonly referred to by the program. To make the variable constant, use the <code>parameter</code> <em>attribute</em> to the declaration.</p>
 <pre data-language="Fortran"><code class="language-fortran">! dp and pi will be altered.
 program var
@@ -346,7 +347,7 @@ program var
    print *,2*pi
 end program var</code></pre>
 <p>In this example, the precision of the real variable (<code>dp</code>) is defined as a constant. In this way, you can save key-typing in your program.</p>
-<h4 id="exercises-1">Exercises</h4>
+<h3 id="exercises-1">Exercises</h3>
 <p>No exercises are available in this section.</p>
 <p>
 Back to <a href="./index.html">index.html</a>.

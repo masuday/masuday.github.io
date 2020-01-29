@@ -62,7 +62,7 @@ Back to <a href="./index.html">index.html</a>.
 <h1 id="flow-control">Flow control</h1>
 <p>As previously noted, a Fortran program <em>sequentially</em> executes the code from the beginning through the end. By default, the program does not skip any single statement and does not go back to the previous statements. We are going to see some control statements which change the flow or repeat the same statements many times.</p>
 <h2 id="conditional">Conditional</h2>
-<h3 id="if-statement">If statement</h3>
+<h3 id="the-if-statement">The if statement</h3>
 <h4 id="simple-example">Simple example</h4>
 <p>You often want to change the flow by the condition. A typical example is to test the input value; you can print an error message if the values are invalid. To make branches by condition, Fortran provides the <code>if</code> statement, as seen in the following example.</p>
 <pre data-language="Fortran"><code class="language-fortran">program cond
@@ -76,7 +76,7 @@ Back to <a href="./index.html">index.html</a>.
       print *,&#39;square root=&#39;,sqrt(x)
    end if
 end program cond</code></pre>
-<p>Note that the <code>if</code> statement has an indent to make the structure clearer. The <code>stop</code> keyword stops the program immediately. You can see how to use the <code>if</code> statement with this example.</p>
+<p>Note that I put an indent to the <code>if</code> statement to make the structure clearer (and it is a good practice). The <code>stop</code> keyword stops the program immediately. You can see how to use the <code>if</code> statement with this example.</p>
 <ul>
 <li>The <code>if</code> statement starts with <code>if (condition) then</code> and ends with <code>end if</code>. The condition is a logical expression which returns <code>.true.</code> or <code>.false.</code>.</li>
 <li>The <code>if</code> statement has 2 blocks: the first one between <code>if</code> and <code>else</code>, and the second one between <code>else</code> and <code>end if</code>. Each block is exclusively executed by the condition in the <code>if</code> statement.</li>
@@ -195,7 +195,7 @@ end program cond</code></pre>
 <li>Read 1 integer (<code>code</code>) and 1 real numbers (<code>v</code>) from the keyboard. If the code is <code>1</code>, compute the square root of <code>v</code>. If the code is <code>2</code>, compute the sine of <code>v</code>. If the code is the other values, print an error message and stop the program.</li>
 <li>Read an integer and show if it is an even or odd number.</li>
 </ul>
-<h3 id="select-statement">Select statement</h3>
+<h3 id="the-select-statement">The select statement</h3>
 <h4 id="simple-example-1">Simple example</h4>
 <p>There is a convenient statement (<code>select</code>) to make branches conditioned by a single value. The <code>select</code> statement is useful to compare between a scalar with a literal (or, a range of literals). Here is a piece of code that shows a typical case where <code>select</code> works well.</p>
 <pre data-language="Fortran"><code class="language-fortran">   integer :: x
@@ -218,7 +218,7 @@ end program cond</code></pre>
    end select</code></pre>
 <p>The <code>select</code> statement has the following structure.</p>
 <ul>
-<li>The statement starts with <code>select case(x)</code> and <code>end select</code> where <code>x</code> is a single variable or a literal (i.e., scholar).</li>
+<li>The statement starts with <code>select case(x)</code> and <code>end select</code> where <code>x</code> is a single variable or a literal (i.e., scalar).</li>
 <li>The statement has 1 or more <code>case(y)</code> where <code>y</code> is a literal, a range, or a list of them. <code>y</code> should <em>not</em> be a variable. For example, <code>case(1)</code>, <code>case(1,2,5)</code>, <code>case(2:3)</code>, <code>case(2:3,5)</code> are all valid.</li>
 <li>The program starts comparing <code>x</code> with <code>y</code> from the first <code>case</code> block to the last. If <code>x</code> equals to <code>y</code>, the program performs this block, and exit the entire <code>select</code> statement without moving toward the next block.</li>
 <li>If <code>x</code> does not match any <code>y</code>, the program executes the optional <code>case default</code> block. If you omit this block, the program does not do anything.</li>
@@ -232,13 +232,13 @@ case(literal list 2)
 ...
 case default
    {the other block}
-end if</code></pre>
+end select</code></pre>
 <h4 id="exercises-1">Exercises</h4>
 <ol type="1">
 <li>Confirm that the <code>select</code> statement can accept characters. Declare a character variable (say, <code>character(len=10)::s</code>), and make the branches by the variable (<code>select case(s)</code> or <code>select case(s(1:2))</code>).</li>
 </ol>
 <h2 id="iteration">Iteration</h2>
-<h3 id="do-statement">Do statement</h3>
+<h3 id="the-do-statement">The do statement</h3>
 <h4 id="small-example">Small example</h4>
 <p>There is a case where you have to repeat the same operation many times. Or, you need to repeat slightly different but almost the same operation by round. The simplest way is to write all the repeated operations as a flat program, but it should be in trouble in its readability and redundancy. Fortran provides a systematic way to repeat the same (or similar) operation with the <code>do</code> statement.</p>
 <p>For example, consider printing <code>Hello, world!</code> 3 times. It can be written in Fortran as follows.</p>
@@ -252,7 +252,7 @@ end program loop</code></pre>
 <pre data-language="output"><code> Hello, world!
  Hello, world!
  Hello, world!</code></pre>
-<p>It may need some explanation.</p>
+<p>You may need some explanation.</p>
 <ul>
 <li>The operations (block) that you want to repeat are placed between <code>do</code> and <code>end do</code>.</li>
 <li>The <code>do</code> keyword accompanies with an integer variable, here, <code>i</code>.</li>
@@ -273,10 +273,9 @@ end program loop</code></pre>
 </ul>
 <p>The key to understanding the <code>do</code> loop is as follows.</p>
 <ol type="1">
-<li>The <code>do</code> statement needs an integer variable <code>i</code> as a counter.</li>
+<li>The <code>do</code> statement needs an integer variable (any name; <code>i</code> in this case) as a counter.</li>
 <li>The <code>do</code> statement has the following form: <code>do variable = starting value, final value.</code></li>
 <li>Before the loop, the variable is initialized to the staring value.</li>
-<li>The program moves the focus between <code>do</code> and <code>end do</code>.</li>
 <li>Whenever the program reaches <code>do</code>, the variable is compared to the final value. If the variable is smaller than or equals to the final value, the focus moves to the next line; Otherwise, the program exits the current loop.</li>
 <li>Whenever the program reaches <code>end do</code>, the focus goes back to the corresponding <code>do</code>, then the variable is incremented by 1 (and going back to Step 5).</li>
 </ol>
@@ -284,8 +283,8 @@ end program loop</code></pre>
 <pre data-language="definition"><code class="language-fortran">do counter_variable = initial_value, last_value
    {block}
 end do</code></pre>
-<p>In this usage, <code>do</code> needs a counter variable. This behavior is like a baby counts up numbers by hand. The counter variable is checked only at the beginning of loops, and it is incremented when going back from <code>end do</code> to <code>do</code>.</p>
-<p>By the way, this program works when <code>i=1,3</code> is replaced with <code>i=0,2</code> or even <code>i=-5,-3</code> (please consider why). Non-1 starting value looks unusual but may be useful in future use.</p>
+<p>In this usage, <code>do</code> needs a counter variable. This behavior is like to count up numbers by hand. The counter variable is checked only at the beginning of loops, and it is incremented when going back from <code>end do</code> to <code>do</code>.</p>
+<p>By the way, this program also works when <code>i=1,3</code> is replaced with <code>i=0,2</code> or even <code>i=-5,-3</code> (please consider why). Non-1 starting value looks unusual but can be useful in future use.</p>
 <h4 id="use-of-the-counter-variable">Use of the counter variable</h4>
 <p>The counter is an integer variable, so the program refers to the value of this variable in each iteration (but can not rewrite the variable because the statement protects it). In the above case (<code>i=1:3</code>), the counter <code>i</code> is 1 in the 1st iteration, 2 in the 2nd, and 3 in the last iteration. After the loop, <code>i</code> becomes 4.</p>
 <p>The previous example can be slightly changed to show the current iteration number.</p>
@@ -299,7 +298,7 @@ end program loop</code></pre>
 <pre data-language="output"><code> iteration         1: Hello, world!
  iteration         2: Hello, world!
  iteration         3: Hello, world!</code></pre>
-<p>This variable can also be used in a formula. The following example computes the multiple of 3.</p>
+<p>This variable can also be used in a numerical formula. The following example computes the multiple of 3.</p>
 <pre data-language="Fortran"><code class="language-fortran">program loop
    implicit none
    integer :: i
@@ -327,8 +326,8 @@ end program loop</code></pre>
    end do
    print *,n,&quot;! = &quot;,fact
 end program loop</code></pre>
-<pre data-language="output"><code># when putting 5:
-           5 ! =          120</code></pre>
+<pre data-language="output"><code> # when putting 5:
+            5 ! =          120</code></pre>
 <p>Note that the variable <code>fact</code> for storing the result must be initialized by 1 before the loop. This program does not work if you put a large number (it overflows). The variable is changed to double precision to fix this issue (see exercises).</p>
 <p>The counter variable should be an integer. If you need a real number that incrementally changes, you have to calculate the value from the counter. The following program calculates the square root of a real number ranged from 0 to 1 by 0.1.</p>
 <pre data-language="Fortran"><code class="language-fortran">program loop
@@ -402,7 +401,36 @@ end program loop</code></pre>
 <pre data-language="definition"><code class="language-fortran">do
    {block with exit}
 end do</code></pre>
-<p>Again, this unconditional <code>do</code> statement creates the infinite loops, and the program may never stop. The compiler can not detect the infinite loops as a failure. If you run into this issue, hit the Control key (Ctrl) and the C key simultaneously (hit C while pushing Ctrl).</p>
+<p>Again, this unconditional <code>do</code> statement creates the infinite loops, and the program may never stop unless the program reaches <code>exit</code>. The compiler can not detect the infinite loops as a failure. If you run into this issue, hit the Control key (Ctrl) and the C key simultaneously (hit C while pushing Ctrl).</p>
+<h4 id="writing-a-loop">Writing a loop</h4>
+<p>The loop in a programming language has a unique syntax that is not necessarily clear to the beginners. If you know that you have to write a loop but do not know how to write it, please consider the following method.</p>
+<p>First, you can think of the result of the loops. For example, you want to get the following output on the screen.</p>
+<pre data-language="output"><code>number =          3
+number =          4
+number =          5</code></pre>
+<p>Then, you look for a common thing across iterations.</p>
+<ul>
+<li>Each output should be from the <code>print</code> statement, and you can find the common message in the output, <code>number =</code>.</li>
+<li>The common statement over the loops is <code>print *,"number ="</code>.</li>
+<li>You can put a variable to stuff that changes by iteration: <code>print *,"number = ",x</code>.</li>
+</ul>
+<p>Finally, you enclose the common code by the <code>do</code> statement.</p>
+<pre data-language="Fortran"><code class="language-fortran">do
+   print *,&quot;number = &quot;,x`
+end do</code></pre>
+<p>If the variable systematically changes by iteration, it can be a counter variable. In this case, <code>x</code> ranges from 3 to 5, and here is the code.</p>
+<pre data-language="Fortran"><code class="language-fortran">do x=3,5
+   print *,&quot;number = &quot;,x`
+end do</code></pre>
+<p>Or, you may think of the following code.</p>
+<pre data-language="Fortran"><code class="language-fortran">x = 3
+do
+   print *,&quot;number = &quot;,x`
+   x = x + 1
+   if(x&gt;=6) exit
+end do</code></pre>
+<p>The first loop is more transparent for any people than the latter, while the latter code is very straightforward (but it may look more complicated for some people). Although the first code is preferred, we would need a loop like the other code.</p>
+<p>There are many cases to generate a sequence in Fortran. The <code>do</code> statement is a typical mechanism to generate the sequence, and it is a solution for the purpose.</p>
 <h4 id="summary-1">Summary</h4>
 <ul>
 <li>The <code>do</code> statement defines a loop. The statements between <code>do</code> and the corresponding <code>end do</code> are repeated.</li>

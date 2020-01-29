@@ -141,6 +141,16 @@ gfortran mymod.o main.o</code></pre>
 <li>Gfortran: <code>-fbacktrace</code> (may not be needed in the recent version)</li>
 <li>Intel Fortran: <code>-backtrace</code></li>
 </ul>
+<h3 id="adding-implicit-none">Adding “implicit none”</h3>
+<p>There is an option to force apply <code>implicit none</code> to the source code. When you forget to write <code>implicit none</code> and you accidentally use some variables with no declaration, this option gives you a warning. You must write <code>implicit none</code> in your code.</p>
+<ul>
+<li>Gfortran: <code>-fimplicit-none</code></li>
+<li>Intel Fortran: <code>-implicitnone</code></li>
+</ul>
+<p>Intel Fortran has an option to give you a warning if there is no <code>implicit none</code>. It is covered by <code>-warn all</code>.</p>
+<ul>
+<li>Intel Fortran: <code>-warn declarations</code></li>
+</ul>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>

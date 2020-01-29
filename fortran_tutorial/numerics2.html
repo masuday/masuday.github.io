@@ -65,10 +65,7 @@ Back to <a href="./index.html">index.html</a>.
 <h2 id="basic-usage">Basic usage</h2>
 <h3 id="types">Types</h3>
 <p>Fortran is a language that has data types; the program must declare what kind of variables and data stay in the program. In R (and Python), there are the types, but it is hidden; the user should clarify the types in some cases. In many scripting languages, like Perl and awk, the user may not be aware there is a type. So, why does Fortran have the types?</p>
-<p>The merit of data types is high performance. With the data types, the compiler can know which data is conformable in computations and comparisons. If two data types are not conformable, the compilation may fail, or the compiler converts a data type to the other. Because the type of conversion is a significant penalty in computing time and memory usage, the program slows down. The programmers can write the code to avoid the data conversion because they know the types.</p>
-<h3 id="bit-and-byte">Bit and byte</h3>
-<p>Whereas people use the decimal system, a computer uses the binary system. There are 10 (from 0 to 9) decimal digits in the decimal system, and there are only two (0 or 1) in the binary system. So, in the binary system, <span class="math inline">\(1+1=10\)</span> with a carry. The <em>bit</em> is a unit having one of the two values.</p>
-<p>Most of the computers that we are using define 8 bits as the smallest unit in operation. The <em>byte</em> is a unit with 8 bits. 1-byte data can represent at least <span class="math inline">\(2^8=256\)</span> different values. The default integer literal in Fortran uses 4 bytes (32 bits) as a unit.</p>
+<p>The merit of data types is high performance. With the data types, the compiler can know which data is conformable in computations and comparisons. If two data types are not conformable, the compilation may fail, or the compiler converts a data type to the other. Because the type conversion is a significant penalty in computing time and memory usage, the program slows down. The programmers can write the code to avoid the data conversion because they know the types.</p>
 <h3 id="literals">Literals</h3>
 <p>There are two types of numeric values in Fortran: integer and real. Additionally, you can use two types of data: logical and characters.</p>
 <ul>
@@ -137,9 +134,9 @@ variable_type,attribute :: variable1, variable2, ...</code></pre>
 <li>For integer number: <code>128_int64</code></li>
 <li>For real number: <code>3.14_real64</code></li>
 </ul></li>
-<li>Real literals: use <code>d</code> instead <code>e</code> in exponential expression
+<li>Real literals: use <code>d</code> instead <code>e</code> in exponential expression for double precision
 <ul>
-<li>Example: <code>3.14d0</code></li>
+<li>Example: <code>3.14e0</code> for single precision and <code>3.14d0</code> for double precision</li>
 </ul></li>
 <li>Variables: precision code enclosed by <code>()</code> in the declaration
 <ul>
@@ -188,6 +185,16 @@ end program num</code></pre>
 end program num</code></pre>
 <pre data-language="output"><code>         Infinity        -Infinity</code></pre>
 <p>Once you have had <code>Infinity</code> or <code>-Infinity</code>, you can use it in the formula, but the value may propagate to the result. I leave it to an exercise for readers.</p>
+<p>There is a intrinsic function to test whether a number has the infinity or not. It is <code>ieee_is_finite()</code> defined in an intrinsic module, <code>ieee_arithmetic</code>. If the value is finite, it returns <code>.true.</code>; otherwise (i.e., infiity), <code>.false.</code>.</p>
+<pre data-language="Fortran"><code class="language-fortran">program num
+   use ieee_arithmetic
+   implicit none
+   real :: x,y
+   x = ieee_value(x, ieee_positive_inf)
+   y = 1.0
+   print *,ieee_is_finite(x),ieee_is_finite(y)
+end program num</code></pre>
+<pre data-language="output"><code> T F</code></pre>
 <h3 id="nan-not-a-number">NaN: Not-a-number</h3>
 <p>There is another status as a result of floating-point arithmetic. If the result is not mathematically defined, like <span class="math inline">\(0/0\)</span>, the result becomes a value, <em>not-a-number</em> or simply <em>NaN</em>. It is not a number but a valid floating-point value. Note that it happens only in floating-point arithmetics; for integer arithmetics, it never happens. See the following example.</p>
 <pre data-language="Fortran"><code class="language-fortran">program num
@@ -226,6 +233,18 @@ end program num</code></pre>
 end program num</code></pre>
 <pre data-language="output"><code> It is not NaN.</code></pre>
 <p>A typical idiom to check NaN is to compare it with itself like <code>y==y</code>. While it should always be true for any numbers, NaN returns <code>.false.</code>. So, the comparison looks like <code>if(y/=y) print *,"It is NaN."</code>.</p>
+<p>In Modern Fortran, it is better to use <code>ieee_is_nan()</code> to test NaN. It is also defined in <code>ieee_arithmetic</code>. If the value is NaN, it returns <code>.true.</code>; otherwise <code>.false.</code>. See the following example.</p>
+<pre data-language="Fortran"><code class="language-fortran">program num
+   use ieee_arithmetic
+   implicit none
+   real :: x,y
+   x = ieee_value(x, ieee_positive_inf)
+   if(ieee_is_nan(x)) then
+      print *,&quot;It is NaN.&quot;
+   else
+      print *,&quot;It is not NaN.&quot;
+   end if
+end program num</code></pre>
 <h3 id="exercises">Exercises</h3>
 <ol type="1">
 <li>Using a real variable, compute <span class="math inline">\(0/0\)</span>, <span class="math inline">\(1/0\)</span>, and <span class="math inline">\(0/1\)</span>.</li>
@@ -234,8 +253,8 @@ end program num</code></pre>
 </ol>
 <h2 id="floating-point-arithmetic">Floating-point arithmetic</h2>
 <h3 id="significant-digits">Significant digits</h3>
-<p>Consider measurements collected in the field: milk yield, body weight, and so on. Theoretically, these measurements have infinite digits, and the same values never come out. However, we usually limit the number of digits of measurement by rounding the last digit. Such a numerical value has inaccurate information, especially in the last digit. When a value has uncertainty caused by the rounding, the number of decimal digits of the value is called the <em>significant digits</em>.</p>
-<p>Similarly, in many programming languages, the real number is treated as a floating-point number. The last digit is likely rounded, and therefore, the one is not accurate. In such a case, the significant digits should be the apparent number of digits.</p>
+<p>Consider measurements collected in the field: milk yield, body weight, and so on. Theoretically, these measurements potentially have infinite digits, and the same values never come out. However, we usually limit the number of digits of measurement by rounding the last digit. Such a numerical value has inaccurate information, especially in the last digit. When a value has uncertainty caused by the rounding, the number of decimal digits of the value is called the <em>significant digits</em>.</p>
+<p>Similarly, in many programming languages, the real number is treated as a floating-point number. The last digit is likely rounded, and therefore, the it is not accurate. In such a case, the significant digits should be the apparent number of digits.</p>
 <p>The significant digits can be counted with the significand of the exponential expression. For example, the value 12.34 is expressed as <span class="math inline">\(1.234\times 10^{3}\)</span> so, the significant digit is 4 implying the 5th digit has been rounded. Similarly, the value 0.01234 has 4 significant digits because it is <span class="math inline">\(1.234\times 10^{-2}\)</span>.</p>
 <p>The significant digits may decrease but never increase in numerical computations. Consider the subtraction of two floating-point values: <span class="math inline">\(1.234-1.233\)</span>. The result is <span class="math inline">\(0.001\)</span>, and the significant digit is 1. The significant digits of computation are limited, with the smallest significant digits of the original values. This is true for any computations with numerical values with significant digits.</p>
 <h4 id="recurring-decimal-in-the-binary-numeral-system">Recurring decimal in the binary numeral system</h4>
@@ -286,7 +305,7 @@ end program error</code></pre>
 <h2 id="some-algorithms-with-numerics">Some algorithms with numerics</h2>
 <h3 id="product-of-many-numbers">Product of many numbers</h3>
 <h4 id="algorithm">Algorithm</h4>
-<p>There are many cases where you have to multiply many numbers together. In quantitative genetics, this method is used in the computation of likelihood in derivative-free REML (DF REML). As you can imagine, when many numbers are involved, the product may become huge (or tiny), and it may accumulate errors during the computation. A typical method to handle the issue is to convert multiplication to addition by <code>log</code> for higher-precision variables. For positive values, the mathematical formula of this algorithm is as follows.</p>
+<p>There is a case where you have to multiply many numbers many times. In quantitative genetics, this method is used in the computation of likelihood in derivative-free REML (DF REML). As you can imagine, when many numbers are involved, the product may become huge (or tiny), and it may accumulate errors during the computation. A typical method to handle the issue is to convert multiplication to addition by <code>log</code> for higher-precision variables. For positive values, the mathematical formula of this algorithm is as follows.</p>
 <p><span class="math display">\[
 p = \prod_{i=1}^{n}x_{i} = \exp\left[\sum_{i=1}^{n}\log x_i\right]\quad\text{for}\quad x_i&gt;0
 \]</span></p>

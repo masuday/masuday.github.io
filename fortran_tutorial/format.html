@@ -63,7 +63,7 @@ Back to <a href="./index.html">index.html</a>.
 <p>We have been used the <em>standard format</em> to print numbers and characters on screen. Sometimes it looks ugly or redundant with many spaces. You can control the output format with an <em>edit descriptor</em>. In this chapter, we will see how to describe the format that you want to have.</p>
 <h2 id="edit-descriptors">Edit descriptors</h2>
 <h3 id="basic-structure">Basic structure</h3>
-<p>The edit descriptor is a string enclosed in parenthesis like <code>(descriptor)</code>. The descriptor is a combination of alphabets/symbols plus numbers like <code>i5</code>. The alphabet (or symbol) represents the type of object, and the number specifies the width of the output. See the following example.</p>
+<p>The edit descriptor is a string enclosed in parenthesis like <code>(descriptor)</code>. The descriptor is a combination of alphabets/symbols plus a number like <code>i5</code> and <code>i12</code>. The alphabet (or symbol) represents the type of object, and the number specifies the width of the output. See the following example.</p>
 <pre data-language="Fortran"><code class="language-fortran">program form
    print *,123
    print &quot;(i5)&quot;,123
@@ -76,11 +76,11 @@ end program form</code></pre>
    print *,123
    print &quot;(i2)&quot;,123
 end program form</code></pre>
-<p>If you have multiple objects to be shown, the edit descriptor has multiple items separated by commas (<code>,</code>). The following example shows 3 integer numbers in a different format.</p>
+<p>If you have multiple objects to be shown, the edit descriptor contains multiple items separated by commas (<code>,</code>). The following example shows 3 integer numbers in a different format.</p>
 <pre data-language="Fortran"><code class="language-fortran">program form
    print &quot;(i5,i8,i4)&quot;,123,456,789
 end program form</code></pre>
-<p>If you want to use the same format for all items, you can unify the descriptor with the number of repeats in front of a single descriptor. If you are not sure how many times you should repeat the format, you can use <code>*()</code> for this purpose (do not forget the parenthesis; <code>*(i5)</code> is valid, but <code>*i5</code> is not).</p>
+<p>If you want to use the same format for all items, you can unify the descriptor with the number of repeats in front of a single descriptor like <code>(3i5)</code> or <code>(3(i5))</code>. If you are not sure how many times you should repeat the format, you can use <code>*()</code> for this purpose (do not forget the parenthesis; <code>*(i5)</code> is valid, but <code>*i5</code> is not).</p>
 <pre data-language="Fortran"><code class="language-fortran">program form
    ! all the same format
    print &quot;(i5,i5,i5)&quot;,123,456,789
@@ -107,6 +107,8 @@ end program form</code></pre>
    print &quot;(3i5)&quot;,5,6,7
    print &quot;(3i5)&quot;,a
    print &quot;(*(i5))&quot;,a
+   ! different for the last one
+   print &quot;(2i5,i8)&quot;,a
 end program form</code></pre>
 <h3 id="data-type">Data type</h3>
 <h4 id="integer">Integer</h4>
@@ -127,7 +129,7 @@ end program form</code></pre>
 <tbody>
 <tr class="odd">
 <td><code>i</code> + a single number (<span class="math inline">\(m\)</span>)</td>
-<td><code>i5</code></td>
+<td><code>i10</code></td>
 <td>put the integer number (and the negative sign) with the field width <span class="math inline">\(m\)</span>, aligned to the right-hand side; filled by spaces.</td>
 </tr>
 <tr class="even">
@@ -137,7 +139,7 @@ end program form</code></pre>
 </tr>
 <tr class="odd">
 <td><code>i</code> + two numbers with dot (<span class="math inline">\(m.n\)</span>)</td>
-<td><code>i5</code></td>
+<td><code>i10.5</code></td>
 <td>same as above; filled by <code>0</code> at least <span class="math inline">\(n\)</span> digits instead of spaces</td>
 </tr>
 </tbody>
@@ -181,7 +183,7 @@ end program form</code></pre>
 </tr>
 <tr class="odd">
 <td><code>es</code> + two numbers with a dot (<span class="math inline">\(m.n\)</span>)</td>
-<td><code>e11.3</code></td>
+<td><code>es11.3</code></td>
 <td>same as above except that the significand is between 1 and 10 (friendly with scientific notation)</td>
 </tr>
 <tr class="even">
@@ -248,18 +250,28 @@ end program form</code></pre>
          Yes, it is.</code></pre>
 <h3 id="other-useful-descriptors">Other useful descriptors</h3>
 <p>The Fortran standard defines many descriptors, but some of them can very precisely control the output. Here, we only look at the most frequently-used descriptors.</p>
-<h4 id="spaces-tabs">Spaces (tabs)</h4>
+<h4 id="spaces">Spaces</h4>
 <p>The <code>x</code> descriptor shows a space. When putting multiple spaces, combine a number with it, e.g., <code>5x</code> for 5 spaces.</p>
 <pre data-language="Fortran"><code class="language-fortran">program form
    print &quot;(a,3x,a)&quot;,&quot;abc&quot;,&quot;def&quot;
 end program form</code></pre>
+<p>Note that whereas <code>3x</code> is valid, <code>x3</code> is invalid.</p>
 <h4 id="new-line">New line</h4>
 <p>The <code>/</code> descriptor makes a new line.</p>
 <pre data-language="Fortran"><code class="language-fortran">program form
    print &quot;(a,/,a)&quot;,&quot;abc&quot;,&quot;def&quot;
 end program form</code></pre>
+<h4 id="characters-1">Characters</h4>
+<p>If you want to print some characters, you can put it into the edit descriptor. The characters should be encircled by <code>"</code> or <code>'</code>.</p>
+<pre data-language="Fortran"><code class="language-fortran">program form
+   print &quot;(&#39;result=&#39;,i8)&quot;,1+2
+end program form</code></pre>
+<p>The above code is equivalent to the following program.</p>
+<pre data-language="Fortran"><code class="language-fortran">program form
+   print &quot;(a,i8)&quot;,&quot;result=&quot;,1+2
+end program form</code></pre>
 <h2 id="formatted-input">Formatted input</h2>
-<p>We have seen a <em>formatted output</em> with <code>print</code>. In turn, we can use the <em>formatted input</em> with <code>read</code>. I have a concern in the formatted input; it may result in trouble because of the input sequence may not follow the rule in the descriptor. Although the language standard defines what happens when the input is not appropriate, it might be hard for us to figure out what is going on when it is happening.</p>
+<p>We have seen a <em>formatted output</em> with <code>print</code>. In turn, we can use the <em>formatted input</em> with <code>read</code>. I have a concern in the formatted input; it results in trouble when the input sequence does not follow the rule in the descriptor. Also, you would be confused by some non-intuitive behavior in formatted input. Although the language standard defines what happens when the input is not appropriate, it might be hard for us to figure out what is going on when it is happening.</p>
 <h3 id="formatted-read">Formatted read</h3>
 <p>It is always good to see how it works using a small program.</p>
 <pre data-language="Fortran"><code class="language-fortran">program form
@@ -269,19 +281,19 @@ end program form</code></pre>
    print *,i
 end program form</code></pre>
 <p>The following is a pair of an input and the corresponding output (with GFortran).</p>
-<pre data-language="output"><code># put &quot;1&quot;
+<pre data-language="output"><code> # when putting &quot;1&quot;
            1
 
-# put &quot;         1&quot;
+ # when putting &quot;         1&quot;
            1
 
-# put &quot;          1&quot;
+ # when putting &quot;          1&quot;
            0
 
-# put &quot;1 2 3&quot;
+ # when putting &quot;1 2 3&quot;
          123
 
-# put &quot;a&quot;
+ # when putting &quot;a&quot;
 At line 4 of file form.f90 (unit = 5, file = &#39;stdin&#39;) 
 Fortran runtime error: Bad value during integer read
 ...</code></pre>
@@ -298,10 +310,10 @@ end program form</code></pre>
 <h3 id="fixed-format">Fixed format</h3>
 <p>The other case is in reading a fixed-format file. If a text file contains some fields and each field is aligned to a particular column, this file is called <em>fixed format</em>. For example, an SNP file with 0-1-2 coding is a fixed-format file.</p>
 <pre data-language="text"><code>id01    012012012
-id02    211102111
-id03    012001101</code></pre>
+id02mx  211102111
+id03f   012001101</code></pre>
 <p>The second field (genotypes) strictly starts from the 9th column. This small file can be seen as a space-separated file, but the fixed-format file should have a constant format for all the rows. We will see how we can read a file in later chapters. We try to read such a structure using formatted input.</p>
-<p>We assume that an individual has 9 genotypes, which are integer numbers. Ignoring the first field and leading spaces, the edit descriptor for the second field is <code>(8x,9i1)</code>. The program looks like this.</p>
+<p>We assume that an individual has 9 markers, which are integer numbers. Ignoring the first field and leading spaces by skipping the first 8 characters, the edit descriptor for the second field is <code>(8x,9i1)</code>. The program looks like this.</p>
 <pre data-language="Fortran"><code class="language-fortran">program form
    implicit none
    integer :: g(9)

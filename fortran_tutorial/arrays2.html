@@ -68,10 +68,11 @@ Back to <a href="./index.html">index.html</a>.
 <h3 id="fundamental-data-structure-in-fortran">Fundamental data-structure in Fortran</h3>
 <p>An array is a collection of elements (or objects), which have the same data type. The array is the fundamental <em>data-structure</em> that Fortran can directly use. Fortran can process the array efficiently. As an array keeps a simple structure in memory, it is relatively comfortable for the compiler to apply acceleration techniques (e.g., parallelization) to the program. Also, the program has room to improve the speed by using the array structure efficiently.</p>
 <h3 id="literals">Literals</h3>
-<p>A literal array is defined with <code>[]</code> with a comma-separated list of literals with the same type. A high-dimension literal array is defined using intrinsic function <code>reshape()</code> with <code>[]</code>.</p>
+<p>A literal array is defined with <code>[]</code> with a comma-separated list of literals with the same type. You must not mix different types in the list. A high-dimension literal array (matrix) is defined using intrinsic function <code>reshape()</code> with <code>[]</code>. Without <code>reshape</code>, there is no method to create a matrix literal.</p>
 <ul>
 <li>Example 1: <code>[1,2,3]</code> or <code>[1.0,2.0,3.0]</code></li>
 <li>Example 2: <code>reshape([1,2,3,4,5,6],[3,2])</code></li>
+<li>Example 3 (illegal): <code>[1.0, 2, 3]</code></li>
 </ul>
 <h3 id="array-variables">Array variables</h3>
 <p>An array variable is declared with a variable name plus <code>()</code> with the dimension and the rank of the array. The range of index should be <code>lower:upper</code> in each dimension. When omitting the lower bound of the index, 1 will be assumed.</p>
@@ -123,9 +124,9 @@ subroutine print_element(x)
 end subroutine print_element
 
 ! pass the lower-bound variable
-subroutine print_element(x,low)
-   real,intent(in) :: x(low:)
-   integer,intent(in) :: low
+subroutine print_element(x,bottom)
+   real,intent(in) :: x(bottom:)
+   integer,intent(in) :: bottom
    print *,x(1)
 end subroutine print_element</code></pre>
 <p>There are inquiry functions to obtain the bounds of an array.</p>
@@ -216,7 +217,7 @@ end program arr</code></pre>
 <p>The zero-sized array may appear when you allocate an array. We will see the usage of a zero-sized array in the next section.</p>
 <h2 id="assignment-again">Assignment, again</h2>
 <h3 id="vector-with-sequencial-numbers">Vector with sequencial numbers</h3>
-<p>Using a similar syntax as <code>do</code>, you can create a vector with sequantial numbers.</p>
+<p>Using a similar syntax as <code>do</code>, you can create a vector with sequential numbers.</p>
 <pre data-language="Fortran"><code class="language-fortran">   real :: x(5)
    integer :: i
    x = [(i,i=1,5)]</code></pre>
@@ -272,7 +273,7 @@ a = [1,2,3,4,5]
 
 ! add more elements; should be real numbers
 a = [a, 6.0, 7.0]</code></pre>
-<p>At the end of this program, the array <code>a</code> should have some extra elements, and the size of <code>a</code> becomes 7. A trap is, you must not mix different numerical types in the array literal in <code>[]</code>. For example, the following expression gives an error.</p>
+<p>At the end of this program, the array <code>a</code> should have some extra elements, and the size of <code>a</code> becomes 7. A trap is, it fails if you mix different numerical types in the array literal in <code>[]</code>. For example, the following expression gives an error.</p>
 <pre data-language="Fortran"><code class="language-fortran">! OKAY: all values are the same type (integer)
 a = [1,2,3,4,5]
 
@@ -306,19 +307,33 @@ print *,b
 print *,allocated(a),allocated(b)</code></pre>
 <pre data-language="output"><code>   1.00000000       2.00000000       3.00000000       4.00000000       5.00000000
  T T</code></pre>
-<p>It makes a copy of <code>a</code> to <code>b</code>, which will be accordingly allocated with the same size as <code>a</code>, and both arrays are alive. The resize of <code>b</code> happens even though <code>b</code> has been already allocated.</p>
+<p>It makes a copy of <code>a</code> to <code>b</code>, which will be accordingly allocated with the same size as <code>a</code>, and both arrays are alive. The resize of <code>b</code> happens even though <code>b</code> has been already allocated. In the following example, <code>a</code> is also resized (from 3 to 5).</p>
 <pre data-language="Fortran"><code class="language-fortran">real,allocatable :: a(:),b(:),c(:)
 
-allocate(a(5),b(6),c(4))
+allocate(a(3),b(6),c(4))
 a = [1,2,3,4,5]
 
 ! copy the content of a to b and c
-print *,size(b),size(c)
+print *,size(a),size(b),size(c)
 b = a
 c = a
-print *,size(b),size(c)</code></pre>
-<pre data-language="output"><code>           6           4
-           5           5</code></pre>
+print *,size(a),size(b),size(c)</code></pre>
+<pre data-language="output"><code>           5           6           4
+           5           5           5</code></pre>
+<p>Obviously, it is dangerous; it may cause an unintended resize of allocated arrays. I believe that it is one of the most embarrassing features introduced to Modern Fortran. To avoid this issue, you can put (:) to the allocated array all the time. See the following code.</p>
+<pre data-language="Fortran"><code class="language-fortran">real,allocatable :: a(:),b(:),c(:)
+
+allocate(a(3),b(6),c(4))
+a = [1,2,3,4,5]
+
+! copy the content of a to b and c without the resize
+print *,size(a),size(b),size(c)
+b(:) = a(:)
+c(:) = a(:)
+print *,size(a),size(b),size(c)</code></pre>
+<pre data-language="output"><code>           5           6           4
+           5           6           4</code></pre>
+<p>It keeps the original size and copies the elements as many as possible. For example, <code>b</code> gets all elements of <code>a</code>, and <code>c</code> get only 4 of the elements.</p>
 <h3 id="transfer-of-allocated-array">Transfer of allocated array</h3>
 <p>A function, <code>move_alloc</code>, transfers the data in an allocated array to another allocated array. The source array will be automatically deallocated after the transfer is done. This involves some allocation and deallocation steps.</p>
 <pre data-language="Fortran"><code class="language-fortran">real,allocatable :: a(:),b(:)
@@ -524,7 +539,7 @@ end program a_times_x</code></pre>
 <p>Sorting is an action to change the order of elements in an array. Usually, the elements are numbers, and the order becomes increasing or decreasing. There are many sorting algorithms, and you have to use an efficient one. Nevertheless, here, we introduce a naive algorithm, <em>selection sort</em>, just for an educational purpose.</p>
 <h4 id="idea">Idea</h4>
 <p>The selection sort is very similar to sorting behavior by a human. Imagine that you sort playing cards by number (from the smallest to the largest) on your hand. What you will do is that you search a card with the smallest number, pick it, and put it on the top of a bunch of cards. Next, you search a card with the smallest number from the remaining cards and do the same stuff. You will repeat this process until all cards are processed.</p>
-<p>In a computer program, the algorithm is slightly different from human behavior because of the limitation of data structure. In selection sort, first, you search a card with the smallest, pick it, and swap it with the top of cards. Next, you search the second smallest from the remaining cards, pick it, and swap it with the second card of the deck. See <a href="https://en.wikipedia.org/wiki/Selection_sort">Wikipedia</a> about the details of this algorithm.</p>
+<p>In a computer program, the algorithm is slightly different from human behavior because of the limitation of data structure. In selection sort, first, you search a card with the smallest, pick it, and swap it with the top of cards. Next, you search the smallest out of the remaining cards, pick it, and swap it with the second card of the deck. See <a href="https://en.wikipedia.org/wiki/Selection_sort">Wikipedia</a> about the details of this algorithm.</p>
 <h4 id="formulation">Formulation</h4>
 <p>Suppose we have an array <code>x</code> with the length <span class="math inline">\(n\)</span>. We describe this algorithm using Fortran notation.</p>
 <ul>

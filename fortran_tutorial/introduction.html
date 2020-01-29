@@ -84,14 +84,19 @@ Back to <a href="./index.html">index.html</a>.
 <p>The author (Yutaka Masuda) is never responsible to the results of the usage of this tutorial. The author does not guarantee the correctness of the descriptions in this tutorial.</p>
 <h2 id="additional-information">Additional information</h2>
 <h3 id="materials">Materials</h3>
-<p>This tutorial is self-descriptive. However, for curious readers, I show some materials useful to learn Fortran. These books/materials covers some missing components in this tutorial.</p>
+<p>I try to make this tutorial small and self-descriptive by selecting relevant topics for non-programmers to write a numerical code. For curious readers, I show some materials useful to learn Fortran more. These books/materials cover some missing components in this tutorial.</p>
 <ul>
-<li><a href="https://www.uv.es/dogarcar/man/IntrFortran90.pdf">Introduction to Fortran 90</a>: A good course-note for Fortran beginners.</li>
-<li><a href="http://www.egr.unlv.edu/~ed/fortran.html">Introduction to Programming using Fortran 95/2003/2008</a>: A comprehensive tutorial.</li>
+<li><a href="https://www.uv.es/dogarcar/man/IntrFortran90.pdf">Introduction to Fortran 90</a>: A good, online course-note for Fortran beginners.</li>
+<li><a href="http://www.egr.unlv.edu/~ed/fortran.html">Introduction to Programming using Fortran 95/2003/2008</a>: A comprehensive tutorial online.</li>
 <li><a href="http://www.icl.utk.edu/~mgates3/docs/fortran.html">Fortran 90/95 reference</a>: Very useful online reference.</li>
-<li><a href="https://global.oup.com/academic/product/modern-fortran-explained-9780198811893?cc=us&amp;lang=en&amp;">Modern Fortran Explained</a>: A good reference of modern Fortran</li>
+<li><a href="http://fortranwiki.org/fortran/show/Fortran+95+and+2003+for+Scientists+and+Engineers">Fortran 95/2003 For Scientists and Engineers</a>: A comprehansive textbook for any scientists who write a Fortran program.</li>
+<li><a href="https://global.oup.com/academic/product/modern-fortran-explained-9780198811893?cc=us&amp;lang=en&amp;">Modern Fortran Explained</a>: A good, reference book of modern Fortran.</li>
 </ul>
-<p>For animal breeders, Ignacy Misztal’s cource note is useful.</p>
+<p>Ondřej Čertík maintains a wesite, a collection of the Fortran standards, best practices, and frequently asked questions.</p>
+<ul>
+<li><a href="https://www.fortran90.org">Fortran90.org</a></li>
+</ul>
+<p>For animal breeders, Ignacy Misztal’s cource note is useful to review the elements of Fortran.</p>
 <ul>
 <li><a href="http://nce.ads.uga.edu/wiki/doku.php?id=course_information_-_uga_2018">Computational techniques in animal breeding</a></li>
 </ul>
@@ -101,6 +106,20 @@ Back to <a href="./index.html">index.html</a>.
 </ul>
 <h3 id="setup-for-the-development-environment">Setup for the development environment</h3>
 <p>Please see the next chapter for details.</p>
+<h3 id="conventions">Conventions</h3>
+<p>Here are the notational conventions in this tutorial.</p>
+<h4 id="fortran-code">Fortran code</h4>
+<pre data-language="Fortran"><code class="language-fortran">! A Fortran program is shown by this format.
+! The 3 does (...) means the suspension points.
+program test
+   implicit none
+   real :: x,y,z
+   ...
+end program test</code></pre>
+<h4 id="output">Output</h4>
+<pre data-language="output"><code>This frame shows the output of a program in the screen.</code></pre>
+<h4 id="shell-command">Shell command</h4>
+<pre data-language="shell"><code>It shows some commands that you type on the shell in the terminal.</code></pre>
 <h2 id="about-fortran">About Fortran</h2>
 <h3 id="fortran-77-vs-fortran-9095200320082018">FORTRAN 77 vs Fortran 90/95/2003/2008/2018</h3>
 <p>This tutorial deals only with the newer Fortran standard.</p>

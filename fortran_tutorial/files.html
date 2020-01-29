@@ -52,6 +52,7 @@
 <ul>
 <li><a href="#file-basics">File basics</a></li>
 <li><a href="#practical-text-file-reading-and-writing">Practical text file reading and writing</a></li>
+<li><a href="#file-position">File position</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -59,6 +60,7 @@
 Back to <a href="./index.html">index.html</a>.
 </p>
 <h1 id="file-input-and-output">File input and output</h1>
+<p>In Fortran, input and output (I/O) from/to a file has the same form as I/O from the keyboard or to the screen (<em>physical devices</em>). The only difference is that, for the file I/O, the source and the destination are a file, not the physical devices. Defining a file as a “device” allows you to read and write the data to and from the “device” using the <code>read</code> and <code>write</code> statements with the same edit descriptors as we have seen before. Before trying the file I/O, I encourage the readers to master the basics of <code>print</code> and <code>read</code> with edit descripter.</p>
 <p>In this chapter, we will see how to write and read a file.</p>
 <h2 id="file-basics">File basics</h2>
 <h3 id="output-to-text-file">Output to text file</h3>
@@ -80,10 +82,10 @@ end program file</code></pre>
 <p>Contrary to <code>print</code>, we need a couple of steps to save the values to a file.</p>
 <ol type="1">
 <li>Use the <code>open</code> statement to connect a file name <code>output.txt</code> to an integer number (<em>logical unit number</em>). After this, all the access to the file is performed through this number.</li>
-<li>Write 3 values to ten files using the default format.</li>
-<li>After all, values are written, disconnect to the file using <code>close</code>.</li>
+<li>Writes 3 values to ten files using the default format.</li>
+<li>After the values are written, disconnect to the file using <code>close</code>.</li>
 </ol>
-<p>You can check if the new file is created in the current directory where you are working. It is a <em>text file</em> containing human-readable characters, and it contains 3 numbers with the default format that you get in <code>print *,a,b,c,</code> on-screen. The output to a text file is the same as the screen output except for that additional statements, <code>open</code> and <code>close</code>, are needed.</p>
+<p>You can check if the new file is created in the current directory where you are working. It is a text file containing human-readable characters, and it contains 3 numbers with the default format as you get by <code>print *,a,b,c,</code> on the screen. To short, the output to a text file is the same as the screen output except for that additional statements, <code>open</code> and <code>close</code>, are needed.</p>
 <h3 id="input-from-text-file">Input from text file</h3>
 <p>File reading has the same behavior as keyboard input except that the values are from a file. As file writing, you have to call <code>open</code> before reading a file, and <code>close</code> for the termination. Using the file created above, you can read 3 values from the file.</p>
 <pre data-language="Fortran"><code class="language-fortran">program file
@@ -106,7 +108,7 @@ end program file</code></pre>
    write(unit,*) a,b,c
    close(unit)
 end program file</code></pre>
-<p>In the Fortran standard, the user does not have to choose the unit number anymore. The system can automatically assign an appropriate number through the <code>newunit=</code> option in <code>open</code>. The above example is reduced to the following code.</p>
+<p>In the Modern Fortran standard, the user does not have to choose the unit number anymore. The system can automatically assign an appropriate number through the <code>newunit=</code> option in <code>open</code>. The above example is reduced to the following code.</p>
 <pre data-language="Fortran"><code class="language-fortran">program file
    ...
    integer :: unit
@@ -157,13 +159,13 @@ end program file</code></pre>
 <p>In this way, while you read some numerical values in the first few fields, you can put characters in the last fields.</p>
 <h3 id="writing-a-file">Writing a file</h3>
 <h4 id="creating-a-new-file">Creating a new file</h4>
-<p>When you open a file that already exists, the <code>write</code> statement to this file will renew the file. Precisely, the existing file is removed, and the new content is placed in the file as the first record. The following piece of code shows this behavior.</p>
+<p>When you open a file that already exists, the <code>write</code> statement will renew it by default. Precisely, it completely removes the existing file, and the new content is placed in the file as the first record. Be aware that there is a risk to lose the file. The following piece of code shows this behavior.</p>
 <pre data-language="Fortran"><code class="language-fortran">   open(newunit=unit,file=&quot;data.txt&quot;)
 
    ! It removes the file, and it updates the file by the value, 100.
    write(unit,*) 100</code></pre>
 <h4 id="appending-data-to-an-existing-file">Appending data to an existing file</h4>
-<p>IF a file is already there, you can append the data to the file. You need <code>position="append"</code> in <code>open</code> to do this.</p>
+<p>IF a file is already there, you can append the data to it without losing the file. You need <code>position="append"</code> in <code>open</code> to do this.</p>
 <pre data-language="Fortran"><code class="language-fortran">   open(newunit=unit,file=&quot;data.txt&quot;,position=&quot;append&quot;)</code></pre>
 <p>Using this option, the new data is added to the end of file.</p>
 <h4 id="error-status-while-reading-the-file-1">Error status while reading the file</h4>
@@ -178,6 +180,7 @@ end program file</code></pre>
    write(unit,*,advance=&quot;no&quot;) 30,40
    write(unit,*) 50</code></pre>
 <pre data-language="output"><code>        10        20        30        40        50</code></pre>
+<h2 id="file-position">File position</h2>
 <h3 id="moving-a-file-position">Moving a file position</h3>
 <p>When open a file, the <em>file position</em> is set to the beginning of the file by default. With <code>position="append"</code> in <code>open</code>, the file position is at the end of the file. Whenever you perform <code>read</code> or <code>write</code>, the file position moves to the top of the next line. There are some statements to change the file position.</p>
 <table>
@@ -201,6 +204,18 @@ end program file</code></pre>
 </tr>
 </tbody>
 </table>
+<h3 id="when-to-lose-the-file">When to lose the file</h3>
+<p>There is an essential fact in the file I/O: you can perform both <code>read</code> and <code>write</code> to the same file by default. This fact explains when you lose a file by <code>write</code>. Assume that you move the position to the top of the third line in a text file by performing <code>read</code> twice. The file position is shown as <code>&gt;</code> in the following example file.</p>
+<pre><code>   The first line
+   The second line
+&gt;  The third line
+   The fourth line</code></pre>
+<p>With this setting, when you perform <code>write</code>, the program removes all the subsequent lines at and after the third line in the file, then it writes a new line to the third line. Here is the resulting content in the file.</p>
+<pre><code>   The first line
+   The second line
+   Added line
+&gt;</code></pre>
+<p>When opening a file, the file position is at the top of the file; you write the data to the file, and you will lose the existing content in the file. When opening it with <code>position=append</code>, the position moves to the end of the file, and you can write the new line while keeping the entire file. I encourage the reader not to use both <code>read</code> and <code>write</code> in the same file unless you really need to do it.</p>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>

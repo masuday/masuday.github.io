@@ -120,7 +120,7 @@ end program ch</code></pre>
            8
  123 45     
      123 45 </code></pre>
-<p>To remove the leading spaces, you can update <code>x</code> by <code>adjust(x)</code>.</p>
+<p>To remove the leading spaces, you apply <code>adjust()</code> to the variable.</p>
 <pre data-language="Fortran"><code class="language-fortran">x = adjustl(x)</code></pre>
 <p>Some other functions may be useful to manipulate the characters precisely.</p>
 <table>
@@ -186,14 +186,14 @@ end program ch</code></pre>
    print *,&quot;You said &quot; // &#39;&quot;&#39; // &quot;it&#39;s my dog.&quot; // &#39;&quot;&#39;
 end program ch</code></pre>
 <h2 id="reading-characters-from-keyboard">Reading characters from keyboard</h2>
-<p>By default, the input characters are split by white spaces into pieces. It is useful to read some numbers, but you can not read the entire input, including spaces from keyboards.</p>
+<p>By default, the input characters are split by white spaces into pieces. It is useful to read some numbers, but you can not read the entire input with spaces from the keyboard.</p>
 <pre data-language="Fortran"><code class="language-fortran">program ch
    implicit none
    character(len=10) :: x
    read *,x
    print *,x
 end program ch</code></pre>
-<p>When you put <code>abc def</code>, you should find the following output.</p>
+<p>When you type <code>abc def</code> in the terminal, you should find the following output.</p>
 <pre data-language="output"><code> abc</code></pre>
 <p>You can read the entire characters with spaces using the <em>format identifier</em>. We do not see it here, and the later chapter deals with it.</p>
 <h2 id="summary">Summary</h2>

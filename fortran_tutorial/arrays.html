@@ -63,8 +63,8 @@ Back to <a href="./index.html">index.html</a>.
 <h2 id="use-of-1-dimensional-array">Use of 1-dimensional array</h2>
 <h3 id="array-basics">Array basics</h3>
 <h4 id="small-examples">Small examples</h4>
-<p>Fortran can manage a set of variables by a single name. In other words, a single object can have multiple variables. This object is called <em>array</em>, and each variable in the array is <em>element</em>. The array is often explained as a 1-dimensional structure with multiple variables.</p>
-<p>This structure is useful to define a vector that has multiple elements. The array is not exclusively used in the vector. It is useful when you need multiple (possibly many) variables.</p>
+<p>Fortran can manage a set of variables by a single name. In other words, a single object can have multiple variables with the same type. This object is called <em>array</em>, and each variable in the array is <em>element</em>. The array is often explained as a 1-dimensional structure with multiple variables.</p>
+<p>This structure is useful to define a vector that has multiple elements. The array is not exclusively used in the vector. It is useful whenever you need multiple (possibly many) variables.</p>
 <p>The following program defines an integer array with 3 elements and assigns a value to each element. Equivalently, you can see it as a vector with 3 elements.</p>
 <pre data-language="Fortran"><code class="language-fortran">program arr
    implicit none
@@ -77,6 +77,7 @@ end program arr</code></pre>
 <pre data-language="output"><code>          32         128       -1024</code></pre>
 <p>You can see the essential feature of an array in this example.</p>
 <ul>
+<li>An array holds a sequence of the same type of elements.</li>
 <li>The declaration of an array is the same as a single variable except with the size of the array in <code>()</code>.</li>
 <li>You can access each element by a subscript (i.e., index). The subscript is an integer number, starting from 1, and it is enclosed with <code>()</code>.</li>
 <li>Each element can be treated as a single variable.</li>
@@ -85,14 +86,14 @@ end program arr</code></pre>
 <p>The subscript <code>3</code> in the above example means the number of elements <em>and</em> the last subscript (index) because the subscript starts from 1. You may feel uncomfortable of this system if you like C or Python which has the 0-origin subscript. Fortran is a language of 1-origin subscript, and it is useful to describe mathematical algorithms.</p>
 <p>When an array is declared, its elements are not defined. So, we do not expect that a just-declared array has particular numbers. It is the same as a variable, and the programmer is responsible for assigning some values to the array before using it.</p>
 <p>Contrary to R or Python, in Fortran, the array holds only a particular type of data declared in the program. In the above example, <code>integer::vec(3)</code> can contain only integer numbers. With this limitation, Fortran can efficiently manipulate the arrays.</p>
-<p>It is still possible to develop a system in Fortran to hold the various data types in a single array in Fortran (like <code>data.frame</code> in R) if you develop it from scratch (or look for existing programs to do this). Or, you just avoid to deal with such a flexible array at a time, look for a workaround to use simple arrays. For example, you can replace all the characters with sequential integer code, and all the information is represented as numbers.</p>
+<p>It is still possible to develop a system in Fortran to hold the various data types in a single array in Fortran (like <code>data.frame</code> in R) if you develop it from scratch (or look for existing programs to do this). Or, you just avoid to deal with such a flexible array at a time, look for a workaround to use simple arrays. For example, if you should hold both characters and numbers, you can replace all the characters with sequential integer code, and all the information is represented as numbers.</p>
 <h4 id="another-way-of-declaration">Another way of declaration</h4>
 <p>There is another way to declare an array: the <code>dimension</code> attribute. The following piece of program is equivalent to <code>integer::vec(3)</code>.</p>
 <pre data-language="Fortran"><code class="language-fortran">program arr
    implicit none
    integer,dimension(3) :: vec
 end program arr</code></pre>
-<p>In my personal opinion, it is not intuitive to have a 3-element array than <code>vec(3)</code>. I will not use <code>dimension</code> in the following sections.</p>
+<p>In my personal opinion, this style is less intuitive than <code>vec(3)</code> to declare a 3-element array. I will not use <code>dimension</code> in the following sections.</p>
 <h4 id="arbitrary-subscript">Arbitrary subscript</h4>
 <p>You can use any range of subscript in the array. The range should be declared as <code>(stard index:end index)</code> in the declaration statement. You can not use real numbers a subscript in the array. For example, the following program supports the range <span class="math inline">\(-1\)</span> to <span class="math inline">\(2\)</span> for the array.</p>
 <pre data-language="Fortran"><code class="language-fortran">program arr
@@ -325,7 +326,7 @@ end program arr</code></pre>
 <h4 id="summary-1">Summary</h4>
 <ul>
 <li>Basic arithmetics and mathematical functions can be applied to each element.</li>
-<li>The multiplication <code>*</code> performs element-by-element.</li>
+<li>The multiplication between arrays (<code>*</code>) performs element-by-element.</li>
 <li>A scalar will be broadcasted to all elements through arithmetic operations.</li>
 <li>Many array functions are available.</li>
 </ul>
@@ -389,7 +390,7 @@ end program arr</code></pre>
 \end{array}
 \right]
 \]</span></p>
-<p>This rearrangement (column-major) is reasonable in mathematics. However, it is different from C and some other languages (row-major), and when you come from such languages, please be careful about the array rearrangement in memory.</p>
+<p>This rearrangement (column-major) is reasonable in mathematics; R is also using this order. However, it is different from C and some other languages (row-major), and when you come from such languages, please be careful about the array rearrangement in memory.</p>
 <p>The order becomes an issue when you read a matrix from the keyboard.</p>
 <pre data-language="Fortran"><code class="language-fortran">program arr
    implicit none
@@ -440,12 +441,12 @@ end program arr</code></pre>
 <li><code>size(a)</code> returns <code>6</code> (scalar).</li>
 <li><code>shape(a)</code> returns <code>[2,3]</code> (vector).</li>
 </ul>
-<p>The <code>size</code> function can get the length of rows (or columns) as scalar using the 2nd parameter.</p>
+<p>The <code>size</code> function can get the number of elements in a row (or column) as scalar using the 2nd parameter.</p>
 <pre data-language="Fortran"><code class="language-fortran">program arr
    implicit none
    integer :: a(2,3)
-   print *,size(a,1)   ! dimension 1 = length of rows
-   print *,size(a,2)   ! dimension 2 = length of columns
+   print *,size(a,1)   ! dimension 1 = elements within column
+   print *,size(a,2)   ! dimension 2 = elements within row
    print *,size(a)     ! all elements
 end program arr</code></pre>
 <pre data-language="output"><code>         2

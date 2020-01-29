@@ -64,11 +64,11 @@ Back to <a href="./index.html">index.html</a>.
 </p>
 <h1 id="function-and-subroutine">Function and subroutine</h1>
 <h2 id="program-units">Program units</h2>
-<p>In the previous chapters, the Fortran program was in a single unit defined in the <code>program</code> statement. It is called <em>main program</em>, and any program you write has the main program. When the main program gets longer, it is a good idea to break the program down into small, manageable pieces. Such a small piece is called <em>program unit</em>.</p>
-<p>A typical program-unit is a <em>function</em>. We have looked at several intrinsic functions. In Fortran, you can define custom functions with a block of programs. The function accepts <em>arguments</em> (input values), and it always returns a single value.</p>
-<p>Another program-unit is <em>subroutine</em>, which is more flexible than functions. A subroutine can return any number of values (even no return values). Functions and subroutines are similar, but the only difference is if it returns a single value or not. In the later sections in this tutorial, we refer to functions and subroutines as <em>procedures</em>.</p>
+<p>In the previous chapters, the Fortran program was in a single unit defined in the <code>program</code> statement. It is called <em>main program</em>; in the previous chapter, any program you wrote had the main program. When the main program gets longer, it is a good idea to break the program down into small, manageable pieces. Such a small group of code is called <em>program unit</em>.</p>
+<p>A typical program-unit is a <em>function</em>. We have looked at several intrinsic functions. In Fortran, you can define a custom function as a block of programs. A function accepts <em>arguments</em> (input values), and it always returns a single value.</p>
+<p>Another program-unit is <em>subroutine</em>, which is more flexible than functions. A subroutine can accept any number of values as the argument, and it can return any number of values (even no return values). Functions and subroutines are similar, but the only difference is whether it returns a single value or not. In the later sections in this tutorial, we refer to functions and subroutines as <em>procedures</em>.</p>
 <h2 id="external-function-and-subroutines">External function and subroutines</h2>
-<p>We first look at how <em>external</em> procedures (functions or subroutines) are defined. An external procedure is an independent program unit. The main program does not know what the externals are, so the programmer should tell the program what they are.</p>
+<p>We first look at how <em>external</em> procedures (functions or subroutines) are defined. An external procedure is an independent program unit. The main program does not know what the external is, so the programmer should tell the main program what they are.</p>
 <figure>
 <img src="external_procedure.png" alt="" /><figcaption>Figure: External procedure as a separate program unit</figcaption>
 </figure>
@@ -96,14 +96,14 @@ end function cubicroot</code></pre>
 <li>Also, the return variable should be declared. The value held by this variable will be returned when the function finishes.</li>
 </ul>
 <p>The <code>function</code> statement defines an independent program-unit from the main program. As you do in <code>program</code>, you have to put <code>implicit none</code> in the function. All the variables declared inside the function are unrelated to the main program.</p>
-<p>The <code>intent()</code> option declares the status of the input variable to clarify which input can be changed (or unchanged).</p>
+<p>The <code>intent()</code> <em>attribute</em> declares the status of the input variable to clarify which input can be changed (or unchanged).</p>
 <ul>
 <li><code>intent(in)</code>: It <em>will</em> be used as an input variable, and it <em>will not</em> be altered in the function.</li>
 <li><code>intent(out)</code>: It <em>will not</em> be used as an input variable, but it <em>will</em> be altered in the function.</li>
 <li><code>intent(inout)</code>: It <em>may</em> be used as an input variable, and also, it <em>may</em> be altered in the function.</li>
 </ul>
-<p>If the argument has any above options, it will be treated as <code>intent(inout)</code>. Note that if the argument has <code>intent(out)</code>, you must put a value to this argument. Otherwise, the program may return a nonsense value.</p>
-<p>Technically, you can define a function that returns multiple values with argument variables with <code>intent(inout)</code>. However, in modern Fortran, there is a recommendation that the function does not change the input arguments, and it just return a value. Changing the input arguments, you should use <code>subroutine</code> which is intended for such purposes.</p>
+<p>If the argument does not have any above attributes, it will be treated as <code>intent(inout)</code>. Note that if the argument has <code>intent(out)</code>, you must put a value to this argument. Otherwise, the program may return a nonsense value.</p>
+<p>Technically, you can define a function that returns multiple values with argument variables with <code>intent(out)</code>. However, in modern Fortran, there is a recommendation that the function does not change the input arguments, and it just return a value. Changing the input arguments, you should use <code>subroutine</code> which is intended for such purposes.</p>
 <h4 id="alternative-definition">Alternative definition</h4>
 <p>One may like an alternative declaration of a function.</p>
 <pre data-language="Fortran"><code class="language-fortran">real function cubicroot(x)
@@ -111,9 +111,9 @@ end function cubicroot</code></pre>
    real,intent(in) :: x
    cubicroot = x**(1.0/3.0)
 end function cubicroot</code></pre>
-<p>In this way, the return type is specified in front of the function name. The name of the return variable is the same as the function name, and you do not need the <code>result</code> keyword and the declaration of the variable. I am not going to use this form in the result of the tutorial.</p>
+<p>In this way, the return type is specified in front of the function name. The name of the return variable is the same as the function name, and you do not need the <code>result</code> keyword and the declaration of the variable. I am not going to use this style in the rest of the tutorial.</p>
 <h4 id="program-structure">Program structure</h4>
-<p>When using this custom function in the main program, you have to put the function in the same source file. Then, using the <code>interface</code> statement, you have told the main program what the custom function you are going to use is.</p>
+<p>When using this custom function in the main program, you can put the function in the same source file, for the simplest usage. Then, using the <code>interface</code> statement, you tell the main program what the custom function you are going to use is.</p>
 <pre data-language="Fortran"><code class="language-fortran">program custom
    implicit none
    real :: a,b
@@ -140,9 +140,9 @@ end function cubicroot</code></pre>
 <p>The <code>interface</code> statement includes the definition of a custom function, including the name, the argument variables, and the return value. It is precisely the same as the first a couple of lines in the <code>function</code> statement. If you use several external procedures, you can put all of their definitions in the <code>interface</code> statement.</p>
 <p>You may think it is awkward that you have to repeat the definition of a function in <code>interface</code> in the main program. It is frustrating, but it is required because the main program does not know what <code>cubicroot</code> is. The external function is unrelated to the main program, which does not know the type of arguments and its return value. If the main program fails to use the custom function, the program may crash or result in wrong behavior. This redundancy in <code>interface</code> can be removed by using a module that we introduce in the next chapter.</p>
 <h4 id="scope-of-variable">Scope of variable</h4>
-<p>Some readers should wonder what happens if the main program and the function both have the same variable names. Are these variables share the values between two program units? Or, the same variable name does not mean to share the actual value? Another question is the accessibility to the variables. Can a program unit refer to a variable defined in a separate program unit?</p>
-<p>The custom function is an independent program-unit than the main program. The function should be self-descriptive, and all the variables in this function are unrelated to ones used outside the function. A variable is accessible only in the program unit where the variable is declared. <em>Scope</em> is the region of a program unit where the variable is valid.</p>
-<p>You can declare <em>local</em> variables in the function. The scope of any variables defined in the function is limited to the inside of the function. See the following example to see the scope of variables.</p>
+<p>Some readers should wonder what happens if the main program and the external function both have the same variable names. Are these variables share the values between two program units? Or, the same variable name does not mean to share the actual value? Another question is the accessibility to the variables. Can a program unit refer to a variable defined in a separate program unit? All the answers is “no”.</p>
+<p>The external function is independent of the main program. The function should be self-descriptive, and all the variables in this function are unrelated to ones used outside the function. A variable is accessible only in the program unit where the variable is declared. <em>Scope</em> is the region of a program unit where the variable is valid.</p>
+<p>When a variable is accessive from a single program-unit, we say it is a <em>local</em> (or <em>private</em>) variable. All the variables declared in an external function are local. The scope of any variables defined in the function is limited to the inside of the function. See the following example to see the scope of variables.</p>
 <pre data-language="Fortran"><code class="language-fortran">program custom
    implicit none
    real :: a,b
@@ -165,7 +165,7 @@ end function cubicroot</code></pre>
 <p>In this example, the variable <code>a</code> is defined both in the main program and the function, but two are unrelated. Using the scope rule, you don’t have to worry about the conflict of the names among program units.</p>
 <h3 id="external-subroutine">External subroutine</h3>
 <h4 id="definition-1">Definition</h4>
-<p>The definition of a subroutine is the same as function, but using a different statement <code>subroutine</code>.</p>
+<p>The definition of an external subroutine is the same as function, but using a different statement <code>subroutine</code>.</p>
 <pre data-language="Fortran"><code class="language-fortran">subroutine name(arguments)
    List of arguments
    ...
@@ -220,7 +220,7 @@ subroutine solutions_quadratic_equations(a,b,c,s1,s2)
       stop
    end if
 end subroutine solutions_quadratic_equations</code></pre>
-<p>The scope of variables is applicable as functions. In the above case, the variables <code>a</code>, <code>b</code>, and <code>c</code> are exclusively used in each program unit.</p>
+<p>The scope of variables is the same as as functions. In the above case, the variables <code>a</code>, <code>b</code>, and <code>c</code> are exclusively used in each program unit.</p>
 <h3 id="summary">Summary</h3>
 <ul>
 <li>An external procedure (function or subroutine) is independent of the main program.</li>
@@ -275,7 +275,7 @@ end program custom</code></pre>
 </ul>
 <p>In the above program, the internal subroutine still keeps its independence. All required variables come from the arguments, and two output variables will be returned through the arguments. There is 1 local variable in the internal subroutine, and this is accessible only in the subroutine (the main program cannot touch it).</p>
 <h4 id="shared-variables">Shared variables</h4>
-<p>When you try to share the variables between the main and the internal, the program looks like this.</p>
+<p>When you try to share the variables between the main and the internal procedure, the program looks like this.</p>
 <pre data-language="Fortran"><code class="language-fortran">program custom
    implicit none
    real :: a,b,c,v1,v2
@@ -331,18 +331,19 @@ function discriminant(a,b,c) result(d)
    d = b**2 - 4*a*c
 end function discriminant
 end subroutine print_status</code></pre>
+<p>Technically, the internal function <code>discriminant</code> can access all the variables defined in <code>print_status</code> (but in the above case, the variables are passed as the argument).</p>
 <h3 id="which-should-be-used-external-or-internal">Which should be used, external or internal?</h3>
 <p>There are pros and cons to external and internal procedures. There are a few recommendations about which should be used in your case.</p>
 <p>The external procedures are preferred if your procedure will be re-used in other places. The procedure should be independent and self-described in terms of the variable scope. The independent procedure is more comfortable to test and modify. The disadvantage is that you have to declare the interface of the procedure before using it.</p>
-<p>The internal procedure is a good option if it is exclusively used by the program unit that includes the procedure. The procedure shares the same scope of variables as the parent program-unit. However, the internal procedure is not portable when it depends on outside variables. Also, when you have many internal procedures, it becomes unclear which and when internal procedures change the variables defined in the parent unit.</p>
-<p>Because of the above reasons, in this tutorial, I am going to use external procedures mainly. The disadvantage of a redundant interface will be removed by using <em>modules</em>, which is introduced in the next chapter. Also, I use an internal procedure if it is the right way to do a job.</p>
+<p>The internal procedure is a good option if it is exclusively used by the program unit that includes the procedure. The procedure shares the same scope of variables as the parent program-unit. And therefore, the internal procedure is not portable when it depends on outside variables. Also, when you have many internal procedures, it becomes unclear which and when internal procedures change the variables defined in the parent unit. You need a custom rule for which variables should be shared between the procedures.</p>
+<p>Because of the usability, in this tutorial, I am going to use external procedures mainly. The disadvantage of a redundant interface will be removed by using <em>modules</em>, which is introduced in the next chapter. Also, I use an internal procedure if it is the right way to do a job.</p>
 <h3 id="summary-1">Summary</h3>
 <ul>
 <li>A program unit can include internal procedures.</li>
 <li>All the variables and the <code>implicit none</code> status in the parent unit will be shared with the internal procedures. The internal procedure can still have its local variables.</li>
 <li>The internal procedures stay after the <code>contains</code> statement in the parent unit. Any number of internal procedures can be included.</li>
 <li>The internal procedures are exclusively used only by the parent program unit so that no <code>interface</code> is needed.</li>
-<li>External procedures are useful if they will be re-used in different programs. Internal procedures are useful if it is closely related to the variables defined in the patent unit.</li>
+<li>External procedures are useful if they will be re-used in different programs. Internal procedures are useful if it is closely related to the variables defined in the parent unit.</li>
 </ul>
 <h3 id="exercises-1">Exercises</h3>
 <ol type="1">
@@ -481,7 +482,7 @@ end function first_alphabet</code></pre>
       end if
    end if
 end function first_alphabet</code></pre>
-<p>It is related more to a style of programming. We empirically know what a better style is. It is not a topic in this tutorial; see some books dealing with programming style.</p>
+<p>It is related more to a style of programming. Many people empirically know what a better style is, but it is not a topic in this tutorial. See some books dealing with programming style.</p>
 <h3 id="exercises-3">Exercises</h3>
 <p>There is no exercise in this subsection.</p>
 <p>

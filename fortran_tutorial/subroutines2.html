@@ -131,10 +131,10 @@ end subroutine sumup</code></pre>
 <p>The argument can have the same attributes as used in a function.</p>
 <h3 id="type-of-procedures-and-scope-of-variables">Type of procedures and scope of variables</h3>
 <h4 id="external-procedure">External procedure</h4>
-<p>The procedure is external if it is defined as an independent program unit (i.e., no “parent” procedure)</p>
+<p>The procedure is external if it is defined as an independent program unit (i.e., no “parent” procedure).</p>
 <ul>
 <li>A variable defined in the procedure can be accessed only within the procedure (private scope).</li>
-<li>The procedure <em>cannot</em> access any other variable defined outside the procedure (except for those defined in a module).</li>
+<li>The procedure <em>cannot</em> access any other variable defined outside the procedure (except for those defined in a module that is used in the procedure).</li>
 <li>If you call an external procedure, you should declare the interface of the procedure using <code>interface</code>.</li>
 </ul>
 <h4 id="internal-procedures">Internal procedures</h4>

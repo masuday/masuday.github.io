@@ -120,10 +120,10 @@ main.o: main.f90
 
 mymod.o: mymod.f90
     $(FC) -c mymod.f90</code></pre>
-<p>The macro is defined as <code>macro name = value</code>, usually placed at the top of the makefile. The macro name separates upper and lower cases. To expand the macro (i.e., to get the value), use <code>$(macro name)</code>. Note that <code>$</code> is required when referring to the macro. In the above case, a macro <code>FC</code> (for Fortran compiler) defines a compiler so that you can just modify the macro to change the compiler.</p>
+<p>The macro is defined as <code>macro_name = value</code>, usually placed at the top of the makefile. The macro name separates upper and lower cases. To expand the macro (i.e., to get the value), use <code>$(macro_name)</code>. Note that <code>$</code> is required when referring to the macro. In the above case, a macro <code>FC</code> (for Fortran compiler) defines a compiler so that you can just modify the macro to change the compiler.</p>
 <p>There are many features in macros. Please search the possible usage of macros by yourself.</p>
 <h3 id="phony-target">Phony target</h3>
-<p>The makefile has several pre-defined targets, and <code>.PHONY:</code> is one of them. It defines dummy targets that may not have any compilation. Typical usage of <code>.PHONY</code> is to define a more meaningful target-name than a file name.</p>
+<p>The makefile has several pre-defined targets, and <code>.PHONY:</code> is one of them. It defines a dummy target that is not a file name. Typical usage of <code>.PHONY</code> is to define a more meaningful target-name than a file name.</p>
 <p>Assume your makefile has the final target <code>a.out</code>, but it is not at the top. You may come up with the following makefile to specify the final target.</p>
 <pre data-language="text"><code>FC = gfortran
 
@@ -180,7 +180,7 @@ clean:
 <h3 id="parallel-compilation">Parallel compilation</h3>
 <p>Some files may be independent, and these files can be compiled at the same time. The <code>make</code> command finds independent files and runs the commands in parallel with an option.</p>
 <pre data-language="shell"><code>make -j 4</code></pre>
-<p>It can use at most 4 threads if possible. The option <code>-j</code>, meaning <em>jobs</em>, specifies the number of threads to generate the target. This option is not useful in a small project, but it becomes very efficient with many files.</p>
+<p>It can use at most 4 threads if possible. The option <code>-j</code>, meaning <em>jobs</em>, specifies the number of threads to generate the target. This option is not useful in a small project, but it becomes very efficient with many files. Note that, if the dependency graph is broken or incomplete, the compilation may fail with this option.</p>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>

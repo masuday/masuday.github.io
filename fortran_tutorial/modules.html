@@ -60,7 +60,7 @@
 Back to <a href="./index.html">index.html</a>.
 </p>
 <h1 id="modules">Modules</h1>
-<p>Re-use of past programs is a good practice to reduce the development cost. Such programs should be an excellent shape to be easily used in other program units. External functions and subroutines are reusable, but the additional description of the correct interface is required. Also, there is an issue when some variables and constants should be shared with program units; there is a syntax to do it, but it is old-fashioned and not recommended. A module in Fortran is a collection of variable, procedures, and interfaces which are easily used in any program units.</p>
+<p>Re-use of past programs is a good practice to reduce the development cost. Such programs should be an excellent shape to be easily used in other program units. External functions and subroutines are reusable, but the additional description of the correct interface is required. Also, there is an issue when some variables and constants should be shared with program units; there is a primitive syntax to do it, but it is old-fashioned and not recommended. Instead, it would be best if you used a module. A module in Fortran is a collection of variable, procedures, and interfaces which are easily used in any program units.</p>
 <h2 id="basic-features">Basic features</h2>
 <h3 id="definition-of-module">Definition of module</h3>
 <p>A Fortran module is a program unit (like <code>program</code>, <code>function</code>, and <code>subroutine</code>). The module is defined with the <code>module</code> statement. The structure looks like the main program. Here is a small example of defining a module.</p>
@@ -78,7 +78,7 @@ function mean(x) result(m)
 end function mean
 
 end module mymod</code></pre>
-<p>It defines a constant <code>pi</code>, a variable <code>number_of_traits</code> (with the initial value is 0), and a function <code>mean</code>. When using this module in the main program (or any program units), the variables and the function will be immediately accessible. To use this module, you should use the <code>use</code> statement, which should be at the beginning of the program unit.</p>
+<p>It defines a constant <code>pi</code>, a variable <code>number_of_traits</code> (with the initial value is 0), and a function <code>mean</code>. When using this module in the main program (or any program units), all the variables and the function will be immediately accessible. To use this module, you should use the <code>use</code> statement, which should be at the beginning of the program unit.</p>
 <pre data-language="Fortran"><code class="language-fortran">program main
    ! at the top of program
    use mymod
@@ -101,7 +101,7 @@ end program main</code></pre>
 </ul>
 <p>The procedures can access all variables defined in the module (above <code>contains</code>). The module is useful to unify some variables and procedures that use the variables.</p>
 <h3 id="shared-variables">Shared variables</h3>
-<p>When a module is used in different program units, the variables in the module will be shared. It means that using a variable in the module, when one program changes the variable, this change is effective in all programs that use the module. See the following example.</p>
+<p>When a module is used in different program units, the variables in the module will be shared. The shared variable is also called a <em>public</em> variable. It means that using a variable in the module, when one program changes the variable, this change is effective in all programs that use the module. See the following example.</p>
 <pre data-language="Fortran"><code class="language-fortran">subroutine set_num_traits(n)
    use mymod
    integer,intent(in) :: n
@@ -153,15 +153,15 @@ end program main</code></pre>
    ...
 end program main</code></pre>
 <p>The name of the imported object should not be the same as the variable names in the program unit. You can change the name of the imported object in <code>only</code> as follows.</p>
-<pre data-language="Fortran"><code class="language-fortran">new_name =&gt; original_name</code></pre>
+<pre data-language="definition"><code class="language-fortran">new_name =&gt; original_name</code></pre>
 <p>Here is an example of name change: <code>average</code> refers to <code>mean</code>.</p>
 <pre data-language="Fortran"><code class="language-fortran">program main
    use mymod, only:pi,average=&gt;mean
    ...
 end program main</code></pre>
-<p>The selective import is always recommended in the use of the module.</p>
+<p>The selective import is always recommended when you use a module unless you need all the objects in the module.</p>
 <h3 id="private-and-public-objects">Private and public objects</h3>
-<p>All the objects defined in a module can be imported by default. In other words, the objects have the <em>public</em> attribute. You can make some objects <em>private</em>. The private objects are visible only within the module; the procedures in the module can access to such private objects.</p>
+<p>All the objects defined in a module can be imported by default. In other words, the objects have the implicit <em>public</em> attribute. You can make some objects <em>private</em>. The private objects are visible only within the module; the procedures in the module can access to such private objects.</p>
 <p>Two statements, <code>public</code> and <code>private</code> specify the attribute of objects. The statements should stay before <code>contains</code>.</p>
 <pre data-language="Fortran"><code class="language-fortran">module mymod
    implicit none
