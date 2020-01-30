@@ -122,7 +122,7 @@ dealloocate(seed)</code></pre>
    real :: r
    call random_number(r)
    u = 1 - r
-ens ubroutine random_stduniform</code></pre>
+end subroutine random_stduniform</code></pre>
 <h3 id="uniform-distribution">Uniform distribution</h3>
 <p>Consider the uniform distribution <span class="math inline">\(x \sim U(a,b)\)</span> where <span class="math inline">\(a&lt;x\leq b\)</span>. The random number is available by a linear transformation of <span class="math inline">\(u\sim U(0,1)\)</span>, which is the standard uniform distribution implemented in <code>random_number</code>.</p>
 <p><span class="math display">\[
@@ -137,7 +137,7 @@ subroutine random_uniform(a,b,x)
    real :: u
    call random_stduniform(u)
    x = (b-a)*u + a
-ens ubroutine random_uniform</code></pre>
+end subroutine random_uniform</code></pre>
 <h3 id="standard-normal-distribution">Standard normal distribution</h3>
 <p>There ia a famous set of formula to generate the standard-normal deviates based on the standard uniform random number. It is called the <em>Box-Muller</em> transformation. The formula generates two normal-deviates (<span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span>) at the same time based on two uniform numbers <span class="math inline">\(u_1\)</span> and <span class="math inline">\(u_2\)</span>.</p>
 <p><span class="math display">\[
@@ -155,7 +155,7 @@ x_1 &amp;= \sqrt{-2\ln(u_1)}\sin(2\pi u_2)
    call random_stduniform(u1)
    call random_stduniform(u2)
    x = sqrt(-2*log(u1))*cos(2*pi*u2)
-ens ubroutine random_stdnormal</code></pre>
+end subroutine random_stdnormal</code></pre>
 <h3 id="gamma-distribution">Gamma distribution</h3>
 <p>The gamma distribution has alternative forms by different parameterization. Here, I take the following form <span class="math inline">\(\mathrm{Gamma}(\alpha,\beta)\)</span> with shape parameter <span class="math inline">\(a&gt;0\)</span> and scale parameter <span class="math inline">\(\beta&gt;0\)</span>. Note that an article in <a href="https://en.wikipedia.org/wiki/Gamma_distribution">Wikipedia</a> uses <span class="math inline">\(k=\alpha\)</span> and <span class="math inline">\(\theta=\beta\)</span>.</p>
 <p><span class="math display">\[
@@ -182,7 +182,7 @@ f(x)=\frac{1}{\Gamma(\alpha)\beta^\alpha}x^{\alpha-1}e^{-\frac{x}{\beta}}
          exit
       end if
    end do
-ens ubroutine random_stdgamma_alpha_ge_1</code></pre>
+end subroutine random_stdgamma_alpha_ge_1</code></pre>
 <p>If <span class="math inline">\(0&lt;\alpha&lt;1\)</span>, we can still use the above algorithm by shifting the parameter as <span class="math inline">\(\alpha+1\)</span>.</p>
 <ol type="1">
 <li>Generate <span class="math inline">\(g\sim \mathrm{Gamma}(\alpha+1,1)\)</span> using the above algorithm.</li>
