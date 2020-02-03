@@ -69,14 +69,19 @@ Back to <a href="./index.html">index.html</a>.
    print *,&quot;Hello, &quot; // &quot;world!&quot;
 end program ch</code></pre>
 <p>You can use it for character variables.</p>
-<pre data-language="Fortran"><code class="language-fortran">! for excercise 1
-program ch
+<pre data-language="Fortran"><code class="language-fortran">program ch
    implicit none
    character(len=10) :: x,y
    x = &quot;Hello, &quot;
    y = &quot;world!&quot;
    print *,x // y
 end program ch</code></pre>
+<pre data-language="output"><code> Hello,    world!</code></pre>
+<p>It seems wrong. Each variable has 10-character length, and <code>print</code> keeps the margin enough to show the full width of each variable. In the above case, <code>print</code> statement shows <code>Hello,</code> followed by padded spaces (as 4 characters). To avoid it, you cut the trailed spaces with the intrinsic function, <code>trim</code>.</p>
+<pre data-language="Fortran"><code class="language-fortran">! for exercise 1
+   print *,trim(x) // y</code></pre>
+<pre data-language="output"><code> Hello,world!</code></pre>
+<p>But it removes all the trailing spaces in <code>x</code> while keeping the other spaces. The output has no space between the words. Exercise 1 asks you how you show <code>Hello, world!</code> in the right way.</p>
 <h3 id="character-functions">Character functions</h3>
 <p>There are many built-in functions useful for manipulating characters.</p>
 <table>
@@ -103,10 +108,14 @@ end program ch</code></pre>
 <td><code>adjustr(x)</code></td>
 <td>right alignment</td>
 </tr>
+<tr class="odd">
+<td><code>trim(x)</code></td>
+<td>removing the trailing spaces</td>
+</tr>
 </tbody>
 </table>
 <p>See the following example.</p>
-<pre data-language="Fortran"><code class="language-fortran">! for excercise 2
+<pre data-language="Fortran"><code class="language-fortran">! for excercise 1
 program ch
    implicit none
    character(len=10) :: x
@@ -115,11 +124,13 @@ program ch
    print *,len_trim(x)
    print *,adjustl(x)
    print *,adjustr(x)
+   print *,trim(x)   
 end program ch</code></pre>
 <pre data-language="output"><code>          10
            8
  123 45     
-     123 45 </code></pre>
+     123 45 
+ 123 45     </code></pre>
 <p>To remove the leading spaces, you apply <code>adjust()</code> to the variable.</p>
 <pre data-language="Fortran"><code class="language-fortran">x = adjustl(x)</code></pre>
 <p>Some other functions may be useful to manipulate the characters precisely.</p>
@@ -205,7 +216,7 @@ end program ch</code></pre>
 <h2 id="exercises">Exercises</h2>
 <p>See the above code.</p>
 <ol type="1">
-<li>Modify the program to show “Hello, world!” correctly.</li>
+<li>Show <code>Hello, world!</code> in the right way (with a space between the words).</li>
 <li>Show the length of x, excluding all leading and training spaces. In this case, make the program show <code>6</code> for <code>x="  123 45  "</code>.</li>
 </ol>
 <p>

@@ -78,9 +78,17 @@ Back to <a href="./index.html">index.html</a>.
 <li>Real number
 <ul>
 <li>A floating-point number approximating a value within the defined precision.</li>
-<li>Literal using the decimal separator: <code>3.14</code> and <code>-0.002</code></li>
-<li>Literal using exponential i.e., <span class="math inline">\(x\times 10^{y}\)</span>: <code>0.314e1</code> and <code>12.234e-3</code></li>
-<li>Default: 4-byte single precision (approximately between <span class="math inline">\(-3.40\times 10^{38}\)</span> to <span class="math inline">\(3.40\times 10^{38}\)</span>)</li>
+<li>Literal using the decimal separator: <code>3.14</code> and <code>-0.002</code> for single precision</li>
+<li>Literal using exponential i.e., <span class="math inline">\(x\times 10^{y}\)</span>:
+<ul>
+<li><code>0.314e1</code> and <code>12.234e-3</code> for single precision</li>
+<li><code>0.314d1</code> and <code>12.234d-3</code> for double precision</li>
+</ul></li>
+<li>Default:
+<ul>
+<li>4-byte single precision (approximately between <span class="math inline">\(\pm 1.18\times 10^{-38}\)</span> and <span class="math inline">\(\pm 3.40\times 10^{38}\)</span>)</li>
+<li>8-byte double precision (approximately between <span class="math inline">\(\pm 2.23\times 10^{-308}\)</span> and <span class="math inline">\(\pm 1.80\times 10^{308}\)</span>)</li>
+</ul></li>
 </ul></li>
 <li>Logical value
 <ul>
@@ -194,7 +202,7 @@ end program num</code></pre>
    y = 1.0
    print *,ieee_is_finite(x),ieee_is_finite(y)
 end program num</code></pre>
-<pre data-language="output"><code> T F</code></pre>
+<pre data-language="output"><code> F T</code></pre>
 <h3 id="nan-not-a-number">NaN: Not-a-number</h3>
 <p>There is another status as a result of floating-point arithmetic. If the result is not mathematically defined, like <span class="math inline">\(0/0\)</span>, the result becomes a value, <em>not-a-number</em> or simply <em>NaN</em>. It is not a number but a valid floating-point value. Note that it happens only in floating-point arithmetics; for integer arithmetics, it never happens. See the following example.</p>
 <pre data-language="Fortran"><code class="language-fortran">program num
