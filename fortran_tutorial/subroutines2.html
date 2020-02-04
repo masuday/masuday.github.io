@@ -103,7 +103,7 @@ end function name</code></pre>
       val = val + i
    end do
 end function sumup</code></pre>
-<p>An argument has a type with attributions, other characteristics to clarify the role of the argument. A typical attribute is <code>intent()</code> which defines whether the argument is supposed to be changed or not.</p>
+<p>A function receives the input as variables called <em>arguments</em> (<code>n</code> above). The argument variable (known as <em>dummy variable</em> or <em>dummy argument</em>) is a reference to the original data. An argument has a type with attributions, other characteristics to clarify the role of the argument. A typical attribute is <code>intent()</code> which defines whether the argument is supposed to be changed or not.</p>
 <ul>
 <li><code>intent(in)</code>: input-only (no change on exit)</li>
 <li><code>intent(out)</code>: output-only (no input value but a certain value on exit)</li>

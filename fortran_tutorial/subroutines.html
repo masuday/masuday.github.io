@@ -75,7 +75,7 @@ Back to <a href="./index.html">index.html</a>.
 <h3 id="external-function">External function</h3>
 <h4 id="definition">Definition</h4>
 <p>As seen in the previous chapters, a function has a form like <code>sqrt(x)</code> with a name and arguments, and it returns a value. A custom function is defined with the name, what kind of arguments it accepts, and what it returns. The <code>function</code> statement defines a new function. Here is a template of the definition.</p>
-<pre data-language="Fortran"><code class="language-fortran">function name(arguments) result(output)
+<pre data-language="definition"><code class="language-fortran">function name(arguments) result(output)
    List of arguments
    Definition of output
    ...
@@ -87,14 +87,28 @@ end function name</code></pre>
    real :: v
    v = x**(1.0/3.0)
 end function cubicroot</code></pre>
+<p>The usage of custom function is the same as the intrinsic functions. It can take variables or literals as arguments.</p>
+<pre data-language="Fortran"><code class="language-fortran">real :: my_value,output
+
+! case 1
+my_value = 1.5
+output = cubicroot(my_value)
+
+! case 2
+print *,cubicroot(2.0)
+
+! case 3
+my_value = cubicroot(my_value)/1.25</code></pre>
 <p>You can see how a function is defined.</p>
 <ul>
 <li>A function is defined between <code>function</code> and <code>end function</code>.</li>
+<li>The input values are passed through the argument variables.</li>
 <li>The <code>function</code> statement defines its name, the argument variables in <code>()</code>, and the return variable in <code>result()</code>.</li>
 <li>You should put <code>implicit none</code> inside the function.</li>
 <li>At the top of the function, all arguments should be declared as variables with the status like <code>intent(in)</code>.</li>
 <li>Also, the return variable should be declared. The value held by this variable will be returned when the function finishes.</li>
 </ul>
+<p>When defining the function, you know the type of input, but you do not know the actual value of the input. So, you should declare the input as an argument variable with an arbitrary name, and use it in the function. The argument variable is a “reference” (or alias) to the original value, and accessing the argument variable is equivalent to access to the original variable or literals. Because the argument variable is just a label to the original data, some people call it <em>dummy variable</em> or <em>dummy argument</em>. In the above example, you can think <code>x</code> refers to the original variable (or literal).</p>
 <p>The <code>function</code> statement defines an independent program-unit from the main program. As you do in <code>program</code>, you have to put <code>implicit none</code> in the function. All the variables declared inside the function are unrelated to the main program.</p>
 <p>The <code>intent()</code> <em>attribute</em> declares the status of the input variable to clarify which input can be changed (or unchanged).</p>
 <ul>
@@ -166,7 +180,7 @@ end function cubicroot</code></pre>
 <h3 id="external-subroutine">External subroutine</h3>
 <h4 id="definition-1">Definition</h4>
 <p>The definition of an external subroutine is the same as function, but using a different statement <code>subroutine</code>.</p>
-<pre data-language="Fortran"><code class="language-fortran">subroutine name(arguments)
+<pre data-language="definition"><code class="language-fortran">subroutine name(arguments)
    List of arguments
    ...
 end subroutine name</code></pre>

@@ -92,6 +92,26 @@ Back to <a href="./index.html">index.html</a>.
 <li>Example 2: <code>allocate(x(2,5))</code> for allocation</li>
 <li>Example 3: <code>deallocate(x)</code> for deallocation</li>
 </ul>
+<h3 id="systematic-access-to-each-element-in-array">Systematic access to each element in array</h3>
+<p>A loop is a typical method to get access to each element in an array. The loop generates a sequence of integer numbers by a counter variable, and you can use it as the index. For example, we have a vector with 5 elements. <span class="math display">\[
+\mathbf{a}&#39;=\left[
+\begin{array}{ccccc}
+   a_1&amp;a_2&amp;a_3&amp;a_4&amp;a_5
+\end{array}
+\right]&#39;
+\]</span> Using the following program, you can print each of them sequentially.</p>
+<pre data-language="Fortran"><code class="language-fortran">program arr
+   implicit none
+   integer :: i
+   real :: a(1:5)
+   a = [1,2,3,4,5]
+
+   do i=1,5
+      ! use a counter as index
+      print *,a(i)
+   end do
+end program arr</code></pre>
+<p>We are going to see this technique later in this chapter.</p>
 <h2 id="array-index">Array index</h2>
 <h3 id="arbitrary-lower-bound">Arbitrary lower bound</h3>
 <p>The array index starts from 1 by default. You can declare an array with an arbitrary starting value in the index.</p>

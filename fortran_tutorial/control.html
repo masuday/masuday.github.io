@@ -431,6 +431,13 @@ do
 end do</code></pre>
 <p>The first loop is more transparent for any people than the latter, while the latter code is very straightforward (but it may look more complicated for some people). Although the first code is preferred, we would need a loop like the other code.</p>
 <p>There are many cases to generate a sequence in Fortran. The <code>do</code> statement is a typical mechanism to generate the sequence, and it is a solution for the purpose.</p>
+<h4 id="practical-use-of-loops">Practical use of loops</h4>
+<p>The loop has 2 different viewpoints in practice.</p>
+<ol type="1">
+<li>Iteration: repeating the same (or similar) operations a finite number of times.</li>
+<li>Sequence of numbers: generating a series of numbers.</li>
+</ol>
+<p>The latter is useful when you manipulate the subscript (index) of an array (e.g., matrix and vector that we are going to see later). When you have to change the index or any numbers systematically, you will use the loops.</p>
 <h4 id="summary-1">Summary</h4>
 <ul>
 <li>The <code>do</code> statement defines a loop. The statements between <code>do</code> and the corresponding <code>end do</code> are repeated.</li>
@@ -439,6 +446,7 @@ end do</code></pre>
 <li>The evaluation of the counter occurs at <code>do</code>, the top of the loop. If the counter is greater than the final value, the program exits the loop, i.e., going to the next line of <code>end do</code>.</li>
 <li>The <code>exit</code> statement jumps out of the loop. The <code>cycle</code> statement immediately goes back to <code>do</code>, ignoring the remaining statements.</li>
 <li>Without the counter, <code>do</code> makes an infinite loop. The <code>exit</code> statement is the only way to exit the loop.</li>
+<li>The loop is useful to repeat a task many times or to generate a sequence of numbers.</li>
 </ul>
 <h4 id="exercises-2">Exercises</h4>
 <ol type="1">
