@@ -452,9 +452,10 @@ end do</code></pre>
 <ol type="1">
 <li>Rewrite the code to compute a factorial with a larger <code>n</code> using a double-precision variable.</li>
 <li>Read 10 numbers from the keyboard, then show how many positive numbers were given.</li>
-<li>Write a <em>fizz buzz</em> program. It prints integer numbers from 1 to <code>n</code> on screen, but when the number is divisible by 3 is replaced by the word <code>fizz</code>, any number divisible by 5 by the word <code>buzz</code>, and the numbers divisible by 15 by the word <code>fizz buzz</code>.</li>
+<li>Write a <em>fizz buzz</em> program. It prints integer numbers from 1 to <code>n</code> on screen, but when the number is divisible by 3 is replaced by the word <code>fizz</code>, any number divisible by 5 by the word <code>buzz</code>, and the numbers divisible by 15 by the word <code>fizz buzz</code> only (without showing any of <code>fizz</code> and <code>buzz</code>).</li>
 </ol>
 <h3 id="variation-in-loop">Variation in loop</h3>
+<p>In this subsection, we are going to see a variation of the loop, particularly useful to generate a sequence of numbers.</p>
 <h4 id="non-executable-loop">Non-executable loop</h4>
 <p>You can use variables as the staring and the last values. In such a case, the loop may not be executed. It is a valid program, and it often appears in some algorithms.</p>
 <pre data-language="Fortran"><code class="language-fortran">program loop
@@ -484,6 +485,10 @@ end program loop</code></pre>
            5 
            7 
            9 </code></pre>
+<p>It is equivalent to write the following code. You can use whatever you prefer.</p>
+<pre data-language="Fortran"><code class="language-fortran">   do i=1,5
+      print *,2*i-1
+   end do</code></pre>
 <p>Using this technique, the user can define a loop where the counter decrements.</p>
 <pre data-language="Fortran"><code class="language-fortran">program loop
    implicit none
@@ -505,7 +510,18 @@ end program loop</code></pre>
 <li>The increment is defined in the 3rd parameter in <code>do</code>. It should be non zero integers.</li>
 </ul>
 <h4 id="exercises-3">Exercises</h4>
-<p>There are no exercises in this section.</p>
+<ol type="1">
+<li>Print the following sequence of integer numbers on the screen (first 12 numbers of the sequence).
+<ol type="a">
+<li><span class="math inline">\(2, 4, 6, 8, 10, 12, 14, \cdots\)</span></li>
+<li><span class="math inline">\(0, 1, 3, 6, 10, 15, 21, \cdots\)</span></li>
+<li><span class="math inline">\(1, -1, 1, -1, 1, -1, \cdots\)</span></li>
+<li><span class="math inline">\(1, 2, 0, 4, 5, 0, 7, 8, 0, \cdots\)</span></li>
+<li><span class="math inline">\(1, 2, 4, 5, 7, 8, \cdots\)</span></li>
+</ol></li>
+<li>Compute <span class="math inline">\(4x\)</span> where <span class="math display">\[x=1-\frac{1}{3}+\frac{1}{5}-\frac{1}{7}+\frac{1}{9}+\cdots\]</span> for the first 1 million terms.</li>
+<li>Factor <span class="math inline">\(2099829353\)</span> into two primes (i.e. find primes <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> so that <span class="math inline">\(xy=2099829353\)</span>).</li>
+</ol>
 <h3 id="nested-loops">Nested loops</h3>
 <p>You can define nested loops with multiple <code>do</code>s. Here, for simplicity, we just consider double loops with two <code>do</code> statements.</p>
 <h4 id="double-loops">Double loops</h4>
@@ -575,7 +591,13 @@ end program loop</code></pre>
 <li>The label is used by <code>exit</code> and <code>cycle</code> to specify the loop.</li>
 </ul>
 <h4 id="exercises-4">Exercises</h4>
-<p>No exercises are given because this topic is not useful without arrays and algorithms, which we will see in the later chapter.</p>
+<ol type="1">
+<li>Show all pairs of integers (<span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>; <span class="math inline">\(0&lt;a,b&lt;20\)</span>) to satisfy that <span class="math inline">\(a/b\)</span> is an integer number.</li>
+<li>Write a program to find triplets of integer numbers (<span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, and <span class="math inline">\(c\)</span>) to satisfy <span class="math inline">\(a^2+b^2=c^2\)</span> where <span class="math inline">\(0&lt;a,b,c&lt;1000\)</span>. Just show the first 10 sets of numbers.</li>
+</ol>
+<!--
+No exercises are given because this topic is not useful without arrays and algorithms, which we will see in the later chapter.
+-->
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>

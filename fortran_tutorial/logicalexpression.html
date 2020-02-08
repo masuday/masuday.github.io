@@ -28,6 +28,7 @@
   <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
   <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
   <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
   </script>
@@ -51,9 +52,11 @@
 <li><a href="#logical-expressions">Logical Expressions</a>
 <ul>
 <li><a href="#logical-values">Logical values</a></li>
-<li><a href="#comparison-operators">Comparison operators</a></li>
-<li><a href="#boolean-operators">Boolean operators</a></li>
+<li><a href="#relational-comparison-operators">Relational (comparison) operators</a></li>
+<li><a href="#combinational-boolean-operators">Combinational (Boolean) operators</a></li>
 <li><a href="#logical-equivalence">Logical equivalence</a></li>
+<li><a href="#precedence-of-logical-operators">Precedence of logical operators</a></li>
+<li><a href="#summary">Summary</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -89,7 +92,7 @@ Back to <a href="./index.html">index.html</a>.
 end program bool</code></pre>
 <pre data-language="output"><code> T
  F</code></pre>
-<h2 id="comparison-operators">Comparison operators</h2>
+<h2 id="relational-comparison-operators">Relational (comparison) operators</h2>
 <p>There are some operators to compare two values and return <code>.true.</code> or <code>.false.</code>.</p>
 <table>
 <thead>
@@ -146,8 +149,17 @@ end program bool</code></pre>
  F
  F
  T</code></pre>
-<h2 id="boolean-operators">Boolean operators</h2>
-<p>Fortran also has Boolean (set) operators. Each operator accepts logical expressions, combines them, and returns <code>.true.</code> or <code>,false.</code>. The <code>.not.</code> operator takes 1 expression, but the others take 2 expressions.</p>
+<p>Of course, you can use the relational operators with variables.</p>
+<pre data-language="Fortran"><code class="language-fortran">program bool
+   integer :: x,y
+   x = 10
+   y = 20
+   print *,x&gt;9
+   print *,x&lt;x+1
+   print *,x==y
+end program bool</code></pre>
+<h2 id="combinational-boolean-operators">Combinational (Boolean) operators</h2>
+<p>Fortran also has combinational (Boolean) operators. Each operator accepts logical expressions, combines them, and returns <code>.true.</code> or <code>,false.</code>. The <code>.not.</code> operator takes 1 expression, but the others take 2 expressions.</p>
 <table>
 <thead>
 <tr class="header">
@@ -185,7 +197,7 @@ end program bool</code></pre>
  T
  T
  T</code></pre>
-<p>The precedence of the Boolean operators is <code>()</code>, <code>.not.</code>, <code>.and.</code>, and <code>or.</code>. I recommend you always to use <code>()</code> accordingly, when two or more expressions are combined.</p>
+<p>The precedence of the Boolean operators is <code>()</code>, <code>.not.</code>, <code>.and.</code>, and <code>or.</code> (because of the <em>set theory</em>). I recommend you always to use <code>()</code> accordingly, when two or more expressions are combined.</p>
 <pre data-language="Fortran"><code class="language-fortran">program bool
    print *,10&gt;9 .and. .not. 10&gt;=9 .or. 10==9
    print *,(10&gt;9 .and. (.not.10&gt;=9)) .or. 10==9  ! recommended
@@ -202,20 +214,28 @@ end program bool</code></pre>
  F
  T</code></pre>
 <p>In addition to <code>.eqv.</code> and <code>.neqv.</code>, you can apply any logical operators (like <code>.and.</code>, <code>.or.</code>, and <code>.not</code>) to any logical expressions.</p>
-<!--
-## Relation to set theory
-
-The reader should notice that the logical expression is closely related to the set theory.
-You can derive the result of logical expression using a Venn diagram.
-I took the following simages from Wiki Media: [link 1](https://commons.wikimedia.org/wiki/Category:Red_and_white_Johnston_diagrams_with_one_circle).
-
-## Venn diagram
-
-Assume We have a condition, $A$, represented as a circle in the following diagram.
-
-![null condition](./venn_single_null.png)
-
--->
+<h2 id="precedence-of-logical-operators">Precedence of logical operators</h2>
+<p>There is a clear rule for the precedence of logical operators. When you give a formula mixing several operators, the Fortran compiler interprets it as follows (explained in Chapman, 2008).</p>
+<ol type="1">
+<li>First, all arithmetic operators (<code>+</code>,<code>-</code>,<code>*</code>,<code>/</code>,<code>**</code>) are evaluadted.</li>
+<li>All relational operators (<code>==</code>,<code>/=</code>,<code>&gt;</code>,<code>&gt;=</code>,<code>&lt;</code>,<code>&lt;=</code>) are evaluated from left to right.</li>
+<li>All <code>.not.</code> operators are evaluated.</li>
+<li>All <code>.and.</code> operators are evaluated (from left to right).</li>
+<li>All <code>.or.</code> operators are evaluated (from left to right).</li>
+<li>All <code>.eqv.</code> and <code>.neqv.</code> operators are evaluated (from left to right).</li>
+</ol>
+<p>If you do not remember all of the rules, as I have mentioned it before, you can always use <code>()</code> to define the precedence.</p>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>A logical expression results in either <code>.true.</code> or <code>.false.</code> literal.</li>
+<li>The precedence of operators is arithmetic operators &gt; relational operators (<code>==</code>,<code>/=</code>,<code>&gt;</code>,<code>&gt;=</code>,<code>&lt;</code>,<code>&lt;=</code>) &gt; <code>.not</code> &gt; <code>.and.</code> &gt; <code>.or.</code> &gt; <code>.eqv.</code> and <code>.neqv.</code>.</li>
+<li>You can change the precedence using <code>()</code>.</li>
+</ul>
+<h3 id="exercises">Exercises</h3>
+<ol type="1">
+<li>Write a formula to test a variable <code>x</code> to be <span class="math inline">\(0 &lt; x \leq 10\)</span>.</li>
+<li>Write a formula to test three variables <code>x</code>, <code>y</code>, and <code>z</code> to be <code>x=y=z</code>.</li>
+</ol>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>

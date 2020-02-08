@@ -50,7 +50,9 @@
 <ul>
 <li><a href="#checklist-to-avoid-errors">Checklist to avoid errors</a>
 <ul>
+<li><a href="#typical-errors">Typical errors</a></li>
 <li><a href="#basics">Basics</a></li>
+<li><a href="#coding-style-and-practice">Coding style and practice</a></li>
 <li><a href="#numerical-expressions">Numerical expressions</a></li>
 <li><a href="#arrays">Arrays</a></li>
 <li><a href="#program-unit">Program unit</a></li>
@@ -61,17 +63,36 @@
 Back to <a href="./index.html">index.html</a>.
 </p>
 <h1 id="checklist-to-avoid-errors">Checklist to avoid errors</h1>
+<h2 id="typical-errors">Typical errors</h2>
+<p>A typical error (bug) occurs because of the following reasons.</p>
+<ul>
+<li>Misspelling (or forgetting to declare) variables, procedures, and modules.</li>
+<li>Incorrect types.</li>
+<li>Nonsense assignment.</li>
+<li>Misuse or misspell of punctuations (<code>"</code>, <code>'</code>, <code>;</code>, <code>.</code>).</li>
+<li>Misplaced statements in the program.</li>
+<li>Misuse of procedures and statements.</li>
+<li>Uninitialized variables (i.e., forgetting to put an initial value to the variable)</li>
+<li>Ignoring the error status of statements or procedures.</li>
+<li>Overflow.</li>
+<li>Logical errors.</li>
+</ul>
+<p>Forst of all, please <strong>read the error message</strong> that the compiler shows. Here is some advice to avoid the bugs.</p>
 <h2 id="basics">Basics</h2>
 <ul>
 <li>Always use <code>implicit none</code>.</li>
 <li>Make sure that a program unit has the order of statements: 1) the unit name, 2) the <code>use</code> statement, 3) <code>implicit none</code>, 4) variables and interface declarations, 5) body of code, and the <code>end</code> statement.</li>
-<li>Use indentation, white spaces, new lines to make the code readable.</li>
 <li>Assign an initial value to a variable before using it.</li>
 <li>Do not assign a value to a variable in the declaration statements in a procedure. In functions and subroutines, the assignment makes the variable “saved”, which may create a big problem that you can not figure out quickly.</li>
 <li>You should declare any meaningful constants with <code>parameter</code>. Do not put a magic number directly into the program.</li>
-<li>Write a clear code; put some comments useful for the other people, including the future yourself.</li>
 <li>Some compiler options can detect the above issues on compilation or runtime.</li>
-<li>Do not use FORTRAN 77-specific syntax. Use the Mondern Fortran methods if available.</li>
+</ul>
+<h2 id="coding-style-and-practice">Coding style and practice</h2>
+<ul>
+<li>Write a clear code; put some comments useful for the other people, including the future yourself.</li>
+<li>Use indentation, white spaces, new lines to make the code readable.</li>
+<li>Do not use FORTRAN 77-specific syntax. Use the Modern Fortran methods if available.</li>
+<li>Start from a small code and make sure it works. Defining a procedure keeps the code compact.</li>
 </ul>
 <h2 id="numerical-expressions">Numerical expressions</h2>
 <ul>

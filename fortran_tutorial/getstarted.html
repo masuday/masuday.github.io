@@ -88,6 +88,21 @@ end program hello</code></pre>
 <p>The output massage always has a while space at the beginning of the line on the screen. This behavior is the default setting (putting a space preceded by the message), and it was chosen due to a historical reason. You can change the output format by replacing <code>*</code> by a <em>format descriptor</em>, which we see in the later section.</p>
 <p>The message <code>"Hello, world!"</code> is literally interpreted as characters. Such an object is called <em>literal</em>. The literal characters should be encircled with <code>"</code> (or <code>'</code>, see the following exercises).</p>
 <p>You can put white spaces among keywords and literals as many as possible. Spaces at the beginning of the line are ignored. Also, an empty line is ignored.</p>
+<h3 id="erros-in-program">Erros in program</h3>
+<p>When compiling your program, you may get an <em>error</em> from the compiler, and the compilation stops. For example, with GFortran, you may see the following error message (the content would be different by GFortran version).</p>
+<pre data-language="output"><code>hello.f90:2:9:
+
+    2 | print *,&quot;Hello, world!
+      |         1
+Error: Unterminated character constant beginning at (1)</code></pre>
+<p>The error occurs because you forget to put <code>"</code> at the end of characters in line 2 of the file <code>hello.f90</code>. A <em>bug</em> is a mistake or some logical errors in the program. It is the simplest case that you can find the bug quickly. However, even though the bug is silly, you may overlook it because you believe the code is absolutely correct. Therefore, finding and removing the errors (<em>debug</em>) can be frustrating and taking the time. Here is some advice to debug your program.</p>
+<ul>
+<li><strong>Please read the error message</strong>, and go to the line number that the compiler tells you.</li>
+<li>Look around the line and related code from an objective point of view.</li>
+<li>If the code is short, rewrite the same code from scratch.</li>
+<li>Create a minimal set of code that does not (or does) produce the issue.</li>
+<li>Ask somebody else to review your code; it is * incredibly* useful in some cases.</li>
+</ul>
 <h3 id="summary">Summary</h3>
 <ul>
 <li>One line has one statement.</li>
@@ -95,6 +110,7 @@ end program hello</code></pre>
 <li>The <code>print</code> statement shows literals to screen.</li>
 <li>A character literal is encircled with <code>"</code> or <code>'</code>.</li>
 <li>One or more spaces separate keywords and statements.</li>
+<li>If you get en error on compiling, read the error message carefully and remove the issue.</li>
 </ul>
 <h3 id="exercises">Exercises</h3>
 <ol type="1">

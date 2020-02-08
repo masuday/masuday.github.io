@@ -193,7 +193,7 @@ end program num</code></pre>
 </tr>
 </tbody>
 </table>
-<p>By default, the priority of operators is the same as the arithmetic rule (<code>**</code> &gt; <code>*</code> and <code>/</code> &gt; <code>+</code> and <code>-</code>). The parentheses change the priority. You can use as many as operators in a formula such as <code>1+((5+4/2)**6)/2-8/4+2</code>.</p>
+<p>By default, the priority of operators is the same as the arithmetic rule (<code>**</code> &gt; <code>*</code> and <code>/</code> &gt; <code>+</code> and <code>-</code>), and the operators are evaluated from left to right. The parentheses change the priority. You can use as many as operators in a formula such as <code>1+((5+4/2)**6)/2-8/4+2</code>.</p>
 <pre data-language="Fortran"><code class="language-fortran">program num
    print *,1+((5+4/2)**6)/2-8/4+2
 end program num</code></pre>
@@ -352,7 +352,11 @@ Error: &#39;x&#39; argument of &#39;cos&#39; intrinsic at (1) must be REAL or CO
 end program num</code></pre>
 <h4 id="summary-1">Summary</h4>
 <ul>
-<li>Fortran follows the standard arithmetic rule.</li>
+<li>Fortran follows the standard arithmetic rule in terms of the precedence.
+<ul>
+<li><code>**</code> &gt; <code>*</code> and <code>/</code> &gt; <code>+</code> and <code>-</code>, from left to right</li>
+<li>Parentheses change the precedence.</li>
+</ul></li>
 <li>The resulting type of formula depends on the input types.
 <ul>
 <li>If the input types are the same, the output is the same type.</li>
