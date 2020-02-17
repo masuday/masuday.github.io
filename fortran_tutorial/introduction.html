@@ -44,7 +44,7 @@
 <header>
 <h1 class="title">Introduction</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">January 2020</p>
+<p class="date">February 2020</p>
 </header>
 <nav id="TOC">
 <ul>
@@ -77,7 +77,7 @@ Back to <a href="./index.html">index.html</a>.
 <p>Some textbooks try to write a useful program from the beginning, and a reader should learn both Fortran syntax and algorithms (logic) at the same time. The books written in such a style can be confusing to the readers because of trying to do two (difficult) things simultaneously. In this tutorial, one chapter deals with only one topic so that a reader can see the particular goal. Although some chapters for basic syntax may be bothersome, this structure is helpful for readers to look back at the detailed syntax.</p>
 <h3 id="what-it-does-not-cover">What it does not cover</h3>
 <p>This tutorial introduces you to a set of Fortran features and some algorithms implemented with the limited syntax. I have arbitrarily chosen the set of syntax so that it is nearly minimal to write a numerical program or to learn the other procedural programming languages.</p>
-<p>This tutorial does not cover the following features: object-oriented programming, co-arrays, parallel computing, the block constructs, submodules, some intrinsic functions, some flow-control statements (<code>do while</code>, <code>forall</code>, and <code>do concurrent</code>), procedure pointers, the <code>goto</code> statement, line numbers, old syntax often used in FORTRAN 77, and many more. These features would be useful to solve your problems. Please see the other textbooks for the details.</p>
+<p>This tutorial does not cover the following features: most of object-oriented programming, co-arrays, parallel computing, the block constructs, submodules, some intrinsic functions, some statements (<code>do while</code>, <code>do concurrent</code>, <code>forall</code>, and <code>where</code>), procedure pointers, the <code>goto</code> statement, line numbers, old syntax often used in FORTRAN 77, and many more. These features would be useful to solve your problems. Please see the other textbooks for the details.</p>
 <h3 id="environment">Environment</h3>
 <p>This tutorial expects the readers to use Linux or Unix (including macOS).</p>
 <h3 id="disclaimer">Disclaimer</h3>
@@ -92,7 +92,7 @@ Back to <a href="./index.html">index.html</a>.
 <li><a href="http://fortranwiki.org/fortran/show/Fortran+95+and+2003+for+Scientists+and+Engineers">Fortran 95/2003 For Scientists and Engineers</a>: A comprehansive textbook for any scientists who write a Fortran program.</li>
 <li><a href="https://global.oup.com/academic/product/modern-fortran-explained-9780198811893?cc=us&amp;lang=en&amp;">Modern Fortran Explained</a>: A good, reference book of modern Fortran.</li>
 </ul>
-<p>Ondřej Čertík maintains a wesite, a collection of the Fortran standards, best practices, and frequently asked questions.</p>
+<p>Ondřej Čertík maintains a website, a collection of the Fortran standards, best practices, and frequently asked questions.</p>
 <ul>
 <li><a href="https://www.fortran90.org">Fortran90.org</a></li>
 </ul>
@@ -120,16 +120,43 @@ end program test</code></pre>
 <pre data-language="output"><code>This frame shows the output of a program in the screen.</code></pre>
 <h4 id="shell-command">Shell command</h4>
 <pre data-language="shell"><code>It shows some commands that you type on the shell in the terminal.</code></pre>
+<h4 id="statament-in-a-general-form">Statament in a general form</h4>
+<pre data-language="definition"><code class="language-fortran">if(condition) then
+   {block}
+else
+   {other block}
+end if</code></pre>
 <h2 id="about-fortran">About Fortran</h2>
 <h3 id="fortran-77-vs-fortran-9095200320082018">FORTRAN 77 vs Fortran 90/95/2003/2008/2018</h3>
 <p>This tutorial deals only with the newer Fortran standard.</p>
 <p>Fortran has a long history, and its syntax was defined in the industry standard. The standard has been revised several times, and sometimes the changes between revisions were drastic. The biggest change was between <em>FORTRAN 77</em> (published in 1978) and <em>Fortran 90</em> (published in 1992). These two languages look very different, but Fortran 90 contains most of FORTRAN 77 features. In the end, some people are still using old-style in their textbooks and on-line materials. Because the old style often confuses the beginners, this tutorial is based only on Fortran 2003 or later (including all the syntax in Fortran 90/95).</p>
 <p>The capital <em>FORTRAN</em> refers to the old language (77 or earlier), and <em>Fortran</em> is for 90 or later. Especially, Fortran 2003 (or later) is called <em>Modern Fortran</em>. We have Fortran 90, 95, 2003, 2008, and 2018, and the newest standard is so-called Fortran 2018. I will use the word Fortran as the language we look at. Also, I may mention FORTRAN 77 just in comparison with Modern Fortran.</p>
-<h3 id="which-programming-language-should-be-chosen">Which programming language should be chosen?</h3>
-<p>I assume the readers are motivated to learn Fortran, and they have already had the answer. If the reader is not sure why Fortran is the choice, please reconsider which programming language is suitable for your purpose. Note that my comments below assume that the readers are interested in compiled programming languages (like Fortran, C, C++, Java, and so on) rather than “scripting” languages (like R, Python, Perl, Ruby, and so on).</p>
-<p>A programming language is a tool to help your tasks and to solve your issues. Many languages are available right now, and each is specialized for particular purposes. If you are new to programming, the choice of proper language can be crucial for your investment. It comes to two separate questions: (a) what is a good programming language to start and (b) what is a useful programming language in your career. The answers to these two questions may not be the same because a useful programming language is often very complicated for learners, particularly in non-computer-science majors (<a href="https://www.quora.com/Is-C++-a-good-first-programming-language">C++</a>, for example). Although the learning curve of each language dramatically differs, some languages share the same elements in programming. So, it may be useful to learn a simple language as the first step of programming.</p>
-<p>Fortran is a traditional language for procedural programming, and it is is simple and very intuitive to learn. I believe Fortran can be an option of choice for beginners to introduce the fundamental idea of programming. If it is not your tate, or if it is not a suitable option, you can try the other programming languages. The experience in Modern Fortran will not bother you to learn another programming language.</p>
-<p>If you find Fortran useful in your work, please proceed toward the next step to read the existing code and some textbooks. The advantage of Fortran is in array operations (such as matrix computations), parallel computations, and many numerical libraries. It is a reason why many quantitative geneticists (particularly animal breeders) have been using Fortran. Fortran should not be an appropriate choice if you try to perform high-level features like (very) simple statistical analyses, complicated data manipulation, graphics, gaming, network operations, and so on. If your purpose is obvious, take the right language.</p>
+<!--
+### Which programming language should be chosen?
+
+I assume the readers are motivated to learn Fortran, and they have already had the answer.
+If the reader is not sure why Fortran is the choice, please reconsider which programming language is suitable for your purpose.
+Note that my comments below assume that the readers are interested in compiled programming languages (like Fortran, C, C++, Java, and so on) rather than "scripting" languages (like R, Python, Perl, Ruby, and so on).
+
+A programming language is a tool to help your tasks and to solve your issues.
+Many languages are available right now, and each is specialized for particular purposes.
+If you are new to programming, the choice of proper language can be crucial for your investment.
+It comes to two separate questions: (a) what is a good programming language to start and (b) what is a useful programming language in your career.
+The answers to these two questions may not be the same because a useful programming language is often very complicated for learners, particularly in non-computer-science majors ([C++](https://www.quora.com/Is-C++-a-good-first-programming-language), for example).
+Although the learning curve of each language dramatically differs, some languages share the same elements in programming.
+So, it may be useful to learn a simple language as the first step of programming.
+
+Fortran is a traditional language for procedural programming, and in my opinion, it is simple and intuitive to learn.
+I believe Fortran can be an option of choice for beginners to introduce the fundamental idea of programming.
+If it is not your taste, or if it is not a suitable option, you can try the other programming languages.
+The experience in Modern Fortran will not bother you to learn another programming language.
+
+If you find Fortran useful in your work, please proceed toward the next step to read the existing code and some textbooks.
+The advantage of Fortran is in array operations (such as matrix computations), parallel computations, and many numerical libraries.
+It is a reason why many quantitative geneticists (particularly animal breeders) have been using Fortran.
+Fortran should not be an appropriate choice if you try to perform high-level features like (very) simple statistical analyses, complicated data manipulation, graphics, gaming, network operations, and so on.
+If your purpose is obvious, take the right language.
+-->
 <h3 id="what-is-the-difference-between-cc-and-fortran">What is the difference between C/C++ and Fortran</h3>
 <p>C and C++ are general-purpose languages, and Fortran is specialized in numerical computations. C and C++ are often used to develop system applications like operating systems, device drivers, and business software (word processors, database systems, etc.). Fortran is chosen for heaving computing on super-computers or high-performance computers.</p>
 <p>Although C++ has many elements of C, two languages are different. C is a procedural programming language, and it is much simpler than C++. C++ is an object-oriented programming language with tons of useful features for any purpose. Probably C is “simpler” than Fortran, but the programmer may need more knowledge of how computers work. C++ is way more complicated than Fortran.</p>
