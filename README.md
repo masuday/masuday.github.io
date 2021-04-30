@@ -14,7 +14,7 @@ Associate Professor, Rakuno Gakuen University, Hokkaido, Japan
 * The source files are available at [a repository at Github](https://github.com/masuday/Blupf90TutorialStandard).
 * It explains a way of installation of BLUPF90 programs, how to write parameter files for BLUPF90 programs and RENUMF90, how to read the results from output, numerical examples in Mrode's book (2014), and genomic analyses. The reader is expacted to be familiar with linear mixed models.
 * License: [CC BY-NC-ND 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/)
-* Download: [PDF](http://nce.ads.uga.edu/wiki/doku.php?id=documentation) (UGA official), [PDF](https://github.com/masuday/Blupf90TutorialStandard/releases) (Git repository), or [HTML](https://masuday.github.io/blupf90_tutorial/index.html).
+* Download: [PDF](https://github.com/masuday/Blupf90TutorialStandard/releases) (Git repository) or [HTML](https://masuday.github.io/blupf90_tutorial/index.html).
 
 ### BLUPF90 Cheat Sheet
 
