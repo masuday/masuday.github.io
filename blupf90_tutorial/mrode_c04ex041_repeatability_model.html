@@ -41,15 +41,19 @@
 <header>
 <h1 class="title">Numerical examples from Mrode (2014)</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">September 2019</p>
+<p class="date">April 2025</p>
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#repeatability-model">Repeatability model</a><ul>
-<li><a href="#model">Model</a></li>
-<li><a href="#files">Files</a></li>
-<li><a href="#solutions">Solutions</a></li>
-<li><a href="#putting-arbitrary-zero-constraints-manually">Putting arbitrary zero-constraints manually</a></li>
+<li><a href="#repeatability-model"
+id="toc-repeatability-model">Repeatability model</a>
+<ul>
+<li><a href="#model" id="toc-model">Model</a></li>
+<li><a href="#files" id="toc-files">Files</a></li>
+<li><a href="#solutions" id="toc-solutions">Solutions</a></li>
+<li><a href="#putting-arbitrary-zero-constraints-manually"
+id="toc-putting-arbitrary-zero-constraints-manually">Putting arbitrary
+zero-constraints manually</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -58,10 +62,22 @@ Back to <a href="./index.html">index.html</a>.
 </p>
 <h1 id="repeatability-model">Repeatability model</h1>
 <h2 id="model">Model</h2>
-<p>A repeatability model is an animal model applicable when an animal has more than 1 observations. In such a case, we can split the residual effect into 2: “true” temporary environmental effect and a permanent environmental effect which belongs to the animal. So the model contains 2 kinds of animal effects (additive genetic and permanent environmental effects).</p>
-<p>The author assumes the repeatability model in Example 4.1 for fat yield in dairy cattle. The model has the fixed effects for parity and Herd-Year-Season, the additive genetic effect for the same animal, the permanent environmental effect for an animal, and the random residual effect. The author assumes the genetic variance is 20, the residual variance is 28, and the permanent-environmental variance is 12.</p>
+<p>A repeatability model is an animal model applicable when an animal
+has more than 1 observations. In such a case, we can split the residual
+effect into 2: “true” temporary environmental effect and a permanent
+environmental effect which belongs to the animal. So the model contains
+2 kinds of animal effects (additive genetic and permanent environmental
+effects).</p>
+<p>The author assumes the repeatability model in Example 4.1 for fat
+yield in dairy cattle. The model has the fixed effects for parity and
+Herd-Year-Season, the additive genetic effect for the same animal, the
+permanent environmental effect for an animal, and the random residual
+effect. The author assumes the genetic variance is 20, the residual
+variance is 28, and the permanent-environmental variance is 12.</p>
 <h2 id="files">Files</h2>
-<p>Data file (<code>data_mr04a.txt</code>) just contains the table shown at p.63 in the textbook. This file has 6 columns. Column 2 and 3 are not actually used in this analysis.</p>
+<p>Data file (<code>data_mr04a.txt</code>) just contains the table shown
+at p.63 in the textbook. This file has 6 columns. Column 2 and 3 are not
+actually used in this analysis.</p>
 <ol type="1">
 <li>Animal ID (cow)</li>
 <li>Sire ID</li>
@@ -70,8 +86,15 @@ Back to <a href="./index.html">index.html</a>.
 <li>HYS (from 1 to 4)</li>
 <li>Fat yield (kg)</li>
 </ol>
-<p>The pedigree file (<code>pedigree_mr04a.txt</code>) can be prepared as an usual, 3-column file.</p>
-<p>This model contains 2 random effects besides the random error. The permanent environmental effects are not related to each other so you should use <code>diagonal</code> in the <code>RANDOM_TYPE</code> keyword. The position of permanent environmental effects is, in this case, the same as the additive genetic effects, because both effects are animal’s individual effects - the only difference is the covariance structure. The parameter file is the following.</p>
+<p>The pedigree file (<code>pedigree_mr04a.txt</code>) can be prepared
+as an usual, 3-column file.</p>
+<p>This model contains 2 random effects besides the random error. The
+permanent environmental effects are not related to each other so you
+should use <code>diagonal</code> in the <code>RANDOM_TYPE</code>
+keyword. The position of permanent environmental effects is, in this
+case, the same as the additive genetic effects, because both effects are
+animal’s individual effects - the only difference is the covariance
+structure. The parameter file is as follows.</p>
 <pre data-language="blupf90" data-caption="param_mr04a.txt"><code>DATAFILE
 data_mr04a.txt
 NUMBER_OF_TRAITS
@@ -107,11 +130,31 @@ FILE
 12.0
 OPTION solv_method FSPAK</code></pre>
 <h2 id="solutions">Solutions</h2>
-<p>The BLUPF90 calculates the solutions (not shown here) with the above parameter file. The left-hand side of the mixed model equations is not full rank and 2 solutions for fixed effects are replaced with 0. The positions of the zero-constraints are different from the textbook (p.64; Parity 1 and 2 here vs HYS 1 and 3 in the textbook). As before, a linear contrast is the same in both cases. BLUP for random effects is the same as the textbook. Solutions for PE for animal 1 to 3 are 0 (the expected value as a random effect with no information) because they have no observations. In this case, column 1 was shared for additive genetic and permanent environmental effects.</p>
-<h2 id="putting-arbitrary-zero-constraints-manually">Putting arbitrary zero-constraints manually</h2>
-<p>There is a trick to manually put user-defined zero-constraints on the mixed model equations. You can replace the target effect code in the data file with 0. This technique has been introduced in the previous section for unknown parent groups. The alternative data file (<code>data_mr04a1.txt</code>) provides the same solutions shown in the text file.</p>
-<p>In the textbook, the author puts constraints on HYS 1 and 3. The 5th column in the above file has 0 for HYS 1 and 3. You can rewrite the parameter file to read the new data file; just change the <code>DATAFILE</code> block. Run BLUPF90 with the modified parameter file, and you can see different solutions.</p>
-<p>Be careful if you use the manual constraints. If you put too many constraints on the equation, the solutions will make no sense.</p>
+<p>The BLUPF90 calculates the solutions (not shown here) with the above
+parameter file. The left-hand side of the mixed model equations is not
+full rank and 2 solutions for fixed effects are replaced with 0. The
+positions of the zero-constraints are different from the textbook (p.64;
+Parity 1 and 2 here vs HYS 1 and 3 in the textbook). As before, a linear
+contrast is the same in both cases. BLUP for random effects is the same
+as the textbook. Solutions for PE for animal 1 to 3 are 0 (the expected
+value as a random effect with no information) because they have no
+observations. In this case, column 1 was shared for additive genetic and
+permanent environmental effects.</p>
+<h2 id="putting-arbitrary-zero-constraints-manually">Putting arbitrary
+zero-constraints manually</h2>
+<p>There is a trick to manually put user-defined zero-constraints on the
+mixed model equations. You can replace the target effect code in the
+data file with 0. This technique has been introduced in the previous
+section for unknown parent groups. The alternative data file
+(<code>data_mr04a1.txt</code>) provides the same solutions shown in the
+text file.</p>
+<p>In the textbook, the author puts constraints on HYS 1 and 3. The 5th
+column in the above file has 0 for HYS 1 and 3. You can rewrite the
+parameter file to read the new data file; just change the
+<code>DATAFILE</code> block. Run BLUPF90 with the modified parameter
+file, and you can see different solutions.</p>
+<p>Be careful if you use the manual constraints. If you put too many
+constraints on the equation, the solutions will make no sense.</p>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>

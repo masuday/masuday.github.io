@@ -28,7 +28,8 @@
   <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
   <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
   <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="/usr/share/javascript/mathjax/MathJax.js"
+  type="text/javascript"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
   </script>
@@ -42,15 +43,20 @@
 <header>
 <h1 class="title">Numerical examples from Mrode (2014)</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">September 2019</p>
+<p class="date">April 2025</p>
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#gblup">GBLUP</a><ul>
-<li><a href="#model">Model</a></li>
-<li><a href="#common-files">Common files</a></li>
-<li><a href="#the-first-approach-with-a-text-file-for-g-inverse">The first approach with a text file for G-inverse</a></li>
-<li><a href="#second-approach-with-a-binary-file-for-g-inverse">Second approach with a binary file for G-inverse</a></li>
+<li><a href="#gblup" id="toc-gblup">GBLUP</a>
+<ul>
+<li><a href="#model" id="toc-model">Model</a></li>
+<li><a href="#common-files" id="toc-common-files">Common files</a></li>
+<li><a href="#the-first-approach-with-a-text-file-for-g-inverse"
+id="toc-the-first-approach-with-a-text-file-for-g-inverse">The first
+approach with a text file for G-inverse</a></li>
+<li><a href="#second-approach-with-a-binary-file-for-g-inverse"
+id="toc-second-approach-with-a-binary-file-for-g-inverse">Second
+approach with a binary file for G-inverse</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -59,16 +65,46 @@ Back to <a href="./index.html">index.html</a>.
 </p>
 <h1 id="gblup">GBLUP</h1>
 <h2 id="model">Model</h2>
-<p>The SNP marker model is equivalent to a model, so-called GBLUP, under some assumptions. The model includes a genomic relationship matrix, <span class="math inline">\(\mathbf{G}\)</span>. This matrix is calculated using SNP marker data. It is analog to the pedigree-based additive relationship matrix although there is an essential difference between the two matrices; see VanRaden (2008) for details. The <span class="math inline">\(\mathbf{G}\)</span> matrix may be defined in several ways but the best-known one is defined as <span class="math display">\[
+<p>The SNP marker model is equivalent to a model, so-called GBLUP, under
+some assumptions. The model includes a genomic relationship matrix,
+<span class="math inline">\(\mathbf{G}\)</span>. This matrix is
+calculated using SNP marker data. It is analog to the pedigree-based
+additive relationship matrix although there is an essential difference
+between the two matrices; see VanRaden (2008) for details. The <span
+class="math inline">\(\mathbf{G}\)</span> matrix may be defined in
+several ways but the best-known one is defined as <span
+class="math display">\[
 \mathbf{G}=\frac{\mathbf{ZZ}&#39;}{2\sum_j p_j(1-p_j)}
-\]</span> where <span class="math inline">\(\mathbf{Z}\)</span> contains genotypes adjusted with allele frequency and <span class="math inline">\(p_j\)</span> is the allele frequency for marker <span class="math inline">\(j\)</span> (VanRaden 2008). When the number of genotypes is limited, the above <span class="math inline">\(\mathbf{G}\)</span> is most likely singular, and its inverse does not exist. To avoid this issue, we blend the above <span class="math inline">\(\mathbf{G}\)</span> with a numerator relationship matrix for genotyped animals (<span class="math inline">\(\mathbf{A}_{22}\)</span>). Therefore, as long as we use this blending, the pedigree file is still needed. The formula of the blending is <span class="math display">\[
+\]</span> where <span class="math inline">\(\mathbf{Z}\)</span> contains
+genotypes adjusted with allele frequency and <span
+class="math inline">\(p_j\)</span> is the allele frequency for marker
+<span class="math inline">\(j\)</span> (VanRaden 2008). When the number
+of genotypes is limited, the above <span
+class="math inline">\(\mathbf{G}\)</span> is most likely singular, and
+its inverse does not exist. To avoid this issue, we blend the above
+<span class="math inline">\(\mathbf{G}\)</span> with a numerator
+relationship matrix for genotyped animals (<span
+class="math inline">\(\mathbf{A}_{22}\)</span>). Therefore, as long as
+we use this blending, the pedigree file is still needed. The formula of
+the blending is <span class="math display">\[
 \mathbf{G}_w = w\mathbf{G}+(1-w)\mathbf{A}_{22}
-\]</span> where <span class="math inline">\(\mathbf{G}_w\)</span> is the final (weighted) genomic relationship matrix and <span class="math inline">\(w\)</span> is a weight. When <span class="math inline">\(\mathbf{A}_{22}\)</span> is not available, <span class="math inline">\(\mathbf{I}\)</span> may be useful. An appropriate weight usually ranges from 0.80 to 0.99 depending on the profile of <span class="math inline">\(\mathbf{G}\)</span>. This blending is expected to makes G be positive definite. The weighted matrix, <span class="math inline">\(\mathbf{G}_{w}\)</span>, will be used as a genomic relationship matrix in prediction.</p>
+\]</span> where <span class="math inline">\(\mathbf{G}_w\)</span> is the
+final (weighted) genomic relationship matrix and <span
+class="math inline">\(w\)</span> is a weight. When <span
+class="math inline">\(\mathbf{A}_{22}\)</span> is not available, <span
+class="math inline">\(\mathbf{I}\)</span> may be useful. An appropriate
+weight usually ranges from 0.80 to 0.99 depending on the profile of
+<span class="math inline">\(\mathbf{G}\)</span>. This blending is
+expected to makes G be positive definite. The weighted matrix, <span
+class="math inline">\(\mathbf{G}_{w}\)</span>, will be used as a genomic
+relationship matrix in prediction.</p>
 <p>The system of mixed model equations is <span class="math display">\[
 \left[
 \begin{array}{ll}
-\mathbf{X}&#39;\mathbf{R}^{-1}\mathbf{X} &amp; \mathbf{X}&#39;\mathbf{R}^{-1}\mathbf{W}\\
-\mathbf{W}&#39;\mathbf{R}^{-1}\mathbf{X} &amp; \mathbf{W}&#39;\mathbf{R}^{-1}\mathbf{W}+\mathbf{G}_{w}/\sigma_u^2
+\mathbf{X}&#39;\mathbf{R}^{-1}\mathbf{X} &amp;
+\mathbf{X}&#39;\mathbf{R}^{-1}\mathbf{W}\\
+\mathbf{W}&#39;\mathbf{R}^{-1}\mathbf{X} &amp;
+\mathbf{W}&#39;\mathbf{R}^{-1}\mathbf{W}+\mathbf{G}_{w}/\sigma_u^2
 \end{array}
 \right]
 \left[
@@ -84,17 +120,57 @@ Back to <a href="./index.html">index.html</a>.
 \mathbf{W}&#39;\mathbf{R}^{-1}\mathbf{y} \\
 \end{array}
 \right]
-\]</span> and <span class="math inline">\(\sigma_u^2 = 35.241\)</span> and <span class="math inline">\(\sigma_e^2 = 245.0\)</span>. In the simplest case, only the general mean (<span class="math inline">\(\mu\)</span>) is considered as the fixed effect, and <span class="math inline">\(\hat{\mathbf{b}}\)</span> reduces to <span class="math inline">\(\hat{\mu}\)</span>.</p>
-<p>BLUPF90 is designed for the single-step GBLUP model which has the inverse of a numerator relationship matrix (<span class="math inline">\(\mathbf{A}^{-1}\)</span>). It means that the final equations should include <span class="math inline">\(\mathbf{A}^{-1}\)</span>, which is not usually used in GBLUP. There are several ways to perform GBLUP with BLUPF90. Here I introduce you to a method that has the following 2 steps: 1) preparation of <span class="math inline">\(\mathbf{G}^{-1}\)</span> and 2) build and solve the equations.</p>
-<p>In the former step, we can use the PREGSF90 program. This program accepts the same parameter file as BLUPF90. It calculates <span class="math inline">\(\mathbf{G}^{-1}\)</span> with various options and saves it to a file. BLUPF90 can read the file and use it to build the mixed model equations. BLUPF90 supports two file-formats for <span class="math inline">\(\mathbf{G}_{w}^{-1}\)</span>: a text file and a binary file. The use of the text format is simpler especially for a small data set and easier to understand how to run GBLUP using BLUPF90. The use of the binary file is more efficient but you need a trick which mimics single-step GBLUP removing the pedigree relationship matrix. In this section, first, we will use the text format to demonstrate how <span class="math inline">\(\mathbf{G}_{w}^{-1}\)</span> can be calculated with PREGSF90 with an educational parameter file. Then, we move to the second approach using the binary file with a different parameter file.</p>
-<p>Note that the method introduced here may seem to be complicated. This is because we will not use RENUMF90 here. When using the renumbering tool, GBLUP will be performed easily. In the later chapter, we will see how RENUMF90 simply prepares the files required in pure GBLUP.</p>
+\]</span> and <span class="math inline">\(\sigma_u^2 = 35.241\)</span>
+and <span class="math inline">\(\sigma_e^2 = 245.0\)</span>. In the
+simplest case, only the general mean (<span
+class="math inline">\(\mu\)</span>) is considered as the fixed effect,
+and <span class="math inline">\(\hat{\mathbf{b}}\)</span> reduces to
+<span class="math inline">\(\hat{\mu}\)</span>.</p>
+<p>BLUPF90 is designed for the single-step GBLUP model which has the
+inverse of a numerator relationship matrix (<span
+class="math inline">\(\mathbf{A}^{-1}\)</span>). It means that the final
+equations should include <span
+class="math inline">\(\mathbf{A}^{-1}\)</span>, which is not usually
+used in GBLUP. There are several ways to perform GBLUP with BLUPF90.
+Here I introduce you to a method that has the following 2 steps: 1)
+preparation of <span class="math inline">\(\mathbf{G}^{-1}\)</span> and
+2) build and solve the equations.</p>
+<p>In the former step, we can use the PREGSF90 program. This program
+accepts the same parameter file as BLUPF90. It calculates <span
+class="math inline">\(\mathbf{G}^{-1}\)</span> with various options and
+saves it to a file. BLUPF90 can read the file and use it to build the
+mixed model equations. BLUPF90 supports two file-formats for <span
+class="math inline">\(\mathbf{G}_{w}^{-1}\)</span>: a text file and a
+binary file. The use of the text format is simpler especially for a
+small data set and easier to understand how to run GBLUP using BLUPF90.
+The use of the binary file is more efficient but you need a trick which
+mimics single-step GBLUP removing the pedigree relationship matrix. In
+this section, first, we will use the text format to demonstrate how
+<span class="math inline">\(\mathbf{G}_{w}^{-1}\)</span> can be
+calculated with PREGSF90 with an educational parameter file. Then, we
+move to the second approach using the binary file with a different
+parameter file.</p>
+<p>Note that the method introduced here may seem to be complicated. This
+is because we will not use RENUMF90 here. When using the renumbering
+tool, GBLUP will be performed easily. In the later chapter, we will see
+how RENUMF90 simply prepares the files required in pure GBLUP.</p>
 <h2 id="common-files">Common files</h2>
-<p>In both approaches, we will use the common marker file and the cross-reference file. The SNP file is as follows.</p>
+<p>In both approaches, we will use the common marker file and the
+cross-reference file. The SNP file is as follows.</p>
 <pre data-language="text" data-caption="snp_mr11c.txt"><code>13 20110002120000000000000000000000000000000000000000
 ...
 26 10110201000000000000000000000000000000000000000000</code></pre>
-<p>The format of the SNP file is described in the previous chapter. The textbook uses only 10 SNP markers but the above file contains 50 markers. The extra 40 markers are padding because BLUPF90 can’t read fewer than 50 markers. All animals have the genotype 0 for the extra markers so the markers don’t provide any information. The resulting <span class="math inline">\(\mathbf{G}\)</span> is the same as using only the first 10 markers.</p>
-<p>The accompanying cross-reference file is also needed. This file relates the ID for genotyped animals and the order of animals in the marker file. The detailed explanation is also available in the previous chapter.</p>
+<p>The format of the SNP file is described in the previous chapter. The
+textbook uses only 10 SNP markers but the above file contains 50
+markers. The extra 40 markers are padding because BLUPF90 cannot read
+fewer than 50 markers. All animals have the genotype 0 for the extra
+markers so the markers do not provide any information. The resulting
+<span class="math inline">\(\mathbf{G}\)</span> is the same as using
+only the first 10 markers.</p>
+<p>The accompanying cross-reference file is also needed. This file
+relates the ID for genotyped animals and the order of animals in the
+marker file. The detailed explanation is also available in the previous
+chapter.</p>
 <pre data-language="text" data-caption="snp_mr11c_XrefID.txt"><code>13 13
 14 14
 15 15
@@ -109,9 +185,15 @@ Back to <a href="./index.html">index.html</a>.
 24 24
 25 25
 26 26</code></pre>
-<h2 id="the-first-approach-with-a-text-file-for-g-inverse">The first approach with a text file for G-inverse</h2>
+<h2 id="the-first-approach-with-a-text-file-for-g-inverse">The first
+approach with a text file for G-inverse</h2>
 <h3 id="for-pregsf90">For PREGSF90</h3>
-<p>To obtain the text file to have <span class="math inline">\(\mathbf{G}^{-1}_{w}\)</span> using PREGSF90, we use the data file (<code>data_mr11c1.txt</code>) as before except for the last column for genotyped animals with different coding. Note that the data file is not really read by PREGSF90 but we need it, because the program checks whether the data file is present or not.</p>
+<p>To obtain the text file to have <span
+class="math inline">\(\mathbf{G}^{-1}_{w}\)</span> using PREGSF90, we
+use the data file (<code>data_mr11c1.txt</code>) as before except for
+the last column for genotyped animals with different coding. Note that
+the data file is not really read by PREGSF90 but we need it, because the
+program checks whether the data file is present or not.</p>
 <pre data-language="text" data-caption="data_mr11c1.txt"><code> 13  0  0  1 558  9.0  0.00179211 1
 ...
  20 14  9  1 103  4.8  0.00970874 8</code></pre>
@@ -123,10 +205,18 @@ Back to <a href="./index.html">index.html</a>.
 <li>EDC</li>
 <li>Observation (Fat DYD)</li>
 <li>1/EDC</li>
-<li>new ID for genotyped animals (in the order of the marker file - <em>this is important</em>)</li>
+<li>new ID for genotyped animals (in the order of the marker file -
+<em>this is important</em>)</li>
 </ol>
-<p>The key is the 8-th column. This approach needs a new ID corresponding to the order in the marker file. For example, animal 13 appears in the 1st row in the marker file, and it has 1 as a new ID. Later, we will see the details of the new ID.</p>
-<p>The pedigree file (<code>pedigree_mr11c1.txt</code>) contains all the animals with and without genotypes. The program creates a subset of relationship matrix (<span class="math inline">\(\mathbf{A}_{22}\)</span>) only for genotyped animals.</p>
+<p>The key is the 8-th column. This approach needs a new ID
+corresponding to the order in the marker file. For example, animal 13
+appears in the 1st row in the marker file, and it has 1 as a new ID.
+Later, we will see the details of the new ID.</p>
+<p>The pedigree file (<code>pedigree_mr11c1.txt</code>) contains all the
+animals with and without genotypes. The program creates a subset of
+relationship matrix (<span
+class="math inline">\(\mathbf{A}_{22}\)</span>) only for genotyped
+animals.</p>
 <p>The parameter file for PREGSF90 is the same as BLUPF90.</p>
 <pre data-language="blupf90" data-caption="preparam_mr11c1.txt"><code>#
 # Approach 1: creates a text G - Inverse file with PREGSF90
@@ -162,27 +252,81 @@ OPTION saveAscii
 OPTION saveG
 OPTION saveGInverse
 OPTION createGimA22i 0</code></pre>
-<p>The purpose of PREGSF90 is to create a text file with the elements of <span class="math inline">\(\mathbf{G}_{w}\)</span>. By default, PREGSF90 tries to manipulate <span class="math inline">\(\mathbf{G}_{w}\)</span> in many ways. The options change the behavior of PREGSF90. Note that the options are case-sensitive. Simple explanations for the options are available:</p>
+<p>The purpose of PREGSF90 is to create a text file with the elements of
+<span class="math inline">\(\mathbf{G}_{w}\)</span>. By default,
+PREGSF90 tries to manipulate <span
+class="math inline">\(\mathbf{G}_{w}\)</span> in many ways. The options
+change the behavior of PREGSF90. Note that the options are
+case-sensitive. Simple explanations for the options are available:</p>
 <ul>
-<li><code>SNP_file</code> = Invoking the genomic routine. It needs 2 values in this case: the name of the marker file and the name of the cross-reference file.</li>
-<li><code>no_quality_control</code> = Turns off the quality control process to remove unqualified markers and genotyped animals. In this example, we will use all the markers and genotyped animals.</li>
-<li><code>AlphaBeta</code> = Defines weight <span class="math inline">\(w\)</span>. This option has 2 values: <span class="math inline">\(\alpha=w\)</span> and <span class="math inline">\(\beta=1-w\)</span>. In this example, we put <span class="math inline">\(w = 0.99\)</span> which is implicitly used by the author.</li>
-<li><code>tunedG</code> = Controls the tuning method for <span class="math inline">\(\mathbf{G}_w\)</span>. It tries to adjust the scale of <span class="math inline">\(\mathbf{G}\)</span> to <span class="math inline">\(\mathbf{A}_{22}\)</span> using a method described by Chen et al. (2011). This tuning is <em>a different step as blending</em>. The argument 0 turns off the adjustment (i.e. uses <span class="math inline">\(\mathbf{G}_{w}\)</span> ).</li>
-<li><code>saveAscii</code> = Uses the text format for a file to save <span class="math inline">\(\mathbf{G}_{w}^{-1}\)</span>. Without this option, the program saves the matrix to a binary file (a machine-readable file).</li>
-<li><code>saveG</code> = Saves <span class="math inline">\(\mathbf{G}_w\)</span> to a file. The file name will be <code>G</code>. Actually, you don’t have to put this option in this analysis. We just use it as an educational purpose to see the actual values in <span class="math inline">\(\mathbf{G}_{w}\)</span>.</li>
-<li><code>saveGInverse</code> = Saves <span class="math inline">\(\mathbf{G}_{w}^{-1}\)</span> to a file. The file name will be <code>Gi</code>.</li>
-<li><code>createGimA22i</code> = Turns off the calculation of <span class="math inline">\(\mathbf{G}_{w}^{-1}-\mathbf{A}_{22}\)</span> which is required in single-step GBLUP. You don’t have to put this option in this small example because the computing cost is negligible. Turning off this option is important for a large-size problem in GBLUP.</li>
+<li><code>SNP_file</code> = Invoking the genomic routine. It needs 2
+values in this case: the name of the marker file and the name of the
+cross-reference file.</li>
+<li><code>no_quality_control</code> = Turns off the quality control
+process to remove unqualified markers and genotyped animals. In this
+example, we will use all the markers and genotyped animals.</li>
+<li><code>AlphaBeta</code> = Defines weight <span
+class="math inline">\(w\)</span>. This option has 2 values: <span
+class="math inline">\(\alpha=w\)</span> and <span
+class="math inline">\(\beta=1-w\)</span>. In this example, we put <span
+class="math inline">\(w = 0.99\)</span> which is implicitly used by the
+author.</li>
+<li><code>tunedG</code> = Controls the tuning method for <span
+class="math inline">\(\mathbf{G}_w\)</span>. It tries to adjust the
+scale of <span class="math inline">\(\mathbf{G}\)</span> to <span
+class="math inline">\(\mathbf{A}_{22}\)</span> using a method described
+by Chen et al. (2011). This tuning is <em>a different step as
+blending</em>. The argument 0 turns off the adjustment (that is uses
+<span class="math inline">\(\mathbf{G}_{w}\)</span> ).</li>
+<li><code>saveAscii</code> = Uses the text format for a file to save
+<span class="math inline">\(\mathbf{G}_{w}^{-1}\)</span>. Without this
+option, the program saves the matrix to a binary file (a
+machine-readable file).</li>
+<li><code>saveG</code> = Saves <span
+class="math inline">\(\mathbf{G}_w\)</span> to a file. The file name
+will be <code>G</code>. Actually, you do not have to put this option in
+this analysis. We just use it as an educational purpose to see the
+actual values in <span
+class="math inline">\(\mathbf{G}_{w}\)</span>.</li>
+<li><code>saveGInverse</code> = Saves <span
+class="math inline">\(\mathbf{G}_{w}^{-1}\)</span> to a file. The file
+name will be <code>Gi</code>.</li>
+<li><code>createGimA22i</code> = Turns off the calculation of <span
+class="math inline">\(\mathbf{G}_{w}^{-1}-\mathbf{A}_{22}\)</span> which
+is required in single-step GBLUP. You do not have to put this option in
+this small example because the computing cost is negligible. Turning off
+this option is important for a large-size problem in GBLUP.</li>
 </ul>
-<p>We have more than 100 options just for PREGSF90. Many of them are implemented for experimental purposes and unused. We will demonstrate such options in the later chapter. In this section, a user can just recognize that there are plenty of options for PREGSF90, but only a few options may be essential for the regular use in genomic prediction.</p>
-<p>You can run PREGSF90 with the above parameter file. You can see the basic statistics for <span class="math inline">\(\mathbf{G}_{w}\)</span> on the screen. Also, you will find that some files are created.</p>
+<p>We have more than 100 options just for PREGSF90. Many of them are
+implemented for experimental purposes and unused. We will demonstrate
+such options in the later chapter. In this section, a user can just
+recognize that there are plenty of options for PREGSF90, but only a few
+options may be essential for the regular use in genomic prediction.</p>
+<p>You can run PREGSF90 with the above parameter file. You can see the
+basic statistics for <span class="math inline">\(\mathbf{G}_{w}\)</span>
+on the screen. Also, you will find that some files are created.</p>
 <ul>
-<li><code>Gen_call_rate</code> = Empty in this case. Just ignore it.</li>
-<li><code>freq.count</code> = Allele frequency for each marker. The values should be the same as the textbook (see p.181).</li>
-<li><code>sum2pq</code> = <span class="math inline">\(2\sum_j p_j(1-p_j)\)</span></li>
-<li><code>G</code> = Elements in <span class="math inline">\(\mathbf{G}_w\)</span>. The values are slightly different from the textbook (p.186) because the textbook values are from the pure <span class="math inline">\(\mathbf{G}\)</span> (not blended with <span class="math inline">\(\mathbf{A}_{22}\)</span>). You can find the same values as the textbook when you put <code>OPTION AlphaBeta 1.0 0.0</code>, but the program cannot calculate its inverse because it is singular.</li>
-<li><code>Gi</code> = Elements in <span class="math inline">\(\mathbf{G}_{w}^{-1}\)</span>. Only the diagonals and the upper triangular elements are stored.</li>
+<li><code>Gen_call_rate</code> = Empty in this case. Just ignore
+it.</li>
+<li><code>freq.count</code> = Allele frequency for each marker. The
+values should be the same as the textbook (see p.181).</li>
+<li><code>sum2pq</code> = <span class="math inline">\(2\sum_j
+p_j(1-p_j)\)</span></li>
+<li><code>G</code> = Elements in <span
+class="math inline">\(\mathbf{G}_w\)</span>. The values are slightly
+different from the textbook (p.186) because the textbook values are from
+the pure <span class="math inline">\(\mathbf{G}\)</span> (not blended
+with <span class="math inline">\(\mathbf{A}_{22}\)</span>). You can find
+the same values as the textbook when you put
+<code>OPTION AlphaBeta 1.0 0.0</code>, but the program cannot calculate
+its inverse because it is singular.</li>
+<li><code>Gi</code> = Elements in <span
+class="math inline">\(\mathbf{G}_{w}^{-1}\)</span>. Only the diagonals
+and the upper triangular elements are stored.</li>
 </ul>
-<p>Among the above files, only <code>Gi</code> is required in the analysis with BLUPF90. The first 5 rows and the last 5 rows in this file are as follows.</p>
+<p>Among the above files, only <code>Gi</code> is required in the
+analysis with BLUPF90. The first 5 rows and the last 5 rows in this file
+are as follows.</p>
 <pre><code>1 1 36.374112147756
 1 2 -27.980861774302
 2 2 88.270926666258
@@ -194,8 +338,21 @@ OPTION createGimA22i 0</code></pre>
 12 14 5.120296531692
 13 14 4.504947248223
 14 14 6.133181220876</code></pre>
-<p>The first 2 integers are the row and column indices for the element. Note that the maximum row and column ID is 14 because the rank of this matrix (<span class="math inline">\(\mathbf{G}_{w}^{-1}\)</span>) is 14. So the row/column index doesn’t directly refer to the animal’s ID. PREGSF90 internally re-assigns IDs for genotyped animals as the consecutive order of animals in the marker file. For example, row 1 and column 1 (the first line in the above file) corresponds to the relationship between animal 13 and 13 (i.e., the diagonal for the animal 13) because the animal 13 appears the first in the marker file (animal 13 = new ID 1). The row 1 and column 2 (the second line) is for the relationships between animal 13 and 14 because the animal 14 appears secondly in the marker file (animal 14 = new ID 2). Therefore, we should use the new ID to refer to genotyped animals.</p>
-<p>We have already prepared the data file with the new ID (the 8th column). BLUPF90 can read the new column as an animal ID.</p>
+<p>The first 2 integers are the row and column indices for the element.
+Note that the maximum row and column ID is 14 because the rank of this
+matrix (<span class="math inline">\(\mathbf{G}_{w}^{-1}\)</span>) is 14.
+So the row/column index does not directly refer to the animal’s ID.
+PREGSF90 internally re-assigns IDs for genotyped animals as the
+consecutive order of animals in the marker file. For example, row 1 and
+column 1 (the first line in the above file) corresponds to the
+relationship between animal 13 and 13 (that is, the diagonal for the
+animal 13) because the animal 13 appears the first in the marker file
+(animal 13 = new ID 1). The row 1 and column 2 (the second line) is for
+the relationships between animal 13 and 14 because the animal 14 appears
+secondly in the marker file (animal 14 = new ID 2). Therefore, we should
+use the new ID to refer to genotyped animals.</p>
+<p>We have already prepared the data file with the new ID (the 8th
+column). BLUPF90 can read the new column as an animal ID.</p>
 <h3 id="for-blupf90">For BLUPF90</h3>
 <p>The parameter file for BLUPF90 is shown below.</p>
 <pre data-language="blupf90" data-caption="param_mr11c1.txt"><code>DATAFILE
@@ -222,9 +379,16 @@ Gi
 (CO)VARIANCES
 35.25
 OPTION solv_method FSPAK</code></pre>
-<p>We use the keyword <code>user_file</code> to read the text file for <span class="math inline">\(\mathbf{G}_{w}^{-1}\)</span> With this keyword, we don’t need the marker file anymore. BLUPF90 simply read the file and put the elements into the equations. Run BLUPF90 with the parameter file, and you will find the results. The solutions look very similar to the values in the textbook (p.185; GBLUP).</p>
-<h2 id="second-approach-with-a-binary-file-for-g-inverse">Second approach with a binary file for G-inverse</h2>
-<p>The parameter file for PREGSF90 is very similar to the previous one.</p>
+<p>We use the keyword <code>user_file</code> to read the text file for
+<span class="math inline">\(\mathbf{G}_{w}^{-1}\)</span> With this
+keyword, we do not need the marker file anymore. BLUPF90 simply read the
+file and put the elements into the equations. Run BLUPF90 with the
+parameter file, and you will find the results. The solutions look very
+similar to the values in the textbook (p.185; GBLUP).</p>
+<h2 id="second-approach-with-a-binary-file-for-g-inverse">Second
+approach with a binary file for G-inverse</h2>
+<p>The parameter file for PREGSF90 is very similar to the previous
+one.</p>
 <pre data-language="blupf90" data-caption="preparam_mr11c2.txt"><code>DATAFILE
 data_mr11c1.txt
 NUMBER_OF_TRAITS
@@ -256,12 +420,26 @@ OPTION tunedG 0
 #OPTION saveG
 OPTION saveGInverse
 OPTION createGimA22i 0</code></pre>
-<p>The only differences between this parameter file and the previous one are options. We remove (actually comment out) the two options. With this parameter file, the G-inverse file (<code>Gi</code>) is saved as a binary format readable only for the computer. Also, we don’t need a file, <code>G</code>. Run PREGSF90 with this parameter file, and you can see the very similar output on the screen.</p>
-<p>With this approach, we trick BLUPF90 as if the single-step GBLUP was applied. In this analysis, we shouldn’t use the pedigree file. The prepared <span class="math inline">\(\mathbf{G}_{w}^{-1}\)</span> is already blended with <span class="math inline">\(\mathbf{A}_{22}\)</span> so we do not need the pedigree file. We just prepare a dummy, empry pedigree file. This file contains 26 lines, which is the same number of lines as the original pedigree.</p>
+<p>The only differences between this parameter file and the previous one
+are options. We remove (actually comment out) the two options. With this
+parameter file, the G-inverse file (<code>Gi</code>) is saved as a
+binary format readable only for the computer. Also, we do not need a
+file, <code>G</code>. Run PREGSF90 with this parameter file, and you can
+see the very similar output on the screen.</p>
+<p>With this approach, we trick BLUPF90 as if the single-step GBLUP was
+applied. In this analysis, we shouldn’t use the pedigree file. The
+prepared <span class="math inline">\(\mathbf{G}_{w}^{-1}\)</span> is
+already blended with <span
+class="math inline">\(\mathbf{A}_{22}\)</span> so we do not need the
+pedigree file. We just prepare a dummy, empry pedigree file. This file
+contains 26 lines, which is the same number of lines as the original
+pedigree.</p>
 <pre data-language="text" data-caption="pedigree_mr11c2.txt"><code>0 0 0
 ...
 0 0 0</code></pre>
-<p>We need the data, (empty) pedigree, marker and cross-reference files as well as <code>Gi</code> for the analysis with BLUPF90. The parameter file for BLUPF90 is slightly different from one for PREGSF90.</p>
+<p>We need the data, (empty) pedigree, marker and cross-reference files
+as well as <code>Gi</code> for the analysis with BLUPF90. The parameter
+file for BLUPF90 is slightly different from one for PREGSF90.</p>
 <pre data-language="blupf90" data-caption="param_mr11c2.txt"><code>DATAFILE
 data_mr11c1.txt
 NUMBER_OF_TRAITS
@@ -288,9 +466,23 @@ pedigree_mr11c2.txt
 OPTION SNP_file snp_mr11c.txt snp_mr11c_XrefID.txt
 OPTION readGimA22i Gi
 OPTION solv_method FSPAK</code></pre>
-<p>This parameter file is for single-step GBLUP. In this case, the pedigree file is empty, and <span class="math inline">\(\mathbf{A}^{-1}=\mathbf{0}\)</span>. The program will read <code>Gi</code> instead of creating <span class="math inline">\(\mathbf{G}_{w}^{-1}\)</span> and <span class="math inline">\(\mathbf{A}_{22}\)</span> with the second option (<code>OPTION readGimA22i</code>). The program reads <span class="math inline">\(\mathbf{G}_{w}^{-1}\)</span>, and it performs GBLUP.</p>
-<p>Run BLUPF90 with the parameter file, and you can find the solutions that are identical to approach 1. You can see many warnings (<code>Animal Id equal to Sire/Dam Id - relationships removed !!</code>) because we use a trick which never happens in the regular single-step GBLUP.</p>
-<p>Again, the approaches demonstrated here require some manual operations. In the later chapter, we will see an automatic approach to perform GBLUP using RENUMF90 and BLUPF90.</p>
+<p>This parameter file is for single-step GBLUP. In this case, the
+pedigree file is empty, and <span
+class="math inline">\(\mathbf{A}^{-1}=\mathbf{0}\)</span>. The program
+will read <code>Gi</code> instead of creating <span
+class="math inline">\(\mathbf{G}_{w}^{-1}\)</span> and <span
+class="math inline">\(\mathbf{A}_{22}\)</span> with the second option
+(<code>OPTION readGimA22i</code>). The program reads <span
+class="math inline">\(\mathbf{G}_{w}^{-1}\)</span>, and it performs
+GBLUP.</p>
+<p>Run BLUPF90 with the parameter file, and you can find the solutions
+that are identical to approach 1. You can see many warnings
+(<code>Animal Id equal to Sire/Dam Id - relationships removed !!</code>)
+because we use a trick which never happens in the regular single-step
+GBLUP.</p>
+<p>Again, the approaches demonstrated here require some manual
+operations. In the later chapter, we will see an automatic approach to
+perform GBLUP using RENUMF90 and BLUPF90.</p>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>

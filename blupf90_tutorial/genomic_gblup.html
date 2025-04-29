@@ -28,7 +28,8 @@
   <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
   <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
   <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="/usr/share/javascript/mathjax/MathJax.js"
+  type="text/javascript"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
   </script>
@@ -42,15 +43,24 @@
 <header>
 <h1 class="title">Practical genomic analysis</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">September 2019</p>
+<p class="date">April 2025</p>
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#perfroming-gblup">Perfroming GBLUP</a><ul>
-<li><a href="#gblup-with-blupf90">GBLUP with BLUPF90</a></li>
-<li><a href="#the-simplest-way-with-dummy-pedigree">The simplest way with dummy pedigree</a></li>
-<li><a href="#genomic-relationship-matrix-as-a-external-text-file">Genomic relationship matrix as a external text file</a></li>
-<li><a href="#gblup-with-partial-use-of-pedigree">GBLUP with partial use of pedigree</a></li>
+<li><a href="#perfroming-gblup" id="toc-perfroming-gblup">Perfroming
+GBLUP</a>
+<ul>
+<li><a href="#gblup-with-blupf90" id="toc-gblup-with-blupf90">GBLUP with
+BLUPF90</a></li>
+<li><a href="#the-simplest-way-with-dummy-pedigree"
+id="toc-the-simplest-way-with-dummy-pedigree">The simplest way with
+dummy pedigree</a></li>
+<li><a href="#genomic-relationship-matrix-as-a-external-text-file"
+id="toc-genomic-relationship-matrix-as-a-external-text-file">Genomic
+relationship matrix as a external text file</a></li>
+<li><a href="#gblup-with-partial-use-of-pedigree"
+id="toc-gblup-with-partial-use-of-pedigree">GBLUP with partial use of
+pedigree</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -60,7 +70,11 @@ Back to <a href="./index.html">index.html</a>.
 <h1 id="perfroming-gblup">Perfroming GBLUP</h1>
 <h2 id="gblup-with-blupf90">GBLUP with BLUPF90</h2>
 <h3 id="background">Background</h3>
-<p>BLUPF90 can perform GBLUP, but you will need a trick to do this because BLUPF90 always performs single-step GBLUP, and the program does not have a “GBLUP-mode”. In the single-step approach, the inverse of a relationship matrix consists of three dense matrices as seen in the previous chapters.</p>
+<p>BLUPF90 can perform GBLUP, but you will need a trick to do this
+because BLUPF90 always performs single-step GBLUP, and the program does
+not have a “GBLUP-mode”. In the single-step approach, the inverse of a
+relationship matrix consists of three dense matrices as seen in the
+previous chapters.</p>
 <p><span class="math display">\[
 \mathbf{H}^{-1}
 =
@@ -73,25 +87,65 @@ Back to <a href="./index.html">index.html</a>.
 \end{array}
 \right]
 \]</span></p>
-<p>BLUPF90 always creates all three matrices (<span class="math inline">\(\mathbf{A}^{-1}\)</span> and <span class="math inline">\(\mathbf{G}^{-1}\)</span>, and <span class="math inline">\(\mathbf{A}_{22}^{-1}\)</span>) by default when the genomic relationship matrix is used. In other words, whenever the program creates <span class="math inline">\(\mathbf{G}\)</span>, the program always requires a pedigree file even though the pedigree information is not really used in the program. You have to trick the program to use a dummy pedigree file which nullifies the pedigree relationships in <span class="math inline">\(\mathbf{H}^{-1}\)</span>, or not to create the pedigree relationship matrices at all.</p>
-<p>There are several methods to perform GBLUP using BLUPF90. The user can choose one of them.</p>
+<p>BLUPF90 always creates all three matrices (<span
+class="math inline">\(\mathbf{A}^{-1}\)</span> and <span
+class="math inline">\(\mathbf{G}^{-1}\)</span>, and <span
+class="math inline">\(\mathbf{A}_{22}^{-1}\)</span>) by default when the
+genomic relationship matrix is used. In other words, whenever the
+program creates <span class="math inline">\(\mathbf{G}\)</span>, the
+program always requires a pedigree file even though the pedigree
+information is not really used in the program. You have to trick the
+program to use a dummy pedigree file which nullifies the pedigree
+relationships in <span class="math inline">\(\mathbf{H}^{-1}\)</span>,
+or not to create the pedigree relationship matrices at all.</p>
+<p>There are several methods to perform GBLUP using BLUPF90. The user
+can choose one of them.</p>
 <ul>
-<li><strong>Use of a dummy pedigree-file.</strong> RENUMF90 prepares such a dummy file. This is the simplest way, and it is always the first choice.</li>
-<li><strong>Use of the user-supplied text file for <span class="math inline">\(\mathbf{G}\)</span></strong>. It is useful only if you want to use customized genomic relationships and you can prepare the matrix as a file by yourself.</li>
-<li><strong>Use of a special option in the parameter file.</strong> It skips <span class="math inline">\(\mathbf{A}^{-1}\)</span> in a combination of the zero weight on <span class="math inline">\(\mathbf{A}_{22}^{-1}\)</span>. It is useful only if you have to adjust <span class="math inline">\(\mathbf{G}\)</span> with the pedigree relationships but you do not need the pedigree relationships in the final equations.</li>
+<li><strong>Use of a dummy pedigree-file.</strong> RENUMF90 prepares
+such a dummy file. This is the simplest way, and it is always the first
+choice.</li>
+<li><strong>Use of the user-supplied text file for <span
+class="math inline">\(\mathbf{G}\)</span></strong>. It is useful only if
+you want to use customized genomic relationships and you can prepare the
+matrix as a file by yourself.</li>
+<li><strong>Use of a special option in the parameter file.</strong> It
+skips <span class="math inline">\(\mathbf{A}^{-1}\)</span> in a
+combination of the zero weight on <span
+class="math inline">\(\mathbf{A}_{22}^{-1}\)</span>. It is useful only
+if you have to adjust <span class="math inline">\(\mathbf{G}\)</span>
+with the pedigree relationships but you do not need the pedigree
+relationships in the final equations.</li>
 </ul>
-<p>We will explain all of them in the subsequent sections. The last two methods have been explained in the previous chapters.</p>
+<p>We will explain all of them in the subsequent sections. The last two
+methods have been explained in the previous chapters.</p>
 <h3 id="model">Model</h3>
-<p>Before introducing the way to apply GBLUP in BLUPF90, we clarify the model used in GBLUP. We assume the model has some fixed effects (<span class="math inline">\(\mathbf{b}\)</span>) and the additive genomic effect (<span class="math inline">\(\mathbf{u}\)</span>). An animal is assumed to have only one phenotype. The matrix notation of the model is as follows.</p>
+<p>Before introducing the way to apply GBLUP in BLUPF90, we clarify the
+model used in GBLUP. We assume the model has some fixed effects (<span
+class="math inline">\(\mathbf{b}\)</span>) and the additive genomic
+effect (<span class="math inline">\(\mathbf{u}\)</span>). An animal is
+assumed to have only one phenotype. The matrix notation of the model is
+as follows.</p>
 <p><span class="math display">\[
 \mathbf{y} = \mathbf{Xb} + \mathbf{u} + \mathbf{e}
 \]</span></p>
-<p>The phenotype can be a pseudo-observation such as a daughter yield deviation (DYD), progeny trait deviation (PTD), de-regressed proof (DRP), and so on. When using the pseudo phenotype, each observation has different accuracy, so we should consider a weight that reflects the accuracy of the observation. Furthermore, we need to know the variance components (<span class="math inline">\(\sigma_{u}^{2}\)</span> and <span class="math inline">\(\sigma_{e}^{2}\)</span> in the case) or the variance ratio (<span class="math inline">\(\lambda=\sigma_{e}^{2}/\sigma_{u}^{2}\)</span>) as in the standard animal model. The system of mixed model equations is easily derived.</p>
+<p>The phenotype can be a pseudo-observation such as a daughter yield
+deviation (DYD), progeny trait deviation (PTD), de-regressed proof
+(DRP), and so on. When using the pseudo phenotype, each observation has
+different accuracy, so we should consider a weight that reflects the
+accuracy of the observation. Furthermore, we need to know the variance
+components (<span class="math inline">\(\sigma_{u}^{2}\)</span> and
+<span class="math inline">\(\sigma_{e}^{2}\)</span> in the case) or the
+variance ratio (<span
+class="math inline">\(\lambda=\sigma_{e}^{2}/\sigma_{u}^{2}\)</span>) as
+in the standard animal model. The system of mixed model equations is
+easily derived.</p>
 <p><span class="math display">\[
 \left[
 \begin{array}{ll}
-\mathbf{X}&#39;\mathbf{W}\mathbf{X}\sigma_{e}^{-2}&amp; \mathbf{X}&#39;\mathbf{W}\sigma_{e}^{-2}\\
-\mathbf{W}\mathbf{X}\sigma_{e}^{-2} &amp; \mathbf{W}\sigma_{e}^{-2} + \mathbf{G}^{-1}\sigma_{u}^{-2}
+\mathbf{X}&#39;\mathbf{W}\mathbf{X}\sigma_{e}^{-2}&amp;
+\mathbf{X}&#39;\mathbf{W}\sigma_{e}^{-2}\\
+\mathbf{W}\mathbf{X}\sigma_{e}^{-2} &amp; \mathbf{W}\sigma_{e}^{-2} +
+\mathbf{G}^{-1}\sigma_{u}^{-2}
 \end{array}
 \right]
 \left[
@@ -108,17 +162,56 @@ Back to <a href="./index.html">index.html</a>.
 \end{array}
 \right]
 \]</span></p>
-<p>The diagonal matrix, <span class="math inline">\(\mathbf{W}\)</span>, has a weight corresponding to each observation. In the following section, we assume <span class="math inline">\(\mathbf{X}=\mathbf{1}\)</span> so that we have the general mean as the only fixed effect.</p>
-<h2 id="the-simplest-way-with-dummy-pedigree">The simplest way with dummy pedigree</h2>
+<p>The diagonal matrix, <span class="math inline">\(\mathbf{W}\)</span>,
+has a weight corresponding to each observation. In the following
+section, we assume <span
+class="math inline">\(\mathbf{X}=\mathbf{1}\)</span> so that we have the
+general mean as the only fixed effect.</p>
+<h2 id="the-simplest-way-with-dummy-pedigree">The simplest way with
+dummy pedigree</h2>
 <h3 id="idea">Idea</h3>
-<p>The simplest approach is to prepare the data using RENUMF90 using a <em>dummy</em> pedigree-file. RENUMF90 creates such a pedigree file that only contains the genotyped animals whose parents are missing (unknown). With this pedigree file, the pedigree relationship matrix is equal to <span class="math inline">\(\mathbf{I}\)</span>.</p>
-<p>If all animals are genotyped, all three matrices in <span class="math inline">\(\mathbf{H}^{-1}\)</span> (<span class="math inline">\(\mathbf{A}^{-1}\)</span>, <span class="math inline">\(\mathbf{G}^{-1}\)</span>, and <span class="math inline">\(\mathbf{A}_{22}^{-1}\)</span>) have the same size. Also, we have the equivalence: <span class="math inline">\(\mathbf{A}^{-1}=\mathbf{A}_{22}^{-1}=\mathbf{I}\)</span>. The resulting <span class="math inline">\(\mathbf{H}^{-1}\)</span> has <span class="math inline">\(\mathbf{G}^{-1}\)</span> only because the pedigree matrices are canceled out.</p>
+<p>The simplest approach is to prepare the data using RENUMF90 using a
+<em>dummy</em> pedigree-file. RENUMF90 creates such a pedigree file that
+only contains the genotyped animals whose parents are missing (unknown).
+With this pedigree file, the pedigree relationship matrix is equal to
+<span class="math inline">\(\mathbf{I}\)</span>.</p>
+<p>If all animals are genotyped, all three matrices in <span
+class="math inline">\(\mathbf{H}^{-1}\)</span> (<span
+class="math inline">\(\mathbf{A}^{-1}\)</span>, <span
+class="math inline">\(\mathbf{G}^{-1}\)</span>, and <span
+class="math inline">\(\mathbf{A}_{22}^{-1}\)</span>) have the same size.
+Also, we have the equivalence: <span
+class="math inline">\(\mathbf{A}^{-1}=\mathbf{A}_{22}^{-1}=\mathbf{I}\)</span>.
+The resulting <span class="math inline">\(\mathbf{H}^{-1}\)</span> has
+<span class="math inline">\(\mathbf{G}^{-1}\)</span> only because the
+pedigree matrices are canceled out.</p>
 <p><span class="math display">\[
-\mathbf{H}^{-1} = \mathbf{I} + \mathbf{G}^{-1} - \mathbf{I} = \mathbf{G}^{-1}
+\mathbf{H}^{-1} = \mathbf{I} + \mathbf{G}^{-1} - \mathbf{I} =
+\mathbf{G}^{-1}
 \]</span></p>
-<p>The user must know that BLUPF90 does not avoid creating the identity matrices <span class="math inline">\(\mathbf{A}^{-1}=\mathbf{A}_{22}^{-1}=\mathbf{I}\)</span>. These matrices are explicitly calculated and surely added to the system of equations, and in the end, two <span class="math inline">\(\mathbf{I}\)</span>s will be canceled out <em>numerically</em>. This method just provides the same solutions as omitting <span class="math inline">\(\mathbf{A}^{-1}\)</span> and <span class="math inline">\(\mathbf{A}_{22}^{-1}\)</span> from <span class="math inline">\(\mathbf{H}^{-1}\)</span> numerically, but actually not omitted in operation. This is because BLUPF90 by design reads the pedigree file and build <span class="math inline">\(\mathbf{A}^{-1}\)</span> and <span class="math inline">\(\mathbf{A}_{22}^{-1}\)</span> whenever <span class="math inline">\(\mathbf{G}\)</span> is created.</p>
+<p>The user must know that BLUPF90 does not avoid creating the identity
+matrices <span
+class="math inline">\(\mathbf{A}^{-1}=\mathbf{A}_{22}^{-1}=\mathbf{I}\)</span>.
+These matrices are explicitly calculated and surely added to the system
+of equations, and in the end, two <span
+class="math inline">\(\mathbf{I}\)</span>s will be canceled out
+<em>numerically</em>. This method just provides the same solutions as
+omitting <span class="math inline">\(\mathbf{A}^{-1}\)</span> and <span
+class="math inline">\(\mathbf{A}_{22}^{-1}\)</span> from <span
+class="math inline">\(\mathbf{H}^{-1}\)</span> numerically, but actually
+not omitted in operation. This is because BLUPF90 by design reads the
+pedigree file and build <span
+class="math inline">\(\mathbf{A}^{-1}\)</span> and <span
+class="math inline">\(\mathbf{A}_{22}^{-1}\)</span> whenever <span
+class="math inline">\(\mathbf{G}\)</span> is created.</p>
 <h3 id="numerical-example">Numerical example</h3>
-<p>We will use an example considered in the earlier chapter. There are 15 genotyped animals but only the first 11 animals have phenotypes. The data file has 4 columns with 1) animal ID, 2) group code i.e. general mean, 3) observation and 4) weight on observation. This file is also the same as the previous one but it has the original ID corresponding to the marker file. If you don’t use the weight, you can omit the column 4 from the data file.</p>
+<p>We will use an example considered in the earlier chapter. There are
+15 genotyped animals but only the first 11 animals have phenotypes. The
+data file has 4 columns with 1) animal ID, 2) group code that is general
+mean, 3) observation and 4) weight on observation. This file is also the
+same as the previous one but it has the original ID corresponding to the
+marker file. If you do not use the weight, you can omit the column 4
+from the data file.</p>
 <pre data-language="text" data-caption="rawdata6.txt"><code>ID001  1  -1.28  1.00
 ID002  1  -1.78  0.98
 ID003  1   0.54  0.90
@@ -147,9 +240,18 @@ ID001  1211121200011211220201121220102021210101000220020211021011002222000222000
 ID013  2122020101210121121222101200112122102212000010012211111001101211101122100110220000021200210010200120
 ID008  1211121200011211210111111110012121201011000110020211021011002222000222000011110001111100210010111220</code></pre>
 <p>There is no pedigree file for this data.</p>
-<p>In this dataset, some animals do not have phenotypes, and this is a typical case in GBLUP. <code>RENUMF90</code> will create the dummy pedigree-file for all genotyped animals in the marker file. The number of pedigree animals will be the same as the number of genotyped animals, and BLUPF90 properly performs GBLUP.</p>
+<p>In this dataset, some animals do not have phenotypes, and this is a
+typical case in GBLUP. <code>RENUMF90</code> will create the dummy
+pedigree-file for all genotyped animals in the marker file. The number
+of pedigree animals will be the same as the number of genotyped animals,
+and BLUPF90 properly performs GBLUP.</p>
 <h3 id="renumbering">Renumbering</h3>
-<p>An instruction file for <code>RENUMF90</code> is as follows. We assume <span class="math inline">\(\sigma_{u}^{2}=0.3\)</span> and <span class="math inline">\(\sigma_{e}^2=0.7\)</span>. If you don’t need the weight, you can put the empty line to <code>WEIGHT</code> (this keyword is mandatory so you should keep it even if you don’t use the weights).</p>
+<p>An instruction file for <code>RENUMF90</code> is as follows. We
+assume <span class="math inline">\(\sigma_{u}^{2}=0.3\)</span> and <span
+class="math inline">\(\sigma_{e}^2=0.7\)</span>. If you do not need the
+weight, you can put the empty line to <code>WEIGHT</code> (this keyword
+is mandatory so you should keep it even if you do not use the
+weights).</p>
 <pre data-language="renumf90" data-caption="renum6.txt"><code>DATAFILE
 rawdata6.txt
 TRAITS
@@ -172,8 +274,23 @@ snp6.txt
 0.3
 OPTION AlphaBeta 0.95 0.05
 OPTION tunedG 0</code></pre>
-<p>The last two lines are the options for BLUPF90 (passed through the resulting parameter file <code>renf90.par</code>). The first option, <code>AlphaBeta</code>, is needed to make <span class="math inline">\(\mathbf{G}\)</span> be positive definite. It performs the blending <span class="math inline">\(\mathbf{G}\leftarrow 0.95\mathbf{G}+0.05\mathbf{A}_{22}=0.95\mathbf{G}+0.05\mathbf{I}\)</span>. The second option <code>tunedG 0</code> turns off the <em>tuning</em> to scale <span class="math inline">\(\mathbf{G}\)</span> to <span class="math inline">\(\mathbf{A}_{22}\)</span>; see the previous section for details. In this analysis, <span class="math inline">\(\mathbf{A}_{22}\)</span> is just a dummy (the identity matrix) so there is no reason to perform the tuning. You can also put any options you need in the parameter file.</p>
-<p>Note that there is no <code>FILE</code> keyword for pedigree, but the program generates the dummy pedigree-file. After running <code>RENUMF90</code>, you will see the pedigree file <code>renadd02.ped</code> in the same directory.</p>
+<p>The last two lines are the options for BLUPF90 (passed through the
+resulting parameter file <code>renf90.par</code>). The first option,
+<code>AlphaBeta</code>, is needed to make <span
+class="math inline">\(\mathbf{G}\)</span> be positive definite. It
+performs the blending <span class="math inline">\(\mathbf{G}\leftarrow
+0.95\mathbf{G}+0.05\mathbf{A}_{22}=0.95\mathbf{G}+0.05\mathbf{I}\)</span>.
+The second option <code>tunedG 0</code> turns off the <em>tuning</em> to
+scale <span class="math inline">\(\mathbf{G}\)</span> to <span
+class="math inline">\(\mathbf{A}_{22}\)</span>; see the previous section
+for details. In this analysis, <span
+class="math inline">\(\mathbf{A}_{22}\)</span> is just a dummy (the
+identity matrix) so there is no reason to perform the tuning. You can
+also put any options you need in the parameter file.</p>
+<p>Note that there is no <code>FILE</code> keyword for pedigree, but the
+program generates the dummy pedigree-file. After running
+<code>RENUMF90</code>, you will see the pedigree file
+<code>renadd02.ped</code> in the same directory.</p>
 <pre><code>13 0 0 3 0 10 0 0 0 ID015
 4 0 0 3 0 10 1 0 0 ID004
 5 0 0 3 0 10 1 0 0 ID005
@@ -189,8 +306,16 @@ OPTION tunedG 0</code></pre>
 2 0 0 3 0 10 1 0 0 ID002
 12 0 0 3 0 10 0 0 0 ID014
 3 0 0 3 0 10 1 0 0 ID003</code></pre>
-<p>The renumbering process assigns an integer code to each of genotyped animals. The first column (animal ID) is filled with genotyped animals but the 2nd and the 3rd columns (parents) are 0 i.e. missing. This creates the identity matrix as the pedigree relationships. The 10th column has the original ID corresponding to the integer (renumbered) code.</p>
-<p>The cross-reference file (XrefID) clearly shows the correspondence between the integer code and the original ID. The integer code is randomly assigned to the original ID; the user should not expect any meaningful order in the integer code.</p>
+<p>The renumbering process assigns an integer code to each of genotyped
+animals. The first column (animal ID) is filled with genotyped animals
+but the 2nd and the 3rd columns (parents) are 0 that is missing. This
+creates the identity matrix as the pedigree relationships. The 10th
+column has the original ID corresponding to the integer (renumbered)
+code.</p>
+<p>The cross-reference file (XrefID) clearly shows the correspondence
+between the integer code and the original ID. The integer code is
+randomly assigned to the original ID; the user should not expect any
+meaningful order in the integer code.</p>
 <pre><code>2 ID002
 11 ID011
 5 ID005
@@ -225,22 +350,54 @@ OPTION tunedG 0</code></pre>
    1   2        13          0.26284875
    1   2        14          0.22127690
    1   2        15          0.26284875</code></pre>
-<p>The solution of the genomic effect is in rows with effect 2 (rows with <code>2</code> in the 2nd column). The individual solution is labeled with the integer code (not the original ID), so the user has to manually combine the solutions with the original ID using the pedigree file or the XrefID file. If Bash is available, the following command immediately combines the solutions with the original ID, sorted by the original ID.</p>
+<p>The solution of the genomic effect is in rows with effect 2 (rows
+with <code>2</code> in the 2nd column). The individual solution is
+labeled with the integer code (not the original ID), so the user has to
+manually combine the solutions with the original ID using the pedigree
+file or the XrefID file. If Bash is available, the following command
+immediately combines the solutions with the original ID, sorted by the
+original ID.</p>
 <pre data-language="shell"><code>paste &lt;(sort -n snp6.txt_XrefID) &lt;(awk &#39;$2==2{print $3,$4}&#39; solutions) | sort -k2,2</code></pre>
 <h3 id="remarks">Remarks</h3>
-<p>This method will work correctly unless non-genotyped animals have phenotypes. So what will happen when non-genotyped animals have observations? The non-genotyped animals will be included in the equations and have some solutions. However, the solutions are nonsense because those animals are not related to the other animals, and the estimates are just artifact. The user is responsible for the data used in GBLUP.</p>
-<h2 id="genomic-relationship-matrix-as-a-external-text-file">Genomic relationship matrix as a external text file</h2>
-<p>As explained in the previous chapter, the user can supply <span class="math inline">\(\mathbf{G}^{-1}\)</span> as a text file. The users should prepare the file by themselves using external software like R. In this case, BLUPF90 doesn’t need the marker file.</p>
-<p>The text file contains 3 columns: 1) row index, 2) column index, and 3) the value of the element in <span class="math inline">\(\mathbf{G}^{-1}\)</span>. Only the lower or upper triangular part is needed; the program stops if the file has the entire matrix. The data file should be renumbered; only numerical expressions are allowed for an ID of genotyped animal and it should be corresponding to the index in the file of <span class="math inline">\(\mathbf{G}^{-1}\)</span>.</p>
+<p>This method will work correctly unless non-genotyped animals have
+phenotypes. So what will happen when non-genotyped animals have
+observations? The non-genotyped animals will be included in the
+equations and have some solutions. However, the solutions are nonsense
+because those animals are not related to the other animals, and the
+estimates are just artifact. The user is responsible for the data used
+in GBLUP.</p>
+<h2 id="genomic-relationship-matrix-as-a-external-text-file">Genomic
+relationship matrix as a external text file</h2>
+<p>As explained in the previous chapter, the user can supply <span
+class="math inline">\(\mathbf{G}^{-1}\)</span> as a text file. The users
+should prepare the file by themselves using external software like R. In
+this case, BLUPF90 does not need the marker file.</p>
+<p>The text file contains 3 columns: 1) row index, 2) column index, and
+3) the value of the element in <span
+class="math inline">\(\mathbf{G}^{-1}\)</span>. Only the lower or upper
+triangular part is needed; the program stops if the file has the entire
+matrix. The data file should be renumbered; only numerical expressions
+are allowed for an ID of genotyped animal and it should be corresponding
+to the index in the file of <span
+class="math inline">\(\mathbf{G}^{-1}\)</span>.</p>
 <h3 id="numerical-example-1">Numerical example</h3>
-<p>Here we will use the same example as the previous section to use the external text file. There are 15 genotyped animals but only the first 11 animals have phenotypes. The external file of <span class="math inline">\(\mathbf{G}^{-1}\)</span> (<code>ginverse6.txt</code>) is too large to show here. Only the first some rows will be presented. The whole file is available at <a href="https://githib.com/masuday/data" class="uri">https://githib.com/masuday/data</a> on Github.</p>
+<p>Here we will use the same example as the previous section to use the
+external text file. There are 15 genotyped animals but only the first 11
+animals have phenotypes. The external file of <span
+class="math inline">\(\mathbf{G}^{-1}\)</span>
+(<code>ginverse6.txt</code>) is too large to show here. Only the first
+some rows will be presented. The whole file is available at <a
+href="https://githib.com/masuday/data"
+class="uri">https://githib.com/masuday/data</a> on Github.</p>
 <pre><code>1 1 8.227580098846
 1 2 3.438271310942
 2 2 8.954010413251
 1 3 1.176962440315
 2 3 .432327333335
 ...</code></pre>
-<p>This file is obtained from the marker file shown above (<code>snp6.txt</code>) so the index of a matrix is the same as the order of animals in the marker file.</p>
+<p>This file is obtained from the marker file shown above
+(<code>snp6.txt</code>) so the index of a matrix is the same as the
+order of animals in the marker file.</p>
 <table>
 <thead>
 <tr class="header">
@@ -311,7 +468,12 @@ OPTION tunedG 0</code></pre>
 </tr>
 </tbody>
 </table>
-<p>The data file has 4 columns with 1) animal ID, 2) group code i.e. general mean, 3) observation, 4) weight on observation, and 5) the original ID, just for your information (it has characters but no problem because this column is never read by the program). The animal ID should be compatible with the external file of <span class="math inline">\(\mathbf{G}^{-1}\)</span>.</p>
+<p>The data file has 4 columns with 1) animal ID, 2) group code that is
+general mean, 3) observation, 4) weight on observation, and 5) the
+original ID, just for your information (it has characters but no problem
+because this column is never read by the program). The animal ID should
+be compatible with the external file of <span
+class="math inline">\(\mathbf{G}^{-1}\)</span>.</p>
 <pre data-language="text" data-caption="data6.txt"><code>13  1  -1.28  1.00  ID001
  1  1  -1.78  0.98  ID002
 10  1   0.54  0.90  ID003
@@ -323,7 +485,9 @@ OPTION tunedG 0</code></pre>
 12  1  -0.48  0.88  ID009
  5  1   0.89  0.99  ID010
  2  1  -1.16  0.97  ID011</code></pre>
-<p>The parameter file is as follows. The file doesn’t have any genomic options because the matrix has already prepared and no additional operations are not allowed for the supplied matrix.</p>
+<p>The parameter file is as follows. The file does not have any genomic
+options because the matrix has already prepared and no additional
+operations are not allowed for the supplied matrix.</p>
 <pre data-language="blupf90" data-caption="param6.txt"><code>DATAFILE
  data6.txt
 NUMBER_OF_TRAITS
@@ -347,19 +511,39 @@ FILE
  ginverse6.txt
 (CO)VARIANCES
   0.3</code></pre>
-<p>Be careful to read the results; the order in <code>solutions</code> is different from the previous one. The user must combine the solutions with the original ID. The following command correctly sorts the solutions by the original ID.</p>
+<p>Be careful to read the results; the order in <code>solutions</code>
+is different from the previous one. The user must combine the solutions
+with the original ID. The following command correctly sorts the
+solutions by the original ID.</p>
 <pre data-language="shell"><code>paste &lt;(awk &#39;{print $1}&#39; snp6.txt) &lt;(awk &#39;$2==2{print $3,$4}&#39; solutions) | sort</code></pre>
 <h3 id="remarks-1">Remarks</h3>
-<p>This method doesn’t need RENUMF90. It is useful for simulated data that has renumbered ID. A problem is to compute <span class="math inline">\(\mathbf{G}^{-1}\)</span> with the external programs. Also, this method may be slow in reading the file when the matrix is too large.</p>
-<h2 id="gblup-with-partial-use-of-pedigree">GBLUP with partial use of pedigree</h2>
-<p>There is a case where a pedigree file is available but the user should perform GBLUP. The pedigree information can be used to form <span class="math inline">\(\mathbf{G}\)</span> but the final equations contain <span class="math inline">\(\mathbf{G}^{-1}\)</span> only. Or, the user can perform GBLUP with the (residual) polygenic effect which is explained with the additive relationship matrix. The method introduced here is general and flexible but a bit complicated. We will use two software: PREGSF90 for preparation and BLUPF90 for prediction as to the following protocol.</p>
+<p>This method does not need RENUMF90. It is useful for simulated data
+that has renumbered ID. A problem is to compute <span
+class="math inline">\(\mathbf{G}^{-1}\)</span> with the external
+programs. Also, this method may be slow in reading the file when the
+matrix is too large.</p>
+<h2 id="gblup-with-partial-use-of-pedigree">GBLUP with partial use of
+pedigree</h2>
+<p>There is a case where a pedigree file is available but the user
+should perform GBLUP. The pedigree information can be used to form <span
+class="math inline">\(\mathbf{G}\)</span> but the final equations
+contain <span class="math inline">\(\mathbf{G}^{-1}\)</span> only. Or,
+the user can perform GBLUP with the (residual) polygenic effect which is
+explained with the additive relationship matrix. The method introduced
+here is general and flexible but a bit complicated. We will use two
+software: PREGSF90 for preparation and BLUPF90 for prediction as to the
+following protocol.</p>
 <ol type="1">
-<li>Run RENUMF90 to generate renumbered data and <code>renf90.par</code>.</li>
+<li>Run RENUMF90 to generate renumbered data and
+<code>renf90.par</code>.</li>
 <li>Run PREGSF90 with <code>renf90.par</code>.</li>
-<li>Make a copy of <code>renf90.f90</code>, modify the copy, and run BLUPF90 with the modified parameter file</li>
+<li>Make a copy of <code>renf90.f90</code>, modify the copy, and run
+BLUPF90 with the modified parameter file</li>
 </ol>
 <h3 id="renumbering-1">Renumbering</h3>
-<p>In this method, we will use the same marker and data files (<code>snp6.txt</code> and <code>rawdata6.txt</code>) as the previous section. The pedigree file is shown below.</p>
+<p>In this method, we will use the same marker and data files
+(<code>snp6.txt</code> and <code>rawdata6.txt</code>) as the previous
+section. The pedigree file is shown below.</p>
 <pre data-language="text" data-caption="rawpedigree6.txt"><code> ID001      0      0
  ID002      0      0
  ID003      0      0
@@ -375,7 +559,8 @@ FILE
  ID013  ID011  ID010
  ID014  ID009  ID013
  ID015  ID011  ID010</code></pre>
-<p>First, we have to process the files with RENUMF90. The following instruction file is used.</p>
+<p>First, we have to process the files with RENUMF90. The following
+instruction file is used.</p>
 <pre data-language="blupf90" data-caption="renum6a.txt"><code>DATAFILE
 rawdata6.txt
 TRAITS
@@ -399,10 +584,16 @@ snp6.txt
 (CO)VARIANCES    ## its variance component
 0.3
 OPTION TauOmega  1.00 0.00</code></pre>
-<p>The user can use any options for genomic setup. The option <code>TauOmega</code> is needed to remove <span class="math inline">\(\mathbf{A}_{22}^{-1}\)</span> from <span class="math inline">\(\mathbf{H}^{-1}\)</span>. The user can put more options to be suitable for your data.</p>
-<p>Run RENUMF90, and several files including <code>renf90.par</code> will be created.</p>
+<p>The user can use any options for genomic setup. The option
+<code>TauOmega</code> is needed to remove <span
+class="math inline">\(\mathbf{A}_{22}^{-1}\)</span> from <span
+class="math inline">\(\mathbf{H}^{-1}\)</span>. The user can put more
+options to be suitable for your data.</p>
+<p>Run RENUMF90, and several files including <code>renf90.par</code>
+will be created.</p>
 <h3 id="run-pregsf90">Run PREGSF90</h3>
-<p>First, look at <code>renf90.par</code> to see what we are going to do with it.</p>
+<p>First, look at <code>renf90.par</code> to see what we are going to do
+with it.</p>
 <pre data-language="blupf90" data-caption="renf90.par"><code># BLUPF90 parameter file created by RENUMF90
 DATAFILE
  renf90.dat
@@ -433,35 +624,107 @@ OPTION TauOmega  1.00 0.00</code></pre>
 <ol type="1">
 <li>Compute <span class="math inline">\(\mathbf{A}_{22}\)</span>.</li>
 <li>Compute <span class="math inline">\(\mathbf{G}\)</span>.</li>
-<li>Blend two matrices as <span class="math inline">\(\mathbf{G}\leftarrow \alpha\mathbf{G}+\beta\mathbf{A}_{22}\)</span>.</li>
-<li>Scale <span class="math inline">\(\mathbf{G}\)</span> to <span class="math inline">\(\mathbf{A}_{22}\)</span> (<em>tuning</em>).</li>
-<li>Compute <span class="math inline">\(\mathbf{A}_{22}^{-1}\)</span>.</li>
+<li>Blend two matrices as <span
+class="math inline">\(\mathbf{G}\leftarrow
+\alpha\mathbf{G}+\beta\mathbf{A}_{22}\)</span>.</li>
+<li>Scale <span class="math inline">\(\mathbf{G}\)</span> to <span
+class="math inline">\(\mathbf{A}_{22}\)</span> (<em>tuning</em>).</li>
+<li>Compute <span
+class="math inline">\(\mathbf{A}_{22}^{-1}\)</span>.</li>
 <li>Compute <span class="math inline">\(\mathbf{G}^{-1}\)</span>.</li>
-<li>Merge two inverse matrices to <span class="math inline">\(\Delta=\tau\mathbf{G}^{-1}-\omega\mathbf{A}_{22}^{-1}\)</span> and save it to a file <code>GimA22i</code>.</li>
+<li>Merge two inverse matrices to <span
+class="math inline">\(\Delta=\tau\mathbf{G}^{-1}-\omega\mathbf{A}_{22}^{-1}\)</span>
+and save it to a file <code>GimA22i</code>.</li>
 </ol>
-<p>Note that PREGSF90 doesn’t compute <span class="math inline">\(\mathbf{A}^{-1}\)</span> itself, which will be computed with BLUPF90 from the pedigree file. Using above parameter file, by default, <span class="math inline">\(\alpha=0.95\)</span> and <span class="math inline">\(\beta=0.05\)</span> and the pedigree matrix is integrated to <span class="math inline">\(\mathbf{G}\)</span>, the tuning is performed, and <code>GimA22i</code> will have only <span class="math inline">\(\mathbf{G}^{-1}\)</span> because of <span class="math inline">\(\omega=0\)</span>. Again, the above configurations are just to demonstrate the capability of PREGSF90/BLUPF90 in GBLUP. Please use appropriate options for the user’s data.</p>
-<p>After running PREGSF90, several files will be created in the working directory. There should be a file <code>GimA22i</code>.</p>
+<p>Note that PREGSF90 does not compute <span
+class="math inline">\(\mathbf{A}^{-1}\)</span> itself, which will be
+computed with BLUPF90 from the pedigree file. Using above parameter
+file, by default, <span class="math inline">\(\alpha=0.95\)</span> and
+<span class="math inline">\(\beta=0.05\)</span> and the pedigree matrix
+is integrated to <span class="math inline">\(\mathbf{G}\)</span>, the
+tuning is performed, and <code>GimA22i</code> will have only <span
+class="math inline">\(\mathbf{G}^{-1}\)</span> because of <span
+class="math inline">\(\omega=0\)</span>. Again, the above configurations
+are just to demonstrate the capability of PREGSF90/BLUPF90 in GBLUP.
+Please use appropriate options for the user’s data.</p>
+<p>After running PREGSF90, several files will be created in the working
+directory. There should be a file <code>GimA22i</code>.</p>
 <h3 id="run-blupf90">Run BLUPF90</h3>
-<p>BLUPF90 needs a separate parameter file that is slightly different from <code>renf90.par</code> used in PREGSF90. Make a copy of <code>renf90.par</code> as <code>blup.par</code> then modify the options in the copy as follows (showing only options).</p>
+<p>BLUPF90 needs a separate parameter file that is slightly different
+from <code>renf90.par</code> used in PREGSF90. Make a copy of
+<code>renf90.par</code> as <code>blup.par</code> then modify the options
+in the copy as follows (showing only options).</p>
 <pre data-language="blupf90" data-caption="blup.par"><code>OPTION SNP_file snp6.txt
 OPTION readGimA22i
 OPTION omit_ainv</code></pre>
-<p>The first option <code>SNP_file</code> should be kept in the file. The remaining two options are crucial: <code>OPTION readGimA22i</code> reads the file <code>GimA22i</code> as <span class="math inline">\(\Delta\)</span> instead of computing it from data, and <code>OPTION omit_ainv</code> suppresses the creation of <span class="math inline">\(\mathbf{A}^{-1}\)</span>. In the end, <span class="math inline">\(\mathbf{H}^{-1}\)</span> has only <span class="math inline">\(\mathbf{G}^{-1}\)</span>.</p>
-<p>Run BLUPF90 with <code>blup.par</code>, and obtain the solution file. The solutions look similar to the previous analysis for some animals (especially the young one) but very different in the other animals (the older one). This is because, in this study, <span class="math inline">\(\mathbf{G}\)</span> was blended with <span class="math inline">\(\mathbf{A}_{22}\)</span> and it can capture the residual polygenic effect.</p>
+<p>The first option <code>SNP_file</code> should be kept in the file.
+The remaining two options are crucial: <code>OPTION readGimA22i</code>
+reads the file <code>GimA22i</code> as <span
+class="math inline">\(\Delta\)</span> instead of computing it from data,
+and <code>OPTION omit_ainv</code> suppresses the creation of <span
+class="math inline">\(\mathbf{A}^{-1}\)</span>. In the end, <span
+class="math inline">\(\mathbf{H}^{-1}\)</span> has only <span
+class="math inline">\(\mathbf{G}^{-1}\)</span>.</p>
+<p>Run BLUPF90 with <code>blup.par</code>, and obtain the solution file.
+The solutions look similar to the previous analysis for some animals
+(especially the young one) but very different in the other animals (the
+older one). This is because, in this study, <span
+class="math inline">\(\mathbf{G}\)</span> was blended with <span
+class="math inline">\(\mathbf{A}_{22}\)</span> and it can capture the
+residual polygenic effect.</p>
 <h3 id="remarks-2">Remarks</h3>
-<h4 id="dummy-pedigree-to-remove-a-inverse">Dummy pedigree to remove A-inverse</h4>
-<p>The option <code>omit_ainv</code> is effective only in BLUPF90. If this option doesn’t work (or you are not sure the program supports it), use the alternative approach to remove <span class="math inline">\(\mathbf{A}^{-1}\)</span>. First, create a <em>dummy</em> pedigree file including only 0 in all 3 (or 4) columns. The pedigree file should have the same (or more) number of lines as the number of genotyped animals. The <em>awk</em> program easily creates the dummy pedigree. The following command assumes the renumbered pedigree is <code>renadd02.ped</code> and writes 4 columns in case of unknown parent groups.</p>
+<h4 id="dummy-pedigree-to-remove-a-inverse">Dummy pedigree to remove
+A-inverse</h4>
+<p>The option <code>omit_ainv</code> is effective only in BLUPF90. If
+this option does not work (or you are not sure the program supports it),
+use the alternative approach to remove <span
+class="math inline">\(\mathbf{A}^{-1}\)</span>. First, create a
+<em>dummy</em> pedigree file including only 0 in all 3 (or 4) columns.
+The pedigree file should have the same (or more) number of lines as the
+number of genotyped animals. The <em>awk</em> program easily creates the
+dummy pedigree. The following command assumes the renumbered pedigree is
+<code>renadd02.ped</code> and writes 4 columns in case of unknown parent
+groups.</p>
 <pre data-language="shell"><code>awk &#39;{print 0,0,0,0}&#39; renadd02.ped &gt; dummy.ped</code></pre>
-<p>Then, modify <code>blup.par</code> to have <code>dummy.ped</code> instead of <code>renadd02.ped</code>. With this trick, <span class="math inline">\(\mathbf{A}^{-1}\)</span> becomes <span class="math inline">\(\mathbf{0}\)</span> so no contribution to the equations.</p>
-<h4 id="pure-gblup-without-pedigree-effect">Pure GBLUP without pedigree effect</h4>
-<p>Even with the pedigree file, the user can run GBLUP without any contribution from pedigree information (i.e. <span class="math inline">\(\mathbf{A}_{22}\)</span>). In this case, the solutions should be identical to one obtained in the previous two methods.</p>
-<p>To do this, the user can put the following options in the renum-instruction file or <code>renf90.par</code> for PREGSF90.</p>
+<p>Then, modify <code>blup.par</code> to have <code>dummy.ped</code>
+instead of <code>renadd02.ped</code>. With this trick, <span
+class="math inline">\(\mathbf{A}^{-1}\)</span> becomes <span
+class="math inline">\(\mathbf{0}\)</span> so no contribution to the
+equations.</p>
+<h4 id="pure-gblup-without-pedigree-effect">Pure GBLUP without pedigree
+effect</h4>
+<p>Even with the pedigree file, the user can run GBLUP without any
+contribution from pedigree information (that is <span
+class="math inline">\(\mathbf{A}_{22}\)</span>). In this case, the
+solutions should be identical to one obtained in the previous two
+methods.</p>
+<p>To do this, the user can put the following options in the
+renum-instruction file or <code>renf90.par</code> for PREGSF90.</p>
 <pre><code>OPTION AlphaBeta 0.95 0.00
 OPTION GammaDelta 0.05 0.00
 OPTION tunedG 0
 OPTION TauOmega 1.00 0.00</code></pre>
-<p>The first two options will be used in blending: <span class="math inline">\(\mathbf{G}\leftarrow \alpha\mathbf{G}+\beta\mathbf{A}_{22}+\gamma\mathbf{I}+\delta\mathbf{11}&#39;\)</span>. The above option specifies <span class="math inline">\(\alpha=0.95\)</span>, <span class="math inline">\(\beta=0\)</span>, <span class="math inline">\(\gamma=0.05\)</span>, and <span class="math inline">\(\delta=0\)</span> so that the blending is <span class="math inline">\(\mathbf{G}\leftarrow 0.95\mathbf{G}+0.05\mathbf{I}\)</span>. The option <code>tunedG 0</code> prohibits the program to scale <span class="math inline">\(\mathbf{G}\)</span> to <span class="math inline">\(\mathbf{A}_{22}\)</span>. These three options are equivalent to the approach that we introduced as the first method in this chapter. The last option removes <span class="math inline">\(\mathbf{A}_{22}^{-1}\)</span> from <span class="math inline">\(\mathbf{H}^{-1}\)</span>.</p>
-<p>Finally, the user should create a separate parameter file to use <code>GimA22i</code> and to omit <span class="math inline">\(\mathbf{A}^{-1}\)</span> in BLUPF90 using <code>omit_ainv</code> or the dummy pedigree file.</p>
+<p>The first two options will be used in blending: <span
+class="math inline">\(\mathbf{G}\leftarrow
+\alpha\mathbf{G}+\beta\mathbf{A}_{22}+\gamma\mathbf{I}+\delta\mathbf{11}&#39;\)</span>.
+The above option specifies <span
+class="math inline">\(\alpha=0.95\)</span>, <span
+class="math inline">\(\beta=0\)</span>, <span
+class="math inline">\(\gamma=0.05\)</span>, and <span
+class="math inline">\(\delta=0\)</span> so that the blending is <span
+class="math inline">\(\mathbf{G}\leftarrow
+0.95\mathbf{G}+0.05\mathbf{I}\)</span>. The option <code>tunedG 0</code>
+prohibits the program to scale <span
+class="math inline">\(\mathbf{G}\)</span> to <span
+class="math inline">\(\mathbf{A}_{22}\)</span>. These three options are
+equivalent to the approach that we introduced as the first method in
+this chapter. The last option removes <span
+class="math inline">\(\mathbf{A}_{22}^{-1}\)</span> from <span
+class="math inline">\(\mathbf{H}^{-1}\)</span>.</p>
+<p>Finally, the user should create a separate parameter file to use
+<code>GimA22i</code> and to omit <span
+class="math inline">\(\mathbf{A}^{-1}\)</span> in BLUPF90 using
+<code>omit_ainv</code> or the dummy pedigree file.</p>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>

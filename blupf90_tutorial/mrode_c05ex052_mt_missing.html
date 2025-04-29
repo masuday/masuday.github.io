@@ -28,7 +28,8 @@
   <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
   <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
   <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="/usr/share/javascript/mathjax/MathJax.js"
+  type="text/javascript"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
   </script>
@@ -42,24 +43,39 @@
 <header>
 <h1 class="title">Numerical examples from Mrode (2014)</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">September 2019</p>
+<p class="date">April 2025</p>
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#multiple-trait-model-with-equal-design-matrix-and-missing-records">Multiple-trait model with equal design matrix and missing records</a><ul>
-<li><a href="#model">Model</a></li>
-<li><a href="#files">Files</a></li>
-<li><a href="#solutions">Solutions</a></li>
+<li><a
+href="#multiple-trait-model-with-equal-design-matrix-and-missing-records"
+id="toc-multiple-trait-model-with-equal-design-matrix-and-missing-records">Multiple-trait
+model with equal design matrix and missing records</a>
+<ul>
+<li><a href="#model" id="toc-model">Model</a></li>
+<li><a href="#files" id="toc-files">Files</a></li>
+<li><a href="#solutions" id="toc-solutions">Solutions</a></li>
 </ul></li>
 </ul>
 </nav>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>
-<h1 id="multiple-trait-model-with-equal-design-matrix-and-missing-records">Multiple-trait model with equal design matrix and missing records</h1>
+<h1
+id="multiple-trait-model-with-equal-design-matrix-and-missing-records">Multiple-trait
+model with equal design matrix and missing records</h1>
 <h2 id="model">Model</h2>
-<p>Here we apply the same model described in the previous example to the data with missing observations. Model descriptions and mixed model equations are identical as before.</p>
-<p>With a missing observation, <span class="math inline">\(\mathbf{R}_0\)</span> and its inverse should be altered. For example, assuming a 2 trait model, if the observation of the first trait is missing, the first row and column in <span class="math inline">\(\mathbf{R}_0\)</span> should be zeroed out. The corresponding inverse is the generalized inverse of this altered <span class="math inline">\(\mathbf{R}_0\)</span>. Illustrating this situation with the previous example, the result is <span class="math display">\[
+<p>Here we apply the same model described in the previous example to the
+data with missing observations. Model descriptions and mixed model
+equations are identical as before.</p>
+<p>With a missing observation, <span
+class="math inline">\(\mathbf{R}_0\)</span> and its inverse should be
+altered. For example, assuming a 2 trait model, if the observation of
+the first trait is missing, the first row and column in <span
+class="math inline">\(\mathbf{R}_0\)</span> should be zeroed out. The
+corresponding inverse is the generalized inverse of this altered <span
+class="math inline">\(\mathbf{R}_0\)</span>. Illustrating this situation
+with the previous example, the result is <span class="math display">\[
 \mathbf{R}_{0}
 =
 \left[
@@ -87,10 +103,21 @@ Back to <a href="./index.html">index.html</a>.
 \end{array}
 \right].
 \]</span></p>
-<p>The generalized inverse of this zeroed matrix is equivalent to the inverse of a matrix containing only nonzero elements in the zeroed matrix (Searle, 1971). BLUPF90 can detect a missing observation and prepares an appropriate <span class="math inline">\(\mathbf{R}_{0}\)</span> and its generalized inverse.</p>
+<p>The generalized inverse of this zeroed matrix is equivalent to the
+inverse of a matrix containing only nonzero elements in the zeroed
+matrix (Searle, 1971). BLUPF90 can detect a missing observation and
+prepares an appropriate <span
+class="math inline">\(\mathbf{R}_{0}\)</span> and its generalized
+inverse.</p>
 <h2 id="files">Files</h2>
-<p>One animal is added to the previous example and 2 observations are marked as missing. The missing observation is indicated as 0, which is the default missing code used in the BLUPF90 family (<code>data_mr05b.txt</code>). We can use an extended pedigree file as the previous one by adding the animal 9 (<code>pedigree_mr05b.txt</code>).</p>
-<p>The parameter file is also identical except for omitting an option for standard error calculations.</p>
+<p>One animal is added to the previous example and 2 observations are
+marked as missing. The missing observation is indicated as 0, which is
+the default missing code used in the BLUPF90 family
+(<code>data_mr05b.txt</code>). We can use an extended pedigree file as
+the previous one by adding the animal 9
+(<code>pedigree_mr05b.txt</code>).</p>
+<p>The parameter file is also identical except for omitting an option
+for standard error calculations.</p>
 <pre data-language="blupf90" data-caption="param_mr05b.txt"><code>DATAFILE
 data_mr05b.txt
 NUMBER_OF_TRAITS
@@ -118,7 +145,8 @@ pedigree_mr05b.txt
 18.0 40.0
 OPTION solv_method FSPAK</code></pre>
 <h2 id="solutions">Solutions</h2>
-<p>You can confirm the results are identical to the values in the textbook (p.80).</p>
+<p>You can confirm the results are identical to the values in the
+textbook (p.80).</p>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>

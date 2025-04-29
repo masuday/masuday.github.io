@@ -28,7 +28,8 @@
   <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
   <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
   <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="/usr/share/javascript/mathjax/MathJax.js"
+  type="text/javascript"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
   </script>
@@ -42,25 +43,37 @@
 <header>
 <h1 class="title">Numerical examples from Mrode (2014)</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">September 2019</p>
+<p class="date">April 2025</p>
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#common-environmental-effects-as-random">Common environmental effects as random</a><ul>
-<li><a href="#model">Model</a></li>
-<li><a href="#files">Files</a></li>
-<li><a href="#solutions">Solutions</a></li>
+<li><a href="#common-environmental-effects-as-random"
+id="toc-common-environmental-effects-as-random">Common environmental
+effects as random</a>
+<ul>
+<li><a href="#model" id="toc-model">Model</a></li>
+<li><a href="#files" id="toc-files">Files</a></li>
+<li><a href="#solutions" id="toc-solutions">Solutions</a></li>
 </ul></li>
 </ul>
 </nav>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>
-<h1 id="common-environmental-effects-as-random">Common environmental effects as random</h1>
+<h1 id="common-environmental-effects-as-random">Common environmental
+effects as random</h1>
 <h2 id="model">Model</h2>
-<p>In this example, the author considers a simple maternal model and the maternal effects (<span class="math inline">\(c\)</span>) do not correlate to each other. The variance components include the animal genetic variance <span class="math inline">\(\sigma_u^2=20\)</span>, the maternal variance <span class="math inline">\(\sigma_c^2=15\)</span>, and the residual variance <span class="math inline">\(\sigma_e^2=65\)</span>.</p>
+<p>In this example, the author considers a simple maternal model and the
+maternal effects (<span class="math inline">\(c\)</span>) do not
+correlate to each other. The variance components include the animal
+genetic variance <span class="math inline">\(\sigma_u^2=20\)</span>, the
+maternal variance <span class="math inline">\(\sigma_c^2=15\)</span>,
+and the residual variance <span
+class="math inline">\(\sigma_e^2=65\)</span>.</p>
 <h2 id="files">Files</h2>
-<p>The data file (<code>data_mr04b.txt</code>) contains the whole table shown in the textbook (p.68). Here is the explanation for each column.</p>
+<p>The data file (<code>data_mr04b.txt</code>) contains the whole table
+shown in the textbook (p.68). Here is the explanation for each
+column.</p>
 <ol type="1">
 <li>Animal ID (piglet)</li>
 <li>Sire ID</li>
@@ -68,7 +81,8 @@ Back to <a href="./index.html">index.html</a>.
 <li>Sex (1=male and 2=female)</li>
 <li>Weaning weight (kg)</li>
 </ol>
-<p>Pedigree (<code>pedigree_mr04b.txt</code>) can be derived from the above data.</p>
+<p>Pedigree (<code>pedigree_mr04b.txt</code>) can be derived from the
+above data.</p>
 <p>The parameter file should contain 2 random effects.</p>
 <pre data-language="blupf90" data-caption="param_mr04b.txt"><code>DATAFILE
 data_mr04b.txt

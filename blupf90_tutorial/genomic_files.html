@@ -28,7 +28,8 @@
   <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
   <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
   <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="/usr/share/javascript/mathjax/MathJax.js"
+  type="text/javascript"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
   </script>
@@ -42,29 +43,56 @@
 <header>
 <h1 class="title">Practical genomic analysis</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">September 2019</p>
+<p class="date">April 2025</p>
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#files-used-in-genomic-analysis">Files used in genomic analysis</a><ul>
-<li><a href="#snp-file">SNP file</a></li>
-<li><a href="#cross-reference-xrefid-file">Cross-reference (XrefID) file</a></li>
-<li><a href="#allele-frequency-file-optional">Allele frequency file (optional)</a></li>
-<li><a href="#map-file-optional">Map file (optional)</a></li>
-<li><a href="#weight-for-snp-optional">Weight for SNP (optional)</a></li>
+<li><a href="#files-used-in-genomic-analysis"
+id="toc-files-used-in-genomic-analysis">Files used in genomic
+analysis</a>
+<ul>
+<li><a href="#snp-file" id="toc-snp-file">SNP file</a></li>
+<li><a href="#cross-reference-xrefid-file"
+id="toc-cross-reference-xrefid-file">Cross-reference (XrefID)
+file</a></li>
+<li><a href="#allele-frequency-file-optional"
+id="toc-allele-frequency-file-optional">Allele frequency file
+(optional)</a></li>
+<li><a href="#map-file-optional" id="toc-map-file-optional">Map file
+(optional)</a></li>
+<li><a href="#weight-for-snp-optional"
+id="toc-weight-for-snp-optional">Weight for SNP (optional)</a></li>
 </ul></li>
 </ul>
 </nav>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>
-<h1 id="files-used-in-genomic-analysis">Files used in genomic analysis</h1>
-<p>As seen in the tutorial in the previous chapter, PREGSF90 needs 2 files to handle genomic data: an SNP marker file and a cross-reference file. In this section, we describe the detailed format for these 2 files. Also, we will present some other files optionally needed in quality control of markers.</p>
-<p>PREGSF90 reads the same parameter file as BLUPF90. From this file, the program reads the names of the pedigree file, the marker file, (optionally) the cross-reference file, and some options. The rest of the parameter file (e.g., the name of the data file and the model) is effectively ignored.</p>
+<h1 id="files-used-in-genomic-analysis">Files used in genomic
+analysis</h1>
+<p>As seen in the tutorial in the previous chapter, PREGSF90 needs two
+files to handle genomic data: an SNP marker file and a cross-reference
+file. In this section, we describe the detailed format for these two
+files. Also, we will present some other files optionally needed in
+quality control of markers.</p>
+<p>PREGSF90 reads the same parameter file as BLUPF90. From this file,
+the program reads the names of the pedigree file, the marker file,
+(optionally) the cross-reference file, and some options. The rest of the
+parameter file (for example, the name of the data file and the model) is
+effectively ignored.</p>
 <h2 id="snp-file">SNP file</h2>
-<p>The PREGSF90 program can accept 2 kinds of SNP files. One contains only integer numbers as genotypes (e.g. from SNP chips) and the other one contains real numbers as gene content (possibly from imputation software, from Genotyping by Sequence or from sequencing at low depth). First, we consider the former one; we here call it an SNP-marker file.</p>
+<p>The PREGSF90 program can accept 2 kinds of SNP files. One contains
+only integer numbers as genotypes (for example from SNP chips) and the
+other one contains real numbers as gene content (possibly from
+imputation software, from Genotyping by Sequence or from sequencing at
+low depth). First, we consider the former one; we here call it an
+SNP-marker file.</p>
 <h3 id="snp-marker-file">SNP marker file</h3>
-<p>An SNP-marker file is a text file which contains 2 fields: animal ID (possibly alphanumeric) in the 1st field and its genotypes in the 2nd field. We show the first and the last 5 lines from an example data presented in the previous chapter again (limited to the first 30 characters in each line to save the space).</p>
+<p>An SNP-marker file is a text file which contains 2 fields: animal ID
+(possibly alphanumeric) in the 1st field and its genotypes in the 2nd
+field. We show the first and the last 5 lines from an example data
+presented in the previous chapter again (limited to the first 30
+characters in each line to save the space).</p>
 <pre><code> 8003   211011112112012000211002
  8007   212011111111012011111012
  8016   200120111021012111102121
@@ -78,18 +106,35 @@ Back to <a href="./index.html">index.html</a>.
 13500   101020112122021000221001</code></pre>
 <p>The format was already described in the previous chapter.</p>
 <h3 id="gene-content-file">Gene content file</h3>
-<p>The PREGSF90 program accepts another format. Here, we call it a <em>gene content file</em>. The gene content file may have a number of fields with the following rules.</p>
+<p>The PREGSF90 program accepts another format. Here, we call it a
+<em>gene content file</em>. The gene content file may have a number of
+fields with the following rules.</p>
 <ul>
-<li>The Animal ID must be in the 1st field and the gene content on each locus must be in the 2nd or later fields.</li>
-<li>Adjacent gene content can be separated by white spaces. No spaces are also allowed.</li>
-<li>No headers, no comments, no other fields are allowed. The data must start on the first line.</li>
-<li>In animal IDs, alphabets, numbers, and symbols (possibly ASCII) are acceptable. The link to the renumbered pedigree is provided in the cross-reference file below.</li>
-<li>Gene content should contain an integer, a floating-point (e.g. <code>3.14</code>), or exponential expression (e.g. <code>0.314E+01</code>) as a real number. All markers must have the same format.</li>
-<li>No missing gene content is allowed and all animals must have the same number of gene content. The missing gene contents should be imputed before the analyses.</li>
-<li>The minimum number of gene content is 50. The fewer number of markers is not acceptable.</li>
+<li>The Animal ID must be in the 1st field and the gene content on each
+locus must be in the 2nd or later fields.</li>
+<li>Adjacent gene content can be separated by white spaces. No spaces
+are also allowed.</li>
+<li>No headers, no comments, no other fields are allowed. The data must
+start on the first line.</li>
+<li>In animal IDs, alphabets, numbers, and symbols (possibly ASCII) are
+acceptable. The link to the renumbered pedigree is provided in the
+cross-reference file below.</li>
+<li>Gene content should contain an integer, a floating-point (for
+example <code>3.14</code>), or exponential expression (for example
+<code>0.314E+01</code>) as a real number. All markers must have the same
+format.</li>
+<li>No missing gene content is allowed and all animals must have the
+same number of gene content. The missing gene contents should be imputed
+before the analyses.</li>
+<li>The minimum number of gene content is 50. The fewer number of
+markers is not acceptable.</li>
 </ul>
 <h2 id="cross-reference-xrefid-file">Cross-reference (XrefID) file</h2>
-<p>The BLUPF90 programs need a cross-reference file. This file is automatically generated with RENUMF90. This file relates a renumbered ID to the original ID for genotyped animals. Again, we show the first 5 and the last 5 lines of the actual cross-reference file presented in the previous chapter.</p>
+<p>The BLUPF90 programs need a cross-reference file. This file is
+automatically generated with RENUMF90. This file relates a renumbered ID
+to the original ID for genotyped animals. Again, we show the first 5 and
+the last 5 lines of the actual cross-reference file presented in the
+previous chapter.</p>
 <pre><code>6127 8003
 13570 8007
 406 8016
@@ -101,10 +146,22 @@ Back to <a href="./index.html">index.html</a>.
 9369 13498
 9753 13499
 9905 13500</code></pre>
-<p>This file simply contains 2 fields: the first is for renumbered ID (same as in the pedigree file) and the second is for the original ID (same as in the marker file). The 2 fields can be separated with at least 1 space. A tab is not allowed. The order of animals must be the same as the SNP file. Again, this file is generated with RENUMF90, and the user should not edit it unless there is a reason to do it.</p>
-<h2 id="allele-frequency-file-optional">Allele frequency file (optional)</h2>
-<p>An allele frequency file contains the actual allele frequency on each marker. This file is optional because the allele frequency is calculated with the current SNP file by default. Only if you expect to use external information for it, you can provide a file containing the allele frequencies. Different allele frequency may change characteristics of <span class="math inline">\(\mathbf{G}\)</span>.</p>
-<p>Here is an example file. This contains the allele frequency only for the first 5 markers.</p>
+<p>This file simply contains 2 fields: the first is for renumbered ID
+(same as in the pedigree file) and the second is for the original ID
+(same as in the marker file). The 2 fields can be separated with at
+least 1 space. A tab is not allowed. The order of animals must be the
+same as the SNP file. Again, this file is generated with RENUMF90, and
+the user should not edit it unless there is a reason to do it.</p>
+<h2 id="allele-frequency-file-optional">Allele frequency file
+(optional)</h2>
+<p>An allele frequency file contains the actual allele frequency on each
+marker. This file is optional because the allele frequency is calculated
+with the current SNP file by default. Only if you expect to use external
+information for it, you can provide a file containing the allele
+frequencies. Different allele frequency may change characteristics of
+<span class="math inline">\(\mathbf{G}\)</span>.</p>
+<p>Here is an example file. This contains the allele frequency only for
+the first 5 markers.</p>
 <pre><code>1     0.711667
 2     0.328000
 3     0.422000
@@ -112,24 +169,48 @@ Back to <a href="./index.html">index.html</a>.
 5     0.492333</code></pre>
 <p>This file contains 2 columns:</p>
 <ol type="1">
-<li>The position of the marker (from 1 to the maximum number of markers)</li>
+<li>The position of the marker (from 1 to the maximum number of
+markers)</li>
 <li>Allele frequency as a real value (ranged from 0 to 1).</li>
 </ol>
-<p>Note that PREGSF90 usually creates this file containing the allele frequency calculated from the current SNP file by default (the file name is <code>freqdata.count</code>).</p>
+<p>Note that PREGSF90 usually creates this file containing the allele
+frequency calculated from the current SNP file by default (the file name
+is <code>freqdata.count</code>).</p>
 <h2 id="map-file-optional">Map file (optional)</h2>
-<p>Map file relates a marker to a chromosome, a physical location, and a specific name. This file is needed only when you try comprehensive quality control and GWAS with ssGBLUP. This file should contain at least 3 fields separated at least 1 white space. The 4th column is optional and it contains the name of a marker. Here we show an example (including the 4th field in this case). Only the first 3 lines are shown here.</p>
+<p>Map file relates a marker to a chromosome, a physical location, and a
+specific name. This file is needed only when you try comprehensive
+quality control and GWAS with ssGBLUP. This file should contain at least
+3 fields separated at least 1 white space. The 4th column is optional
+and it contains the name of a marker. Here we show an example (including
+the 4th field in this case). Only the first 3 lines are shown here.</p>
 <pre><code>1  1     127     SNP-CODE-1
 2  1     652     SNP-CODE-2
 3  1    1022     SNP-CODE-3</code></pre>
 <p>This file follows the rules.</p>
 <ul>
-<li>The first 3 fields should contain integer values: the first is a marker number, the second specifies the chromosome number, and the third represents the physical location on the chromosome. The marker number is just an integer, not necessarily correlative, used for external data manipulation - it is not actually used by the program.</li>
-<li>The sex chromosome (X) can be present, but it should be also an integer value. The code of the X chromosome is 0 by default.</li>
-<li>The 4th column (optional) can contain any alphabets, numbers, and symbols (possibly in ASCII) up to 50 characters.</li>
+<li>The first 3 fields should contain integer values: the first is a
+marker number, the second specifies the chromosome number, and the third
+represents the physical location on the chromosome. The marker number is
+just an integer, not necessarily correlative, used for external data
+manipulation - it is not actually used by the program.</li>
+<li>The sex chromosome (X) can be present, but it should be also an
+integer value. The code of the X chromosome is 0 by default.</li>
+<li>The 4th column (optional) can contain any alphabets, numbers, and
+symbols (possibly in ASCII) up to 50 characters.</li>
 </ul>
 <h2 id="weight-for-snp-optional">Weight for SNP (optional)</h2>
-<p>The PREGSF90 program can create an alternative <span class="math inline">\(\mathbf{G}\)</span> weighting on each SNP marker. This weighted matrix is especially useful for GWAS or related analyses with the POSTGSF90 program. If you supply this file, the weighted <span class="math inline">\(\mathbf{G}\)</span> will be calculated. Otherwise, weights are set to 1 i.e. no specific weight on each SNP marker. This file is optional.</p>
-<p>The file contains only 1 column with real values. Each row corresponds to each SNP marker; the first line contains a weight for the marker 1, and the second row contains a weight for the marker 2, and so on. The number of lines in this file shouldn’t exceed the number of markers.</p>
+<p>The PREGSF90 program can create an alternative <span
+class="math inline">\(\mathbf{G}\)</span> weighting on each SNP marker.
+This weighted matrix is especially useful for GWAS or related analyses
+with the POSTGSF90 program. If you supply this file, the weighted <span
+class="math inline">\(\mathbf{G}\)</span> will be calculated. Otherwise,
+weights are set to 1 that is no specific weight on each SNP marker. This
+file is optional.</p>
+<p>The file contains only 1 column with real values. Each row
+corresponds to each SNP marker; the first line contains a weight for the
+marker 1, and the second row contains a weight for the marker 2, and so
+on. The number of lines in this file shouldn’t exceed the number of
+markers.</p>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>

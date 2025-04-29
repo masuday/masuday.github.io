@@ -28,7 +28,8 @@
   <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
   <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
   <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="/usr/share/javascript/mathjax/MathJax.js"
+  type="text/javascript"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
   </script>
@@ -42,14 +43,16 @@
 <header>
 <h1 class="title">Numerical examples from Mrode (2014)</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">September 2019</p>
+<p class="date">April 2025</p>
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#single-step-approach">Single-step approach</a><ul>
-<li><a href="#model">Model</a></li>
-<li><a href="#files">Files</a></li>
-<li><a href="#solutions">Solutions</a></li>
+<li><a href="#single-step-approach"
+id="toc-single-step-approach">Single-step approach</a>
+<ul>
+<li><a href="#model" id="toc-model">Model</a></li>
+<li><a href="#files" id="toc-files">Files</a></li>
+<li><a href="#solutions" id="toc-solutions">Solutions</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -60,7 +63,13 @@ Back to <a href="./index.html">index.html</a>.
 <h2 id="model">Model</h2>
 <p>We consider the standard animal model <span class="math display">\[
 \mathbf{y}=\mathbf{Xb}+\mathbf{Wu}+\mathbf{e}.
-\]</span> If some animals are genotyped, their additive relationships are described with the genomic relationship matrix (<span class="math inline">\(\mathbf{G}\)</span>). When the genotyped and the non-genotyped animals are simultaneously considered in the relationship matrix, the resulting matrix is <span class="math inline">\(\mathbf{H}\)</span>. Its inverse falls into a simple form. <span class="math display">\[
+\]</span> If some animals are genotyped, their additive relationships
+are described with the genomic relationship matrix (<span
+class="math inline">\(\mathbf{G}\)</span>). When the genotyped and the
+non-genotyped animals are simultaneously considered in the relationship
+matrix, the resulting matrix is <span
+class="math inline">\(\mathbf{H}\)</span>. Its inverse falls into a
+simple form. <span class="math display">\[
 \mathbf{H}^{-1}
 =
 \mathbf{A}^{-1}
@@ -71,11 +80,20 @@ Back to <a href="./index.html">index.html</a>.
 \mathbf{0}&amp;\mathbf{G}^{-1}-\mathbf{A}_{22}^{-1}
 \end{array}
 \right]
-\]</span> This <span class="math inline">\(\mathbf{G}^{-1}\)</span> is usually blended with the pedigree matrix (<span class="math inline">\(\mathbf{G}^{-1}_{w}\)</span> shown in the previous section). The system of mixed model equations is the same as the standard animal model with <span class="math inline">\(\mathbf{H}^{-1}\)</span> instead of <span class="math inline">\(\mathbf{A}^{-1}\)</span>: <span class="math display">\[
+\]</span> This <span class="math inline">\(\mathbf{G}^{-1}\)</span> is
+usually blended with the pedigree matrix (<span
+class="math inline">\(\mathbf{G}^{-1}_{w}\)</span> shown in the previous
+section). The system of mixed model equations is the same as the
+standard animal model with <span
+class="math inline">\(\mathbf{H}^{-1}\)</span> instead of <span
+class="math inline">\(\mathbf{A}^{-1}\)</span>: <span
+class="math display">\[
 \left[
 \begin{array}{ll}
-\mathbf{X}&#39;\mathbf{R}^{-1}\mathbf{X} &amp; \mathbf{X}&#39;\mathbf{R}^{-1}\mathbf{Z}\\
-\mathbf{Z}&#39;\mathbf{R}^{-1}\mathbf{X} &amp; \mathbf{Z}&#39;\mathbf{R}^{-1}\mathbf{Z}+\mathbf{H}^{-1}/\sigma_u^2
+\mathbf{X}&#39;\mathbf{R}^{-1}\mathbf{X} &amp;
+\mathbf{X}&#39;\mathbf{R}^{-1}\mathbf{Z}\\
+\mathbf{Z}&#39;\mathbf{R}^{-1}\mathbf{X} &amp;
+\mathbf{Z}&#39;\mathbf{R}^{-1}\mathbf{Z}+\mathbf{H}^{-1}/\sigma_u^2
 \end{array}
 \right]
 \left[
@@ -91,9 +109,14 @@ Back to <a href="./index.html">index.html</a>.
 \mathbf{Z}&#39;\mathbf{R}^{-1}\mathbf{y} \\
 \end{array}
 \right]
-\]</span> where <span class="math inline">\(\sigma_u^2 = 35.241\)</span> and <span class="math inline">\(\sigma_e^2 = 245.0\)</span> in this case. BLUPF90 fully supports ssGBLUP with a minimal description in the parameter file.</p>
+\]</span> where <span class="math inline">\(\sigma_u^2 = 35.241\)</span>
+and <span class="math inline">\(\sigma_e^2 = 245.0\)</span> in this
+case. BLUPF90 fully supports ssGBLUP with a minimal description in the
+parameter file.</p>
 <h2 id="files">Files</h2>
-<p>The data file is different from the previous ones (<code>data_mr11e.txt</code>). The pedigree information is common to the previous analysis (<code>pedigree_mr11e.txt</code>).</p>
+<p>The data file is different from the previous ones
+(<code>data_mr11e.txt</code>). The pedigree information is common to the
+previous analysis (<code>pedigree_mr11e.txt</code>).</p>
 <p>The SNP marker file is unique for this analysis.</p>
 <pre data-language="text" data-caption="snp_mr11e.txt"><code> 18 11010202210000000000000000000000000000000000000000
 ...</code></pre>
@@ -137,9 +160,17 @@ OPTION AlphaBeta 0.95 0.05
 OPTION tunedG 0
 OPTION thrStopCorAG 0.10
 OPTION solv_method FSPAK</code></pre>
-<p>BLUPF90 (actually the embedded genomic routine) may stop because of the very low correlation between diagonals from <span class="math inline">\(\mathbf{G}\)</span> and <span class="math inline">\(\mathbf{A}_{22}\)</span>. The correlation should be usually high enough; otherwise, there may be a problem in the quality of the genotypes or the pedigree. It is low in this case due to the small data set. The option <code>thrStopCorAG</code> prevents the program from stopping from the low correlation.</p>
+<p>BLUPF90 (actually the embedded genomic routine) may stop because of
+the very low correlation between diagonals from <span
+class="math inline">\(\mathbf{G}\)</span> and <span
+class="math inline">\(\mathbf{A}_{22}\)</span>. The correlation should
+be usually high enough; otherwise, there may be a problem in the quality
+of the genotypes or the pedigree. It is low in this case due to the
+small data set. The option <code>thrStopCorAG</code> prevents the
+program from stopping from the low correlation.</p>
 <h2 id="solutions">Solutions</h2>
-<p>Unfortunately, the solutions are totally different from the reference values in the textbook (p.193).</p>
+<p>Unfortunately, the solutions are totally different from the reference
+values in the textbook (p.193).</p>
 <pre data-language="text" data-caption="solutions"><code>trait/effect level  solution
    1   1         1          8.38509553
    1   2         1         -0.27072327

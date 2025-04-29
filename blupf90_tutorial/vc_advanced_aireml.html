@@ -28,7 +28,8 @@
   <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
   <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
   <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="/usr/share/javascript/mathjax/MathJax.js"
+  type="text/javascript"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
   </script>
@@ -42,40 +43,82 @@
 <header>
 <h1 class="title">Variance component estimation</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">September 2019</p>
+<p class="date">April 2025</p>
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#advanced-usage-of-airemlf90">Advanced usage of AIREMLF90</a><ul>
-<li><a href="#heterogeneous-residual-variances">Heterogeneous residual variances</a></li>
-<li><a href="#likelihood-ratio-test">Likelihood Ratio Test</a></li>
+<li><a href="#advanced-usage-of-airemlf90-blupf90"
+id="toc-advanced-usage-of-airemlf90-blupf90">Advanced usage of AIREMLF90
+(BLUPF90+)</a>
+<ul>
+<li><a href="#heterogeneous-residual-variances"
+id="toc-heterogeneous-residual-variances">Heterogeneous residual
+variances</a></li>
+<li><a href="#likelihood-ratio-test"
+id="toc-likelihood-ratio-test">Likelihood Ratio Test</a></li>
 </ul></li>
 </ul>
 </nav>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>
-<h1 id="advanced-usage-of-airemlf90">Advanced usage of AIREMLF90</h1>
-<h2 id="heterogeneous-residual-variances">Heterogeneous residual variances</h2>
-<p>There is a situation where the residual variances vary over conditions. This is known as heterogeneous residual variances. There are 2 types of modeling for the heterogeneous residual variances in AIREMLF90.</p>
+<h1 id="advanced-usage-of-airemlf90-blupf90">Advanced usage of AIREMLF90
+(BLUPF90+)</h1>
+<h2 id="heterogeneous-residual-variances">Heterogeneous residual
+variances</h2>
+<p>There is a situation where the residual variances vary over
+conditions. This is known as heterogeneous residual variances. There are
+2 types of modeling for the heterogeneous residual variances in
+AIREMLF90.</p>
 <ol type="1">
-<li>The residual variance is related to a covariate. For example, the residual variance for body weight increase by age of a month. The residual variance can be described as a function of a covariate (age).</li>
-<li>The residual variance differs by class. For example, in a test-day random-regression model, we usually assume different residual variance in each lactation stage. The residual variances are independent of each other.</li>
+<li>The residual variance is related to a covariate. For example, the
+residual variance for body weight increase by age of a month. The
+residual variance can be described as a function of a covariate
+(age).</li>
+<li>The residual variance differs by class. For example, in a test-day
+random-regression model, we usually assume different residual variance
+in each lactation stage. The residual variances are independent of each
+other.</li>
 </ol>
-<p>Although AIREMLF90 is designed to handle the first case, the program can also handle the second case with a trick. We will see both cases with a numerical example in REML. GIBBS3F90 (and THRGIBBS3F90) supports the second case.</p>
+<p>Although AIREMLF90 is designed to handle the first case, the program
+can also handle the second case with a trick. We will see both cases
+with a numerical example in REML. GIBBS3F90 and THRGIBBS3F90 (now
+GIBBSF90+) supports the second case.</p>
 <h3 id="model">Model</h3>
-<p>In this example, we asuume the following model: <span class="math display">\[
+<p>In this example, we asuume the following model: <span
+class="math display">\[
 y_{ijkl} = F_{i} + S_{j} +Y_{k} + u_{l} + e_{ijkl}
-\]</span> where <span class="math inline">\(y_{ijkl}\)</span> is the observation, <span class="math inline">\(F_{i}\)</span> , <span class="math inline">\(S_j\)</span>, and <span class="math inline">\(Y_k\)</span> are the fixed effects, <span class="math inline">\(u_l\)</span> is the additive genetic effect and <span class="math inline">\(e_{ijkl}\)</span> is the residual effect. The residual variance is defined as the following function <span class="math display">\[
+\]</span> where <span class="math inline">\(y_{ijkl}\)</span> is the
+observation, <span class="math inline">\(F_{i}\)</span> , <span
+class="math inline">\(S_j\)</span>, and <span
+class="math inline">\(Y_k\)</span> are the fixed effects, <span
+class="math inline">\(u_l\)</span> is the additive genetic effect and
+<span class="math inline">\(e_{ijkl}\)</span> is the residual effect.
+The residual variance is defined as the following function <span
+class="math display">\[
 \sigma_e^2 = \exp(b_0 + b_1 x_{ijkl})
-\]</span> where <span class="math inline">\(b_0\)</span> and <span class="math inline">\(b_1\)</span> are the regression coefficients to account for the residual variance and <span class="math inline">\(x_{ijkl}\)</span> is the covariate measured with the observation <span class="math inline">\(y_{ijkl}\)</span>. The model is based on Foulley and Quaas (1995). AIREMLF90 will estimate <span class="math inline">\(b_0\)</span> and <span class="math inline">\(b_1\)</span> with user-supplied <span class="math inline">\(x_{ijkl}\)</span>.</p>
+\]</span> where <span class="math inline">\(b_0\)</span> and <span
+class="math inline">\(b_1\)</span> are the regression coefficients to
+account for the residual variance and <span
+class="math inline">\(x_{ijkl}\)</span> is the covariate measured with
+the observation <span class="math inline">\(y_{ijkl}\)</span>. The model
+is based on Foulley and Quaas (1995). AIREMLF90 will estimate <span
+class="math inline">\(b_0\)</span> and <span
+class="math inline">\(b_1\)</span> with user-supplied <span
+class="math inline">\(x_{ijkl}\)</span>.</p>
 <h3 id="data">Data</h3>
-<p>In this section, we will use simulated files similar to the previous section. You can download the files from Github.</p>
+<p>In this section, we will use simulated files similar to the previous
+section. You can download the files from Github.</p>
 <ul>
-<li><a href="https://github.com/Masuday/data/blob/master/tutorial/simdata2.txt"><code>simdata2.txt</code></a> : data file</li>
-<li><a href="https://github.com/Masuday/data/blob/master/tutorial/simped2.txt"><code>simped2.txt</code></a> : pedigree file</li>
+<li><a
+href="https://github.com/Masuday/data/blob/master/tutorial/simdata2.txt"><code>simdata2.txt</code></a>
+: data file</li>
+<li><a
+href="https://github.com/Masuday/data/blob/master/tutorial/simped2.txt"><code>simped2.txt</code></a>
+: pedigree file</li>
 </ul>
-<p>The pedigree file contains 3 columns: animal, sire, and dam. The data file has 12 columns as described below.</p>
+<p>The pedigree file contains three columns: animal, sire, and dam. The
+data file has 12 columns as described below.</p>
 <table>
 <thead>
 <tr class="header">
@@ -172,7 +215,11 @@ y_{ijkl} = F_{i} + S_{j} +Y_{k} + u_{l} + e_{ijkl}
 </tr>
 </tbody>
 </table>
-<p>Column 13 contains a real value as a covariate. In this artificial data, the residual variance is expected to be larger as the covariate becomes larger. The 14th column contains the heterogeneous-residual-variance class (3 levels), and it will be used in the next subsection.</p>
+<p>Column 13 contains a real value as a covariate. In this artificial
+data, the residual variance is expected to be larger as the covariate
+becomes larger. The 14th column contains the
+heterogeneous-residual-variance class (3 levels), and it will be used in
+the next subsection.</p>
 <h3 id="parameter-file">Parameter file</h3>
 <p>The following parameter file is used.</p>
 <pre data-language="blupf90" data-caption="aireml2.txt"><code>DATAFILE
@@ -202,18 +249,38 @@ simped2.txt
 100
 OPTION hetres_pos 13
 OPTION hetres_pol 4.5 0.5</code></pre>
-<p>The options define the model for heterogeneous residual variances.</p>
+<p>The options define the model for heterogeneous residual
+variances.</p>
 <ul>
-<li><code>OPTION hetres_pos</code> = the position of covariate <span class="math inline">\(x\)</span> in the data file. Intercept <span class="math inline">\(b_0\)</span> is implicitly considered in the program.</li>
-<li><code>OPTION hetres_pol</code> = the starting values for <span class="math inline">\(b_{0}\)</span> and <span class="math inline">\(b_{1}\)</span>.
+<li><code>OPTION hetres_pos</code> = the position of covariate <span
+class="math inline">\(x\)</span> in the data file. Intercept <span
+class="math inline">\(b_0\)</span> is implicitly considered in the
+program.</li>
+<li><code>OPTION hetres_pol</code> = the starting values for <span
+class="math inline">\(b_{0}\)</span> and <span
+class="math inline">\(b_{1}\)</span>.
 <ul>
-<li>You should supply the values for all coefficients including intercept.</li>
-<li>In this example, the initial value will be <span class="math inline">\(\exp(4.5 + 0.5) = 148.4\)</span> for <span class="math inline">\(x = 1\)</span>.</li>
+<li>You should supply the values for all coefficients including
+intercept.
+<ul>
+<li>In this example, the initial value will be <span
+class="math inline">\(\exp(4.5 + 0.5) = 148.4\)</span> for <span
+class="math inline">\(x = 1\)</span>.</li>
+</ul></li>
 </ul></li>
 </ul>
-<p>In the above case, we define only 1 regression coefficient in <code>hetres_pos</code> but the program adds the intercept. If you put 2 numbers in <code>hetres_pos</code> and also put 2 initial values in <code>hetres_pol</code>, the program doesn’t add the intercept. In such a case, the model doesn’t contain any intercept but does contain user-supplied covariates only.</p>
+<p>In the above case, we define only 1 regression coefficient in
+<code>hetres_pos</code> but the program adds the intercept. If you put 2
+numbers in <code>hetres_pos</code> and also put 2 initial values in
+<code>hetres_pol</code>, the program does not add the intercept. In such
+a case, the model does not contain any intercept but does contain
+user-supplied covariates only.</p>
+<p>Note that these options do not work with <code>OPTION EM-REML</code>.
+The current version of AIREMLF90 will tell you this limitation when the
+program meets this condition.</p>
 <h3 id="results">Results</h3>
-<p>You can run AIREMLF90 with the above parameter file. The following output will be shown.</p>
+<p>You can run AIREMLF90 with the above parameter file. The following
+output will be shown.</p>
 <pre data-language="output"><code>Final Estimates
  Genetic variance(s) for effect  4
    39.384
@@ -232,14 +299,40 @@ OPTION hetres_pol 4.5 0.5</code></pre>
    4.0955
  SE for R
   0.64319E-01</code></pre>
-<p>The output shows <span class="math inline">\(\hat{b}_0 = 4.2552\)</span> and <span class="math inline">\(\hat{b}_1 = 0.058864\)</span>. This corresponds to <span class="math inline">\(\hat{\sigma}_e^2 = \exp(4.26 + 0.0589 \times 0.5) = 72.9\)</span> for <span class="math inline">\(x = 0.5\)</span>, <span class="math inline">\(\hat{\sigma}_e^2 = \exp(4.26 + 0.0589 \times 1.5) = 77.4\)</span> for <span class="math inline">\(x = 1.5\)</span> and <span class="math inline">\(\sigma_e^2 = \exp(4.26 + 0.0589 \times 2.5) = 82.0\)</span> for <span class="math inline">\(x = 2.5\)</span>.</p>
-<p>One drawback of this analysis is that the calculations of the standard error for the residual variance are not easy. The AI matrix contains information for <span class="math inline">\(\hat{b}_0\)</span> and <span class="math inline">\(\hat{b}_1\)</span> (the last 2 rows/columns).</p>
+<p>The output shows <span class="math inline">\(\hat{b}_0 =
+4.2552\)</span> and <span class="math inline">\(\hat{b}_1 =
+0.058864\)</span>. This corresponds to <span
+class="math inline">\(\hat{\sigma}_e^2 = \exp(4.26 + 0.0589 \times 0.5)
+= 72.9\)</span> for <span class="math inline">\(x = 0.5\)</span>, <span
+class="math inline">\(\hat{\sigma}_e^2 = \exp(4.26 + 0.0589 \times 1.5)
+= 77.4\)</span> for <span class="math inline">\(x = 1.5\)</span> and
+<span class="math inline">\(\sigma_e^2 = \exp(4.26 + 0.0589 \times 2.5)
+= 82.0\)</span> for <span class="math inline">\(x = 2.5\)</span>.</p>
+<p>One drawback of this analysis is that the calculations of the
+standard error for the residual variance are not easy. The AI matrix
+contains information for <span class="math inline">\(\hat{b}_0\)</span>
+and <span class="math inline">\(\hat{b}_1\)</span> (the last 2
+rows/columns).</p>
 <h3 id="another-modeling-by-class">Another modeling by class</h3>
-<p>The heterogeneous residual variances are accounted for by class. We assume 3 levels in the class. The 14th column in the above data contains the level for each observation. AIREMLF90 doesn’t directly accept the level number, and we should convert it to a different format.</p>
-<p>Having 3 levels is equivalent to defining 3 regression coefficients without intercept. We now assume the following parameterization without intercept. <span class="math display">\[
+<p>The heterogeneous residual variances are accounted for by class. We
+assume 3 levels in the class. The 14th column in the above data contains
+the level for each observation. AIREMLF90 does not directly accept the
+level number, and we should convert it to a different format.</p>
+<p>Having 3 levels is equivalent to defining 3 regression coefficients
+without intercept. We now assume the following parameterization without
+intercept. <span class="math display">\[
 \sigma_e^2 = \exp(b_1 x_1 + b_2 x_2 + b_3 x_3 )
 \]</span></p>
-<p>If the observation has the residual variance level 1, we have <span class="math inline">\(x_1 = 1\)</span>, <span class="math inline">\(x_2 = 0\)</span>, and <span class="math inline">\(x_3 = 0\)</span>. For the level 2, <span class="math inline">\(x_1 = 0\)</span>, <span class="math inline">\(x_2 = 1\)</span>, and <span class="math inline">\(x_3 = 0\)</span> and for the level 3, <span class="math inline">\(x_1 = 0\)</span>, <span class="math inline">\(x_2 = 0\)</span>, and <span class="math inline">\(x_3 = 1\)</span>. We need 3 covariate with 1 or 0. We add 3 extra columns to the rightmost of the data file.</p>
+<p>If the observation has the residual variance level 1, we have <span
+class="math inline">\(x_1 = 1\)</span>, <span class="math inline">\(x_2
+= 0\)</span>, and <span class="math inline">\(x_3 = 0\)</span>. For the
+level 2, <span class="math inline">\(x_1 = 0\)</span>, <span
+class="math inline">\(x_2 = 1\)</span>, and <span
+class="math inline">\(x_3 = 0\)</span> and for the level 3, <span
+class="math inline">\(x_1 = 0\)</span>, <span class="math inline">\(x_2
+= 0\)</span>, and <span class="math inline">\(x_3 = 1\)</span>. We need
+3 covariate with 1 or 0. We add 3 extra columns to the rightmost of the
+data file.</p>
 <ul>
 <li>tutorials:<code>simdata2a.txt</code>: extended data file</li>
 </ul>
@@ -254,7 +347,10 @@ OPTION hetres_pol 4.5 0.5</code></pre>
   8       0       0 1.07   1    82   1   1    77.4    72.7    84.1   105.2  1.69  2   0 1 0
   9       0       0 1.01   1    71   1   1   107.8    87.0    97.8    76.0  2.89  3   0 0 1
  10       0       0 0.95   1   114   1   1    94.4   100.5   103.8    89.8  1.26  2   0 1 0</code></pre>
-<p>The column 15, 16 and 17 contains 1 or 0. In column 15, it is 1 if the level is 1, otherwise 0. In column 16, it is 1 if the level is 2, otherwise 0. In column 17, it is 1 if the level is 3, otherwise 0. With this data file, the parameter file is as follows.</p>
+<p>The column 15, 16 and 17 contains 1 or 0. In column 15, it is 1 if
+the level is 1, otherwise 0. In column 16, it is 1 if the level is 2,
+otherwise 0. In column 17, it is 1 if the level is 3, otherwise 0. With
+this data file, the parameter file is as follows.</p>
 <pre data-language="blupf90" data-caption="aireml2a.txt"><code>DATAFILE
 simdata2a.txt
 NUMBER_OF_TRAITS
@@ -304,36 +400,91 @@ OPTION hetres_pol 4.5 4.5 4.5</code></pre>
    4.0909
  SE for R
   0.57221E-01</code></pre>
-<p>The estimate for the level 1 is <span class="math inline">\(\hat{\sigma}_e^2 = \exp(4.28) = 72.2\)</span>, for the level 2, <span class="math inline">\(\hat{\sigma}_e^2 = \exp(4.36) = 78.3\)</span> and for the level 3, <span class="math inline">\(\hat{\sigma}_e^2 = \exp(4.39) = 80.6\)</span>. These values are very similar to the previous results from a regression parameterization i.e. <span class="math inline">\(\exp(b_0 + b_1 x)\)</span> for <span class="math inline">\(x = 0.5\)</span>, <span class="math inline">\(1.5\)</span>, and <span class="math inline">\(2.5\)</span>.</p>
+<p>The estimate for the level 1 is <span
+class="math inline">\(\hat{\sigma}_e^2 = \exp(4.28) = 72.2\)</span>, for
+the level 2, <span class="math inline">\(\hat{\sigma}_e^2 = \exp(4.36) =
+78.3\)</span> and for the level 3, <span
+class="math inline">\(\hat{\sigma}_e^2 = \exp(4.39) = 80.6\)</span>.
+These values are very similar to the previous results from a regression
+parameterization that is <span class="math inline">\(\exp(b_0 + b_1
+x)\)</span> for <span class="math inline">\(x = 0.5\)</span>, <span
+class="math inline">\(1.5\)</span>, and <span
+class="math inline">\(2.5\)</span>.</p>
 <h3 id="remarks">Remarks</h3>
-<p>The methods explained here will not work well for multiple-trait models or complicated models with many variance components.</p>
+<p>The methods explained here will not work well for multiple-trait
+models or complicated models with many variance components.</p>
 <h2 id="likelihood-ratio-test">Likelihood Ratio Test</h2>
-<p>REML methods allow statistical testing of variance components. For instance, imagine that we have to choose one of two competing models:</p>
+<p>REML methods allow statistical testing of variance components. For
+instance, imagine that we have to choose one of two competing
+models:</p>
 <ul>
-<li>model 1 <em>not</em> including the maternal permanent environmental effect</li>
+<li>model 1 <em>not</em> including the maternal permanent environmental
+effect</li>
 <li>model 2 <em>including</em> maternal permanent effects.</li>
 </ul>
-<p>The Likelihood Ratio Test (LRT) checks if the extra random effect, with associated variance component gives a better fit of the model, against not fitting it. The model <em>without</em> the extra random effect is the <em>null</em> (<span class="math inline">\(H_0\)</span>) model versus the model <em>with</em> the extra random effect, which is the alternative model (<span class="math inline">\(H_1\)</span>). Then the difference between the two, which is a positive number, is an LRT statistic which follows a mixture of <span class="math inline">\(\chi^2\)</span> distributions. The theory of the LRT can be found in standard books and a nice description is in Sorensen &amp; Gianola book.</p>
-<p>Output of AIREMLF90 under <span class="math inline">\(H_0\)</span> is <span class="math inline">\(x=-2logL\)</span> ; output under <span class="math inline">\(H_1\)</span> is <span class="math inline">\(y=-2logL\)</span>. These are positive numbers, so the smaller the better; always <span class="math inline">\(y&lt;x\)</span> as <span class="math inline">\(H_1\)</span> is a more complex (so more likely) model. The trick resides in knowing if <span class="math inline">\(x-y\)</span> is “big enough”. The LRT statistic is <span class="math inline">\(LRT=x-y\)</span>, which is a statistic distributed as <span class="math inline">\(\chi^2\)</span>. For one variance component, the p-value is (in R) :</p>
+<p>The Likelihood Ratio Test (LRT) checks if the extra random effect,
+with associated variance component gives a better fit of the model,
+against not fitting it. The model <em>without</em> the extra random
+effect is the <em>null</em> (<span class="math inline">\(H_0\)</span>)
+model versus the model <em>with</em> the extra random effect, which is
+the alternative model (<span class="math inline">\(H_1\)</span>). Then
+the difference between the two, which is a positive number, is an LRT
+statistic which follows a mixture of <span
+class="math inline">\(\chi^2\)</span> distributions. The theory of the
+LRT can be found in standard books and a nice description is in Sorensen
+&amp; Gianola book.</p>
+<p>Output of AIREMLF90 under <span class="math inline">\(H_0\)</span> is
+<span class="math inline">\(x=-2logL\)</span> ; output under <span
+class="math inline">\(H_1\)</span> is <span
+class="math inline">\(y=-2logL\)</span>. These are positive numbers, so
+the smaller the better; always <span
+class="math inline">\(y&lt;x\)</span> as <span
+class="math inline">\(H_1\)</span> is a more complex (so more likely)
+model. The trick resides in knowing if <span
+class="math inline">\(x-y\)</span> is “big enough”. The LRT statistic is
+<span class="math inline">\(LRT=x-y\)</span>, which is a statistic
+distributed as <span class="math inline">\(\chi^2\)</span>. For one
+variance component, the p-value is (in R) :</p>
 <pre data-language="r"><code>pchisq(x-y,1,lower.tail=FALSE)/2</code></pre>
-<p>Classical applications of LRT in quantitative genetics include testing <span class="math inline">\(h^2 &gt; 0\)</span> or testing of QTL effects. An application for association analysis for a multi-allelic gene is (<a href="http://dx.doi.org/10.3168/jds.2013-6570" class="uri">http://dx.doi.org/10.3168/jds.2013-6570</a>).</p>
-<h3 id="example-for-test-of-heritability-in-dairy-sheep">Example for test of heritability in dairy sheep</h3>
-<p>I tested if genetic effects (<span class="math inline">\(\mathbf{u}\)</span>) should be fit in an old data set from dairy sheep (80,000 records, 50,000 animals in pedigree) with a model including permanent (<span class="math inline">\(\sigma^2_p\)</span>), genetic (<span class="math inline">\(\sigma^2_p\)</span>) and residual (<span class="math inline">\(\sigma^2_e\)</span>) variances.</p>
-<p>Under the complete model H1 (<span class="math inline">\(\mathbf{y=Xb+Zu+Zp+e}\)</span>) ) we have in the (last lines of) the output of AIREMLF90 :</p>
+<p>Classical applications of LRT in quantitative genetics include
+testing <span class="math inline">\(h^2 &gt; 0\)</span> or testing of
+QTL effects. An application for association analysis for a multi-allelic
+gene is (<a href="http://dx.doi.org/10.3168/jds.2013-6570"
+class="uri">http://dx.doi.org/10.3168/jds.2013-6570</a>).</p>
+<h3 id="example-for-test-of-heritability-in-dairy-sheep">Example for
+test of heritability in dairy sheep</h3>
+<p>I tested if genetic effects (<span
+class="math inline">\(\mathbf{u}\)</span>) should be fit in an old data
+set from dairy sheep (80,000 records, 50,000 animals in pedigree) with a
+model including permanent (<span
+class="math inline">\(\sigma^2_p\)</span>), genetic (<span
+class="math inline">\(\sigma^2_p\)</span>) and residual (<span
+class="math inline">\(\sigma^2_e\)</span>) variances.</p>
+<p>Under the complete model H1 (<span
+class="math inline">\(\mathbf{y=Xb+Zu+Zp+e}\)</span>) ) we have in the
+(last lines of) the output of AIREMLF90 :</p>
 <pre><code>-2logL =        825227.48</code></pre>
-<p>Then we run the reduced model H0 with a parameter file that will <em>not</em> include the genetic effect (<span class="math inline">\(\mathbf{y=Xb+Zp+e}\)</span>) we have:</p>
+<p>Then we run the reduced model H0 with a parameter file that will
+<em>not</em> include the genetic effect (<span
+class="math inline">\(\mathbf{y=Xb+Zp+e}\)</span>) we have:</p>
 <pre><code> -2logL =    828095.614456413</code></pre>
 <p>then the test in R is:</p>
 <pre data-language="R"><code>pchisq(828095.614456413-825227.48,1,lower.tail=FALSE)/2
 
 [1] 0</code></pre>
-<p>the p-value is so small that we cannot see the difference from 0. We can take the log, then transform to a scale of <span class="math inline">\(-\log_{10}(\mathrm{p-value})\)</span>, a scale typically used in GWAS:</p>
+<p>the p-value is so small that we cannot see the difference from 0. We
+can take the log, then transform to a scale of <span
+class="math inline">\(-\log_{10}(\mathrm{p-value})\)</span>, a scale
+typically used in GWAS:</p>
 <pre data-language="R"><code>pval=pchisq(828095.614456413-825227.48,1,lower.tail=FALSE,log.p=TRUE)/2
 &gt; pval
 [1] -719.137
 -log10(exp(pval))
 [1] 312.3172</code></pre>
-<p>So, the p-value is <span class="math inline">\(p&lt;10^{-312}\)</span>, the evidence against <span class="math inline">\(H_0\)</span> is very strong and we should accept that there is genetic variance in this data set.</p>
+<p>So, the p-value is <span
+class="math inline">\(p&lt;10^{-312}\)</span>, the evidence against
+<span class="math inline">\(H_0\)</span> is very strong and we should
+accept that there is genetic variance in this data set.</p>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>

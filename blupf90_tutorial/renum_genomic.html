@@ -41,23 +41,33 @@
 <header>
 <h1 class="title">Data preparation with RENUMF90</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">September 2019</p>
+<p class="date">April 2025</p>
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#genomic-model-with-snp-marker-file">Genomic model with SNP-marker file</a><ul>
-<li><a href="#required-files">Required files</a></li>
-<li><a href="#renumbered-files">Renumbered files</a></li>
-<li><a href="#summary">Summary</a></li>
+<li><a href="#genomic-model-with-snp-marker-file"
+id="toc-genomic-model-with-snp-marker-file">Genomic model with
+SNP-marker file</a>
+<ul>
+<li><a href="#required-files" id="toc-required-files">Required
+files</a></li>
+<li><a href="#renumbered-files" id="toc-renumbered-files">Renumbered
+files</a></li>
+<li><a href="#summary" id="toc-summary">Summary</a></li>
 </ul></li>
 </ul>
 </nav>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>
-<h1 id="genomic-model-with-snp-marker-file">Genomic model with SNP-marker file</h1>
+<h1 id="genomic-model-with-snp-marker-file">Genomic model with
+SNP-marker file</h1>
 <h2 id="required-files">Required files</h2>
-<p>Single-step GBLUP (ssGBLUP) model is an extension to the animal model. RENUMF90 can handle ssGBLUP using a similar parameter file to the animal model with an additional option. Let us use the previous files. The following files are the same as the previous ones with different names.</p>
+<p>Single-step GBLUP (ssGBLUP) model is an extension to the animal
+model. RENUMF90 can handle ssGBLUP using a similar parameter file to the
+animal model with an additional option. Let us use the previous files.
+The following files are the same as those used the previous ones with
+different names.</p>
 <pre data-language="text" data-caption="rawdata4.txt"><code>  ID006  A  1  1.0  3.0
   ID009  A  2  1.0  2.0
   ID012  A  1  2.0  4.0
@@ -84,7 +94,10 @@ Back to <a href="./index.html">index.html</a>.
  ID013  ID011  ID010
  ID014  ID009  ID013
  ID015  ID011  ID010</code></pre>
-<p>An SNP-marker file should be prepared as a fixed-length text file with 2 columns: the original ID for column 1 and genotypes for column 2. See the previous chapter for the detailed explanation about the marker-file format. We use the same file shown before.</p>
+<p>An SNP-marker file should be prepared as a fixed-length text file
+with 2 columns: the original ID for column 1 and genotypes for column 2.
+See the previous chapter for the detailed explanation about the
+marker-file format. We use the same file shown before.</p>
 <pre data-language="widetext" data-caption="snp4.txt"><code>ID002 1212020111001211212000102001202022201112000110020102011001012212110122100001210101112200210010022220
 ID004 2222020200110122210121001100022221102111000010011202020002002222000222000020120000020200200000200220
 ID006 2122020101100221121111212100112111112212000101012211111001201211112022100201220110022200220020111120
@@ -93,8 +106,13 @@ ID011 22111212001211112202110112101121211112010001200112020200020022220002220000
 ID012 2222020200110122210121001100022221102111000010011202020002002222000222000020120000020200200000200220
 ID013 2122020101210121121222101200112122102212000010012211111001101211101122100110220000021200210010200120
 ID015 2122020101210121121222101200112122102212000010012211111001101211101122100110220000021200210010200120</code></pre>
-<p>The marker file is never altered and duplicated by RENUMF90. The program just read the 1st column (the original ID) and make a table relating the renumbered animal ID to the original animal ID. The table will be saved as a cross-reference file.</p>
-<p>We assume the same animal model described before except that the genomic information is included. The following is a parameter file to handle the SNP file.</p>
+<p>The marker file is never altered and duplicated by RENUMF90. The
+program just read the 1st column (the original ID) and make a table
+relating the renumbered animal ID to the original animal ID. The table
+will be saved as a cross-reference file.</p>
+<p>We assume the same animal model described before except that the
+genomic information is included. The following is a parameter file to
+handle the SNP file.</p>
 <pre data-language="renumf90" data-caption="renum4.txt"><code>DATAFILE
 rawdata4.txt
 TRAITS
@@ -123,9 +141,17 @@ SNP_FILE         ## SNP marker file
 snp4.txt
 (CO)VARIANCES    ## its variance component
 0.5</code></pre>
-<p>A new keyword <code>SNP_FILE</code> with the name of marker file tells RENUMF90 to properly treat the marker file. This keyword should be placed just after <code>FILE_POS</code>.</p>
+<p>A new keyword <code>SNP_FILE</code> with the name of marker file
+tells RENUMF90 to properly treat the marker file. This keyword should be
+placed just after <code>FILE_POS</code>.</p>
 <h2 id="renumbered-files">Renumbered files</h2>
-<p>Running RENUMF90 with the above instruction, it generates several files in the same folder (directory). With this example, RENUMF90 will generate 5 files: <code>renf90.dat</code>, <code>renf90.par</code>, <code>renf90.tables</code>, <code>renadd04.ped</code>, and <code>snp4.txt_XrefID</code>. The last one is the cross-reference file (or simply, the XrefID file), which contains 2 columns for the renumbered ID and the original ID as follows.</p>
+<p>Running RENUMF90 with the above instruction, it generates several
+files in the same folder (directory). With this example, RENUMF90 will
+generate 5 files: <code>renf90.dat</code>, <code>renf90.par</code>,
+<code>renf90.tables</code>, <code>renadd04.ped</code>, and
+<code>snp4.txt_XrefID</code>. The last one is the cross-reference file
+(or simply, the XrefID file), which contains 2 columns for the
+renumbered ID and the original ID as follows.</p>
 <pre data-language="text"><code>11 ID002
 12 ID004
 2 ID006
@@ -134,10 +160,20 @@ snp4.txt
 8 ID012
 9 ID013
 1 ID015</code></pre>
-<p>The order of genotyped animal is the same as the marker file. The name of this file is automatically determined and fixed as the original SNP file-name plus <code>_XrefID</code>, e.g., <code>snp.txt_XrefID</code> for a marker file <code>snp.txt</code>. You can’t change the file name.</p>
-<p>The renumbered parameter file <code>renf90.par</code> looks similar as before except the option found in the last line.</p>
+<p>The order of genotyped animal is the same as those used the marker
+file. The name of this file is automatically determined and fixed as the
+original SNP file-name plus <code>_XrefID</code>, for example,
+<code>snp.txt_XrefID</code> for a marker file <code>snp.txt</code>. You
+cannot change the file name.</p>
+<p>The renumbered parameter file <code>renf90.par</code> looks similar
+as before except the option found in the last line.</p>
 <pre data-language="blupf90"><code>OPTION SNP_file snp4.txt</code></pre>
-<p>The parameter file doesn’t refer to the cross-reference file because, by default, BLUPF90 programs read the standard XrefID file (SNP file name + <code>XrefID</code>). Usually, you don’t have to change the name of cross-reference file, so you just keep this option line. If you do rename the XrefID file, you have to add the XrefID file name to the option-line by hand (as shown in the quick tour).</p>
+<p>The parameter file doesn’t refer to the cross-reference file because,
+by default, BLUPF90 programs read the standard XrefID file (SNP file
+name + <code>XrefID</code>). Usually, you do not have to change the name
+of cross-reference file, so you just keep this option line. If you do
+rename the XrefID file, you have to add the XrefID file name to the
+option-line by hand (as shown in the quick tour).</p>
 <p>The renumbered pedigree is different from the previous one.</p>
 <pre data-language="text"><code>1 7 5 1 0 12 1 0 0 ID015
 12 0 0 3 0 10 0 0 2 ID004
@@ -154,20 +190,36 @@ snp4.txt
 11 0 0 3 0 10 0 2 0 ID002
 10 6 9 1 0 2 1 0 0 ID014
 15 0 0 3 0 0 0 0 1 ID003</code></pre>
-<p>With genomics, RENUMF90 assigns new integer values to animals with the following rules.</p>
+<p>With genomics, RENUMF90 assigns new integer values to animals with
+the following rules.</p>
 <ol type="1">
-<li>First, the program assigns the smallest numbers to animals with the record(s). The order of assigned numbers will be random (i.e., not following the order found in the data file).</li>
-<li>Secondly, the program assigns the larger numbers to genotyped animals. The order will be random (i.e., not following the order found in the marker file).</li>
-<li>Lastly, the program assigns the larger numbers to animals found only in pedigree. The order will be random (i.e., not be sorted in any way).</li>
+<li>First, the program assigns the smallest numbers to animals with the
+record(s). The order of assigned numbers will be random (that is, not
+following the order found in the data file).</li>
+<li>Secondly, the program assigns the larger numbers to genotyped
+animals. The order will be random (that is, not following the order
+found in the marker file).</li>
+<li>Lastly, the program assigns the larger numbers to animals found only
+in pedigree. The order will be random (that is, not be sorted in any
+way).</li>
 </ol>
-<p>You can find the genotyped animals in the renumbered pedigree file. When an animal is genotyped, the 6th column will be 10 or larger.</p>
+<p>You can find the genotyped animals in the renumbered pedigree file.
+When an animal is genotyped, the 6th column will be 10 or larger.</p>
 <h2 id="summary">Summary</h2>
 <ul>
 <li>RENUMF90 supports ssGBLUP.</li>
-<li>The instruction for ssGBLUP is the same as the animal model except for additional <code>SNP_FILE</code> keyword and the name of marker file.</li>
-<li>RENUMF90 doesn’t change the SNP marker file. Instead, it creates a cross-reference file relating the original ID to the renumbered ID. The name of the cross-reference file ends with <code>_XrefID</code> by default.</li>
-<li>A suggested <code>renf90.par</code> contains the options line with SNP file.</li>
-<li>The order of animals in the pedigree is determined as phenotyped animals the first, genotyped animals the second, and the other animals the last.</li>
+<li>The instruction for ssGBLUP is the same as those used the animal
+model except for additional <code>SNP_FILE</code> keyword and the name
+of marker file.</li>
+<li>RENUMF90 doesn’t change the SNP marker file. Instead, it creates a
+cross-reference file relating the original ID to the renumbered ID. The
+name of the cross-reference file ends with <code>_XrefID</code> by
+default.</li>
+<li>A suggested <code>renf90.par</code> contains the options line with
+SNP file.</li>
+<li>The order of animals in the pedigree is determined as phenotyped
+animals the first, genotyped animals the second, and the other animals
+the last.</li>
 </ul>
 <p>
 Back to <a href="./index.html">index.html</a>.

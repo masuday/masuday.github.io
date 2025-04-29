@@ -28,7 +28,8 @@
   <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
   <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
   <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="/usr/share/javascript/mathjax/MathJax.js"
+  type="text/javascript"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
   </script>
@@ -42,37 +43,90 @@
 <header>
 <h1 class="title">Large-scale genetic evaluation</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">September 2019</p>
+<p class="date">April 2025</p>
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#reml-estimation-with-large-data">REML estimation with large data</a><ul>
-<li><a href="#background">Background</a></li>
-<li><a href="#files">Files</a></li>
-<li><a href="#results">Results</a></li>
+<li><a href="#reml-estimation-with-large-data"
+id="toc-reml-estimation-with-large-data">REML estimation with large
+data</a>
+<ul>
+<li><a href="#background" id="toc-background">Background</a></li>
+<li><a href="#files" id="toc-files">Files</a></li>
+<li><a href="#results" id="toc-results">Results</a></li>
 </ul></li>
 </ul>
 </nav>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>
-<h1 id="reml-estimation-with-large-data">REML estimation with large data</h1>
+<h1 id="reml-estimation-with-large-data">REML estimation with large
+data</h1>
 <h2 id="background">Background</h2>
-<p>In typical REML computations, there are several bottlenecks. First, the exact solutions of the mixed model equations with the current variance components are needed. This means we should use Gaussian elimination or similar methods (direct methods). The Cholesky factorization is often employed to solve the equations. The LHS of mixed model equations generally contains many zero elements, and the matrix is sparse. Although we can hold only the nonzero elements to save the memory, very complicated operations are needed for the factorization.</p>
-<p>Secondly, the REML algorithms use the first derivative of the restricted log-likelihood, which contains the selected elements of the inverse of LHS. In the animal model, the derivative contains the following trace term: <span class="math display">\[
+<p>In typical REML computations, there are several bottlenecks. First,
+the exact solutions of the mixed model equations with the current
+variance components are needed. This means we should use Gaussian
+elimination or similar methods (direct methods). The Cholesky
+factorization is often employed to solve the equations. The LHS of mixed
+model equations generally contains many zero elements, and the matrix is
+sparse. Although we can hold only the nonzero elements to save the
+memory, very complicated operations are needed for the
+factorization.</p>
+<p>Secondly, the REML algorithms use the first derivative of the
+restricted log-likelihood, which contains the selected elements of the
+inverse of LHS. In the animal model, the derivative contains the
+following trace term: <span class="math display">\[
 \mathrm{tr}(\mathbf{A}^{-1}\mathbf{C}^{uu})
-\]</span> where <span class="math inline">\(\mathbf{A}^{-1}\)</span> is the inverse of the numerator relationship matrix and <span class="math inline">\(\mathbf{C}^{uu}\)</span> is the submatrix of the inverse of the left-hand side (LHS) of the mixed model equations corresponding to the solutions for the additive genetic effect (<span class="math inline">\(\hat{\mathbf{u}}\)</span>). Simply speaking, the REML equations require the inverse of the LHS. The inverse of a sparse matrix is usually dense (non-sparse). You can easily imagine that its computational and storage costs are extremely high.</p>
-<p>In this calculation, we don’t actually need the whole inverse. We just need the selected elements of the inverse corresponding to non-zero elements in the original <span class="math inline">\(\mathbf{C}\)</span>. The selected subset is called sparse inverse in animal breeding literature. An algorithm, so-called Takahashi algorithm, can calculate the sparse inverse. This algorithm updates the Cholesky factor of the LHS.</p>
-<p>FSPAK is a successful computer package to perform sparse operations including the factorization and sparse inversion for the LHS of mixed model equations. This package is the default solver in REMLF90 and AIREMLF90 (and BLUPF90 with <code>OPTION solv_method FSPAK</code>). It is still useful for small equations although the back-end subroutines were written more than 20 years ago. Unfortunately, the old design is inefficient in larger equations with many dense blocks. For example, a multiple-trait model (or random regression/maternal model) contains many (genetic and residual) covariance matrices in the equations. Although each covariance matrix is small, the small matrices are combined into large dense blocks during the sparse operations. This is more typical of a genomic model including the (inverse of) genomic relationship matrix, that is large and dense.</p>
-<p>YAMS is a replacement of FSPAK. This package implements several advanced algorithms, including the supernodal factorization and the inverse multifrontal approach, to efficiently handle the dense blocks in the sparse matrix. YAMS intensively uses BLAS and LAPACK. For technical details, see Masuda et al. (2014) and Masuda et al. (2015).</p>
-<p>AIREMLF90 especially implements several options to accelerate the computation and stabilize the estimation process. Here we also introduce the options.</p>
+\]</span> where <span class="math inline">\(\mathbf{A}^{-1}\)</span> is
+the inverse of the numerator relationship matrix and <span
+class="math inline">\(\mathbf{C}^{uu}\)</span> is the submatrix of the
+inverse of the left-hand side (LHS) of the mixed model equations
+corresponding to the solutions for the additive genetic effect (<span
+class="math inline">\(\hat{\mathbf{u}}\)</span>). Simply speaking, the
+REML equations require the inverse of the LHS. The inverse of a sparse
+matrix is usually dense (non-sparse). You can easily imagine that its
+computational and storage costs are extremely high.</p>
+<p>In this calculation, we do not actually need the whole inverse. We
+just need the selected elements of the inverse corresponding to non-zero
+elements in the original <span
+class="math inline">\(\mathbf{C}\)</span>. The selected subset is called
+sparse inverse in animal breeding literature. An algorithm, so-called
+Takahashi algorithm, can calculate the sparse inverse. This algorithm
+updates the Cholesky factor of the LHS.</p>
+<p>FSPAK is a successful computer package to perform sparse operations
+including the factorization and sparse inversion for the LHS of mixed
+model equations. This package is the default solver in REMLF90 and
+AIREMLF90, now BLUPF90+, (and BLUPF90/BLUPF90+ with
+<code>OPTION solv_method FSPAK</code>). It is still useful for small
+equations although the back-end subroutines were written more than 20
+years ago. Unfortunately, the old design is inefficient in larger
+equations with many dense blocks. For example, a multiple-trait model
+(or random regression/maternal model) contains many (genetic and
+residual) covariance matrices in the equations. Although each covariance
+matrix is small, the small matrices are combined into large dense blocks
+during the sparse operations. This is more typical of a genomic model
+including the (inverse of) genomic relationship matrix, that is large
+and dense.</p>
+<p>YAMS is a replacement of FSPAK. This package implements several
+advanced algorithms, including the supernodal factorization and the
+inverse multifrontal approach, to efficiently handle the dense blocks in
+the sparse matrix. YAMS intensively uses BLAS and LAPACK. For technical
+details, see Masuda et al. (2014) and Masuda et al. (2015).</p>
+<p>AIREMLF90 (now BLUPF90+) especially implements several options to
+accelerate the computation and stabilize the estimation process. Here we
+also introduce the options.</p>
 <h2 id="files">Files</h2>
 <p>We will use the following files.</p>
 <ul>
-<li><a href="https://github.com/Masuday/data/blob/master/tutorial/simdata_rep.txt"><code>simdata_rep.txt</code></a> : data file</li>
-<li><a href="https://github.com/Masuday/data/blob/master/tutorial/simped.txt"><code>simped.txt</code></a> : pedigree file</li>
+<li><a
+href="https://github.com/Masuday/data/blob/master/tutorial/simdata_rep.txt"><code>simdata_rep.txt</code></a>
+: data file</li>
+<li><a
+href="https://github.com/Masuday/data/blob/master/tutorial/simped.txt"><code>simped.txt</code></a>
+: pedigree file</li>
 </ul>
-<p>We will use a 4-trait repeatability model with the parameter file.</p>
+<p>We will use a 4-trait repeatability model with the parameter
+file.</p>
 <pre data-language="blupf90" data-caption="complicatedparam1.txt"><code>DATAFILE
 simdata_rep.txt
 NUMBER_OF_TRAITS
@@ -120,14 +174,28 @@ OPTION use_yams
 OPTION EM-REML 10</code></pre>
 <p>Here we put 2 options.</p>
 <pre data-language="blupf90"><code>OPTION use_yams</code></pre>
-<p>This option switches the sparse library from FSPAK to YAMS. If the program has multi-threaded BLAS and LAPACK, the computations will be parallelized. This option is also effective in BLUPF90 in a combination with <code>OPTION solv_method FSPAK</code> — it will use YAMS instead of FSPAK.</p>
+<p>This option switches the sparse library from FSPAK to YAMS. If the
+program has multi-threaded BLAS and LAPACK, the computations will be
+parallelized. This option is also effective in BLUPF90 in a combination
+with <code>OPTION solv_method FSPAK</code> — it will use YAMS instead of
+FSPAK.</p>
 <pre data-language="blupf90"><code>OPTION EM-REML n   # default :0</code></pre>
-<p>This option forces the program performs EM REML (equivalent to REMLF90) in the first n rounds. The default is 0 i.e. no EM rounds are performed and AI rounds start from round 1. For complicated models, AI REML often diverges in the first round. Although this option can give a remedy for this situation, it doesn’t always prevent the program from diverging.</p>
+<p>This option forces the program performs EM REML (equivalent to
+REMLF90) in the first n rounds. The default is 0 that is no EM rounds
+are performed and AI rounds start from round 1. For complicated models,
+AI REML often diverges in the first round. Although this option can give
+a remedy for this situation, it does not always prevent the program from
+diverging.</p>
 <p>We have several more options to accelerate the computations.</p>
 <pre data-language="blupf90"><code>OPTION fact_once x</code></pre>
-<p>This option avoids the re-calculation of the Cholesky factor. It saves the Cholesky factor in temporary memory (if <code>x</code> is <code>memory</code>) or a temporary file (if <code>x</code> is <code>file</code>). If you have enough memory, <code>memory</code> is preferable because of its faster computations.</p>
+<p>This option avoids the re-calculation of the Cholesky factor. It
+saves the Cholesky factor in temporary memory (if <code>x</code> is
+<code>memory</code>) or a temporary file (if <code>x</code> is
+<code>file</code>). If you have enough memory, <code>memory</code> is
+preferable because of its faster computations.</p>
 <pre data-language="blupf90"><code>OPTION approx_loglike</code></pre>
-<p>This skips the computation of the exact log-likelihood. If you don’t need the exact value, we recommend using this option for speed-up.</p>
+<p>This skips the computation of the exact log-likelihood. If you do not
+need the exact value, we recommend using this option for speed-up.</p>
 <h2 id="results">Results</h2>
 <p>The following results will be available in 17 rounds.</p>
 <pre data-language="output"><code> new R
@@ -145,7 +213,13 @@ OPTION EM-REML 10</code></pre>
    15.237       40.937       19.562       6.4840
    10.490       19.562       27.782       4.5379
    1.4105       6.4840       4.5379       2.4410</code></pre>
-<p>You can try alternative parameter file without <code>use_yams</code> and <code>EM-REML</code>. Without YAMS, the computations will be slow. Without EM-REML, the estimates diverge in the 1st round. You can also try <code>fact_once</code> and <code>approx_loglike</code>. Although you will not be sure that the options accelerate the computations in this small example, it surely reduces the computing time for a larger analysis.</p>
+<p>You can try alternative parameter file without <code>use_yams</code>
+and <code>EM-REML</code>. Without YAMS, the computations will be slow.
+Without EM-REML, the estimates diverge in the 1st round. You can also
+try <code>fact_once</code> and <code>approx_loglike</code>. Although you
+will not be sure that the options accelerate the computations in this
+small example, it surely reduces the computing time for a larger
+analysis.</p>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>

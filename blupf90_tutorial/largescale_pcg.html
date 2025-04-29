@@ -28,7 +28,8 @@
   <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
   <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
   <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="/usr/share/javascript/mathjax/MathJax.js"
+  type="text/javascript"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
   </script>
@@ -42,45 +43,95 @@
 <header>
 <h1 class="title">Large-scale genetic evaluation</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">September 2019</p>
+<p class="date">April 2025</p>
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#iteration-on-data-with-preconditioned-conjugate-gradient-pcg">Iteration on data with preconditioned conjugate gradient (PCG)</a><ul>
-<li><a href="#algorithm">Algorithm</a></li>
-<li><a href="#programs">Programs</a></li>
-<li><a href="#files-and-analysis">Files and analysis</a></li>
-<li><a href="#options">Options</a></li>
+<li><a
+href="#iteration-on-data-with-preconditioned-conjugate-gradient-pcg"
+id="toc-iteration-on-data-with-preconditioned-conjugate-gradient-pcg">Iteration
+on data with preconditioned conjugate gradient (PCG)</a>
+<ul>
+<li><a href="#algorithm" id="toc-algorithm">Algorithm</a></li>
+<li><a href="#programs" id="toc-programs">Programs</a></li>
+<li><a href="#files-and-analysis" id="toc-files-and-analysis">Files and
+analysis</a></li>
+<li><a href="#options" id="toc-options">Options</a></li>
 </ul></li>
 </ul>
 </nav>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>
-<h1 id="iteration-on-data-with-preconditioned-conjugate-gradient-pcg">Iteration on data with preconditioned conjugate gradient (PCG)</h1>
+<h1
+id="iteration-on-data-with-preconditioned-conjugate-gradient-pcg">Iteration
+on data with preconditioned conjugate gradient (PCG)</h1>
 <h2 id="algorithm">Algorithm</h2>
-<p>Preconditioned conjugate gradient (PCG) is an iterative method to solve the linear equations. This method is easily harmonized with the “iteration on data” technique. The intermediate status is kept in 4 vectors, and the one iteration will be done by updating the vectors. BLUP90IOD2 is a program implementing this algorithm. Here we will introduce a basic idea needed to understand what the program performs. See Stranden and Lidauer (2000) and Tsuruta et al. (2001) for the detailed algorithm.</p>
-<p>The mixed model equations can be written as <span class="math display">\[
+<p>Preconditioned conjugate gradient (PCG) is an iterative method to
+solve the linear equations. This method is easily harmonized with the
+“iteration on data” technique. The intermediate status is kept in 4
+vectors, and the one iteration will be done by updating the vectors.
+BLUP90IOD2 is a program implementing this algorithm. Here we will
+introduce a basic idea needed to understand what the program performs.
+See Stranden and Lidauer (2000) and Tsuruta et al. (2001) for the
+detailed algorithm.</p>
+<p>The mixed model equations can be written as <span
+class="math display">\[
 \mathbf{Cx} = \mathbf{b}
-\]</span> where <span class="math inline">\(\mathbf{C}\)</span> is the left-hand side matrix, <span class="math inline">\(\mathbf{x}\)</span> is the solution vector, and <span class="math inline">\(\mathbf{b}\)</span> is the right-hand side vector. If we have a matrix <span class="math inline">\(\mathbf{M}\)</span> which is an approximation of <span class="math inline">\(\mathbf{C}\)</span>, above equations are equivalent to <span class="math display">\[
+\]</span> where <span class="math inline">\(\mathbf{C}\)</span> is the
+left-hand side matrix, <span class="math inline">\(\mathbf{x}\)</span>
+is the solution vector, and <span
+class="math inline">\(\mathbf{b}\)</span> is the right-hand side vector.
+If we have a matrix <span class="math inline">\(\mathbf{M}\)</span>
+which is an approximation of <span
+class="math inline">\(\mathbf{C}\)</span>, above equations are
+equivalent to <span class="math display">\[
 \mathbf{M}^{-1}\mathbf{Cx} = \mathbf{M}^{-1}\mathbf{b}.
-\]</span> This matrix <span class="math inline">\(\mathbf{M}\)</span> is called preconditioner. If <span class="math inline">\(\mathbf{M = C}\)</span>, the equations are immediately solved. BLUPF90 uses <span class="math inline">\(\mathbf{M} = \mathrm{diag}(\mathbf{C})\)</span> so its inverse is easily calculated.</p>
+\]</span> This matrix <span class="math inline">\(\mathbf{M}\)</span> is
+called preconditioner. If <span class="math inline">\(\mathbf{M =
+C}\)</span>, the equations are immediately solved. BLUPF90 uses <span
+class="math inline">\(\mathbf{M} = \mathrm{diag}(\mathbf{C})\)</span> so
+its inverse is easily calculated.</p>
 <p>The residual is expressed as <span class="math display">\[
 \mathbf{r} = \mathbf{b} - \mathbf{Cx}
-\]</span> and the algorithm tries to reduce with statistics containing the residual. The convergence criterion with the current solution <span class="math inline">\(\mathbf{\hat{x}}\)</span> is <span class="math display">\[
-\varepsilon = \frac{||\mathbf{b} - \mathbf{C\hat{x}}||^2}{||\mathbf{b}||^2}
-\]</span> where <span class="math inline">\(||\cdot||\)</span> means the norm. The default of <span class="math inline">\(\varepsilon\)</span> in BLUPF90IOD2 is <span class="math inline">\(10^{-12}\)</span>.</p>
-<p>Note that some other software, e.g., MiX99, uses <span class="math inline">\(\sqrt{\varepsilon}\)</span>. The users should be careful about the definition of convergence criterion when they have switched the software to BLUPF90IOD2.</p>
+\]</span> and the algorithm tries to reduce with statistics containing
+the residual. The convergence criterion with the current solution <span
+class="math inline">\(\mathbf{\hat{x}}\)</span> is <span
+class="math display">\[
+\varepsilon = \frac{||\mathbf{b} -
+\mathbf{C\hat{x}}||^2}{||\mathbf{b}||^2}
+\]</span> where <span class="math inline">\(||\cdot||\)</span> means the
+norm. The default of <span class="math inline">\(\varepsilon\)</span> in
+BLUPF90IOD2 is <span class="math inline">\(10^{-12}\)</span>.</p>
+<p>Note that some other software, for example, MiX99, uses <span
+class="math inline">\(\sqrt{\varepsilon}\)</span>. The users should be
+careful about the definition of convergence criterion when they have
+switched the software to BLUPF90IOD2.</p>
 <h2 id="programs">Programs</h2>
-<p>BLUP90IOD2 is the current program to perform the iteration on data with PCG. CBLUP90IOD can handle a threshold model or threshold-linear models with 1 threshold trait. BLUP90MBE is specialized in multibreed models with external information (see Legarra et al., 2007). In this example, we use the BLUP90IOD2 program.</p>
-<p>A parallel version of BLUPF90IOD2 is now available. BLUP90IOD2OMP1 is a program supporting parallel processing in reading data and pedigree files using OpenMP. This program is useful especially for very large data set with a complicated model (like the multiple-trait model). There is no advantage to use this program for small or moderate data set. The usage of this program is the same as BLUP90IOD2.</p>
+<p>BLUP90IOD2 is the current program to perform the iteration on data
+with PCG. CBLUP90IOD can handle a threshold model or threshold-linear
+models with 1 threshold trait. BLUP90MBE is specialized in multibreed
+models with external information (see Legarra et al., 2007). In this
+example, we use the BLUP90IOD2 program.</p>
+<p>A parallel version of BLUPF90IOD2 is now available. BLUP90IOD2OMP1 is
+a program supporting parallel processing in reading data and pedigree
+files using OpenMP. This program is useful especially for very large
+data set with a complicated model (like the multiple-trait model). There
+is no advantage to use this program for small or moderate data set. The
+usage of this program is the same as BLUP90IOD2.</p>
 <h2 id="files-and-analysis">Files and analysis</h2>
-<p>Here we will use the same sample files as used in REML estimation.</p>
+<p>Here we will use the same sample files as used in REML
+estimation.</p>
 <ul>
-<li><a href="https://github.com/Masuday/data/blob/master/tutorial/simdata.txt"><code>simdata.txt</code></a> : data file</li>
-<li><a href="https://github.com/Masuday/data/blob/master/tutorial/simped.txt"><code>simped.txt</code></a> : pedigree file</li>
+<li><a
+href="https://github.com/Masuday/data/blob/master/tutorial/simdata.txt"><code>simdata.txt</code></a>
+: data file</li>
+<li><a
+href="https://github.com/Masuday/data/blob/master/tutorial/simped.txt"><code>simped.txt</code></a>
+: pedigree file</li>
 </ul>
-<p>We will apply a 4-trait animal model to this data set with the following parameter file.</p>
+<p>We will apply a 4-trait animal model to this data set with the
+following parameter file.</p>
 <pre data-language="blupf90" data-caption="iodparam1.txt"><code>DATAFILE
 simdata.txt
 NUMBER_OF_TRAITS
@@ -112,7 +163,8 @@ simped.txt
  19.471  16.128  19.571  22.239
  23.885  19.571  31.315  33.782
  24.246  22.239  33.782  51.706</code></pre>
-<p>Run BLUP90IOD2 with the parameter file. It takes 185 rounds to meet the convergence.</p>
+<p>Run BLUP90IOD2 with the parameter file. It takes 185 rounds to meet
+the convergence.</p>
 <pre data-language="output"><code>round =   183  eps =  0.1707E-11  time =    0.01
 round =   184  eps =  0.1139E-11  time =    0.01
 round =   185  eps =  0.9976E-12  time =    0.01
@@ -121,9 +173,21 @@ round =   185  eps =  0.9976E-12  time =    0.01
  solutions stored in file: &quot;solutions&quot;</code></pre>
 <h2 id="options">Options</h2>
 <pre data-language="blupf90"><code>OPTION conv_crit tol</code></pre>
-<p>This option defines the convergence criterion (<span class="math inline">\(\varepsilon\)</span>) to stop the iterations. A real value <code>tol</code> should be a small value. The default is <code>1.0E-12</code>. The criterion should be carefully decided because the default value could be too loose but the strict criterion requires too many rounds to converge. The best practice is to compare solutions from different convergence criterions and determine enough convergence criterion.</p>
+<p>This option defines the convergence criterion (<span
+class="math inline">\(\varepsilon\)</span>) to stop the iterations. A
+real value <code>tol</code> should be a small value. The default is
+<code>1.0E-12</code>. The criterion should be carefully decided because
+the default value could be too loose but the strict criterion requires
+too many rounds to converge. The best practice is to compare solutions
+from different convergence criterions and determine enough convergence
+criterion.</p>
 <pre data-language="blupf90"><code>OPTION blksize n</code></pre>
-<p>This option creates a block diagonal matrix for pre-conditioner (<span class="math inline">\(\mathbf{M}\)</span>). The integer value n defines the block size. By default, the pre-conditioner is the diagonal matrix (i.e. <code>n</code> is 1). The block size should be the same as the number of traits. This option will reduce the number of iterations if the specified value is valid.</p>
+<p>This option creates a block diagonal matrix for pre-conditioner
+(<span class="math inline">\(\mathbf{M}\)</span>). The integer value
+<code>n</code> defines the block size. By default, the pre-conditioner
+is the diagonal matrix (that is <code>n</code> is 1). The block size
+should be the same as the number of traits. This option will reduce the
+number of iterations if the specified value is valid.</p>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>

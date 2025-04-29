@@ -41,26 +41,43 @@
 <header>
 <h1 class="title">Numerical examples from Mrode (2014)</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">September 2019</p>
+<p class="date">April 2025</p>
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#multiple-trait-model-with-no-environmental-covariance">Multiple-trait model with no environmental covariance</a><ul>
-<li><a href="#model">Model</a></li>
-<li><a href="#files">Files</a></li>
-<li><a href="#solutions">Solutions</a></li>
+<li><a href="#multiple-trait-model-with-no-environmental-covariance"
+id="toc-multiple-trait-model-with-no-environmental-covariance">Multiple-trait
+model with no environmental covariance</a>
+<ul>
+<li><a href="#model" id="toc-model">Model</a></li>
+<li><a href="#files" id="toc-files">Files</a></li>
+<li><a href="#solutions" id="toc-solutions">Solutions</a></li>
 </ul></li>
 </ul>
 </nav>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>
-<h1 id="multiple-trait-model-with-no-environmental-covariance">Multiple-trait model with no environmental covariance</h1>
+<h1
+id="multiple-trait-model-with-no-environmental-covariance">Multiple-trait
+model with no environmental covariance</h1>
 <h2 id="model">Model</h2>
-<p>Assuming a 2-trait model, there is a situation where some animals are recorded only in one trait and the other animals are recorded only in another trait. In other words, no animals have observations for both traits. This situation also happens when evaluating genotype by environment (G by E) effects. Animals in the environment 1 don’t have records in environment 2, and vice versa. In this case, we should assume that the residual covariance is exactly zero.</p>
-<p>The author assumes dual-purpose sires in cattle. The male and female calves are raised in different feeding systems. Male calves are recorded for yearling weight and females for fat yield. The genetic covariance is nonzero but the residual covariance is zero. Note that the results from BLUPF90 must be different from the values in the textbook.</p>
+<p>Assuming a 2-trait model, there is a situation where some animals are
+recorded only in one trait and the other animals are recorded only in
+another trait. In other words, no animals have observations for both
+traits. This situation also happens when evaluating genotype by
+environment (G by E) effects. Animals in the environment 1 do not have
+records in environment 2, and vice versa. In this case, we should assume
+that the residual covariance is exactly zero.</p>
+<p>The author assumes dual-purpose sires in cattle. The male and female
+calves are raised in different feeding systems. Male calves are recorded
+for yearling weight and females for fat yield. The genetic covariance is
+nonzero but the residual covariance is zero. Note that the results from
+BLUPF90 must be different from the values in the textbook.</p>
 <h2 id="files">Files</h2>
-<p>The data set (<code>data_mr05d.txt</code>) is shown in the textbook at p.85. Animal 4 can be omitted in the data file because it has no observations.</p>
+<p>The data set (<code>data_mr05d.txt</code>) is shown in the textbook
+at p.85. Animal 4 can be omitted in the data file because it has no
+observations.</p>
 <ol type="1">
 <li>Animal ID (Calf)</li>
 <li>Sex (1=male and 2=female)</li>

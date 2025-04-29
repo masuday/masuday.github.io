@@ -28,7 +28,8 @@
   <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
   <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
   <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="/usr/share/javascript/mathjax/MathJax.js"
+  type="text/javascript"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
   </script>
@@ -42,29 +43,52 @@
 <header>
 <h1 class="title">Numerical examples from Mrode (2014)</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">September 2019</p>
+<p class="date">April 2025</p>
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#mixed-linear-model-for-computing-snp-effects">Mixed linear model for computing SNP effects</a><ul>
-<li><a href="#model">Model</a></li>
-<li><a href="#files">Files</a></li>
-<li><a href="#solutions">Solutions</a></li>
+<li><a href="#mixed-linear-model-for-computing-snp-effects"
+id="toc-mixed-linear-model-for-computing-snp-effects">Mixed linear model
+for computing SNP effects</a>
+<ul>
+<li><a href="#model" id="toc-model">Model</a></li>
+<li><a href="#files" id="toc-files">Files</a></li>
+<li><a href="#solutions" id="toc-solutions">Solutions</a></li>
 </ul></li>
 </ul>
 </nav>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>
-<h1 id="mixed-linear-model-for-computing-snp-effects">Mixed linear model for computing SNP effects</h1>
+<h1 id="mixed-linear-model-for-computing-snp-effects">Mixed linear model
+for computing SNP effects</h1>
 <h2 id="model">Model</h2>
-<p>When we have many SNP markers, we can expect that almost all the additive genetic variation can be captured by the markers. In this case, the marker effects should be random because of too many effects to be estimated compared with the number of observations. With the random marker model, we might not need the polygenic effect. In this example, the author assumes the following model: <span class="math display">\[
-y_{i} = \mu + \sum_{k=1}^{m}z_{ik} g_{k} + u_{i} + e_{i} = \mathbf{1}\mu + \mathbf{Zu} + \mathbf{e}
-\]</span> where <span class="math inline">\(y_i\)</span> is the observation of animal <span class="math inline">\(i\)</span>, <span class="math inline">\(\mu\)</span> is the general mean, <span class="math inline">\(m\)</span> is the number of markers to be considered, <span class="math inline">\(z_{ik}\)</span> is the <span class="math inline">\(k\)</span>-th weighted marker genotype of the animal i.e. the <span class="math inline">\((i,k)\)</span> element in <span class="math inline">\(\mathbf{Z}\)</span>, <span class="math inline">\(g_k\)</span> is the <span class="math inline">\(k\)</span>-th fixed SNP effectm, and <span class="math inline">\(e_i\)</span> is the residual effect. The system of mixed model equations is <span class="math display">\[
+<p>When we have many SNP markers, we can expect that almost all the
+additive genetic variation can be captured by the markers. In this case,
+the marker effects should be random because of too many effects to be
+estimated compared with the number of observations. With the random
+marker model, we might not need the polygenic effect. In this example,
+the author assumes the following model: <span class="math display">\[
+y_{i} = \mu + \sum_{k=1}^{m}z_{ik} g_{k} + u_{i} + e_{i} = \mathbf{1}\mu
++ \mathbf{Zu} + \mathbf{e}
+\]</span> where <span class="math inline">\(y_i\)</span> is the
+observation of animal <span class="math inline">\(i\)</span>, <span
+class="math inline">\(\mu\)</span> is the general mean, <span
+class="math inline">\(m\)</span> is the number of markers to be
+considered, <span class="math inline">\(z_{ik}\)</span> is the <span
+class="math inline">\(k\)</span>-th weighted marker genotype of the
+animal that is the <span class="math inline">\((i,k)\)</span> element in
+<span class="math inline">\(\mathbf{Z}\)</span>, <span
+class="math inline">\(g_k\)</span> is the <span
+class="math inline">\(k\)</span>-th fixed SNP effectm, and <span
+class="math inline">\(e_i\)</span> is the residual effect. The system of
+mixed model equations is <span class="math display">\[
 \left[
 \begin{array}{ll}
-\mathbf{X}&#39;\mathbf{R}^{-1}\mathbf{X} &amp; \mathbf{X}&#39;\mathbf{R}^{-1}\mathbf{Z}\\
-\mathbf{Z}&#39;\mathbf{R}^{-1}\mathbf{X} &amp; \mathbf{Z}&#39;\mathbf{R}^{-1}\mathbf{Z}+\mathbf{I}/\sigma_g^2
+\mathbf{X}&#39;\mathbf{R}^{-1}\mathbf{X} &amp;
+\mathbf{X}&#39;\mathbf{R}^{-1}\mathbf{Z}\\
+\mathbf{Z}&#39;\mathbf{R}^{-1}\mathbf{X} &amp;
+\mathbf{Z}&#39;\mathbf{R}^{-1}\mathbf{Z}+\mathbf{I}/\sigma_g^2
 \end{array}
 \right]
 \left[
@@ -80,9 +104,21 @@ y_{i} = \mu + \sum_{k=1}^{m}z_{ik} g_{k} + u_{i} + e_{i} = \mathbf{1}\mu + \math
 \mathbf{Z}&#39;\mathbf{R}^{-1}\mathbf{y} \\
 \end{array}
 \right].
-\]</span> The residual variance was shown as <span class="math inline">\(\sigma_e^2 = 245.0\)</span> in the textbook. The marker variance (<span class="math inline">\(\sigma_g^2\)</span>) can be estimated based on the additive genetic variance (<span class="math inline">\(\sigma_u^2\)</span>) using <span class="math inline">\(\sigma_u^2/\left[2\sum p_j(1-p_j)\right]\)</span> where <span class="math inline">\(p_j\)</span> is the allele frequency for marker <span class="math inline">\(j\)</span>. In this example, the author uses the latter equation and shows <span class="math inline">\(2\sum p_j(1-p_j) = 3.5383\)</span> so the variance components are <span class="math inline">\(\sigma_g^2 = 35.242/3.5382 = 9.96\)</span>.</p>
+\]</span> The residual variance was shown as <span
+class="math inline">\(\sigma_e^2 = 245.0\)</span> in the textbook. The
+marker variance (<span class="math inline">\(\sigma_g^2\)</span>) can be
+estimated based on the additive genetic variance (<span
+class="math inline">\(\sigma_u^2\)</span>) using <span
+class="math inline">\(\sigma_u^2/\left[2\sum p_j(1-p_j)\right]\)</span>
+where <span class="math inline">\(p_j\)</span> is the allele frequency
+for marker <span class="math inline">\(j\)</span>. In this example, the
+author uses the latter equation and shows <span
+class="math inline">\(2\sum p_j(1-p_j) = 3.5383\)</span> so the variance
+components are <span class="math inline">\(\sigma_g^2 = 35.242/3.5382 =
+9.96\)</span>.</p>
 <h2 id="files">Files</h2>
-<p>The data file (<code>data_mr11b.txt</code>) now contains 10 columns from <span class="math inline">\(\mathbf{Z}\)</span> (p.184).</p>
+<p>The data file (<code>data_mr11b.txt</code>) now contains 10 columns
+from <span class="math inline">\(\mathbf{Z}\)</span> (p.184).</p>
 <ol type="1">
 <li>Animal ID</li>
 <li>Sire ID</li>
@@ -102,7 +138,8 @@ y_{i} = \mu + \sum_{k=1}^{m}z_{ik} g_{k} + u_{i} + e_{i} = \mathbf{1}\mu + \math
 <li>Covariate for SNP 9</li>
 <li>Covariate for SNP 10</li>
 </ol>
-<p>We can use the same pedigree defined as before (<code>pedigree_mr11b.txt</code>).</p>
+<p>We can use the same pedigree defined as before
+(<code>pedigree_mr11b.txt</code>).</p>
 <p>The parameter file contains 10 SNP effects.</p>
 <pre data-language="blupf90" data-caption="param_mr11b.txt"><code>DATAFILE
 data_mr11b.txt
@@ -146,9 +183,18 @@ FILE
 0 0 0 0 0 0 0 0 9.96 0
 0 0 0 0 0 0 0 0 0 9.96
 OPTION solv_method FSPAK</code></pre>
-<p>In the above parameter file, we defined 10 SNP effects as a group of random effects. The covariances among the effects are 0 so all the SNP effects are independent to each other. This description is equivalent to separately define each SNP effect (i.e. 10 <code>RANDOM_GROUP</code> blocks). A user can confirm that these 2 parameter files produce the same results.</p>
+<p>In the above parameter file, we defined 10 SNP effects as a group of
+random effects. The covariances among the effects are 0 so all the SNP
+effects are independent to each other. This description is equivalent to
+separately define each SNP effect (that is 10 <code>RANDOM_GROUP</code>
+blocks). A user can confirm that these 2 parameter files produce the
+same results.</p>
 <h2 id="solutions">Solutions</h2>
-<p>We should carefully look at the results shown in the textbook (p.185). The solutions from the weighted analysis seem inaccurate. The solutions come from the analysis with EDC (column 5) and the results are not correct. The correct weight is the inverse of EDC (column 7), and the following solutions in our analysis should be correct.</p>
+<p>We should carefully look at the results shown in the textbook
+(p.185). The solutions from the weighted analysis seem inaccurate. The
+solutions come from the analysis with EDC (column 5) and the results are
+not correct. The correct weight is the inverse of EDC (column 7), and
+the following solutions in our analysis should be correct.</p>
 <pre data-language="text" data-caption="solutions"><code>trait/effect level  solution
    1   1         1          9.12440501
    1   2         1          0.00004355

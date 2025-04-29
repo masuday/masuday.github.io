@@ -28,7 +28,8 @@
   <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
   <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
   <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="/usr/share/javascript/mathjax/MathJax.js"
+  type="text/javascript"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
   </script>
@@ -42,35 +43,69 @@
 <header>
 <h1 class="title">Quick tour of BLUPF90</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">September 2019</p>
+<p class="date">April 2025</p>
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#trivial-analyses-for-mixed-models">Trivial analyses for mixed models</a><ul>
-<li><a href="#a-simple-mixed-model">A simple mixed model</a></li>
-<li><a href="#the-animal-model">The animal model</a></li>
-<li><a href="#more-than-1-random-effect">More than 1 random effect</a></li>
-<li><a href="#remarks">Remarks</a></li>
-<li><a href="#summary">Summary</a></li>
+<li><a href="#trivial-analyses-for-mixed-models"
+id="toc-trivial-analyses-for-mixed-models">Trivial analyses for mixed
+models</a>
+<ul>
+<li><a href="#a-simple-mixed-model" id="toc-a-simple-mixed-model">A
+simple mixed model</a></li>
+<li><a href="#the-animal-model" id="toc-the-animal-model">The animal
+model</a></li>
+<li><a href="#more-than-1-random-effect"
+id="toc-more-than-1-random-effect">More than 1 random effect</a></li>
+<li><a href="#remarks" id="toc-remarks">Remarks</a></li>
+<li><a href="#summary" id="toc-summary">Summary</a></li>
 </ul></li>
 </ul>
 </nav>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>
-<h1 id="trivial-analyses-for-mixed-models">Trivial analyses for mixed models</h1>
-<p>In this section, we perform mixed model analyses using BLUPF90. We start with a simple mixed model (random effects, unrelated to each other) and finally consider pedigree information.</p>
-<p>If you perform the simple mixed model, BLUPF90 needs only 2 files (data and parameter file), which are the same as explained in the previous section. If you consider pedigree, in addition to the data and the parameter file, a pedigree file has to be prepared.</p>
+<h1 id="trivial-analyses-for-mixed-models">Trivial analyses for mixed
+models</h1>
+<p>In this section, we perform mixed model analyses using BLUPF90. We
+start with a simple mixed model (random effects, unrelated to each
+other) and finally consider pedigree information.</p>
+<p>To perform the simple mixed model, BLUPF90 needs only 2 files (data
+and parameter file), which are the same as those explained in the
+previous section. If you consider pedigree, in addition to the data and
+the parameter file, a pedigree file must be prepared.</p>
 <h2 id="a-simple-mixed-model">A simple mixed model</h2>
-<p>We assume the similar model described in the previous section and the second effect is now a random effect as <span class="math display">\[
+<p>We assume a similar model described in the previous section and the
+second effect is now treated as a random effect: <span
+class="math display">\[
 y_{ijk} = A_i + S_j + \beta x_{ijk} + e_{ijk}
-\]</span> where <span class="math inline">\(y_{ijk}\)</span> is an observation, <span class="math inline">\(A_i\)</span> is a fixed effect, <span class="math inline">\(S_j\)</span> is a random effect, <span class="math inline">\(\beta\)</span> is a regression coefficient, <span class="math inline">\(x_{ijk}\)</span> is a covariate, and <span class="math inline">\(e_{ij}\)</span> is the residual effect. The model in matrix notation will be <span class="math display">\[
+\]</span> where <span class="math inline">\(y_{ijk}\)</span> is an
+observation, <span class="math inline">\(A_i\)</span> is a fixed effect,
+<span class="math inline">\(S_j\)</span> is a random effect, <span
+class="math inline">\(\beta\)</span> is a regression coefficient, <span
+class="math inline">\(x_{ijk}\)</span> is a covariate, and <span
+class="math inline">\(e_{ij}\)</span> is the residual effect. The model
+in matrix notation will be <span class="math display">\[
 \mathbf{y} = \mathbf{Xb} + \mathbf{Zu} + \mathbf{e}
-\]</span> where <span class="math inline">\(\mathbf{y}\)</span> is a vector of observations, <span class="math inline">\(\mathbf{b}\)</span> is a vector of fixed effects, <span class="math inline">\(\mathbf{u}\)</span> is a vector of random effects, <span class="math inline">\(\mathbf{e}\)</span> is a vector of residuals, <span class="math inline">\(\mathbf{X}\)</span> and <span class="math inline">\(\mathbf{Z}\)</span> are incidence matrices. In a general form, we can write <span class="math inline">\(\mathrm{var}(\mathbf{u}) = \mathbf{G}\)</span><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> and <span class="math inline">\(\mathrm{var}(\mathbf{e}) = \mathbf{R}\)</span> and the mixed model equations should be <span class="math display">\[
+\]</span> where <span class="math inline">\(\mathbf{y}\)</span> is a
+vector of observations, <span class="math inline">\(\mathbf{b}\)</span>
+is a vector of fixed effects, <span
+class="math inline">\(\mathbf{u}\)</span> is a vector of random effects,
+<span class="math inline">\(\mathbf{e}\)</span> is a vector of
+residuals, <span class="math inline">\(\mathbf{X}\)</span> and <span
+class="math inline">\(\mathbf{Z}\)</span> are incidence matrices. In a
+general form, we can write <span
+class="math inline">\(\mathrm{var}(\mathbf{u}) = \mathbf{G}\)</span><a
+href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a> and <span
+class="math inline">\(\mathrm{var}(\mathbf{e}) = \mathbf{R}\)</span> and
+the mixed model equations should be <span class="math display">\[
 \left[
 \begin{array}{ll}
-\mathbf{X}&#39;\mathbf{R}^{-1}\mathbf{X} &amp; \mathbf{X}&#39;\mathbf{R}^{-1}\mathbf{Z} \\
-\mathbf{Z}&#39;\mathbf{R}^{-1}\mathbf{X} &amp; \mathbf{Z}&#39;\mathbf{R}^{-1}\mathbf{Z} + \mathbf{G}^{-1}
+\mathbf{X}&#39;\mathbf{R}^{-1}\mathbf{X} &amp;
+\mathbf{X}&#39;\mathbf{R}^{-1}\mathbf{Z} \\
+\mathbf{Z}&#39;\mathbf{R}^{-1}\mathbf{X} &amp;
+\mathbf{Z}&#39;\mathbf{R}^{-1}\mathbf{Z} + \mathbf{G}^{-1}
 \end{array}
 \right]
 \left[
@@ -87,11 +122,18 @@ y_{ijk} = A_i + S_j + \beta x_{ijk} + e_{ijk}
 \end{array}
 \right].
 \]</span></p>
-<p>For simplicity, we here assume <span class="math inline">\(\mathrm{var}(\mathbf{u}) = \mathbf{I}\sigma_s^2\)</span> and <span class="math inline">\(\mathrm{var}(\mathbf{e}) = \mathbf{I}\sigma_e^2\)</span> so, the mixed model equations reduce to <span class="math display">\[
+<p>For simplicity, we here assume <span
+class="math inline">\(\mathrm{var}(\mathbf{u}) =
+\mathbf{I}\sigma_s^2\)</span> and <span
+class="math inline">\(\mathrm{var}(\mathbf{e}) =
+\mathbf{I}\sigma_e^2\)</span> so, the mixed model equations reduce to
+<span class="math display">\[
 \left[
 \begin{array}{ll}
-\mathbf{X}&#39;\mathbf{X}\sigma_e^{-2} &amp; \mathbf{X}&#39;\mathbf{Z}\sigma_e^{-2} \\
-\mathbf{Z}&#39;\mathbf{X}\sigma_e^{-2} &amp; \mathbf{Z}&#39;\mathbf{Z}\sigma_e^{-2} + \mathbf{I}\sigma_s^{-2}
+\mathbf{X}&#39;\mathbf{X}\sigma_e^{-2} &amp;
+\mathbf{X}&#39;\mathbf{Z}\sigma_e^{-2} \\
+\mathbf{Z}&#39;\mathbf{X}\sigma_e^{-2} &amp;
+\mathbf{Z}&#39;\mathbf{Z}\sigma_e^{-2} + \mathbf{I}\sigma_s^{-2}
 \end{array}
 \right]
 \left[
@@ -108,11 +150,13 @@ y_{ijk} = A_i + S_j + \beta x_{ijk} + e_{ijk}
 \end{array}
 \right]
 \]</span></p>
-<p>The system of mixed model equations is often presented as <span class="math display">\[
+<p>The system of mixed model equations is often presented as <span
+class="math display">\[
 \left[
 \begin{array}{ll}
 \mathbf{X}&#39;\mathbf{X} &amp; \mathbf{X}&#39;\mathbf{Z} \\
-\mathbf{Z}&#39;\mathbf{X} &amp; \mathbf{Z}&#39;\mathbf{Z} + \mathbf{I}\lambda
+\mathbf{Z}&#39;\mathbf{X} &amp; \mathbf{Z}&#39;\mathbf{Z} +
+\mathbf{I}\lambda
 \end{array}
 \right]
 \left[
@@ -128,9 +172,21 @@ y_{ijk} = A_i + S_j + \beta x_{ijk} + e_{ijk}
 \mathbf{Z}&#39;\mathbf{y}
 \end{array}
 \right]
-\]</span> where <span class="math inline">\(\lambda=\sigma_e^2/\sigma_s^2\)</span>. This model looks like a simple sire model with unrelated sires in animal breeding.</p>
-<p>Note that BLUPF90 always creates the equations with <span class="math inline">\(\mathbf{R}^{-1}\)</span>; <span class="math inline">\(\lambda\)</span> is never calculated. Precisely, <span class="math inline">\(1/\sigma_e^2\)</span> is always calculated and accumulated to the left-hand side (LHS) and <span class="math inline">\(1/\sigma_s^2\)</span> is also added to LHS. Basically, the program needs explicit values for variance components. Here we assume <span class="math inline">\(\sigma_s^2 = 1.0\)</span> and <span class="math inline">\(\sigma_e^2 = 2.0\)</span>.</p>
-<p>We can use exactly the same data file shown before. The file name is altered just for our convenience.</p>
+\]</span> where <span
+class="math inline">\(\lambda=\sigma_e^2/\sigma_s^2\)</span>. This model
+looks like a simple sire model with unrelated sires in animal
+breeding.</p>
+<p>Note that BLUPF90 always creates the equations with <span
+class="math inline">\(\mathbf{R}^{-1}\)</span>; <span
+class="math inline">\(\lambda\)</span> is never calculated. Precisely,
+<span class="math inline">\(1/\sigma_e^2\)</span> is always calculated
+and accumulated to the left-hand side (LHS) and <span
+class="math inline">\(1/\sigma_s^2\)</span> is also added to LHS.
+Basically, the program needs explicit values for variance components.
+Here we assume <span class="math inline">\(\sigma_s^2 = 1.0\)</span> and
+<span class="math inline">\(\sigma_e^2 = 2.0\)</span>.</p>
+<p>We can use exactly the same data file shown before. The file name is
+altered just for our convenience.</p>
 <pre data-language="text" data-caption="data2.txt"><code>3.0  1  1  1.0
 2.0  1  2  1.0
 4.0  1  1  2.0
@@ -166,11 +222,16 @@ FILE
 
 (CO)VARIANCES
 1.0</code></pre>
-<p>The first 7 keywords are the same as used in the fixed effect models. To define the random effect, we use 4 extra keywords<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> just placed after the common keywords.</p>
+<p>The first 7 keywords are the same as used in the fixed effect models.
+To define the random effect, we use 4 extra keywords<a href="#fn2"
+class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>
+just placed after the common keywords.</p>
 <ol type="1">
-<li><code>RANDOM GROUP</code> = showing which effect is random in the <code>EFFECTS</code> block
+<li><code>RANDOM GROUP</code> = showing which effect is random in the
+<code>EFFECTS</code> block
 <ul>
-<li>2 for the second line (effect 2) in <code>EFFECTS</code> is the random effect</li>
+<li>2 for the second line (effect 2) in <code>EFFECTS</code> is the
+random effect</li>
 </ul></li>
 <li><code>RANDOM_TYPE</code> = covariance structure
 <ul>
@@ -180,12 +241,17 @@ FILE
 <ul>
 <li>empty for no information needed here</li>
 </ul></li>
-<li><code>(CO)VARIANCES</code> = variance component <span class="math inline">\(\sigma_s^2\)</span>
+<li><code>(CO)VARIANCES</code> = variance component <span
+class="math inline">\(\sigma_s^2\)</span>
 <ul>
 <li>1.0 for the variance</li>
 </ul></li>
 </ol>
-<p>If you have 2 or more random effects (e.g., permanent environmental or maternal effect), you can add another extra 4 keywords to the parameter file. We will see such a case later. The solutions will be very different from the previous one which assumes effect 2 is a fixed effect.</p>
+<p>If you have 2 or more random effects (e.g., permanent environmental
+or maternal effect), you can add another extra 4 keywords to the
+parameter file. We will see such a case later. The solutions will be
+very different from the previous one which assumes effect 2 is a fixed
+effect.</p>
 <pre data-language="text" data-caption="solutions"><code>trait/effect level  solution
    1   1         1      2.30434783
    1   1         2      4.26086957
@@ -193,15 +259,41 @@ FILE
    1   2         1      0.17391304
    1   2         2     -0.17391304
    1   3         1      0.47826087</code></pre>
-<p>The solution file contains both BLUE for the fixed effects and BLUP for the random effects. The first column is always 1 because it is a single-trait model; the 2nd column shows the effect number from 1 to 3; the 3rd column shows the level in each effect; the fourth column contains the solutions. The first 3 solutions are for the effct 1 (<span class="math inline">\(A_i\)</span>), the next 2 solutions for effect 2 (<span class="math inline">\(S_j\)</span>) and the last 1 solution for the regression (<span class="math inline">\(\beta\)</span>). Details are: <span class="math inline">\(\hat{A}_1 = 2.30\)</span>, <span class="math inline">\(\hat{A}_2 = 4.26\)</span>, <span class="math inline">\(\hat{A}_3 = 5.28\)</span>, <span class="math inline">\(\hat{S}_1 = 0.17\)</span>, <span class="math inline">\(\hat{S}_2 = -0.17\)</span> and <span class="math inline">\(\hat{\beta} = 0.48\)</span>.</p>
+<p>The solution file contains both BLUE for the fixed effects and BLUP
+for the random effects. The first column is always 1 because it is a
+single-trait model; the 2nd column shows the effect number from 1 to 3;
+the 3rd column shows the level in each effect; the fourth column
+contains the solutions. The first 3 solutions are for the effct 1 (<span
+class="math inline">\(A_i\)</span>), the next 2 solutions for effect 2
+(<span class="math inline">\(S_j\)</span>) and the last 1 solution for
+the regression (<span class="math inline">\(\beta\)</span>). The results
+are: <span class="math inline">\(\hat{A}_1 = 2.30\)</span>, <span
+class="math inline">\(\hat{A}_2 = 4.26\)</span>, <span
+class="math inline">\(\hat{A}_3 = 5.28\)</span>, <span
+class="math inline">\(\hat{S}_1 = 0.17\)</span>, <span
+class="math inline">\(\hat{S}_2 = -0.17\)</span> and <span
+class="math inline">\(\hat{\beta} = 0.48\)</span>.</p>
 <h2 id="the-animal-model">The animal model</h2>
-<p>The animal model specifically refers to a mixed model with individual additive genetic effect as a random effect. Genetic covariances between animals are considered with a numerator relationship matrix. You need a pedigree file for this model. In this section, we assume the same model above with additive genetic effects. An animal has either one observation or no observation (where the animal is only in a pedigree file). The mathematical model is the following: <span class="math display">\[
+<p>The animal model specifically refers to a mixed model with individual
+additive genetic effect as a random effect. Genetic covariances between
+animals are considered with a numerator relationship matrix. You need a
+pedigree file for this model. In this section, we assume the same model
+above with additive genetic effects. An animal has either one
+observation or no observation (where the animal is only in a pedigree
+file). The mathematical model is the following: <span
+class="math display">\[
 y_{ijk} = A_i + S_j + \beta x_k + u_k + e_{ijk}
-\]</span> where <span class="math inline">\(u_k\)</span> is the additive genetic effect for an animal <span class="math inline">\(k\)</span>. Here we treat <span class="math inline">\(S_j\)</span> as a fixed effect. The system of mixed model equations is <span class="math display">\[
+\]</span> where <span class="math inline">\(u_k\)</span> is the additive
+genetic effect for an animal <span class="math inline">\(k\)</span>.
+Here we treat <span class="math inline">\(S_j\)</span> as a fixed
+effect. The system of mixed model equations is <span
+class="math display">\[
 \left[
 \begin{array}{ll}
-\mathbf{X}&#39;\mathbf{X}\sigma_e^{-2} &amp; \mathbf{X}&#39;\mathbf{Z}\sigma_e^{-2} \\
-\mathbf{Z}&#39;\mathbf{X}\sigma_e^{-2} &amp; \mathbf{Z}&#39;\mathbf{Z}\sigma_e^{-2} + \mathbf{A}^{-1}\sigma_u^{-2}
+\mathbf{X}&#39;\mathbf{X}\sigma_e^{-2} &amp;
+\mathbf{X}&#39;\mathbf{Z}\sigma_e^{-2} \\
+\mathbf{Z}&#39;\mathbf{X}\sigma_e^{-2} &amp;
+\mathbf{Z}&#39;\mathbf{Z}\sigma_e^{-2} + \mathbf{A}^{-1}\sigma_u^{-2}
 \end{array}
 \right]
 \left[
@@ -218,8 +310,12 @@ y_{ijk} = A_i + S_j + \beta x_k + u_k + e_{ijk}
 \end{array}
 \right]
 \]</span></p>
-<p>where <span class="math inline">\(\mathbf{A}\)</span> is a numerator relationship matrix, <span class="math inline">\(\sigma_u^2\)</span> is the additive genetic variance, and <span class="math inline">\(\sigma_e^2\)</span> is the residual variance.</p>
-<p>We further extend the data table to add an animal’s ID (code). We show the actual data file to be used in this analysis.</p>
+<p>where <span class="math inline">\(\mathbf{A}\)</span> is a numerator
+relationship matrix, <span class="math inline">\(\sigma_u^2\)</span> is
+the additive genetic variance, and <span
+class="math inline">\(\sigma_e^2\)</span> is the residual variance.</p>
+<p>We further extend the data table to add an animal’s ID (code). We
+show the actual data file to be used in this analysis.</p>
 <pre data-language="text" data-caption="data3.txt"><code>  3.0  1  1  1.0   6
   2.0  1  2  1.0   9
   4.0  1  1  2.0  12
@@ -230,8 +326,14 @@ y_{ijk} = A_i + S_j + \beta x_k + u_k + e_{ijk}
   6.0  3  2  1.0  11
   8.0  3  1  1.0  14
   4.0  3  2  2.0  15</code></pre>
-<p>In the data file, animal ID starts with 6; it means animals 1 to 5 have no observation so, they are not included in the data file. The order of animal ID is totally arbitrary, and you don’t have to order the animals chronologically.</p>
-<p>We show the pedigree file below. Pedigree information consists of 3 columns: animal ID, its sire’s ID, and its dam’s ID. If an animal’s parent is unknown (missing), you should put <code>0</code>. The following is the pedigree in this analysis.</p>
+<p>In the data file, animal ID starts with 6; it means animals 1 to 5
+have no observation so, they are not included in the data file. The
+order of animal ID is totally arbitrary, and you don’t have to order the
+animals chronologically.</p>
+<p>We show the pedigree file below. Pedigree information consists of 3
+columns: animal ID, its sire’s ID, and its dam’s ID. If an animal’s
+parent is unknown (missing), you should put <code>0</code>. The
+following is the pedigree in this analysis.</p>
 <pre data-language="text" data-caption="pedigree3.txt"><code>  1   0   0
   2   0   0
   3   0   0
@@ -247,8 +349,15 @@ y_{ijk} = A_i + S_j + \beta x_k + u_k + e_{ijk}
  13  11  10
  14   9  13
  15  11  10</code></pre>
-<p>The individual ID should be an integer value, and it corresponds to one in the data file. If your data has non-integer animal IDs, you can use the RENUMF90 program to replace the characters with integer values in both pedigree and data. You don’t have to records the ID is chronological order. Also, you don’t need to sort the ID in this file.</p>
-<p>The basic format of the parameter file is the same as the previous one. We assume <span class="math inline">\(\sigma_a^2 = 0.5\)</span> and <span class="math inline">\(\sigma_e^2 = 2.0\)</span>.</p>
+<p>The individual ID should be an integer value, and it corresponds to
+one in the data file. If your data has non-integer animal IDs, you can
+use the RENUMF90 program to replace the characters with integer values
+in both pedigree and data. You don’t have to records the ID is
+chronological order. Also, you don’t need to sort the ID in this
+file.</p>
+<p>The basic format of the parameter file is the same as the previous
+one. We assume <span class="math inline">\(\sigma_a^2 = 0.5\)</span> and
+<span class="math inline">\(\sigma_e^2 = 2.0\)</span>.</p>
 <pre data-language="blupf90" data-caption="param3.txt"><code>DATAFILE
 data3.txt
 NUMBER_OF_TRAITS
@@ -274,17 +383,22 @@ FILE
 pedigree3.txt
 (CO)VARIANCES
 0.5</code></pre>
-<p>There are 6 modifications in this file compared to the previous one.</p>
+<p>There are 6 modifications in this file compared to the previous
+one.</p>
 <ol type="1">
-<li><code>NUMBER_OF_EFFECTS</code> = Because the additive genetic effect is added, the number of effects should be incremented.
+<li><code>NUMBER_OF_EFFECTS</code> = Because the additive genetic effect
+is added, the number of effects should be incremented.
 <ul>
 <li>The total number of effects is 4.</li>
 </ul></li>
 <li><code>EFFECTS:</code> = The added effect is in the 4th row.
 <ul>
-<li><code>5</code> for the position of ID in the data file, 15 for the total number of animals (in the pedigree), and <code>cross</code> for cross-classified effect.</li>
+<li><code>5</code> for the position of ID in the data file, 15 for the
+total number of animals (in the pedigree), and <code>cross</code> for
+cross-classified effect.</li>
 </ul></li>
-<li><code>RANDOM_GROUP</code> = It represents which effect is random in <code>EFFECTS:</code>
+<li><code>RANDOM_GROUP</code> = It represents which effect is random in
+<code>EFFECTS:</code>
 <ul>
 <li>The 4th effect in the block is a random effect.</li>
 </ul></li>
@@ -296,7 +410,8 @@ pedigree3.txt
 <ul>
 <li><code>pedigree4.txt</code></li>
 </ul></li>
-<li><code>(CO)VARIANCES</code> = the variance component of this random effect
+<li><code>(CO)VARIANCES</code> = the variance component of this random
+effect
 <ul>
 <li><span class="math inline">\(\sigma_{a}^{2}=0.5\)</span></li>
 </ul></li>
@@ -324,11 +439,43 @@ pedigree3.txt
    1   4        13      0.16426465
    1   4        14      0.34296714
    1   4        15     -0.25707431</code></pre>
-<p>The solution file contains both BLUE for the fixed effects and BLUP for the random effects. The first column is always 1 because it is a single-trait model; the 2nd column shows the effect number from 1 to 4; the 3rd column shows the level in each effect; the fourth column contains the solutions. The first 3 solutions are for effect 1 (<span class="math inline">\(A_i\)</span>), the next 2 solutions for effect 2 (<span class="math inline">\(S_j\)</span>), the next 1 solution for the regression (<span class="math inline">\(\beta\)</span>) and the remaining 15 solutions for the additive genetic effect i.e., estimated breeding values (<span class="math inline">\(u_k\)</span>). Details are: <span class="math inline">\(\hat{A}_1 = 0.203\)</span>, <span class="math inline">\(\hat{A}_2 = 2.220\)</span>, <span class="math inline">\(\hat{A}_3 = 3.167\)</span>, <span class="math inline">\(\hat{S}_1 = 2.275\)</span>, <span class="math inline">\(\hat{S}_2 = 1.711\)</span>, <span class="math inline">\(\hat{\beta} = 0.524\)</span>, <span class="math inline">\(\hat{u}_1 = -0.035\)</span>, <span class="math inline">\(\hat{u}_2 = 0.083\)</span>, <span class="math inline">\(\hat{u}_3 = 0.038\)</span>, and so on.</p>
+<p>The solution file contains both BLUE for the fixed effects and BLUP
+for the random effects. The first column is always 1 because it is a
+single-trait model; the 2nd column shows the effect number from 1 to 4;
+the 3rd column shows the level in each effect; the fourth column
+contains the solutions. The first 3 solutions are for effect 1 (<span
+class="math inline">\(A_i\)</span>), the next 2 solutions for effect 2
+(<span class="math inline">\(S_j\)</span>), the next 1 solution for the
+regression (<span class="math inline">\(\beta\)</span>) and the
+remaining 15 solutions for the additive genetic effect i.e., estimated
+breeding values (<span class="math inline">\(u_k\)</span>). The results
+are: <span class="math inline">\(\hat{A}_1 = 0.203\)</span>, <span
+class="math inline">\(\hat{A}_2 = 2.220\)</span>, <span
+class="math inline">\(\hat{A}_3 = 3.167\)</span>, <span
+class="math inline">\(\hat{S}_1 = 2.275\)</span>, <span
+class="math inline">\(\hat{S}_2 = 1.711\)</span>, <span
+class="math inline">\(\hat{\beta} = 0.524\)</span>, <span
+class="math inline">\(\hat{u}_1 = -0.035\)</span>, <span
+class="math inline">\(\hat{u}_2 = 0.083\)</span>, <span
+class="math inline">\(\hat{u}_3 = 0.038\)</span>, and so on.</p>
 <h2 id="more-than-1-random-effect">More than 1 random effect</h2>
-<p>We often meet a model with more than 1 random effect such as repeatability model (additive genetic + permanent environmental [PE] effect) or maternal effect model (direct + maternal + maternal PE effect). BLUPF90 supports such a complicated model. We assume the same animal model described above except for <span class="math inline">\(S_j\)</span> as random: <span class="math display">\[
+<p>We often meet a model with more than 1 random effect such as
+repeatability model (additive genetic + permanent environmental [PE]
+effect) or maternal effect model (direct + maternal + maternal PE
+effect). BLUPF90 supports such a complicated model. We assume the same
+animal model described above except for <span
+class="math inline">\(S_j\)</span> as random: <span
+class="math display">\[
 y_{ijk} = A_i + S_j +\beta x_k + u_k + e_{ijk}
-\]</span> where <span class="math inline">\(S_j\)</span> and <span class="math inline">\(u_k\)</span> are random effects. To perform the analysis, we can use the same data file and the pedigree file. We assume that the two random effects <span class="math inline">\(S_{j}\)</span> and <span class="math inline">\(u_{k}\)</span> are not related to each other and <span class="math inline">\(\sigma_s^2 = 1.0\)</span>, <span class="math inline">\(\sigma_u^2 = 0.5\)</span> and <span class="math inline">\(\sigma_e^2 = 2.0\)</span>. We need to modify the parameter file to include additional random effect.</p>
+\]</span> where <span class="math inline">\(S_j\)</span> and <span
+class="math inline">\(u_k\)</span> are random effects. To perform the
+analysis, we can use the same data file and the pedigree file. We assume
+that the two random effects <span class="math inline">\(S_{j}\)</span>
+and <span class="math inline">\(u_{k}\)</span> are not related to each
+other and <span class="math inline">\(\sigma_s^2 = 1.0\)</span>, <span
+class="math inline">\(\sigma_u^2 = 0.5\)</span> and <span
+class="math inline">\(\sigma_e^2 = 2.0\)</span>. We need to modify the
+parameter file to include additional random effect.</p>
 <pre data-language="blupf90" data-caption="param3a.txt"><code>DATAFILE
 data3.txt
 NUMBER_OF_TRAITS
@@ -362,8 +509,18 @@ FILE
 
 (CO)VARIANCES
 1.0</code></pre>
-<p>We just a set of 4 keywords (<code>RANDOM_GROUP</code>, <code>RANDOM_TYPE</code>, <code>FILE</code> and <code>(CO)VARIANCES</code>) to the last parameter file for the additional random effect <span class="math inline">\(S_{j}\)</span>. In other words, such 4 keywords are optional; you can add the 4 keywords as you include one more random effect if the effects are unrelated to each other.</p>
-<p>If the random effects are correlated with each other, you should use a different way. This happens in a maternal effect model (direct and maternal genetic effect) and random regression model (random regression coefficients). Multiple-trait model is also another story. We do not explain such cases here but we will consider them in later chapters.</p>
+<p>We just a set of 4 keywords (<code>RANDOM_GROUP</code>,
+<code>RANDOM_TYPE</code>, <code>FILE</code> and
+<code>(CO)VARIANCES</code>) to the last parameter file for the
+additional random effect <span class="math inline">\(S_{j}\)</span>. In
+other words, such 4 keywords are optional; you can add the 4 keywords as
+you include one more random effect if the effects are unrelated to each
+other.</p>
+<p>If the random effects are correlated with each other, you should use
+a different way. This happens in a maternal effect model (direct and
+maternal genetic effect) and random regression model (random regression
+coefficients). Multiple-trait model is also another story. We do not
+explain such cases here but we will consider them in later chapters.</p>
 <p>The solutions are shown below.</p>
 <pre data-language="text" data-caption="solutions"><code>trait/effect level  solution
    1   1         1      2.27101829
@@ -387,28 +544,68 @@ FILE
    1   4        13      0.15461713
    1   4        14      0.33690598
    1   4        15     -0.27372367</code></pre>
-<p>The order of the solutions is the same as the previous animal model but the effect 2 is now a random effect. The order of the solutions is determined using <code>EFFECTS:</code> block in the parameter file. So even if you add more random effects, the order will not be changed.</p>
+<p>The order of the solutions is the same as the previous animal model
+but the effect 2 is now a random effect. The order of the solutions is
+determined using <code>EFFECTS:</code> block in the parameter file. So
+even if you add more random effects, the order will not be changed.</p>
 <h2 id="remarks">Remarks</h2>
-<p>BLUPF90 builds the mixed model equations simply following the parameter file. Even if your parameter file has no fixed effect (i.e., it has random effects only), the program doesn’t add any fixed effect to the model. Without any fixed effects, the solutions may be nonsense. If you want to perform a random effect model with the general mean, you should prepare an additional column containing 1 in the data file and describe it as a fixed effect in the parameter file.</p>
-<p>In the animal model with <code>add_animal</code>, BLUPF90 doesn’t consider inbreeding; <span class="math inline">\(\mathbf{A}^{-1}\)</span> is constructed with Henderson’s method ignoring inbreeding. BLUPF90 supports <span class="math inline">\(\mathbf{A}^{-1}\)</span> with inbreeding but the program doesn’t calculate the inbreeding coefficients. The user should calculate the inbreeding coefficients and put them into the pedigree file with a special format. With this special pedigree file and the use of <code>add_an_upginb</code> (instead of <code>add_animal</code>), the inbreeding will be successfully incorporated. RENUMF90 can prepare such a pedigree file.</p>
+<p>BLUPF90 builds the mixed model equations simply following the
+parameter file. Even if your parameter file has no fixed effect (i.e.,
+it has random effects only), the program doesn’t add any fixed effect to
+the model. Without any fixed effects, the solutions may be nonsense. If
+you want to perform a random effect model with the general mean, you
+should prepare an additional column containing 1 in the data file and
+describe it as a fixed effect in the parameter file.</p>
+<p>In the animal model with <code>add_animal</code>, BLUPF90 doesn’t
+consider inbreeding; <span
+class="math inline">\(\mathbf{A}^{-1}\)</span> is constructed with
+Henderson’s method ignoring inbreeding. BLUPF90 supports <span
+class="math inline">\(\mathbf{A}^{-1}\)</span> with inbreeding but the
+program doesn’t calculate the inbreeding coefficients. The user should
+calculate the inbreeding coefficients and put them into the pedigree
+file with a special format. With this special pedigree file and the use
+of <code>add_an_upginb</code> (instead of <code>add_animal</code>), the
+inbreeding will be successfully incorporated. RENUMF90 can prepare such
+a pedigree file.</p>
 <h2 id="summary">Summary</h2>
 <ul>
-<li>BLUPF90 supports linear mixed models with 1 or more random effects.</li>
+<li>BLUPF90 supports linear mixed models with 1 or more random
+effects.</li>
 <li>BLUPF90 needs 3 text files: data, pedigree and parameter files.</li>
 <li>A pedigree file is needed if you conduct genetic analyses.</li>
-<li>The pedigree file should contain 3 columns: animal ID, sire ID, and dam ID. The ID must be an integer value.</li>
-<li>To define a random effect, add 4 keywords (<code>RANDOM_GROUP</code>, <code>RANDOM_TYPE</code>, <code>FILE</code> and <code>(CO)VARIANCES</code>) and the corresponding values to the parameter file.</li>
-<li>The order of the solutions depends on the <code>EFFECTS:</code> block in the parameter file.</li>
-<li>You should manually add the general mean if you use a random effect model.</li>
-<li>With <code>add_animal</code>, inbreeding is ignored in the calculation of <span class="math inline">\(\mathbf{A}^{-1}\)</span>.</li>
+<li>The pedigree file should contain 3 columns: animal ID, sire ID, and
+dam ID. The ID must be an integer value.</li>
+<li>To define a random effect, add 4 keywords
+(<code>RANDOM_GROUP</code>, <code>RANDOM_TYPE</code>, <code>FILE</code>
+and <code>(CO)VARIANCES</code>) and the corresponding values to the
+parameter file.</li>
+<li>The order of the solutions depends on the <code>EFFECTS:</code>
+block in the parameter file.</li>
+<li>You should manually add the general mean if you use a random effect
+model.</li>
+<li>With <code>add_animal</code>, inbreeding is ignored in the
+calculation of <span
+class="math inline">\(\mathbf{A}^{-1}\)</span>.</li>
 </ul>
-<section class="footnotes">
+<aside id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1"><p>This <span class="math inline">\(\mathbf{G}\)</span> does not mean the genomic relationship matrix. This is the traditional notation describing a covariance structure of random effects.<a href="#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><p>The common 7 keywords build the design-matrix parts in the mixed model equations i.e., <span class="math inline">\(\mathbf{X}&#39;\mathbf{X}\)</span>, <span class="math inline">\(\mathbf{X}&#39;\mathbf{Z}\)</span>, <span class="math inline">\(\mathbf{Z}&#39;\mathbf{X}\)</span> and <span class="math inline">\(\mathbf{Z}&#39;\mathbf{Z}\)</span>. The additional 4 keywords provide the covariance structure, and <span class="math inline">\(\mathbf{G}^{-1}\)</span><a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>This <span class="math inline">\(\mathbf{G}\)</span>
+does not mean the genomic relationship matrix. This is the traditional
+notation describing a covariance structure of random effects.<a
+href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>The common 7 keywords build the design-matrix parts in
+the mixed model equations i.e., <span
+class="math inline">\(\mathbf{X}&#39;\mathbf{X}\)</span>, <span
+class="math inline">\(\mathbf{X}&#39;\mathbf{Z}\)</span>, <span
+class="math inline">\(\mathbf{Z}&#39;\mathbf{X}\)</span> and <span
+class="math inline">\(\mathbf{Z}&#39;\mathbf{Z}\)</span>. The additional
+4 keywords provide the covariance structure, and <span
+class="math inline">\(\mathbf{G}^{-1}\)</span><a href="#fnref2"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
-</section>
+</aside>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>

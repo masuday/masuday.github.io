@@ -28,7 +28,8 @@
   <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
   <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
   <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="/usr/share/javascript/mathjax/MathJax.js"
+  type="text/javascript"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
   </script>
@@ -42,40 +43,101 @@
 <header>
 <h1 class="title">Variance component estimation</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">September 2019</p>
+<p class="date">April 2025</p>
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#restricted-residual-maximum-likelihood-with-airemlf90">Restricted (residual) maximum likelihood with AIREMLF90</a><ul>
-<li><a href="#reml-software">REML software</a></li>
-<li><a href="#preparation">Preparation</a></li>
-<li><a href="#single-trait-analysis">Single-trait analysis</a></li>
-<li><a href="#convergence-problems">Convergence problems</a></li>
-<li><a href="#em-reml-algorithm">EM-REML algorithm</a></li>
-<li><a href="#constraints-on-variance-components">Constraints on variance components</a></li>
-<li><a href="#summary">Summary</a></li>
+<li><a
+href="#restricted-residual-maximum-likelihood-with-airemlf90-blupf90"
+id="toc-restricted-residual-maximum-likelihood-with-airemlf90-blupf90">Restricted
+(residual) maximum likelihood with AIREMLF90 (BLUPF90+)</a>
+<ul>
+<li><a href="#reml-software" id="toc-reml-software">REML
+software</a></li>
+<li><a href="#preparation" id="toc-preparation">Preparation</a></li>
+<li><a href="#single-trait-analysis"
+id="toc-single-trait-analysis">Single-trait analysis</a></li>
+<li><a href="#convergence-problems"
+id="toc-convergence-problems">Convergence problems</a></li>
+<li><a href="#em-reml-algorithm" id="toc-em-reml-algorithm">EM-REML
+algorithm</a></li>
+<li><a href="#constraints-on-variance-components"
+id="toc-constraints-on-variance-components">Constraints on variance
+components</a></li>
+<li><a href="#summary" id="toc-summary">Summary</a></li>
 </ul></li>
 </ul>
 </nav>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>
-<h1 id="restricted-residual-maximum-likelihood-with-airemlf90">Restricted (residual) maximum likelihood with AIREMLF90</h1>
+<h1
+id="restricted-residual-maximum-likelihood-with-airemlf90-blupf90">Restricted
+(residual) maximum likelihood with AIREMLF90 (BLUPF90+)</h1>
 <h2 id="reml-software">REML software</h2>
-<p>REML (restricted/residual maximum likelihood) is a popular method to estimate variance components in animal breeding. BLUPF90 family currently provides 2 programs supporting different algorithms.</p>
+<h3 id="reml-algorithms">REML algorithms</h3>
+<p>REML (Restricted/Residual Maximum Likelihood) is a widely used method
+for estimating variance components in animal breeding. Several
+algorithms are available for REML, and BLUPF90+ supports the following
+two:</p>
 <ul>
-<li>AIREMLF90 supports the average information (AI) algorithm.</li>
-<li>REMLF90 supports the expectation-maximization (EM) algorithm.</li>
+<li>Average Information (AI) algorithm</li>
+<li>Expectation-Maximization (EM) algorithm</li>
 </ul>
-<p>The AI algorithm (AI REML) is an iterative method which needs initial values of variance components. In the first round, the algorithm produces new values based on the initial values. In a subsequent round, the new values come from the previous values. With several iterations, the values are expected to be close enough to the estimates of variance components. The EM algorithm (EM REML) is another iterative scheme and the computational details are different from AI REML. See Misztal (2008) for details on differences between the algorithms.</p>
-<p>AIREMLF90 for AI REML and REMLF90 for EM REML have the common usage. The estimates should be identical between 2 programs in theory. We will introduce the usage of AIREMLF90 only because this program has been the first choice of REML computations and it provides the (approximated) standard error of genetic parameters. Also, AIREMLF90 can use the EM-algorithm with an option in the parameter file.</p>
+<p>The AI algorithm (AI-REML) is an iterative method that requires
+initial values for the variance components. In the first iteration, the
+algorithm updates these values based on the provided starting point. In
+each subsequent iteration, new values are computed from the previous
+ones. After several iterations, the estimates are expected to converge
+to stable values. The EM algorithm (EM-REML) is another iterative
+method, but it uses a different computational approach. In theory, both
+algorithms should yield the same estimates of variance components. For
+more on the differences between these algorithms, see Misztal
+(2008).</p>
+<p>BLUPF90+ now serves as a unified program that supports both
+algorithms for REML estimation. Previously, the BLUPF90 family included
+two separate programs: AIREMLF90 for AI-REML and REMLF90 for EM-REML.
+This tutorial still refers to these older programs. We will focus on the
+use of AIREMLF90, as it has long been the preferred tool for REML
+estimation and also provides (approximate) standard errors of genetic
+parameters. Additionally, AIREMLF90 can run the EM algorithm using an
+option specified in the parameter file.</p>
+<h3 id="notice-for-blupf90-users">Notice for BLUPF90+ users</h3>
+<p>If you are using BLUPF90+, please replace AIREMLF90
+(<code>airemlf90</code>) and REMLF90 (<code>remlf90</code>) with
+BLUPF90+ (<code>blupf90+</code>) throughout this tutorial. Additionally,
+to estimate variance components using the AI algorithm in BLUPF90+, you
+must include the following option in your parameter file:</p>
+<pre data-language="blupf90"
+data-caption="variance component estimation (AI REML)"><code>OPTION method VCE</code></pre>
+<p>Without this option, BLUPF90+ will not estimate variance components.
+Instead, it will default to solving the mixed model equations using the
+variance components provided. Including this option enables BLUPF90+ to
+operate in the same way as AIREMLF90. To switch to the EM algorithm
+(emulating REMLF90), add the following option to the parameter file, as
+explained in the subsequent section:</p>
+<pre data-language="blupf90"
+data-caption="variance component estimation (EM REML)"><code>OPTION method VCE
+OPTION EM-REML 5000</code></pre>
+<p>Please refer to the official website and manual for a detailed
+explanation of variance component estimation in BLUPF90+.</p>
 <h2 id="preparation">Preparation</h2>
-<p>AIREMLF90 uses the same parameter file as BLUPF90 uses. AIREMLF90 reads the variance components as initial values (starting values) from the parameter file. In this section, we will use simulated files that have more observations than before. You can download the files from Github (<a href="https://github.com/masuday/data" class="uri">https://github.com/masuday/data</a>).</p>
+<p>AIREMLF90 uses the same parameter file as BLUPF90 uses. AIREMLF90
+reads the variance components as initial values (starting values) from
+the parameter file. In this section, we will use simulated files that
+have more observations than before. You can download the files from
+Github (<a href="https://github.com/masuday/data"
+class="uri">https://github.com/masuday/data</a>).</p>
 <ul>
-<li><a href="https://github.com/masuday/data/blob/master/tutorial/simdata.txt"><code>simdata.txt</code></a> : data file</li>
-<li><a href="https://github.com/masuday/data/blob/master/tutorial/simped.txt"><code>simped.txt</code></a> : pedigree file</li>
+<li><a
+href="https://github.com/masuday/data/blob/master/tutorial/simdata.txt"><code>simdata.txt</code></a>
+: data file</li>
+<li><a
+href="https://github.com/masuday/data/blob/master/tutorial/simped.txt"><code>simped.txt</code></a>
+: pedigree file</li>
 </ul>
-<p>The pedigree file contains 3 columns: animal, sire, and dam. The data file has 12 columns as described below.</p>
+<p>The pedigree file contains three columns: animal, sire, and dam. The
+data file has 12 columns as described below.</p>
 <table>
 <thead>
 <tr class="header">
@@ -162,11 +224,26 @@ Back to <a href="./index.html">index.html</a>.
 </table>
 <h2 id="single-trait-analysis">Single-trait analysis</h2>
 <h3 id="model">Model</h3>
-<p>We here consider the following animal model: <span class="math display">\[
+<p>We here consider the following animal model: <span
+class="math display">\[
 y_{ijkl} = F_{i} + S_{j} +Y_{k} + u_{l} + e_{ijkl}
-\]</span> where <span class="math inline">\(y_{ijkl}\)</span> is an observation, <span class="math inline">\(F_i\)</span> is the fixed farm effect, <span class="math inline">\(S_j\)</span> is the fixed sex effect, <span class="math inline">\(Y_k\)</span> is the fixed year effect, <span class="math inline">\(u_l\)</span> is the additive genetic effect, and <span class="math inline">\(e_{ijkl}\)</span> is the random residual effect. The purpose of this analysis is to estimate the additive genetic variance (<span class="math inline">\(\sigma_u^2\)</span>) and the residual variance (<span class="math inline">\(\sigma_e^2\)</span>).</p>
+\]</span> where <span class="math inline">\(y_{ijkl}\)</span> is an
+observation, <span class="math inline">\(F_i\)</span> is the fixed farm
+effect, <span class="math inline">\(S_j\)</span> is the fixed sex
+effect, <span class="math inline">\(Y_k\)</span> is the fixed year
+effect, <span class="math inline">\(u_l\)</span> is the additive genetic
+effect, and <span class="math inline">\(e_{ijkl}\)</span> is the random
+residual effect. The purpose of this analysis is to estimate the
+additive genetic variance (<span
+class="math inline">\(\sigma_u^2\)</span>) and the residual variance
+(<span class="math inline">\(\sigma_e^2\)</span>).</p>
 <h3 id="parameter-file">Parameter file</h3>
-<p>Let us start with a single-trait analysis for phenotype 1 (column 9). The model contains farm, sex, and year as fixed cross-classified effects and the additive genetic effect as a random effect. Place the following parameter file to a directory with the data and pedigree files. Although this parameter file is for variance component estimation, it looks like the same as used by BLUPF90.</p>
+<p>Let us start with a single-trait analysis for phenotype 1 (column 9).
+The model contains farm, sex, and year as fixed cross-classified effects
+and the additive genetic effect as a random effect. Place the following
+parameter file to a directory with the data and pedigree files. Although
+this parameter file is for variance component estimation, it looks like
+the same as those used used by BLUPF90.</p>
 <pre data-language="blupf90" data-caption="aireml1.txt"><code>DATAFILE
 simdata.txt
 NUMBER_OF_TRAITS
@@ -192,9 +269,18 @@ FILE
 simped.txt
 (CO)VARIANCES
 100</code></pre>
-<p>The variance components in the parameter file will be used as the initial values (<span class="math inline">\(\sigma_e^2 = 100\)</span> and <span class="math inline">\(\sigma_u^2 = 100\)</span>) in AI REML.</p>
+<p>The variance components in the parameter file will be used as the
+initial values (<span class="math inline">\(\sigma_e^2 = 100\)</span>
+and <span class="math inline">\(\sigma_u^2 = 100\)</span>) in AI
+REML.</p>
 <h3 id="intermediate-estimates">Intermediate estimates</h3>
-<p>Running AIREMLF90 with the above parameter file, the program reports the intermediate estimates in the current round. AI REML is an iterative method — the variance estimates will change in each round and the updated values are expected to approach the final estimates. After some rounds, when the change is very small, we can consider the values converge on the estimates. We show the messages from the first round.</p>
+<p>Running AIREMLF90 with the above parameter file, the program reports
+the intermediate estimates in the current round. AI REML is an iterative
+method — the variance estimates will change in each round and the
+updated values are expected to approach the final estimates. After some
+rounds, when the change is very small, we can consider the values
+converge on the estimates. We show the messages from the first
+round.</p>
 <pre data-language="output"><code>-2 logL =   34141.8991194978       : AIC =   34145.8991194978
  In round            1 convergence = 0.240696612717812
  delta convergence =  40.9948020571449
@@ -204,21 +290,47 @@ new G
    67.087</code></pre>
 <p>Some information is available.</p>
 <ul>
-<li><code>-2logL</code> = negative twice of the restricted likelihood with the current variance components (along with BLUE and BLUP).</li>
-<li><code>AIC</code> = <span class="math inline">\(-2\log L + 2p\)</span> where <span class="math inline">\(p\)</span> is the number of unique variance components</li>
-<li><code>convergence</code> = the current convergence indicator (see below)</li>
+<li><code>-2logL</code> = negative twice of the restricted likelihood
+with the current variance components (along with BLUE and BLUP).</li>
+<li><code>AIC</code> = <span class="math inline">\(-2\log L +
+2p\)</span> where <span class="math inline">\(p\)</span> is the number
+of unique variance components</li>
+<li><code>convergence</code> = the current convergence indicator (see
+below)</li>
 <li><code>delta convergence</code> = another convergence indicator</li>
-<li><code>new R</code> = updated residual variance (<span class="math inline">\(\sigma_e^2\)</span>)</li>
-<li><code>new G</code> = updated genetic variance (<span class="math inline">\(\sigma_u^2\)</span>)</li>
+<li><code>new R</code> = updated residual variance (<span
+class="math inline">\(\sigma_e^2\)</span>)</li>
+<li><code>new G</code> = updated genetic variance (<span
+class="math inline">\(\sigma_u^2\)</span>)</li>
 </ul>
-<p>In each round, the program computes two convergence indicators. One convergence indicator (<span class="math inline">\(C\)</span>) is calculated as <span class="math display">\[
+<p>In each round, the program computes two convergence indicators. One
+convergence indicator (<span class="math inline">\(C\)</span>) is
+calculated as <span class="math display">\[
 C=\frac{\sum_{i}(\theta_{i}-\theta^{*}_{i})^2}{\sum_{i}\theta_{i}^2}
-\]</span> where <span class="math inline">\(\theta_i\)</span> is the current estimate of <span class="math inline">\(i\)</span>-th variance component and <span class="math inline">\(\theta^{*}_{i}\)</span> is the previous estimate of <span class="math inline">\(i\)</span>-th variance component. This criterion is also used in REMLF90. The other indicator, called the delta convergence (<span class="math inline">\(C_{\Delta}\)</span>), is calculated as <span class="math display">\[
+\]</span> where <span class="math inline">\(\theta_i\)</span> is the
+current estimate of <span class="math inline">\(i\)</span>-th variance
+component and <span class="math inline">\(\theta^{*}_{i}\)</span> is the
+previous estimate of <span class="math inline">\(i\)</span>-th variance
+component. This criterion is also used in REMLF90. The other indicator,
+called the delta convergence (<span
+class="math inline">\(C_{\Delta}\)</span>), is calculated as <span
+class="math display">\[
 C_{\Delta}=\frac{\sum_{i}|\theta_{i}-\theta^{*}_{i}|}{n}
-\]</span> where <span class="math inline">\(n\)</span> is the number of unique (co)variance components. This indicator represents the average absolute change across the estimates.</p>
-<p>The iteration stops if <span class="math inline">\(C&lt;\varepsilon\)</span> or <span class="math inline">\(C_{\Delta}&lt;\sqrt{\varepsilon}\)</span> where <span class="math inline">\(\varepsilon\)</span> is the convergence criterion and its default is <span class="math inline">\(\varepsilon=10^{-12}\)</span> (<code>1.0E-12</code>). When one indicator approaches the criterion, the other one usually approaches the criterion as well.</p>
+\]</span> where <span class="math inline">\(n\)</span> is the number of
+unique (co)variance components. This indicator represents the average
+absolute change across the estimates.</p>
+<p>The iteration stops if <span
+class="math inline">\(C&lt;\varepsilon\)</span> or <span
+class="math inline">\(C_{\Delta}&lt;\sqrt{\varepsilon}\)</span> where
+<span class="math inline">\(\varepsilon\)</span> is the convergence
+criterion and its default is <span
+class="math inline">\(\varepsilon=10^{-12}\)</span>
+(<code>1.0E-12</code>). When one indicator approaches the criterion, the
+other one usually approaches the criterion as well.</p>
 <h3 id="final-estimates">Final estimates</h3>
-<p>If either of convergence indicators meets the criterion, the iteration stops and the final estimates will be shown on the screen. For the current data and initial values, we need 8 rounds to converge.</p>
+<p>If either of convergence indicators meets the criterion, the
+iteration stops and the final estimates will be shown on the screen. For
+the current data and initial values, we need 8 rounds to converge.</p>
 <pre data-language="output"><code>-2 logL =   33423.4510659485         : AIC =  33427.4510659485
  In round            8 convergence = 3.476428650201818E-015
  delta convergence = 1.835758207312910E-006
@@ -243,55 +355,172 @@ SE for G
   3.6703
 SE for R
   2.5593</code></pre>
-<p>The program ends with <code>Final Estimates</code> showing the variance estimates at convergence. The same information will be saved in the file <code>airemlf90.log</code>. The final estimates are <span class="math inline">\(\hat{\sigma}_u^2 = 38.538\)</span> and <span class="math inline">\(\hat{\sigma}_e^2 = 62.691\)</span> so that the heritability estimates is <span class="math inline">\(\hat{h^2} = 0.3807\)</span>. The program doesn’t show the heritability by default, and the user should calculate it manually.</p>
-<p>The program saves the solutions of mixed model equations with the recent variance estimates in file “solutions”. Note that the solutions don’t come from the last variance estimates but one round before the convergence. In this example, the solutions are from the variance estimates in round 7. When the algorithm works well and converges correctly, the last variance estimates are almost the same as the previous estimates, so the difference between the two solutions is negligible. If the convergence trajectory fluctuated, two solutions could be distant. In such a case, the variance estimates themselves are unreliable. At the end of this section, we will consider convergence problems.</p>
+<p>The program ends with <code>Final Estimates</code> showing the
+variance estimates at convergence. The same information will be saved in
+the file <code>airemlf90.log</code>. The final estimates are <span
+class="math inline">\(\hat{\sigma}_u^2 = 38.538\)</span> and <span
+class="math inline">\(\hat{\sigma}_e^2 = 62.691\)</span> so that the
+heritability estimates is <span class="math inline">\(\hat{h^2} =
+0.3807\)</span>. The program does not show the heritability by default,
+and the user should calculate it manually.</p>
+<p>The program saves the solutions of mixed model equations with the
+recent variance estimates in file “solutions”. Note that the solutions
+do not come from the last variance estimates but one round before the
+convergence. In this example, the solutions are from the variance
+estimates in round 7. When the algorithm works well and converges
+correctly, the last variance estimates are almost the same as those used
+the previous estimates, so the difference between the two solutions is
+negligible. If the convergence trajectory fluctuated, two solutions
+could be distant. In such a case, the variance estimates themselves are
+unreliable. At the end of this section, we will consider convergence
+problems.</p>
 <h3 id="approximated-standard-error">Approximated standard error</h3>
-<p>The approximated standard error (sampling variance) for a variance estimate is available from the inverse of the AI matrix. Suppose a parameter vector is <span class="math inline">\(\theta\)</span> and the AI matrix is <span class="math inline">\(\mathcal{I}(\theta)\)</span>, the sampling variance of <span class="math inline">\(\hat{\theta}\)</span> is <span class="math display">\[
+<p>The approximated standard error (sampling variance) for a variance
+estimate is available from the inverse of the AI matrix. Suppose a
+parameter vector is <span class="math inline">\(\theta\)</span> and the
+AI matrix is <span class="math inline">\(\mathcal{I}(\theta)\)</span>,
+the sampling variance of <span
+class="math inline">\(\hat{\theta}\)</span> is <span
+class="math display">\[
 \mathrm{var}(\hat{\theta}) = \left[\mathcal{I}(\theta)\right]^{-1}
-\]</span> where <span class="math inline">\(\left[\mathcal{I}(\theta)\right]^{-1}\)</span> is the inverse of the AI matrix. In this example, <span class="math inline">\(\theta=\left[\begin{array}{ll}\sigma_u^2&amp;\sigma_e^2\end{array}\right]&#39;\)</span>. The square root of the diagonal of <span class="math inline">\(\left[\mathcal{I}(\theta)\right]^{-1}\)</span> are shown as the <code>SE for G</code> (<span class="math inline">\(\sqrt{13.471}\)</span>) and <code>SE for R</code> (<span class="math inline">\(\sqrt{6.5499}\)</span>) in the last lines of output.</p>
-<p>Unfortunately, the program doesn’t calculate the standard error of the heritability. You can still calculate the approximated standard error of a function of variance components (e.g. heritability) with the delta method by hand. See the documentation on the official wiki (<a href="http://nce.ads.uga.edu/html/projects/AI_SE_revised.pdf" class="uri">http://nce.ads.uga.edu/html/projects/AI_SE_revised.pdf</a>) for details. Here we just show a way of the calculation of the standard error for heritability estimates. The heritability estimate is 0.3807. Using the approximation, the standard error is <span class="math display">\[
+\]</span> where <span
+class="math inline">\(\left[\mathcal{I}(\theta)\right]^{-1}\)</span> is
+the inverse of the AI matrix. In this example, <span
+class="math inline">\(\theta=\left[\begin{array}{ll}\sigma_u^2&amp;\sigma_e^2\end{array}\right]&#39;\)</span>.
+The square root of the diagonal of <span
+class="math inline">\(\left[\mathcal{I}(\theta)\right]^{-1}\)</span> are
+shown as the <code>SE for G</code> (<span
+class="math inline">\(\sqrt{13.471}\)</span>) and <code>SE for R</code>
+(<span class="math inline">\(\sqrt{6.5499}\)</span>) in the last lines
+of output.</p>
+<p>Unfortunately, the program does not calculate the standard error of
+the heritability. You can still calculate the approximated standard
+error of a function of variance components (for example heritability)
+with the delta method by hand. See the documentation on the official
+wiki (<a href="http://nce.ads.uga.edu/html/projects/AI_SE_revised.pdf"
+class="uri">http://nce.ads.uga.edu/html/projects/AI_SE_revised.pdf</a>)
+for details. Here we just show a way of the calculation of the standard
+error for heritability estimates. The heritability estimate is 0.3807.
+Using the approximation, the standard error is <span
+class="math display">\[
 \begin{aligned}
-\mathrm{SE}\left(h^2\right)&amp;=\left(\frac{h^2}{\sigma_u^2}\right)\left[ (1-h^2)^2\mathrm{var}(\hat{\sigma}_u^2)-2(1-h^2)h^2\mathrm{cov}(\hat{\sigma}_u^2,\hat{\sigma}_e^2)+(h^2)^2\mathrm{var}(\hat{\sigma}_e^2) \right]\\
-&amp;=\left(\frac{0.3807}{38.54}\right)\left[ (1-0.3807)^2\times 13.471-2(1-0.3807)\times 0.3807\times (-6.755)+(0.3807)^2\times 6.550 \right]\\
+\mathrm{SE}\left(h^2\right)&amp;=\left(\frac{h^2}{\sigma_u^2}\right)\left[
+(1-h^2)^2\mathrm{var}(\hat{\sigma}_u^2)-2(1-h^2)h^2\mathrm{cov}(\hat{\sigma}_u^2,\hat{\sigma}_e^2)+(h^2)^2\mathrm{var}(\hat{\sigma}_e^2)
+\right]\\
+&amp;=\left(\frac{0.3807}{38.54}\right)\left[ (1-0.3807)^2\times
+13.471-2(1-0.3807)\times 0.3807\times (-6.755)+(0.3807)^2\times 6.550
+\right]\\
 &amp;=0.007
 \end{aligned}
 \]</span></p>
-<p>Another way to evaluate the S.E. for the heritability estimate was the Monte-Carlo method suggested by Meyer and Houle (2013). You can find a do-it-yourself description of the method at (<a href="http://artadia.blogspot.fr/2016/05/standard-error-of-variance-components.html" class="uri">http://artadia.blogspot.fr/2016/05/standard-error-of-variance-components.html</a>). AIREMLF90 can conduct this method with an option. You can add the following line to the bottom of the parameter file and run AIREMLF90.</p>
+<p>Another way to evaluate the S.E. for the heritability estimate was
+the Monte-Carlo method suggested by Meyer and Houle (2013). You can find
+a do-it-yourself description of the method at (<a
+href="http://artadia.blogspot.fr/2016/05/standard-error-of-variance-components.html"
+class="uri">http://artadia.blogspot.fr/2016/05/standard-error-of-variance-components.html</a>).
+AIREMLF90 can conduct this method with an option. You can add the
+following line to the bottom of the parameter file and run
+AIREMLF90.</p>
 <pre data-language="blupf90"><code>OPTION se_covar_function h2 G_4_4_1_1/(G_4_4_1_1+R_1_1)</code></pre>
-<p>This option has 2 arguments: label and formula. The label can contain arbitrary characters. The formula describes an objective function for which the standard error should be calculated (<span class="math inline">\(\sigma_u^2/(\sigma_u^2 + \sigma_e^2\)</span> ) in this case). The formula is described using special labels for variance components. For an genetic covariance component, use <code>G_effect1_effect2_trait1_trait2</code>; and for a residual covariance, use <code>R_trait1_trait2</code>. In this single-trait case, the genetic variance <span class="math inline">\(\sigma_u^2\)</span> is defined as the effect 4 in the parameter file so we refer <span class="math inline">\(\sigma_u^2\)</span> as <code>G_4_4_1_1</code>. Similarly, we refer <span class="math inline">\(\sigma_e^2\)</span> as <code>R_1_1</code>. Any spaces are not allowed in the formula. See the manual for details on this option.</p>
-<p>After the main iterations, the program calculates an approximated standard error using a Monte-Carlo technique of Meyer and Houle. In this case, you can see the following output on the screen.</p>
+<p>This option has 2 arguments: label and formula. The label can contain
+arbitrary characters. The formula describes an objective function for
+which the standard error should be calculated (<span
+class="math inline">\(\sigma_u^2/(\sigma_u^2 + \sigma_e^2\)</span> ) in
+this case). The formula is described using special labels for variance
+components. For an genetic covariance component, use
+<code>G_effect1_effect2_trait1_trait2</code>; and for a residual
+covariance, use <code>R_trait1_trait2</code>. In this single-trait case,
+the genetic variance <span class="math inline">\(\sigma_u^2\)</span> is
+defined as the effect 4 in the parameter file so we refer <span
+class="math inline">\(\sigma_u^2\)</span> as <code>G_4_4_1_1</code>.
+Similarly, we refer <span class="math inline">\(\sigma_e^2\)</span> as
+<code>R_1_1</code>. Any spaces are not allowed in the formula. See the
+manual for details on this option.</p>
+<p>After the main iterations, the program calculates an approximated
+standard error using a Monte-Carlo technique of Meyer and Houle. In this
+case, you can see the following output on the screen.</p>
 <pre data-language="output"><code>h2  - Function : g_4_4_1_1/(g_4_4_1_1+r_1_1)
   Mean :  0.38070
   Sample Mean :   0.38014
   Sample SD :   0.30140E-01
  elapsed time    1.098833</code></pre>
-<p>In the output, <code>Sample Mean</code> should be almost identical to the estimate. <code>Sample SD</code> is seen as an approximated standard error, which is 0.03 (<code>0.30140E-01</code> is <span class="math inline">\(0.30140 \times 10^{-1}\)</span> i.e. 0.03014).</p>
-<p>Don’t worry if you have forgotten to add the option to the parameter file. You can prepare a parameter file with the option <code>se_covar_function</code> and the variance components at convergence. Running AIREMLF90 again, and the program will stop within 1 or 2 rounds and it will calculate the approximated standard error of the parameter.</p>
+<p>In the output, <code>Sample Mean</code> should be almost identical to
+the estimate. <code>Sample SD</code> is seen as an approximated standard
+error, which is 0.03 (<code>0.30140E-01</code> is <span
+class="math inline">\(0.30140 \times 10^{-1}\)</span> that is
+0.03014).</p>
+<p>Don’t worry if you have forgotten to add the option to the parameter
+file. You can prepare a parameter file with the option
+<code>se_covar_function</code> and the variance components at
+convergence. Running AIREMLF90 again, and the program will stop within 1
+or 2 rounds and it will calculate the approximated standard error of the
+parameter.</p>
 <h2 id="convergence-problems">Convergence problems</h2>
-<p>The AI algorithm doesn’t guarantee the convergence. Sometimes you couldn’t meet the convergence in 2 ways:</p>
+<p>The AI algorithm does not guarantee the convergence. Sometimes you
+couldn’t meet the convergence in 2 ways:</p>
 <ul>
-<li>Divergence. The estimates suddenly jump to nonsense values and the program stops.</li>
-<li>Slow. The estimates hardly change and the program takes many rounds (several hundred or more).</li>
+<li>Divergence. The estimates suddenly jump to nonsense values and the
+program stops.</li>
+<li>Slow. The estimates hardly change and the program takes many rounds
+(several hundred or more).</li>
 </ul>
 <p>The problems come from several reasons.</p>
 <ol type="1">
 <li>Mistakes in the parameter file, data, and/or pedigree.</li>
 <li>Wrong initial values.</li>
-<li>A too complicated model with a limited amount of observations and/or pedigree.</li>
+<li>A too complicated model with a limited amount of observations and/or
+pedigree.</li>
 <li>Too many variance components to be estimated.</li>
 </ol>
-<p>If your files are correct and the initial values don’t solve the issues, change your model to be simplified.</p>
-<p>AIREMLF90 tries to correct nonsense estimates using a technique described by Jensen at al. (1996). The method blends the AI matrix from the regular algorithm (<span class="math inline">\(\mathcal{I}_{\mathrm{AI}}\)</span>) with the AI matrix from the EM algorithm (<span class="math inline">\(\mathcal{I}_{\mathrm{EM}}\)</span>) i.e. <span class="math inline">\(\mathcal{I}(\theta)= (1-w)\mathcal{I}_{\mathrm{AI}} + w\mathcal{I}_{\mathrm{EM}}\)</span> with a weight <span class="math inline">\(w\)</span>. If <span class="math inline">\(w = 1\)</span>, the algorithm is equivalent to the regular EM algorithm, which always provides estimates within their parameter space. If an estimate is not positive definite (i.e. nonsense value), AIREMLF90 sets a small <span class="math inline">\(w\)</span>, blends two AI matrices, and recalculates the estimates with the modified AI matrix. The program repeats this blending increasing <span class="math inline">\(w\)</span> until the estimates make sense. AIREMLF90 gives up this process after 5 trials (in the end, <span class="math inline">\(w\)</span> is 1 or similar value) and prints a message.</p>
+<p>If your files are correct and the initial values do not solve the
+issues, change your model to be simplified.</p>
+<p>AIREMLF90 tries to correct nonsense estimates using a technique
+described by Jensen at al. (1996). The method blends the AI matrix from
+the regular algorithm (<span
+class="math inline">\(\mathcal{I}_{\mathrm{AI}}\)</span>) with the AI
+matrix from the EM algorithm (<span
+class="math inline">\(\mathcal{I}_{\mathrm{EM}}\)</span>) that is <span
+class="math inline">\(\mathcal{I}(\theta)=
+(1-w)\mathcal{I}_{\mathrm{AI}} + w\mathcal{I}_{\mathrm{EM}}\)</span>
+with a weight <span class="math inline">\(w\)</span>. If <span
+class="math inline">\(w = 1\)</span>, the algorithm is equivalent to the
+regular EM algorithm, which always provides estimates within their
+parameter space. If an estimate is not positive definite (that is
+nonsense value), AIREMLF90 sets a small <span
+class="math inline">\(w\)</span>, blends two AI matrices, and
+recalculates the estimates with the modified AI matrix. The program
+repeats this blending increasing <span class="math inline">\(w\)</span>
+until the estimates make sense. AIREMLF90 gives up this process after 5
+trials (in the end, <span class="math inline">\(w\)</span> is 1 or
+similar value) and prints a message.</p>
 <pre data-language="output"><code>*** Warning *** corrected Covariance Matrix 5 times</code></pre>
 <p>In such a case, the estimates may be nonsense.</p>
-<p>The blending is a band-aid method and successful only when the AI matrix is accidentally singular. If the blending happens every round, you can still obtain estimates but you need much more rounds to converge.</p>
+<p>The blending is a band-aid method and successful only when the AI
+matrix is accidentally singular. If the blending happens every round,
+you can still obtain estimates but you need much more rounds to
+converge.</p>
 <h2 id="em-reml-algorithm">EM-REML algorithm</h2>
-<p>The EM (expectation-maximization) REML algorithm is much more stable than the AI algorithm and very robust to poor initial estimates. Also, it can provide a good starting point for the AI algorithm. However, it is <em>much</em> slower, that is, it needs more rounds to converge. For some very complex problems, only the EM REML may converge.</p>
+<p>The EM (expectation-maximization) REML algorithm is much more stable
+than the AI algorithm and very robust to poor initial estimates. Also,
+it can provide a good starting point for the AI algorithm. However, it
+is <em>much</em> slower, that is, it needs more rounds to converge. For
+some very complex problems, only the EM REML may converge.</p>
 <p>You can run the EM algorithm using AIREMLF90 by using the option:</p>
 <pre data-language="blupf90"><code>OPTION EM-REML 10</code></pre>
-<p>where 10 (or any integer value) is the number of iterations with EM REML prior to switching to AI REML. If you want a “pure” EM REML, then set the number to a very large value like 10000.</p>
-<h2 id="constraints-on-variance-components">Constraints on variance components</h2>
-<p>The user may hope to fix some variance components fixed (constant) through the iterations. Although AIREMLF90 doesn’t support such a general constraint on variance components, the program supports to force some variance components to be 0. This is useful when such variance components will never be included in the model or when some covariance components should be 0 in a complicated model. When the initial variance component is 0, this component never changes throughout the iterations. For example, the following parameter file forces the direct and maternal genetic covariance fix to be 0.</p>
+<p>where 10 (or any integer value) is the number of iterations with EM
+REML prior to switching to AI REML. If you want a “pure” EM REML, then
+set the number to a very large value like 10000.</p>
+<h2 id="constraints-on-variance-components">Constraints on variance
+components</h2>
+<p>The user may hope to fix some variance components fixed (constant)
+through the iterations. Although AIREMLF90 does not support such a
+general constraint on variance components, the program supports to force
+some variance components to be 0. This is useful when such variance
+components will never be included in the model or when some covariance
+components should be 0 in a complicated model. When the initial variance
+component is 0, this component never changes throughout the iterations.
+For example, the following parameter file forces the direct and maternal
+genetic covariance fix to be 0.</p>
 <pre data-language="blupf90"><code>DATAFILE
 renf90.dat
 NUMBER_OF_TRAITS
@@ -318,19 +547,37 @@ renadd01.ped
 (CO)VARIANCES  # fixed to be zero for covariance
 150  0
  0  90</code></pre>
-<p>When the initial values have 0, AIREMLF90 excludes such variance components from the estimation process. Precisely, AIREMLF90 doesn’t put such parameters to the AI matrix, and therefore, the excluded parameters will not be calculated in any way. One hand, you may expect a faster computation and a stable convergence because fewer parameters will be estimated. On the other hand, if the constraint variance component is not really zero, the other estimates may be biased.</p>
-<p>Note that, when the estimate is out of the parameter space and AIREMLF90 fails to fix it by the AI-EM combination, some variances would accidentally become 0. Once it happens, those variances will not be back to non-zero. It is not because of the constraint mentioned above. This is simply bacause the information needed in variance estimation will be lost if the variance is 0.</p>
+<p>When the initial values have 0, AIREMLF90 excludes such variance
+components from the estimation process. Precisely, AIREMLF90 does not
+put such parameters to the AI matrix, and therefore, the excluded
+parameters will not be calculated in any way. One hand, you may expect a
+faster computation and a stable convergence because fewer parameters
+will be estimated. On the other hand, if the constraint variance
+component is not really zero, the other estimates may be biased.</p>
+<p>Note that, when the estimate is out of the parameter space and
+AIREMLF90 fails to fix it by the AI-EM combination, some variances would
+accidentally become 0. Once it happens, those variances will not be back
+to non-zero. It is not because of the constraint mentioned above. This
+is simply bacause the information needed in variance estimation will be
+lost if the variance is 0.</p>
 <h2 id="summary">Summary</h2>
 <ul>
 <li>AIREMLF90 calculates REML estimates of variance components.</li>
-<li>AIREMLF90 accepts the same parameter file as BLUPF90 and sets the variance components as initial values.</li>
-<li>The final estimates are shown on screen and saved in the file <code>airemlf90.log</code>.</li>
-<li>The solutions are also calculated using covariance estimates in one round before the convergence.</li>
-<li>There are 2 methods to approximate the standard error of a genetic parameter.</li>
-<li>AIREMLF90 doesn’t guarantee the convergence even if it tries to make the estimates be in the parameter space.</li>
+<li>AIREMLF90 accepts the same parameter file as BLUPF90 and sets the
+variance components as initial values.</li>
+<li>The final estimates are shown on screen and saved in the file
+<code>airemlf90.log</code>.</li>
+<li>The solutions are also calculated using covariance estimates in one
+round before the convergence.</li>
+<li>There are 2 methods to approximate the standard error of a genetic
+parameter.</li>
+<li>AIREMLF90 does not guarantee the convergence even if it tries to
+make the estimates be in the parameter space.</li>
 <li>If diverged, use a simpler model.</li>
-<li>For complex problems, you can use the EM algorithm with AIREMLF90.</li>
-<li>If the intial variance component is 0, it will be fixed to be 0 throughout the iterations.</li>
+<li>For complex problems, you can use the EM algorithm with
+AIREMLF90.</li>
+<li>If the intial variance component is 0, it will be fixed to be 0
+throughout the iterations.</li>
 </ul>
 <p>
 Back to <a href="./index.html">index.html</a>.

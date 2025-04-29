@@ -41,13 +41,16 @@
 <header>
 <h1 class="title">Download and Installation</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">September 2019</p>
+<p class="date">April 2025</p>
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#running-a-program-in-windows">Running a program in Windows</a><ul>
-<li><a href="#a-basic-procedure">A basic procedure</a></li>
-<li><a href="#quick-run">Quick run</a></li>
+<li><a href="#running-a-program-in-windows"
+id="toc-running-a-program-in-windows">Running a program in Windows</a>
+<ul>
+<li><a href="#a-basic-procedure" id="toc-a-basic-procedure">A basic
+procedure</a></li>
+<li><a href="#quick-run" id="toc-quick-run">Quick run</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -55,58 +58,122 @@
 Back to <a href="./index.html">index.html</a>.
 </p>
 <h1 id="running-a-program-in-windows">Running a program in Windows</h1>
-<p>BLUPF90 programs don’t show a graphical window, and the software looks like a “DOS”-style program. You should prepare a parameter file to describe the name of data and pedigree files, the model and variance components to be used in the analysis. You will type in the name of the parameter file on the screen. If you have some experience with such software, you can skip this section.</p>
-<p>We recommend that readers use the standard (traditional) way to run the program. If you aren’t really interested in a command line interface in Windows, just check the last subsection. We provide a quick way to use the program.</p>
+<p>BLUPF90 programs do not provide a graphical window and instead run in
+a “DOS”-style interface. You should prepare a parameter file that
+describes the names of data and pedigree files, the model, and the
+variance components to be used in the analysis. You will be prompted to
+type the name of the parameter file. If you are already experienced with
+this type of software, you may skip this section.</p>
+<p>We recommend using the standard (traditional) method for running the
+program. If you are not comfortable with the Windows command line
+interface, refer to the last subsection for a quicker method.</p>
 <h2 id="a-basic-procedure">A basic procedure</h2>
-<h3 id="if-you-have-no-experience-to-run-a-command-line-program">If you have no experience to run a command line program…</h3>
-<p>The running a command-line program is actually a FAQ. The formal way is to use the Command Prompt or simply cmd. This is a simple console to accept commands typed with a keyboard. You can see several tutorials on this topic.</p>
+<h3 id="if-you-have-no-experience-running-a-command-line-program">If you
+have no experience running a command line program…</h3>
+<p>Running a command-line program is actually a frequently asked
+question. The standard method is to use the Command Prompt, or simply
+<code>cmd</code>, which is a console that accepts commands typed with a
+keyboard. You can also use PowerShell instead of Command Prompt; the
+procedure is the same.</p>
+<p>There are many tutorials available on this topic:</p>
 <ul>
-<li>Command Prompt - How to Use Basic Commands (<a href="http://www.digitalcitizen.life/command-prompt-how-use-basic-commands" class="uri">http://www.digitalcitizen.life/command-prompt-how-use-basic-commands</a>)</li>
-<li>How to use the Window command line (DOS) (<a href="http://www.computerhope.com/issues/chusedos.htm" class="uri">http://www.computerhope.com/issues/chusedos.htm</a>)</li>
-<li>How do I run a file from MS-DOS? (<a href="http://www.computerhope.com/issues/ch000598.htm" class="uri">http://www.computerhope.com/issues/ch000598.htm</a>)</li>
-<li>Beginners Guides: Windows Command Prompt (<a href="http://www.pcstats.com/articleview.cfm?articleID=1723" class="uri">http://www.pcstats.com/articleview.cfm?articleID=1723</a>)</li>
-<li>How To Open Command Prompt (<a href="http://pcsupport.about.com/od/commandlinereference/f/open-command-prompt.htm" class="uri">http://pcsupport.about.com/od/commandlinereference/f/open-command-prompt.htm</a>)</li>
+<li>Command Prompt - How to Use Basic Commands<br />
+(<a
+href="http://www.digitalcitizen.life/command-prompt-how-use-basic-commands"
+class="uri">http://www.digitalcitizen.life/command-prompt-how-use-basic-commands</a>)</li>
+<li>How to use the Windows command line (DOS)<br />
+(<a href="http://www.computerhope.com/issues/chusedos.htm"
+class="uri">http://www.computerhope.com/issues/chusedos.htm</a>)</li>
+<li>How do I run a file from MS-DOS?<br />
+(<a href="http://www.computerhope.com/issues/ch000598.htm"
+class="uri">http://www.computerhope.com/issues/ch000598.htm</a>)</li>
+<li>Beginners Guide: Windows Command Prompt<br />
+(<a href="http://www.pcstats.com/articleview.cfm?articleID=1723"
+class="uri">http://www.pcstats.com/articleview.cfm?articleID=1723</a>)</li>
+<li>How to Open Command Prompt<br />
+(<a
+href="http://pcsupport.about.com/od/commandlinereference/f/open-command-prompt.htm"
+class="uri">http://pcsupport.about.com/od/commandlinereference/f/open-command-prompt.htm</a>)</li>
 </ul>
 <h3 id="how-to-run-the-program">How to run the program</h3>
-<p>A basic procedure to run the program is the following:</p>
+<p>A basic procedure to run the program is as follows:</p>
 <ol type="1">
-<li>Download the program and store it to a folder. You can add a folder to <code>PATH</code> (if you are unsure of <code>PATH</code>, just ignore this step).</li>
-<li>Save the needed files into a folder (If you are unsure of <code>PATH</code>, the downloaded program should be placed in the same folder).</li>
-<li>Open the Command Prompt window and change directory to the folder with the cd command.</li>
-<li>Type the name of a program (e.g. <code>blupf90</code> or <code>blupf90.exe</code>) to invoke the software.</li>
-<li>Type the name of the parameter file. Some programs would ask you to type in additional information.</li>
-<li>Wait for finishing the analysis.</li>
-<li>Collect the results.</li>
+<li>Download the program and save it in a folder.<br />
+(You may optionally add the folder to your system <code>PATH</code>. If
+you’re unsure what this is, you can skip this step.)</li>
+<li>Save the required files in the same folder.<br />
+</li>
+<li>Open the Command Prompt and use the <code>cd</code> command to
+change to the folder’s directory.<br />
+</li>
+<li>Type the name of the program (e.g., <code>blupf90</code> or
+<code>blupf90.exe</code>) to launch it.<br />
+</li>
+<li>When prompted, type the name of the parameter file. Some programs
+may ask for additional input.<br />
+</li>
+<li>Wait for the analysis to complete.<br />
+</li>
+<li>Check and collect the results.</li>
 </ol>
-<p>If you successfully run a program, it asks you the name of parameter file with a short message.</p>
+<p>If the program runs successfully, it will ask you for the name of the
+parameter file with the following prompt:</p>
 <pre data-language="output"><code> name of parameter file?</code></pre>
-<p>Here you type the name of parameter file with a keyboard. The Gibbs sampling programs will ask you additional questions. You can also type the answers there.</p>
+<p>Here, type the parameter file name using the keyboard. Gibbs sampling
+programs will ask for additional input, which you can type as
+prompted.</p>
 <h3 id="save-the-output">Save the output</h3>
-<p>If you want to save the output log (screen messages out of the program), please use the redirection.</p>
+<p>If you want to save the output log (screen messages from the
+program), use redirection:</p>
 <pre data-language="shell"><code>blupf90 &gt; out.txt</code></pre>
-<p>With this command, nothing shows, but it accepts key types. You can type the name of the parameter file, and it runs. The output is going to the file <code>out.txt</code>.</p>
+<p>This command will not display messages on the screen, but it will
+still accept input. You can type the parameter file name, and the
+program will run. The output will be saved in <code>out.txt</code>.</p>
 <h3 id="omit-the-typing">Omit the typing</h3>
-<p>If you don’t like to type-in, you can also use the redirection. You prepare a text file with the name of the parameter file:</p>
+<p>If you prefer not to type input manually, you can use redirection.
+Prepare a text file that contains the name of the parameter file:</p>
 <pre data-language="text" data-caption="in.txt"><code>parameter.txt</code></pre>
-<p>Let’s say this file is <code>in.txt</code> then you can invoke the program.</p>
+<p>Then run the program as follows:</p>
 <pre data-language="shell"><code>blupf90 &lt; in.txt &gt; out.txt</code></pre>
-<p>This technique is useful for Gibbs sampling programs that need several key-in at the beginning of the program. You can write several lines in in.txt instead directly typing-in.</p>
+<p>This technique is useful for Gibbs sampling programs that require
+several inputs. You can write multiple lines in <code>in.txt</code>
+instead of typing them interactively.</p>
 <h3 id="stop-the-program">Stop the program</h3>
-<p>If you stop the program immediately, hit 2 keys simultaneously: Ctrl and C. For easier operation, you can keep pushing Ctrl and hit C. The program immediately stops with some messages, and you can safely ignore them. In some cases with multi-threaded computations, the program will be still running after receiving the STOP signal. You can close the Command Prompt, and the program completely stops.</p>
+<p>To stop the program immediately, press <code>Ctrl + C</code>. You can
+hold the <code>Ctrl</code> key and press <code>C</code> once. The
+program will stop immediately, and you can safely ignore the termination
+messages. In some cases involving multi-threaded computation, the
+program may continue running even after the stop signal. In that case,
+close the Command Prompt window to terminate it completely.</p>
 <h2 id="quick-run">Quick run</h2>
-<p>You can run the program without Command Prompt.</p>
+<p>You can also run the program without using Command Prompt:</p>
 <ol type="1">
-<li>Save all required files in a folder.</li>
-<li>Download the program and store it to the same folder.</li>
-<li>Double click the program. A black window is popping up.</li>
-<li>Input the name of parameter file in the black window using the keyboard. If the program asks you more questions, type the answers.</li>
-<li>Wait for finishing the analysis. Don’t close the black window. When the analysis ends, the windows will automatically disappear.</li>
-<li>Check the results. The program saves the results as files in the same directory.</li>
+<li>Save all required files in a folder.<br />
+</li>
+<li>Download the program and place it in the same folder.<br />
+</li>
+<li>Double-click the program; a black window will appear.<br />
+</li>
+<li>Enter the parameter file name using the keyboard. If the program
+asks for additional input, type the answers.<br />
+</li>
+<li>Wait for the analysis to finish. Do not close the window manually.
+It will close automatically when the analysis is complete.<br />
+</li>
+<li>Check the output files, which will be saved in the same folder.</li>
 </ol>
-<p>If you want to save the screen (<code>output.log</code>), download the following file (<code>run.bat</code>) and save it in the folder. Then open this file with Notepad and rewrite the name of the program as you like and save it. Double click the run.bat. Although a black window appears and nothing will show in the window, you can type the name of the parameter file. The program implicitly runs and all the output is going to <code>out.txt</code>.</p>
-<p>Running the program double-clicking on it is less recommended than the Command Line because if there is any error the window will close automatically and the error may not be read by the user.</p>
+<p>To save the screen output (e.g., to <code>out.txt</code>), download
+the following batch file (<code>run.bat</code>) and place it in the same
+folder. Open the file with Notepad, edit the program name as needed, and
+save it. Then double-click <code>run.bat</code>. A black window will
+open, and although nothing will appear on screen, you can type the
+parameter file name. The program will run silently, and the output will
+be saved in <code>out.txt</code>.</p>
+<p>Running the program this way (by double-clicking) is not recommended
+because any error message will disappear when the window closes.</p>
 <pre data-language="text" data-caption="run.bat"><code>blupf90 &gt; out.txt</code></pre>
-<p>This procedure may not work in some cases. The reason will be due to the hidden-extension stuff. We don’t support this method at all.</p>
+<p>This method may not work in some cases due to hidden file extensions.
+We do not officially support this method.</p>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>

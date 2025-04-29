@@ -28,7 +28,8 @@
   <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
   <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
   <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="/usr/share/javascript/mathjax/MathJax.js"
+  type="text/javascript"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
   </script>
@@ -42,31 +43,49 @@
 <header>
 <h1 class="title">Variance component estimation</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">September 2019</p>
+<p class="date">April 2025</p>
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#advanced-features-in-gibbs-sampling-programs">Advanced features in Gibbs sampling programs</a><ul>
-<li><a href="#heterogeneous-residual-variances">Heterogeneous residual variances</a></li>
-<li><a href="#restart-the-sampling">Restart the sampling</a></li>
-<li><a href="#extraction-of-solutions-from-binary-final-solutions">Extraction of solutions from binary final solutions</a></li>
-<li><a href="#output-of-postgibbsf90">Output of POSTGIBBSF90</a></li>
+<li><a href="#advanced-features-in-gibbs-sampling-programs"
+id="toc-advanced-features-in-gibbs-sampling-programs">Advanced features
+in Gibbs sampling programs</a>
+<ul>
+<li><a href="#heterogeneous-residual-variances"
+id="toc-heterogeneous-residual-variances">Heterogeneous residual
+variances</a></li>
+<li><a href="#restart-the-sampling"
+id="toc-restart-the-sampling">Restart the sampling</a></li>
+<li><a href="#extraction-of-solutions-from-binary-final-solutions"
+id="toc-extraction-of-solutions-from-binary-final-solutions">Extraction
+of solutions from binary final solutions</a></li>
+<li><a href="#output-of-postgibbsf90"
+id="toc-output-of-postgibbsf90">Output of POSTGIBBSF90</a></li>
 </ul></li>
 </ul>
 </nav>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>
-<h1 id="advanced-features-in-gibbs-sampling-programs">Advanced features in Gibbs sampling programs</h1>
-<h2 id="heterogeneous-residual-variances">Heterogeneous residual variances</h2>
-<p>GIBBS3F90 supports heterogeneous residual variances defined by a class. Here we will demonstrate an analysis with the heterogeneity in residual variance.</p>
+<h1 id="advanced-features-in-gibbs-sampling-programs">Advanced features
+in Gibbs sampling programs</h1>
+<h2 id="heterogeneous-residual-variances">Heterogeneous residual
+variances</h2>
+<p>GIBBS3F90 supports heterogeneous residual variances defined by a
+class. Here we will demonstrate an analysis with the heterogeneity in
+residual variance.</p>
 <h3 id="files">Files</h3>
 <p>We use the same data and pedigree file as before.</p>
 <ul>
-<li><a href="https://github.com/Masuday/data/blob/master/tutorial/simdata2.txt"><code>simdata2.txt</code></a> : data file</li>
-<li><a href="https://github.com/Masuday/data/blob/master/tutorial/simped2.txt"><code>simped2.txt</code></a> : pedigree file</li>
+<li><a
+href="https://github.com/Masuday/data/blob/master/tutorial/simdata2.txt"><code>simdata2.txt</code></a>
+: data file</li>
+<li><a
+href="https://github.com/Masuday/data/blob/master/tutorial/simped2.txt"><code>simped2.txt</code></a>
+: pedigree file</li>
 </ul>
-<p>The pedigree file contains 3 columns: animal, sire, and dam. The data file has 12 columns as described below.</p>
+<p>The pedigree file contains three columns: animal, sire, and dam. The
+data file has 12 columns as described below.</p>
 <table>
 <thead>
 <tr class="header">
@@ -163,8 +182,10 @@ Back to <a href="./index.html">index.html</a>.
 </tr>
 </tbody>
 </table>
-<p>The 14th column contains the heterogeneous-residual-variance class (3 levels) which is used in this section.</p>
-<p>The parameter file has 1 option to define the heterogeneous residual class.</p>
+<p>The 14th column contains the heterogeneous-residual-variance class (3
+levels) which is used in this section.</p>
+<p>The parameter file has one option to define the heterogeneous
+residual class.</p>
 <pre data-language="blupf90" data-caption="gibbs2.txt"><code>DATAFILE
 simdata2.txt
 NUMBER_OF_TRAITS
@@ -193,10 +214,13 @@ simped2.txt
 OPTION hetres_int 14 3</code></pre>
 <p>The option has 2 arguments.</p>
 <ul>
-<li><code>OPTION hetres_int</code> = defines the heterogeneous residual class with 2 values: 1) the position of the class in the data file and 2) the maximum level in the class.</li>
+<li><code>OPTION hetres_int</code> = defines the heterogeneous residual
+class with two values: 1) the position of the class in the data file and
+2) the maximum level in the class.</li>
 </ul>
 <p>In this case, we specify that the 14th column has 3 levels.</p>
-<p>With 20,000 samples (saved each 10 samples) with 10,000 burn-in, the following results can be found.</p>
+<p>With 20,000 samples (saved each 10 samples) with 10,000 burn-in, the
+following results can be found.</p>
 <pre data-language="output"><code> ave G
    39.845
  SD G
@@ -213,22 +237,44 @@ OPTION hetres_int 14 3</code></pre>
   80.646
  SD R
    4.3320</code></pre>
-<p>There are 3 <code>ave_R</code> (and <code>SD_R</code>) blocks. The first one corresponds to the variance in heterogeneous level 1, the second line for level 2 and so on. Compare the above estimates to the results from AIREMLF90 shown in the previous section.</p>
+<p>There are 3 <code>ave_R</code> (and <code>SD_R</code>) blocks. The
+first one corresponds to the variance in heterogeneous level 1, the
+second line for level 2 and so on. Compare the above estimates to the
+results from AIREMLF90 shown in the previous section.</p>
 <h2 id="restart-the-sampling">Restart the sampling</h2>
-<p>After the sampling, you would find more samples are needed. The Gibbs sampling programs support to restart the sampling from the end point of the previous run. Any Gibbs samplers in recent BLUPF90 programs support this feature.</p>
-<p>When the Gibbs sampler finishes sampling, 4 files will be created. To continue the sampling, all the files are required.</p>
+<p>After the sampling, you would find more samples are needed. The Gibbs
+sampling programs support to restart the sampling from the end point of
+the previous run. Any Gibbs samplers in recent BLUPF90 programs support
+this feature.</p>
+<p>When the Gibbs sampler finishes sampling, 4 files will be created. To
+continue the sampling, all the files are required.</p>
 <ul>
-<li><code>binary_final_solutions</code> = Posterior means and SDs for location parameters</li>
-<li><code>last_solutions</code> = The last samples for location parameters</li>
+<li><code>binary_final_solutions</code> = Posterior means and SDs for
+location parameters</li>
+<li><code>last_solutions</code> = The last samples for location
+parameters</li>
 <li><code>fort.99</code> = Values needed for DIC</li>
 <li><code>gibbs_samples</code> = Sampled variance components</li>
 </ul>
-<p>If you want to restart the sampling, you have to add an option to the parameter file. It needs the number of samples drawn in the previous run. If you had 10000 samples, the option should be</p>
+<p>If you want to restart the sampling, you have to add an option to the
+parameter file. It needs the number of samples drawn in the previous
+run. If you had 10000 samples, the option should be</p>
 <pre data-language="blupf90"><code>OPTION cont 10000</code></pre>
-<p>where 10000 is the number of samples obtained previously. Run the Gibbs sampler with a parameter file with the above option, and the program restarts the sampling (from 10001 in the example).</p>
-<h2 id="extraction-of-solutions-from-binary-final-solutions">Extraction of solutions from binary final solutions</h2>
-<p>The file <code>binary_final_solutions</code> contains the posterior mean of a location parameter (i.e. a solution of “fixed” or “random” effect). This file is saved as a non-text format. The following Fortran program can extract the solutions and print them to a file <code>final_solutions.txt</code>. You can compile the program using a Fortran compiler (like GFortran) and run it in a directory where the binary final solutions are. The output format is equivalent to BLUPF90 with <code>OPTION sol_se</code>.</p>
-<pre data-language="Fortran" data-caption="\url{binsol_to_textsol.f90}"><code>program binsol_to_textsol
+<p>where 10000 is the number of samples obtained previously. Run the
+Gibbs sampler with a parameter file with the above option, and the
+program restarts the sampling (from 10001 in the example).</p>
+<h2 id="extraction-of-solutions-from-binary-final-solutions">Extraction
+of solutions from binary final solutions</h2>
+<p>The file <code>binary_final_solutions</code> contains the posterior
+mean of a location parameter (that is a solution of “fixed” or “random”
+effect). This file is saved as a non-text format. The following Fortran
+program can extract the solutions and print them to a file
+<code>final_solutions.txt</code>. You can compile the program using a
+Fortran compiler (like GFortran) and run it in a directory where the
+binary final solutions are. The output format is equivalent to BLUPF90
+with <code>OPTION sol_se</code>.</p>
+<pre data-language="Fortran"
+data-caption="\url{binsol_to_textsol.f90}"><code>program binsol_to_textsol
     implicit none
     integer :: io, t, e, l
     double precision :: v, sol, se
@@ -246,21 +292,33 @@ OPTION hetres_int 14 3</code></pre>
     close(20)
 end program binsol_to_textsol</code></pre>
 <h2 id="output-of-postgibbsf90">Output of POSTGIBBSF90</h2>
-<p>The POSTGIBBSF90 program shows many diagnoses for the Gibbs samples. Here we just show the basic ideas for the information.</p>
+<p>The POSTGIBBSF90 program shows many diagnoses for the Gibbs samples.
+Here we just show the basic ideas for the information.</p>
 <ul>
-<li><code>MCE</code> = Monte Carlo error, corresponding to the ‘’standard error’’ of the posterior mean of a parameter (<span class="math inline">\(\hat{\mu}-\mu\)</span>).</li>
+<li><code>MCE</code> = Monte Carlo error, corresponding to the
+‘’standard error’’ of the posterior mean of a parameter (<span
+class="math inline">\(\hat{\mu}-\mu\)</span>).</li>
 <li><code>Mean</code> = Posterior mean of a parameter.</li>
-<li><code>HPD</code> = High probability density within 95%, close idea to ‘’95% confidence interval’’ in frequentist approach.</li>
-<li><code>Effective sample size</code> = Number of samples after deducting auto-correlation among samples.</li>
+<li><code>HPD</code> = High probability density within 95%, close idea
+to ‘’95% confidence interval’’ in frequentist approach.</li>
+<li><code>Effective sample size</code> = Number of samples after
+deducting auto-correlation among samples.</li>
 <li><code>Median</code> = Posterior median of a parameter.</li>
-<li><code>Mode</code> = Posterior mode of a parameter; just an approximation.</li>
+<li><code>Mode</code> = Posterior mode of a parameter; just an
+approximation.</li>
 <li><code>Independent chain size</code></li>
 <li><code>PSD</code> = Posterior standard deviation of a parameter.</li>
-<li><code>Mean</code> = the same as above.</li>
-<li><code>PSD Interval (95%)</code> = Lower and upper bounds of Mean <span class="math inline">\(\pm\)</span> 1.96PSD.</li>
-<li>Geweke diagnostic = Convergence diagnosis; could be converged if this is <span class="math inline">\(&lt; 1.0\)</span> (according to the official manual, this is almost useless because this is <span class="math inline">\(&lt; 1.0\)</span> in almost all cases).</li>
-<li><code>Autocorrelations</code> = Lag-correlations with lag 1, 10 and 50; calculated for the saved samples.</li>
-<li><code>Independent # batches</code> = The effective number of blocks after deducting the auto-correlation among samples.</li>
+<li><code>Mean</code> = the same as those used above.</li>
+<li><code>PSD Interval (95%)</code> = Lower and upper bounds of Mean
+<span class="math inline">\(\pm\)</span> 1.96PSD.</li>
+<li>Geweke diagnostic = Convergence diagnosis; could be converged if
+this is <span class="math inline">\(&lt; 1.0\)</span> (according to the
+official manual, this is almost useless because this is <span
+class="math inline">\(&lt; 1.0\)</span> in almost all cases).</li>
+<li><code>Autocorrelations</code> = Lag-correlations with lag 1, 10 and
+50; calculated for the saved samples.</li>
+<li><code>Independent # batches</code> = The effective number of blocks
+after deducting the auto-correlation among samples.</li>
 </ul>
 <p>
 Back to <a href="./index.html">index.html</a>.

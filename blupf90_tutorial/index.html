@@ -41,22 +41,35 @@
 <header>
 <h1 class="title">Introduction to BLUPF90 suite programs</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">September 2019</p>
+<p class="date">April 2025</p>
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#revision-history">Revision History</a></li>
-<li><a href="#acknowledgment">Acknowledgment</a></li>
-<li><a href="#license">License</a></li>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#download-and-installation">Download and Installation</a></li>
-<li><a href="#quick-tour-of-blupf90">Quick tour of BLUPF90</a></li>
-<li><a href="#data-preparation-with-renumf90">Data preparation with RENUMF90</a></li>
-<li><a href="#variance-component-estimation">Variance component estimation</a></li>
-<li><a href="#numerical-examples-from-mrode-2014">Numerical examples from Mrode (2014)</a></li>
-<li><a href="#large-scale-genetic-evaluation">Large-scale genetic evaluation</a></li>
-<li><a href="#practical-genomic-analysis">Practical genomic analysis</a></li>
-<li><a href="#references">References</a></li>
+<li><a href="#revision-history" id="toc-revision-history">Revision
+History</a></li>
+<li><a href="#acknowledgment"
+id="toc-acknowledgment">Acknowledgment</a></li>
+<li><a href="#license" id="toc-license">License</a></li>
+<li><a href="#introduction" id="toc-introduction">Introduction</a></li>
+<li><a href="#download-and-installation"
+id="toc-download-and-installation">Download and Installation</a></li>
+<li><a href="#quick-tour-of-blupf90"
+id="toc-quick-tour-of-blupf90">Quick tour of BLUPF90</a></li>
+<li><a href="#data-preparation-with-renumf90"
+id="toc-data-preparation-with-renumf90">Data preparation with
+RENUMF90</a></li>
+<li><a href="#variance-component-estimation"
+id="toc-variance-component-estimation">Variance component
+estimation</a></li>
+<li><a href="#numerical-examples-from-mrode-2014"
+id="toc-numerical-examples-from-mrode-2014">Numerical examples from
+Mrode (2014)</a></li>
+<li><a href="#large-scale-genetic-evaluation"
+id="toc-large-scale-genetic-evaluation">Large-scale genetic
+evaluation</a></li>
+<li><a href="#practical-genomic-analysis"
+id="toc-practical-genomic-analysis">Practical genomic analysis</a></li>
+<li><a href="#references" id="toc-references">References</a></li>
 </ul>
 </nav>
 <p>
@@ -76,90 +89,146 @@ Back to <a href="./index.html">index.html</a>.
 </ul>
 <h2 id="introduction">Introduction</h2>
 <ul>
-<li><a href="./introduction_short.html">Short introduction to BLUPF90 programs</a></li>
-<li><a href="./introduction_difference.html">Differences with other software</a></li>
+<li><a href="./introduction_short.html">Short introduction to BLUPF90
+programs</a></li>
+<li><a href="./introduction_difference.html">Differences with other
+software</a></li>
 <li><a href="./introduction_condition.html">About the software</a></li>
 <li><a href="./introduction_about.html">About this tutorial</a></li>
+<li><a href="./introduction_plus.html">New programs</a></li>
 </ul>
 <h2 id="download-and-installation">Download and Installation</h2>
 <ul>
 <li><a href="./installation_start.html">Introduction</a></li>
 <li><a href="./installation_availability.html">Availability</a></li>
-<li><a href="./installation_windows.html">Running a program in Windows</a></li>
-<li><a href="./installation_linux.html">Running a program in Linux and MacOS X</a></li>
+<li><a href="./installation_windows.html">Running a program in
+Windows</a></li>
+<li><a href="./installation_linux.html">Running a program in Linux and
+MacOS X</a></li>
 <li><a href="./installation_env.html">Additional settings</a></li>
 <li><a href="./installation_editor.html">Setup a text editor</a></li>
 </ul>
 <h2 id="quick-tour-of-blupf90">Quick tour of BLUPF90</h2>
 <ul>
 <li><a href="./quicktour_start.html">Introduction</a></li>
-<li><a href="./quicktour_fixed.html">Trivial analyses for fixed models</a></li>
-<li><a href="./quicktour_mixed.html">Trivial analyses for mixed models</a></li>
-<li><a href="./quicktour_ssgblup.html">Trivial analyses for single-step GBLUP</a></li>
-<li><a href="./quicktour_mt.html">Trivial analyses for multiple-trait models</a></li>
+<li><a href="./quicktour_fixed.html">Trivial analyses for fixed
+models</a></li>
+<li><a href="./quicktour_mixed.html">Trivial analyses for mixed
+models</a></li>
+<li><a href="./quicktour_ssgblup.html">Trivial analyses for single-step
+GBLUP</a></li>
+<li><a href="./quicktour_mt.html">Trivial analyses for multiple-trait
+models</a></li>
 </ul>
-<h2 id="data-preparation-with-renumf90">Data preparation with RENUMF90</h2>
+<h2 id="data-preparation-with-renumf90">Data preparation with
+RENUMF90</h2>
 <ul>
 <li><a href="./renum_start.html">Introduction</a></li>
 <li><a href="./renum_basic.html">Basic data preparation</a></li>
-<li><a href="./renum_pedigree.html">Animal model with pedigree file</a></li>
-<li><a href="./renum_genomic.html">Genomic model with SNP-marker file</a></li>
+<li><a href="./renum_pedigree.html">Animal model with pedigree
+file</a></li>
+<li><a href="./renum_genomic.html">Genomic model with SNP-marker
+file</a></li>
 <li><a href="./renum_mt.html">Multiple-trait models</a></li>
 <li><a href="./renum_advanced.html">Advanced usage of RENUMF90</a></li>
-<li><a href="./renum_norenum.html">What if I don’t want to use RENUMF90?</a></li>
+<li><a href="./renum_norenum.html">What if I don’t want to use
+RENUMF90?</a></li>
 </ul>
-<h2 id="variance-component-estimation">Variance component estimation</h2>
+<h2 id="variance-component-estimation">Variance component
+estimation</h2>
 <ul>
-<li><a href="./vc_aireml.html">Restricted (residual) maximum likelihood with AIREMLF90</a></li>
-<li><a href="./vc_gs.html">Gibbs sampling and post-Gibbs analysis</a></li>
-<li><a href="./vc_advanced_aireml.html">Advanced usage of AIREMLF90</a></li>
-<li><a href="./vc_advanced_gs.html">Advanced features for Gibbs sampling programs</a></li>
+<li><a href="./vc_aireml.html">Restricted (residual) maximum likelihood
+with AIREMLF90 (BLUPF90+)</a></li>
+<li><a href="./vc_gs.html">Gibbs sampling and post-Gibbs
+analysis</a></li>
+<li><a href="./vc_advanced_aireml.html">Advanced usage of AIREMLF90
+(BLUPF90+)</a></li>
+<li><a href="./vc_advanced_gs.html">Advanced features for Gibbs sampling
+programs</a></li>
 </ul>
-<h2 id="numerical-examples-from-mrode-2014">Numerical examples from Mrode (2014)</h2>
+<h2 id="numerical-examples-from-mrode-2014">Numerical examples from
+Mrode (2014)</h2>
 <ul>
 <li><a href="./mrode_start.html">Introduction</a></li>
-<li><a href="./mrode_c03ex031_animal_model.html">Chapter 3. Example 3.1 Animal model</a></li>
-<li><a href="./mrode_c03ex032_sire_model.html">Chapter 3. Example 3.2. Sire model</a></li>
-<li><a href="./mrode_c03ex033_reduced_animal_model.html">Chapter 3. Example 3.3. Reduced animal model</a></li>
-<li><a href="./mrode_c03ex034_animal_model_with_groups.html">Chapter 3. Example 3.4 Animal model with groups</a></li>
-<li><a href="./mrode_c04ex041_repeatability_model.html">Chapter 4. Example 4.1 Repeatability model</a></li>
-<li><a href="./mrode_c04ex042_common_environment.html">Chapter 4. Example 4.2. Model with common environmental effects</a></li>
-<li><a href="./mrode_c05ex051_mt_equal_design.html">Chapter 5. Example 5.1. Multiple-trait model, Equal design matrices and no missing records</a></li>
-<li><a href="./mrode_c05ex052_mt_missing.html">Chapter 5. Example 5.2. Multiple-trait model, Equal design matrices with missing records</a></li>
-<li><a href="./mrode_c05ex053_mt_unequal_design.html">Chapter 5. Example 5.3. Multiple-trait model, Unequal design matrices</a></li>
-<li><a href="./mrode_c05ex054_mt_no_covariance.html">Chapter 5. Example 5.4. Multivariate models with no environmental covariance</a></li>
-<li><a href="./mrode_c07ex071_maternal.html">Chapter 7. Example 7.1. Animal model for a maternal trait</a></li>
-<li><a href="./mrode_c08ex081_social_interaction.html">Chapter 8. Example 8.1. Animal model with social interaction effects</a></li>
-<li><a href="./mrode_c09ex091_fixed_regression.html">Chapter 9. Example 9.1. Fixed regression model</a></li>
-<li><a href="./mrode_c09ex092_random_regression.html">Chapter 9. Example 9.2. Random regression model</a></li>
-<li><a href="./mrode_c10ex102_marker_information.html">Chapter 10. Example 10.2. Prediction of breeding values with marker information</a></li>
-<li><a href="./mrode_c10ex103_qtl.html">Chapter 10. Example 10.3. Directly predicting the additive genetic merit at the QTL</a></li>
-<li><a href="./mrode_c11ex111_fixed_snp.html">Chapter 11. Example 11.1. Fixed effect model for SNP effects</a></li>
-<li><a href="./mrode_c11ex112_mixed_snp.html">Chapter 11. Example 11.2. Mixed linear model for computing SNP effects</a></li>
-<li><a href="./mrode_c11ex113_gblup.html">Chapter 11. Example 11.3. Equivalent models – GBLUP</a></li>
-<li><a href="./mrode_c11ex115_polygenic.html">Chapter 11. Example 11.5. Mixed linear models with polygenic effects</a></li>
-<li><a href="./mrode_c11ex116_ssgblup.html">Chapter 11. Example 11.6. Single-step approach</a></li>
-<li><a href="./mrode_c12ex121_dominance.html">Chapter 12. Example 12.1. Animal model with dominance effect</a></li>
-<li><a href="./mrode_c12ex123_dominance_inverse.html">Chapter 12. Example 12.3. Method for rapid inversion of the dominance matrix</a></li>
-<li><a href="./mrode_c13ex131_threshold.html">Chapter 13. Example 13.1. The threshold model</a></li>
-<li><a href="./mrode_c13ex132_threshold_linear.html">Chapter 13. Example 13.2. Joint analysis of quantitative and binary traits</a></li>
+<li><a href="./mrode_c03ex031_animal_model.html">Chapter 3. Example 3.1
+Animal model</a></li>
+<li><a href="./mrode_c03ex032_sire_model.html">Chapter 3. Example 3.2.
+Sire model</a></li>
+<li><a href="./mrode_c03ex033_reduced_animal_model.html">Chapter 3.
+Example 3.3. Reduced animal model</a></li>
+<li><a href="./mrode_c03ex034_animal_model_with_groups.html">Chapter 3.
+Example 3.4 Animal model with groups</a></li>
+<li><a href="./mrode_c04ex041_repeatability_model.html">Chapter 4.
+Example 4.1 Repeatability model</a></li>
+<li><a href="./mrode_c04ex042_common_environment.html">Chapter 4.
+Example 4.2. Model with common environmental effects</a></li>
+<li><a href="./mrode_c05ex051_mt_equal_design.html">Chapter 5. Example
+5.1. Multiple-trait model, Equal design matrices and no missing
+records</a></li>
+<li><a href="./mrode_c05ex052_mt_missing.html">Chapter 5. Example 5.2.
+Multiple-trait model, Equal design matrices with missing
+records</a></li>
+<li><a href="./mrode_c05ex053_mt_unequal_design.html">Chapter 5. Example
+5.3. Multiple-trait model, Unequal design matrices</a></li>
+<li><a href="./mrode_c05ex054_mt_no_covariance.html">Chapter 5. Example
+5.4. Multivariate models with no environmental covariance</a></li>
+<li><a href="./mrode_c07ex071_maternal.html">Chapter 7. Example 7.1.
+Animal model for a maternal trait</a></li>
+<li><a href="./mrode_c08ex081_social_interaction.html">Chapter 8.
+Example 8.1. Animal model with social interaction effects</a></li>
+<li><a href="./mrode_c09ex091_fixed_regression.html">Chapter 9. Example
+9.1. Fixed regression model</a></li>
+<li><a href="./mrode_c09ex092_random_regression.html">Chapter 9. Example
+9.2. Random regression model</a></li>
+<li><a href="./mrode_c10ex102_marker_information.html">Chapter 10.
+Example 10.2. Prediction of breeding values with marker
+information</a></li>
+<li><a href="./mrode_c10ex103_qtl.html">Chapter 10. Example 10.3.
+Directly predicting the additive genetic merit at the QTL</a></li>
+<li><a href="./mrode_c11ex111_fixed_snp.html">Chapter 11. Example 11.1.
+Fixed effect model for SNP effects</a></li>
+<li><a href="./mrode_c11ex112_mixed_snp.html">Chapter 11. Example 11.2.
+Mixed linear model for computing SNP effects</a></li>
+<li><a href="./mrode_c11ex113_gblup.html">Chapter 11. Example 11.3.
+Equivalent models – GBLUP</a></li>
+<li><a href="./mrode_c11ex115_polygenic.html">Chapter 11. Example 11.5.
+Mixed linear models with polygenic effects</a></li>
+<li><a href="./mrode_c11ex116_ssgblup.html">Chapter 11. Example 11.6.
+Single-step approach</a></li>
+<li><a href="./mrode_c12ex121_dominance.html">Chapter 12. Example 12.1.
+Animal model with dominance effect</a></li>
+<li><a href="./mrode_c12ex123_dominance_inverse.html">Chapter 12.
+Example 12.3. Method for rapid inversion of the dominance
+matrix</a></li>
+<li><a href="./mrode_c13ex131_threshold.html">Chapter 13. Example 13.1.
+The threshold model</a></li>
+<li><a href="./mrode_c13ex132_threshold_linear.html">Chapter 13. Example
+13.2. Joint analysis of quantitative and binary traits</a></li>
 </ul>
-<h2 id="large-scale-genetic-evaluation">Large-scale genetic evaluation</h2>
+<h2 id="large-scale-genetic-evaluation">Large-scale genetic
+evaluation</h2>
 <ul>
 <li><a href="./largescale_start.html">Introduction</a></li>
-<li><a href="./largescale_issues.html">Issues in a large scale analysis</a></li>
-<li><a href="./largescale_pcg.html">Iteration on data with preconditioned conjugate gradient (PCG)</a></li>
-<li><a href="./largescale_reliability.html">Approximation of accuracy and reliability</a></li>
-<li><a href="./largescale_reml.html">REML estimation with large data</a></li>
+<li><a href="./largescale_issues.html">Issues in a large scale
+analysis</a></li>
+<li><a href="./largescale_pcg.html">Iteration on data with
+preconditioned conjugate gradient (PCG)</a></li>
+<li><a href="./largescale_reliability.html">Approximation of accuracy
+and reliability</a></li>
+<li><a href="./largescale_reml.html">REML estimation with large
+data</a></li>
 </ul>
 <h2 id="practical-genomic-analysis">Practical genomic analysis</h2>
 <ul>
 <li><a href="./genomic_start.html">Introduction</a></li>
-<li><a href="./genomic_files.html">Files used in genomic analysis</a></li>
+<li><a href="./genomic_files.html">Files used in genomic
+analysis</a></li>
 <li><a href="./genomic_qc.html">Quality control of SNP markers</a></li>
-<li><a href="./genomic_tuning.html">Tuning and input/output of relationship matrices</a></li>
+<li><a href="./genomic_tuning.html">Tuning and input/output of
+relationship matrices</a></li>
 <li><a href="./genomic_gblup.html">Performing GBLUP</a></li>
-<li><a href="./genomic_gwas.html">GWAS using the ssGBLUP framework</a></li>
+<li><a href="./genomic_gwas.html">GWAS using the ssGBLUP
+framework</a></li>
 </ul>
 <h2 id="references">References</h2>
 <ul>

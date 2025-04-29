@@ -28,7 +28,8 @@
   <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
   <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
   <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="/usr/share/javascript/mathjax/MathJax.js"
+  type="text/javascript"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
   </script>
@@ -42,14 +43,16 @@
 <header>
 <h1 class="title">Numerical examples from Mrode (2014)</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">September 2019</p>
+<p class="date">April 2025</p>
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#social-interaction-effects">Social interaction effects</a><ul>
-<li><a href="#model">Model</a></li>
-<li><a href="#files">Files</a></li>
-<li><a href="#solutions">Solutions</a></li>
+<li><a href="#social-interaction-effects"
+id="toc-social-interaction-effects">Social interaction effects</a>
+<ul>
+<li><a href="#model" id="toc-model">Model</a></li>
+<li><a href="#files" id="toc-files">Files</a></li>
+<li><a href="#solutions" id="toc-solutions">Solutions</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -58,9 +61,30 @@ Back to <a href="./index.html">index.html</a>.
 </p>
 <h1 id="social-interaction-effects">Social interaction effects</h1>
 <h2 id="model">Model</h2>
-<p>When an animal is raised with a few other animals in a limited space (e.g., a pen or cage), there is social interaction (e.g., competition) among the animals. The animal’s phenotype will be affected with its own genetic and environmental effects as well as the competitors’ contributions. The competitors’ effects look like environmental contributions to the animal. This structure is similar to the maternal animal model introduced in the previous section. Some of the competitors’ contributions can come from genes carried by the competitors and the rest comes from non-genetic factors. The genetic component can be correlated with the animal’s direct genetic effect. A statistical model should include a complicated covariance structure.</p>
-<p>In this example, we have 3 pens and each pen has 3 animals (<span class="math inline">\(n = 3\)</span>). See the textbook for detailed formulation.</p>
-<p>The model contains sex as the fixed effect; the direct and associative genetic effects, pen (group), and common environmental (full-sibs) effects as random effects. The author assume <span class="math inline">\(n = 3\)</span> and <span class="math inline">\(\sigma_g^2 = 12.12\)</span> (group variance), <span class="math inline">\(\sigma_e^2 = 60.6\)</span> (the original residual variance), <span class="math inline">\(\sigma_e^{2*} =60.6 - 12.12 = 48.48\)</span> (the final residual variance), <span class="math inline">\(\sigma_c^2 = 12.5\)</span> (common environmental variance) and <span class="math display">\[
+<p>When an animal is raised with a few other animals in a limited space
+(for example, a pen or cage), there is social interaction (for example,
+competition) among the animals. The animal’s phenotype will be affected
+with its own genetic and environmental effects as well as the
+competitors’ contributions. The competitors’ effects look like
+environmental contributions to the animal. This structure is similar to
+the maternal animal model introduced in the previous section. Some of
+the competitors’ contributions can come from genes carried by the
+competitors and the rest comes from non-genetic factors. The genetic
+component can be correlated with the animal’s direct genetic effect. A
+statistical model should include a complicated covariance structure.</p>
+<p>In this example, we have 3 pens and each pen has 3 animals (<span
+class="math inline">\(n = 3\)</span>). See the textbook for details for
+detailed formulation.</p>
+<p>The model contains sex as the fixed effect; the direct and
+associative genetic effects, pen (group), and common environmental
+(full-sibs) effects as random effects. The author assume <span
+class="math inline">\(n = 3\)</span> and <span
+class="math inline">\(\sigma_g^2 = 12.12\)</span> (group variance),
+<span class="math inline">\(\sigma_e^2 = 60.6\)</span> (the original
+residual variance), <span class="math inline">\(\sigma_e^{2*} =60.6 -
+12.12 = 48.48\)</span> (the final residual variance), <span
+class="math inline">\(\sigma_c^2 = 12.5\)</span> (common environmental
+variance) and <span class="math display">\[
 \mathbf{G}_{0}
 =
 \left[
@@ -71,7 +95,8 @@ Back to <a href="./index.html">index.html</a>.
 \right].
 \]</span></p>
 <h2 id="files">Files</h2>
-<p>The data set is shown in p.125 (<code>data_mr08a.txt</code>). We added 3 columns as competitors’ ID.</p>
+<p>The data set is shown in p.125 (<code>data_mr08a.txt</code>). We
+added 3 columns as competitors’ ID.</p>
 <pre data-language="text" data-caption="data_mr08a.txt"><code> 7 1 4 1 1  5.50   8  9  1
  8 1 4 1 2  9.80   7  9  1
 ...</code></pre>
@@ -82,13 +107,16 @@ Back to <a href="./index.html">index.html</a>.
 <li>Dam ID</li>
 <li>Pen (group)</li>
 <li>Sex (1=male and 2=female)</li>
-<li>Growth rate (10<span class="math inline">\(\times\)</span>g/day)</li>
+<li>Growth rate (10<span
+class="math inline">\(\times\)</span>g/day)</li>
 <li>ID of competitor 1 in the same pen</li>
 <li>ID of competitor 2 in the same pen</li>
 <li>Half-sib code (common environment)</li>
 </ol>
 <p>The pedigree is derived from the data set.</p>
-<p>The parameter file looks like a maternal animal model. See the textbook and make sure the order of effects is correct (p.126).</p>
+<p>The parameter file looks like a maternal animal model. See the
+textbook for details and make sure the order of effects is correct
+(p.126).</p>
 <pre data-language="text" data-caption="param_mr08a.txt"><code>DATAFILE
 data_mr08a.txt
 NUMBER_OF_TRAITS
@@ -134,37 +162,70 @@ FILE
 (CO)VARIANCES
 12.12
 OPTION solv_method FSPAK</code></pre>
-<p>The parameter file is tricky. The 3rd effect in <code>EFFECTS:</code> is defined with 0 levels. This works with the 4th effect to put two elements on the same row in the incidence matrix <span class="math inline">\(\mathbf{Z}_S\)</span> (see p.126). Each statement in <code>EFFECTS</code> can put only one element on a row of the system of mixed model equations. If we define an effect with 0 levels, this effect is not recognized as a new effect and combined with the next effect. In this case, the 3rd effect is successfully processed but the offset address is not incremented, so the 4th effect will be put the same row in <span class="math inline">\(\mathbf{Z}_S\)</span>.</p>
-<p>We can see what is going on processing the data with those 2 statements (effect 3 and 4). Consider the first line in the data file.</p>
+<p>The parameter file is tricky. The 3rd effect in <code>EFFECTS:</code>
+is defined with 0 levels. This works with the 4th effect to put two
+elements on the same row in the incidence matrix <span
+class="math inline">\(\mathbf{Z}_S\)</span> (see p.126). Each statement
+in <code>EFFECTS</code> can put only one element on a row of the system
+of mixed model equations. If we define an effect with 0 levels, this
+effect is not recognized as a new effect and combined with the next
+effect. In this case, the 3rd effect is successfully processed but the
+offset address is not incremented, so the 4th effect will be put the
+same row in <span class="math inline">\(\mathbf{Z}_S\)</span>.</p>
+<p>We can see what is going on processing the data with those 2
+statements (effect 3 and 4). Consider the first line in the data
+file.</p>
 <pre><code> 7   1   4   1    1   5.50    8   9   1</code></pre>
 <p>The 2 statements perform:</p>
 <ul>
-<li>to read the 7th column (the value is 8); and to put 1 (because of cross effect) on column 8 in the 1st row in <span class="math inline">\(\mathbf{Z}_S\)</span>.</li>
-<li>to read the 8th column (the value is 9); and to put 1 (because of cross effect) on column 9 in the 1st row in <span class="math inline">\(\mathbf{Z}_S\)</span>.</li>
+<li>to read the 7th column (the value is 8); and to put 1 (because of
+cross effect) on column 8 in the 1st row in <span
+class="math inline">\(\mathbf{Z}_S\)</span>.</li>
+<li>to read the 8th column (the value is 9); and to put 1 (because of
+cross effect) on column 9 in the 1st row in <span
+class="math inline">\(\mathbf{Z}_S\)</span>.</li>
 </ul>
-<p>The resulting row in <span class="math inline">\(\mathbf{Z}_S\)</span> is <span class="math display">\[
+<p>The resulting row in <span
+class="math inline">\(\mathbf{Z}_S\)</span> is <span
+class="math display">\[
 \left[
 \begin{array}{ccccccccccccccc}
-0&amp; 0&amp; 0&amp; 0&amp; 0&amp; 0&amp; 0&amp; 1&amp; 1&amp; 0&amp; 0&amp; 0&amp; 0&amp; 0&amp; 0
+0&amp; 0&amp; 0&amp; 0&amp; 0&amp; 0&amp; 0&amp; 1&amp; 1&amp; 0&amp;
+0&amp; 0&amp; 0&amp; 0&amp; 0
 \end{array}
 \right].
 \]</span></p>
-<p>The textbook omits the first 8 columns in <span class="math inline">\(\mathbf{Z}_S\)</span>. So above row is identical to the textbook. Next, we consider the 2nd line in the data file.</p>
+<p>The textbook omits the first 8 columns in <span
+class="math inline">\(\mathbf{Z}_S\)</span>. So above row is identical
+to the textbook. Next, we consider the 2nd line in the data file.</p>
 <pre><code>8     1   4   1   2   9.80     7   9   1</code></pre>
 <p>The 2 statements perform:</p>
 <ul>
-<li>to read the 7th column (the value is 7); and to put 1 (because of cross effect) on column 7 in the 1st row in <span class="math inline">\(\mathbf{Z}_S\)</span>.</li>
-<li>to read the 8th column (the value is 9); and to put 1 (because of cross effect) on column 9 in the 1st row in <span class="math inline">\(\mathbf{Z}_S\)</span>. The resulting row in <span class="math inline">\(\mathbf{Z}_S\)</span> is <span class="math display">\[
+<li>to read the 7th column (the value is 7); and to put 1 (because of
+cross effect) on column 7 in the 1st row in <span
+class="math inline">\(\mathbf{Z}_S\)</span>.</li>
+<li>to read the 8th column (the value is 9); and to put 1 (because of
+cross effect) on column 9 in the 1st row in <span
+class="math inline">\(\mathbf{Z}_S\)</span>. The resulting row in <span
+class="math inline">\(\mathbf{Z}_S\)</span> is <span
+class="math display">\[
 \left[
 \begin{array}{ccccccccccccccc}
-  0&amp; 0&amp; 0&amp; 0&amp; 0&amp; 0&amp; 1&amp; 0&amp; 1&amp; 0&amp; 0&amp; 0&amp; 0&amp; 0&amp; 0
+  0&amp; 0&amp; 0&amp; 0&amp; 0&amp; 0&amp; 1&amp; 0&amp; 1&amp; 0&amp;
+0&amp; 0&amp; 0&amp; 0&amp; 0
 \end{array}
 \right].
-\]</span> This is identical to the 2nd row in <span class="math inline">\(\mathbf{Z}_{S}\)</span> in the textbook.</li>
+\]</span> This is identical to the 2nd row in <span
+class="math inline">\(\mathbf{Z}_{S}\)</span> in the textbook.</li>
 </ul>
-<p>The specification of <code>RANDOM_TYPE</code> is also tricky. In the first <code>RANDOM_GROUP</code>, we only specify the effect 2 and 3. Effect 4 should be omitted because it is the same effect as effect 3. Also, BLUPF90 accepts only consecutive effects in <code>RANDOM_GROUP</code> so we put 2 and 3 here.</p>
+<p>The specification of <code>RANDOM_TYPE</code> is also tricky. In the
+first <code>RANDOM_GROUP</code>, we only specify the effect 2 and 3.
+Effect 4 should be omitted because it is the same effect as effect 3.
+Also, BLUPF90 accepts only consecutive effects in
+<code>RANDOM_GROUP</code> so we put 2 and 3 here.</p>
 <h2 id="solutions">Solutions</h2>
-<p>The solutions are very similar to the values in the textbook (p.126).</p>
+<p>The solutions are very similar to the values in the textbook
+(p.126).</p>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>

@@ -28,7 +28,8 @@
   <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
   <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
   <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="/usr/share/javascript/mathjax/MathJax.js"
+  type="text/javascript"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
   </script>
@@ -42,29 +43,56 @@
 <header>
 <h1 class="title">Numerical examples from Mrode (2014)</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">September 2019</p>
+<p class="date">April 2025</p>
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#breeding-values-with-marker-information">Breeding values with marker information</a><ul>
-<li><a href="#models">Models</a></li>
-<li><a href="#files">Files</a></li>
-<li><a href="#solutions">Solutions</a></li>
+<li><a href="#breeding-values-with-marker-information"
+id="toc-breeding-values-with-marker-information">Breeding values with
+marker information</a>
+<ul>
+<li><a href="#models" id="toc-models">Models</a></li>
+<li><a href="#files" id="toc-files">Files</a></li>
+<li><a href="#solutions" id="toc-solutions">Solutions</a></li>
 </ul></li>
 </ul>
 </nav>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>
-<h1 id="breeding-values-with-marker-information">Breeding values with marker information</h1>
+<h1 id="breeding-values-with-marker-information">Breeding values with
+marker information</h1>
 <h2 id="models">Models</h2>
-<p>In this example, the author assumes one known genetic marker with the polygenic effect for a trait. The genetic marker accounts for a certain level of genetic variance. Covariances among animals in terms of the additive effects of the marker alleles can be represented as the marker covariance matrix (<span class="math inline">\(\mathbf{G}_v\)</span>). Fernando and Grossman (1989) suggested a method to calculate <span class="math inline">\(\mathbf{G}^{-1}_v\)</span> directly from the pedigree list and genotypes.</p>
-<p>In this example, the author assumes a model with the additive genetic (polygenic) effect, the additive genetic effect due to genetic markers, and the random residual effect. The author uses a pre-calculated <span class="math inline">\(\mathbf{G}_v\)</span> to estimate the partial breeding values explained by the marker. Also, the model includes the additive genetic relationship matrix (<span class="math inline">\(\mathbf{A}_u\)</span>) which accounts for the “residual” polygenic effect. The mixed model equations are <span class="math display">\[
+<p>In this example, the author assumes one known genetic marker with the
+polygenic effect for a trait. The genetic marker accounts for a certain
+level of genetic variance. Covariances among animals in terms of the
+additive effects of the marker alleles can be represented as the marker
+covariance matrix (<span class="math inline">\(\mathbf{G}_v\)</span>).
+Fernando and Grossman (1989) suggested a method to calculate <span
+class="math inline">\(\mathbf{G}^{-1}_v\)</span> directly from the
+pedigree list and genotypes.</p>
+<p>In this example, the author assumes a model with the additive genetic
+(polygenic) effect, the additive genetic effect due to genetic markers,
+and the random residual effect. The author uses a pre-calculated <span
+class="math inline">\(\mathbf{G}_v\)</span> to estimate the partial
+breeding values explained by the marker. Also, the model includes the
+additive genetic relationship matrix (<span
+class="math inline">\(\mathbf{A}_u\)</span>) which accounts for the
+“residual” polygenic effect. The mixed model equations are <span
+class="math display">\[
 \left[
 \begin{array}{lll}
-\mathbf{X}&#39;\mathbf{R}^{-1}\mathbf{X} &amp; \mathbf{X}&#39;\mathbf{R}^{-1}\mathbf{Z} &amp; \mathbf{X}&#39;\mathbf{R}^{-1}\mathbf{W}\\
-\mathbf{Z}&#39;\mathbf{R}^{-1}\mathbf{X} &amp; \mathbf{Z}&#39;\mathbf{R}^{-1}\mathbf{Z} + \mathbf{A}_{u}^{-1}/\sigma_u^{2} &amp; \mathbf{Z}&#39;\mathbf{R}^{-1}\mathbf{W}\\
-\mathbf{W}&#39;\mathbf{R}^{-1}\mathbf{X} &amp; \mathbf{W}&#39;\mathbf{R}^{-1}\mathbf{Z} &amp; \mathbf{W}&#39;\mathbf{R}^{-1}\mathbf{W} + \mathbf{G}_{v}^{-1}/\sigma_v^{2}\\
+\mathbf{X}&#39;\mathbf{R}^{-1}\mathbf{X} &amp;
+\mathbf{X}&#39;\mathbf{R}^{-1}\mathbf{Z} &amp;
+\mathbf{X}&#39;\mathbf{R}^{-1}\mathbf{W}\\
+\mathbf{Z}&#39;\mathbf{R}^{-1}\mathbf{X} &amp;
+\mathbf{Z}&#39;\mathbf{R}^{-1}\mathbf{Z} +
+\mathbf{A}_{u}^{-1}/\sigma_u^{2} &amp;
+\mathbf{Z}&#39;\mathbf{R}^{-1}\mathbf{W}\\
+\mathbf{W}&#39;\mathbf{R}^{-1}\mathbf{X} &amp;
+\mathbf{W}&#39;\mathbf{R}^{-1}\mathbf{Z} &amp;
+\mathbf{W}&#39;\mathbf{R}^{-1}\mathbf{W} +
+\mathbf{G}_{v}^{-1}/\sigma_v^{2}\\
 \end{array}
 \right]
 \left[
@@ -82,10 +110,25 @@ Back to <a href="./index.html">index.html</a>.
 \mathbf{W}&#39;\mathbf{R}^{-1}\mathbf{y}
 \end{array}
 \right]
-\]</span> The variance components are <span class="math inline">\(\sigma_u^2=0.30\)</span>, <span class="math inline">\(\sigma_v^2= 0.05\)</span>, and <span class="math inline">\(\sigma_e^2 = 0.60\)</span>.</p>
-<p>We need to overcome several issues to conduct the analysis. First, BLUPF90 has no function to calculate <span class="math inline">\(\mathbf{G}_{v}^{-1}\)</span>. Instead, the program should read a user-supplied file containing the elements of <span class="math inline">\(\mathbf{G}^{-1}_{v}\)</span>. Second, the animals in the pedigree are highly inbred. By default, BLUPF90 ignores inbreeding coefficients when calculating <span class="math inline">\(\mathbf{A}^{-1}\)</span>. To consider inbreeding on <span class="math inline">\(\mathbf{A}^{-1}\)</span>, a user should put an additional column to the pedigree file, and accordingly modify the parameter file.</p>
+\]</span> The variance components are <span
+class="math inline">\(\sigma_u^2=0.30\)</span>, <span
+class="math inline">\(\sigma_v^2= 0.05\)</span>, and <span
+class="math inline">\(\sigma_e^2 = 0.60\)</span>.</p>
+<p>We need to overcome several issues to conduct the analysis. First,
+BLUPF90 has no function to calculate <span
+class="math inline">\(\mathbf{G}_{v}^{-1}\)</span>. Instead, the program
+should read a user-supplied file containing the elements of <span
+class="math inline">\(\mathbf{G}^{-1}_{v}\)</span>. Second, the animals
+in the pedigree are highly inbred. By default, BLUPF90 ignores
+inbreeding coefficients when calculating <span
+class="math inline">\(\mathbf{A}^{-1}\)</span>. To consider inbreeding
+on <span class="math inline">\(\mathbf{A}^{-1}\)</span>, a user should
+put an additional column to the pedigree file, and accordingly modify
+the parameter file.</p>
 <h2 id="files">Files</h2>
-<p>The data file is prepared as shown in p.159 (<code>data_mr10a.txt</code>). The marker effects are inserted into columns 5 and 6.</p>
+<p>The data file is prepared as shown in p.159
+(<code>data_mr10a.txt</code>). The marker effects are inserted into
+columns 5 and 6.</p>
 <pre data-language="text" data-caption="data_mr10a.txt"><code>  1 1 0 0  1  2  6.8
 ...</code></pre>
 <ol type="1">
@@ -97,19 +140,41 @@ Back to <a href="./index.html">index.html</a>.
 <li>Maternal QTL allele</li>
 <li>Post weaning weight (kg)</li>
 </ol>
-<p>Now we prepare the pedigree file with the additional 4th column to consider inbreeding coefficients for <span class="math inline">\(\mathbf{A}^{-1}\)</span>.</p>
-<p>The first 3 columns are animal ID, sire ID, and dam ID as usual. The 4th column is an inb/upg code exclusively used in the BLUPF90 family. The code is a 4-digit integer. It is calculated as <span class="math display">\[
+<p>Now we prepare the pedigree file with the additional 4th column to
+consider inbreeding coefficients for <span
+class="math inline">\(\mathbf{A}^{-1}\)</span>.</p>
+<p>The first 3 columns are animal ID, sire ID, and dam ID as usual. The
+4th column is an inb/upg code exclusively used in the BLUPF90 family.
+The code is a 4-digit integer. It is calculated as <span
+class="math display">\[
 \mathrm{inb/upg code}=\frac{4000}{(1+m_s)(1-F_s)+(1+m_d)(1-F_d)}
-\]</span> where <span class="math inline">\(m_s\)</span> is 0 if its sire is known or 1 if the sire is unknown; <span class="math inline">\(m_d\)</span> is 0 if its dam is known or 1 if the dam is unknown; <span class="math inline">\(F_s\)</span> is the inbreeding coefficient of the sire; and <span class="math inline">\(F_d\)</span> is the inbreeding coefficient of the dam. If the sire (or dam) is unknown, <span class="math inline">\(F_s\)</span> (or <span class="math inline">\(F_d\)</span>) is 0. In this case, the inbreeding coefficient of animal 4 is 0.25 (and animal 5 for 0.375 but this value is not used here). The inb/upg code (<span class="math inline">\(c\)</span>) for each animal is <span class="math display">\[
+\]</span> where <span class="math inline">\(m_s\)</span> is 0 if its
+sire is known or 1 if the sire is unknown; <span
+class="math inline">\(m_d\)</span> is 0 if its dam is known or 1 if the
+dam is unknown; <span class="math inline">\(F_s\)</span> is the
+inbreeding coefficient of the sire; and <span
+class="math inline">\(F_d\)</span> is the inbreeding coefficient of the
+dam. If the sire (or dam) is unknown, <span
+class="math inline">\(F_s\)</span> (or <span
+class="math inline">\(F_d\)</span>) is 0. In this case, the inbreeding
+coefficient of animal 4 is 0.25 (and animal 5 for 0.375 but this value
+is not used here). The inb/upg code (<span
+class="math inline">\(c\)</span>) for each animal is <span
+class="math display">\[
 \begin{aligned}
 c_1 &amp;= 4000/[(1 + 1)(1 - 0) + (1 + 1)(1 - 0)] = 1000\\
 c_2 &amp;= 4000/[(1 + 1)(1 - 0) + (1 + 1)(1 - 0)] = 1000\\
 c_3 &amp;= 4000/[(1 + 0)(1 - 0) + (1 + 0)(1 - 0)] = 2000\\
 c_4 &amp;= 4000/[(1 + 0)(1 - 0) + (1 + 0)(1 - 0)] = 1000\\
-c_5 &amp;= 4000/[(1 + 0)(1 - 0.25) + (1 + 0)(1 - 0)] = 2285.7 \approx 2286.
+c_5 &amp;= 4000/[(1 + 0)(1 - 0.25) + (1 + 0)(1 - 0)] = 2285.7 \approx
+2286.
 \end{aligned}
-\]</span> RENUMF90 calculates the code and prepares an appropriate pedigree file using the <code>INBREEDING</code> keyword. See the manual for details.</p>
-<p>The inverse of marker genetic matrix (<span class="math inline">\(\mathbf{G}_{v}^{-1}\)</span>; p.164) is prepared as the following text file.</p>
+\]</span> RENUMF90 calculates the code and prepares an appropriate
+pedigree file using the <code>INBREEDING</code> keyword. See the manual
+for details.</p>
+<p>The inverse of marker genetic matrix (<span
+class="math inline">\(\mathbf{G}_{v}^{-1}\)</span>; p.164) is prepared
+as the following text file.</p>
 <pre data-language="text" data-caption="userinverse_mr10a.txt"><code>  1  1  5.556
   1  2  1.000
   1  5 -5.000
@@ -117,7 +182,13 @@ c_5 &amp;= 4000/[(1 + 0)(1 - 0.25) + (1 + 0)(1 - 0)] = 2285.7 \approx 2286.
   8  9 -0.663
   9  9  6.630
  10 10  5.556</code></pre>
-<p>The file contains 3 columns: row index, column index and the value (or column index, row index, and the value). BLUPF90 supports a symmetric matrix as a user-supplied inverse of relationship matrix, so the program needs only upper- or lower-diagonal elements as well as the diagonal elements. The above file contains elements in and above the diagonal. Note that elements with a value of 0 do not need to be provided, which is handy when the matrix is sparse.</p>
+<p>The file contains 3 columns: row index, column index and the value
+(or column index, row index, and the value). BLUPF90 supports a
+symmetric matrix as a user-supplied inverse of relationship matrix, so
+the program needs only upper- or lower-diagonal elements as well as the
+diagonal elements. The above file contains elements in and above the
+diagonal. Note that elements with a value of 0 do not need to be
+provided, which is handy when the matrix is sparse.</p>
 <p>The parameter file should be as follows.</p>
 <pre data-language="blupf90" data-caption="param_mr10a.txt"><code>DATAFILE
 data_mr10a.txt
@@ -153,11 +224,25 @@ userinverse_mr10a.txt
 (CO)VARIANCES
 0.05
 OPTION solv_method FSPAK</code></pre>
-<p>We should be careful to describe the parameter file in terms of the following information.</p>
+<p>We should be careful to describe the parameter file in terms of the
+following information.</p>
 <ul>
-<li><code>EFFECTS</code>: Use of the “level 0” technique. The incidence matrix for the QTL marker effects, <span class="math inline">\(\mathbf{W}\)</span>, contains two 1s per row. A trick can do this. See the social interaction model for the detailed explanation. Also, there are 10 levels combining paternal and maternal QTL effects.</li>
-<li><code>RANDOM_TYPE</code> for the additive genetic effect: Use of <code>add_an_upginb</code>. The pedigree file contains the 4th column which indicates the inb/upg code. With this keyword, BLUPF90 can read the column and build <span class="math inline">\(\mathbf{A}^{-1}\)</span> with inbreeding. Even if we don’t put any unknown parent groups in this analysis, the keyword should be <code>add_an_upginb</code>.</li>
-<li><code>RANDOM_TYPE</code> for the marker effect: Use of user file to read the user-supplied file. The name of the file should also be supplied at FILE section.</li>
+<li><code>EFFECTS</code>: Use of the “level 0” technique. The incidence
+matrix for the QTL marker effects, <span
+class="math inline">\(\mathbf{W}\)</span>, contains two 1s per row. A
+trick can do this. See the social interaction model for the detailed
+explanation. Also, there are 10 levels combining paternal and maternal
+QTL effects.</li>
+<li><code>RANDOM_TYPE</code> for the additive genetic effect: Use of
+<code>add_an_upginb</code>. The pedigree file contains the 4th column
+which indicates the inb/upg code. With this keyword, BLUPF90 can read
+the column and build <span
+class="math inline">\(\mathbf{A}^{-1}\)</span> with inbreeding. Even if
+we do not put any unknown parent groups in this analysis, the keyword
+should be <code>add_an_upginb</code>.</li>
+<li><code>RANDOM_TYPE</code> for the marker effect: Use of user file to
+read the user-supplied file. The name of the file should also be
+supplied at FILE section.</li>
 </ul>
 <h2 id="solutions">Solutions</h2>
 <p>The solutions are identical to the textbook (p.166).</p>

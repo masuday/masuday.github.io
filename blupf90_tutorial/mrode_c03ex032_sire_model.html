@@ -28,7 +28,8 @@
   <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
   <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
   <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="/usr/share/javascript/mathjax/MathJax.js"
+  type="text/javascript"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
   </script>
@@ -42,14 +43,15 @@
 <header>
 <h1 class="title">Numerical examples from Mrode (2014)</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">September 2019</p>
+<p class="date">April 2025</p>
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#sire-model">Sire model</a><ul>
-<li><a href="#model">Model</a></li>
-<li><a href="#files">Files</a></li>
-<li><a href="#solutions">Solutions</a></li>
+<li><a href="#sire-model" id="toc-sire-model">Sire model</a>
+<ul>
+<li><a href="#model" id="toc-model">Model</a></li>
+<li><a href="#files" id="toc-files">Files</a></li>
+<li><a href="#solutions" id="toc-solutions">Solutions</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -58,17 +60,33 @@ Back to <a href="./index.html">index.html</a>.
 </p>
 <h1 id="sire-model">Sire model</h1>
 <h2 id="model">Model</h2>
-<p>Here we apply a sire model to the previous data. The mathematical model is the same as the previous section but the individual genetic effect is replaced with the sire genetic effect. In this model, we consider as if an observation belongs to the sire of the animal rather than to the animal itself. Additive genetic variation is explained by sires. So, the sire variance is <span class="math inline">\(\sigma_s^2 = 0.25\sigma_u^2 = 5\)</span> and the residual variance absorbs the remaining part of genetic variance and <span class="math inline">\(\sigma_e^{2*}=0.75\sigma_u^2+\sigma_e^2=55\)</span>. The phenotypic variance is the same (60) between the animal and sire models.</p>
+<p>Here we apply a sire model to the previous data. The mathematical
+model is the same as the previous section but the individual genetic
+effect is replaced with the sire genetic effect. In this model, we
+consider as if an observation belongs to the sire of the animal rather
+than to the animal itself. Additive genetic variation is explained by
+sires. So, the sire variance is <span class="math inline">\(\sigma_s^2 =
+0.25\sigma_u^2 = 5\)</span> and the residual variance absorbs the
+remaining part of genetic variance and <span
+class="math inline">\(\sigma_e^{2*}=0.75\sigma_u^2+\sigma_e^2=55\)</span>.
+The phenotypic variance is the same (60) between the animal and sire
+models.</p>
 <h2 id="files">Files</h2>
-<p>We can use the same data set shown in the previous section (<code>data_mr03b.txt</code>). In this case, we use the 3rd column (sire ID) instead of the 1st column (animal ID) as an animal’s effect.</p>
-<p>The pedigree file in sire model for BLUPF90 is different from the one used in the animal model. This file (<code>pedigree_mr03b.txt</code>) contains 3 columns:</p>
+<p>We can use the same data set shown in the previous section
+(<code>data_mr03b.txt</code>). In this case, we use the 3rd column (sire
+ID) instead of the 1st column (animal ID) as an animal’s effect.</p>
+<p>The pedigree file in sire model for BLUPF90 is different from the one
+used in the animal model. This file (<code>pedigree_mr03b.txt</code>)
+contains 3 columns:</p>
 <ol type="1">
 <li>The ID for sire.</li>
 <li>The ID for sire of the sire.</li>
 <li>The ID for maternal grandsire (MGS) of the sire.</li>
 </ol>
-<p>In this case, all MGS are unknown so the 3rd column should be 0 for all animals.</p>
-<p>The parameter file is also altered. We put comments around lines to be changed.</p>
+<p>In this case, all MGS are unknown so the 3rd column should be 0 for
+all animals.</p>
+<p>The parameter file is also altered. We put comments around lines to
+be changed.</p>
 <pre data-language="blupf90" data-caption="param_mr03b.txt"><code>DATAFILE
 data_mr03b.txt
 NUMBER_OF_TRAITS
@@ -93,7 +111,9 @@ pedigree_mr03b.txt
 (CO)VARIANCES           # sire variance
 5.0
 OPTION solv_method FSPAK</code></pre>
-<p>The value <code>add_sire</code> is a keyword for the sire model in BLUPF90. The pedigree file does not have sire 2 because it is missing, but the program doesn’t care about it.</p>
+<p>The value <code>add_sire</code> is a keyword for the sire model in
+BLUPF90. The pedigree file does not have sire 2 because it is missing,
+but the program does not care about it.</p>
 <h2 id="solutions">Solutions</h2>
 <p>The solutions are following.</p>
 <pre data-language="text" data-caption="solutions"><code>trait/effect level  solution
@@ -103,7 +123,9 @@ OPTION solv_method FSPAK</code></pre>
    1   2         2          0.00000000
    1   2         3          0.01402640
    1   2         4         -0.04304180</code></pre>
-<p>The solution for sire ID 2 is 0.0. BLUPF90 always produces the solution 0.0 for such a missing level in data and pedigree files. Otherwise, the solutions are identical to the textbook (pp.48).</p>
+<p>The solution for sire ID 2 is 0.0. BLUPF90 always produces the
+solution 0.0 for such a missing level in data and pedigree files.
+Otherwise, the solutions are identical to the textbook (pp.48).</p>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>

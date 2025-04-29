@@ -28,7 +28,8 @@
   <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
   <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
   <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="/usr/share/javascript/mathjax/MathJax.js"
+  type="text/javascript"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
   </script>
@@ -42,25 +43,43 @@
 <header>
 <h1 class="title">Numerical examples from Mrode (2014)</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">September 2019</p>
+<p class="date">April 2025</p>
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#multiple-trait-model-with-equal-design-matrix-and-no-missing-observations">Multiple-trait model with equal design matrix and no missing observations</a><ul>
-<li><a href="#model">Model</a></li>
-<li><a href="#files">Files</a></li>
-<li><a href="#solutions">Solutions</a></li>
+<li><a
+href="#multiple-trait-model-with-equal-design-matrix-and-no-missing-observations"
+id="toc-multiple-trait-model-with-equal-design-matrix-and-no-missing-observations">Multiple-trait
+model with equal design matrix and no missing observations</a>
+<ul>
+<li><a href="#model" id="toc-model">Model</a></li>
+<li><a href="#files" id="toc-files">Files</a></li>
+<li><a href="#solutions" id="toc-solutions">Solutions</a></li>
 </ul></li>
 </ul>
 </nav>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>
-<h1 id="multiple-trait-model-with-equal-design-matrix-and-no-missing-observations">Multiple-trait model with equal design matrix and no missing observations</h1>
+<h1
+id="multiple-trait-model-with-equal-design-matrix-and-no-missing-observations">Multiple-trait
+model with equal design matrix and no missing observations</h1>
 <h2 id="model">Model</h2>
-<p>Here we consider a multiple-trait model with equal design matrices, which means the same model is applied to all traits. We will consider a situation without missing observations.</p>
-<p>In this example, the author considers the 2-trait model for the pre-weaning gain as the first trait (WWG) and the post-weaning gain as the second trait (PWG). Both traits have the same model i.e., the fixed effect for sex, and two random effects, the additive genetic effect, and the residual effect.</p>
-<p>We also consider the genetic covariance between 2 traits as well as the genetic variance for each trait. This is true for residual covariance components. The genetic covariance matrix (<span class="math inline">\(\mathbf{G}_0\)</span>) and the residual covariance matrix <span class="math inline">\(\mathbf{R}_0\)</span> are both symmetric matrices (<span class="math inline">\(2 \times 2\)</span>). The values are defined in the textbook as <span class="math display">\[
+<p>Here we consider a multiple-trait model with equal design matrices,
+which means the same model is applied to all traits. We will consider a
+situation without missing observations.</p>
+<p>In this example, the author considers the 2-trait model for the
+pre-weaning gain as the first trait (WWG) and the post-weaning gain as
+the second trait (PWG). Both traits have the same model that is, the
+fixed effect for sex, and two random effects, the additive genetic
+effect, and the residual effect.</p>
+<p>We also consider the genetic covariance between two traits as well as
+the genetic variance for each trait. This is true for residual
+covariance components. The genetic covariance matrix (<span
+class="math inline">\(\mathbf{G}_0\)</span>) and the residual covariance
+matrix <span class="math inline">\(\mathbf{R}_0\)</span> are both
+symmetric matrices (<span class="math inline">\(2 \times 2\)</span>).
+The values are defined in the textbook as <span class="math display">\[
 \mathbf{G}_{0}
 =
 \left[
@@ -81,15 +100,30 @@ Back to <a href="./index.html">index.html</a>.
 \end{array}
 \right]
 \]</span></p>
-<p>A matrix notation of the above model and its mixed model equations have already introduced in the previous chapter. So here we just show some relevant equations. The model can be written as <span class="math display">\[
+<p>A matrix notation of the above model and its mixed model equations
+have already introduced in the previous chapter. So here we just show
+some relevant equations. The model can be written as <span
+class="math display">\[
 \mathbf{y} = \mathbf{Xb} + \mathbf{Zu} + \mathbf{e}.
-\]</span> We have 2 options to order the observations in <span class="math inline">\(\mathbf{y}\)</span> (within-trait or within-animal). According to a discussion in the previous chapter, BLUPF90 orders the observations within-animal (see the previous chapter for details). The variance of <span class="math inline">\(\mathbf{y}\)</span> is <span class="math display">\[
-\mathrm{var}(\mathbf{y}) = \mathbf{Z}\left(\mathbf{A} \otimes \mathbf{G}_{0}\right)\mathbf{Z}&#39; + \mathbf{I} \otimes \mathbf{R}_{0}
-\]</span> where <span class="math inline">\(\otimes\)</span> is the operator for Kronecker product. The mixed model equations can be written as <span class="math display">\[
+\]</span> We have 2 options to order the observations in <span
+class="math inline">\(\mathbf{y}\)</span> (within-trait or
+within-animal). According to a discussion in the previous chapter,
+BLUPF90 orders the observations within-animal (see the previous chapter
+for details). The variance of <span
+class="math inline">\(\mathbf{y}\)</span> is <span
+class="math display">\[
+\mathrm{var}(\mathbf{y}) = \mathbf{Z}\left(\mathbf{A} \otimes
+\mathbf{G}_{0}\right)\mathbf{Z}&#39; + \mathbf{I} \otimes \mathbf{R}_{0}
+\]</span> where <span class="math inline">\(\otimes\)</span> is the
+operator for Kronecker product. The mixed model equations can be written
+as <span class="math display">\[
 \left[
 \begin{array}{ll}
-\mathbf{X}&#39;(\mathbf{I}\otimes\mathbf{R}_{0}^{-1})\mathbf{X} &amp; \mathbf{X}&#39;(\mathbf{I}\otimes\mathbf{R}_{0}^{-1})\mathbf{Z} \\
-\mathbf{Z}&#39;(\mathbf{I}\otimes\mathbf{R}_{0}^{-1})\mathbf{X} &amp; \mathbf{Z}&#39;(\mathbf{I}\otimes\mathbf{R}_{0}^{-1})\mathbf{Z} + \mathbf{A}^{-1}\otimes\mathbf{G}^{-1}_{0}
+\mathbf{X}&#39;(\mathbf{I}\otimes\mathbf{R}_{0}^{-1})\mathbf{X} &amp;
+\mathbf{X}&#39;(\mathbf{I}\otimes\mathbf{R}_{0}^{-1})\mathbf{Z} \\
+\mathbf{Z}&#39;(\mathbf{I}\otimes\mathbf{R}_{0}^{-1})\mathbf{X} &amp;
+\mathbf{Z}&#39;(\mathbf{I}\otimes\mathbf{R}_{0}^{-1})\mathbf{Z} +
+\mathbf{A}^{-1}\otimes\mathbf{G}^{-1}_{0}
 \end{array}
 \right]
 \left[
@@ -107,7 +141,8 @@ Back to <a href="./index.html">index.html</a>.
 \right]
 \]</span></p>
 <h2 id="files">Files</h2>
-<p>The data file (<code>data_mr05a.txt</code>) is actually an extension of Example 3.1. It has an extra observation in the last column.</p>
+<p>The data file (<code>data_mr05a.txt</code>) is actually an extension
+of Example 3.1. It has an extra observation in the last column.</p>
 <ol type="1">
 <li>Animal ID (calves)</li>
 <li>Sire ID</li>
@@ -115,8 +150,12 @@ Back to <a href="./index.html">index.html</a>.
 <li>Pre-weaning gain (WWG; kg)</li>
 <li>Post-weaning gain (PWG; kg)</li>
 </ol>
-<p>The pedigree file (<code>pedigree_mr05a.txt</code>) is also the same as the previous one.</p>
-<p>The parameter file contains 2 covariance matrices. We will compute the standard error of each estimate as to the square root of the corresponding diagonal element of the inverse of the left-hand side of mixed model equations.</p>
+<p>The pedigree file (<code>pedigree_mr05a.txt</code>) is also the same
+as the previous one.</p>
+<p>The parameter file contains 2 covariance matrices. We will compute
+the standard error of each estimate as to the square root of the
+corresponding diagonal element of the inverse of the left-hand side of
+mixed model equations.</p>
 <pre data-language="blupf90" data-caption="param_mr05a.txt"><code>DATAFILE
 data_mr05a.txt
 NUMBER_OF_TRAITS
@@ -145,10 +184,24 @@ pedigree_mr05a.txt
 OPTION solv_method FSPAK
 OPTION sol se</code></pre>
 <h2 id="solutions">Solutions</h2>
-<p>The file <code>solution</code> has the solutions for the first and second traits. The solutions are identical to the values shown in the textbook (p.74).</p>
-<p>The reliability of the estimated breeding value of an animal can be calculated with the solutions from BLUPF90. The reliability for trait <span class="math inline">\(j\)</span> of animal <span class="math inline">\(i\)</span> (<span class="math inline">\(r_{ij}^2\)</span>) is <span class="math display">\[
+<p>The file <code>solution</code> has the solutions for the first and
+second traits. The solutions are identical to the values shown in the
+textbook (p.74).</p>
+<p>The reliability of the estimated breeding value of an animal can be
+calculated with the solutions from BLUPF90. The reliability for trait
+<span class="math inline">\(j\)</span> of animal <span
+class="math inline">\(i\)</span> (<span
+class="math inline">\(r_{ij}^2\)</span>) is <span
+class="math display">\[
 r_{ij}^2=1-\frac{\mathrm{PEV}_{ij}}{\sigma_{u_j}^{2}}
-\]</span> where <span class="math inline">\(\mathrm{PEV}_{ij}\)</span> is the diagonal element of the inverse of the left-hand side of mixed model equations corresponding to the effect to be considered. In the above solutions, the column <code>s.e.</code> contains the square root of the inverse (<span class="math inline">\(\sqrt{\mathrm{PEV}_{ij}}\)</span>). For example, the reliabilities of animal 1 can be calculated as: <span class="math display">\[
+\]</span> where <span class="math inline">\(\mathrm{PEV}_{ij}\)</span>
+is the diagonal element of the inverse of the left-hand side of mixed
+model equations corresponding to the effect to be considered. In the
+above solutions, the column <code>s.e.</code> contains the square root
+of the inverse (<span
+class="math inline">\(\sqrt{\mathrm{PEV}_{ij}}\)</span>). For example,
+the reliabilities of animal 1 can be calculated as: <span
+class="math display">\[
 r_{11}^2=1-\frac{4.313320612^2}{20}\approx 0.070
 \quad
 \text{and}

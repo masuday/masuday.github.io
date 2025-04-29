@@ -28,7 +28,8 @@
   <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
   <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
   <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="/usr/share/javascript/mathjax/MathJax.js"
+  type="text/javascript"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
   </script>
@@ -42,31 +43,62 @@
 <header>
 <h1 class="title">Large-scale genetic evaluation</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">September 2019</p>
+<p class="date">April 2025</p>
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#approximation-of-accuracy-and-reliability">Approximation of accuracy and reliability</a><ul>
-<li><a href="#algorithm">Algorithm</a></li>
-<li><a href="#files">Files</a></li>
-<li><a href="#options">Options</a></li>
+<li><a href="#approximation-of-accuracy-and-reliability"
+id="toc-approximation-of-accuracy-and-reliability">Approximation of
+accuracy and reliability</a>
+<ul>
+<li><a href="#algorithm" id="toc-algorithm">Algorithm</a></li>
+<li><a href="#files" id="toc-files">Files</a></li>
+<li><a href="#options" id="toc-options">Options</a></li>
 </ul></li>
 </ul>
 </nav>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>
-<h1 id="approximation-of-accuracy-and-reliability">Approximation of accuracy and reliability</h1>
+<h1 id="approximation-of-accuracy-and-reliability">Approximation of
+accuracy and reliability</h1>
 <h2 id="algorithm">Algorithm</h2>
-<p>Accuracy or reliability of EBV of an animal can be calculated from the prediction error variance (PEV) obtained from the diagonal elements of the inverse of left-hand side (LHS) of the mixed model equations. The diagonals can be calculated with the sparse inversion with FSPAK or YAMS for smaller data set. As expected, the computation cost for the inverse is really high and the left-hand side has to be in memory. So this direct method cannot be applied to a large scale genetic evaluation.</p>
-<p>There are two major classes to approximate accuracy and reliability. One is to approximate diagonal elements in LHS after absorbing the non-genetic effects. This element looks like the effective number of records for an animal. The other approach focuses on the effective number of progeny (daughters) originally derived from the selection index theory based on a progeny test. This approach is especially useful for parents.</p>
-<p>ACCF90 implements the first approach. The method was described by Strabel et al. (2001) and Sanchez et al. (2008) who extended the idea by Miszal and Wiggans (1988) to more complicated models. The algorithm is iterative because too many unknown variables are involved in the final equations to provide the approximated diagonal elements.</p>
-<p>ACCF90GS supports ssGBLUP. The algorithm was described by Miszal et al. (2013) using <span class="math inline">\(\mathbf{G}^{-1}\)</span> and <span class="math inline">\(\mathbf{A}_{22}^{-1}\)</span>. This program works well for smaller data set. For larger problems, now we are developing the method without explicit computation of <span class="math inline">\(\mathbf{G}^{-1}\)</span> and <span class="math inline">\(\mathbf{A}_{22}^{-1}\)</span>.</p>
+<p>Accuracy or reliability of EBV of an animal can be calculated from
+the prediction error variance (PEV) obtained from the diagonal elements
+of the inverse of left-hand side (LHS) of the mixed model equations. The
+diagonals can be calculated with the sparse inversion with FSPAK or YAMS
+for smaller data set. As expected, the computation cost for the inverse
+is really high and the left-hand side has to be in memory. So this
+direct method cannot be applied to a large scale genetic evaluation.</p>
+<p>There are two major classes to approximate accuracy and reliability.
+One is to approximate diagonal elements in LHS after absorbing the
+non-genetic effects. This element looks like the effective number of
+records for an animal. The other approach focuses on the effective
+number of progeny (daughters) originally derived from the selection
+index theory based on a progeny test. This approach is especially useful
+for parents.</p>
+<p>ACCF90 implements the first approach. The method was described by
+Strabel et al. (2001) and Sanchez et al. (2008) who extended the idea by
+Miszal and Wiggans (1988) to more complicated models. The algorithm is
+iterative because too many unknown variables are involved in the final
+equations to provide the approximated diagonal elements.</p>
+<p>ACCF90GS supports ssGBLUP. The algorithm was described by Miszal et
+al. (2013) using <span class="math inline">\(\mathbf{G}^{-1}\)</span>
+and <span class="math inline">\(\mathbf{A}_{22}^{-1}\)</span>. This
+program works well for smaller data set. For larger problems, now we are
+developing the method without explicit computation of <span
+class="math inline">\(\mathbf{G}^{-1}\)</span> and <span
+class="math inline">\(\mathbf{A}_{22}^{-1}\)</span>.</p>
 <h2 id="files">Files</h2>
-<p>We will use the following files for a 4-trait repeatability model.</p>
+<p>We will use the following files for a 4-trait repeatability
+model.</p>
 <ul>
-<li><a href="https://github.com/Masuday/data/blob/master/tutorial/simdata_rep.txt"><code>simdata_rep.txt</code></a> : data file</li>
-<li><a href="https://github.com/Masuday/data/blob/master/tutorial/simped.txt"><code>simped.txt</code></a> : pedigree file</li>
+<li><a
+href="https://github.com/Masuday/data/blob/master/tutorial/simdata_rep.txt"><code>simdata_rep.txt</code></a>
+: data file</li>
+<li><a
+href="https://github.com/Masuday/data/blob/master/tutorial/simped.txt"><code>simped.txt</code></a>
+: pedigree file</li>
 </ul>
 <p>The parameter file includes several options for ACCF90.</p>
 <pre data-language="blupf90" data-caption="accparam1.txt"><code>DATAFILE
@@ -116,7 +148,10 @@ OPTION cg   1 1 1 1
 OPTION anim 4 4 4 4
 OPTION pe   5 5 5 5
 OPTION acc_maxrounds 20</code></pre>
-<p>The options will be explained later. ACCF90 reads the solutions file. Run BLUPF90 (or BLUPF90IOD2) with the above parameter file, and then, run ACCF90 with the same parameter file. The program creates the file <code>sol_and_acc</code> as follows (the first 9 lines are shown).</p>
+<p>The options will be explained later. ACCF90 reads the solutions file.
+Run BLUPF90 (or BLUPF90IOD2) with the above parameter file, and then,
+run ACCF90 with the same parameter file. The program creates the file
+<code>sol_and_acc</code> as follows (the first 9 lines are shown).</p>
 <pre data-language="text" data-caption="solutions"><code>trait/effect level  solution acc
    1   4         1         -3.43278933  0.8728
    2   4         1          1.63205564  0.8147
@@ -127,24 +162,56 @@ OPTION acc_maxrounds 20</code></pre>
    3   4         2          6.60794020  0.8512
    4   4         2          5.09637833  0.9268
    1   4         3         -9.07606792  0.8820</code></pre>
-<p>This file is similar to <code>solutions</code> but the only estimated breeding values (EBV) are stored. The last column is the reliability of EBV.</p>
+<p>This file is similar to <code>solutions</code> but the only estimated
+breeding values (EBV) are stored. The last column is the reliability of
+EBV.</p>
 <h2 id="options">Options</h2>
 <pre data-language="blupf90"><code>OPTION cg   [ position(s)]  # contemporary group effect
 OPTION anim [ position(s)]  # additive genetic effect
 OPTION pe   [ position(s)]  # PE effect
 OPTION mat  [ position(s)]  # maternal genetic effect
 OPTION hs   [ position(s)]  # herd by sire interaction effect</code></pre>
-<p>Each option defines the position(s) for the specific effect in the <code>EFFECT:</code> block. The positions should be enumerated for all traits. If the effect is missing in a trait, put <code>0</code>. The first 2 options <code>cg</code> and <code>anim</code> are mandatory and the others are optional. With the above example, the contemporary group effect is the 1st effect in the <code>EFFECT:</code> block. Because the contemporary group effect is considered in all 4 traits, we put four 1s as <code>cg 1 1 1 1</code>. Similarly, the additive genetic effect is defined as the 4th effect for all the traits so we put <code>animal 4 4 4 4</code>; the permanent environmental effect is the 5th effect for all the traits so we put <code>pe 5 5 5 5</code>.</p>
+<p>Each option defines the position(s) for the specific effect in the
+<code>EFFECT:</code> block. The positions should be enumerated for all
+traits. If the effect is missing in a trait, put <code>0</code>. The
+first 2 options <code>cg</code> and <code>anim</code> are mandatory and
+the others are optional. With the above example, the contemporary group
+effect is the 1st effect in the <code>EFFECT:</code> block. Because the
+contemporary group effect is considered in all 4 traits, we put four 1s
+as <code>cg 1 1 1 1</code>. Similarly, the additive genetic effect is
+defined as the 4th effect for all the traits so we put
+<code>animal 4 4 4 4</code>; the permanent environmental effect is the
+5th effect for all the traits so we put <code>pe 5 5 5 5</code>.</p>
 <pre data-language="blupf90"><code>OPTION acc_maxrounds n      # n = integer number
 OPTION conv_crit x          # x = real small number</code></pre>
-<p>The first option defines the maximum number of iterations (the default is 10) and the second defines the convergence criterion (the default is <code>1.0e-8</code>). The iterations stop when the program reaches either criterion.</p>
-<p>The program needs only a few iterations. Too many iterations would add bias to the approximated reliability. The recommendation is to use the default convergence criterion. The default number of iterations wouldn’t be enough, and you should put a larger number to <code>acc_maxrounds</code>.</p>
+<p>The first option defines the maximum number of iterations (the
+default is 10) and the second defines the convergence criterion (the
+default is <code>1.0e-8</code>). The iterations stop when the program
+reaches either criterion.</p>
+<p>The program needs only a few iterations. Too many iterations would
+add bias to the approximated reliability. The recommendation is to use
+the default convergence criterion. The default number of iterations
+wouldn’t be enough, and you should put a larger number to
+<code>acc_maxrounds</code>.</p>
 <pre data-language="blupf90"><code>OPTION type x   # x = 1.0 or 0.5</code></pre>
-<p>This option defines the type of reliability. The final reliability will be calculated as <span class="math inline">\((R^2)^x\)</span>. The default <span class="math inline">\(x\)</span> is 1.0 and it corresponds to <span class="math inline">\(R^2\)</span> (i.e. reliability). If you put <span class="math inline">\(0.5\)</span> to <span class="math inline">\(x\)</span>, the output is <span class="math inline">\((R^2)^{0.5} = R\)</span> i.e. accuracy. Traditionally, the beef industry has used the accuracy (<span class="math inline">\(x\)</span> is 0.5) and the dairy has used the reliability (<span class="math inline">\(x\)</span> is 1.0). The default value is 1.0.</p>
+<p>This option defines the type of reliability. The final reliability
+will be calculated as <span class="math inline">\((R^2)^x\)</span>. The
+default <span class="math inline">\(x\)</span> is 1.0 and it corresponds
+to <span class="math inline">\(R^2\)</span> (that is reliability). If
+you put <span class="math inline">\(0.5\)</span> to <span
+class="math inline">\(x\)</span>, the output is <span
+class="math inline">\((R^2)^{0.5} = R\)</span> that is accuracy.
+Traditionally, the beef industry has used the accuracy (<span
+class="math inline">\(x\)</span> is 0.5) and the dairy has used the
+reliability (<span class="math inline">\(x\)</span> is 1.0). The default
+value is 1.0.</p>
 <pre data-language="blupf90"><code>OPTION parent_avg</code></pre>
-<p>With this option, the program calculates the parent average for each animal. The values are saved in the additional column in <code>sol_and_acc</code>.</p>
+<p>With this option, the program calculates the parent average for each
+animal. The values are saved in the additional column in
+<code>sol_and_acc</code>.</p>
 <pre data-language="blupf90"><code>OPTION original_id</code></pre>
-<p>This option puts the original ID (the 10th column in the renumbered pedigree file) to <code>sol_and_acc</code>.</p>
+<p>This option puts the original ID (the 10th column in the renumbered
+pedigree file) to <code>sol_and_acc</code>.</p>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>

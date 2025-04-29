@@ -28,7 +28,8 @@
   <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
   <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
   <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="/usr/share/javascript/mathjax/MathJax.js"
+  type="text/javascript"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
   </script>
@@ -42,41 +43,83 @@
 <header>
 <h1 class="title">Quick tour of BLUPF90</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">September 2019</p>
+<p class="date">April 2025</p>
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#trivial-analyses-for-multiple-trait-models">Trivial analyses for multiple-trait models</a><ul>
-<li><a href="#basic-elements">Basic elements</a></li>
-<li><a href="#resulting-solutions">Resulting solutions</a></li>
-<li><a href="#remarks">Remarks</a></li>
-<li><a href="#summary">Summary</a></li>
+<li><a href="#trivial-analyses-for-multiple-trait-models"
+id="toc-trivial-analyses-for-multiple-trait-models">Trivial analyses for
+multiple-trait models</a>
+<ul>
+<li><a href="#basic-elements" id="toc-basic-elements">Basic
+elements</a></li>
+<li><a href="#resulting-solutions"
+id="toc-resulting-solutions">Resulting solutions</a></li>
+<li><a href="#remarks" id="toc-remarks">Remarks</a></li>
+<li><a href="#summary" id="toc-summary">Summary</a></li>
 </ul></li>
 </ul>
 </nav>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>
-<h1 id="trivial-analyses-for-multiple-trait-models">Trivial analyses for multiple-trait models</h1>
-<p>BLUPF90 supports multiple-trait models with few modifications to a parameter file for the single-trait model. In this section, we consider a simple multiple-trait model and introduce some extensions in a parameter file.</p>
+<h1 id="trivial-analyses-for-multiple-trait-models">Trivial analyses for
+multiple-trait models</h1>
+<p>BLUPF90 supports multiple-trait models with only a few modifications
+to a parameter file for the single-trait model. In this section, we
+consider a simple multiple-trait model and introduce some extensions in
+a parameter file.</p>
 <h2 id="basic-elements">Basic elements</h2>
 <h3 id="model-description">Model description</h3>
-<p>We extend the single-trait animal-model shown in the previous section, but no genomics. We will consider a 2-trait model with the same effects on both traits. Also, we assume we have no missing observations. A mathematical model for each trait can be written as follows.</p>
+<p>We extend the single-trait animal-model shown in the previous
+section, but without genomics. We will consider a two-trait model with
+the same effects on both traits. Also, we assume that there are no
+missing observations. A mathematical model for each trait can be written
+as follows.</p>
 <p><span class="math display">\[
 \begin{aligned}
-y_{ijk:1} &amp;= A_{i:1} + S_{j:1} + \beta x_{ijk:1} + u_{k:1} + e_{ijk:1}\\
-y_{ijk:2} &amp;= A_{i:2} + S_{j:2} + \beta x_{ijk:2} + u_{k:2} + e_{ijk:2}
+y_{ijk:1} &amp;= A_{i:1} + S_{j:1} + \beta x_{ijk:1} + u_{k:1} +
+e_{ijk:1}\\
+y_{ijk:2} &amp;= A_{i:2} + S_{j:2} + \beta x_{ijk:2} + u_{k:2} +
+e_{ijk:2}
 \end{aligned}
 \]</span></p>
-<p>The mixed model can be written with a typical form introduced as before. <span class="math display">\[
+<p>The mixed model can be written with a typical form introduced as
+before. <span class="math display">\[
 \mathbf{y} = \mathbf{Xb} + \mathbf{Zu} + \mathbf{e}
-\]</span> With matrix notation, this model can be expressed in 2 ways depending on the order of observations.</p>
-<p>Ordering animals within trait: <span class="math inline">\(\mathbf{y} = \left[\begin{array}{l|l}y_{1:1}, y_{2:1}, y_{3:1}, \cdots, y_{n:1} &amp; y_{1:2}, y_{2:2}, y_{3:2}, \cdots, y_{n:2}\end{array}\right]\)</span></p>
-<p>Ordering traits within animal: <span class="math inline">\(\mathbf{y} = \left[\begin{array}{l|l|l|l|l}y_{1:1}, y_{1:2} &amp; y_{2:1}, y_{2:2} &amp; y_{3:1}, y_{3:2} &amp; \cdots &amp; y_{n:1}, y_{n:2}\end{array}\right]\)</span></p>
-<p>This difference is not essential on conducting the analysis but you should recognize the difference when writing down the mathematical model in matrix notation. Above two results in the different representation of mixed model equations even if the solutions are identical. Because BLUPF90 programs use the latter, we will describe the model with this rule.</p>
-<p>In this case, the variance of <span class="math inline">\(\mathbf{y}\)</span> is <span class="math display">\[
-\mathrm{var}(\mathbf{y}) = \mathbf{Z}\left(\mathbf{A} \otimes \mathbf{G}_{0}\right)\mathbf{Z}&#39; + \mathbf{I} \otimes \mathbf{R}_{0}
-\]</span> where <span class="math inline">\(\mathbf{G}_{0}\)</span> is the genetic variance-covariance matrix among traits (<span class="math inline">\(2 \times 2\)</span> in this case), <span class="math inline">\(\mathbf{R}_{0}\)</span> is the residual variance-covariance matrix among traits (also <span class="math inline">\(2 \times 2\)</span> in this case), <span class="math inline">\(\mathbf{I}\)</span> is the identity matrix (<span class="math inline">\(N \times N\)</span>; <span class="math inline">\(N\)</span> is the number of observations in a trait) and <span class="math inline">\(\otimes\)</span> is an operator for Kronecker product. Elements of each covariance matrix and its inverse can be written as <span class="math display">\[
+\]</span> With matrix notation, this model can be expressed in 2 ways
+depending on the order of observations.</p>
+<p>Ordering animals within trait: <span class="math inline">\(\mathbf{y}
+= \left[\begin{array}{l|l}y_{1:1}, y_{2:1}, y_{3:1}, \cdots, y_{n:1}
+&amp; y_{1:2}, y_{2:2}, y_{3:2}, \cdots,
+y_{n:2}\end{array}\right]\)</span></p>
+<p>Ordering traits within animal: <span class="math inline">\(\mathbf{y}
+= \left[\begin{array}{l|l|l|l|l}y_{1:1}, y_{1:2} &amp; y_{2:1}, y_{2:2}
+&amp; y_{3:1}, y_{3:2} &amp; \cdots &amp; y_{n:1},
+y_{n:2}\end{array}\right]\)</span></p>
+<p>This difference is not essential on conducting the analysis but you
+should recognize the difference when writing down the mathematical model
+in matrix notation. These two result in different representations of
+mixed model equations even if the solutions are identical. Because
+BLUPF90 programs use the latter, we will describe the model with this
+rule.</p>
+<p>In this case, the variance of <span
+class="math inline">\(\mathbf{y}\)</span> is <span
+class="math display">\[
+\mathrm{var}(\mathbf{y}) = \mathbf{Z}\left(\mathbf{A} \otimes
+\mathbf{G}_{0}\right)\mathbf{Z}&#39; + \mathbf{I} \otimes \mathbf{R}_{0}
+\]</span> where <span class="math inline">\(\mathbf{G}_{0}\)</span> is
+the genetic variance-covariance matrix among traits (<span
+class="math inline">\(2 \times 2\)</span> in this case), <span
+class="math inline">\(\mathbf{R}_{0}\)</span> is the residual
+variance-covariance matrix among traits (also <span
+class="math inline">\(2 \times 2\)</span> in this case), <span
+class="math inline">\(\mathbf{I}\)</span> is the identity matrix (<span
+class="math inline">\(N \times N\)</span>; <span
+class="math inline">\(N\)</span> is the number of observations in a
+trait) and <span class="math inline">\(\otimes\)</span> is an operator
+for Kronecker product. Elements of each covariance matrix and its
+inverse can be written as <span class="math display">\[
 \begin{aligned}
 \mathbf{G}_{0}
 =
@@ -118,7 +161,8 @@ y_{ijk:2} &amp;= A_{i:2} + S_{j:2} + \beta x_{ijk:2} + u_{k:2} + e_{ijk:2}
 \right].
 \end{aligned}
 \]</span></p>
-<p>Kronecker product is not a regular product. Consult the following examples: <span class="math display">\[
+<p>Kronecker product is not a regular product. Consult the following
+examples: <span class="math display">\[
 \mathbf{A}\otimes\mathbf{G}_{0}
 =
 \left[
@@ -142,12 +186,21 @@ a_{n1}\mathbf{G}_{0}&amp;a_{n2}\mathbf{G}_{0}&amp;\cdots&amp;a_{nn}\mathbf{G}_{0
 \mathbf{0}&amp;\mathbf{0}&amp;\cdots&amp;\mathbf{R}_{0}\\
 \end{array}
 \right]
-\]</span> where <span class="math inline">\(n\)</span> is the number of pedigree animals and <span class="math inline">\(a_{ij}\)</span> is the <span class="math inline">\(i\)</span>th row and the <span class="math inline">\(j\)</span>th column element of <span class="math inline">\(\mathbf{A}\)</span>. In the latter equation, <span class="math inline">\(\mathbf{R}_{0}\)</span> is repeated <span class="math inline">\(N\)</span> times on diagonal.</p>
+\]</span> where <span class="math inline">\(n\)</span> is the number of
+pedigree animals and <span class="math inline">\(a_{ij}\)</span> is the
+<span class="math inline">\(i\)</span>th row and the <span
+class="math inline">\(j\)</span>th column element of <span
+class="math inline">\(\mathbf{A}\)</span>. In the latter equation, <span
+class="math inline">\(\mathbf{R}_{0}\)</span> is repeated <span
+class="math inline">\(N\)</span> times on diagonal.</p>
 <p>The system of mixed model equations is <span class="math display">\[
 \left[
 \begin{array}{ll}
-\mathbf{X}&#39;(\mathbf{I}\otimes\mathbf{R}_{0}^{-1})\mathbf{X} &amp; \mathbf{X}&#39;(\mathbf{I}\otimes\mathbf{R}_{0}^{-1})\mathbf{Z} \\
-\mathbf{Z}&#39;(\mathbf{I}\otimes\mathbf{R}_{0}^{-1})\mathbf{X} &amp; \mathbf{Z}&#39;(\mathbf{I}\otimes\mathbf{R}_{0}^{-1})\mathbf{Z} + \mathbf{A}^{-1}\otimes\mathbf{G}^{-1}_{0}
+\mathbf{X}&#39;(\mathbf{I}\otimes\mathbf{R}_{0}^{-1})\mathbf{X} &amp;
+\mathbf{X}&#39;(\mathbf{I}\otimes\mathbf{R}_{0}^{-1})\mathbf{Z} \\
+\mathbf{Z}&#39;(\mathbf{I}\otimes\mathbf{R}_{0}^{-1})\mathbf{X} &amp;
+\mathbf{Z}&#39;(\mathbf{I}\otimes\mathbf{R}_{0}^{-1})\mathbf{Z} +
+\mathbf{A}^{-1}\otimes\mathbf{G}^{-1}_{0}
 \end{array}
 \right]
 \left[
@@ -163,10 +216,16 @@ a_{n1}\mathbf{G}_{0}&amp;a_{n2}\mathbf{G}_{0}&amp;\cdots&amp;a_{nn}\mathbf{G}_{0
 \mathbf{Z}&#39;(\mathbf{I}\otimes\mathbf{R}_{0}^{-1})\mathbf{y}
 \end{array}
 \right].
-\]</span> This may look very different from a typical description for some people. But, again, the form of the equations don’t affect the solutions.</p>
+\]</span> This may look very different from a typical description for
+some people. But, again, the form of the equations do not affect the
+solutions.</p>
 <h3 id="required-files">Required files</h3>
-<p>In this 2-trait model, we need 2 columns for observations (one for the trait 1 and the other one for trait 2). Also, we need the columns for effects in each trait. We assume the same model in both traits. We can share the same columns for the effects in the data file.</p>
-<p>As an example, we extend the data used in the previous animal model analysis.</p>
+<p>In this two-trait model, we need 2 columns for observations (one for
+the trait 1 and the other one for trait 2). Also, we need the columns
+for effects in each trait. We assume the same model in both traits. We
+can share the same columns for the effects in the data file.</p>
+<p>As an example, we extend the data used in the previous animal model
+analysis.</p>
 <pre data-language="text" data-caption="data5.txt"><code>  3.0   4.5  1  1  1.0   6
   2.0   7.5  1  2  1.0   9
   4.0   3.5  1  1  2.0  12
@@ -177,7 +236,8 @@ a_{n1}\mathbf{G}_{0}&amp;a_{n2}\mathbf{G}_{0}&amp;\cdots&amp;a_{nn}\mathbf{G}_{0
   6.0   2.5  3  2  1.0  11
   8.0   0.5  3  1  1.0  14
   4.0   4.5  3  2  2.0  15</code></pre>
-<p>The pedigree file is the same as the previous one. Here we changed the file name with the same content.</p>
+<p>The pedigree file is the same as the previous one. Here we changed
+the file name with the same content.</p>
 <pre data-language="text" data-caption="pedigree5.txt"><code>  1   0   0
   2   0   0
   3   0   0
@@ -193,7 +253,16 @@ a_{n1}\mathbf{G}_{0}&amp;a_{n2}\mathbf{G}_{0}&amp;\cdots&amp;a_{nn}\mathbf{G}_{0
  13  11  10
  14   9  13
  15  11  10</code></pre>
-<p>The parameter file also looks like very similar to the previous one except it describes covariance matrices and a model for each trait. We assume <span class="math inline">\(\sigma_{g1}^2=0.5\)</span>, <span class="math inline">\(\sigma_{g12}=-0.25\)</span>, and <span class="math inline">\(\sigma_{g2}^{2}=1.0\)</span> for genetic (co)variances and <span class="math inline">\(\sigma_{e1}^{2}=2.0\)</span>, <span class="math inline">\(\sigma_{e12} = 1.0\)</span>, and <span class="math inline">\(\sigma_{e2} = 1.5\)</span> for residual (co)variances.</p>
+<p>The parameter file also looks like very similar to the previous one
+except it describes covariance matrices and a model for each trait. We
+assume <span class="math inline">\(\sigma_{g1}^2=0.5\)</span>, <span
+class="math inline">\(\sigma_{g12}=-0.25\)</span>, and <span
+class="math inline">\(\sigma_{g2}^{2}=1.0\)</span> for genetic
+(co)variances and <span
+class="math inline">\(\sigma_{e1}^{2}=2.0\)</span>, <span
+class="math inline">\(\sigma_{e12} = 1.0\)</span>, and <span
+class="math inline">\(\sigma_{e2} = 1.5\)</span> for residual
+(co)variances.</p>
 <pre data-language="blupf90" data-caption="param5.txt"><code>DATAFILE
 data5.txt
 NUMBER_OF_TRAITS
@@ -221,36 +290,63 @@ pedigree5.txt
 (CO)VARIANCES
  0.50 -0.25
 -0.25  1.00</code></pre>
-<p>For a multiple-trait mode, we should carefully describe the following values.</p>
+<p>For a multiple-trait mode, we should carefully describe the following
+values.</p>
 <ul>
 <li><code>NUMBER_OF_TRAITS</code> = appropriate number of traits
 <ul>
 <li><code>2</code>: two-trait model</li>
 </ul></li>
-<li><code>OBSERVATION(S)</code> = enumerate the positions of observations in the data file
+<li><code>OBSERVATION(S)</code> = enumerate the positions of
+observations in the data file
 <ul>
-<li><code>1 2</code>: the first and second columns; <code>1</code> for trait 1 and <code>2</code> for trait 2.</li>
+<li><code>1 2</code>: the first and second columns; <code>1</code> for
+trait 1 and <code>2</code> for trait 2.</li>
 </ul></li>
-<li><code>EFFECTS:</code> = enumerate the positions of effect, the number of levels and the effect type
+<li><code>EFFECTS:</code> = enumerate the positions of effect, the
+number of levels and the effect type
 <ul>
-<li><code>3 3 3 cross</code>: the position of effect 1 for trait 1 (<code>3</code>); the position of effect 1 for trait 2 (<code>3</code>); the number of levels (<code>3</code>); effect type (<code>cross</code>)</li>
-<li><code>4 4 2 cross</code>: the position of effect 2 for trait 1 (<code>4</code>); the position of effect 2 for trait 2 (<code>4</code>); the number of levels (<code>2</code>); effect type (<code>cross</code>)</li>
-<li><code>5 5 1 cov</code>: the position of effect 3 for trait 1 (<code>5</code>); the position of effect 3 for trait 2 (<code>5</code>); the number of levels (<code>3</code>); effect type (<code>cov</code>)</li>
-<li><code>6 6 15 cross</code>: the position of effect 4 for trait 1 (<code>6</code>); the position of effect 4 for trait 2 (<code>6</code>); the number of levels (<code>15</code>); effect type (<code>cross</code>)</li>
+<li><code>3 3 3 cross</code>: the position of effect 1 for trait 1
+(<code>3</code>); the position of effect 1 for trait 2 (<code>3</code>);
+the number of levels (<code>3</code>); effect type
+(<code>cross</code>)</li>
+<li><code>4 4 2 cross</code>: the position of effect 2 for trait 1
+(<code>4</code>); the position of effect 2 for trait 2 (<code>4</code>);
+the number of levels (<code>2</code>); effect type
+(<code>cross</code>)</li>
+<li><code>5 5 1 cov</code>: the position of effect 3 for trait 1
+(<code>5</code>); the position of effect 3 for trait 2 (<code>5</code>);
+the number of levels (<code>3</code>); effect type
+(<code>cov</code>)</li>
+<li><code>6 6 15 cross</code>: the position of effect 4 for trait 1
+(<code>6</code>); the position of effect 4 for trait 2 (<code>6</code>);
+the number of levels (<code>15</code>); effect type
+(<code>cross</code>)</li>
 </ul></li>
 <li><code>RANDOM RESIDUAL VALUES</code> = residual covariance matrix
 <ul>
-<li>full <span class="math inline">\(2 \times 2\)</span> matrix; total 4 elements should be here.</li>
+<li>full <span class="math inline">\(2 \times 2\)</span> matrix; total 4
+elements should be here.</li>
 </ul></li>
 <li><code>(CO)VARIANCES</code> = genetic covariance matrix
 <ul>
-<li>full <span class="math inline">\(2 \times 2\)</span> matrix; total 4 elements should be here.</li>
+<li>full <span class="math inline">\(2 \times 2\)</span> matrix; total 4
+elements should be here.</li>
 </ul></li>
 </ul>
-<p>You should be careful to write the <code>EFFECT:</code> block. With 2-trait model, each statement has to have 4 elements; the first 2 for the positions of effect for each trait in the data file, the next 1 for the number of levels and the last 1 for effect type. If you run a model with <span class="math inline">\(n\)</span> traits, the first <span class="math inline">\(n\)</span> elements should be the positions of effects for each trait.</p>
-<p>Residual and genetic covariance matrices should be fully described i.e., all upper, diagonal, and lower elements. The lines including a covariance matrix can’t accept comments.</p>
+<p>You should be careful to write the <code>EFFECT:</code> block. With
+two-trait model, each statement has to have 4 elements; the first 2 for
+the positions of effect for each trait in the data file, the next 1 for
+the number of levels and the last 1 for effect type. If you run a model
+with <span class="math inline">\(n\)</span> traits, the first <span
+class="math inline">\(n\)</span> elements should be the positions of
+effects for each trait.</p>
+<p>Residual and genetic covariance matrices should be fully described
+i.e., all upper, diagonal, and lower elements. The lines including a
+covariance matrix can’t accept comments.</p>
 <h2 id="resulting-solutions">Resulting solutions</h2>
-<p>Running BLUPF90 with above parameter file, the solutions file contains are following.</p>
+<p>Running BLUPF90 with above parameter file, the solutions file
+contains are following.</p>
 <pre data-language="text" data-caption="solutions"><code>trait/effect level  solution
    1   1         1      0.19990999
    2   1         1      5.43362035
@@ -294,20 +390,39 @@ pedigree5.txt
    2   4        14     -0.66337381
    1   4        15     -1.00156891
    2   4        15      2.01449847</code></pre>
-<p>This is long because every effect was considered in both traits. The format is the same as the previous one except for the first column containing 1 or 2. You can obtain 2 solutions, for trait 1 and trait 2, in every effect. For example, estimated breeding values for animal 13 are 0.1055 for trait 1 and 0.0702 for trait 2.</p>
-<p>For your information, the order of solutions in the file is the same as in memory. It is corresponding to the matrix notation described before.</p>
+<p>This is long because every effect was considered in both traits. The
+format is the same as the previous one except for the first column
+containing 1 or 2. You can obtain 2 solutions, for trait 1 and trait 2,
+in every effect. For example, estimated breeding values for animal 13
+are 0.1055 for trait 1 and 0.0702 for trait 2.</p>
+<p>For your information, the order of solutions in the file is the same
+as in memory. It is corresponding to the matrix notation described
+before.</p>
 <h2 id="remarks">Remarks</h2>
-<p>You can put a missing observation in the data file. The missing value is <code>0</code> by default but you can change the value with an option <code>OPTION missing</code>. The missing code is an integer value (positive or negative). At least 1 trait has a real observation. In other words, missing-in-all-traits is not allowed.</p>
-<p>The program supports different models in different traits (unequal design matrices). You can put 0 as a position in <code>EFFECT:</code> block if the trait doesn’t the effect. At least 1 trait has to have a non-zero position. We will see such models in the later chapter.</p>
-<p>Single-step GBLUP is supported in the multiple-trait model. You can add <code>OPTION SNP_file</code> to perform such a model.</p>
+<p>You can put a missing observation in the data file. The missing value
+is <code>0</code> by default but you can change the value with an option
+<code>OPTION missing</code>. The missing code is an integer value
+(positive or negative). At least 1 trait has a real observation. In
+other words, missing-in-all-traits is not allowed.</p>
+<p>The program supports different models in different traits (unequal
+design matrices). You can put 0 as a position in <code>EFFECT:</code>
+block if the trait doesn’t the effect. At least 1 trait has to have a
+non-zero position. We will see such models in the later chapter.</p>
+<p>Single-step GBLUP is supported in the multiple-trait model. You can
+add <code>OPTION SNP_file</code> to perform such a model.</p>
 <h2 id="summary">Summary</h2>
 <ul>
 <li>BLUPF90 supports multiple-trait models.</li>
-<li>The same data and pedigree files to a single-trait case can be used.</li>
-<li>Parameter file should be modified to fit the multiple-trait model.</li>
-<li>In the <code>EFFECT:</code> block, each statement should have <span class="math inline">\(n\)</span> positions of effects for <span class="math inline">\(n\)</span> trait model.</li>
-<li>Missing values are allowed. The default is 0 and you can change the missing code with an option.</li>
-<li>Each trait may have a different model i.e., different effects.</li>
+<li>The same data and pedigree files to a single-trait case can be
+used.</li>
+<li>Parameter file should be modified to fit the multiple-trait
+model.</li>
+<li>In the <code>EFFECT:</code> block, each statement should have <span
+class="math inline">\(n\)</span> positions of effects for <span
+class="math inline">\(n\)</span> trait model.</li>
+<li>Missing values are allowed. The default is 0 and you can change the
+missing code with an option.</li>
+<li>Each trait may have a different model, i.e., different effects.</li>
 </ul>
 <p>
 Back to <a href="./index.html">index.html</a>.

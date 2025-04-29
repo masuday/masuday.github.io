@@ -28,7 +28,8 @@
   <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
   <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
   <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="/usr/share/javascript/mathjax/MathJax.js"
+  type="text/javascript"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
   </script>
@@ -42,26 +43,43 @@
 <header>
 <h1 class="title">Numerical examples from Mrode (2014)</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">September 2019</p>
+<p class="date">April 2025</p>
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#animal-model-with-dominance-effect">Animal model with dominance effect</a><ul>
-<li><a href="#model">Model</a></li>
-<li><a href="#files">Files</a></li>
-<li><a href="#solutions">Solutions</a></li>
+<li><a href="#animal-model-with-dominance-effect"
+id="toc-animal-model-with-dominance-effect">Animal model with dominance
+effect</a>
+<ul>
+<li><a href="#model" id="toc-model">Model</a></li>
+<li><a href="#files" id="toc-files">Files</a></li>
+<li><a href="#solutions" id="toc-solutions">Solutions</a></li>
 </ul></li>
 </ul>
 </nav>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>
-<h1 id="animal-model-with-dominance-effect">Animal model with dominance effect</h1>
+<h1 id="animal-model-with-dominance-effect">Animal model with dominance
+effect</h1>
 <h2 id="model">Model</h2>
-<p>Linear mixed models can handle a non-additive genetic model with dominance or epistatic relationship matrices. In the dominance model, we can consider the additive genetic effect and the dominance effect simultaneously. In this example, the author assumes the animal model with one fixed effect, the additive genetic effect, the dominance effect, and the residual effect. In this example, the additive variance <span class="math inline">\(\sigma_u^2 = 90\)</span>, the dominance variance <span class="math inline">\(\sigma_d^2 = 80\)</span>, and the residual variance <span class="math inline">\(\sigma_e^2 = 120\)</span>. BLUPF90 doesn’t have a function to calculate <span class="math inline">\(\mathbf{D}^{-1}\)</span>, so we need to supply the elements as a file to the program.</p>
+<p>Linear mixed models can handle a non-additive genetic model with
+dominance or epistatic relationship matrices. In the dominance model, we
+can consider the additive genetic effect and the dominance effect
+simultaneously. In this example, the author assumes the animal model
+with one fixed effect, the additive genetic effect, the dominance
+effect, and the residual effect. In this example, the additive variance
+<span class="math inline">\(\sigma_u^2 = 90\)</span>, the dominance
+variance <span class="math inline">\(\sigma_d^2 = 80\)</span>, and the
+residual variance <span class="math inline">\(\sigma_e^2 = 120\)</span>.
+BLUPF90 does not have a function to calculate <span
+class="math inline">\(\mathbf{D}^{-1}\)</span>, so we need to supply the
+elements as a file to the program.</p>
 <h2 id="files">Files</h2>
-<p>A data file (<code>data_mr12a.txt</code>) should be prepared. The pedigree file (<code>pedigree_mr12a.txt</code>) is also created.</p>
-<p>The inverse of the dominance relationship matrix is supplied as a text file. See the textbook for details (p.207).</p>
+<p>A data file (<code>data_mr12a.txt</code>) should be prepared. The
+pedigree file (<code>pedigree_mr12a.txt</code>) is also created.</p>
+<p>The inverse of the dominance relationship matrix is supplied as a
+text file. See the textbook for details (p.207).</p>
 <pre data-language="text" data-caption="userinverse_mr12a.txt"><code> 1  1  1.000
  2  2  1.000
 ...
@@ -102,7 +120,8 @@ userinverse_mr12a.txt
 80.0
 OPTION solv_method FSPAK</code></pre>
 <h2 id="solutions">Solutions</h2>
-<p>The solutions are identical to the reference values in the textbook (p.207).</p>
+<p>The solutions are identical to the reference values in the textbook
+(p.207).</p>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>

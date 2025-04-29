@@ -41,65 +41,109 @@
 <header>
 <h1 class="title">Download and Installation</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">September 2019</p>
+<p class="date">April 2025</p>
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#running-a-program-in-linux-and-macos">Running a program in Linux and macOS</a><ul>
-<li><a href="#command-line-software">Command line software</a></li>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#running-a-program">Running a program</a></li>
-<li><a href="#stop-a-program">Stop a program</a></li>
+<li><a href="#running-a-program-in-linux-and-macos"
+id="toc-running-a-program-in-linux-and-macos">Running a program in Linux
+and macOS</a>
+<ul>
+<li><a href="#command-line-software"
+id="toc-command-line-software">Command line software</a></li>
+<li><a href="#installation" id="toc-installation">Installation</a></li>
+<li><a href="#running-a-program" id="toc-running-a-program">Running a
+program</a></li>
+<li><a href="#stop-a-program" id="toc-stop-a-program">Stop a
+program</a></li>
 </ul></li>
 </ul>
 </nav>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>
-<h1 id="running-a-program-in-linux-and-macos">Running a program in Linux and macOS</h1>
+<h1 id="running-a-program-in-linux-and-macos">Running a program in Linux
+and macOS</h1>
 <h2 id="command-line-software">Command line software</h2>
-<p>BLUPF90 programs are command line software. The program reads a parameter file describing the name of data and pedigree files, the models, and covariance components used in the analysis. It shows logs on screen and writes a file (or several files) for the results. This is designed to be used on the shell with keyboard operations.</p>
-<p>Here we assume a standard bash environment. For macOS, all the operations will be done on Terminal. No GUI (graphical user interface) will be used.</p>
+<p>BLUPF90 programs are command-line software. Each program reads a
+parameter file describing the names of the data and pedigree files, the
+model, and the covariance components used in the analysis. It displays
+logs on the screen and writes one or more output files. These programs
+are designed to be used in a shell environment with keyboard input.</p>
+<p>Here, we assume a standard bash environment. For macOS, all
+operations will be performed in Terminal. No graphical user interface
+(GUI) is used.</p>
+<p><strong>Note:</strong> Currently, only Intel-based Macs are
+supported. The recent Macs with Apple M-series (ARM-based) CPUs are not
+supported.</p>
 <h2 id="installation">Installation</h2>
-<p>The software does not need a special installation method. Just download it from the official web site. Then change the permission e.g. <code>chmod 755</code> or <code>chmod u+x</code> (easier to remember: <em>ch</em> ange the <em>mod</em> e adding (<em>+</em>) permission of e <em>x</em> ecution to the <em>u</em> ser). You can move the program to your favorite directory which may be listed in the variable <code>PATH</code>. If you don’t have such a directory, you can create the directory. Then you move the program there.</p>
-<p>The following is an example of this process.</p>
-<pre data-language="shell"><code># 1. download a program; you can use another way like using curl.
+<p>No special installation procedure is required. Just download the
+program from the official website. Then, change the file permissions
+using <code>chmod</code>, for example, <code>chmod 755</code> or
+<code>chmod u+x</code> (a helpful way to remember: <em>ch_ange the
+<em>mod_e to add execution permission </em>+x</em> for the _u_ser). You
+can move the program to your preferred directory, which may already be
+listed in your <code>PATH</code> environment variable. If not, you can
+create such a directory and move the program there.</p>
+<p>Here is an example:</p>
+<pre data-language="shell"><code># 1. Download the program. You can also use curl or another method.
 wget http://nce.ads.uga.edu/html/projects/programs/Mac_OSX/new/blupf90
 
-# 2. change the permission to executable
+# 2. Change the permission to make it executable.
 chmod 755 blupf90
 
-# 3. make a directory for binaries if you don&#39;t have it.
+# 3. Create a directory for binaries, if it doesn&#39;t exist.
 mkdir ~/bin
 
-# 4. move the program to the directory.
+# 4. Move the program to that directory.
 mv blupf90 ~/bin</code></pre>
-<p>You can use other software (e.g., <code>curl</code>) instead of <code>wget</code> to download a file. If the above directory is not listed in the environmental variable <code>PATH</code>, add the directory to this variable. You can check it with a command.</p>
+<p>You can use other tools such as <code>curl</code> instead of
+<code>wget</code> to download the file. If the directory (e.g.,
+<code>~/bin</code>) is not listed in your <code>PATH</code> environment
+variable, you need to add it. Check the current <code>PATH</code>
+using:</p>
 <pre data-language="shell"><code>echo $PATH</code></pre>
-<p>If you find the directory, you don’t have to do any extra task. If you don’t find, you can change the variable. You can do this by typing the following command on your shell.</p>
+<p>If your directory is listed, you’re all set. If not, add it by
+typing:</p>
 <pre data-language="shell"><code>export PATH=~/bin:$PATH</code></pre>
-<p>If you have installed the program in another directory than <code>~/bin</code>, please put the correct path there. This setting will disappear after log-out. To execute this command on log-in, set the variable in <code>/.bash_profile</code>. If you are unsure of this file, just open it with a text editor, then add the above command in the bottom of the file. Do not forget to log-out once then log-in again because the setting file will be effective only on your log-in.</p>
+<p>If the program is located in a different directory, replace
+<code>~/bin</code> with the correct path. This setting is temporary and
+will disappear when you log out. To make it permanent, add the command
+to your <code>.bash_profile</code>. If you’re unsure how to do this,
+open <code>.bash_profile</code> with a text editor and add the line to
+the end. Log out and log back in for the change to take effect.</p>
 <h2 id="running-a-program">Running a program</h2>
-<p>Move to the directory with all the required files (e.g. pedigree, data). Just type the program name to invoke the software. If you successfully run a program, it asks you the name of parameter file with a short message.</p>
+<p>Navigate to the directory that contains all the required files (e.g.,
+pedigree, data). Then, type the program name to start it. If the program
+launches successfully, you will see a message like:</p>
 <pre data-language="shell"><code>name of parameter file?</code></pre>
-<p>Here you type the name of parameter file with the keyboard. Additional typing will be needed for Gibbs sampling programs. The messages will be shown on screen (standard output), so you can capture them to a file.</p>
-<pre data-language="shell"><code># All messages are saved to a file.
-# The program accepts key-in even nothing shown.
+<p>At this prompt, type the name of the parameter file. Some programs,
+especially Gibbs sampling ones, will require additional inputs. The
+messages will appear on screen (standard output), and you can save them
+to a file using redirection:</p>
+<pre data-language="shell"><code># Save all messages to a file.
+# The program still accepts input even if nothing is shown.
 blupf90 &gt; out.txt
 
-# As above.
-# Messages are shown and saved.
+# Save messages to a file while also displaying them on screen.
 blupf90 | tee out.txt</code></pre>
-<p>Using a redirection, you can omit the key-in in the beginning of the program.</p>
-<pre data-language="shell"><code># one line input
+<p>You can also avoid manual input at the start of the program:</p>
+<pre data-language="shell"><code># Provide the parameter file name via echo.
 echo parameter.txt | blupf90
 
-# different way using a file
+# Or use a file.
 echo parameter.txt &gt; input
 blupf90 &lt; input</code></pre>
-<p>The second method is useful for Gibbs sampling programs, which require several inputs.</p>
+<p>The second method is especially useful for Gibbs sampling programs
+that require several lines of input.</p>
 <h2 id="stop-a-program">Stop a program</h2>
-<p>If you stop the program immediately, hit 2 keys simultaneously: Ctrl and C. For easier operation, you can keep pushing Ctrl and hit C. The program immediately stops with some messages, and you can safely ignore such messages. In some cases with multi-threaded computations, the program will be still running after receiving the STOP signal. You can close the terminal, and the program completely stops.</p>
+<p>To stop the program immediately, press <code>Ctrl + C</code>. For
+convenience, you can hold down <code>Ctrl</code> and tap <code>C</code>.
+The program will terminate immediately, and any resulting messages can
+be safely ignored. In some cases, especially during multi-threaded
+computations, the program may continue running after receiving the stop
+signal. If that happens, simply close the terminal window to stop the
+program completely.</p>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>

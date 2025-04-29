@@ -28,7 +28,8 @@
   <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
   <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
   <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="/usr/share/javascript/mathjax/MathJax.js"
+  type="text/javascript"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
   </script>
@@ -42,16 +43,22 @@
 <header>
 <h1 class="title">Data preparation with RENUMF90</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">September 2019</p>
+<p class="date">April 2025</p>
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#multiple-trait-models">Multiple-trait models</a><ul>
-<li><a href="#model">Model</a></li>
-<li><a href="#required-files">Required files</a></li>
-<li><a href="#missing-observations">Missing observations</a></li>
-<li><a href="#different-models-across-traits-unequal-design-matrices">Different models across traits (Unequal design matrices)</a></li>
-<li><a href="#summary">Summary</a></li>
+<li><a href="#multiple-trait-models"
+id="toc-multiple-trait-models">Multiple-trait models</a>
+<ul>
+<li><a href="#model" id="toc-model">Model</a></li>
+<li><a href="#required-files" id="toc-required-files">Required
+files</a></li>
+<li><a href="#missing-observations"
+id="toc-missing-observations">Missing observations</a></li>
+<li><a href="#different-models-across-traits-unequal-design-matrices"
+id="toc-different-models-across-traits-unequal-design-matrices">Different
+models across traits (Unequal design matrices)</a></li>
+<li><a href="#summary" id="toc-summary">Summary</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -60,13 +67,35 @@ Back to <a href="./index.html">index.html</a>.
 </p>
 <h1 id="multiple-trait-models">Multiple-trait models</h1>
 <h2 id="model">Model</h2>
-<p>For renumbering on a multiple-trait model, we still need a very similar instruction file to the single-trait model. Only differences include 1) a need to specify the model for each trait and 2) use of covariance matrix instead of a scalar value.</p>
-<p>We will consider a 2-trait model with equal design matrices, which means all traits have the same model. The mathematical model is <span class="math display">\[
+<p>For renumbering on a multiple-trait model, we still need a very
+similar instruction file to the single-trait model. Only differences
+include 1) a need to specify the model for each trait and 2) use of
+covariance matrix instead of a scalar value.</p>
+<p>We will consider a two-trait model with equal design matrices, which
+means all traits have the same model. The mathematical model is <span
+class="math display">\[
 \begin{aligned}
-y_{ijk:1} &amp;= A_{i:1} + S_{j:1} + \beta_{1} x_{ijk:1} + u_{k:1} + e_{ijk:1}\\
-y_{ijk:2} &amp;= A_{i:2} + S_{j:2} + \beta_{2} x_{ijk:2} + u_{k:2} + e_{ijk:2}
+y_{ijk:1} &amp;= A_{i:1} + S_{j:1} + \beta_{1} x_{ijk:1} + u_{k:1} +
+e_{ijk:1}\\
+y_{ijk:2} &amp;= A_{i:2} + S_{j:2} + \beta_{2} x_{ijk:2} + u_{k:2} +
+e_{ijk:2}
 \end{aligned}
-\]</span> where <span class="math inline">\(y_{ijk:t}\)</span> is a observation for trait <span class="math inline">\(t\)</span>, <span class="math inline">\(A_{i:t}\)</span> is the fixed effect for trait <span class="math inline">\(t\)</span>, <span class="math inline">\(S_{i:t}\)</span> is also the fixed effect for trait <span class="math inline">\(t\)</span>, <span class="math inline">\(\beta_{t}\)</span> is the fixed regression coefficient for trait <span class="math inline">\(t\)</span>, <span class="math inline">\(x_{ijk:t}\)</span> is a covariate for trait <span class="math inline">\(t\)</span>, <span class="math inline">\(u_{k:t}\)</span> is the additive genetic effect for trait <span class="math inline">\(t\)</span>, and <span class="math inline">\(e_{ijk:t}\)</span> is the random residual effect. The genetic (<span class="math inline">\(\mathbf{G}_0\)</span>) and residual (<span class="math inline">\(\mathbf{R}_0\)</span>) covariance matrices are <span class="math display">\[
+\]</span> where <span class="math inline">\(y_{ijk:t}\)</span> is a
+observation for trait <span class="math inline">\(t\)</span>, <span
+class="math inline">\(A_{i:t}\)</span> is the fixed effect for trait
+<span class="math inline">\(t\)</span>, <span
+class="math inline">\(S_{i:t}\)</span> is also the fixed effect for
+trait <span class="math inline">\(t\)</span>, <span
+class="math inline">\(\beta_{t}\)</span> is the fixed regression
+coefficient for trait <span class="math inline">\(t\)</span>, <span
+class="math inline">\(x_{ijk:t}\)</span> is a covariate for trait <span
+class="math inline">\(t\)</span>, <span
+class="math inline">\(u_{k:t}\)</span> is the additive genetic effect
+for trait <span class="math inline">\(t\)</span>, and <span
+class="math inline">\(e_{ijk:t}\)</span> is the random residual effect.
+The genetic (<span class="math inline">\(\mathbf{G}_0\)</span>) and
+residual (<span class="math inline">\(\mathbf{R}_0\)</span>) covariance
+matrices are <span class="math display">\[
 \mathbf{G}_{0}
 =
 \left[
@@ -88,7 +117,9 @@ y_{ijk:2} &amp;= A_{i:2} + S_{j:2} + \beta_{2} x_{ijk:2} + u_{k:2} + e_{ijk:2}
 \right]
 \]</span></p>
 <h2 id="required-files">Required files</h2>
-<p>The raw data file is identical to the previous single-trait data except for the new column (trait 2) added. The data file should contain all required effects and observations for all traits.</p>
+<p>The raw data file is identical to the previous single-trait data
+except for the new column (trait 2) added. The data file should contain
+all required effects and observations for all traits.</p>
 <pre data-language="text" data-caption="rawdata5.txt"><code>  ID006  A  1  1.0  3.0  4.5
   ID009  A  2  1.0  2.0  7.5
   ID012  A  1  2.0  4.0  3.5
@@ -99,7 +130,8 @@ y_{ijk:2} &amp;= A_{i:2} + S_{j:2} + \beta_{2} x_{ijk:2} + u_{k:2} + e_{ijk:2}
   ID011  C  2  1.0  6.0  2.5
   ID014  C  1  1.0  8.0  0.5
   ID015  C  2  2.0  4.0  4.5</code></pre>
-<p>The pedigree file is also the same as the previous one.</p>
+<p>The pedigree file is also the same as those used the previous
+one.</p>
 <pre data-language="text" data-caption="rawpedigree5.txt"><code>ID001        0         0
 ID002        0         0
 ID003        0         0
@@ -115,10 +147,10 @@ ID012    ID011     ID008
 ID013    ID011     ID010
 ID014    ID009     ID013
 ID015    ID011     ID010</code></pre>
-<p>The instruction file for this 2-trait model is as follows.</p>
+<p>The instruction file for this two-trait model is as follows.</p>
 <pre data-language="renumf90" data-caption="renum5.txt"><code>DATAFILE
 rawdata5.txt
-TRAITS          # 2-trait model: put 2 positions
+TRAITS          # two-trait model: put 2 positions
 5 6
 FIELDS_PASSED TO OUTPUT
 
@@ -144,53 +176,113 @@ FILE_POS         ## animal, sire and dam IDs, and two 0s
 (CO)VARIANCES    ## its variance component
  0.50 -0.25
 -0.25  1.00</code></pre>
-<p>For a multiple-trait model, you can check the following points in an instruction file. Incorrect description in these statements falls in the sudden stop of RENUMF90.</p>
+<p>For a multiple-trait model, you can check the following points in an
+instruction file. Incorrect description in these statements falls in the
+sudden stop of RENUMF90.</p>
 <ul>
-<li><code>TRAITS</code>: Enumerate the positions of observations in the data file. If you have 2 traits, you should put 2 numbers (positions) here.</li>
-<li><code>RESIDUAL_VARIANCE</code>: Put a residual covariance matrix here. The whole matrix is needed (all upper, lower, and diagonal elements).</li>
-<li><code>EFFECT</code>: Enumerate the position of effects for each trait in the data file; then put the effect type (and data type). For example, with a 2-trait model, first, you should put 2 numbers (for positions of effects for trait 1 and 2), 1 keyword (<code>cross</code> or <code>cov</code>) and, possibly, data type (<code>numer</code> or <code>alpha</code>) if the data type is <code>cross</code>.</li>
-<li><code>(CO)VARIANCES</code>: Put a covariance matrix here. The whole matrix is needed.</li>
+<li><code>TRAITS</code>: Enumerate the positions of observations in the
+data file. If you have 2 traits, you should put 2 numbers (positions)
+here.</li>
+<li><code>RESIDUAL_VARIANCE</code>: Put a residual covariance matrix
+here. The whole matrix is needed (all upper, lower, and diagonal
+elements).</li>
+<li><code>EFFECT</code>: Enumerate the position of effects for each
+trait in the data file; then put the effect type (and data type). For
+example, with a two-trait model, first, you should put 2 numbers (for
+positions of effects for trait 1 and 2), 1 keyword (<code>cross</code>
+or <code>cov</code>) and, possibly, data type (<code>numer</code> or
+<code>alpha</code>) if the data type is <code>cross</code>.</li>
+<li><code>(CO)VARIANCES</code>: Put a covariance matrix here. The whole
+matrix is needed.</li>
 </ul>
-<p>Run RENUMF90 with the above files, and you can see the parameter file configured with the 2-trait model.</p>
+<p>Run RENUMF90 with the above files, and you can see the parameter file
+configured with the two-trait model.</p>
 <h2 id="missing-observations">Missing observations</h2>
-<p>You can include missing observations in the data file. RENUMF90 does not distinguish the real and the missing observations; the program just read the raw data and just pass the observation to the renumbered file. Although RENUMF90 doesn’t care about missing observations, BLUPF90 cares about the values. So the generated parameter file (<code>renf90.par</code>) should include an option to define the missing code. You can write the following option in the instruction file, and RENUMF90 passes it to <code>renf90.par</code>.</p>
+<p>You can include missing observations in the data file. RENUMF90 does
+not distinguish the real and the missing observations; the program just
+read the raw data and just pass the observation to the renumbered file.
+Although RENUMF90 doesn’t care about missing observations, BLUPF90 cares
+about the values. So the generated parameter file
+(<code>renf90.par</code>) should include an option to define the missing
+code. You can write the following option in the instruction file, and
+RENUMF90 passes it to <code>renf90.par</code>.</p>
 <pre data-language="blupf90"><code>OPTION missing -999</code></pre>
-<p>This example defines an observation with the value <code>-999</code> as a missing code. The default is 0 (i.e. if you don’t define any missing code, the program assumes 0 as missing).</p>
-<p>Note that RENUMF90 still recognizes 0 as a missing observation in the computations of the basic statistics (e.g. average and standard deviation) just for your information. In this case, the statistics may be inaccurate but all the files are correctly renumbered.</p>
-<h2 id="different-models-across-traits-unequal-design-matrices">Different models across traits (Unequal design matrices)</h2>
-<p>Now we consider a multiple-trait model which has different mathematical models across traits. It is typically called a model with unequal design matrices. Let’s see the following 2-trait model. <span class="math display">\[
+<p>This example defines an observation with the value <code>-999</code>
+as a missing code. The default is 0 (that is if you do not define any
+missing code, the program assumes 0 as missing).</p>
+<p>Note that RENUMF90 still recognizes 0 as a missing observation in the
+computations of the basic statistics (for example average and standard
+deviation) just for your information. In this case, the statistics may
+be inaccurate but all the files are correctly renumbered.</p>
+<h2
+id="different-models-across-traits-unequal-design-matrices">Different
+models across traits (Unequal design matrices)</h2>
+<p>Now we consider a multiple-trait model which has different
+mathematical models across traits. It is typically called a model with
+unequal design matrices. Let us see the following two-trait model. <span
+class="math display">\[
 \begin{aligned}
-y_{ijk:1} &amp;= A_{i:1} + \phantom{S_{j:1} + } \beta_1 x_{ijk:1} + u_{k:1} + e_{ijk:1}\\
-y_{ijk:2} &amp;= A_{i:2} + S_{j:2} + \beta_{2} x_{ijk:2} + u_{k:2} + e_{ijk:2}
+y_{ijk:1} &amp;= A_{i:1} + \phantom{S_{j:1} + } \beta_1 x_{ijk:1} +
+u_{k:1} + e_{ijk:1}\\
+y_{ijk:2} &amp;= A_{i:2} + S_{j:2} + \beta_{2} x_{ijk:2} + u_{k:2} +
+e_{ijk:2}
 \end{aligned}
-\]</span> In this model, the <span class="math inline">\(S_{j:1}\)</span> is missing for trait 1. To support it with RENUMF90, you can just change a line in the previous instruction file.</p>
+\]</span> In this model, the <span
+class="math inline">\(S_{j:1}\)</span> is missing for trait 1. To
+support it with RENUMF90, you can just change a line in the previous
+instruction file.</p>
 <pre data-language="renumf90"><code>EFFECT                  # 2nd effect fixed
 0 3 cross alpha</code></pre>
-<p>The position <code>0</code> means that this effect will not be included in the model for this trait.</p>
-<p>We further consider the following 2-trait model. <span class="math display">\[
+<p>The position <code>0</code> means that this effect will not be
+included in the model for this trait.</p>
+<p>We further consider the following two-trait model. <span
+class="math display">\[
 \begin{aligned}
-y_{ijk:1} &amp;= A_{i:1} \phantom{+ S_{j:1} } + \beta_1 x_{ijk:1} + u_{k:1} + e_{ijk:1}\\
-y_{ijk:2} &amp;= \phantom{A_{i:2} + } S_{j:2} + \beta_{2} x_{ijk:2} + u_{k:2} + e_{ijk:2}
+y_{ijk:1} &amp;= A_{i:1} \phantom{+ S_{j:1} } + \beta_1 x_{ijk:1} +
+u_{k:1} + e_{ijk:1}\\
+y_{ijk:2} &amp;= \phantom{A_{i:2} + } S_{j:2} + \beta_{2} x_{ijk:2} +
+u_{k:2} + e_{ijk:2}
 \end{aligned}
-\]</span> In this case, <span class="math inline">\(S_{j:1}\)</span> is missing for trait 1 and <span class="math inline">\(A_{i:2}\)</span> is missing for trait 2. Applying the above principle to this case, you can figure out the following solution (just showing a piece of instruction file).</p>
+\]</span> In this case, <span class="math inline">\(S_{j:1}\)</span> is
+missing for trait 1 and <span class="math inline">\(A_{i:2}\)</span> is
+missing for trait 2. Applying the above principle to this case, you can
+figure out the following solution (just showing a piece of instruction
+file).</p>
 <pre data-language="renumf90"><code>EFFECT                  # 1st effect fixed
 2 0 cross alpha
 EFFECT                  # 2nd effect fixed
 0 3 cross alpha</code></pre>
-<p>Above statements are easy to understand which effects are missing for a particular trait.</p>
-<p>There is another way to handle such a model. You can combine above 2 <code>EFFECT</code> lines into 1 as follows.</p>
+<p>Above statements are easy to understand which effects are missing for
+a particular trait.</p>
+<p>There is another way to handle such a model. You can combine above 2
+<code>EFFECT</code> lines into 1 as follows.</p>
 <pre data-language="renumf90"><code>EFFECT                  # 1st and 2nd effects fixed
 2 3 cross alpha</code></pre>
-<p>This statement may be useful when the different effects are considered as similar types of effects. For example, in dairy cattle, a contemporary group effect (like HYS: herd-year-season) is commonly included in the model for production traits but the definition should be different across parities. HYS in the 1st lactation and HYS in the 2nd lactation are different but considered as similar effects. With this compact definition, memory requirements would reduce. If you are confused with this notation, you don’t have to use the compact statement.</p>
+<p>This statement may be useful when the different effects are
+considered as similar types of effects. For example, in dairy cattle, a
+contemporary group effect (like HYS: herd-year-season) is commonly
+included in the model for production traits but the definition should be
+different across parities. HYS in the 1st lactation and HYS in the 2nd
+lactation are different but considered as similar effects. With this
+compact definition, memory requirements would reduce. If you are
+confused with this notation, you do not have to use the compact
+statement.</p>
 <h2 id="summary">Summary</h2>
 <ul>
 <li>RENUMF90 supports multiple-trait models.</li>
-<li>Carefully describe <code>TRAITS</code>, <code>RESIDUAL_VARIANCE</code>, <code>EFFECT</code> and <code>(CO)VARIANCES</code> in an instruction file.</li>
-<li><code>TRAIT</code> has the same number of entries to the number of traits.</li>
+<li>Carefully describe <code>TRAITS</code>,
+<code>RESIDUAL_VARIANCE</code>, <code>EFFECT</code> and
+<code>(CO)VARIANCES</code> in an instruction file.</li>
+<li><code>TRAIT</code> has the same number of entries to the number of
+traits.</li>
 <li>Covariance matrix should be wholly stated.</li>
-<li><code>EFFECT</code> describes the position of effect in each trait.</li>
-<li>Missing observations are passed to <code>renf90.dat</code>. You can use <code>OPTION missing</code> to the instruction file to change the code for missing observations.</li>
-<li>RENUMF90 supports a multiple-trait model with unequal design matrices.</li>
+<li><code>EFFECT</code> describes the position of effect in each
+trait.</li>
+<li>Missing observations are passed to <code>renf90.dat</code>. You can
+use <code>OPTION missing</code> to the instruction file to change the
+code for missing observations.</li>
+<li>RENUMF90 supports a multiple-trait model with unequal design
+matrices.</li>
 </ul>
 <p>
 Back to <a href="./index.html">index.html</a>.

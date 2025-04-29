@@ -28,7 +28,8 @@
   <style type="text/css">pre[data-language='output']{background-color:#FFFFFF;border:thin solid black;}</style>
   <style type="text/css">pre[data-language='shell']{background-color:#FFFFFF;border:thin dashed;}</style>
   <style type="text/css">pre[data-caption]::before{content:attr(data-caption) "\a\a";font-size:large;font-weight:bold;border-bottom:thin solid black}</style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="/usr/share/javascript/mathjax/MathJax.js"
+  type="text/javascript"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
   </script>
@@ -42,23 +43,39 @@
 <header>
 <h1 class="title">Numerical examples from Mrode (2014)</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">September 2019</p>
+<p class="date">April 2025</p>
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#joint-analysis-of-quantitative-and-binary-traits">Joint analysis of quantitative and binary traits</a><ul>
-<li><a href="#model">Model</a></li>
-<li><a href="#file">File</a></li>
+<li><a href="#joint-analysis-of-quantitative-and-binary-traits"
+id="toc-joint-analysis-of-quantitative-and-binary-traits">Joint analysis
+of quantitative and binary traits</a>
+<ul>
+<li><a href="#model" id="toc-model">Model</a></li>
+<li><a href="#file" id="toc-file">File</a></li>
 </ul></li>
 </ul>
 </nav>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>
-<h1 id="joint-analysis-of-quantitative-and-binary-traits">Joint analysis of quantitative and binary traits</h1>
+<h1 id="joint-analysis-of-quantitative-and-binary-traits">Joint analysis
+of quantitative and binary traits</h1>
 <h2 id="model">Model</h2>
-<p>We can consider a 2-trait model with one threshold trait and one continuous trait. When we use Gibbs sampling to draw the posterior distribution for a location parameter, we can simply obtain a solution as the posterior mean. However, once we try to calculate the solutions without Gibbs sampling, the resulting equations become nonlinear and a complicated strategy is needed to solve the equations. See Wang et al. (1997) for detailed discussion. For the threshold trait, the solutions obtained with anyways should be converted differently as the regular threshold model. The author cited Foulley et al. (1983) and explains how to do it.</p>
-<p>In this section, we will simply use THRGIBBS1F90 to draw the posterior mean for a location parameter. In this example, we have only 1 threshold, so the program fixes the threshold to 0 and the residual variance to 1.0.</p>
+<p>We can consider a 2-trait model with one threshold trait and one
+continuous trait. When we use Gibbs sampling to draw the posterior
+distribution for a location parameter, we can simply obtain a solution
+as the posterior mean. However, once we try to calculate the solutions
+without Gibbs sampling, the resulting equations become nonlinear and a
+complicated strategy is needed to solve the equations. See Wang et
+al. (1997) for detailed discussion. For the threshold trait, the
+solutions obtained with anyways should be converted differently as the
+regular threshold model. The author cited Foulley et al. (1983) and
+explains how to do it.</p>
+<p>In this section, we will simply use THRGIBBS1F90 to draw the
+posterior mean for a location parameter. In this example, we have only 1
+threshold, so the program fixes the threshold to 0 and the residual
+variance to 1.0.</p>
 <h2 id="file">File</h2>
 <p>The data file is from Foulley et al. (1983) and shown below.</p>
 <pre data-language="text" data-caption="data_mr13b.txt"><code>1 1 1 1 41.0 1
@@ -117,14 +134,20 @@ Back to <a href="./index.html">index.html</a>.
 <li>BW (body weight)</li>
 <li>CD (calving difficulty)</li>
 </ol>
-<p>The pedigree file contains a sire, sire of the sire, and the maternal grand-sire.</p>
+<p>The pedigree file contains a sire, sire of the sire, and the maternal
+grand-sire.</p>
 <pre data-language="text" data-caption="pedigree_mr13b.txt"><code>1 0 0
 2 0 0
 3 1 0
 4 2 1
 5 3 2
 6 2 3</code></pre>
-<p>As the author mentions, we should use the corrected genetic parameters (<span class="math inline">\(\mathbf{G}_{c}\)</span>) as shown on p.235. The residual variance is 1.0 for CD and 20.0 for BW, and the residual covariance is 2.0527 because the residual correlation is 0.459. The parameter file is as follows. In our case, we exchange the order of traits i.e. the trait 1 is CD and the trait 2 is BW.</p>
+<p>As the author mentions, we should use the corrected genetic
+parameters (<span class="math inline">\(\mathbf{G}_{c}\)</span>) as
+shown on p.235. The residual variance is 1.0 for CD and 20.0 for BW, and
+the residual covariance is 2.0527 because the residual correlation is
+0.459. The parameter file is as follows. In our case, we exchange the
+order of traits that is the trait 1 is CD and the trait 2 is BW.</p>
 <pre data-language="blupf90" data-caption="param_mr13b.txt"><code>DATAFILE
 data_mr13b.txt
 NUMBER_OF_TRAITS
@@ -154,7 +177,9 @@ pedigree_mr13b.txt
 0.0302 0.7178
 OPTION cat 2 0
 OPTION fixed_var mean</code></pre>
-<p>Run THRGIBBS1F90 to draw 20,000 enough samples (saved in every 10 steps) and discard the first 10,000 samples as burn-in. You can see the following solutions.</p>
+<p>Run THRGIBBS1F90 to draw 20,000 enough samples (saved in every 10
+steps) and discard the first 10,000 samples as burn-in. You can see the
+following solutions.</p>
 <pre data-language="text" data-caption="solutions"><code>trait/effect level  solution        SD
    1   1         1         31.68328943          8.14595680
    2   1         1        169.99014434         40.28879171
@@ -180,8 +205,13 @@ OPTION fixed_var mean</code></pre>
    2   4         5          0.33065415          0.78077812
    1   4         6          0.03339339          0.17470579
    2   4         6          0.16620116          0.78877094</code></pre>
-<p>The estimated values are close to the reference values (p.237). The small difference comes from a limited number of observations. If you put zero-constraints on the fixed effects, you may obtain more similar values as in the textbook.</p>
-<p>Just for comparison, we show the results from CBLUP90THR with the same files shown above. The estimated threshold is <span class="math inline">\(-0.0198\)</span> with 100 rounds.</p>
+<p>The estimated values are close to the reference values (p.237). The
+small difference comes from a limited number of observations. If you put
+zero-constraints on the fixed effects, you may obtain more similar
+values as in the textbook.</p>
+<p>Just for comparison, we show the results from CBLUP90THR with the
+same files shown above. The estimated threshold is <span
+class="math inline">\(-0.0198\)</span> with 100 rounds.</p>
 <pre data-language="text" data-caption="solutions"><code>trait/effect level  solution
   1  1       1     -1.0100
   2  1       1     54.1493
