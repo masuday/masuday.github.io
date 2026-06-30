@@ -1,6 +1,8 @@
 # Yutaka Masuda
 
-Associate Professor, Rakuno Gakuen University, Hokkaido, Japan
+Principal Quantitative Genetics Process Scientist, Bayer Crop Science, Chesterfield, MO, USA
+
+Note: The contents of this repository are private and are entirely independent of my current or previous affiliations.
 
 - Permanent link: [https://masuday.github.io](https://masuday.github.io)
 - Github account: [https://github.com/masuday/](https://github.com/masuday/)
