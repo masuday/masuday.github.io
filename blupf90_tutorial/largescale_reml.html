@@ -43,7 +43,7 @@
 <header>
 <h1 class="title">Large-scale genetic evaluation</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">April 2025</p>
+<p class="date">August 2026</p>
 </header>
 <nav id="TOC">
 <ul>
@@ -64,18 +64,17 @@ Back to <a href="./index.html">index.html</a>.
 data</h1>
 <h2 id="background">Background</h2>
 <p>In typical REML computations, there are several bottlenecks. First,
-the exact solutions of the mixed model equations with the current
-variance components are needed. This means we should use Gaussian
-elimination or similar methods (direct methods). The Cholesky
-factorization is often employed to solve the equations. The LHS of mixed
-model equations generally contains many zero elements, and the matrix is
-sparse. Although we can hold only the nonzero elements to save the
-memory, very complicated operations are needed for the
-factorization.</p>
-<p>Secondly, the REML algorithms use the first derivative of the
-restricted log-likelihood, which contains the selected elements of the
-inverse of LHS. In the animal model, the derivative contains the
-following trace term: <span class="math display">\[
+the exact solutions of the mixed-model equations for the current
+variance components are needed. This means that we must use Gaussian
+elimination or a similar direct method. Cholesky factorization is often
+used to solve the equations. The LHS of the mixed-model equations
+generally contains many zero elements, so the matrix is sparse. Although
+we can store only the nonzero elements to save memory, factorization
+requires very complicated operations.</p>
+<p>Second, REML algorithms use the first derivative of the restricted
+log-likelihood, which contains selected elements of the inverse of the
+LHS. In the animal model, the derivative contains the following trace
+term: <span class="math display">\[
 \mathrm{tr}(\mathbf{A}^{-1}\mathbf{C}^{uu})
 \]</span> where <span class="math inline">\(\mathbf{A}^{-1}\)</span> is
 the inverse of the numerator relationship matrix and <span
@@ -86,35 +85,44 @@ class="math inline">\(\hat{\mathbf{u}}\)</span>). Simply speaking, the
 REML equations require the inverse of the LHS. The inverse of a sparse
 matrix is usually dense (non-sparse). You can easily imagine that its
 computational and storage costs are extremely high.</p>
-<p>In this calculation, we do not actually need the whole inverse. We
-just need the selected elements of the inverse corresponding to non-zero
-elements in the original <span
-class="math inline">\(\mathbf{C}\)</span>. The selected subset is called
-sparse inverse in animal breeding literature. An algorithm, so-called
-Takahashi algorithm, can calculate the sparse inverse. This algorithm
-updates the Cholesky factor of the LHS.</p>
-<p>FSPAK is a successful computer package to perform sparse operations
-including the factorization and sparse inversion for the LHS of mixed
-model equations. This package is the default solver in REMLF90 and
-AIREMLF90, now BLUPF90+, (and BLUPF90/BLUPF90+ with
-<code>OPTION solv_method FSPAK</code>). It is still useful for small
-equations although the back-end subroutines were written more than 20
-years ago. Unfortunately, the old design is inefficient in larger
+<p>In this calculation, we do not actually need the entire inverse. We
+need only the selected elements of the inverse corresponding to the
+nonzero elements in the original <span
+class="math inline">\(\mathbf{C}\)</span>. This selected subset is
+called the sparse inverse in the animal-breeding literature. An
+algorithm called the Takahashi algorithm can calculate the sparse
+inverse using the Cholesky factor of the LHS.</p>
+<p>FSPAK is a successful computer package for sparse operations,
+including factorization and sparse inversion of the LHS of the
+mixed-model equations. This package is called by BLUPF90+ using
+<code>OPTION solv_method FSPAK</code>. It is still useful for small
+equations, although its back-end subroutines were written more than 20
+years ago. Unfortunately, its older design is inefficient for larger
 equations with many dense blocks. For example, a multiple-trait model
-(or random regression/maternal model) contains many (genetic and
-residual) covariance matrices in the equations. Although each covariance
-matrix is small, the small matrices are combined into large dense blocks
-during the sparse operations. This is more typical of a genomic model
-including the (inverse of) genomic relationship matrix, that is large
-and dense.</p>
-<p>YAMS is a replacement of FSPAK. This package implements several
-advanced algorithms, including the supernodal factorization and the
-inverse multifrontal approach, to efficiently handle the dense blocks in
-the sparse matrix. YAMS intensively uses BLAS and LAPACK. For technical
-details, see Masuda et al. (2014) and Masuda et al. (2015).</p>
-<p>AIREMLF90 (now BLUPF90+) especially implements several options to
-accelerate the computation and stabilize the estimation process. Here we
-also introduce the options.</p>
+(or random-regression or maternal model) contains many genetic and
+residual covariance matrices in the equations. Although each covariance
+matrix is small, these matrices are combined into large dense blocks
+during the sparse operations. This is especially important in a genomic
+model that includes the inverse of a genomic relationship matrix, which
+is large and dense.</p>
+<p>YAMS is a replacement for FSPAK. This package implements several
+advanced algorithms, including supernodal factorization and the
+multifrontal inversion approach, to handle dense blocks in sparse
+matrices efficiently. YAMS makes extensive use of BLAS and LAPACK. For
+technical details, see Masuda et al. (2014) and Masuda et
+al. (2015).</p>
+<p>BLUPF90+ provides several options to accelerate computation and
+stabilize the estimation process. We introduce these options here.</p>
+<p>Note that YAMS needs the matrix to be stored in memory, which is a
+limiting factor for REML in genomic models. Instead of using a direct
+solver, inversion-free sampling methods may be feasible for
+variance-component estimation in a large-scale genomic model.
+Sampling-based REML (Monte Carlo REML) has been suggested for genomic
+models (Matilainen et al., 2012). The program <code>blup90iod3+</code>
+now implements a sampling algorithm suitable for ssGBLUP (Bermann et
+al., 2025).</p>
+<p>In this section, we will see how YAMS works using a numerical
+example. The user can use BLUPF90+ to run the example.</p>
 <h2 id="files">Files</h2>
 <p>We will use the following files.</p>
 <ul>
@@ -125,8 +133,8 @@ href="https://github.com/Masuday/data/blob/master/tutorial/simdata_rep.txt"><cod
 href="https://github.com/Masuday/data/blob/master/tutorial/simped.txt"><code>simped.txt</code></a>
 : pedigree file</li>
 </ul>
-<p>We will use a 4-trait repeatability model with the parameter
-file.</p>
+<p>We will use a four-trait repeatability model with the following
+parameter file.</p>
 <pre data-language="blupf90" data-caption="complicatedparam1.txt"><code>DATAFILE
 simdata_rep.txt
 NUMBER_OF_TRAITS
@@ -172,32 +180,34 @@ FILE
 80 80 80 100
 OPTION use_yams
 OPTION EM-REML 10</code></pre>
-<p>Here we put 2 options.</p>
+<p>Here we specify two options.</p>
 <pre data-language="blupf90"><code>OPTION use_yams</code></pre>
 <p>This option switches the sparse library from FSPAK to YAMS. If the
-program has multi-threaded BLAS and LAPACK, the computations will be
-parallelized. This option is also effective in BLUPF90 in a combination
-with <code>OPTION solv_method FSPAK</code> — it will use YAMS instead of
+program has multithreaded BLAS and LAPACK, the computations will be
+parallelized. This option is also effective in BLUPF90 in combination
+with <code>OPTION solv_method FSPAK</code>: it uses YAMS instead of
 FSPAK.</p>
 <pre data-language="blupf90"><code>OPTION EM-REML n   # default :0</code></pre>
-<p>This option forces the program performs EM REML (equivalent to
-REMLF90) in the first n rounds. The default is 0 that is no EM rounds
-are performed and AI rounds start from round 1. For complicated models,
-AI REML often diverges in the first round. Although this option can give
-a remedy for this situation, it does not always prevent the program from
-diverging.</p>
-<p>We have several more options to accelerate the computations.</p>
+<p>This option forces the program to perform EM-REML (equivalent to
+REMLF90) during the first <span class="math inline">\(n\)</span> rounds.
+The default is 0; that is, no EM rounds are performed, and AI rounds
+start from round 1. For complicated models, AI-REML often diverges in
+the first round. Although this option can help in this situation, it
+does not always prevent the program from diverging.</p>
+<p>We have several additional options to accelerate the
+computations.</p>
 <pre data-language="blupf90"><code>OPTION fact_once x</code></pre>
-<p>This option avoids the re-calculation of the Cholesky factor. It
-saves the Cholesky factor in temporary memory (if <code>x</code> is
-<code>memory</code>) or a temporary file (if <code>x</code> is
+<p>This option avoids recalculating the Cholesky factor. It saves the
+Cholesky factor in temporary memory (if <code>x</code> is
+<code>memory</code>) or in a temporary file (if <code>x</code> is
 <code>file</code>). If you have enough memory, <code>memory</code> is
-preferable because of its faster computations.</p>
+preferable because it provides faster computation.</p>
 <pre data-language="blupf90"><code>OPTION approx_loglike</code></pre>
 <p>This skips the computation of the exact log-likelihood. If you do not
-need the exact value, we recommend using this option for speed-up.</p>
+need the exact value, we recommend using this option to speed up the
+computation.</p>
 <h2 id="results">Results</h2>
-<p>The following results will be available in 17 rounds.</p>
+<p>The following results are available after 17 rounds.</p>
 <pre data-language="output"><code> new R
    45.124       22.357       18.626       13.762
    22.357       44.210       22.690       18.016
@@ -213,13 +223,13 @@ need the exact value, we recommend using this option for speed-up.</p>
    15.237       40.937       19.562       6.4840
    10.490       19.562       27.782       4.5379
    1.4105       6.4840       4.5379       2.4410</code></pre>
-<p>You can try alternative parameter file without <code>use_yams</code>
-and <code>EM-REML</code>. Without YAMS, the computations will be slow.
-Without EM-REML, the estimates diverge in the 1st round. You can also
-try <code>fact_once</code> and <code>approx_loglike</code>. Although you
-will not be sure that the options accelerate the computations in this
-small example, it surely reduces the computing time for a larger
-analysis.</p>
+<p>You can try an alternative parameter file without
+<code>use_yams</code> and <code>EM-REML</code>. Without YAMS, the
+computations will be slow. Without EM-REML, the estimates may diverge in
+the first round. You can also try <code>fact_once</code> and
+<code>approx_loglike</code>. Although you may not be able to determine
+whether these options accelerate computation in this small example, they
+can substantially reduce computing time in a larger analysis.</p>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>

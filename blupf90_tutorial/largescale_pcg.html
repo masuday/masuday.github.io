@@ -43,7 +43,7 @@
 <header>
 <h1 class="title">Large-scale genetic evaluation</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">April 2025</p>
+<p class="date">August 2026</p>
 </header>
 <nav id="TOC">
 <ul>
@@ -67,60 +67,63 @@ Back to <a href="./index.html">index.html</a>.
 id="iteration-on-data-with-preconditioned-conjugate-gradient-pcg">Iteration
 on data with preconditioned conjugate gradient (PCG)</h1>
 <h2 id="algorithm">Algorithm</h2>
-<p>Preconditioned conjugate gradient (PCG) is an iterative method to
-solve the linear equations. This method is easily harmonized with the
-“iteration on data” technique. The intermediate status is kept in 4
-vectors, and the one iteration will be done by updating the vectors.
-BLUP90IOD2 is a program implementing this algorithm. Here we will
-introduce a basic idea needed to understand what the program performs.
+<p>Preconditioned conjugate gradient (PCG) is an iterative method for
+solving linear equations. This method is well suited to the
+“iteration-on-data” technique. The intermediate state is stored in four
+vectors, and one iteration is performed by updating these vectors.
+BLUP90IOD3 is a program that implements this algorithm. Here, we
+introduce the basic ideas needed to understand how the program works.
 See Stranden and Lidauer (2000) and Tsuruta et al. (2001) for the
 detailed algorithm.</p>
 <p>The mixed model equations can be written as <span
 class="math display">\[
 \mathbf{Cx} = \mathbf{b}
 \]</span> where <span class="math inline">\(\mathbf{C}\)</span> is the
-left-hand side matrix, <span class="math inline">\(\mathbf{x}\)</span>
+left-hand-side matrix, <span class="math inline">\(\mathbf{x}\)</span>
 is the solution vector, and <span
-class="math inline">\(\mathbf{b}\)</span> is the right-hand side vector.
-If we have a matrix <span class="math inline">\(\mathbf{M}\)</span>
-which is an approximation of <span
-class="math inline">\(\mathbf{C}\)</span>, above equations are
-equivalent to <span class="math display">\[
+class="math inline">\(\mathbf{b}\)</span> is the right-hand-side vector.
+If we have a matrix <span class="math inline">\(\mathbf{M}\)</span> that
+approximates <span class="math inline">\(\mathbf{C}\)</span>, the
+equations above are equivalent to <span class="math display">\[
 \mathbf{M}^{-1}\mathbf{Cx} = \mathbf{M}^{-1}\mathbf{b}.
 \]</span> This matrix <span class="math inline">\(\mathbf{M}\)</span> is
-called preconditioner. If <span class="math inline">\(\mathbf{M =
-C}\)</span>, the equations are immediately solved. BLUPF90 uses <span
-class="math inline">\(\mathbf{M} = \mathrm{diag}(\mathbf{C})\)</span> so
-its inverse is easily calculated.</p>
-<p>The residual is expressed as <span class="math display">\[
+called the preconditioner. If <span
+class="math inline">\(\mathbf{M}=\mathbf{C}\)</span>, the equations are
+solved immediately. BLUPF90 uses <span class="math inline">\(\mathbf{M}
+= \mathrm{diag}(\mathbf{C})\)</span>, so its inverse is easily
+calculated.</p>
+<p>The residual is defined as <span class="math display">\[
 \mathbf{r} = \mathbf{b} - \mathbf{Cx}
-\]</span> and the algorithm tries to reduce with statistics containing
-the residual. The convergence criterion with the current solution <span
-class="math inline">\(\mathbf{\hat{x}}\)</span> is <span
+\]</span> and the algorithm attempts to reduce it using quantities
+calculated from the residual. The convergence criterion for the current
+solution <span class="math inline">\(\hat{\mathbf{x}}\)</span> is <span
 class="math display">\[
 \varepsilon = \frac{||\mathbf{b} -
-\mathbf{C\hat{x}}||^2}{||\mathbf{b}||^2}
-\]</span> where <span class="math inline">\(||\cdot||\)</span> means the
-norm. The default of <span class="math inline">\(\varepsilon\)</span> in
-BLUPF90IOD2 is <span class="math inline">\(10^{-12}\)</span>.</p>
-<p>Note that some other software, for example, MiX99, uses <span
-class="math inline">\(\sqrt{\varepsilon}\)</span>. The users should be
-careful about the definition of convergence criterion when they have
-switched the software to BLUPF90IOD2.</p>
+\mathbf{C}\hat{\mathbf{x}}||^2}{||\mathbf{b}||^2}
+\]</span> where <span class="math inline">\(||\cdot||\)</span> denotes
+the norm. The default value of <span
+class="math inline">\(\varepsilon\)</span> in BLUPF90IOD2 is <span
+class="math inline">\(10^{-12}\)</span>.</p>
+<p>Note that some other software, such as MiX99, uses <span
+class="math inline">\(\sqrt{\varepsilon}\)</span>. Users should be
+careful about the definition of the convergence criterion when switching
+to BLUPF90IOD3.</p>
+<p>This section was originally written for the previous version,
+BLUP90IOD2. The author believes that the content is still applicable to
+BLUP90IOD3.</p>
 <h2 id="programs">Programs</h2>
-<p>BLUP90IOD2 is the current program to perform the iteration on data
-with PCG. CBLUP90IOD can handle a threshold model or threshold-linear
-models with 1 threshold trait. BLUP90MBE is specialized in multibreed
-models with external information (see Legarra et al., 2007). In this
-example, we use the BLUP90IOD2 program.</p>
-<p>A parallel version of BLUPF90IOD2 is now available. BLUP90IOD2OMP1 is
-a program supporting parallel processing in reading data and pedigree
-files using OpenMP. This program is useful especially for very large
-data set with a complicated model (like the multiple-trait model). There
-is no advantage to use this program for small or moderate data set. The
-usage of this program is the same as BLUP90IOD2.</p>
+<p>BLUP90IOD3 is the current program for performing iteration on data
+with PCG. It combines CBLUP90IOD2 (for a threshold model or
+threshold-linear models with one threshold trait), BLUP90MBE (for
+multibreed models with external information; Legarra et al., 2007), and
+other programs. BLUP90IOD3 also implements a general multivariate model
+with both threshold and linear traits (Lourenco et al., 2026).</p>
+<p>In this example, we use the former version, BLUP90IOD2.</p>
+<!--
+A parallel version of BLUPF90IOD2 is now available. BLUP90IOD2OMP1 is a program supporting parallel processing in reading data and pedigree files using OpenMP. This program is useful especially for very large data set with a complicated model (like the multiple-trait model). There is no advantage to use this program for small or moderate data set. The usage of this program is the same as BLUP90IOD2.
+-->
 <h2 id="files-and-analysis">Files and analysis</h2>
-<p>Here we will use the same sample files as used in REML
+<p>Here, we will use the same sample files as those used for REML
 estimation.</p>
 <ul>
 <li><a
@@ -163,8 +166,8 @@ simped.txt
  19.471  16.128  19.571  22.239
  23.885  19.571  31.315  33.782
  24.246  22.239  33.782  51.706</code></pre>
-<p>Run BLUP90IOD2 with the parameter file. It takes 185 rounds to meet
-the convergence.</p>
+<p>Run BLUP90IOD2 with the parameter file. It requires 185 rounds to
+meet the convergence criterion.</p>
 <pre data-language="output"><code>round =   183  eps =  0.1707E-11  time =    0.01
 round =   184  eps =  0.1139E-11  time =    0.01
 round =   185  eps =  0.9976E-12  time =    0.01
@@ -174,20 +177,20 @@ round =   185  eps =  0.9976E-12  time =    0.01
 <h2 id="options">Options</h2>
 <pre data-language="blupf90"><code>OPTION conv_crit tol</code></pre>
 <p>This option defines the convergence criterion (<span
-class="math inline">\(\varepsilon\)</span>) to stop the iterations. A
-real value <code>tol</code> should be a small value. The default is
-<code>1.0E-12</code>. The criterion should be carefully decided because
-the default value could be too loose but the strict criterion requires
+class="math inline">\(\varepsilon\)</span>) for stopping the iterations.
+The real value <code>tol</code> should be small. The default is
+<code>1.0E-12</code>. The criterion should be chosen carefully: the
+default value may be too loose, whereas a strict criterion may require
 too many rounds to converge. The best practice is to compare solutions
-from different convergence criterions and determine enough convergence
-criterion.</p>
+obtained with different convergence criteria and determine a criterion
+that provides sufficient convergence.</p>
 <pre data-language="blupf90"><code>OPTION blksize n</code></pre>
-<p>This option creates a block diagonal matrix for pre-conditioner
-(<span class="math inline">\(\mathbf{M}\)</span>). The integer value
-<code>n</code> defines the block size. By default, the pre-conditioner
-is the diagonal matrix (that is <code>n</code> is 1). The block size
-should be the same as the number of traits. This option will reduce the
-number of iterations if the specified value is valid.</p>
+<p>This option creates a block-diagonal preconditioner matrix (<span
+class="math inline">\(\mathbf{M}\)</span>). The integer value
+<code>n</code> defines the block size. By default, the preconditioner is
+a diagonal matrix (that is, <code>n</code> is 1). The block size should
+be the same as the number of traits. This option reduces the number of
+iterations if the specified value is appropriate.</p>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>

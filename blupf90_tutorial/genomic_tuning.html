@@ -43,7 +43,7 @@
 <header>
 <h1 class="title">Practical genomic analysis</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">April 2025</p>
+<p class="date">August 2026</p>
 </header>
 <nav id="TOC">
 <ul>
@@ -71,25 +71,18 @@ Back to <a href="./index.html">index.html</a>.
 </p>
 <h1 id="tuning-and-inputoutput-of-relationship-matrices">Tuning and
 input/output of relationship matrices</h1>
-<p>Stability of single-step GBLUP depends on the characteristic of <span
-class="math inline">\(\mathbf{H}^{-1}\)</span> , which contains <span
-class="math inline">\(\mathbf{G}^{-1}\)</span> and <span
-class="math inline">\(\mathbf{A}_{22}^{-1}\)</span>. We have several
-ways to adjust <span class="math inline">\(\mathbf{G}\)</span> and <span
-class="math inline">\(\mathbf{G}^{-1}\)</span> to obtain reasonable
-results in the genomic analysis. There are also several options to
-harmonize between <span class="math inline">\(\mathbf{G}^{-1}\)</span>
-and <span class="math inline">\(\mathbf{A}_{22}^{-1}\)</span>. We will
-introduce the ideas as well as the options needed.</p>
+<p>In this section, we examine various options for creating and
+inverting relationship matrices and for saving and loading the
+matrices.</p>
 <h2 id="construction-of-mathbfg">Construction of <span
 class="math inline">\(\mathbf{G}\)</span></h2>
 <pre data-language="blupf90"><code>OPTION whichfreq x</code></pre>
 <p>This option defines which type of allele frequency is used to
 calculate <span class="math inline">\(\mathbf{Z}\)</span>. The argument
-<code>x</code> could be 0 = use of the user-supplied file (see below), 1
-= fixed value (0.5) and 2 = the current allele frequency calculated from
-the marker data (default). With the argument 0, the file name is
-supplied with the following option:</p>
+<code>x</code> can be 0 (use the user-supplied file; see below), 1 (use
+the fixed value 0.5), or 2 (use the current allele frequency calculated
+from the marker data; default). With argument 0, specify the file name
+using the following option:</p>
 <pre data-language="blupf90"><code>OPTION FreqFile x</code></pre>
 <p>where <code>x</code> is the name of the file for allele frequency.
 The format of this file is explained in the previous section.</p>
@@ -100,35 +93,35 @@ OPTION GammaDelta c d</code></pre>
 class="math inline">\(\alpha\)</span>, <code>b</code> as <span
 class="math inline">\(\beta\)</span>, <code>c</code> as <span
 class="math inline">\(\gamma\)</span>, and <code>d</code> as <span
-class="math inline">\(\delta\)</span> used in the blending <span
-class="math inline">\(\alpha\mathbf{G}+\beta\mathbf{A}_{22}^{-1}+\gamma\mathbf{I}+\delta\mathbf{11}&#39;\)</span>.
+class="math inline">\(\delta\)</span> in the blending formula <span
+class="math inline">\(\alpha\mathbf{G}+\beta\mathbf{A}_{22}+\gamma\mathbf{I}+\delta\mathbf{1}\mathbf{1}&#39;\)</span>.
 The default values are <span class="math inline">\(\alpha =
 0.95\)</span>, <span class="math inline">\(\beta = 0.05\)</span>, <span
 class="math inline">\(\gamma = 0\)</span>, and <span
-class="math inline">\(\delta = 0\)</span>. We usually use a restriction
-as <span class="math inline">\(\alpha + \beta = 1\)</span>, but the
-program will not check this restriction.</p>
+class="math inline">\(\delta = 0\)</span>. We usually impose the
+restriction <span class="math inline">\(\alpha + \beta = 1\)</span>, but
+the program does not check this restriction.</p>
 <p>The original <span class="math inline">\(\mathbf{G}\)</span> matrix
-is completely updated (rewritten) by the blended <span
-class="math inline">\(\mathbf{G}\)</span>. After the blending, we cannot
-retrieve the original elements in non-blended <span
+is completely replaced by the blended <span
+class="math inline">\(\mathbf{G}\)</span>. After blending, we cannot
+retrieve the original elements of the unblended <span
 class="math inline">\(\mathbf{G}\)</span>.</p>
 <h2 id="tuning">Tuning</h2>
 <pre data-language="blupf90"><code>OPTION tunedG x</code></pre>
-<p>This option defines the method to tune <span
-class="math inline">\(\mathbf{G}\)</span> up. The tuning scales <span
+<p>This option defines the method for tuning <span
+class="math inline">\(\mathbf{G}\)</span>. Tuning scales <span
 class="math inline">\(\mathbf{G}\)</span> to <span
-class="math inline">\(\mathbf{A}_{22}\)</span>. This tuning is a
-separate step from blending. In real population, most genotypes are from
-the recent generations but the pedigree comes from long generations. The
-situation would cause the incompatibility between <span
+class="math inline">\(\mathbf{A}_{22}\)</span> and is a separate step
+from blending. In a real population, most genotypes are from recent
+generations, whereas the pedigree may span many generations. This can
+cause incompatibility between <span
 class="math inline">\(\mathbf{G}\)</span> and <span
-class="math inline">\(\mathbf{A}_{22}\)</span> due to different amount
-of information accounting for changes in allele frequency. The tuning
-tries to make <span class="math inline">\(\mathbf{G}\)</span> compatible
-with <span class="math inline">\(\mathbf{A}_{22}\)</span> by applying a
-single regression equation. See Chen et al. (2011), Vitezica et
-al. (2011), and Christensen et al. (2012) for details.</p>
+class="math inline">\(\mathbf{A}_{22}\)</span> because of differences in
+the information available and changes in allele frequencies over time.
+Tuning attempts to make <span class="math inline">\(\mathbf{G}\)</span>
+compatible with <span class="math inline">\(\mathbf{A}_{22}\)</span> by
+applying a single regression equation. See Chen et al. (2011), Vitezica
+et al. (2011), and Christensen et al. (2012) for details.</p>
 <p>The possible argument <code>x</code> is as follows.</p>
 <ul>
 <li>0 = no scaling</li>
@@ -148,15 +141,15 @@ class="math inline">\(\mathrm{mean}\left(\left[\mathrm{offdiag}(\mathbf{G})\righ
 (default)</li>
 <li>3 = <span class="math inline">\(\mathrm{mean}\left(\mathbf{G}\right)
 = \mathrm{mean}\left(\mathbf{A}_{22}\right)\)</span></li>
-<li>4 = Adjustement with the 1st method described as in Powell et
-al. (2010) or Vitezica et al. (2011). This is very similar to (2).</li>
+<li>4 = Adjustment using the first method described by Powell et
+al. (2010) and Vitezica et al. (2011). This is very similar to (2).</li>
 </ul>
 <h2 id="scaling-the-inverse-matrices">Scaling the inverse matrices</h2>
 <p>Additional scaling may be needed for <span
 class="math inline">\(\mathbf{G}^{-1}\)</span> and <span
-class="math inline">\(\mathbf{A}_{22}^{-1}\)</span> to achieve the
-maximum predictive ability in GEBV for young animals. The scaling
-factors <span class="math inline">\(\tau\)</span> and <span
+class="math inline">\(\mathbf{A}_{22}^{-1}\)</span> to maximize the
+predictive ability of GEBVs for young animals. The scaling factors <span
+class="math inline">\(\tau\)</span> and <span
 class="math inline">\(\omega\)</span> are used for this purpose. <span
 class="math display">\[
 \mathbf{H}^{-1}
@@ -171,113 +164,152 @@ class="math display">\[
 \right]
 \]</span></p>
 <p>In the ideal situation, <span class="math inline">\(\tau = 1\)</span>
-and <span class="math inline">\(\omega = 1\)</span>. The scaling would
-solve some issues if there are issues including incomplete pedigree and
-unqualified genotypes.</p>
+and <span class="math inline">\(\omega = 1\)</span>. Scaling may help
+address issues such as incomplete pedigrees and unqualified
+genotypes.</p>
 <pre data-language="blupf90"><code>OPTION TauOmega t w</code></pre>
 <p>These options define <code>t</code> as <span
 class="math inline">\(\tau\)</span> and <code>w</code> as <span
-class="math inline">\(\omega\)</span> in above equation. The default
+class="math inline">\(\omega\)</span> in the equation above. The default
 values are <span class="math inline">\(\tau = 1\)</span> and <span
 class="math inline">\(\omega = 1\)</span>.</p>
 <p>The original inverses (<span
 class="math inline">\(\mathbf{G}^{-1}\)</span> and <span
 class="math inline">\(\mathbf{A}_{22}^{-1}\)</span>) are completely
-replaced (rewritten) with the scaled ones (<span
+replaced by the scaled ones (<span
 class="math inline">\(\tau\mathbf{G}^{-1}\)</span> and <span
-class="math inline">\(\omega\mathbf{A}_{22}^{-1}\)</span>). After the
-scaling, we cannot retrieve the non-scaled elements in <span
+class="math inline">\(\omega\mathbf{A}_{22}^{-1}\)</span>). After
+scaling, we cannot retrieve the unscaled elements of <span
 class="math inline">\(\mathbf{G}^{-1}\)</span> and <span
-class="math inline">\(\mathbf{A}_{22}^{-1}\)</span>.</p>
+class="math inline">\(\mathbf{A}_{22}^{-1}\)</span>. This behavior can
+be problematic when you save or load these matrices: the option rescales
+matrices read from files, even if the matrices have already been
+rescaled.</p>
+<p>Note that this option is an ad hoc remedy for reducing bias and
+overdispersion in predicted breeding values. It may solve immediate
+problems in practice, but it may also introduce other problems. The
+option, particularly <span class="math inline">\(\omega\)</span>, was
+widely used in the past or for small populations. One reason why <span
+class="math inline">\(\omega\)</span> is needed is incompatibility
+between <span class="math inline">\(\mathbf{G}^{-1}\)</span> and <span
+class="math inline">\(\mathbf{A}^{-1}\)</span>. Accounting for
+inbreeding in <span class="math inline">\(\mathbf{A}^{-1}\)</span> may
+solve this issue. The user should also examine the model and data for
+potential sources of bias.</p>
 <h2 id="output-options">Output options</h2>
-<p>A relationship matrix and its inverse generated with the genomic
-module can be saved in a file. By default, the format is binary which
-the software can efficiently read, but a human cannot easily read. If
-you really want to save the matrix as text format, the following option
-is useful.</p>
+<h3 id="format">Format</h3>
+<p>A relationship matrix and its inverse generated by the genomic module
+can be saved to a file. By default, the format is binary
+(machine-readable), which the software can read efficiently but humans
+cannot easily read. If you want to save the matrix in text format, the
+following option is useful.</p>
 <pre data-language="blupf90"><code>OPTION saveAscii</code></pre>
-<p>The format is space-separate text. It has 3 columns per line: 1) row
-number, 2) column number and 3) element value. This text file can be
-used as a user-supplied relationship matrix in BLUPF90 with the
-<code>user_file</code> keyword. If you need the maximum efficiency, do
-not use this option — it will be slow in operation.</p>
-<p>The following options are available to output matrices. The options
-are case-sensitive so be careful to write them.</p>
+<p>The format is space-separated text. It has three columns per line:
+(1) row number, (2) column number, and (3) element value. The row and
+column numbers are aligned with the order in the marker file. For
+example, the animal that appears in the first line of the marker file
+has code 1, the animal in the second line has code 2, and so on. These
+codes are completely unrelated to the codes used in the pedigree
+file.</p>
+<p>This text file can be used as a user-supplied relationship matrix in
+BLUPF90 with the <code>user_file</code> keyword. If you need maximum
+efficiency, do not use this option. It will slow the operation.</p>
+<h3 id="basic-output-options">Basic output options</h3>
+<p>The following options are available for outputting matrices. The
+options are case-sensitive, so be careful when entering them.</p>
 <pre data-language="blupf90"><code>OPTION saveA22         # save A22 to a file &#39;A22&#39;
 OPTION saveA22Inverse  # save A22-inverse to a file &#39;A22i&#39;
 OPTION saveG           # save G to a file &#39;G&#39;
 OPTION saveG all       # save all intermediate G
 OPTION saveGInverse    # save G-inverse to a file &#39;Gi&#39;</code></pre>
-<p>You cannot change the name of the file for each matrix. If you put
-<code>OPTION saveG_all</code>, the program will save all the
-intermediate status of <span
-class="math inline">\(\mathbf{G}\)</span>:</p>
+<p>You cannot change the file name for each matrix. If you specify
+<code>OPTION saveG all</code>, the program will save all intermediate
+versions of <span class="math inline">\(\mathbf{G}\)</span>:</p>
 <ul>
 <li><code>Gini</code> = Initial matrix that is <span
 class="math inline">\(\mathbf{G} \leftarrow
 \mathbf{ZZ}&#39;/k\)</span>.</li>
 <li><code>G_Alpha_Beta</code> = Blended matrix with <span
-class="math inline">\(\mathbf{A}_{22}\)</span> that is <span
+class="math inline">\(\mathbf{A}_{22}\)</span>, that is, <span
 class="math inline">\(\mathbf{G} \leftarrow \alpha\mathbf{G} +
 \beta\mathbf{A}_{22}\)</span>.</li>
 <li><code>G_gamma</code> = Blended matrix with <span
-class="math inline">\(\mathbf{I}\)</span> that is <span
+class="math inline">\(\mathbf{I}\)</span>, that is, <span
 class="math inline">\(\mathbf{G} \leftarrow \mathbf{G} +
 \gamma\mathbf{I}\)</span>.</li>
 <li><code>G_delta</code> = Blended matrix with <span
-class="math inline">\(\mathbf{11}&#39;\)</span> that is <span
+class="math inline">\(\mathbf{1}\mathbf{1}&#39;\)</span>, that is, <span
 class="math inline">\(\mathbf{G} \leftarrow \mathbf{G} +
-\delta\mathbf{11}&#39;\)</span>.</li>
+\delta\mathbf{1}\mathbf{1}&#39;\)</span>.</li>
 <li><code>G_suggest</code> = Tuned matrix.</li>
 <li><code>G</code> = The final matrix.</li>
 </ul>
-<p>We should mention that the options saveGInverse and saveA22Inverse
-save the scaled matrices with <span class="math inline">\(\tau\)</span>
-and <span class="math inline">\(\omega\)</span>. This would be a serious
-problem if you read the matrices from the files.</p>
+<p>Note that the options <code>saveGInverse</code> and
+<code>saveA22Inverse</code> save the scaled matrices with <span
+class="math inline">\(\tau\)</span> and <span
+class="math inline">\(\omega\)</span>. This can cause a serious problem
+if you later read these matrices from the files.</p>
+<h3 id="additional-output-options">Additional output options</h3>
+<p>You may use the following options to save the matrices in text
+format. They are effective even if <code>saveAscii</code> is not
+specified.</p>
+<pre data-language="blupf90"><code>OPTION saveHinv            # save H-inverse to `Hinv.txt`
+OPTION saveAinv            # save A-inverse to `Ainv.txt`
+
+OPTION saveA22Orig         # save A22 to a file &#39;A22_Orig.txt&#39;
+OPTION saveA22InverseOrig  # save A22-inverse to a file &#39;A22i_Orig.txt&#39;
+OPTION saveGOrig           # save G to a file &#39;G_Orig.txt&#39;
+OPTION saveGInverseOrig    # save G-inverse to a file &#39;Gi_Orig.txt&#39;
+OPTION saveHinvOrig        # save H-inverse to `HinvOrig.txt`
+OPTION saveDiagHOrig       # save diag(H) to `diagH.txt`</code></pre>
+<p>The options with <code>Orig</code> take the “original” animal names
+(before renumbering) from the tenth column of the pedigree file and use
+them as row and column names in the output text file. These are not the
+animal codes after renumbering in the pedigree file. Thus, these
+<code>Orig</code> options assume that the pedigree file is compatible
+with the format prepared by RENUMF90. See the format of the renumbered
+pedigree file in the chapter on renumbering.</p>
 <h2 id="input-options">Input options</h2>
-<p>The program can read the matrices from files. In this case, the
-program does not calculate the matrix from the marker file or the
-pedigree file. If you read an inverse matrix from a file, the program
-could skip creating the original matrix. By default, the program reads
-only a binary file; with option <code>OPTION saveAscii</code> <a
-href="#fn1" class="footnote-ref" id="fnref1"
-role="doc-noteref"><sup>1</sup></a>, the programs read a text file. The
-following options are available.</p>
+<p>The program can read matrices from files. In this case, it does not
+calculate the matrix from the marker or pedigree file. If you read an
+inverse matrix from a file, the program can skip creating the original
+matrix. By default, the program reads only binary files. However, with
+the option <code>OPTION saveAscii</code> <a href="#fn1"
+class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, it
+can read a text file. The following options are available.</p>
 <pre data-language="blupf90"><code>OPTION readA22 file          # read A22                        [ default : &#39;A22&#39;]
 OPTION readA22Inverse file   # read A22-inverse                [ default : &#39;A22i&#39;]
 OPTION readG file            # read G                          [ default : &#39;G&#39;]
 OPTION readGInverse file     # read G-inverse                  [ default: &#39;Gi&#39;]
 OPTION readGimA22i file      # read (G-inverse - A22-inverse ) [ default: &#39;GimA22i&#39;]</code></pre>
-<p>If you specify the name of the file, the program reads the file
-supplied. If you omit the name of the file, the program tries to read
-the default file shown above. For example, you can use the following
-option to read <span class="math inline">\(\mathbf{G}^{-1}\)</span>
-saved in <code>Gi</code>.</p>
-<pre data-language="blupf90"><code>OPTION readGi</code></pre>
-<p>Or you can supply the name of file like this.</p>
-<pre data-language="blupf90"><code>OPTION readGi condition1.Gi</code></pre>
-<p>There is a critical specification to be recognized by a user for the
-options <code>readGInverse</code> and <code>readA22Inverse</code>. After
-reading the matrix, the program scales the matrix with <span
+<p>If you specify a file name, the program reads the supplied file. If
+you omit the file name, the program tries to read the default file shown
+above. For example, you can use the following option to read <span
+class="math inline">\(\mathbf{G}^{-1}\)</span> saved in
+<code>Gi</code>.</p>
+<pre data-language="blupf90"><code>OPTION readGInverse</code></pre>
+<p>Alternatively, you can supply the file name as follows.</p>
+<pre data-language="blupf90"><code>OPTION readGInverse condition1.Gi</code></pre>
+<p>The user must understand an important detail about the options
+<code>readGInverse</code> and <code>readA22Inverse</code>. After reading
+the matrix, the program scales it with <span
 class="math inline">\(\tau\)</span> or <span
-class="math inline">\(\omega\)</span>. It means that if you have already
-scaled the matrix before saving it to a file and you read the matrix
-from the file, the program scales the matrix again without any warnings
-or messages. Without knowing this fact, the results would be
-nonsense.</p>
+class="math inline">\(\omega\)</span>. Thus, if you have already scaled
+the matrix before saving it and then read it from the file, the program
+scales it again without any warning or message. If you are unaware of
+this behavior, the results may be invalid.</p>
 <p>A better practice is as follows.</p>
 <ol type="1">
-<li>Create and save the relationship matrix without the scaling
-factor(<span class="math inline">\(\tau\)</span> or <span
-class="math inline">\(\omega\)</span>) that is the default values: <span
-class="math inline">\(\tau = 1\)</span> and <span
+<li>Create and save the relationship matrix without scaling factors
+(<span class="math inline">\(\tau\)</span> or <span
+class="math inline">\(\omega\)</span>); that is, use the default values
+<span class="math inline">\(\tau = 1\)</span> and <span
 class="math inline">\(\omega = 1\)</span>.</li>
 <li>When reading the file, the scaling factors can be specified.</li>
 </ol>
-<p>This strategy is really important to perform the analysis many times
-with different <span class="math inline">\(\tau\)</span> and <span
-class="math inline">\(\omega\)</span> parameters.</p>
+<p>This strategy is important when performing the analysis multiple
+times with different <span class="math inline">\(\tau\)</span> and <span
+class="math inline">\(\omega\)</span> values.</p>
 <aside id="footnotes" class="footnotes footnotes-end-of-document"
 role="doc-endnotes">
 <hr />

@@ -43,7 +43,7 @@
 <header>
 <h1 class="title">Quick tour of BLUPF90</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">April 2025</p>
+<p class="date">August 2026</p>
 </header>
 <nav id="TOC">
 <ul>
@@ -63,20 +63,21 @@ Back to <a href="./index.html">index.html</a>.
 </p>
 <h1 id="trivial-analyses-for-single-step-gblup">Trivial analyses for
 single-step GBLUP</h1>
-<p>In ssGBLUP, the program requires 5 files: parameter, data, pedigree,
-marker, and cross-reference files. The first 3 files are the same as a
-regular animal model so you need two additional files for ssGBLUP. In
-this section, first, we describe the relationship matrices needed in the
-analysis. Then we introduce the 2 additional files and run the
-program.</p>
+<p>In a single-step genomic BLUP model (ssGBLUP), the BLUPF90 programs
+require 5 files: a parameter file, a data file, a pedigree file, a
+marker file, and a cross-reference file. The first 3 files are the same
+as those used in a regular animal model, so you need two additional
+files for ssGBLUP. In this section, we first describe the relationship
+matrices needed for the analysis. Then we introduce the 2 additional
+files and run the program.</p>
 <h2 id="single-step-gblup">Single-step GBLUP</h2>
 <h3 id="model-and-relationship-matrices">Model and relationship
 matrices</h3>
 <p>To demonstrate ssGBLUP, we will use the same animal model introduced
-in the previous section <span class="math display">\[
+in the previous section. <span class="math display">\[
 y_{ijk} = A_i + S_j + \beta x_k + u_k + e_{ijk}
 \]</span> where <span class="math inline">\(u_k\)</span> is the additive
-genetic effect for an animal <span class="math inline">\(k\)</span>. We
+genetic effect for animal <span class="math inline">\(k\)</span>. We
 treat <span class="math inline">\(S_j\)</span> as a fixed effect. The
 mixed model equations are as follows. <span class="math display">\[
 \left[
@@ -102,7 +103,7 @@ mixed model equations are as follows. <span class="math display">\[
 \right]
 \]</span> In ssGBLUP, <span
 class="math inline">\(\mathbf{A}^{-1}\)</span> is replaced with <span
-class="math inline">\(\mathbf{H}^{-1}\)</span> which has the following
+class="math inline">\(\mathbf{H}^{-1}\)</span>, which has the following
 structure: <span class="math display">\[
 \mathbf{H}^{-1}
 =
@@ -117,18 +118,18 @@ structure: <span class="math display">\[
 \]</span> where <span class="math inline">\(\mathbf{G}\)</span> is the
 genomic relationship matrix for genotyped animals and <span
 class="math inline">\(\mathbf{A}_{22}\)</span> is the subset of the
-numerator relationship matrix for genotyped animals. So this method can
-combine both genotyped and non-genotyped animals in the same
+numerator relationship matrix for genotyped animals. Thus, this method
+can combine both genotyped and non-genotyped animals in the same
 equations.</p>
-<p>BLUPF90 constructs <span
+<p>BLUPF90+ constructs <span
 class="math inline">\(\mathbf{G}^{-1}\)</span> and <span
-class="math inline">\(\mathbf{A}_{22}^{-1}\)</span> before the program
-solves the equations. The program also checks SNP markers and reports
-any errors it finds.</p>
+class="math inline">\(\mathbf{A}_{22}^{-1}\)</span> before solving the
+equations. The program also checks SNP markers and reports any errors it
+finds.</p>
 <h3 id="files">Files</h3>
 <p>We can reuse the same data and pedigree files from the previous
-animal model. We, nevertheless, put different file names to data and
-pedigree to avoid the confusion.</p>
+animal model. Nevertheless, we use different filenames for the data and
+pedigree files to avoid confusion.</p>
 <pre data-language="text" data-caption="data4.txt"><code>  3.0  1  1  1.0   6
   2.0  1  2  1.0   9
   4.0  1  1  2.0  12
@@ -155,8 +156,8 @@ pedigree to avoid the confusion.</p>
  13  11  10
  14   9  13
  15  11  10</code></pre>
-<p>The parameter file is also the same except for an option to read a
-marker file.</p>
+<p>The parameter file is also the same as in the previous example,
+except for an option to read a marker file.</p>
 <pre data-language="blupf90" data-caption="param4.txt"><code>DATAFILE
 data4.txt
 NUMBER_OF_TRAITS
@@ -183,19 +184,19 @@ pedigree4.txt
 (CO)VARIANCES
 0.5
 OPTION SNP_file snp4.txt snp4index.txt</code></pre>
-<p>The last line specifies the name of the marker file. The option SNP
-file makes BLUPF90 read the marker file <code>snp4.txt</code> and the
-cross-reference file <code>snp4index.txt</code>, and invoke the genomic
-computations. You can omit the second argument (the name of
-cross-reference file) if its name is the name of marker file +
-<code>_XrefID</code>. In this case, if the cross-reference file is
-<code>snp4.txt_XrefID</code>, you can omit the second argument in that
-option.</p>
-<p>We assume only 8 animals are genotyped (2, 4, 6, 10, 11, 12, 13, and
-15). We also assume each genotyped animal has the original name and the
-marker file contains the names (ID002, ID004, ID006, ID010, ID011,
-ID012, ID013, and ID015, respectively). The following is the marker
-file.</p>
+<p>The last line specifies the name of the marker file. The
+<code>SNP_file</code> option makes <code>blupf90+</code> read the marker
+file <code>snp4.txt</code> and the cross-reference file
+<code>snp4index.txt</code>, and invoke the genomic computations. You can
+omit the second argument (the name of the cross-reference file) if its
+name is the marker filename plus <code>_XrefID</code>. In this case, if
+the cross-reference file is <code>snp4.txt_XrefID</code>, you can omit
+the second argument in that option.</p>
+<p>We assume that only 8 animals are genotyped (2, 4, 6, 10, 11, 12, 13,
+and 15). We also assume that each genotyped animal has an original ID
+and that the marker file contains these IDs (ID002, ID004, ID006, ID010,
+ID011, ID012, ID013, and ID015, respectively). The following is the
+marker file.</p>
 <pre data-language="widetext" data-caption="snp4.txt"><code>ID002 1212020111001211212000102001202022201112000110020102011001012212110122100001210101112200210
 ID004 2222020200110122210121001100022221102111000010011202020002002222000222000020120000020200200
 ID006 2122020101100221121111212100112111112212000101012211111001201211112022100201220110022200220
@@ -204,32 +205,32 @@ ID011 22111212001211112202110112101121211112010001200112020200020022220002220000
 ID012 2222020200110122210121001100022221102111000010011202020002002222000222000020120000020200200
 ID013 2122020101210121121222101200112122102212000010012211111001101211101122100110220000021200210
 ID015 2122020101210121121222101200112122102212000010012211111001101211101122100110220000021200210</code></pre>
-<p>BLUPF90 accepts only a marker file prepared with the following
-rules.</p>
+<p>The BLUPF90 family accepts only a marker file prepared with the
+following rules.</p>
 <ul>
-<li>A marker file is a text file with a fixed-width format including 2
+<li>A marker file is a text file with a fixed-width format containing 2
 columns.</li>
-<li>The first column contains an animal’s ID. You don’t have to use the
-common ID to data and pedigree. So you can put the animal’s original ID
-here. (BLUPF90 actually skip this column so you can put any information
-here.)</li>
-<li>The second column contains an animal’s genotypes. It has 4 possible
-value: <code>0</code> (homozygote), <code>1</code> (heterozygote),
-<code>2</code> (alternative homozygote) and <code>5</code> (missing or
-unknown).</li>
-<li>All the second column must start with a fixed position in a line. In
-the above example, the second column always starts the 9th
+<li>The first column contains an animal’s ID. You do not have to use the
+ID common to the data and pedigree files, so you can put the animal’s
+original ID here. (The BLUPF90 family actually skips this column, so you
+can put any information here.)</li>
+<li>The second column contains an animal’s genotypes. Each genotype can
+have one of 4 possible values: <code>0</code> (homozygote),
+<code>1</code> (heterozygote), <code>2</code> (alternative homozygote),
+and <code>5</code> (missing or unknown).</li>
+<li>The second column must start at a fixed position on each line. In
+the above example, the second column always starts at the 9th
 character.</li>
-<li>Each genotyped animals must have the same number of markers.</li>
-<li>You must not insert a space between 2 adjacent genotypes.</li>
+<li>Each genotyped animal must have the same number of markers.</li>
+<li>You must not insert a space between two adjacent genotypes.</li>
 <li>You don’t have to sort the marker file by ID.</li>
 </ul>
-<p>The program will immediately stop if it finds the inconsistent data
-in the file.</p>
-<p>We need one more file to run BLUPF90. The last file is a
-cross-reference file that relates the integer code used in BLUPF90 to
-the ID in the marker file. This is a text file with 2 columns separated
-with spaces.</p>
+<p>The program will stop immediately if it finds inconsistencies in the
+file.</p>
+<p>We need one more file to run <code>blupf90+</code>. The last file is
+a cross-reference file that relates the integer code used in
+<code>blupf90+</code> to the ID in the marker file. This is a text file
+with 2 columns separated by spaces.</p>
 <pre data-language="text" data-caption="snp4index.txt"><code>2 ID002
 4 ID004
 6 ID006
@@ -238,45 +239,45 @@ with spaces.</p>
 12 ID012
 13 ID013
 15 ID015</code></pre>
-<p>The order of animals must match that of the marker file. The first
-column contains the integer value (common to pedigree file) and the
-second line has the original ID found in the marker file. This file can
-be automatically prepared by RENUMF90.</p>
-<p>Why do we use such a tricky example? Because the
-original-ID-in-the-marker-file situation actually happens in real life.
-A farm animal usually has a unique (original) ID and phenotypes.
-Pedigrees and genotypes are recorded with the original ID whereas
-BLUPF90 accepts only an integer value as an animal’s ID. So we usually
-use RENUMF90 to replace the original ID with integer values and create
-renumbered files. However, the marker file is really huge and it is very
-inefficient to replace the original ID with an integer code. The
-RENUMF90 does not rewrite the marker file. Instead, RENUMF90 generates
-the cross-reference file to make the correspondence between the ID in
-markers and the ID in pedigree.</p>
+<p>The order of the animals must match that in the marker file. The
+first column contains the integer value (common to the pedigree file),
+and the second column contains the original ID found in the marker file.
+This file can be prepared automatically by <code>renumf90</code>.</p>
+<p>Why do we use such a tricky example? Because the situation involving
+original IDs in the marker file actually occurs in real life. A farm
+animal usually has a unique (original) ID and phenotypes. Pedigrees and
+genotypes are recorded with the original ID, whereas
+<code>blupf90+</code> accepts only an integer value as an animal’s ID.
+Therefore, we usually use <code>renumf90</code> to replace the original
+ID with integer values and create renumbered files. However, the marker
+file is very large, and replacing the original ID with an integer code
+is inefficient. RENUMF90 does not rewrite the marker file. Instead,
+RENUMF90 generates the cross-reference file to establish the
+correspondence between the IDs in the marker and pedigree files.</p>
 <h3 id="running-the-program">Running the program</h3>
-<p>We can now run BLUPF90 program with the 5 files. You can see a very
-long output from the genomic routine on the screen. We briefly explain
-what happens in this process.</p>
+<p>We can now run <code>blupf90+</code> with the 5 files. You can see a
+very long output from the genomic routine on the screen. We briefly
+explain what happens in this process.</p>
 <ul>
-<li>Read the pedigrees for genotyped animals and compute <span
-class="math inline">\(\mathbf{A}_{22}\)</span>.</li>
+<li>Read the pedigree information for genotyped animals and compute
+<span class="math inline">\(\mathbf{A}_{22}\)</span>.</li>
 <li>Read SNP markers and perform quality control on the data (possibly
 remove unqualified markers).</li>
 <li>Compute <span class="math inline">\(\mathbf{G}\)</span> and compare
 it with <span class="math inline">\(\mathbf{A}_{22}\)</span>.</li>
 <li>Compute <span class="math inline">\(\mathbf{A}_{22}^{-1}\)</span>
 and <span class="math inline">\(\mathbf{G}^{-1}\)</span>.</li>
-<li>Finally compute <span
+<li>Finally, compute <span
 class="math inline">\(\mathbf{G}^{-1}-\mathbf{A}_{22}^{-1}\)</span> as a
-gingle matrix, and store them into a file.</li>
-<li>After the process, BLUPF90 starts building the system of the mixed
+single matrix and store it in a file.</li>
+<li>After the process, BLUPF90+ starts building the system of the mixed
 model equations with <span class="math inline">\(\mathbf{G}^{-1} -
-\mathbf{A}_{22}^{-1}\)</span>, and the program solve it.</li>
+\mathbf{A}_{22}^{-1}\)</span> and solves it.</li>
 </ul>
 <p>There are many options to precisely control the genomic routine. Each
-option has the default value. The user should know the default behavior
-of the program. This explanation is out of the scope of this
-introductory chapter. We will see the details in the later chapters.</p>
+option has a default value. The user should know the default behavior of
+the program. This explanation is outside the scope of this introductory
+chapter. We will see the details in later chapters.</p>
 <p>After running the program, we can find the solutions file.</p>
 <pre data-language="text" data-caption="solutions"><code>trait/effect level  solution
    1   1         1      0.23340767
@@ -300,46 +301,48 @@ introductory chapter. We will see the details in the later chapters.</p>
    1   4        13      0.20708267
    1   4        14      0.32362808
    1   4        15     -0.21760840</code></pre>
-<p>Single-step GBLUP directly provides GEBV (estimated breeding values
-enhanced with genomic information). The above solutions for animals are
-GEBV. The values are very different from the previous animal-model
-analysis. This is due to the model difference as well as the small
-data.</p>
+<p>Single-step GBLUP directly provides GEBVs (estimated breeding values
+enhanced with genomic information). The above solutions for the animals
+are GEBVs. The values are very different from those in the previous
+animal-model analysis. This is due to differences in the model as well
+as the small amount of data.</p>
 <h2 id="remarks">Remarks</h2>
-<p>If your marker data is relatively large, you should consider a more
-efficient way. Each relationship matrix created in the genomic routine
-is fully stored in memory i.e., dense matrix consuming a lot of memory.
-The required memory is 8<span class="math inline">\(n^2\)</span> /<span
-class="math inline">\(1024^3\)</span> GB (gigabytes) for each
+<p>If your marker data set is relatively large, you should consider a
+more efficient approach. Each relationship matrix created in the genomic
+routine is stored fully in memory, i.e., as a dense matrix, consuming a
+lot of memory. The required memory is <span
+class="math inline">\(8n^2/1024^3\)</span> GB (gigabytes) for each
 relationship matrix with <span class="math inline">\(n\)</span>
-genotyped animals. Computing time will be longer with many genotyped
-animals. To determine appropriate options to obtain stable GEBV, you
-should run the program many times. You can save a relationship matrix to
-a file and reuse the file.</p>
-<p>The PREGSF90 performs the genomic computations only. It can do the
-same computation as BLUPF90 does (except for the solution of mixed model
-equations). The best practice is to run PREGSF90 to check and clean up
-the markers, to compute the relationship matrices, and to save the
-matrices to files before you run BLUPF90. BLUPF90 can read the files
-generated with PREGSF90, and you can save your time.</p>
+genotyped animals. Computation time will be longer with many genotyped
+animals. To determine appropriate options for obtaining stable GEBVs,
+you should run the program many times. You can save a relationship
+matrix to a file and reuse it.</p>
+<p>The PREGSF90 program performs only the genomic computations. It can
+perform the same genomic computations as BLUPF90 (except for solving the
+mixed model equations). The best practice is to run
+<code>preGSf90</code> to check and clean up the markers, compute the
+relationship matrices, and save the matrices to files before running
+<code>blupf90+</code>. The program can read the files generated by
+PREGSF90, so you can save time.</p>
 <h2 id="summary">Summary</h2>
 <ul>
 <li>BLUPF90 can perform a single-step GBLUP (ssGBLUP) analysis.</li>
-<li>With ssGBLUP, a marker file and cross-reference file are needed in
-addition to data, pedigree, and parameter files needed in a regular
-animal model analysis.</li>
-<li>An option in a parameter file is needed.</li>
+<li>With ssGBLUP, a marker file and a cross-reference file are needed in
+addition to the data, pedigree, and parameter files required for a
+regular animal model analysis.</li>
+<li>The parameter file must include an option for genomic analysis.</li>
 <li>There are many options to control genomic computations. See the
 manual.</li>
-<li>The marker file is a fixed-length text file with an animal’s ID and
+<li>The marker file is a fixed-width text file with an animal’s ID and
 genotypes.</li>
-<li>Cross-reference (XrefID) file relates the animal’s ID in marker file
-to integer code in the pedigree file. This file is generated by
-RENUMF90.</li>
-<li>GEBV is directly obtained as a solution.</li>
-<li>PREGSF90 is useful to save a relationship matrix to a file if you
-run the program several times using the same pedigree and genomic
-information. BLUPF90 reads the file so you can save time.</li>
+<li>A cross-reference (XrefID) file relates the animal’s ID in the
+marker file to the integer code in the pedigree file. This file is
+generated by RENUMF90.</li>
+<li>GEBVs are obtained directly as solutions.</li>
+<li>A separate program, PREGSF90, is useful for saving a relationship
+matrix to a file if you run the program several times using the same
+pedigree and genomic information. BLUPF90 reads the file, so you can
+save time.</li>
 </ul>
 <p>
 Back to <a href="./index.html">index.html</a>.

@@ -41,7 +41,7 @@
 <header>
 <h1 class="title">Introduction to BLUPF90 suite programs</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">April 2025</p>
+<p class="date">August 2026</p>
 </header>
 <nav id="TOC">
 <ul>
@@ -61,14 +61,14 @@ RENUMF90</a></li>
 <li><a href="#variance-component-estimation"
 id="toc-variance-component-estimation">Variance component
 estimation</a></li>
-<li><a href="#numerical-examples-from-mrode-2014"
-id="toc-numerical-examples-from-mrode-2014">Numerical examples from
-Mrode (2014)</a></li>
+<li><a href="#practical-genomic-analysis"
+id="toc-practical-genomic-analysis">Practical genomic analysis</a></li>
+<li><a href="#numerical-examples-from-mrode-and-pocrnic-2023"
+id="toc-numerical-examples-from-mrode-and-pocrnic-2023">Numerical
+examples from Mrode and Pocrnic (2023)</a></li>
 <li><a href="#large-scale-genetic-evaluation"
 id="toc-large-scale-genetic-evaluation">Large-scale genetic
 evaluation</a></li>
-<li><a href="#practical-genomic-analysis"
-id="toc-practical-genomic-analysis">Practical genomic analysis</a></li>
 <li><a href="#references" id="toc-references">References</a></li>
 </ul>
 </nav>
@@ -146,64 +146,100 @@ analysis</a></li>
 <li><a href="./vc_advanced_gs.html">Advanced features for Gibbs sampling
 programs</a></li>
 </ul>
-<h2 id="numerical-examples-from-mrode-2014">Numerical examples from
-Mrode (2014)</h2>
+<h2 id="practical-genomic-analysis">Practical genomic analysis</h2>
+<ul>
+<li><a href="./genomic_start.html">Introduction</a></li>
+<li><a href="./genomic_overview.html">Overview of genomic
+features</a></li>
+<li><a href="./genomic_files.html">Files used in genomic
+analysis</a></li>
+<li><a href="./genomic_qc.html">Quality control of SNP markers</a></li>
+<li><a href="./genomic_tuning.html">Tuning and input/output of
+relationship matrices</a></li>
+<li><a href="./genomic_ssgblup.html">Fine control of single-step
+GBLUP</a></li>
+<li><a href="./genomic_gblup.html">Performing GBLUP</a></li>
+<li><a href="./genomic_gwas.html">GWAS using the ssGBLUP
+framework</a></li>
+</ul>
+<h2 id="numerical-examples-from-mrode-and-pocrnic-2023">Numerical
+examples from Mrode and Pocrnic (2023)</h2>
 <ul>
 <li><a href="./mrode_start.html">Introduction</a></li>
-<li><a href="./mrode_c03ex031_animal_model.html">Chapter 3. Example 3.1
+<li><a href="./mrode_c04ex041_animal_model.html">Chapter 4. Example 4.1.
 Animal model</a></li>
-<li><a href="./mrode_c03ex032_sire_model.html">Chapter 3. Example 3.2.
+<li><a href="./mrode_c04ex042_sire_model.html">Chapter 4. Example 4.2.
 Sire model</a></li>
-<li><a href="./mrode_c03ex033_reduced_animal_model.html">Chapter 3.
-Example 3.3. Reduced animal model</a></li>
-<li><a href="./mrode_c03ex034_animal_model_with_groups.html">Chapter 3.
-Example 3.4 Animal model with groups</a></li>
-<li><a href="./mrode_c04ex041_repeatability_model.html">Chapter 4.
-Example 4.1 Repeatability model</a></li>
-<li><a href="./mrode_c04ex042_common_environment.html">Chapter 4.
-Example 4.2. Model with common environmental effects</a></li>
-<li><a href="./mrode_c05ex051_mt_equal_design.html">Chapter 5. Example
-5.1. Multiple-trait model, Equal design matrices and no missing
+<li><a href="./mrode_c04ex043_reduced_animal_model.html">Chapter 4.
+Example 4.3. Reduced animal model</a></li>
+<li><a href="./mrode_c04ex044_animal_model_with_groups.html">Chapter 4.
+Example 4.4. Animal model with groups</a></li>
+<li><a href="./mrode_c05ex051_repeatability_model.html">Chapter 5.
+Example 5.1. Repeatability model</a></li>
+<li><a href="./mrode_c05ex052_common_environment.html">Chapter 5.
+Example 5.2. Model with common environmental effects</a></li>
+<li><a href="./mrode_c06ex061_mt_equal_design.html">Chapter 6. Example
+6.1. Multiple-trait model, Equal design matrices and no missing
 records</a></li>
-<li><a href="./mrode_c05ex052_mt_missing.html">Chapter 5. Example 5.2.
+<li><a href="./mrode_c06ex062_mt_missing.html">Chapter 6. Example 6.2.
 Multiple-trait model, Equal design matrices with missing
 records</a></li>
-<li><a href="./mrode_c05ex053_mt_unequal_design.html">Chapter 5. Example
-5.3. Multiple-trait model, Unequal design matrices</a></li>
-<li><a href="./mrode_c05ex054_mt_no_covariance.html">Chapter 5. Example
-5.4. Multivariate models with no environmental covariance</a></li>
-<li><a href="./mrode_c07ex071_maternal.html">Chapter 7. Example 7.1.
-Animal model for a maternal trait</a></li>
-<li><a href="./mrode_c08ex081_social_interaction.html">Chapter 8.
-Example 8.1. Animal model with social interaction effects</a></li>
-<li><a href="./mrode_c09ex091_fixed_regression.html">Chapter 9. Example
-9.1. Fixed regression model</a></li>
-<li><a href="./mrode_c09ex092_random_regression.html">Chapter 9. Example
-9.2. Random regression model</a></li>
-<li><a href="./mrode_c10ex102_marker_information.html">Chapter 10.
-Example 10.2. Prediction of breeding values with marker
-information</a></li>
-<li><a href="./mrode_c10ex103_qtl.html">Chapter 10. Example 10.3.
-Directly predicting the additive genetic merit at the QTL</a></li>
+<li><a href="./mrode_c06ex063_mt_unequal_design.html">Chapter 6. Example
+6.3. Multiple-trait model, Unequal design matrices</a></li>
+<li><a href="./mrode_c06ex064_mt_no_covariance.html">Chapter 6. Example
+6.4. Multivariate models with no environmental covariance</a></li>
+<li><a href="./mrode_c07ex071_canonical_transformation.html">Chapter 7.
+Example 7.1. Canonical transformation</a></li>
+<li><a href="./mrode_c07ex072_cholesky_transformation.html">Chapter 7.
+Example 7.2. Cholesky transformation</a></li>
+<li><a href="./mrode_c08ex081_maternal.html">Chapter 8. Example 8.1.
+Animal model for maternal traits</a></li>
+<li><a href="./mrode_c08ex082_reduced_maternal.html">Chapter 8. Example
+8.2. Reduced animal model with maternal effects</a></li>
+<li><a href="./mrode_c09ex091_social_interaction.html">Chapter 9.
+Example 9.1. Animal model with social interaction effects</a></li>
+<li><a href="./mrode_c10ex101_fixed_regression.html">Chapter 10. Example
+10.1. Fixed regression model</a></li>
+<li><a href="./mrode_c10ex102_random_regression.html">Chapter 10.
+Example 10.2. Random regression model</a></li>
 <li><a href="./mrode_c11ex111_fixed_snp.html">Chapter 11. Example 11.1.
 Fixed effect model for SNP effects</a></li>
 <li><a href="./mrode_c11ex112_mixed_snp.html">Chapter 11. Example 11.2.
 Mixed linear model for computing SNP effects</a></li>
 <li><a href="./mrode_c11ex113_gblup.html">Chapter 11. Example 11.3.
-Equivalent models – GBLUP</a></li>
-<li><a href="./mrode_c11ex115_polygenic.html">Chapter 11. Example 11.5.
+Equivalent models: GBLUP</a></li>
+<li><a href="./mrode_c11ex114_snp_solutions.html">Chapter 11. Example
+11.4. SNP solutions from GBLUP</a></li>
+<li><a href="./mrode_c11ex116_allele_frequency.html">Chapter 11. Example
+11.6. Base-population allele frequency</a></li>
+<li><a href="./mrode_c11ex117_polygenic.html">Chapter 11. Example 11.7.
 Mixed linear models with polygenic effects</a></li>
-<li><a href="./mrode_c11ex116_ssgblup.html">Chapter 11. Example 11.6.
-Single-step approach</a></li>
-<li><a href="./mrode_c12ex121_dominance.html">Chapter 12. Example 12.1.
+<li><a href="./mrode_c11ex118_haplotype.html">Chapter 11. Example 11.8.
+Haplotype models</a></li>
+<li><a href="./mrode_c11ex1113_mt.html">Chapter 11. Example 11.13.
+Multivariate genomic models</a></li>
+<li><a href="./mrode_c12ex121_ssgblup.html">Chapter 12. Example 12.1.
+Single-step approaches: basic principle</a></li>
+<li><a href="./mrode_c12ex122_apy.html">Chapter 12. Example 12.2. APY
+approach</a></li>
+<li><a href="./mrode_c13ex131_dominance.html">Chapter 13. Example 13.1.
 Animal model with dominance effect</a></li>
-<li><a href="./mrode_c12ex123_dominance_inverse.html">Chapter 12.
-Example 12.3. Method for rapid inversion of the dominance
-matrix</a></li>
-<li><a href="./mrode_c13ex131_threshold.html">Chapter 13. Example 13.1.
+<li><a href="./mrode_c13ex132_additive_and_dominance.html">Chapter 13.
+Example 13.2. Total genetic merit</a></li>
+<li><a href="./mrode_c13ex133_genomic_dominance.html">Chapter 13.
+Example 13.3. Genomic models for dominance effects</a></li>
+<li><a href="./mrode_c13ex134_genomic_inbreeding.html">Chapter 13.
+Example 13.4. Inclusion of genomic inbreeding</a></li>
+<li><a href="./mrode_c13ex135_epistasis.html">Chapter 13. Example 13.5.
+Epistatis</a></li>
+<li><a href="./mrode_c15ex151_threshold.html">Chapter 15. Example 15.1.
 The threshold model</a></li>
-<li><a href="./mrode_c13ex132_threshold_linear.html">Chapter 13. Example
-13.2. Joint analysis of quantitative and binary traits</a></li>
+<li><a href="./mrode_c15ex152_threshold_linear.html">Chapter 15. Example
+15.2. Joint analysis of quantitative and binary traits</a> <!--
+- [Chapter 10. Example 10.2. Prediction of breeding values with marker information](./mrode_c10ex102_marker_information.html)
+- [Chapter 10. Example 10.3. Directly predicting the additive genetic merit at the QTL](./mrode_c10ex103_qtl.html)
+- [Chapter 12. Example 12.3. Method for rapid inversion of the dominance matrix](./mrode_c12ex123_dominance_inverse.html)
+--></li>
 </ul>
 <h2 id="large-scale-genetic-evaluation">Large-scale genetic
 evaluation</h2>
@@ -217,18 +253,6 @@ preconditioned conjugate gradient (PCG)</a></li>
 and reliability</a></li>
 <li><a href="./largescale_reml.html">REML estimation with large
 data</a></li>
-</ul>
-<h2 id="practical-genomic-analysis">Practical genomic analysis</h2>
-<ul>
-<li><a href="./genomic_start.html">Introduction</a></li>
-<li><a href="./genomic_files.html">Files used in genomic
-analysis</a></li>
-<li><a href="./genomic_qc.html">Quality control of SNP markers</a></li>
-<li><a href="./genomic_tuning.html">Tuning and input/output of
-relationship matrices</a></li>
-<li><a href="./genomic_gblup.html">Performing GBLUP</a></li>
-<li><a href="./genomic_gwas.html">GWAS using the ssGBLUP
-framework</a></li>
 </ul>
 <h2 id="references">References</h2>
 <ul>

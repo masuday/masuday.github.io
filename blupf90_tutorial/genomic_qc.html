@@ -43,7 +43,7 @@
 <header>
 <h1 class="title">Practical genomic analysis</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">April 2025</p>
+<p class="date">August 2026</p>
 </header>
 <nav id="TOC">
 <ul>
@@ -73,40 +73,39 @@ Back to <a href="./index.html">index.html</a>.
 markers</h1>
 <h2 id="basic-quality-control-options">Basic quality control
 options</h2>
-<p>The genomic module performs the quality control of SNP markers. This
+<p>The genomic module performs quality control of SNP markers. This
 process removes unqualified markers and genotyped animals from the
-original data. The genomic module supports a variety of options for the
-quality control of markers. The following options change the behavior of
-the genomic module.</p>
+original data. The genomic module supports a variety of options for
+marker quality control. The following options change the behavior of the
+genomic module. All major BLUPF90 programs accept these options.</p>
 <h3 id="save-cleaned-genotypes">Save cleaned genotypes</h3>
 <p>The following option saves the cleaned marker information to files.
-By default, this option is off and the cleaned genotypes will not be
+By default, this option is off, and the cleaned genotypes are not
 saved.</p>
 <pre data-language="blupf90"><code>OPTION saveCleanSNPs</code></pre>
-<p>This option generates 4 new files. We assume <code>snpfile</code> as
-a marker file.</p>
+<p>This option generates four new files. We assume that
+<code>snpfile</code> is the input marker file.</p>
 <ul>
-<li><code>snpfile_clean</code> = new SNP marker file.</li>
-<li><code>snpfile_clean_XrefID</code> = new cross-reference file.</li>
-<li><code>snpfile_SNPs_removed</code> = a list of removed markers.</li>
-<li><code>snpfile_Animals_removed</code> = a list of removed
-animals.</li>
+<li><code>snpfile_clean</code> = new SNP marker file</li>
+<li><code>snpfile_clean_XrefID</code> = new cross-reference file</li>
+<li><code>snpfile_SNPs_removed</code> = list of removed markers</li>
+<li><code>snpfile_Animals_removed</code> = list of removed animals</li>
 </ul>
 <h3 id="turn-off-the-quality-control">Turn off the quality control</h3>
 <p>By default, the program performs quality control. The following
-option skips the quality control process completely. Some statistics
-related to quality control may still be calculated.</p>
+option skips the quality-control process completely. Some
+quality-control statistics may still be calculated.</p>
 <pre data-language="blupf90"><code>OPTION no_quality_control</code></pre>
-<p>All the markers and genotyped animals will be retained even if they
-have obvious error or issues. This option is useful especially when all
-the markers have already been quality-controlled.</p>
+<p>All markers and genotyped animals are retained, even if they have
+obvious errors or other issues. This option is especially useful when
+all markers have already undergone quality control.</p>
 <h2 id="detailed-quality-control-options">Detailed quality control
 options</h2>
 <p>The following table shows useful options for this purpose. Some
-options have additional arguments but you can omit them. If you omit the
-arguments, the default values are used. Some details will not be
-checked. See the Default column in the following table. A detailed
-explanation for each option can be found in the official manual.</p>
+options have additional arguments, but you can omit them. If you omit
+the arguments, the default values are used. Some details are omitted
+here; see the Default column in the following table. A detailed
+explanation of each option can be found in the official manual.</p>
 <table>
 <colgroup>
 <col style="width: 37%" />
@@ -153,8 +152,9 @@ explanation for each option can be found in the official manual.</p>
 <tr class="odd">
 <td><code>hwe x</code></td>
 <td>Skip</td>
-<td>any real values (default:x = 0.15)</td>
-<td>Maximum deviation of heterozygote frequency from expected</td>
+<td>any real values (default: x = 0.15)</td>
+<td>Maximum deviation of heterozygote frequency from the expected
+frequency</td>
 </tr>
 <tr class="even">
 <td><code>high_correlation x y</code></td>
@@ -193,15 +193,16 @@ class="math inline">\(y &lt; 1\)</span> (default: x = 0.025 and y =
 <tr class="odd">
 <td><code>threshold_duplicate_samples x</code></td>
 <td>Enable</td>
-<td><span class="math inline">\(-1 &lt; x &lt; 1\)</span> (default:x =
+<td><span class="math inline">\(-1 &lt; x &lt; 1\)</span> (default: x =
 0.9)</td>
-<td>Check too high genomic relationships (duplicate samples)</td>
+<td>Check for excessively high genomic relationships (duplicate
+samples)</td>
 </tr>
 <tr class="even">
 <td><code>threshold_diagonal_g x</code></td>
 <td>Enable</td>
-<td>real value (default:x = 1.6)</td>
-<td>Check too high genomic inbreeding</td>
+<td>real value (default: x = 1.6)</td>
+<td>Check for excessively high genomic inbreeding</td>
 </tr>
 <tr class="odd">
 <td><code>thrWarnCorAG x</code></td>
@@ -224,10 +225,11 @@ class="math inline">\(\mathbf{G}\)</span></td>
 <tr class="odd">
 <td><code>thrCorAG x</code></td>
 <td>Enable</td>
-<td><span class="math inline">\(-1 &lt; x &lt; 1\)</span> (default:x =
+<td><span class="math inline">\(-1 &lt; x &lt; 1\)</span> (default: x =
 0.02)</td>
-<td>Which values of <span class="math inline">\(\mathbf{A}_{22}\)</span>
-will be considered for the above</td>
+<td>Defines which values of <span
+class="math inline">\(\mathbf{A}_{22}\)</span> are considered for the
+above correlations</td>
 </tr>
 </tbody>
 </table>
@@ -288,7 +290,7 @@ class="math inline">\(\mathbf{G}\)</span></td>
 <h2 id="numerical-example-for-quality-control">Numerical example for
 quality control</h2>
 <h3 id="files">Files</h3>
-<p>We will examine the quality control with a small example including
+<p>We will examine quality control using a small example that includes
 unqualified markers and animals. The following files will be used in
 this section.</p>
 <pre data-language="text" data-caption="snpqc1_XrefID.txt"><code>11 ID002
@@ -310,8 +312,8 @@ ID011 22111212001211112202110112101121211112010001200112020200020022220002220000
 ID012 22220202001101222101210011000222211021110000100112020200020022220002220000201200
 ID013 21220201012101211212221012001121221022120000100122111110011012111011221001102200
 ID015 21220201012101211212221012001121221022120000100122111110011012111011221001102200</code></pre>
-<p>This marker file is the same as the previous chapter except that
-there are many missing genotypes in the animal <code>ID003</code>. This
+<p>This marker file is the same as the one in the previous chapter,
+except that animal <code>ID003</code> has many missing genotypes. This
 animal is expected to be removed during quality control.</p>
 <p>The data file is as follows.</p>
 <pre data-language="text" data-caption="dataqc1.txt"><code> 3.0 1 1 1.0  2
@@ -324,7 +326,7 @@ animal is expected to be removed during quality control.</p>
  6.0 3 2 1.0  7
  8.0 3 1 1.0 10
  4.0 3 2 2.0  1</code></pre>
-<p>Here is the pedigree file.</p>
+<p>The pedigree file is as follows.</p>
 <pre data-language="text" data-caption="pedigreeqc1.txt"><code>1 7 5 1 0 2 1 0 0 ID015
 13 17 18 3 0 0 0 0 2 ID004
 11 17 19 3 0 0 0 0 1 ID005
@@ -341,12 +343,12 @@ animal is expected to be removed during quality control.</p>
 10 6 9 1 0 2 1 0 0 ID014
 15 16 18 3 0 0 0 0 1 ID003</code></pre>
 <p>We will use the following parameter file for PREGSF90. The program
-will save the cleaned genotypes as well as call-rate information. We put
-a loose criterion for several options because of the small data. For
-example, we put a low call-rate criterion and relax the criterion for
+will save the cleaned genotypes as well as call-rate information. We use
+loose criteria for several options because of the small data set. For
+example, we use a low call-rate threshold and relax the criterion for
 the correlation between <span class="math inline">\(\mathbf{G}\)</span>
-and <span class="math inline">\(\mathbf{A}_{22}\)</span>. It is just a
-demonstration, so do not use such low values in the real data set.</p>
+and <span class="math inline">\(\mathbf{A}_{22}\)</span>. This is only a
+demonstration, so do not use such low values with real data sets.</p>
 <pre data-language="blupf90" data-caption="paramqc1.txt"><code># BLUPF90 parameter file created by RENF90
 DATAFILE
 dataqc1.txt
@@ -379,26 +381,26 @@ OPTION thrStopCorAG 0.10
 OPTION outcallrate
 OPTION saveCleanSNPs</code></pre>
 <h3 id="resulting-files">Resulting files</h3>
-<p>You will see the following results.</p>
+<p>You will obtain the following results.</p>
 <ul>
-<li>The new marker file <code>snpqc1.txt</code> clean is created. The
-corresponding new cross-reference file is
+<li>The cleaned marker file <code>snpqc1.txt_clean</code> is created.
+The corresponding cleaned cross-reference file is
 <code>snpqc1.txt_clean_XrefID</code>.</li>
 <li>The removed markers are listed in
-<code>snpqc1.txt_SNPs_removed</code>. You can see 20 markers are
+<code>snpqc1.txt_SNPs_removed</code>. In this example, 20 markers are
 removed.</li>
 <li>The removed animals are listed in
 <code>snpqc1.txt_Animals_removed</code>. The second animal (pedigree ID
-15 = <code>ID003</code>) is removed due to low call rate.</li>
-<li>Allele frequency after quality control is saved in
+15 = <code>ID003</code>) is removed because of its low call rate.</li>
+<li>The allele frequencies after quality control are saved in
 <code>freqdata.count.after.clean</code>. The frequency for a removed
 marker is shown as 0.0.</li>
-<li>The call rate values in the files (<code>callrate</code> and
-<code>callrate_a</code>) are calculated based on the original marker
+<li>The call-rate values in the files (<code>callrate</code> and
+<code>callrate_a</code>) are calculated from the original marker
 data.</li>
 </ul>
-<p>You also find there is the file <code>GimA22i</code>. What values
-does it have? The following is the dump of this file.</p>
+<p>You will also find the file <code>GimA22i</code>. What values does it
+contain? The following is a dump of this file.</p>
 <pre data-language="output"><code>-0.335  0.000  -0.161 -0.421 -0.091  0.405  -0.329   0.265   0.265
  0.000  0.000   0.000  0.000  0.000  0.000   0.000   0.000   0.000
 -0.161  0.000  10.624 -0.101  0.614  0.005 -11.035  -0.144  -0.144
@@ -408,32 +410,31 @@ does it have? The following is the dump of this file.</p>
 -0.329  0.000 -11.035 -0.154  1.684 -0.796  11.503  -0.587  -0.587
  0.265  0.000  -0.144 -0.342  0.291  1.421  -0.587  20.186 -20.738
  0.265  0.000  -0.144 -0.342  0.291  1.421  -0.587 -20.738  20.186</code></pre>
-<p>You can see this file has <span class="math inline">\(9 \times
-9\)</span> matrix and the second animal is not actually removed from
-<span
+<p>You can see that this file contains a <span class="math inline">\(9
+\times 9\)</span> matrix and that the second animal is not actually
+removed from <span
 class="math inline">\(\mathbf{G}^{-1}-\mathbf{A}_{22}^{-1}\)</span>.
-This matrix was calculated based on the cleaned markers keeping rows and
-columns corresponding to removed animals. The program just filled 0 in
-such rows and columns. This is technically identical to use
-reconstructed relationship matrices calculated from the cleaned marker
-file.</p>
-<p>When you invoke genomic module from the application programs
-(BLUPF90, AIREMLF90, GIBBSF90, etc.), the above <code>GimA22i</code>
-will be directly used in the analysis. When you use PREGSF90, be careful
-when you use this <code>GimA22i</code> file. This file still corresponds
-to the original marker and cross-reference file, not to the cleaned
-files. For instance, if there is one animal that has been excluded by
-quality control, this animal is still present in <code>GimA22i</code>
-file (filled with 0 for all related elements). This situation really
-confuses the user. There is also another issue. If you want to have the
-final matrix (<span
+This matrix was calculated from the cleaned markers while retaining the
+rows and columns corresponding to removed animals. The program simply
+filled those rows and columns with 0. This is technically equivalent to
+using reconstructed relationship matrices calculated from the cleaned
+marker file.</p>
+<p>When you invoke the genomic module from application programs
+(BLUPF90+, GIBBSF90+, etc.), the <code>GimA22i</code> file above is used
+directly in the analysis. When using PREGSF90, however, be careful with
+this file. It still corresponds to the original marker and
+cross-reference files, not to the cleaned files. For example, if an
+animal has been excluded by quality control, it is still present in
+<code>GimA22i</code>, with 0 in all related elements. This situation can
+be confusing. There is another issue: if you want the final matrix
+(<span
 class="math inline">\(\mathbf{G}^{-1}-\mathbf{A}_{22}^{-1}\)</span>)
-from the cleaned genotypes, it is a waste of time to compute the matrix
-retaining unqualified objects.</p>
+from the cleaned genotypes, it is wasteful to compute a matrix that
+retains unqualified objects.</p>
 <h3 id="better-practice-for-quality-control">Better practice for quality
 control</h3>
-<p>We suggest a user follow a protocol for quality control of
-markers.</p>
+<p>We suggest that users follow the protocol below for marker quality
+control.</p>
 <ol type="1">
 <li>Perform only the quality control, and save the cleaned genotypes
 with PREGSF90.</li>
@@ -441,14 +442,14 @@ with PREGSF90.</li>
 using the cleaned marker files.</li>
 <li>Run an application program for your favorite analysis.</li>
 </ol>
-<p>To be short, our suggestion is to do the creation of cleaned files as
-a separate step. This means you need a different parameter file in each
-step (3 parameter files needed in total). In spite of more effort, the
-above procedure can avoid the confusion raised from the removal of
-markers and animals during quality control.</p>
-<p>There is another software, QCF90 (quality-control-F-90), which
-supports non-renumbered files. This tutorial does not cover the usage of
-QCF90. When QCF90 is used, the process will be</p>
+<p>In short, we suggest creating the cleaned files as a separate step.
+This means that you need a different parameter file for each step (three
+parameter files in total). Despite the additional effort, the procedure
+above avoids confusion caused by the removal of markers and animals
+during quality control.</p>
+<p>Another program, QCF90 (quality-control-F-90), supports
+non-renumbered files. This tutorial does not cover how to use QCF90.
+When QCF90 is used, the process is as follows:</p>
 <ol type="1">
 <li>Perform quality control and output the cleaned genotypes with
 QCF90.</li>
@@ -456,15 +457,14 @@ QCF90.</li>
 the cleaned marker files.</li>
 <li>Run an application program for your favorite analysis.</li>
 </ol>
-<p>If you want to create the cleaned files only, in other words, if you
-want to skip all subsequent steps after the creation of the cleaned
-files, the following options are helpful.</p>
+<p>If you want to create only the cleaned files—in other words, if you
+want to skip all subsequent steps—the following options are helpful.</p>
 <pre data-language="blupf90"><code>OPTION createA22 0           # does not create A22
 OPTION createA22Inverse 0    # does not compute A22-inverse
 OPTION createG 0             # does not create G
 OPTION createGInverse 0      # does not compute G-inverse
 OPTION createGimA22i 0       # does not compute (G-inv - A22-inv)</code></pre>
-<p>With these 5 options, the correlation between <span
+<p>With these five options, the correlation between <span
 class="math inline">\(\mathbf{G}\)</span> and <span
 class="math inline">\(\mathbf{A}_{22}\)</span> will not be calculated.
 You can calculate such statistics using the cleaned files.</p>

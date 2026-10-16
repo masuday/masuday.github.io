@@ -43,7 +43,7 @@
 <header>
 <h1 class="title">Data preparation with RENUMF90</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">April 2025</p>
+<p class="date">August 2026</p>
 </header>
 <nav id="TOC">
 <ul>
@@ -65,6 +65,9 @@ inbreeding coefficients in <span
 class="math inline">\(\mathbf{A}^{-1}\)</span></a></li>
 <li><a href="#order-of-keywords" id="toc-order-of-keywords">Order of
 keywords</a></li>
+<li><a href="#renumbering-table-and-back-numbering"
+id="toc-renumbering-table-and-back-numbering">Renumbering table and
+“back-numbering”</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -103,10 +106,10 @@ chapter.</p>
  ID014  ID009  ID013
  ID015  ID011  ID010</code></pre>
 <h2 id="combined-effects">Combined effects</h2>
-<p>RENUMF90 can treat a field as a combination of the existing fields.
-This is useful when an interaction effect is incorporated. The keyword
-<code>COMBINE</code> performs this feature. The following example is
-from the previous section and the keyword is added.</p>
+<p>RENUMF90 can treat a field as a combination of existing fields. This
+is useful when an interaction effect is incorporated. The keyword
+<code>COMBINE</code> provides this feature. The following example is
+from the previous section, with this keyword added.</p>
 <pre data-language="renumf90" data-caption="renum9a.txt"><code>COMBINE
 6 2 3
 DATAFILE
@@ -131,19 +134,18 @@ EFFECT          # interaction effect 1 x 2
 <ul>
 <li><code>COMBINE</code> must appear at the beginning of the instruction
 file (before <code>DATAFILE</code>).</li>
-<li>At least 2 values are needed; The 2nd or later values will be
-combined into 1 field. The field can be referred to as the first
-value.</li>
+<li>At least 2 values are needed. The 2nd and subsequent values are
+combined into 1 field, which is identified by the first value.</li>
 <li>In this case, <code>6 2 3</code> means that columns 2 and 3 are
 combined into column 6 (that is, creating a new column, 6, as a
 combination of 2 and 3).</li>
-<li>You can use any number in the first value even if your data file
-doesn’t have such a column.</li>
+<li>You can use any number in the first value, even if your data file
+does not have such a column.</li>
 <li>You can repeat the <code>COMBINE</code> statement.</li>
 <li>The combined field can be used in the <code>EFFECT</code>
 statement.</li>
 </ul>
-<p>You can run RENUMF90 and check <code>renf90.tables</code>. Column 2
+<p>You can run RENUMF90 and check <code>renf90.tables</code>. Columns 2
 and 3 are successfully combined into one effect (group 4).</p>
 <pre data-language="text"><code> Effect group 1 of column 1 with 3 levels , effect # 1
  Value    #    consecutive number
@@ -163,26 +165,25 @@ B2 2 4
 C1 2 5
 C2 2 6</code></pre>
 <h2 id="pedigree-manipulation">Pedigree manipulation</h2>
-<p>RENUMF90 prunes the pedigree. By default, the program traces back
-3-generation (up to great-grandsires and dams) from the animals with
-phenotype or genotype. The number of generations back can be changed
-with the option <code>PED_DEPTH</code>, which should place just after
+<p>RENUMF90 prunes the pedigree. By default, the program traces back 3
+generations (up to great-grandparents) from animals with phenotypes or
+genotypes. The number of generations to trace back can be changed with
+the option <code>PED_DEPTH</code>, which should be placed just after
 <code>SNP_FILE</code> (or <code>FILE_POS</code> if no genetic markers
 are used). The following statements define 10 generations to be
 traced.</p>
 <pre data-language="renumf90"><code>PED_DEPTH
 10</code></pre>
-<p>If you put a large number (like 100), you can consider all ancestors
-to be traced back from the current animals. If you put 0, RENUMF90 tries
-to include all animals found in the raw pedigree file even if the
-pedigree animals are not related to the animals with phenotype or
-genotype.</p>
+<p>If you put a large number (such as 100), you can trace back all
+ancestors of the current animals. If you put 0, RENUMF90 tries to
+include all animals found in the raw pedigree file, even if the pedigree
+animals are not related to the animals with phenotypes or genotypes.</p>
 <h2 id="animal-model-options">Animal model options</h2>
 <p>RENUMF90 supports the permanent environmental (PE) effect and the
-maternal genetic (MG) and the maternal environmental (MPE) effects as
-additional random effects in the animal model using the
+maternal genetic (MG) and maternal permanent environmental (MPE) effects
+as additional random effects in the animal model using the
 <code>OPTIONAL</code> keyword. The following is a parameter file with
-maximal options (PE, MG, and MPE).</p>
+the maximum set of options (PE, MG, and MPE).</p>
 <pre data-language="renumf90" data-caption="renum9b.txt"><code>DATAFILE
 rawdata9.txt
 TRAITS
@@ -216,8 +217,8 @@ rawpedigree9.txt
 0.5</code></pre>
 <p>You can read this file as follows.</p>
 <ul>
-<li>The <code>OPTIONAL</code> keyword places just after the
-<code>EFFECT</code> defining additive genetic effect.</li>
+<li>The <code>OPTIONAL</code> keyword is placed just after the
+<code>EFFECT</code> defining the additive genetic effect.</li>
 <li>Possible values are <code>pe</code> for the animal’s permanent
 environmental effect, <code>mat</code> for the maternal genetic effect,
 and <code>mpe</code> for the maternal environmental effect. They are
@@ -226,36 +227,35 @@ optional; you can use only the options you want.</li>
 matrix including direct and maternal genetic effects at
 <code>(CO)VARIANCES</code>. For a single-trait model, the rank of the
 covariance matrix should be 2; for a <span
-class="math inline">\(t\)</span> trait model, the rank should be <span
+class="math inline">\(t\)</span>-trait model, the rank should be <span
 class="math inline">\(2t\)</span>. See <em>RENUMF90 Cheat Sheet</em> for
-details. Without <code>mat</code>, you just put a direct genetic
+details. Without <code>mat</code>, you put only a direct genetic
 variance (for a single-trait model) or a covariance matrix (for a
 multiple-trait model).</li>
-<li>If you put <code>pe</code>, you should put a permanent-environmental
+<li>If you put <code>pe</code>, you should put a permanent environmental
 variance (for a single-trait model) or a covariance matrix (for a
 multiple-trait model) at <code>(CO)VARIANCES_PE</code>. Otherwise, you
 can omit <code>(CO)VARIANCES_PE</code>.</li>
-<li>If you put <code>mpe</code>, you should put a maternal
-permanent-environmental variance (for a single-trait model) or a
-covariance matrix (for a multiple-trait model) at
-<code>(CO)VARIANCES_MPE</code>. Otherwise, you can omit
-<code>(CO)VARIANCES_MPE</code>.</li>
+<li>If you put <code>mpe</code>, you should put a maternal permanent
+environmental variance (for a single-trait model) or a covariance matrix
+(for a multiple-trait model) at <code>(CO)VARIANCES_MPE</code>.
+Otherwise, you can omit <code>(CO)VARIANCES_MPE</code>.</li>
 </ul>
 <h2 id="definition-of-unknown-parent-groups-upgs">Definition of unknown
 parent groups (UPGs)</h2>
 <p>RENUMF90 can assign UPGs to unknown parents. There are 2 ways to do
-this but here we just introduce the one approach (because of its
-simplicity). The following keyword generates UPGs.</p>
+this, but here we introduce only one approach because of its simplicity.
+The following keyword generates UPGs.</p>
 <pre data-language="renumf90"><code>UPG_TYPE
 in_pedigrees</code></pre>
-<p>The option should be just after <code>PED_DEPTH</code>. With this
-option, RENUMF90 interprets a negative sire (or dam) ID as a UPG. So you
-should prepare different columns for sires and dams which contain
-negative integers for unknown animals instead of 0. Also, all the real
-animals should be in the pedigree file with the standard ID (other than
-negative integers).</p>
+<p>The option should be placed just after <code>PED_DEPTH</code>. With
+this option, RENUMF90 interprets a negative sire (or dam) ID as a UPG.
+Therefore, you should prepare separate columns for sires and dams that
+contain negative integers for unknown animals instead of 0. Also, all
+real animals should be in the pedigree file with standard IDs (other
+than negative integers).</p>
 <p>The following is a simple example of UPGs. The 4th column is for
-sires with groups (1 and 2) and the 5th column is for dams with groups
+sires with groups (1 and 2), and the 5th column is for dams with groups
 (3 and 4). You can specify column 4 (instead of 2) as the sire and
 column 5 (instead of 3) as the dam with the <code>FILE_POS</code>
 keyword.</p>
@@ -303,9 +303,9 @@ UPG_TYPE
 in_pedigrees
 (CO)VARIANCES
 1.0</code></pre>
-<p>The resulting pedigree file is as follows. You have only 15 real
-animals but there are the codes greater than 15 (between 16 and 19) in
-the sire and dam columns. These numbers greater than the number of real
+<p>The resulting pedigree file is as follows. Although you have only 15
+real animals, there are codes greater than 15 (between 16 and 19) in the
+sire and dam columns. These numbers greater than the number of real
 animals represent UPGs.</p>
 <pre data-language="text"><code>1 7 5 1 0 2 1 0 0 ID015
 13 17 18 3 0 0 0 0 2 ID004
@@ -325,11 +325,11 @@ animals represent UPGs.</p>
 <h2 id="considering-inbreeding-coefficients-in-mathbfa-1">Considering
 inbreeding coefficients in <span
 class="math inline">\(\mathbf{A}^{-1}\)</span></h2>
-<p>By default, RENUMF90 creates a pedigree file which will result in
-<span class="math inline">\(\mathbf{A}^{-1}\)</span> without inbreeding.
-To put inbreeding coefficients in <span
+<p>By default, RENUMF90 creates a pedigree file that results in <span
+class="math inline">\(\mathbf{A}^{-1}\)</span> without inbreeding. To
+include inbreeding coefficients in <span
 class="math inline">\(\mathbf{A}^{-1}\)</span>, you have to generate a
-special, renumbered pedigree-file by RENUMF90 using the
+special renumbered pedigree file with RENUMF90 using the
 <code>INBREEDING</code> keyword.<a href="#fn1" class="footnote-ref"
 id="fnref1" role="doc-noteref"><sup>1</sup></a> This keyword should be
 placed after <code>UPG_TYPE</code>.</p>
@@ -337,18 +337,18 @@ placed after <code>UPG_TYPE</code>.</p>
 <pre data-language="renumf90"><code>INBREEDING
 pedigree</code></pre>
 <p>You should put the literal word <code>pedigree</code> here (you
-shouldn’t replace it with the pedigree file name). With this option,
-RENUMF90 calculates inbreeding coefficients with Meuwissen and Luo
-(1992) based on the pedigree to be saved in the file
-<code>renaddxx.ped</code> which has been possibly pruned by some
+should not replace it with the pedigree file name). With this option,
+RENUMF90 calculates inbreeding coefficients using Meuwissen and Luo
+(1992), based on the pedigree, and saves them in the file
+<code>renaddxx.ped</code>, which may have been pruned by several
 generations (see <code>PED_DEPTH</code> for details).</p>
 <p>If you want to supply pre-calculated inbreeding coefficients stored
-in a file, use the different option. Assuming your file is
+in a file, use another option. Assuming your file is
 <code>inb.txt</code>, the following option can be used.</p>
 <pre data-language="renumf90"><code>INBREEDING
 file inb.txt</code></pre>
-<p>The file is a space-separated text file with 2 columns: 1) the
-original animal ID and 2) inbreeding coefficient (ranging from 0 to
+<p>The file is a space-separated text file with 2 columns: (1) the
+original animal ID and (2) the inbreeding coefficient (ranging from 0 to
 1).</p>
 <p>The following example uses the pedigree option.</p>
 <pre data-language="renumf90" data-caption="renum9d.txt"><code>DATAFILE
@@ -395,12 +395,13 @@ code in the 4th column.</p>
 10 6 9 2133 0 2 1 0 0 ID014
 15 0 0 1000 0 0 0 0 1 ID003</code></pre>
 <p>Looking at the 4th column, when an animal has non-inbred parents, the
-value should be 1000 with unknown parents, 1333 with one parent unknown,
-or 2000 with known parents. Animal 10 (ID014) has inbred parents so the
-inb/upg code is different from the other animals.</p>
+value should be 1000 if both parents are unknown, 1333 if one parent is
+unknown, or 2000 if both parents are known. Animal 10 (ID014) has inbred
+parents, so the inb/upg code is different from those of the other
+animals.</p>
 <h2 id="order-of-keywords">Order of keywords</h2>
-<p>The keywords used in the instruction file should be ordered following
-the manual. We show the exact order of keywords supported by
+<p>The keywords used in the instruction file should be ordered according
+to the manual. We show the exact order of keywords supported by
 RENUMF90.</p>
 <table>
 <thead>
@@ -429,10 +430,10 @@ of existing fields</td>
 file</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>FIELDS_PASSED</code></td>
-<td style="text-align: left;">mandatory</td>
-<td style="text-align: left;">positions of items in the raw data file to
-be passed to <code>renf90.dat</code></td>
+<td style="text-align: left;">`FIELDS_PASSED TO OUTP</td>
+<td style="text-align: left;">UT` mandator</td>
+<td style="text-align: left;">y positions of items in the raw data file
+to be passed to <code>renf90.dat</code></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><code>WEIGHT(S)</code></td>
@@ -479,8 +480,8 @@ ID</td>
 <tr class="odd">
 <td style="text-align: left;"><code>PED_DEPTH</code></td>
 <td style="text-align: left;">optional</td>
-<td style="text-align: left;">the maximum generation back from animals
-with phenotype or genotype</td>
+<td style="text-align: left;">the maximum number of generations back
+from animals with phenotypes or genotypes</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>GEN_INT</code></td>
@@ -539,18 +540,41 @@ effects</td>
 </tr>
 </tbody>
 </table>
+<h2 id="renumbering-table-and-back-numbering">Renumbering table and
+“back-numbering”</h2>
+<p>RENUMF90 replaces the level or individual identifier with an integer
+code for the effects specified in the instruction file. The file
+<code>renf90.tables</code> contains the cross-reference (correspondence)
+table representing the original identifiers and their integer codes.
+RENUMF90 produces one more table file, <code>renf90.fields</code>, which
+contains the effects that have been processed (“renumbered”). These
+files can be used to link the original identifiers with the solutions
+(BLUEs and BLUPs) from BLUPF90+ (and the other family programs).</p>
+<p>You can perform “back-numbering” manually, although a tool called
+IDSOLF90 is available for this purpose. Although there is no formal
+manual for IDSOLF90, its usage is simple. This is an interactive
+command-line tool, and the user enters the required information to
+complete the tasks. IDSOLF90 gets the original identifiers from
+<code>renf90.tables</code>, <code>renf90.fields</code>, and the
+renumbered pedigree file, then matches them with the BLUEs and BLUPs
+stored in a file named <code>solutions</code>. The program assumes that
+the renumbering tables are consistent across these files.</p>
+<p>More recently, the BLUPF90 programs have introduced an option,
+<code>OPTION origID</code>, which automatically performs
+“back-numbering” and saves the estimates and predictions with their
+original codes or IDs in the file <code>solutions.orig</code>.</p>
 <aside id="footnotes" class="footnotes footnotes-end-of-document"
 role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1"><p>Technically, the alternative, renumbered pedigree-file
-has the same as those used the standard one except for the 4th column.
-In the alternative pedigree, the 4th column has a special 4-digit
-integer (inb/upg code) which combines the inbreeding coefficients and
-the number of missing parents. Although the user can manually calculate
-the code, this process may be complicated, and I recommend the user to
-use RENUMF90 to generate the pedigree file with such a code.<a
-href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Technically, the alternative renumbered pedigree file
+has the same format as the standard one, except for the 4th column. In
+the alternative pedigree, the 4th column has a special 4-digit integer
+(inb/upg code) that combines the inbreeding coefficients and the number
+of missing parents. Although users can calculate the code manually, this
+process may be complicated, so I recommend using RENUMF90 to generate
+the pedigree file with such a code.<a href="#fnref1"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </aside>
 <p>

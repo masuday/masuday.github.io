@@ -43,13 +43,12 @@
 <header>
 <h1 class="title">Variance component estimation</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">April 2025</p>
+<p class="date">August 2026</p>
 </header>
 <nav id="TOC">
 <ul>
-<li><a href="#advanced-usage-of-airemlf90-blupf90"
-id="toc-advanced-usage-of-airemlf90-blupf90">Advanced usage of AIREMLF90
-(BLUPF90+)</a>
+<li><a href="#advanced-features-in-ai-reml"
+id="toc-advanced-features-in-ai-reml">Advanced features in AI REML</a>
 <ul>
 <li><a href="#heterogeneous-residual-variances"
 id="toc-heterogeneous-residual-variances">Heterogeneous residual
@@ -62,63 +61,65 @@ id="toc-likelihood-ratio-test">Likelihood Ratio Test</a></li>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>
-<h1 id="advanced-usage-of-airemlf90-blupf90">Advanced usage of AIREMLF90
-(BLUPF90+)</h1>
+<h1 id="advanced-features-in-ai-reml">Advanced features in AI REML</h1>
 <h2 id="heterogeneous-residual-variances">Heterogeneous residual
 variances</h2>
-<p>There is a situation where the residual variances vary over
-conditions. This is known as heterogeneous residual variances. There are
-2 types of modeling for the heterogeneous residual variances in
-AIREMLF90.</p>
+<p>There are situations in which residual variances vary across
+conditions. This is known as heterogeneous residual variance. There are
+two types of models for heterogeneous residual variances in
+BLUPF90+.</p>
 <ol type="1">
 <li>The residual variance is related to a covariate. For example, the
-residual variance for body weight increase by age of a month. The
+residual variance for body weight increases with age in months. The
 residual variance can be described as a function of a covariate
 (age).</li>
 <li>The residual variance differs by class. For example, in a test-day
-random-regression model, we usually assume different residual variance
-in each lactation stage. The residual variances are independent of each
-other.</li>
+random-regression model, we usually assume a different residual variance
+for each lactation stage. The residual variances are independent of one
+another.</li>
 </ol>
-<p>Although AIREMLF90 is designed to handle the first case, the program
-can also handle the second case with a trick. We will see both cases
-with a numerical example in REML. GIBBS3F90 and THRGIBBS3F90 (now
-GIBBSF90+) supports the second case.</p>
+<p>Although BLUPF90+ is designed to handle the first case, the program
+can also handle the second case with a trick. We will examine both cases
+using numerical examples with REML. GIBBSF90+ supports only the second
+case.</p>
+<p>Note that, as stated in the manual, convergence will be very slow if
+you apply heterogeneous residual (co)variances to a multiple-trait
+model.</p>
 <h3 id="model">Model</h3>
-<p>In this example, we asuume the following model: <span
+<p>In this example, we assume the following model: <span
 class="math display">\[
-y_{ijkl} = F_{i} + S_{j} +Y_{k} + u_{l} + e_{ijkl}
+y_{ijkl} = F_{i} + S_{j} + Y_{k} + u_{l} + e_{ijkl}
 \]</span> where <span class="math inline">\(y_{ijkl}\)</span> is the
-observation, <span class="math inline">\(F_{i}\)</span> , <span
+observation, <span class="math inline">\(F_i\)</span>, <span
 class="math inline">\(S_j\)</span>, and <span
 class="math inline">\(Y_k\)</span> are the fixed effects, <span
-class="math inline">\(u_l\)</span> is the additive genetic effect and
+class="math inline">\(u_l\)</span> is the additive genetic effect, and
 <span class="math inline">\(e_{ijkl}\)</span> is the residual effect.
-The residual variance is defined as the following function <span
+The residual variance is defined by the following function: <span
 class="math display">\[
 \sigma_e^2 = \exp(b_0 + b_1 x_{ijkl})
 \]</span> where <span class="math inline">\(b_0\)</span> and <span
-class="math inline">\(b_1\)</span> are the regression coefficients to
-account for the residual variance and <span
+class="math inline">\(b_1\)</span> are the regression coefficients used
+to model the residual variance, and <span
 class="math inline">\(x_{ijkl}\)</span> is the covariate measured with
 the observation <span class="math inline">\(y_{ijkl}\)</span>. The model
-is based on Foulley and Quaas (1995). AIREMLF90 will estimate <span
+is based on Foulley and Quaas (1995). BLUPF90+ will estimate <span
 class="math inline">\(b_0\)</span> and <span
-class="math inline">\(b_1\)</span> with user-supplied <span
-class="math inline">\(x_{ijkl}\)</span>.</p>
+class="math inline">\(b_1\)</span> using the user-supplied values of
+<span class="math inline">\(x_{ijkl}\)</span>.</p>
 <h3 id="data">Data</h3>
-<p>In this section, we will use simulated files similar to the previous
-section. You can download the files from Github.</p>
+<p>In this section, we will use simulated files similar to those in the
+previous section. You can download the files from GitHub.</p>
 <ul>
 <li><a
-href="https://github.com/Masuday/data/blob/master/tutorial/simdata2.txt"><code>simdata2.txt</code></a>
+href="https://github.com/masuday/data/blob/master/tutorial/examples/variance_components/adv_aireml/simdata2.txt"><code>simdata2.txt</code></a>
 : data file</li>
 <li><a
-href="https://github.com/Masuday/data/blob/master/tutorial/simped2.txt"><code>simped2.txt</code></a>
+href="https://github.com/masuday/data/blob/master/tutorial/examples/variance_components/adv_aireml/simped2.txt"><code>simped2.txt</code></a>
 : pedigree file</li>
 </ul>
 <p>The pedigree file contains three columns: animal, sire, and dam. The
-data file has 12 columns as described below.</p>
+data file has 14 columns, as described below.</p>
 <table>
 <thead>
 <tr class="header">
@@ -215,11 +216,10 @@ data file has 12 columns as described below.</p>
 </tr>
 </tbody>
 </table>
-<p>Column 13 contains a real value as a covariate. In this artificial
-data, the residual variance is expected to be larger as the covariate
-becomes larger. The 14th column contains the
-heterogeneous-residual-variance class (3 levels), and it will be used in
-the next subsection.</p>
+<p>Column 13 contains a real-valued covariate. In these artificial data,
+the residual variance is expected to increase as the covariate
+increases. The 14th column contains the heterogeneous-residual-variance
+class with 3 levels, which will be used in the next subsection.</p>
 <h3 id="parameter-file">Parameter file</h3>
 <p>The following parameter file is used.</p>
 <pre data-language="blupf90" data-caption="aireml2.txt"><code>DATAFILE
@@ -247,14 +247,15 @@ FILE
 simped2.txt
 (CO)VARIANCES
 100
+OPTION method VCE
 OPTION hetres_pos 13
 OPTION hetres_pol 4.5 0.5</code></pre>
 <p>The options define the model for heterogeneous residual
 variances.</p>
 <ul>
 <li><code>OPTION hetres_pos</code> = the position of covariate <span
-class="math inline">\(x\)</span> in the data file. Intercept <span
-class="math inline">\(b_0\)</span> is implicitly considered in the
+class="math inline">\(x\)</span> in the data file. The intercept <span
+class="math inline">\(b_0\)</span> is implicitly included in the
 program.</li>
 <li><code>OPTION hetres_pol</code> = the starting values for <span
 class="math inline">\(b_{0}\)</span> and <span
@@ -269,24 +270,24 @@ class="math inline">\(x = 1\)</span>.</li>
 </ul></li>
 </ul></li>
 </ul>
-<p>In the above case, we define only 1 regression coefficient in
-<code>hetres_pos</code> but the program adds the intercept. If you put 2
-numbers in <code>hetres_pos</code> and also put 2 initial values in
-<code>hetres_pol</code>, the program does not add the intercept. In such
-a case, the model does not contain any intercept but does contain
-user-supplied covariates only.</p>
+<p>In the above case, we define only one covariate in
+<code>hetres_pos</code>, but the program adds the intercept. If you put
+two numbers in <code>hetres_pos</code> and also put two initial values
+in <code>hetres_pol</code>, the program does not add the intercept. In
+such a case, the model contains no intercept and includes only the
+user-supplied covariates.</p>
 <p>Note that these options do not work with <code>OPTION EM-REML</code>.
-The current version of AIREMLF90 will tell you this limitation when the
-program meets this condition.</p>
+The current version of BLUPF90+ will report this limitation when it
+encounters this condition.</p>
 <h3 id="results">Results</h3>
-<p>You can run AIREMLF90 with the above parameter file. The following
-output will be shown.</p>
+<p>You can run <code>blupf90+</code> with the above parameter file. The
+following output will be shown.</p>
 <pre data-language="output"><code>Final Estimates
  Genetic variance(s) for effect  4
    39.384
  new R
-           1 -th trait:           1 -th coefficient =   4.25520168650538
-           1 -th trait:           2 -th coefficient =  5.886409914144559E-002
+           1 -th trait:           1 -th coefficient =   4.25520168816761
+           1 -th trait:           2 -th coefficient =  5.886409958430982E-002
  inverse of AI matrix (Sampling Variance)
    16.773     -0.12514      0.77591E-02
  -0.12514      0.41370E-02 -0.16778E-02
@@ -305,36 +306,38 @@ output will be shown.</p>
 class="math inline">\(\hat{\sigma}_e^2 = \exp(4.26 + 0.0589 \times 0.5)
 = 72.9\)</span> for <span class="math inline">\(x = 0.5\)</span>, <span
 class="math inline">\(\hat{\sigma}_e^2 = \exp(4.26 + 0.0589 \times 1.5)
-= 77.4\)</span> for <span class="math inline">\(x = 1.5\)</span> and
-<span class="math inline">\(\sigma_e^2 = \exp(4.26 + 0.0589 \times 2.5)
-= 82.0\)</span> for <span class="math inline">\(x = 2.5\)</span>.</p>
+= 77.4\)</span> for <span class="math inline">\(x = 1.5\)</span>, and
+<span class="math inline">\(\hat{\sigma}_e^2 = \exp(4.26 + 0.0589 \times
+2.5) = 82.0\)</span> for <span class="math inline">\(x =
+2.5\)</span>.</p>
 <p>One drawback of this analysis is that the calculations of the
 standard error for the residual variance are not easy. The AI matrix
 contains information for <span class="math inline">\(\hat{b}_0\)</span>
 and <span class="math inline">\(\hat{b}_1\)</span> (the last 2
 rows/columns).</p>
 <h3 id="another-modeling-by-class">Another modeling by class</h3>
-<p>The heterogeneous residual variances are accounted for by class. We
-assume 3 levels in the class. The 14th column in the above data contains
-the level for each observation. AIREMLF90 does not directly accept the
-level number, and we should convert it to a different format.</p>
+<p>The heterogeneous residual variances are modeled by class. We assume
+that the class has 3 levels. The 14th column in the above data contains
+the level for each observation. BLUPF90+ with the AI REML function does
+not directly accept the level number, so we must convert it to a
+different format.</p>
 <p>Having 3 levels is equivalent to defining 3 regression coefficients
-without intercept. We now assume the following parameterization without
-intercept. <span class="math display">\[
+without an intercept. We now assume the following parameterization
+without an intercept. <span class="math display">\[
 \sigma_e^2 = \exp(b_1 x_1 + b_2 x_2 + b_3 x_3 )
 \]</span></p>
-<p>If the observation has the residual variance level 1, we have <span
+<p>If the observation has residual variance level 1, we have <span
 class="math inline">\(x_1 = 1\)</span>, <span class="math inline">\(x_2
-= 0\)</span>, and <span class="math inline">\(x_3 = 0\)</span>. For the
+= 0\)</span>, and <span class="math inline">\(x_3 = 0\)</span>. For
 level 2, <span class="math inline">\(x_1 = 0\)</span>, <span
 class="math inline">\(x_2 = 1\)</span>, and <span
-class="math inline">\(x_3 = 0\)</span> and for the level 3, <span
+class="math inline">\(x_3 = 0\)</span>; for level 3, <span
 class="math inline">\(x_1 = 0\)</span>, <span class="math inline">\(x_2
 = 0\)</span>, and <span class="math inline">\(x_3 = 1\)</span>. We need
-3 covariate with 1 or 0. We add 3 extra columns to the rightmost of the
-data file.</p>
+3 covariates with values of 1 or 0. We add 3 extra columns to the
+rightmost part of the data file.</p>
 <ul>
-<li>tutorials:<code>simdata2a.txt</code>: extended data file</li>
+<li><code>simdata2a.txt</code>: extended data file</li>
 </ul>
 <p>The first 10 rows are shown below.</p>
 <pre data-language="text" data-caption="simdata2a.txt"><code>  1       0       0 1.00   1    67   1   1    85.0     0.0    92.1    91.0  0.46  1   1 0 0
@@ -347,10 +350,11 @@ data file.</p>
   8       0       0 1.07   1    82   1   1    77.4    72.7    84.1   105.2  1.69  2   0 1 0
   9       0       0 1.01   1    71   1   1   107.8    87.0    97.8    76.0  2.89  3   0 0 1
  10       0       0 0.95   1   114   1   1    94.4   100.5   103.8    89.8  1.26  2   0 1 0</code></pre>
-<p>The column 15, 16 and 17 contains 1 or 0. In column 15, it is 1 if
-the level is 1, otherwise 0. In column 16, it is 1 if the level is 2,
-otherwise 0. In column 17, it is 1 if the level is 3, otherwise 0. With
-this data file, the parameter file is as follows.</p>
+<p>Columns 15, 16, and 17 contain 1 or 0. In column 15, the value is 1
+if the level is 1 and 0 otherwise. In column 16, the value is 1 if the
+level is 2 and 0 otherwise. In column 17, the value is 1 if the level is
+3 and 0 otherwise. With this data file, the parameter file is as
+follows.</p>
 <pre data-language="blupf90" data-caption="aireml2a.txt"><code>DATAFILE
 simdata2a.txt
 NUMBER_OF_TRAITS
@@ -376,6 +380,7 @@ FILE
 simped2.txt
 (CO)VARIANCES
 100
+OPTION method VCE
 OPTION hetres_pos 15 16 17
 OPTION hetres_pol 4.5 4.5 4.5</code></pre>
 <p>The results from the above parameter file are shown here.</p>
@@ -383,9 +388,9 @@ OPTION hetres_pol 4.5 4.5 4.5</code></pre>
  Genetic variance(s) for effect  4
    39.296
  new R
-           1 -th trait:           1 -th coefficient =   4.28231169726656
-           1 -th trait:           2 -th coefficient =   4.36065608258819
-           1 -th trait:           3 -th coefficient =   4.38963108448880
+           1 -th trait:           1 -th coefficient =   4.28231170019646
+           1 -th trait:           2 -th coefficient =   4.36065608498972
+           1 -th trait:           3 -th coefficient =   4.38963108754592
  inverse of AI matrix (Sampling Variance)
    16.735     -0.11982     -0.11288     -0.10685
  -0.11982      0.32743E-02  0.75391E-03  0.69459E-03
@@ -400,13 +405,13 @@ OPTION hetres_pol 4.5 4.5 4.5</code></pre>
    4.0909
  SE for R
   0.57221E-01</code></pre>
-<p>The estimate for the level 1 is <span
+<p>The estimate for level 1 is <span
 class="math inline">\(\hat{\sigma}_e^2 = \exp(4.28) = 72.2\)</span>, for
-the level 2, <span class="math inline">\(\hat{\sigma}_e^2 = \exp(4.36) =
-78.3\)</span> and for the level 3, <span
+level 2 it is <span class="math inline">\(\hat{\sigma}_e^2 = \exp(4.36)
+= 78.3\)</span>, and for level 3 it is <span
 class="math inline">\(\hat{\sigma}_e^2 = \exp(4.39) = 80.6\)</span>.
-These values are very similar to the previous results from a regression
-parameterization that is <span class="math inline">\(\exp(b_0 + b_1
+These values are very similar to the previous results obtained with the
+regression parameterization <span class="math inline">\(\exp(b_0 + b_1
 x)\)</span> for <span class="math inline">\(x = 0.5\)</span>, <span
 class="math inline">\(1.5\)</span>, and <span
 class="math inline">\(2.5\)</span>.</p>
@@ -420,71 +425,75 @@ models:</p>
 <ul>
 <li>model 1 <em>not</em> including the maternal permanent environmental
 effect</li>
-<li>model 2 <em>including</em> maternal permanent effects.</li>
+<li>model 2 <em>including</em> the maternal permanent environmental
+effect.</li>
 </ul>
-<p>The Likelihood Ratio Test (LRT) checks if the extra random effect,
-with associated variance component gives a better fit of the model,
-against not fitting it. The model <em>without</em> the extra random
+<p>The Likelihood Ratio Test (LRT) checks whether including the extra
+random effect, with its associated variance component, provides a better
+model fit than excluding it. The model <em>without</em> the extra random
 effect is the <em>null</em> (<span class="math inline">\(H_0\)</span>)
-model versus the model <em>with</em> the extra random effect, which is
-the alternative model (<span class="math inline">\(H_1\)</span>). Then
-the difference between the two, which is a positive number, is an LRT
-statistic which follows a mixture of <span
+model, whereas the model <em>with</em> the extra random effect is the
+alternative model (<span class="math inline">\(H_1\)</span>). The
+difference between the two likelihood values is positive and is the LRT
+statistic, which follows a mixture of <span
 class="math inline">\(\chi^2\)</span> distributions. The theory of the
-LRT can be found in standard books and a nice description is in Sorensen
-&amp; Gianola book.</p>
-<p>Output of AIREMLF90 under <span class="math inline">\(H_0\)</span> is
-<span class="math inline">\(x=-2logL\)</span> ; output under <span
-class="math inline">\(H_1\)</span> is <span
-class="math inline">\(y=-2logL\)</span>. These are positive numbers, so
-the smaller the better; always <span
-class="math inline">\(y&lt;x\)</span> as <span
-class="math inline">\(H_1\)</span> is a more complex (so more likely)
-model. The trick resides in knowing if <span
-class="math inline">\(x-y\)</span> is “big enough”. The LRT statistic is
-<span class="math inline">\(LRT=x-y\)</span>, which is a statistic
-distributed as <span class="math inline">\(\chi^2\)</span>. For one
-variance component, the p-value is (in R) :</p>
+LRT can be found in standard books; a useful description is given in
+Sorensen and Gianola’s book.</p>
+<p>The output of BLUPF90+ under <span class="math inline">\(H_0\)</span>
+is <span class="math inline">\(x=-2\log L\)</span>; the output under
+<span class="math inline">\(H_1\)</span> is <span
+class="math inline">\(y=-2\log L\)</span>. These are positive numbers,
+so smaller is better; <span class="math inline">\(y&lt;x\)</span>
+because <span class="math inline">\(H_1\)</span> is a more complex (and
+therefore more likely) model. The question is whether <span
+class="math inline">\(x-y\)</span> is “large enough.” The LRT statistic
+is <span class="math inline">\(LRT=x-y\)</span>, which follows a mixture
+of <span class="math inline">\(\chi^2\)</span> distributions. For one
+variance component, the p-value is calculated in R as follows:</p>
 <pre data-language="r"><code>pchisq(x-y,1,lower.tail=FALSE)/2</code></pre>
-<p>Classical applications of LRT in quantitative genetics include
-testing <span class="math inline">\(h^2 &gt; 0\)</span> or testing of
-QTL effects. An application for association analysis for a multi-allelic
-gene is (<a href="http://dx.doi.org/10.3168/jds.2013-6570"
-class="uri">http://dx.doi.org/10.3168/jds.2013-6570</a>).</p>
+<p>Classical applications of the LRT in quantitative genetics include
+testing whether <span class="math inline">\(h^2 &gt; 0\)</span> and
+testing QTL effects. An application to the association analysis of a
+multiallelic gene is described at <a
+href="http://dx.doi.org/10.3168/jds.2013-6570"
+class="uri">http://dx.doi.org/10.3168/jds.2013-6570</a>.</p>
 <h3 id="example-for-test-of-heritability-in-dairy-sheep">Example for
 test of heritability in dairy sheep</h3>
-<p>I tested if genetic effects (<span
-class="math inline">\(\mathbf{u}\)</span>) should be fit in an old data
-set from dairy sheep (80,000 records, 50,000 animals in pedigree) with a
-model including permanent (<span
+<p>I tested whether genetic effects (<span
+class="math inline">\(\mathbf{u}\)</span>) should be included in an old
+data set from dairy sheep (80,000 records and 50,000 animals in the
+pedigree) using a model that includes permanent environmental (<span
 class="math inline">\(\sigma^2_p\)</span>), genetic (<span
-class="math inline">\(\sigma^2_p\)</span>) and residual (<span
+class="math inline">\(\sigma^2_u\)</span>), and residual (<span
 class="math inline">\(\sigma^2_e\)</span>) variances.</p>
-<p>Under the complete model H1 (<span
-class="math inline">\(\mathbf{y=Xb+Zu+Zp+e}\)</span>) ) we have in the
-(last lines of) the output of AIREMLF90 :</p>
+<p>Under the complete model <span class="math inline">\(H_1\)</span>
+(<span class="math inline">\(\mathbf{y} = \mathbf{Xb} + \mathbf{Zu} +
+\mathbf{Zp} + \mathbf{e}\)</span>), the last lines of the BLUPF90+
+output are:</p>
 <pre><code>-2logL =        825227.48</code></pre>
-<p>Then we run the reduced model H0 with a parameter file that will
+<p>Then, we run the reduced model <span
+class="math inline">\(H_0\)</span> with a parameter file that does
 <em>not</em> include the genetic effect (<span
-class="math inline">\(\mathbf{y=Xb+Zp+e}\)</span>) we have:</p>
+class="math inline">\(\mathbf{y} = \mathbf{Xb} + \mathbf{Zp} +
+\mathbf{e}\)</span>):</p>
 <pre><code> -2logL =    828095.614456413</code></pre>
-<p>then the test in R is:</p>
+<p>The test in R is:</p>
 <pre data-language="R"><code>pchisq(828095.614456413-825227.48,1,lower.tail=FALSE)/2
 
 [1] 0</code></pre>
-<p>the p-value is so small that we cannot see the difference from 0. We
-can take the log, then transform to a scale of <span
-class="math inline">\(-\log_{10}(\mathrm{p-value})\)</span>, a scale
-typically used in GWAS:</p>
-<pre data-language="R"><code>pval=pchisq(828095.614456413-825227.48,1,lower.tail=FALSE,log.p=TRUE)/2
+<p>The p-value is so small that we cannot distinguish it from 0. We can
+take the logarithm and transform it to the scale <span
+class="math inline">\(-\log_{10}(\mathrm{p\text{-}value})\)</span>,
+which is commonly used in GWAS:</p>
+<pre data-language="R"><code>pval=pchisq(828095.614456413-825227.48,1,lower.tail=FALSE,log.p=TRUE)-log(2)
 &gt; pval
-[1] -719.137
+[1] -1438.967
 -log10(exp(pval))
-[1] 312.3172</code></pre>
-<p>So, the p-value is <span
-class="math inline">\(p&lt;10^{-312}\)</span>, the evidence against
-<span class="math inline">\(H_0\)</span> is very strong and we should
-accept that there is genetic variance in this data set.</p>
+[1] 624.9355</code></pre>
+<p>Thus, the p-value is <span
+class="math inline">\(p&lt;10^{-624}\)</span>. The evidence against
+<span class="math inline">\(H_0\)</span> is very strong, and we can
+conclude that there is genetic variance in this data set.</p>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>

@@ -41,10 +41,12 @@
 <header>
 <h1 class="title">Download and Installation</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">April 2025</p>
+<p class="date">August 2026</p>
 </header>
 <nav id="TOC">
 <ul>
+<li><a href="#additional-installation"
+id="toc-additional-installation">Additional installation</a></li>
 <li><a href="#additional-settings"
 id="toc-additional-settings">Additional settings</a>
 <ul>
@@ -54,26 +56,53 @@ stack size</a></li>
 id="toc-increase-stack-size-for-openmp">Increase stack size for
 OpenMP</a></li>
 </ul></li>
+<li><a href="#useful-command-line-features"
+id="toc-useful-command-line-features">Useful command-line
+features</a></li>
 </ul>
 </nav>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>
+<h1 id="additional-installation">Additional installation</h1>
+<p>You may see an error message when running a BLUPF90 program. This is
+usually a system error, not a software bug.</p>
+<p>When this occurs, you should install additional software libraries
+provided by Intel. The BLUPF90 family is compiled with the Intel Fortran
+Compiler and depends on software libraries such as the Intel oneAPI Math
+Kernel Library (often called MKL) and the Intel Fortran Compiler runtime
+library. These library packages are freely available at no charge.</p>
+<p>You may need one or both of the packages shown below. Download the
+packages suitable for your operating system (Windows or Linux).</p>
+<ul>
+<li><a
+href="https://www.intel.com/content/www/us/en/developer/articles/tool/compilers-redistributable-libraries-by-version.html">Intel
+Fortran Compiler Runtime</a></li>
+<li><a
+href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl-download.html">Intel
+oneAPI Math Kernel Library</a></li>
+</ul>
+<p>Note that Intel often changes its page addresses, so an Internet
+search is the best way to find the current pages. To find the library
+packages, simply search for “MKL” or “Fortran runtime library.” For
+details, please check the <a
+href="https://nce.ads.uga.edu/wiki/doku.php?id=distribution">official
+DokuWiki page</a> at UGA.</p>
 <h1 id="additional-settings">Additional settings</h1>
 <p>The BLUPF90 programs may use a large amount of memory, especially
-when the dataset is large and a genomic model is applied. Heavy memory
+when the data set is large and a genomic model is applied. Heavy memory
 consumption often leads to a program crash with a <em>segmentation
 fault</em> (or <em>bus error</em>). A segmentation fault occurs when a
 program attempts to access memory in an inappropriate way or location.
 Note that this error can happen even if your computer has a lot of free
 memory. This is because the operating system (Linux, macOS, or Windows)
 imposes limitations on the memory usage of each program. More
-specifically, the system limits the amount of memory called the
-<em>stack</em>, and our programs use a large stack memory to achieve
-maximum performance.</p>
-<p>This is a common issue with large datasets. You may encounter it when
-updating to a newer version of the program while using the same input
-files. Even a small code change can affect memory usage behavior.</p>
+specifically, the system limits the amount of memory allocated to the
+<em>stack</em>, and our programs use a large stack to achieve maximum
+performance.</p>
+<p>This is a common issue with large data sets. You may encounter it
+when updating to a newer version of the program while using the same
+input files. Even a small code change can affect memory usage.</p>
 <p>You can either remove the limitation or increase the stack size. The
 following settings are recommended even if you haven’t encountered this
 problem yet. More details are available on our website: <a
@@ -82,7 +111,7 @@ class="uri">http://nce.ads.uga.edu/wiki/doku.php?id=faq.segfault</a>.</p>
 <h2 id="increase-stack-size">Increase stack size</h2>
 <p>This setting is required on Linux and macOS. First, type the
 following command in your shell (terminal):</p>
-<pre data-language="shell"><code>ulimit</code></pre>
+<pre data-language="shell"><code>ulimit -s</code></pre>
 <p>If it shows <code>unlimited</code>, the configuration is fine. If you
 see a number (like <code>8192</code>), it is likely to be a problem.
 This number represents the stack size and it should be
@@ -94,24 +123,23 @@ before running our programs:</p>
 will be applied automatically every time you log in.</p>
 <h2 id="increase-stack-size-for-openmp">Increase stack size for
 OpenMP</h2>
-<p>There is a separate setting to define the stack size for OpenMP. This
-value is independent of the system stack size explained above. You can
-set it using an environment variable.</p>
+<p>There is a separate setting for defining the stack size for OpenMP.
+This value is independent of the system stack size explained above. You
+can set it using an environment variable.</p>
 <h3 id="linux-and-macos">Linux and macOS</h3>
 <p>To check the current value, type the following command in your
 shell:</p>
 <pre data-language="shell"><code>echo $OMP_STACKSIZE</code></pre>
-<p>If it shows nothing, or a small value like <code>4M</code>, it might
-be too small. The default value is usually <code>4M</code>, which is
-likely insufficient. Before running the program, set it using the
-following command (no spaces around <code>=</code>):</p>
+<p>If it shows nothing or a small value such as <code>4M</code>, it
+might be too small. The default value is usually <code>4M</code>, which
+is likely insufficient. Before running the program, set it using the
+following command (with no spaces around <code>=</code>):</p>
 <pre data-language="shell"><code>export OMP_STACKSIZE=64M</code></pre>
 <p>This sets the stack size to 64 megabytes. If the program still fails
 with the same error, increase the size gradually (e.g., to 128M, 192M,
-etc.). However, a large value can lead to high memory usage, because
-each thread can allocate this much stack. There is no universally
-appropriate value — it depends on your system, so adjust
-empirically.</p>
+etc.). However, a large value can lead to high memory usage because each
+thread can allocate this much stack. There is no universally appropriate
+value—it depends on your system, so adjust it empirically.</p>
 <p>For a one-time setting, you can add the variable inline when you run
 the program (no <code>export</code>):</p>
 <pre data-language="shell"><code>OMP_STACKSIZE=64M ./blupf90</code></pre>
@@ -119,16 +147,16 @@ the program (no <code>export</code>):</p>
 your <code>.bash_profile</code>.</p>
 <h3 id="windows">Windows</h3>
 <p>On Windows, you can set the <code>OMP_STACKSIZE</code> environment
-variable either temporarily via the Command Prompt or permanently via
-the system settings in Control Panel.</p>
+variable either temporarily through the Command Prompt or permanently
+through the system settings in Control Panel.</p>
 <p>To check the current value, type:</p>
 <pre data-language="shell"><code>set %OMP_STACKSIZE%</code></pre>
 <p>To set a value (e.g., 64 megabytes), type:</p>
 <pre data-language="shell"><code>set OMP_STACKSIZE=64M</code></pre>
 <p>This setting lasts only for the current session, so you must run the
 BLUPF90 programs in the same session after setting it. To make it
-permanent, use the Control Panel. For instructions, search for keywords
-like <code>windows environment variable</code> using a search
+permanent, use the Control Panel. For instructions, search for terms
+such as <code>Windows environment variable</code> using a search
 engine.</p>
 <p>The value should include a number and unit, such as <code>64M</code>
 for 64 megabytes. Start with <code>64M</code>, and if the problem
@@ -137,6 +165,23 @@ other systems, a value that is too large will result in high memory
 consumption because each thread may use that much memory. You will need
 to determine an appropriate value based on your computer’s
 resources.</p>
+<h1 id="useful-command-line-features">Useful command-line features</h1>
+<p>Most BLUPF90 programs support command-line options. Some programs
+accept only a few command-line options, whereas others are controlled
+almost entirely through them. Several command-line options are common
+across many programs, although not all programs support them.</p>
+<p>A typical command-line argument is the name of a parameter file (or
+instruction file) describing the operational details. For example, the
+following command lets BLUPF90+ read the parameter file
+<code>param.txt</code>.</p>
+<pre data-language="shell"><code>blupf90+ param.txt</code></pre>
+<p>Major programs accept <code>--help</code> to show a list of possible
+command-line options.</p>
+<pre data-language="shell"><code>blupf90+ --help</code></pre>
+<p>Some programs accept the option to show a minimal template of the
+parameter file for analysis (or the instruction file for the renumbering
+operation).</p>
+<pre data-language="shell"><code>blupf90+ --show-template</code></pre>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>

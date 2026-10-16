@@ -41,7 +41,7 @@
 <header>
 <h1 class="title">Download and Installation</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">April 2025</p>
+<p class="date">August 2026</p>
 </header>
 <nav id="TOC">
 <ul>
@@ -51,6 +51,8 @@ id="toc-running-a-program-in-windows">Running a program in Windows</a>
 <li><a href="#a-basic-procedure" id="toc-a-basic-procedure">A basic
 procedure</a></li>
 <li><a href="#quick-run" id="toc-quick-run">Quick run</a></li>
+<li><a href="#does-the-program-not-start"
+id="toc-does-the-program-not-start">Does the program not start?</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -58,9 +60,9 @@ procedure</a></li>
 Back to <a href="./index.html">index.html</a>.
 </p>
 <h1 id="running-a-program-in-windows">Running a program in Windows</h1>
-<p>BLUPF90 programs do not provide a graphical window and instead run in
-a “DOS”-style interface. You should prepare a parameter file that
-describes the names of data and pedigree files, the model, and the
+<p>BLUPF90 programs do not provide a graphical window; instead, they run
+in a “DOS”-style interface. You should prepare a parameter file that
+describes the names of the data and pedigree files, the model, and the
 variance components to be used in the analysis. You will be prompted to
 type the name of the parameter file. If you are already experienced with
 this type of software, you may skip this section.</p>
@@ -70,8 +72,8 @@ interface, refer to the last subsection for a quicker method.</p>
 <h2 id="a-basic-procedure">A basic procedure</h2>
 <h3 id="if-you-have-no-experience-running-a-command-line-program">If you
 have no experience running a command line program…</h3>
-<p>Running a command-line program is actually a frequently asked
-question. The standard method is to use the Command Prompt, or simply
+<p>How to run a command-line program is a frequently asked question. The
+standard method is to use the Command Prompt, or simply
 <code>cmd</code>, which is a console that accepts commands typed with a
 keyboard. You can also use PowerShell instead of Command Prompt; the
 procedure is the same.</p>
@@ -87,13 +89,6 @@ class="uri">http://www.computerhope.com/issues/chusedos.htm</a>)</li>
 <li>How do I run a file from MS-DOS?<br />
 (<a href="http://www.computerhope.com/issues/ch000598.htm"
 class="uri">http://www.computerhope.com/issues/ch000598.htm</a>)</li>
-<li>Beginners Guide: Windows Command Prompt<br />
-(<a href="http://www.pcstats.com/articleview.cfm?articleID=1723"
-class="uri">http://www.pcstats.com/articleview.cfm?articleID=1723</a>)</li>
-<li>How to Open Command Prompt<br />
-(<a
-href="http://pcsupport.about.com/od/commandlinereference/f/open-command-prompt.htm"
-class="uri">http://pcsupport.about.com/od/commandlinereference/f/open-command-prompt.htm</a>)</li>
 </ul>
 <h3 id="how-to-run-the-program">How to run the program</h3>
 <p>A basic procedure to run the program is as follows:</p>
@@ -104,10 +99,10 @@ you’re unsure what this is, you can skip this step.)</li>
 <li>Save the required files in the same folder.<br />
 </li>
 <li>Open the Command Prompt and use the <code>cd</code> command to
-change to the folder’s directory.<br />
+change to the folder containing the files.<br />
 </li>
-<li>Type the name of the program (e.g., <code>blupf90</code> or
-<code>blupf90.exe</code>) to launch it.<br />
+<li>Type the name of the program (e.g., <code>blupf90+</code> or
+<code>blupf90+.exe</code>) to launch it.<br />
 </li>
 <li>When prompted, type the name of the parameter file. Some programs
 may ask for additional input.<br />
@@ -123,19 +118,19 @@ parameter file with the following prompt:</p>
 programs will ask for additional input, which you can type as
 prompted.</p>
 <h3 id="save-the-output">Save the output</h3>
-<p>If you want to save the output log (screen messages from the
-program), use redirection:</p>
-<pre data-language="shell"><code>blupf90 &gt; out.txt</code></pre>
+<p>If you want to save the output log (the program’s screen messages),
+use redirection:</p>
+<pre data-language="shell"><code>blupf90+ &gt; out.txt</code></pre>
 <p>This command will not display messages on the screen, but it will
 still accept input. You can type the parameter file name, and the
 program will run. The output will be saved in <code>out.txt</code>.</p>
-<h3 id="omit-the-typing">Omit the typing</h3>
+<h3 id="avoid-typing-input-manually">Avoid typing input manually</h3>
 <p>If you prefer not to type input manually, you can use redirection.
 Prepare a text file that contains the name of the parameter file:</p>
 <pre data-language="text" data-caption="in.txt"><code>parameter.txt</code></pre>
 <p>Then run the program as follows:</p>
-<pre data-language="shell"><code>blupf90 &lt; in.txt &gt; out.txt</code></pre>
-<p>This technique is useful for Gibbs sampling programs that require
+<pre data-language="shell"><code>blupf90+ &lt; in.txt &gt; out.txt</code></pre>
+<p>This technique is useful for Gibbs-sampling programs that require
 several inputs. You can write multiple lines in <code>in.txt</code>
 instead of typing them interactively.</p>
 <h3 id="stop-the-program">Stop the program</h3>
@@ -166,14 +161,21 @@ It will close automatically when the analysis is complete.<br />
 the following batch file (<code>run.bat</code>) and place it in the same
 folder. Open the file with Notepad, edit the program name as needed, and
 save it. Then double-click <code>run.bat</code>. A black window will
-open, and although nothing will appear on screen, you can type the
+open, and although nothing will appear on the screen, you can type the
 parameter file name. The program will run silently, and the output will
 be saved in <code>out.txt</code>.</p>
 <p>Running the program this way (by double-clicking) is not recommended
 because any error message will disappear when the window closes.</p>
-<pre data-language="text" data-caption="run.bat"><code>blupf90 &gt; out.txt</code></pre>
+<pre data-language="text" data-caption="run.bat"><code>blupf90+ &gt; out.txt</code></pre>
 <p>This method may not work in some cases due to hidden file extensions.
 We do not officially support this method.</p>
+<h2 id="does-the-program-not-start">Does the program not start?</h2>
+<p>When you try to run the program, it may stop immediately, and you may
+see the following or a similar message in a pop-up window.</p>
+<pre data-language="text"><code>Initializing libiomp5md.dll, but found libiomp5md.dll already initialized...</code></pre>
+<p>This means that you need additional software on which the BLUPF90
+programs depend. Please check the next section, “Additional Settings,”
+or the official webpage of the University of Georgia.</p>
 <p>
 Back to <a href="./index.html">index.html</a>.
 </p>

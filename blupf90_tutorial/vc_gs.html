@@ -108,7 +108,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <header>
 <h1 class="title">Variance component estimation</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">April 2025</p>
+<p class="date">August 2026</p>
 </header>
 <nav id="TOC">
 <ul>
@@ -150,64 +150,61 @@ Back to <a href="./index.html">index.html</a>.
 <h1 id="gibbs-sampling-and-post-gibbs-analysis">Gibbs sampling and
 post-Gibbs analysis</h1>
 <h2 id="gibbs-sampling-software">Gibbs sampling software</h2>
-<p>The BLUPF90 family now provides a single program, GIBBSF90+, for
-conducting Gibbs sampling for linear mixed models and threashold models.
-This software is currently recommended for all users. However, several
-Gibbs sampling programs were previously available in the BLUPF90 family.
-The following description is provided for reference.</p>
-<p>In the past, users were encouraged to use GIBBS2F90 or THRGIBBS1F90
-for linear mixed models. THRGIBBS1F90 supported both threshold and
-linear models and was typically faster than GIBBS2F90, especially for
-large datasets. GIBBS3F90 was useful in cases where heterogeneous
-residual variances by class were assumed. These programs differed in
-their capabilities and performance.</p>
-<p><strong>Notice</strong>: This tutorial was originally written using
-the older software, and THRGIBBS1F90 is used throughout the examples,
-even though threshold models are not applied. If you are using
-GIBBSF90+, you can simply replace THRGIBBS1F90 with GIBBSF90+ without
-any additional options.</p>
-<p>Gibbs sampling is totally different from REML. We do not deal with
-the theoretical background of this technique here; see Sorensen and
-Gianola (2002) or Misztal (2008) for details. Roughly speaking, Gibbs
-sampling is a process to draw the posterior distribution out of the
-samples generated as random numbers based on information available at a
-specific point. In one round, the Gibbs sampler solves the mixed model
-equations with the current variance components and add a small random
-number (noise) to each solution. Then the sampler generates a covariance
-estimate as a random number based on the solutions. The samples of
-solutions and variance components in each round are not informative.
-Having many samples from many rounds repeated, we can figure the
-posterior distribution of a variance component as a histogram out of the
-samples. You can calculate the average of samples (posterior mean) as a
-point estimator of a variance component. You can also calculate the
-standard deviation of samples (posterior SD), which is corresponding to
-the standard error in a frequentist approach (for example, REML).</p>
-<p>THRGIBBS1F90 assumes, by default, noninformative (also known as vague
-or flat) priors for location parameters as well as variance components.
-You can change the degree of belief in the prior distribution for each
-variance component using an option in the parameter file.</p>
-<p>Gibbs sampling needs post-Gibbs analyses. This can be done with a
-separate software POSTGIBBSF90, or with manual processing by the user.
-The basic pipeline of Gibbs sampling analysis is that</p>
+<!--
+The BLUPF90 family provides a single program, GIBBSF90+, for conducting Gibbs sampling for linear mixed models and threshold models. This software is currently recommended for all users. However, several Gibbs sampling programs were previously available in the BLUPF90 family. The following description is provided for reference.
+
+In the past, users were encouraged to use GIBBS2F90 or THRGIBBS1F90 for linear mixed models. THRGIBBS1F90 supported both threshold and linear models and was typically faster than GIBBS2F90, especially for large datasets. GIBBS3F90 was useful in cases where heterogeneous residual variances by class were assumed. These programs differed in their capabilities and performance.
+
+**Notice**: This tutorial was originally written using the older software, and THRGIBBS1F90 is used throughout the examples, even though threshold models are not applied. If you are using GIBBSF90+, you can simply replace THRGIBBS1F90 with GIBBSF90+ without any additional options.
+-->
+<p>Gibbs sampling is often used for variance component estimation,
+although it is a more general statistical algorithm for parameter
+estimation. Gibbs sampling is completely different from REML, both
+conceptually and computationally. We do not discuss the theoretical
+background of this method here; see Sorensen and Gianola (2002) or
+Misztal (2008) for details. Roughly speaking, Gibbs sampling draws
+samples from the posterior distribution by generating random numbers
+based on the information available at a specific point. In one round,
+the Gibbs sampler solves the mixed model equations with the current
+variance components and adds a small random number (noise) to each
+solution. Then, the sampler generates a variance estimate as a random
+number given the solutions and the other variance components. A single
+sample of solutions and variance components from one round is not
+informative. By repeating this process over many rounds and collecting
+many samples, we can estimate the posterior distribution of a variance
+component, for example, as a histogram of the samples. You can calculate
+the average of the samples (the posterior mean) as a point estimator of
+a variance component. You can also calculate the standard deviation of
+the samples (the posterior SD), which corresponds to the standard error
+in a frequentist approach (for example, REML).</p>
+<p>GIBBSF90+ is the Gibbs sampler in the BLUPF90 family. This program
+assumes, by default, noninformative (also known as vague or flat) priors
+for location parameters as well as variance components. You can control
+the strength of the prior distribution for each variance component using
+an option in the parameter file.</p>
+<p>Gibbs sampling requires post-Gibbs analysis. This can be done using
+the separate software POSTGIBBSF90 or by processing the samples
+manually. The basic workflow of a Gibbs sampling analysis is as
+follows:</p>
 <ol type="1">
-<li>use THRGIBBSF90 to generate samples for variance components and</li>
+<li>use GIBBSF90+ to generate samples for variance components and</li>
 <li>use POSTGIBBSF90 to summarize the samples.</li>
 </ol>
-<p>Both programs accept the same parameter file as BLUPF90 programs but
-ask you some additional questions to control the Gibbs sampler.</p>
+<p>Both programs accept the same parameter file as BLUPF90+, but ask
+additional questions to control the sampling details.</p>
 <h2 id="preparation">Preparation</h2>
-<p>In this section, we will use the same simulated files which have been
-already introduced in the previous section for REML.</p>
+<p>In this section, we will use the same simulated files that were
+introduced in the previous section for REML.</p>
 <ul>
 <li><a
-href="https://github.com/Masuday/data/blob/master/tutorial/simdata.txt"><code>simdata.txt</code></a>
+href="https://github.com/masuday/data/blob/master/tutorial/examples/variance_components/gibbs/simdata.txt"><code>simdata.txt</code></a>
 : data file</li>
 <li><a
-href="https://github.com/Masuday/data/blob/master/tutorial/simped.txt"><code>simped.txt</code></a>
+href="https://github.com/masuday/data/blob/master/tutorial/examples/variance_components/gibbs/simped.txt"><code>simped.txt</code></a>
 : pedigree file</li>
 </ul>
-<p>The parameter file is the same shown in the previous section. Here we
-put a different name on this file.</p>
+<p>The parameter file is the same as the one shown in the previous
+section for AI REML. Here, we give this file a different name.</p>
 <pre data-language="blupf90" data-caption="gibbs1.txt"><code>DATAFILE
 simdata.txt
 NUMBER_OF_TRAITS
@@ -234,88 +231,87 @@ simped.txt
 (CO)VARIANCES
 100</code></pre>
 <p>The variance components in the parameter file will be used as initial
-values but the impact of the values on the results will be small. So you
-can put any values on the parameter file.</p>
+values, but their impact on the results will be small. Therefore, you
+can use any values in the parameter file.</p>
 <h2 id="sampling-strategy">Sampling strategy</h2>
-<p>Invoking THRGIBBSF90, the program asks you the name of the parameter
-file.</p>
-<pre data-language="output"><code> * Start thrgibbs1f90 ........04-03-2016            12 h 12 m 36 s 173
- name of parameter file?</code></pre>
-<p>After typing the name, then the program will ask you another
-question.</p>
+<p>When you invoke GIBBSF90+, the program asks for the name of the
+parameter file.</p>
+<pre data-language="output"><code> name of parameter file?</code></pre>
+<p>After you type the name, the program asks another question.</p>
 <pre data-language="output"><code> number of samples and length of burn-in</code></pre>
-<p>You should input 2 integer numbers here.</p>
+<p>You should enter two integers here.</p>
 <ul>
 <li>The total number of samples to be generated.</li>
-<li>The number of burn-in; the first samples to be discarded.</li>
+<li>The number of burn-in samples, which are the first samples to be
+discarded.</li>
 </ul>
-<p>The 2 numbers should be separated with space or newline (that is
-Enter key). The number of burn-in should be smaller than the total
-number of samples. If you are not sure about the number of burn-in, just
-put 0. After the sampling, you can manually discard any number of
-burn-in samples using a tool, POSTGIBBSf90. If you generate 5,000
-samples and discard the first 1,000 samples as burn-in, you can key-in
-as follows (no commas are allowed).</p>
+<p>The two numbers should be separated by a space or a newline (that is,
+the Enter key). The number of burn-in samples should be smaller than the
+total number of samples. If you are not sure how many burn-in samples to
+use, enter 0. After sampling, you can manually discard any number of
+burn-in samples using POSTGIBBSF90. If you generate 5,000 samples and
+discard the first 1,000 samples as burn-in, you can enter the following
+(no commas are allowed).</p>
 <pre data-language="shell"><code>5000 1000</code></pre>
 <p>You will be asked one more question.</p>
 <pre data-language="output"><code> Give n to store every n-th sample ? (1 means store all samples )</code></pre>
-<p>You should put one integer number here.</p>
+<p>You should enter one integer here.</p>
 <ul>
-<li>The size of the interval to save the samples.</li>
+<li>The interval at which to save the samples.</li>
 </ul>
-<p>For example, if you want to save the sample every 10 rounds, type 10
+<p>For example, if you want to save a sample every 10 rounds, enter 10
 here.</p>
 <pre data-language="shell"><code> 10</code></pre>
 <p>If you want to save all the samples, type <code>1</code> instead.
 After this, the program starts sampling.</p>
-<p>What is the appropriate number of sampling? What is the best
-interval? The answer depends on the model and data. We will consider
-this question later in this section.</p>
+<p>What is the appropriate number of samples? What is the best interval?
+The answer depends on the model and data. We will consider these
+questions later in this section.</p>
 <h2 id="constraints-on-variance-components">Constraints on variance
 components</h2>
 <p>As explained previously in the AI REML section, the program supports
-to force some variance components to be 0. When the initial variance
+forcing some variance components to be 0. When the initial variance
 component is 0, this component never changes throughout the iterations.
-See the previous section to see the example of the initial values with
+See the previous section for an example of initial values equal to
 0.</p>
-<p>There is the difference between AIREMLF90 and THRGIBBS1F90 (and the
-other Gibbs samplers) on the constraints. Whereas AIREMLF90 never
-computes the estimates of the constraint variance components, the Gibbs
-samplers actually calculate all variance components, and then, replace
-the target parameters with 0. It means that the Gibbs samplers have the
-same computing cost on the constraints as the non-constraint case.</p>
-<p>The same as AIREMLF90, THRGIBBS1F90 tries to fix the estimated
-variance components which are out of the parameter space. During this
-process, some variances may become 0. Again, the same as those used
-AIREMLF90, once it happens, such variances may never come back to
-non-zero values simply because no information is available to estimate
-the variance parameters. If you see such accidental zeros during the
-iterations, it implies that your model is suboptimal or, the amount of
-data is not enough to estimate the variance components.</p>
+<p>There is a difference between BLUPF90+ and GIBBSF90+ in how
+constraints are handled. Whereas BLUPF90+ never computes estimates for
+variance components specified as fixed, the Gibbs sampler actually
+calculates all variance components and then replaces the constrained
+parameters with 0. This means that the Gibbs sampler has the same
+computational cost with constraints as without constraints.</p>
+<p>Like BLUPF90+, GIBBSF90+ tries to correct estimated variance
+components that are outside the parameter space. During this process,
+some variances may be set to 0 numerically. As with BLUPF90+, once this
+happens, such variances may never return to nonzero values simply
+because no information remains to estimate the variance parameters. If
+you see such accidental zeros during the iterations, your model may be
+inadequate, or the amount of data may be insufficient to estimate the
+variance components.</p>
 <h2 id="results-shown-on-screen">Results shown on screen</h2>
 <h3 id="intermediate-results">Intermediate results</h3>
 <p>During the sampling, the program always prints the sampled variances
 in each round.</p>
-<pre data-language="output"><code>          5000   rounds
-G
-     36.27
-R
-     62.00</code></pre>
+<pre data-language="output"><code>        5000  rounds
+ G
+   36.265
+ R
+   61.996</code></pre>
 <h3 id="final-posterior-mean-and-sd">Final posterior mean and SD</h3>
-<p>The program actually calculates the sampled solutions in each round
-as well. At the end of sampling, the program shows several statistics on
-screen. You do not always need all the information. We break it down
-here.</p>
-<pre data-language="output"><code>elapsed time per iteration     6.7236428 E -03 : total                  33.61821
-* End of iteration04 -03 -2016 12 h 27 m 05 s 101
-ave G
-  39.03
-SD G
-  3.579
-ave R
-  62.58
-SD R
-  2.506</code></pre>
+<p>The program also calculates samples of the solutions in each round.
+At the end of sampling, it shows several statistics on the screen. You
+do not always need all the information, so we break it down here.</p>
+<pre data-language="output"><code> cpu time per iteration          1.5550610E-03  : total   7.775305
+ wall-clock time per iteration   1.4231800E-03  : total   7.115900
+ * End of iteration 07-29-2026  21h 16m 26s 587
+ ave G
+   39.035
+ SD G
+   3.5789
+ ave R
+   62.582
+ SD R
+   2.5062</code></pre>
 <ul>
 <li><code>ave G and SD G</code>: Posterior mean and SD for <span
 class="math inline">\(\sigma_u^2\)</span>. Average and standard
@@ -324,11 +320,13 @@ deviation of saved samples after removing burn-in.</li>
 class="math inline">\(\sigma_e^2\)</span>. Average and standard
 deviation of saved samples after removing burn-in.</li>
 </ul>
+<p>The number of burn-in samples was specified at the beginning of the
+program run.</p>
 <h3 id="final-status-of-sampling">Final status of sampling</h3>
 <p>These are not essential for a regular analysis.</p>
-<pre data-language="output"><code>* Last seeds = 2101474043 1031647242
-* Number of samples kept =          4000
-solutions stored in binary file : &quot; last_solutions &quot;</code></pre>
+<pre data-language="output"><code> * Last seeds =  2101474043  1031647242
+ * Number of samples kept =        4000
+ solutions stored in binary file: &quot;last_solutions&quot;</code></pre>
 <ul>
 <li><code>Last seeds</code>: Seeds of random number generator. Usually,
 the values are not crucial.</li>
@@ -339,68 +337,70 @@ The last sampled solutions are stored in <code>last_solutions</code>.
 Usually, the file is not essential.</li>
 </ul>
 <h3 id="dic-and-related-information">DIC and related information</h3>
-<p>DIC (Deviance Information Criterion) can be used to compare 2 or more
-models like AIC (smaller is better). In each round, the program
-calculates partial information to form the DIC. In a general notation,
-we can write a likelihood function as <span class="math inline">\(\log
+<p>DIC (Deviance Information Criterion) can be used to compare two or
+more models, as with AIC (smaller is better). In each round, the program
+calculates partial information to form the DIC. In general notation, we
+can write a likelihood function as <span class="math inline">\(\log
 L(\theta)\)</span> with parameters <span
-class="math inline">\(\theta\)</span>. In above mode, we assume that N
-is the number of observations and <span
-class="math inline">\(\hat{\sigma}_{e[k]}^2\)</span> (that is <span
-class="math inline">\(\hat{\theta}_k\)</span>) is a sampled residual
-variance in round <span class="math inline">\(k\)</span> after burn-in,
-a deviance <span class="math inline">\(D_k\)</span> in round <span
-class="math inline">\(k\)</span> is defined as <span
+class="math inline">\(\theta\)</span>. In the above model, assume that
+<span class="math inline">\(N\)</span> is the number of observations and
+<span class="math inline">\(\hat{\sigma}_{e[k]}^2\)</span> (that is,
+<span class="math inline">\(\hat{\theta}_k\)</span>) is the sampled
+residual variance in round <span class="math inline">\(k\)</span> after
+burn-in. The deviance <span class="math inline">\(D_k\)</span> in round
+<span class="math inline">\(k\)</span> is defined as <span
 class="math display">\[
 D_k = -2\log L(\hat{\theta}_k) =
 -2\sum_{i=1}^{N}\left[C+\frac{\hat{e}_i^2}{\hat{\sigma}_{e[k]}^2}\right]
 \]</span> where <span class="math inline">\(C\)</span> is <span
 class="math inline">\(\log(2\pi\hat{\sigma}_{e[k]}^2)\)</span> and <span
-class="math inline">\(\hat{e}_i\)</span> s a observed residual for
-observation <span class="math inline">\(i\)</span> (that is <span
-class="math inline">\(y - \hat{y}\)</span> : observation minus sampled
-solutions). With <span class="math inline">\(m\)</span> samples after
-burn-in, <span class="math inline">\(\bar{D}\)</span>, an estimate of
-the expectation of <span class="math inline">\(D\)</span>, is defined as
-<span class="math display">\[
+class="math inline">\(\hat{e}_i\)</span> is an observed residual for
+observation <span class="math inline">\(i\)</span> (that is, <span
+class="math inline">\(y - \hat{y}\)</span>: the observation minus the
+sampled solution). With <span class="math inline">\(m\)</span> samples
+after burn-in, <span class="math inline">\(\bar{D}\)</span>, an estimate
+of the expectation of <span class="math inline">\(D\)</span>, is defined
+as <span class="math display">\[
 \bar{D}=\frac{\sum_{k=1}^{m}D_k}{m}
-\]</span> Similar statistics are also calculated with posterior mean of
-<span class="math inline">\(\sigma_e^2\)</span>. We calculate the
-posterior deviance <span class="math inline">\(D(\bar{\theta})\)</span>
-using above formula for <span class="math inline">\(D_k\)</span> except
-<span class="math inline">\(\hat{\sigma}_{e[k]}^2\)</span> (that is
-<span class="math inline">\(\hat{\theta}_k\)</span>) is replaced with
-its posterior mean <span
-class="math inline">\(\hat{\sigma}_{e}^2\)</span> that is <span
-class="math inline">\(\hat{\theta}\)</span> as follows <span
+\]</span> Similar statistics are also calculated using the posterior
+mean of <span class="math inline">\(\sigma_e^2\)</span>. We calculate
+the posterior deviance <span
+class="math inline">\(D(\bar{\theta})\)</span> using the above formula
+for <span class="math inline">\(D_k\)</span>, but replace <span
+class="math inline">\(\hat{\sigma}_{e[k]}^2\)</span> (that is, <span
+class="math inline">\(\hat{\theta}_k\)</span>) with its posterior mean
+<span class="math inline">\(\bar{\sigma}_{e}^2\)</span>, that is, <span
+class="math inline">\(\bar{\theta}\)</span>, as follows: <span
 class="math display">\[
 D(\bar{\theta})=-2\log
-L(\hat{\theta})=-2\sum_{i=1}^{N}\left[C+\frac{\hat{e}_i^2}{\hat{\sigma}_{e}^2}\right]
-\]</span> These statistics are calculated using the samples stored after
-burn-in. THRGIBBSF90 prints the following quantity as DIC. <span
+L(\bar{\theta})=-2\sum_{i=1}^{N}\left[\bar{C}+\frac{\hat{e}_i^2}{\bar{\sigma}_{e}^2}\right]
+\]</span> where <span
+class="math inline">\(\bar{C}=\log(2\pi\bar{\sigma}_{e}^2)\)</span>.
+These statistics are calculated using the samples stored after burn-in.
+GIBBSF90+ prints the following quantity as DIC. <span
 class="math display">\[
 \mathrm{DIC}=2\bar{D}-D(\bar{\theta})
-\]</span> THRGIBBS1F90 saves every <span
-class="math inline">\(D_k\)</span> to a file <code>fort.99</code>.</p>
-<p>The output is corresponding to the above formulas.</p>
+\]</span> GIBBSF90+ saves every <span class="math inline">\(D_k\)</span>
+to a file <code>fort.99</code>.</p>
+<p>The output corresponds to the formulas above.</p>
 <pre data-language="output"><code>****************************************
-***************** DIC ******************
-****************************************
-detR      62.5820466970185
-# stored samples                400
-D-bar     32364.1379063698
-D(theta-bar)  30968.7777134920
-DIC = 2*D-bar - D (theta-bar) =   33759.4980992475
-Effective number of parameters =    1395.36019287775
-solutions stored in file : &quot;binary_final_solutions&quot;
-* End program04-03-2016 12 h 27 m 06 s 001</code></pre>
+ ***************** DIC ******************
+ ****************************************
+ detR   62.5820466970184
+ # stored samples         400
+ D-bar   32364.1379063698
+ D(theta-bar)   30968.7777134920
+ DIC = 2*D-bar - D(theta-bar) =   33759.4980992475
+ Effective number of parameters =   1395.36019287776
+ solutions stored in file: &quot;binary_final_solutions&quot;
+ *** End program *** 07-29-2026  21h 16m 26s 597</code></pre>
 <ul>
 <li><code>detR</code>: Determinant of posterior mean of the residual
 covariance matrix (<span class="math inline">\(|\mathbf{R}_{0}|\)</span>
 in the general case and <span
 class="math inline">\(|\sigma_e^2|\)</span> in this case).</li>
-<li><code># stored samples</code>: The in geneal number of samples saved
-in a file (<span class="math inline">\(m\)</span> above).</li>
+<li><code># stored samples</code>: The total number of samples saved in
+a file (<span class="math inline">\(m\)</span> above).</li>
 <li><code>D-bar</code>: <span
 class="math inline">\(\bar{D}\)</span></li>
 <li><code>D(theta-bar)</code>: <span
@@ -413,16 +413,17 @@ class="math inline">\(\bar{D} - D(\bar{\theta})\)</span></li>
 posterior means for sampled solutions after burn-in.</li>
 </ul>
 <p>The estimated genetic variance is <span
-class="math inline">\(\hat{\sigma}_u^2 = 39.03 (\pm 3.579)\)</span> and
+class="math inline">\(\hat{\sigma}_u^2 = 39.03 (\pm 3.579)\)</span>, and
 the estimated residual variance is <span
 class="math inline">\(\hat{\sigma}_e^2 = 62.58 (\pm 2.506)\)</span>. If
-you believe the numbers of samples and burn-in are appropriate, you can
-use the above posterior mean and SD as the final results. Otherwise, and
-in most cases, you should run POSTGIBBSF90 to perform the post-Gibbs
-analyses to confirm the numbers of samples and burn-in were enough to
-draw posterior statistics for variance parameters.</p>
+you believe that the numbers of samples and burn-in samples are
+appropriate, you can use the above posterior means and SDs as the final
+results. Otherwise—and in most cases—you should run POSTGIBBSF90 to
+perform the post-Gibbs analyses and confirm that the numbers of samples
+and burn-in samples were sufficient to estimate posterior statistics for
+the variance parameters.</p>
 <h2 id="generated-files">Generated files</h2>
-<p>THRGIBBSF90 generates several files including the following.</p>
+<p>GIBBSF90+ generates several files, including the following:</p>
 <ul>
 <li><code>gibbs_samples</code>: Samples of variance components in
 specific rounds after burn-in.</li>
@@ -433,63 +434,63 @@ binary form.</li>
 <li><code>binary_final_solutions</code>: Posterior means for sampled
 solutions from specific rounds after burn-in saved in binary form.</li>
 </ul>
-<p>The samples and calculated statistics are based on samples in every
-<span class="math inline">\(n\)</span> rounds after burn-in, where <span
-class="math inline">\(n\)</span> is an interval which you type-in at the
-beginning of the program.</p>
-<p>The file <code>gibbs_samples</code> will be used by POSTGIBBSF90 to
-run post-Gibbs analyses. The number of samples stored in this file
-depends on your initial answers. For example, using 5,000 samples with
-1,000 burn-in and 10 sample intervals, the file will have 400 samples
-that is <span class="math inline">\((5000 - 1000)/10\)</span>. The
-second file <code>fort.99</code> is optional and it will be used in the
-post-Gibbs analyses. The <code>last_solutions</code> file is useful to
-continue the analysis from the last round; you do not usually have to
-see the inside of this file. The last file
-<code>binary_final_solutions</code> contains samples of solutions for
-“fixed” and “random” effects. You may want to see the solutions but it
-is not a text file. In the next section, we will consider the advanced
-techniques including the extraction of solutions from this file.</p>
+<p>The samples and calculated statistics are based on samples from every
+<span class="math inline">\(n\)</span>th round after burn-in, where
+<span class="math inline">\(n\)</span> is the interval that you enter at
+the beginning of the program.</p>
+<p>The file <code>gibbs_samples</code> is used by POSTGIBBSF90 to
+perform post-Gibbs analyses. The number of samples stored in this file
+depends on your answers to the initial questions. For example, using
+5,000 samples with 1,000 burn-in samples and a sampling interval of 10,
+the file will contain 400 samples, which is <span
+class="math inline">\((5000 - 1000)/10\)</span>. The second file,
+<code>fort.99</code>, is optional and is used in the post-Gibbs
+analyses. The <code>last_solutions</code> file is useful for continuing
+the analysis from the last round; you do not usually need to inspect its
+contents. The last file, <code>binary_final_solutions</code>, contains
+samples of solutions for fixed and random effects. You may want to
+inspect these solutions, but the file is not a text file. In the next
+section, we will consider advanced techniques, including extracting
+solutions from this file.</p>
 <h2 id="post-gibbs-analyses">Post Gibbs analyses</h2>
 <h3 id="invoking-postgibbsf90">Invoking POSTGIBBSF90</h3>
-<p>POSTGIBBSF90 performs post-Gibbs analyses reading the parameter file,
-<code>gibbs_samples</code>, and <code>fort.99</code>. You have to run
-POSTGIBBSF90 in a directory where you have these files. Invoking the
-program, it prints the following message.</p>
+<p>POSTGIBBSF90 performs post-Gibbs analyses by reading the parameter
+file, <code>gibbs_samples</code>, and <code>fort.99</code>. You have to
+run POSTGIBBSF90 in a directory containing these files. When you invoke
+the program, it prints the following message.</p>
 <pre data-language="output"><code> name of parameter file?</code></pre>
-<p>Type in the name of the parameter file used in this analysis. Then
-the program checks if <code>gibbs_samples</code> was really generated
-from the parameter file. If success, you will see the information about
-the total number of saved samples.</p>
-<pre data-language="output"><code> POST-GIBBSF90 3.06
-  # parameters in gibbs_samples =                          2
- Read           400 samples from round                         1010   to       5000</code></pre>
-<p>Then, POSTGIBBSF90 asks you another question.</p>
-<pre data-language="output"><code> Burn-in?</code></pre>
-<p>It is a tricky question. You should <em>not</em> input the same
-number what you typed at the beginning of THRSIBBS1F90. The burn-in
-samples were already discarded. This question asks you the number of
+<p>Type the name of the parameter file used in this analysis. Then, the
+program checks whether <code>gibbs_samples</code> was generated from
+that parameter file. If successful, you will see information about the
+total number of saved samples. POSTGIBBSF90 then shows the number of
+samples and asks another question.</p>
+<pre data-language="output"><code>  # parameters in gibbs_samples =           2
+ Read         400  samples from round        1010  to        5000
+ Burn-in?</code></pre>
+<p>This is a tricky question. You should <em>not</em> enter the same
+number as you entered at the beginning of GIBBSF90+. The burn-in samples
+have already been discarded. This question asks for the number of
 <em>additional</em> samples to discard as burn-in. The answer is</p>
 <ul>
 <li><code>0</code> if you do not discard any more samples as
-burn-in,</li>
-<li>Or, any integer number if you need to discard additional samples as
+burn-in;</li>
+<li>any integer if you need to discard additional samples as
 burn-in.</li>
 </ul>
 <p>After this, you will be asked the last question.</p>
 <pre data-language="output"><code> Give n to read every n-th sample? (1 means read all samples)</code></pre>
 <p>Before typing <code>1</code> to keep all the samples, please wait for
-a moment. This question asks you the number of intervals (thinnings)
-that you entered when you ran THRGIBBSf90. If you want to keep all the
-samples you have drawn, you have to put the same number as you put
-before. Or, you can input a multiple of the original number. For
-example, in this case, you can input 10, 20, 30 and so on, because the
-original interval was 10. If you type an inappropriate number, the
-program will stop with a suspicious message.</p>
+a moment. This question asks for the thinning interval that you entered
+when running GIBBSF90+. If you want to keep all the samples you have
+drawn, you must enter the same number as before. Alternatively, you can
+enter a multiple of the original number. For example, in this case, you
+can enter 10, 20, 30, and so on because the original interval was 10. If
+you enter an inappropriate number, the program will stop with a
+suspicious message.</p>
 <h2 id="post-statistics">Post statistics</h2>
-<p>We will see the following table with many statistics when we input
-<code>0</code> as burn-in and <code>10</code> as steps in our
-example.</p>
+<p>We will see the following table with many statistics when we enter
+<code>0</code> as the additional burn-in and <code>10</code> as the
+thinning interval in our example.</p>
 <pre data-language="widetext"><code># samples after burn-in =         400
 # samples after burn-in used =         400
 
@@ -504,32 +505,33 @@ example.</p>
                                                         Interval (95%)       diagnostic   lag: 1       10       50    # batches
    1    4    4    1    1       3.5788       39.035       32.020       46.049        -0.09      0.660   -0.076    0.017        66
    2    0    0    1    1       2.5062       62.582       57.670       67.494         0.09      0.406   -0.023    0.070       100</code></pre>
-<p>The output has 2 main tables. Each table contains statistics for each
-variance components. Variance components can be identified with the
+<p>The output has two main tables. Each table contains statistics for
+each variance component. Variance components can be identified using the
 columns <code>Pos. eff1 eff2 trt1 trt2</code>.</p>
 <ul>
 <li><code>Pos.</code> is the position index of a parameter.</li>
-<li><code>eff1</code> and <code>eff2</code> are the effects in which the
-variance defined. Without maternal genetic effect or random regressions,
-<code>eff1</code> equals <code>eff2</code>.</li>
+<li><code>eff1</code> and <code>eff2</code> are the effects for which
+the variance is defined. Without a maternal genetic effect or random
+regressions (i.e., correlated random effects), <code>eff1</code> equals
+<code>eff2</code>.</li>
 <li><code>trt1</code> and <code>trt2</code> are corresponding traits. In
 a single-trait model, <code>trt1</code> equals <code>trt2</code>.</li>
 </ul>
-<p>In this case, we have 2 variances; one (<span
+<p>In this case, we have two variances: one (<span
 class="math inline">\(\sigma_{u}^{2}\)</span>) is the genetic variance
-defined as the 4th effect and the other one is the residual variance
-(<span class="math inline">\(\sigma_e^2\)</span>). This is from a
-single-trait model, so the trait number should be 1. Finally we find the
-position 1 is for <span class="math inline">\(\sigma_u^2\)</span> and
-the position 2 is for <span
-class="math inline">\(\sigma_e^2\)</span>.</p>
-<p>As you see, this program displays plenty of information. We just pick
-essential numbers only. The rest of the items will be covered with the
-next section.</p>
+defined for the 4th effect, and the other is the residual variance
+(<span class="math inline">\(\sigma_e^2\)</span>). This is a
+single-trait model, so the trait number is 1. Finally, we find that
+position 1 corresponds to <span
+class="math inline">\(\sigma_u^2\)</span> and position 2 corresponds to
+<span class="math inline">\(\sigma_e^2\)</span>.</p>
+<p>As you can see, this program displays a great deal of information. We
+select only the essential numbers here. The remaining items will be
+covered in the next section.</p>
 <ul>
 <li><code>Mean</code>: Posterior mean.</li>
-<li><code>HPD Interval (95%)</code>: High posterior density interval
-with 95%.</li>
+<li><code>HPD Interval (95%)</code>: 95% highest posterior density
+interval.</li>
 <li><code>Median</code>: Posterior median.</li>
 <li><code>Mode</code>: Posterior mode. It would provide a better
 estimate than posterior mean if the posterior distribution is highly
@@ -537,59 +539,59 @@ skewed.</li>
 <li><code>Independent chain size</code>: The “effective” number of
 samples after adjusting autocorrelations among samples.</li>
 <li><code>PSD</code>: Posterior standard deviation.</li>
-<li><code>Autocolletations</code>: Lag-correlation between 2 samples
-with a specific interval.</li>
+<li><code>Autocorrelations</code>: Lag-correlation between two samples
+at a specific interval.</li>
 </ul>
-<p>This table shows several point-estimates including posterior mean,
-median, and mode. A reasonable estimate depends on its skewness of the
-posterior distribution. If the distribution is highly skewed and the
-mean is apart from the mode, the posterior mode or median could be a
-better choice. Note that the mode is just approximated from 50 interval
-classes.</p>
-<p>High posterior density interval (HPD95) is often cited statistics to
-evaluate the accuracy of the parameters. This is a kind of interval
-estimates of a parameter. The values are the lower and upper bounds by
-cutting off the sorted samples at the top 2.5% largest and the bottom
-2.5% smallest values.</p>
-<p>You can evaluate a sufficient interval for samples to be saved using
-Independent chain size and Autocorrelations. Two adjacent samples are
-usually highly correlated because the next sample is drawn based on the
-current one. When the correlation is still high between distant samples,
-the dependency-level is also high and the absolute values of the samples
-should be very similar. It simply means the samples do not provide much
-information about the posterior distribution. The autocorrelation
-indicates how many intervals between samples we need to achieve the
-zero-correlation. The independent chain size corresponds to the number
-of independent samples that can be seen as independent. If the
-independent chain size is 3, the statistics (that is posterior mean and
-SD) are equivalently calculated using only 3 independent samples, and
-obviously, this is too small. This indicates whether you need more
-samples or not.</p>
+<p>This table shows several “point estimates,” including the posterior
+mean, median, and mode. A reasonable estimate depends on the skewness of
+the posterior distribution. If the distribution is highly skewed and the
+mean differs substantially from the mode, the posterior mode or median
+could be a better choice. Note that the mode is only approximated from
+the 50 interval classes calculated by this program.</p>
+<p>The 95% highest posterior density interval (HPD95) is often cited as
+a statistic for evaluating the accuracy of parameter estimates. This is
+a type of interval estimate for a parameter. The values are the lower
+and upper bounds obtained by discarding the largest 2.5% and smallest
+2.5% of the sorted samples.</p>
+<p>You can evaluate whether the sampling interval is sufficient using
+the “independent chain size” and “autocorrelations.” Two adjacent
+samples are usually highly correlated because the current sample is
+drawn based on the previous one. When the correlation remains high
+between distant samples, the dependence is also high, and successive
+samples may be very similar. This means that the samples do not provide
+much information about the posterior distribution. The autocorrelation
+indicates how many intervals between samples are needed to reduce the
+correlation substantially. The independent chain size represents the
+number of effectively independent samples. If the independent chain size
+is 3, the statistics (that is, the posterior mean and SD) are
+effectively calculated using only 3 independent samples, which is too
+small. This indicates whether you need more samples.</p>
 <h3 id="time-series-plot-and-histogram">Time-series plot and
 histogram</h3>
-<p>After showing the above table, the program waits for your key-in with
+<p>After showing the above table, the program waits for your input with
 the following message.</p>
 <pre data-language="output"><code> Choose a graph for samples (= 1) or histogram (= 2); or exit (= 0)</code></pre>
 <p>POSTGIBBSF90 can draw a time-series plot or histogram of samples. It
-uses external software <code>Gnuplot</code> to show the graph. So, to
-obtain the plot, you have to have Gnuplot in your system. You can type
-<code>1</code> to draw time-series plot, or <code>2</code> to draw the
-histogram for samples. Type <code>0</code> to quit the program.</p>
-<p>The time series plot visually indicates whether the length of burn-in
-or total sampling is enough or not. If the initial samples seem to still
-keep the initial values, you would need more burn-in. If the samples
-stayed longer in a specific value-range, the posterior mean does not
-represent the entire samples, and you should draw more samples. The
-histogram provides a visual image of the posterior distribution.
-Usually, it is a one-peak distribution but skewed (with long right tail)
-more or less. If your distribution has 2 peaks or very flat, you should
-check the parameter file for human error, or draw more samples.</p>
+uses the external software Gnuplot to display the graph. To obtain a
+plot, you must have Gnuplot installed on your system. You can type
+<code>1</code> to draw a time-series plot or <code>2</code> to draw a
+histogram of the samples. Type <code>0</code> to quit the program.</p>
+<p>The time-series plot visually indicates whether the burn-in period
+and total sampling are sufficient. If the initial samples appear to
+retain their initial values, you need more burn-in. If the samples
+remain for a long time in a specific value range, the posterior mean may
+not represent the full posterior distribution, and you should draw more
+samples. The histogram provides a visual representation of the posterior
+distribution. Usually, it is unimodal but may be somewhat skewed, with a
+long right tail. If your distribution has two peaks or is very flat, you
+should check the parameter file for human error or draw more
+samples.</p>
 <h2 id="output-files-from-postgibbsf90">Output files from
 POSTGIBBSF90</h2>
-<p>POSTGIBBSF90 creates 7 files which are derived from the post-Gibbs
+<p>POSTGIBBSF90 creates seven files derived from the post-Gibbs
 statistics described above.</p>
 <ul>
-<li><code>postout</code>: The same content which is shown on
+<li><code>postout</code>: The same content as that shown on the
 screen.</li>
 <li><code>postind</code>: Relation of a position index to a variance
 component.</li>
@@ -603,12 +605,12 @@ calculated from the file <code>fort.99</code></li>
 <li><code>postgibbs_samples</code>: The final samples after removing
 burn-in and applying thinning.</li>
 </ul>
-<p>The <code>postout</code> file contains precise statistics from the
+<p>The <code>postout</code> file contains detailed statistics from the
 post-Gibbs analysis. You can check the position index with
-<code>postind</code>. A series of files contains posterior means and SDs
-for variance components. The file <code>fort.998</code> contains <span
-class="math inline">\(\log L\)</span> needed for the computation of
-Bayes factor.</p>
+<code>postind</code>. Several files contain posterior means and SDs for
+variance components. The file <code>fort.998</code> contains <span
+class="math inline">\(\log L\)</span> needed to compute the Bayes
+factor.</p>
 <p>The file <code>postgibbs_samples</code> is useful especially if you
 calculate other statistics by yourself. It contains samples after
 burn-in. The content looks like the following.</p>
@@ -628,85 +630,86 @@ index.</li>
 <h2
 id="post-gibbs-analysis-for-arbitrary-function-of-variance-components">Post-Gibbs
 Analysis for arbitrary function of variance components</h2>
-<p>A frequently-asked question is how to compute the posterior
-distribution of the heritability or the genetic correlation, a function
-of variance components. There are two ways to perform the post-Gibbs
-analysis on it.</p>
+<p>A frequently asked question is how to compute the posterior
+distribution of heritability or genetic correlation, each of which is a
+function of variance components. There are two ways to perform the
+post-Gibbs analysis for this purpose.</p>
 <h3 id="using-the-file-postgibbs-samples">Using the file postgibbs
 samples</h3>
-<p>The first option is simpler if you are familiar with scripting. From
-the file <code>postgibbs_samples</code>, you can easily draw a graph and
-calculate additional statistics. For instance, you may compute, at each
-sample, the <em>sample</em> of the heritability as a function of the
-samples of the variance components. The code in R would be something
-like this.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>a<span class="ot">=</span><span class="fu">read.table</span>(<span class="st">&quot;postgibbs_samples&quot;</span>,<span class="at">header=</span><span class="cn">FALSE</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># tell what each thing is</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(a)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;i&quot;</span>,<span class="st">&quot;iter&quot;</span>,<span class="st">&quot;varu&quot;</span>,<span class="st">&quot;vare&quot;</span>)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>a<span class="sc">$</span>h2<span class="ot">=</span>a<span class="sc">$</span>varu<span class="sc">/</span>(a<span class="sc">$</span>varu<span class="sc">+</span>a<span class="sc">$</span>vare)</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(a<span class="sc">$</span>h2)</span></code></pre></div>
-<p>In this way, you describe the posterior distribution of <span
-class="math inline">\(h^2\)</span> from the samples of variance
-components. This procedure can be done for <em>any</em> function of the
-variance components, for instance, genetic correlations. More
-sophisticated analysis can be done with R package ‘boa’.</p>
+<p>The first option is simpler if you are familiar with R or Python
+scripting. From the file <code>postgibbs_samples</code>, you can easily
+draw a graph and calculate additional statistics. For instance, you may
+compute the heritability at each sample as a function of the sampled
+variance components. The code in R would be something like this.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>a<span class="ot">=</span><span class="fu">read.table</span>(<span class="st">&quot;postgibbs_samples&quot;</span>,<span class="at">header=</span><span class="cn">FALSE</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># tell what each thing is</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(a)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;i&quot;</span>,<span class="st">&quot;iter&quot;</span>,<span class="st">&quot;varu&quot;</span>,<span class="st">&quot;vare&quot;</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>a<span class="sc">$</span>h2<span class="ot">=</span>a<span class="sc">$</span>varu<span class="sc">/</span>(a<span class="sc">$</span>varu<span class="sc">+</span>a<span class="sc">$</span>vare)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(a<span class="sc">$</span>h2)</span></code></pre></div>
+<p>In this way, you estimate the posterior distribution of <span
+class="math inline">\(h^2\)</span> from the samples of the variance
+components. This procedure can be applied to <em>any</em> function of
+the variance components, for instance, genetic correlations. More
+sophisticated analyses can be performed with the R package
+<code>boa</code>.</p>
 <h3 id="using-an-option-in-the-parameter-file">Using an option in the
 parameter file</h3>
 <p>The second option is to use the option <code>se_covar_function</code>
-in a parameter file. The user can define the function of variance
-components in the option line, and POSTGIBBSF90 calculates a sample of
-the function in each sampling round. The program displays all pos-Gibbs
-statistics on the screen as the standard variance components.</p>
-<p>The usage of this option was explained in the previous section for
-AIREMLF90. See the section for details.</p>
+in a parameter file. The user can define the function of the variance
+components on the option line, and POSTGIBBSF90 calculates a sample of
+the function in each sampling round. The program displays all post-Gibbs
+statistics on the screen as it does for standard variance
+components.</p>
+<p>The use of this option was explained in the previous section on AI
+REML. See that section for details.</p>
 <h2 id="remarks">Remarks</h2>
-<p>You must not run 2 Gibbs-sampling programs in the same directory at
-the same time. One program will overwrite <code>gibbs_samples</code>
-generated by the other programs. If you want to share the data and
-pedigree files in multiple jobs, make a separate directory (or folder)
-and create a copy of the files (or, make a symbolic link to the
-file)</p>
-<p>There are several options for THRGIBBSF90. For example, one is for
-continuous sampling with already finished results (starting sampling
-from the last round in the previous run). Another one can put the degree
-of belief for prior information. Please see the manual for details.</p>
-<p>There are many Gibbs sampling programs in BLUPF90 family. The
-difference is in their implementation.</p>
+<p>You must not run more than one GIBBSF90+ in the same directory at the
+same time. One program will overwrite <code>gibbs_samples</code>
+generated by the other program. If you want to share the data and
+pedigree files across multiple jobs, create a separate directory (or
+folder) and copy the files there, or create symbolic links to them.</p>
+<p>There are several options for GIBBSF90+. For example, one supports
+continuing sampling from already completed results, starting from the
+last round of the previous run. Another controls the strength of prior
+information. Please see the manual for details.</p>
+<p>The BLUPF90 family used to include several Gibbs samplers. Those
+programs have been consolidated into GIBBSF90+. For reference, the
+differences among the old programs are shown below.</p>
 <ul>
-<li>GIBBSF90: initial program; no longer distributed</li>
-<li>GIBBS1F90: much faster in multiple-trait models</li>
-<li>GIBBS2F90: faster in convergence for models with correlated effects
-(for example maternal model or random regression models).</li>
-<li>GIBBS3F90: derived from GIBBS2; supporting heterogeneous residual
-variances; a little bit slower than GIBBS2.</li>
-<li>THRGIBBS1F90: derived from GIBBS2; supporting threshold models;
-supporting huge dense matrices; faster than GIBBS2 especially for large
-data set; required more memory than GIBBS2.</li>
-<li>THRGIBBS3F90: derived from THRGIBBS1; supporting heterogeneous
+<li>GIBBSF90: initial program</li>
+<li>GIBBS1F90: much faster for multiple-trait models</li>
+<li>GIBBS2F90: faster convergence for models with correlated effects
+(for example, maternal or random-regression models).</li>
+<li>GIBBS3F90: derived from GIBBS2; supports heterogeneous residual
+variances; slightly slower than GIBBS2.</li>
+<li>THRGIBBS1F90: derived from GIBBS2; supports threshold models and
+large dense matrices; faster than GIBBS2, especially for large datasets;
+requires more memory than GIBBS2.</li>
+<li>THRGIBBS3F90: derived from THRGIBBS1; supports heterogeneous
 residual variances.</li>
 </ul>
-<p>Actually, recent improvements were done for GIBBS2F90 and
-THRGIBBS1F90. So we recommend a user to use these two programs if you
-are not interested in heterogeneous residual variances.</p>
+<p>GIBBSF90+ is always recommended. However, if you have to use the old
+programs, GIBBS2F90 and THRGIBBS1F90 may be alternatives.</p>
+<!--
+Actually, recent improvements were done for GIBBS2F90 and THRGIBBS1F90. So we recommend a user to use these two programs if you are not interested in heterogeneous residual variances.
+-->
 <h2 id="summary">Summary</h2>
 <ul>
-<li>GIBBSF90+ is recommended. Previously, THRGIBBS1F90 or GIBBS2F90 was
-recommended.</li>
-<li>THRGIBBS1F90 can perform Gibbs sampling both with the regular linear
-mixed models and the threshold models.</li>
-<li>THRGIBBS1F90 needs the numbers of total samples and burn-ins, and
-the interval for samples to be saved.</li>
-<li>THRGIBBS1F90 saves the samples to the file
+<li>GIBBSF90+ can perform Gibbs sampling for both regular linear mixed
+models and threshold models.</li>
+<li>GIBBSF90+ requires the total number of samples, the number of
+burn-in samples, and the interval at which samples are saved.</li>
+<li>GIBBSF90+ saves the samples to the file
 <code>gibbs_samples</code>.</li>
-<li>POSTGIBBSF90 reads <code>gibbs_samples</code> and calculates
-post-Gibbs statistics.</li>
-<li>POSTGIBBSF90 creates many files containing the statistics.</li>
-<li>You can check whether the initial settings are suitable or not from
-the output.</li>
-<li>You can conduct post-analyses on a function of variance components
-with the file <code>postgibbs_samples</code> by yourself, or using the
-option <code>se_covar_function</code> by POSTGIBBSF90.</li>
-<li>If the initial variance component is 0, it will be fixed to be 0
+<li>GIBBSF90+ reads <code>gibbs_samples</code> and calculates post-Gibbs
+statistics.</li>
+<li>GIBBSF90+ creates many files containing the statistics.</li>
+<li>You can check from the output whether the initial settings are
+suitable.</li>
+<li>You can perform post-Gibbs analyses of a function of variance
+components yourself using the file <code>postgibbs_samples</code>, or
+using the option <code>se_covar_function</code> with POSTGIBBSF90.</li>
+<li>If the initial variance component is 0, it will be fixed at 0
 throughout the iterations.</li>
 </ul>
 <p>

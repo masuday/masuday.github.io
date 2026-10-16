@@ -43,7 +43,7 @@
 <header>
 <h1 class="title">Data preparation with RENUMF90</h1>
 <p class="author">Yutaka Masuda</p>
-<p class="date">April 2025</p>
+<p class="date">August 2026</p>
 </header>
 <nav id="TOC">
 <ul>
@@ -55,6 +55,9 @@ id="toc-basic-usage-of-renumf90">Basic usage of RENUMF90</a></li>
 <li><a href="#optional-features-in-renumf90"
 id="toc-optional-features-in-renumf90">Optional features in
 RENUMF90</a></li>
+<li><a href="#a-template-of-an-instruction-file"
+id="toc-a-template-of-an-instruction-file">A template of an instruction
+file</a></li>
 <li><a href="#what-is-the-best-practice"
 id="toc-what-is-the-best-practice">What is the best practice?</a></li>
 <li><a href="#summary" id="toc-summary">Summary</a></li>
@@ -67,22 +70,22 @@ Back to <a href="./index.html">index.html</a>.
 <h1 id="basic-data-preparation">Basic data preparation</h1>
 <h2 id="basic-usage-of-renumf90">Basic usage of RENUMF90</h2>
 <h3 id="why-renumf90">Why RENUMF90?</h3>
-<p>BLUPF90 accepts data and pedigree files containing only numerical
-expressions (integer or real values). A group label should be integer
-starting from 1. A raw data file usually contains characters (alphabets
-or symbols) for animals’ ID or group code. The characters should be
-replaced with numerical values before the analysis with BLUPF90
-programs. RENUMF90 performs such a job. We call this process as
+<p>The BLUPF90 programs accept data and pedigree files containing only
+numerical values (integers or real values). A group label should be an
+integer starting from 1. A raw data file usually contains characters
+(letters or symbols) for animal IDs or group codes. These characters
+should be replaced with numerical values before analysis with the
+BLUPF90 programs. RENUMF90 performs this task. We call this process
 <em>renumbering</em>.</p>
 <h3 id="trivial-instruction-file">Trivial instruction file</h3>
-<p>RENUMF90 reads a parameter file, but it is totally different from the
-one used in BLUPF90. Don’t confuse 2 kinds of parameter files. Here, to
-avoid the confusion, we will refer to the parameter file used in
-RENUMF90 as an <em>instruction file</em> in this tutorial. This name is
-unofficial but easier to differentiate two kinds of parameter files.</p>
-<p>To understand the behavior of RENUMF90, let’s try a small example
-without pedigree. We use a raw data file and an instruction file. The
-raw data is a space-separated text file and contains 5 columns.</p>
+<p>RENUMF90 reads a parameter file, but it is quite different from the
+one used in BLUPF90. Do not confuse the two kinds of parameter files. To
+avoid confusion, we will refer to the parameter file used in RENUMF90 as
+an <em>instruction file</em> in this tutorial. This name is unofficial
+but makes it easier to distinguish the two kinds of parameter files.</p>
+<p>To understand the behavior of RENUMF90, let us try a small example
+without a pedigree. We use a raw data file and an instruction file. The
+raw data are in a space-separated text file containing five columns.</p>
 <pre data-language="text" data-caption="rawdata1.txt"><code> ID006  A  1  1.0  3.0
  ID009  A  2  1.0  2.0
  ID012  A  1  2.0  4.0
@@ -96,16 +99,16 @@ raw data is a space-separated text file and contains 5 columns.</p>
 <p>We will create a parameter file for the following model. <span
 class="math display">\[
     y_{ijk} = A_{i} + S_{j} + \beta x_{ijk} + e_{ijk}
-\]</span> This model is actually the same as those used one introduced
-in the previous chapter as a fixed effect model; The first column is
-animal ID, the next 2 columns are fixed cross-classified effects, and
-the third one is a fixed regression. So, this example tries to produce a
-similar data set used before.</p>
-<p>RENUMF90 will read the only necessary columns in the raw data-file,
+\]</span> This model is actually the same as the one introduced in the
+previous chapter as a fixed-effect model. The first column is the animal
+ID, the next two columns are fixed cross-classified effects, and the
+fourth column is a fixed regression covariate. Thus, this example
+produces a data set similar to the one used before.</p>
+<p>RENUMF90 will read only the necessary columns in the raw data file,
 as described in the instruction file. The following instruction file
-demonstrates the renumbering of column 2 and 3 as fixed cross-classified
-effects, column 4 as a covariate, and column 5 as a phenotype. In this
-case, column 1 will not be used.</p>
+demonstrates the renumbering of columns 2 and 3 as fixed
+cross-classified effects, column 4 as a covariate, and column 5 as a
+phenotype. In this case, column 1 is not used.</p>
 <pre data-language="renumf90" data-caption="renum1.txt"><code>DATAFILE
 rawdata1.txt
 TRAITS
@@ -122,12 +125,12 @@ EFFECT          # 2nd effect
 3 cross alpha
 EFFECT          # 3rd effect
 4 cov</code></pre>
-<p>Instruction file can also have comments, which starts with
-<code>#</code> as seen in the above example.</p>
-<p>The instruction file looks like the parameter file for BLUPF90. The
-file contains several pairs of keyword and value(s). The file contains 6
+<p>An instruction file can also contain comments, which start with
+<code>#</code>, as shown in the example above.</p>
+<p>The instruction file looks like a parameter file for BLUPF90+. It
+contains several pairs of keywords and values. The file contains six
 keywords. <code>EFFECT</code> can be repeated several times. The
-following keywords are required in the minimal instruction file.</p>
+following keywords are required in a minimal instruction file.</p>
 <table>
 <thead>
 <tr class="header">
@@ -140,13 +143,13 @@ following keywords are required in the minimal instruction file.</p>
 <tr class="odd">
 <td style="text-align: left;"><code>DATAFILE</code></td>
 <td>characters</td>
-<td style="text-align: left;">The name of raw data-file to be
+<td style="text-align: left;">The name of the raw data file to be
 processed.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>TRAITS</code></td>
 <td>integer</td>
-<td style="text-align: left;">A list of the position(s) of observation
+<td style="text-align: left;">A list of the position(s) of observations
 in the</td>
 </tr>
 <tr class="odd">
@@ -163,18 +166,19 @@ unchanged</td>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td></td>
-<td style="text-align: left;">columns in the data file. Empty value
+<td style="text-align: left;">columns in the data file. An empty value
 is</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">ac</td>
-<td>ceptable if not ne</td>
-<td style="text-align: left;">eded (just keep the line empty).</td>
+<td style="text-align: left;"></td>
+<td></td>
+<td style="text-align: left;">acceptable if not needed (just keep the
+line empty).</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td></td>
-<td style="text-align: left;">The columns will be passed through the
+<td style="text-align: left;">The columns will be passed through to the
 renumbered file.</td>
 </tr>
 <tr class="even">
@@ -186,7 +190,7 @@ file.</td>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td></td>
-<td style="text-align: left;">Empty value is acceptable if not
+<td style="text-align: left;">An empty value is acceptable if not
 needed.</td>
 </tr>
 <tr class="even">
@@ -201,9 +205,9 @@ needed.</td>
 </tr>
 </tbody>
 </table>
-<p>The <code>EFFECT</code> keyword can be repeated as many as you need.
-The above instruction file contains 3 effects. The <code>EFFECT</code>
-keyword has several values as follows.</p>
+<p>The <code>EFFECT</code> keyword can be repeated as many times as
+needed. The instruction file above contains three effects. The
+<code>EFFECT</code> keyword has the following values.</p>
 <table>
 <thead>
 <tr class="header">
@@ -234,39 +238,39 @@ keyword has several values as follows.</p>
 </tr>
 </tbody>
 </table>
-<p>In the above table, the position means the position(s) of group code
-(for class effect) or covariate (for regression) in the raw data-file.
-You can choose one of two effect types (<code>cross</code> for
-cross-classified or <code>cov</code> for regression). For
+<p>In the table above, the position means the position(s) of the group
+code (for a class effect) or covariate (for a regression) in the raw
+data file. You can choose one of two effect types (<code>cross</code>
+for cross-classified or <code>cov</code> for regression). For
 cross-classified effects, you can also choose the data type:
-<code>alpha</code> if the column may contain alphabets, or
-<code>numer</code> if the column surely contains integer values only.
-Following is an explanation for <code>EFFECT</code> block in the above
-instruction.</p>
+<code>alpha</code> if the column may contain letters, or
+<code>numer</code> if the column contains only integer values. The
+following explains the <code>EFFECT</code> blocks in the instruction
+file above.</p>
 <pre data-language="renumf90"><code>EFFECT
-  2 cross alpha       # treat 2nd column as cross - classified effect ; assuming alphabets
+  2 cross alpha       # treat 2nd column as cross-classified effect; assuming letters
 EFFECT
-  3 cross alpha       # treat 3rd column as cross - classified effect ; assuming alphabets
+  3 cross alpha       # treat 3rd column as cross-classified effect; assuming letters
 EFFECT
   4 cov               # treat 4th column as covariate</code></pre>
 <p>Note that, in this case, you can technically use <code>numer</code>
-instead of <code>alpha</code> in the second effect because this column
-contains integer values only. We, nevertheless, recommend a user to
-always use <code>alpha</code> because it can accept any types of data
-including both alphabets and numbers.</p>
+instead of <code>alpha</code> for the second effect because this column
+contains only integer values. Nevertheless, we recommend that users
+always use <code>alpha</code> because it can accept any type of data,
+including letters and numbers.</p>
 <h3 id="resulting-files">Resulting files</h3>
-<p>RENUMF90 asks you to type the name of the instruction file. The
-program reads the original data, and it replaces the group labels with
-sequential, integer values. Finally, this program generates 3 files, and
-each file has a fixed name. If you have the existing file with the same
-name, the file will be replaced with a new one.</p>
+<p>RENUMF90 asks you to enter the name of the instruction file. The
+program reads the original data and replaces the group labels with
+sequential integer values. Finally, it generates three files, each with
+a fixed name. If a file with the same name already exists, it is
+replaced with a new one.</p>
 <ul>
 <li><code>renf90.dat</code>: renumbered data file</li>
 <li><code>renf90.par</code>: a suggested parameter file for BLUPF90</li>
 <li><code>renf90.tables</code>: a correspondence table between the
-original code with a new integer value</li>
+original code and a new integer value</li>
 </ul>
-<p>Let us look into the inside of <code>renf90.dat</code>.</p>
+<p>Let us look at the contents of <code>renf90.dat</code>.</p>
 <pre data-language="text"><code> 3.0 1 1 1.0
  2.0 1 2 1.0
  4.0 1 1 2.0
@@ -278,16 +282,17 @@ original code with a new integer value</li>
  8.0 3 1 1.0
  4.0 3 2 2.0</code></pre>
 <p>You can see the difference between the original and renumbered files.
-The order of lines (rows) are preserved but the order of columns is
-different. Each column has integer values or real (numerical) values.
-RENUMF90 change the column order as the following rules.</p>
+The order of the lines (rows) is preserved, but the order of the columns
+is different. Each column contains either integer or real (numeric)
+values. RENUMF90 changes the column order according to the following
+rules.</p>
 <ol type="1">
-<li>First, observations: RENUMF90 doesn’t change the values.
+<li>First, observations: RENUMF90 does not change the values.
 <ul>
-<li>column 1: a single-trait model is assumed and the 1st column is for
+<li>column 1: a single-trait model is assumed, and the 1st column is for
 observations.</li>
 </ul></li>
-<li>Second, effects: the order is determined with the order of
+<li>Second, effects: the order is determined by the order of the
 <code>EFFECT</code> statements in the instruction file.
 <ul>
 <li>column 2 for effect 1 (corresponding to the 2nd column in the
@@ -295,20 +300,21 @@ original file).</li>
 <li>column 3 for effect 2 (3rd column in the original file).</li>
 <li>column 4 for effect 3 (4th column in the original file).</li>
 </ul></li>
-<li>Last, passed columns: RENUMF90 adds the columns specified in
-<code>FIELDS_PASSED TO OUTPUT</code> keyword in instruction. It doesn’t
-change the content in anyway so, the passed columns may have alphabets
-and symbols.
+<li>Last, passed columns: RENUMF90 adds the columns specified by the
+<code>FIELDS_PASSED TO OUTPUT</code> keyword in the instruction file. It
+does not change the content in any way, so the passed columns may
+contain letters and symbols.
 <ul>
-<li>no additional columns in this case: we didn’t set any values for
+<li>no additional columns in this case: we did not set any values for
 this keyword.</li>
 </ul></li>
 </ol>
-<p>Class variables for effect 1 and 2 (column 2 and 3) are successfully
-replaced with integer values. For effect 1, A is replaced with
-<code>1</code>, B with <code>2</code> and C with <code>3</code>. For
-effect 2, 1 is <code>1</code> and 2 is <code>2</code>. The
-correspondence is saved in <code>renf90.tables</code>.</p>
+<p>Class variables for effects 1 and 2 (columns 2 and 3) are
+successfully replaced with integer values. For effect 1, A is replaced
+with <code>1</code>, B with <code>2</code>, and C with <code>3</code>.
+For effect 2, 1 is replaced with <code>1</code> and 2 with
+<code>2</code>. The correspondence is saved in
+<code>renf90.tables</code>.</p>
 <pre data-language="text"><code> Effect group 1 of column 1 with 3 levels, effect # 1
  Value    #    consecutive number
 A 3 1
@@ -318,11 +324,12 @@ C 4 3
  Value    #    consecutive number
 1 5 1
 2 5 2</code></pre>
-<p>In this case, each <code>Effect group</code> hash 3 columns: 1st for
-the original group code, 2nd for the number of times the code occurred
-in the input, and 3rd for the replaced integer value.</p>
+<p>In this case, each <code>Effect group</code> has three columns: the
+first contains the original group code, the second contains the number
+of times the code occurred in the input, and the third contains the
+replacement integer value.</p>
 <p>RENUMF90 kindly generates a parameter file for BLUPF90.</p>
-<pre data-language="blupf90"><code># BLUPF90 parameter file created by RENF90
+<pre data-language="blupf90"><code># BLUPF90 parameter file created by RENUMF90
 DATAFILE
  renf90.dat
 NUMBER_OF_TRAITS
@@ -339,42 +346,43 @@ EFFECTS: POSITIONS_IN_DATAFILE NUMBER_OF_LEVELS TYPE_OF_EFFECT[EFFECT NESTED]
   4 1 cov
 RANDOM_RESIDUAL VALUES
    1.0000</code></pre>
-<p>This looks like perfect for you to use it in BLUPF90, and the program
-will run the analysis successfully. In this parameter file, the model
+<p>This parameter file is ready to use with BLUPF90, and the program
+will successfully run the analysis. In this parameter file, the model
 description is inherited from the instruction file. For example, the
-above instruction contains 3 effects so <code>renf90.par</code> also
-contains 3 effects corresponding to the description in instruction. Note
-that the <code>EFFECTS:</code> line is followed by extra words
-(<code>POSITIONS_IN_DATAFILE</code> etc.), but it is no problem for
-BLUPF90.</p>
-<p>Running BLUPF90 with this renf90.par will produce the same solutions
-as described before. A reader can confirm the fact with these files.</p>
+instruction file above contains three effects, so
+<code>renf90.par</code> also contains three effects corresponding to the
+description in the instruction file. Note that the <code>EFFECTS:</code>
+line is followed by extra words (<code>POSITIONS_IN_DATAFILE</code>,
+etc.), but this is not a problem for BLUPF90.</p>
+<p>Running BLUPF90 with this <code>renf90.par</code> will produce the
+same solutions as those described earlier. You can verify this using
+these files.</p>
 <h2 id="optional-features-in-renumf90">Optional features in
 RENUMF90</h2>
-<p>RENUMF90 specifically accepts some options with an additional line
-beginning with <code>OPTION</code> at the end of the instruction file.
-Following options are available.</p>
+<p>RENUMF90 specifically supports some options specified by an
+additional line beginning with <code>OPTION</code> at the end of the
+instruction file. The following options are available.</p>
 <ul>
 <li><code>OPTION alpha_size</code> <span
-class="math inline">\(n\)</span>: change the size of character fields
-(maximum number of letters in a column with alpha specification) to
-<span class="math inline">\(n\)</span>.</li>
+class="math inline">\(n\)</span>: Changes the size of character fields
+(the maximum number of characters in a column with an alpha
+specification) to <span class="math inline">\(n\)</span>.</li>
 <li><code>OPTION max_string_readline</code> <span
-class="math inline">\(n\)</span>: change the size of the record length
-(maximum number of letters in a line) to <span
+class="math inline">\(n\)</span>: Changes the record length (the maximum
+number of characters in a line) to <span
 class="math inline">\(n\)</span>.</li>
 <li><code>OPTION max_field_readline</code> <span
-class="math inline">\(n\)</span>: change the maximum number of fields
+class="math inline">\(n\)</span>: Changes the maximum number of fields
 (columns) in a line to <span class="math inline">\(n\)</span>.</li>
 </ul>
 <p>The <span class="math inline">\(n\)</span> above is replaced with an
 actual integer value. See the examples.</p>
 <pre data-language="renumf90"><code>OPTION max_string_readline 2048</code></pre>
-<p>If the option is not usable in RENUMF90, the program simply passes it
-through <code>renf90.par</code>. So, you can put some
-<code>OPTION</code> lines, which will be used in BLUPF90, in
-instruction, and you will obtain a perfect parameter file with desired
-options for your analysis. See the following example.</p>
+<p>If an option is not used by RENUMF90, the program simply passes it
+through to <code>renf90.par</code>. Thus, you can put
+<code>OPTION</code> lines that BLUPF90 will use in the instruction file
+and obtain a parameter file with the desired options for your analysis.
+See the following example.</p>
 <pre data-language="renumf90" data-caption="renum1a.txt"><code>DATAFILE
 rawdata1.txt
 TRAITS
@@ -394,44 +402,56 @@ EFFECT
 OPTION max_string_readline 2048
 OPTION alpha_size 40
 OPTION solv_method FSPAK</code></pre>
-<p>The first 2 options will be taken by RENUMF90, but the last one will
-be passed through the output file <code>renf90.par</code>.</p>
+<p>The first two options will be used by RENUMF90, but the last one will
+be passed through to the output file <code>renf90.par</code>.</p>
+<h2 id="a-template-of-an-instruction-file">A template of an instruction
+file</h2>
+<p>A template of the instruction file is available from various online
+sources, such as the official DocuWiki at UGA or the author’s GitHub
+repository. If you are working on the command line, the best way to
+obtain the template is to type the following command in your shell.</p>
+<pre data-language="shell"><code>renumf90 --show-template</code></pre>
+<p>This displays a minimal template for RENUMF90.</p>
 <h2 id="what-is-the-best-practice">What is the best practice?</h2>
 <p>Suppose you have to perform many analyses with the same data but
-different models. How many times do you run RENUMF90? Basically, there
-are 2 solutions.</p>
+different models. How many times should you run RENUMF90? Basically,
+there are two approaches:</p>
 <ol type="1">
-<li>In every analysis, rewrite the instruction and run RENUMF90. Then
-just use the generated <code>renf90.par</code>.</li>
-<li>First, prepare the instruction with maximal models and run RENUMF90.
-Then, every time, copy the generated <code>renf90.par</code> to the new
-file and modify it to fit a model.</li>
+<li>For every analysis, rewrite the instruction file and run RENUMF90.
+Then use the generated <code>renf90.par</code>.</li>
+<li>First, prepare an instruction file with the most comprehensive model
+and run RENUMF90. Then, for each analysis, copy the generated
+<code>renf90.par</code> to a new file and modify it to fit the
+model.</li>
 </ol>
-<p>The better solution can depend on your situation. If you have a
+<p>The better approach depends on your situation. If you have a
 relatively small data set and the analysis will not take a long time,
-the first approach could be applicable. If your data is large enough and
-the analysis will take time, the second option is the only efficient
-way. Also, in some cases, the generated <code>renf90.par</code> is
-incomplete. The second approach is more general and it is the use case
-that the development team assumes.</p>
+the first approach may be suitable. If your data set is large and the
+analysis will take a long time, the second approach is the only
+efficient way. Also, in some cases, the generated
+<code>renf90.par</code> is incomplete. The second approach is more
+general and is the use case assumed by the development team.</p>
 <h2 id="summary">Summary</h2>
 <ul>
-<li>RENUMF90 reads a parameter file, which is totally different from one
-for BLUPF90. We call it the instruction file (or, simply instruction) in
-this chapter.</li>
-<li>RENUMF90 replaces alphabets or symbols with integer values which
-BLUPF90 can use. This process is called <em>renumbering</em>.</li>
+<li>RENUMF90 reads a parameter file, which is different from the one
+used for BLUPF90. We call it the instruction file (or simply the
+instruction) in this chapter.</li>
+<li>RENUMF90 replaces alphabetic characters or symbols with integer
+values that BLUPF90 can use. This process is called
+<em>renumbering</em>.</li>
 <li>RENUMF90 generates a renumbered data file, a table file, and a
 template parameter file for BLUPF90.</li>
-<li>RENUMF90 generates a template parameter file which parameters are
+<li>RENUMF90 generates a template parameter file whose parameters are
 inherited from the instruction file.</li>
-<li>An instruction file consists of pairs of keyword and values. The
-file can have the comments with the <code>#</code> syntax.</li>
-<li>RENUMF90 passes option lines in instruction to
+<li>An instruction file consists of pairs of keywords and values. The
+file can contain comments using the <code>#</code> syntax.</li>
+<li>RENUMF90 passes option lines in the instruction file to
 <code>renf90.par</code>.</li>
-<li>If you use the same data with different analyses, a possible way is
-to run RENUMF90 once and modify the generated renf90.par to fit a model
-you should use.</li>
+<li>Command-line option, <code>renumf90 --show-template</code>, displays
+a minimal template of the instruction file.</li>
+<li>If you use the same data for different analyses, one possible
+approach is to run RENUMF90 once and modify the generated
+<code>renf90.par</code> to fit the model you want to use.</li>
 </ul>
 <p>
 Back to <a href="./index.html">index.html</a>.
